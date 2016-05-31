@@ -45,6 +45,14 @@ $ pod install
 
 - Please make sure to always **use the newly generated `.xcworkspace`** file not not the projects `.xcodeproj` file
 
+- In your Xcode environment, go to your `Project Navigator` (blue project icon) and open the tab called `Build Phases`.
+- Add a new `Run Script Phase` and drag it above the `Compile Sources` build phase.
+- In the shell script, paste the following line:
+
+```bash
+sh "${SRCROOT}/Pods/JudoShield/Framework/strip-frameworks.sh"
+```
+
 ### Initial setup
 
 - Add `#import <JudoKitObjC/JudoKitObjC.h>` to the top of the file where you want to use the SDK.
