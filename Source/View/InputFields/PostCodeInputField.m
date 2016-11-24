@@ -168,4 +168,8 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     return 120.0f;
 }
 
+- (NSString *)fieldName {
+    return @"postcode";
+}
+
 @end

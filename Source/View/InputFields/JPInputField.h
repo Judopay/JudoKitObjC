@@ -176,6 +176,10 @@
  */
 @property (nonatomic, assign, readonly) BOOL isValid;
 
+/**
+ * The strict name of the field
+ */
+@property (nonatomic, assign, readonly) NSString *fieldName;
 
 /**
  *  Designated Initializer for the JPInputField and its subclasses

@@ -145,6 +145,10 @@
     return @"Long card number";
 }
 
+- (NSString *)fieldName {
+    return @"cardNumber";
+}
+
 + (CardLogoType)cardLogoTypeForNetworkType:(CardNetwork)network {
     switch (network) {
         case CardNetworkVisa:

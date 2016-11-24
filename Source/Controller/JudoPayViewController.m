@@ -47,6 +47,8 @@
 #import "JPCard.h"
 #import "JPAddress.h"
 
+#import "JPTracking.h"
+
 @import CoreLocation;
 
 static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCurve curve) {
@@ -168,6 +170,10 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     } completion:nil];
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[JPTracking sharedInstance] applicationDidBecomeActive:application];
+}
+
 #pragma mark - Initialization
 
 - (instancetype)initWithJudoId:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference transaction:(TransactionType)type currentSession:(JudoKit *)session cardDetails:(JPCardDetails *)cardDetails completion:(JudoCompletionBlock)completion {
@@ -188,6 +194,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     return self;
 }
@@ -394,6 +401,8 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.postCodeInputField.textField resignFirstResponder];
     
     [self.loadingView startAnimating];
+    
+    [[JPTracking sharedInstance] push];
     
     if (self.paymentToken) {
         self.paymentToken.secureCode = self.securityCodeInputField.textField.text;

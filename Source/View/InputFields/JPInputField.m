@@ -29,6 +29,8 @@
 #import "FloatingTextField.h"
 #import "CardLogoView.h"
 
+#import "JPTracking.h"
+
 @interface JPInputField ()
 
 @property (nonatomic, strong, readwrite) NSString *hintLabelText;
@@ -152,10 +154,12 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self setActive:YES];
     [self.delegate judoPayInputDidChangeText:self];
+    [[JPTracking sharedInstance] textFieldDidBeginEditing:self];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self setActive:(textField.text.length > 0)];
+    [[JPTracking sharedInstance] textFieldDidEndEditing:self];
 }
 
 - (BOOL)isValid {
@@ -164,10 +168,12 @@
 
 - (void)didChangeInputText {
     [self.delegate judoPayInputDidChangeText:self];
+    [[JPTracking sharedInstance] didChangeInputText:self];
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [self dismissError];
+    //[[JudoTracking sharedInstance] textFieldDidChangeValue:self];
 }
 
 - (NSAttributedString *)placeHolder {
@@ -191,6 +197,10 @@
 }
 
 - (NSString *)hintLabelText {
+    return @"";
+}
+
+- (NSString *)fieldName {
     return @"";
 }
 

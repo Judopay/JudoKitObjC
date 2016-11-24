@@ -29,6 +29,7 @@
 #import "NSError+Judo.h"
 #import "NSDate+Judo.h"
 #import "NSString+Card.h"
+#import "JPTracking.h"
 
 @interface DateInputField ()
 
@@ -71,6 +72,8 @@
             }
             
             self.textField.text = [newString stringByAppendingString:@"/"];
+            //This has been placed here to the tracking is called when the text field is modified with a / .
+            [[JPTracking sharedInstance] didChangeInputText:self];
             return NO;
         }
         self.textField.text = [newString substringToIndex:1];
@@ -167,6 +170,10 @@
 
 - (NSString *)hintLabelText {
     return @"MM/YY";
+}
+
+- (NSString *)fieldName {
+    return self.isStartDate ? @"startDate" : @"expiryDate";
 }
 
 #pragma mark - Lazy Loading

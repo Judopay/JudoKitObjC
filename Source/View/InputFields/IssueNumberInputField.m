@@ -71,4 +71,8 @@
     return @"Issue number on front of card";
 }
 
+- (NSString *)fieldName {
+    return @"issueNumber";
+}
+
 @end
