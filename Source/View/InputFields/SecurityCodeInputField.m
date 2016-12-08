@@ -110,7 +110,7 @@
 
 - (NSString *)hintLabelText {
     if (self.isTokenPayment) {
-        return @"Please re-enter the card security code";
+        return @"Re-enter security code";
     }
     return @"Security code";
 }

@@ -116,6 +116,13 @@
  */
 - (void)judoPayInputDidChangeText:(JPInputField *)input;
 
+/**
+ *  Delegate method that is called whenever any inputField has ended editing
+ *
+ *  @param input The input field calling the delegate method
+ */
+- (void)judoInputEditingDidEnd:(JPInputField *)input;
+
 @end
 
 /**
@@ -221,5 +228,19 @@
  *  @param textField the textfield of which the content has changed
  */
 - (void)textFieldDidChangeValue:(UITextField *)textField;
+
+/**
+ *  sets the error hint text
+ *
+ *  @param the smessage to display
+ */
+- (void)setErrorHintText:(NSString *)message;
+
+/**
+ *  sets the hint text
+ *
+ *  @param the smessage to display
+ */
+- (void)setHintText:(NSString *)message;
 
 @end
