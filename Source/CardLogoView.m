@@ -34,59 +34,62 @@
 
 - (instancetype)initWithType:(CardLogoType)type {
     self = [super initWithFrame:CGRectZero];
-	if (self) {
+    if (self) {
         self.type = type;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (void)drawRect:(CGRect)rect {
     switch (self.type) {
         case CardLogoTypeVisa:
-            [self drawCardVisa];
+            [self drawIc_card_visaCanvas];
             break;
         case CardLogoTypeMasterCard:
-            [self drawCardMasterCard];
+            [self drawIc_card_mastercardCanvas];
             break;
         case CardLogoTypeAMEX:
-            [self drawCardAmex];
+            [self drawIc_card_amexCanvas];
             break;
         case CardLogoTypeMaestro:
-            [self drawCardMaestro];
+            [self drawIc_card_maestroCanvas];
             break;
         case CardLogoTypeCID:
-            [self drawCardCid];
+            [self drawIc_card_cidvCanvas];
             break;
         case CardLogoTypeCVC:
-            [self drawCardCvc];
+            [self drawIc_card_cvcCanvas];
             break;
         default:
-            [self drawCardUnknown];
+            [self drawIc_card_unknownCanvas];
             break;
     }
 }
 
-- (void)drawCardAmex {
+#pragma mark Drawing Methods
+
+- (void)drawIc_card_amexCanvas
+{
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();
-
+    
     //// Color Declarations
-    UIColor* gradientColor = [UIColor colorWithRed: 0.406 green: 0.745 blue: 0.935 alpha: 1];
-    UIColor* gradientColor2 = [UIColor colorWithRed: 0.163 green: 0.415 blue: 0.695 alpha: 1];
-    UIColor* gradientColor3 = [UIColor colorWithRed: 0.042 green: 0.316 blue: 0.619 alpha: 1];
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
-    UIColor* fillColor3 = [UIColor colorWithRed: 0.037 green: 0.312 blue: 0.619 alpha: 1];
     UIColor* fillColor4 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-
+    UIColor* fillColor22 = [UIColor colorWithRed: 0.037 green: 0.312 blue: 0.619 alpha: 1];
+    UIColor* gradientColor7 = [UIColor colorWithRed: 0.475 green: 0.735 blue: 0.906 alpha: 1];
+    UIColor* gradientColor8 = [UIColor colorWithRed: 0.271 green: 0.495 blue: 0.732 alpha: 1];
+    UIColor* gradientColor9 = [UIColor colorWithRed: 0.127 green: 0.317 blue: 0.593 alpha: 1];
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    
     //// Gradient Declarations
-    CGFloat sVGID_5_Locations[] = {0, 0.68, 1};
-    CGGradientRef sVGID_5_ = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)gradientColor.CGColor, (id)gradientColor2.CGColor, (id)gradientColor3.CGColor], sVGID_5_Locations);
-
-    //// ic_card_amex Group
+    CGFloat sVGID_5_5Locations[] = {0, 0.53, 1};
+    CGGradientRef sVGID_5_5 = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)gradientColor7.CGColor, (id)gradientColor8.CGColor, (id)gradientColor9.CGColor], sVGID_5_5Locations);
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -103,18 +106,18 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
+        
+        
         //// Bezier 2 Drawing
         UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
         [bezier2Path moveToPoint: CGPointMake(32.88, 8.22)];
@@ -139,16 +142,16 @@
         [bezier2Path addLineToPoint: CGPointMake(32.88, 4.3)];
         [bezier2Path closePath];
         bezier2Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier2Path fill];
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
-            //// Group 4
+            //// Group 5
             {
-                //// Group 5
+                //// Group 6
                 {
                     //// Bezier 3 Drawing
                     UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
@@ -229,11 +232,11 @@
                     [bezier3Path addCurveToPoint: CGPointMake(8.66, 21.11) controlPoint1: CGPointMake(8.65, 20.99) controlPoint2: CGPointMake(8.66, 21.04)];
                     [bezier3Path closePath];
                     bezier3Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier3Path fill];
-
-
+                    
+                    
                     //// Bezier 4 Drawing
                     UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
                     [bezier4Path moveToPoint: CGPointMake(10.66, 21.16)];
@@ -269,11 +272,11 @@
                     [bezier4Path addLineToPoint: CGPointMake(10.3, 20.31)];
                     [bezier4Path closePath];
                     bezier4Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier4Path fill];
-
-
+                    
+                    
                     //// Bezier 5 Drawing
                     UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
                     [bezier5Path moveToPoint: CGPointMake(12.37, 20.61)];
@@ -334,11 +337,11 @@
                     [bezier5Path addCurveToPoint: CGPointMake(12.37, 20.61) controlPoint1: CGPointMake(12.22, 20.58) controlPoint2: CGPointMake(12.3, 20.59)];
                     [bezier5Path closePath];
                     bezier5Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier5Path fill];
-
-
+                    
+                    
                     //// Bezier 6 Drawing
                     UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
                     [bezier6Path moveToPoint: CGPointMake(15.25, 20.53)];
@@ -385,11 +388,11 @@
                     [bezier6Path addCurveToPoint: CGPointMake(15.51, 21.1) controlPoint1: CGPointMake(15.51, 21.2) controlPoint2: CGPointMake(15.51, 21.15)];
                     [bezier6Path closePath];
                     bezier6Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier6Path fill];
-
-
+                    
+                    
                     //// Bezier 7 Drawing
                     UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
                     [bezier7Path moveToPoint: CGPointMake(17.79, 21.16)];
@@ -425,11 +428,11 @@
                     [bezier7Path addLineToPoint: CGPointMake(17.43, 20.31)];
                     [bezier7Path closePath];
                     bezier7Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier7Path fill];
-
-
+                    
+                    
                     //// Bezier 8 Drawing
                     UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
                     [bezier8Path moveToPoint: CGPointMake(19.5, 20.61)];
@@ -490,11 +493,11 @@
                     [bezier8Path addCurveToPoint: CGPointMake(19.5, 20.61) controlPoint1: CGPointMake(19.35, 20.58) controlPoint2: CGPointMake(19.43, 20.59)];
                     [bezier8Path closePath];
                     bezier8Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier8Path fill];
-
-
+                    
+                    
                     //// Bezier 9 Drawing
                     UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                     [bezier9Path moveToPoint: CGPointMake(21.08, 19.81)];
@@ -553,11 +556,11 @@
                     [bezier9Path addCurveToPoint: CGPointMake(21.08, 19.81) controlPoint1: CGPointMake(20.91, 19.81) controlPoint2: CGPointMake(20.99, 19.81)];
                     [bezier9Path closePath];
                     bezier9Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier9Path fill];
-
-
+                    
+                    
                     //// Bezier 10 Drawing
                     UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                     [bezier10Path moveToPoint: CGPointMake(23.7, 21.16)];
@@ -634,11 +637,11 @@
                     [bezier10Path addCurveToPoint: CGPointMake(23.01, 20.59) controlPoint1: CGPointMake(22.87, 20.56) controlPoint2: CGPointMake(22.93, 20.57)];
                     [bezier10Path closePath];
                     bezier10Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier10Path fill];
-
-
+                    
+                    
                     //// Bezier 11 Drawing
                     UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                     [bezier11Path moveToPoint: CGPointMake(25.71, 21.16)];
@@ -673,11 +676,11 @@
                     [bezier11Path addLineToPoint: CGPointMake(25.35, 20.31)];
                     [bezier11Path closePath];
                     bezier11Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier11Path fill];
-
-
+                    
+                    
                     //// Bezier 12 Drawing
                     UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                     [bezier12Path moveToPoint: CGPointMake(28.92, 20.6)];
@@ -718,11 +721,11 @@
                     [bezier12Path addLineToPoint: CGPointMake(28.92, 20.6)];
                     [bezier12Path closePath];
                     bezier12Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier12Path fill];
-
-
+                    
+                    
                     //// Bezier 13 Drawing
                     UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                     [bezier13Path moveToPoint: CGPointMake(30.91, 20.6)];
@@ -763,11 +766,11 @@
                     [bezier13Path addLineToPoint: CGPointMake(30.91, 20.6)];
                     [bezier13Path closePath];
                     bezier13Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier13Path fill];
-
-
+                    
+                    
                     //// Bezier 14 Drawing
                     UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                     [bezier14Path moveToPoint: CGPointMake(32.61, 20.53)];
@@ -814,11 +817,11 @@
                     [bezier14Path addCurveToPoint: CGPointMake(32.88, 21.1) controlPoint1: CGPointMake(32.87, 21.2) controlPoint2: CGPointMake(32.88, 21.15)];
                     [bezier14Path closePath];
                     bezier14Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier14Path fill];
-
-
+                    
+                    
                     //// Bezier 15 Drawing
                     UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                     [bezier15Path moveToPoint: CGPointMake(35, 20.6)];
@@ -859,11 +862,11 @@
                     [bezier15Path addLineToPoint: CGPointMake(35, 20.6)];
                     [bezier15Path closePath];
                     bezier15Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier15Path fill];
-
-
+                    
+                    
                     //// Bezier 16 Drawing
                     UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                     [bezier16Path moveToPoint: CGPointMake(37.15, 21.16)];
@@ -898,13 +901,13 @@
                     [bezier16Path addLineToPoint: CGPointMake(36.79, 20.31)];
                     [bezier16Path closePath];
                     bezier16Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier16Path fill];
                 }
             }
-
-
+            
+            
             //// Bezier 17 Drawing
             UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
             [bezier17Path moveToPoint: CGPointMake(6.72, 21.11)];
@@ -984,13 +987,13 @@
             [bezier17Path addCurveToPoint: CGPointMake(6.72, 21.11) controlPoint1: CGPointMake(6.72, 20.99) controlPoint2: CGPointMake(6.72, 21.04)];
             [bezier17Path closePath];
             bezier17Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier17Path fill];
         }
-
-
-        //// Group 6
+        
+        
+        //// Group 7
         {
             //// Bezier 18 Drawing
             UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
@@ -1008,11 +1011,11 @@
             [bezier18Path addLineToPoint: CGPointMake(32.39, 17.9)];
             [bezier18Path closePath];
             bezier18Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier18Path fill];
-
-
+            
+            
             //// Bezier 19 Drawing
             UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
             [bezier19Path moveToPoint: CGPointMake(33.74, 17.69)];
@@ -1035,11 +1038,11 @@
             [bezier19Path addCurveToPoint: CGPointMake(33.74, 17.69) controlPoint1: CGPointMake(34.01, 17.93) controlPoint2: CGPointMake(33.83, 17.82)];
             [bezier19Path closePath];
             bezier19Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier19Path fill];
-
-
+            
+            
             //// Bezier 20 Drawing
             UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
             [bezier20Path moveToPoint: CGPointMake(35.5, 17.9)];
@@ -1053,11 +1056,11 @@
             [bezier20Path addLineToPoint: CGPointMake(35.5, 17.9)];
             [bezier20Path closePath];
             bezier20Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier20Path fill];
-
-
+            
+            
             //// Bezier 21 Drawing
             UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
             [bezier21Path moveToPoint: CGPointMake(36.14, 17.9)];
@@ -1074,13 +1077,13 @@
             [bezier21Path addLineToPoint: CGPointMake(36.14, 17.9)];
             [bezier21Path closePath];
             bezier21Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier21Path fill];
         }
-
-
-        //// Group 7
+        
+        
+        //// Group 8
         {
             //// SVGID_1_ Drawing
             UIBezierPath* sVGID_1_Path = [UIBezierPath bezierPath];
@@ -1094,17 +1097,17 @@
             [sVGID_1_Path addLineToPoint: CGPointMake(17.94, 2.89)];
             [sVGID_1_Path closePath];
             sVGID_1_Path.miterLimit = 4;
-
-            [fillColor3 setFill];
+            
+            [fillColor22 setFill];
             [sVGID_1_Path fill];
         }
-
-
-        //// Group 8
+        
+        
+        //// Group 9
         {
-            //// Group 9
+            //// Group 10
             {
-                //// Group 10
+                //// Group 11
                 {
                     //// Bezier 23 Drawing
                     UIBezierPath* bezier23Path = [UIBezierPath bezierPath];
@@ -1144,21 +1147,21 @@
                     [bezier23Path addCurveToPoint: CGPointMake(4.36, 15.39) controlPoint1: CGPointMake(4.14, 14.86) controlPoint2: CGPointMake(4.36, 15.1)];
                     [bezier23Path closePath];
                     bezier23Path.miterLimit = 4;
-
-                    [fillColor3 setFill];
+                    
+                    [fillColor22 setFill];
                     [bezier23Path fill];
                 }
             }
         }
-
-
-        //// Group 11
+        
+        
+        //// Group 12
         {
             //// SVGID_4_
             {
                 CGContextSaveGState(context);
                 CGContextBeginTransparencyLayer(context, NULL);
-
+                
                 //// Clip Bezier 24
                 UIBezierPath* bezier24Path = [UIBezierPath bezierPath];
                 [bezier24Path moveToPoint: CGPointMake(17.94, 2.89)];
@@ -1171,28 +1174,28 @@
                 [bezier24Path addLineToPoint: CGPointMake(17.94, 2.89)];
                 [bezier24Path closePath];
                 bezier24Path.miterLimit = 0;
-
+                
                 [bezier24Path addClip];
-
-
+                
+                
                 //// Rectangle 2 Drawing
                 UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0.76, 0, 13.97, 13.97)];
                 CGContextSaveGState(context);
                 [rectangle2Path addClip];
-                CGContextDrawRadialGradient(context, sVGID_5_,
-                    CGPointMake(7.75, 6.99), 0,
-                    CGPointMake(7.75, 6.99), 6.99,
-                    kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+                CGContextDrawRadialGradient(context, sVGID_5_5,
+                                            CGPointMake(7.75, 6.99), 0,
+                                            CGPointMake(7.75, 6.99), 6.99,
+                                            kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
                 CGContextRestoreGState(context);
-
-
+                
+                
                 CGContextEndTransparencyLayer(context);
                 CGContextRestoreGState(context);
             }
         }
-
-
-        //// Group 13
+        
+        
+        //// Group 14
         {
             //// Bezier 25 Drawing
             UIBezierPath* bezier25Path = [UIBezierPath bezierPath];
@@ -1357,11 +1360,11 @@
             [bezier25Path addLineToPoint: CGPointMake(6.11, 8.54)];
             [bezier25Path closePath];
             bezier25Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier25Path fill];
-
-
+            
+            
             //// Bezier 26 Drawing
             UIBezierPath* bezier26Path = [UIBezierPath bezierPath];
             [bezier26Path moveToPoint: CGPointMake(12.02, 10.8)];
@@ -1527,41 +1530,42 @@
             [bezier26Path addLineToPoint: CGPointMake(17.94, 10.63)];
             [bezier26Path closePath];
             bezier26Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier26Path fill];
         }
     }
-
-
+    
+    
     //// Cleanup
-    CGGradientRelease(sVGID_5_);
+    CGGradientRelease(sVGID_5_5);
     CGColorSpaceRelease(colorSpace);
 }
 
-- (void)drawCardCid {
+- (void)drawIc_card_cidvCanvas
+{
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();
-
+    
     //// Color Declarations
-    UIColor* gradientColor = [UIColor colorWithRed: 0.406 green: 0.745 blue: 0.935 alpha: 1];
-    UIColor* gradientColor2 = [UIColor colorWithRed: 0.163 green: 0.415 blue: 0.695 alpha: 1];
-    UIColor* gradientColor3 = [UIColor colorWithRed: 0.042 green: 0.316 blue: 0.619 alpha: 1];
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
-    UIColor* fillColor3 = [UIColor colorWithRed: 0.037 green: 0.312 blue: 0.619 alpha: 1];
     UIColor* fillColor4 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-    UIColor* fillColor5 = [UIColor colorWithRed: 0.89 green: 0.13 blue: 0.139 alpha: 1];
-    UIColor* fillColor6 = [UIColor colorWithRed: 0.232 green: 0.232 blue: 0.232 alpha: 1];
-
+    UIColor* fillColor22 = [UIColor colorWithRed: 0.037 green: 0.312 blue: 0.619 alpha: 1];
+    UIColor* gradientColor7 = [UIColor colorWithRed: 0.475 green: 0.735 blue: 0.906 alpha: 1];
+    UIColor* gradientColor8 = [UIColor colorWithRed: 0.271 green: 0.495 blue: 0.732 alpha: 1];
+    UIColor* gradientColor9 = [UIColor colorWithRed: 0.127 green: 0.317 blue: 0.593 alpha: 1];
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor31 = [UIColor colorWithRed: 0.801 green: 0.196 blue: 0.175 alpha: 1];
+    UIColor* fillColor32 = [UIColor colorWithRed: 0.229 green: 0.232 blue: 0.232 alpha: 1];
+    
     //// Gradient Declarations
-    CGFloat sVGID_5_2Locations[] = {0, 0.68, 1};
-    CGGradientRef sVGID_5_2 = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)gradientColor.CGColor, (id)gradientColor2.CGColor, (id)gradientColor3.CGColor], sVGID_5_2Locations);
-
-    //// ic_card_cid Group
+    CGFloat sVGID_5_6Locations[] = {0, 0.53, 1};
+    CGGradientRef sVGID_5_6 = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)@[(id)gradientColor7.CGColor, (id)gradientColor8.CGColor, (id)gradientColor9.CGColor], sVGID_5_6Locations);
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -1578,18 +1582,18 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
+        
+        
         //// Bezier 2 Drawing
         UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
         [bezier2Path moveToPoint: CGPointMake(32.82, 8.22)];
@@ -1614,16 +1618,16 @@
         [bezier2Path addLineToPoint: CGPointMake(32.82, 4.3)];
         [bezier2Path closePath];
         bezier2Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier2Path fill];
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
-            //// Group 4
+            //// Group 5
             {
-                //// Group 5
+                //// Group 6
                 {
                     //// Bezier 3 Drawing
                     UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
@@ -1704,11 +1708,11 @@
                     [bezier3Path addCurveToPoint: CGPointMake(8.66, 21.11) controlPoint1: CGPointMake(8.65, 20.99) controlPoint2: CGPointMake(8.66, 21.04)];
                     [bezier3Path closePath];
                     bezier3Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier3Path fill];
-
-
+                    
+                    
                     //// Bezier 4 Drawing
                     UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
                     [bezier4Path moveToPoint: CGPointMake(10.66, 21.16)];
@@ -1744,11 +1748,11 @@
                     [bezier4Path addLineToPoint: CGPointMake(10.3, 20.31)];
                     [bezier4Path closePath];
                     bezier4Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier4Path fill];
-
-
+                    
+                    
                     //// Bezier 5 Drawing
                     UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
                     [bezier5Path moveToPoint: CGPointMake(12.37, 20.61)];
@@ -1809,11 +1813,11 @@
                     [bezier5Path addCurveToPoint: CGPointMake(12.37, 20.61) controlPoint1: CGPointMake(12.22, 20.58) controlPoint2: CGPointMake(12.3, 20.59)];
                     [bezier5Path closePath];
                     bezier5Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier5Path fill];
-
-
+                    
+                    
                     //// Bezier 6 Drawing
                     UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
                     [bezier6Path moveToPoint: CGPointMake(15.25, 20.53)];
@@ -1860,11 +1864,11 @@
                     [bezier6Path addCurveToPoint: CGPointMake(15.51, 21.1) controlPoint1: CGPointMake(15.51, 21.2) controlPoint2: CGPointMake(15.51, 21.15)];
                     [bezier6Path closePath];
                     bezier6Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier6Path fill];
-
-
+                    
+                    
                     //// Bezier 7 Drawing
                     UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
                     [bezier7Path moveToPoint: CGPointMake(17.79, 21.16)];
@@ -1901,11 +1905,11 @@
                     [bezier7Path addLineToPoint: CGPointMake(17.43, 20.31)];
                     [bezier7Path closePath];
                     bezier7Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier7Path fill];
-
-
+                    
+                    
                     //// Bezier 8 Drawing
                     UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
                     [bezier8Path moveToPoint: CGPointMake(19.5, 20.61)];
@@ -1966,11 +1970,11 @@
                     [bezier8Path addCurveToPoint: CGPointMake(19.5, 20.61) controlPoint1: CGPointMake(19.35, 20.58) controlPoint2: CGPointMake(19.43, 20.59)];
                     [bezier8Path closePath];
                     bezier8Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier8Path fill];
-
-
+                    
+                    
                     //// Bezier 9 Drawing
                     UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                     [bezier9Path moveToPoint: CGPointMake(21.08, 19.81)];
@@ -2029,11 +2033,11 @@
                     [bezier9Path addCurveToPoint: CGPointMake(21.08, 19.81) controlPoint1: CGPointMake(20.91, 19.81) controlPoint2: CGPointMake(20.99, 19.81)];
                     [bezier9Path closePath];
                     bezier9Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier9Path fill];
-
-
+                    
+                    
                     //// Bezier 10 Drawing
                     UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                     [bezier10Path moveToPoint: CGPointMake(23.7, 21.16)];
@@ -2110,11 +2114,11 @@
                     [bezier10Path addCurveToPoint: CGPointMake(23.01, 20.59) controlPoint1: CGPointMake(22.87, 20.56) controlPoint2: CGPointMake(22.93, 20.57)];
                     [bezier10Path closePath];
                     bezier10Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier10Path fill];
-
-
+                    
+                    
                     //// Bezier 11 Drawing
                     UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                     [bezier11Path moveToPoint: CGPointMake(25.71, 21.16)];
@@ -2149,11 +2153,11 @@
                     [bezier11Path addLineToPoint: CGPointMake(25.35, 20.31)];
                     [bezier11Path closePath];
                     bezier11Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier11Path fill];
-
-
+                    
+                    
                     //// Bezier 12 Drawing
                     UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                     [bezier12Path moveToPoint: CGPointMake(28.92, 20.6)];
@@ -2194,11 +2198,11 @@
                     [bezier12Path addLineToPoint: CGPointMake(28.92, 20.6)];
                     [bezier12Path closePath];
                     bezier12Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier12Path fill];
-
-
+                    
+                    
                     //// Bezier 13 Drawing
                     UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                     [bezier13Path moveToPoint: CGPointMake(30.91, 20.6)];
@@ -2239,11 +2243,11 @@
                     [bezier13Path addLineToPoint: CGPointMake(30.91, 20.6)];
                     [bezier13Path closePath];
                     bezier13Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier13Path fill];
-
-
+                    
+                    
                     //// Bezier 14 Drawing
                     UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                     [bezier14Path moveToPoint: CGPointMake(32.61, 20.53)];
@@ -2290,11 +2294,11 @@
                     [bezier14Path addCurveToPoint: CGPointMake(32.88, 21.1) controlPoint1: CGPointMake(32.87, 21.2) controlPoint2: CGPointMake(32.88, 21.15)];
                     [bezier14Path closePath];
                     bezier14Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier14Path fill];
-
-
+                    
+                    
                     //// Bezier 15 Drawing
                     UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                     [bezier15Path moveToPoint: CGPointMake(35, 20.6)];
@@ -2335,11 +2339,11 @@
                     [bezier15Path addLineToPoint: CGPointMake(35, 20.6)];
                     [bezier15Path closePath];
                     bezier15Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier15Path fill];
-
-
+                    
+                    
                     //// Bezier 16 Drawing
                     UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                     [bezier16Path moveToPoint: CGPointMake(37.15, 21.16)];
@@ -2374,13 +2378,13 @@
                     [bezier16Path addLineToPoint: CGPointMake(36.79, 20.31)];
                     [bezier16Path closePath];
                     bezier16Path.miterLimit = 4;
-
-                    [fillColor setFill];
+                    
+                    [fillColor29 setFill];
                     [bezier16Path fill];
                 }
             }
-
-
+            
+            
             //// Bezier 17 Drawing
             UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
             [bezier17Path moveToPoint: CGPointMake(6.72, 21.11)];
@@ -2460,12 +2464,12 @@
             [bezier17Path addCurveToPoint: CGPointMake(6.72, 21.11) controlPoint1: CGPointMake(6.72, 20.99) controlPoint2: CGPointMake(6.72, 21.04)];
             [bezier17Path closePath];
             bezier17Path.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezier17Path fill];
         }
-
-
+        
+        
         //// Bezier 18 Drawing
         UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
         [bezier18Path moveToPoint: CGPointMake(38.04, 20.4)];
@@ -2489,12 +2493,12 @@
         [bezier18Path addLineToPoint: CGPointMake(30.36, 13.16)];
         [bezier18Path closePath];
         bezier18Path.miterLimit = 4;
-
-        [fillColor5 setFill];
+        
+        [fillColor31 setFill];
         [bezier18Path fill];
-
-
-        //// Group 6
+        
+        
+        //// Group 7
         {
             //// Bezier 19 Drawing
             UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
@@ -2512,11 +2516,11 @@
             [bezier19Path addLineToPoint: CGPointMake(30.97, 16.49)];
             [bezier19Path closePath];
             bezier19Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier19Path fill];
-
-
+            
+            
             //// Bezier 20 Drawing
             UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
             [bezier20Path moveToPoint: CGPointMake(32.89, 16.21)];
@@ -2539,11 +2543,11 @@
             [bezier20Path addCurveToPoint: CGPointMake(32.89, 16.21) controlPoint1: CGPointMake(33.25, 16.53) controlPoint2: CGPointMake(33.01, 16.38)];
             [bezier20Path closePath];
             bezier20Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier20Path fill];
-
-
+            
+            
             //// Bezier 21 Drawing
             UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
             [bezier21Path moveToPoint: CGPointMake(35.31, 16.49)];
@@ -2556,11 +2560,11 @@
             [bezier21Path addLineToPoint: CGPointMake(35.31, 16.49)];
             [bezier21Path closePath];
             bezier21Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier21Path fill];
-
-
+            
+            
             //// Bezier 22 Drawing
             UIBezierPath* bezier22Path = [UIBezierPath bezierPath];
             [bezier22Path moveToPoint: CGPointMake(36.28, 16.49)];
@@ -2577,13 +2581,13 @@
             [bezier22Path addLineToPoint: CGPointMake(36.28, 16.49)];
             [bezier22Path closePath];
             bezier22Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier22Path fill];
         }
-
-
-        //// Group 7
+        
+        
+        //// Group 8
         {
             //// SVGID_1_ Drawing
             UIBezierPath* sVGID_1_Path = [UIBezierPath bezierPath];
@@ -2597,17 +2601,17 @@
             [sVGID_1_Path addLineToPoint: CGPointMake(17.94, 2.89)];
             [sVGID_1_Path closePath];
             sVGID_1_Path.miterLimit = 4;
-
-            [fillColor3 setFill];
+            
+            [fillColor22 setFill];
             [sVGID_1_Path fill];
         }
-
-
-        //// Group 8
+        
+        
+        //// Group 9
         {
-            //// Group 9
+            //// Group 10
             {
-                //// Group 10
+                //// Group 11
                 {
                     //// Bezier 24 Drawing
                     UIBezierPath* bezier24Path = [UIBezierPath bezierPath];
@@ -2648,21 +2652,21 @@
                     [bezier24Path addCurveToPoint: CGPointMake(4.36, 15.39) controlPoint1: CGPointMake(4.14, 14.86) controlPoint2: CGPointMake(4.36, 15.1)];
                     [bezier24Path closePath];
                     bezier24Path.miterLimit = 4;
-
-                    [fillColor3 setFill];
+                    
+                    [fillColor22 setFill];
                     [bezier24Path fill];
                 }
             }
         }
-
-
-        //// Group 11
+        
+        
+        //// Group 12
         {
             //// SVGID_4_
             {
                 CGContextSaveGState(context);
                 CGContextBeginTransparencyLayer(context, NULL);
-
+                
                 //// Clip Bezier 25
                 UIBezierPath* bezier25Path = [UIBezierPath bezierPath];
                 [bezier25Path moveToPoint: CGPointMake(17.94, 2.89)];
@@ -2675,28 +2679,28 @@
                 [bezier25Path addLineToPoint: CGPointMake(17.94, 2.89)];
                 [bezier25Path closePath];
                 bezier25Path.miterLimit = 0;
-
+                
                 [bezier25Path addClip];
-
-
+                
+                
                 //// Rectangle 2 Drawing
                 UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0.76, 0, 13.97, 13.97)];
                 CGContextSaveGState(context);
                 [rectangle2Path addClip];
-                CGContextDrawRadialGradient(context, sVGID_5_2,
-                    CGPointMake(7.75, 6.99), 0,
-                    CGPointMake(7.75, 6.99), 6.99,
-                    kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+                CGContextDrawRadialGradient(context, sVGID_5_6,
+                                            CGPointMake(7.75, 6.99), 0,
+                                            CGPointMake(7.75, 6.99), 6.99,
+                                            kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
                 CGContextRestoreGState(context);
-
-
+                
+                
                 CGContextEndTransparencyLayer(context);
                 CGContextRestoreGState(context);
             }
         }
-
-
-        //// Group 13
+        
+        
+        //// Group 14
         {
             //// Bezier 26 Drawing
             UIBezierPath* bezier26Path = [UIBezierPath bezierPath];
@@ -2861,11 +2865,11 @@
             [bezier26Path addLineToPoint: CGPointMake(6.11, 8.54)];
             [bezier26Path closePath];
             bezier26Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier26Path fill];
-
-
+            
+            
             //// Bezier 27 Drawing
             UIBezierPath* bezier27Path = [UIBezierPath bezierPath];
             [bezier27Path moveToPoint: CGPointMake(12.02, 10.8)];
@@ -3031,30 +3035,31 @@
             [bezier27Path addLineToPoint: CGPointMake(17.94, 10.63)];
             [bezier27Path closePath];
             bezier27Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier27Path fill];
         }
     }
-
-
+    
+    
     //// Cleanup
-    CGGradientRelease(sVGID_5_2);
+    CGGradientRelease(sVGID_5_6);
     CGColorSpaceRelease(colorSpace);
 }
 
-- (void)drawCardCvc {
+- (void)drawIc_card_cvcCanvas
+{
     //// Color Declarations
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
     UIColor* fillColor4 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-    UIColor* fillColor5 = [UIColor colorWithRed: 0.89 green: 0.13 blue: 0.139 alpha: 1];
-    UIColor* fillColor6 = [UIColor colorWithRed: 0.232 green: 0.232 blue: 0.232 alpha: 1];
-    UIColor* fillColor7 = [UIColor colorWithRed: 0.073 green: 0.322 blue: 0.491 alpha: 1];
-
-    //// ic_card_cvc Group
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor31 = [UIColor colorWithRed: 0.801 green: 0.196 blue: 0.175 alpha: 1];
+    UIColor* fillColor32 = [UIColor colorWithRed: 0.229 green: 0.232 blue: 0.232 alpha: 1];
+    UIColor* fillColor33 = [UIColor colorWithRed: 0.142 green: 0.319 blue: 0.471 alpha: 1];
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -3071,25 +3076,25 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
+        
+        
         //// Rectangle 2 Drawing
         UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(0.5, 3.63, 41, 5.09)];
-        [fillColor6 setFill];
+        [fillColor32 setFill];
         [rectangle2Path fill];
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
             //// Bezier 2 Drawing
             UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
@@ -3104,11 +3109,11 @@
             [bezier2Path addLineToPoint: CGPointMake(3.96, 12.08)];
             [bezier2Path closePath];
             bezier2Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier2Path fill];
-
-
+            
+            
             //// Bezier 3 Drawing
             UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
             [bezier3Path moveToPoint: CGPointMake(24.77, 16.31)];
@@ -3143,12 +3148,12 @@
             [bezier3Path addCurveToPoint: CGPointMake(24.77, 16.31) controlPoint1: CGPointMake(24.74, 16.49) controlPoint2: CGPointMake(24.91, 16.35)];
             [bezier3Path closePath];
             bezier3Path.miterLimit = 4;
-
-            [fillColor7 setFill];
+            
+            [fillColor33 setFill];
             [bezier3Path fill];
         }
-
-
+        
+        
         //// Bezier 4 Drawing
         UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
         [bezier4Path moveToPoint: CGPointMake(38.04, 19.17)];
@@ -3172,12 +3177,12 @@
         [bezier4Path addLineToPoint: CGPointMake(31.2, 12.08)];
         [bezier4Path closePath];
         bezier4Path.miterLimit = 4;
-
-        [fillColor5 setFill];
+        
+        [fillColor31 setFill];
         [bezier4Path fill];
-
-
-        //// Group 4
+        
+        
+        //// Group 5
         {
             //// Bezier 5 Drawing
             UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
@@ -3201,11 +3206,11 @@
             [bezier5Path addCurveToPoint: CGPointMake(32.05, 15.15) controlPoint1: CGPointMake(32.46, 15.51) controlPoint2: CGPointMake(32.19, 15.35)];
             [bezier5Path closePath];
             bezier5Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier5Path fill];
-
-
+            
+            
             //// Bezier 6 Drawing
             UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
             [bezier6Path moveToPoint: CGPointMake(34.73, 15.47)];
@@ -3219,11 +3224,11 @@
             [bezier6Path addLineToPoint: CGPointMake(34.73, 15.47)];
             [bezier6Path closePath];
             bezier6Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier6Path fill];
-
-
+            
+            
             //// Bezier 7 Drawing
             UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
             [bezier7Path moveToPoint: CGPointMake(35.85, 15.47)];
@@ -3241,25 +3246,26 @@
             [bezier7Path addLineToPoint: CGPointMake(35.85, 15.47)];
             [bezier7Path closePath];
             bezier7Path.miterLimit = 4;
-
-            [fillColor6 setFill];
+            
+            [fillColor32 setFill];
             [bezier7Path fill];
         }
     }
 }
 
-- (void)drawCardMaestro {
+- (void)drawIc_card_maestroCanvas
+{
     //// Color Declarations
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
     UIColor* fillColor4 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-    UIColor* fillColor8 = [UIColor colorWithRed: 0.847 green: 0 blue: 0.116 alpha: 1];
-    UIColor* fillColor9 = [UIColor colorWithRed: 0.112 green: 0.507 blue: 0.787 alpha: 1];
     UIColor* fillColor10 = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
-
-    //// ic_card_maestro Group
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor34 = [UIColor colorWithRed: 0.764 green: 0.133 blue: 0.15 alpha: 1];
+    UIColor* fillColor35 = [UIColor colorWithRed: 0.225 green: 0.503 blue: 0.759 alpha: 1];
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -3276,21 +3282,21 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
-            //// Group 4
+            //// Group 5
             {
                 //// Bezier 2 Drawing
                 UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
@@ -3352,11 +3358,11 @@
                 [bezier2Path addCurveToPoint: CGPointMake(4.97, 20.62) controlPoint1: CGPointMake(4.82, 20.6) controlPoint2: CGPointMake(4.91, 20.6)];
                 [bezier2Path closePath];
                 bezier2Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier2Path fill];
-
-
+                
+                
                 //// Bezier 3 Drawing
                 UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
                 [bezier3Path moveToPoint: CGPointMake(7.08, 20.61)];
@@ -3397,11 +3403,11 @@
                 [bezier3Path addLineToPoint: CGPointMake(7.08, 20.61)];
                 [bezier3Path closePath];
                 bezier3Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier3Path fill];
-
-
+                
+                
                 //// Bezier 4 Drawing
                 UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
                 [bezier4Path moveToPoint: CGPointMake(8.61, 20.54)];
@@ -3448,11 +3454,11 @@
                 [bezier4Path addCurveToPoint: CGPointMake(8.88, 21.1) controlPoint1: CGPointMake(8.87, 21.21) controlPoint2: CGPointMake(8.88, 21.16)];
                 [bezier4Path closePath];
                 bezier4Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier4Path fill];
-
-
+                
+                
                 //// Bezier 5 Drawing
                 UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
                 [bezier5Path moveToPoint: CGPointMake(10.47, 19.82)];
@@ -3511,11 +3517,11 @@
                 [bezier5Path addCurveToPoint: CGPointMake(10.47, 19.82) controlPoint1: CGPointMake(10.29, 19.83) controlPoint2: CGPointMake(10.38, 19.82)];
                 [bezier5Path closePath];
                 bezier5Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier5Path fill];
-
-
+                
+                
                 //// Bezier 6 Drawing
                 UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
                 [bezier6Path moveToPoint: CGPointMake(13.72, 19.82)];
@@ -3574,11 +3580,11 @@
                 [bezier6Path addCurveToPoint: CGPointMake(13.72, 19.82) controlPoint1: CGPointMake(13.55, 19.83) controlPoint2: CGPointMake(13.64, 19.82)];
                 [bezier6Path closePath];
                 bezier6Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier6Path fill];
-
-
+                
+                
                 //// Bezier 7 Drawing
                 UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
                 [bezier7Path moveToPoint: CGPointMake(16.45, 21.17)];
@@ -3655,11 +3661,11 @@
                 [bezier7Path addCurveToPoint: CGPointMake(15.75, 20.61) controlPoint1: CGPointMake(15.61, 20.57) controlPoint2: CGPointMake(15.67, 20.58)];
                 [bezier7Path closePath];
                 bezier7Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier7Path fill];
-
-
+                
+                
                 //// Bezier 8 Drawing
                 UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
                 [bezier8Path moveToPoint: CGPointMake(18.45, 21.17)];
@@ -3695,11 +3701,11 @@
                 [bezier8Path addLineToPoint: CGPointMake(18.09, 20.32)];
                 [bezier8Path closePath];
                 bezier8Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier8Path fill];
-
-
+                
+                
                 //// Bezier 9 Drawing
                 UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                 [bezier9Path moveToPoint: CGPointMake(20.45, 21.17)];
@@ -3736,11 +3742,11 @@
                 [bezier9Path addLineToPoint: CGPointMake(20.09, 20.32)];
                 [bezier9Path closePath];
                 bezier9Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier9Path fill];
-
-
+                
+                
                 //// Bezier 10 Drawing
                 UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                 [bezier10Path moveToPoint: CGPointMake(23.41, 20.62)];
@@ -3801,11 +3807,11 @@
                 [bezier10Path addCurveToPoint: CGPointMake(23.41, 20.62) controlPoint1: CGPointMake(23.25, 20.6) controlPoint2: CGPointMake(23.34, 20.6)];
                 [bezier10Path closePath];
                 bezier10Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier10Path fill];
-
-
+                
+                
                 //// Bezier 11 Drawing
                 UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                 [bezier11Path moveToPoint: CGPointMake(25.67, 21.17)];
@@ -3842,11 +3848,11 @@
                 [bezier11Path addLineToPoint: CGPointMake(25.31, 20.32)];
                 [bezier11Path closePath];
                 bezier11Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier11Path fill];
-
-
+                
+                
                 //// Bezier 12 Drawing
                 UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                 [bezier12Path moveToPoint: CGPointMake(26.99, 19.82)];
@@ -3905,11 +3911,11 @@
                 [bezier12Path addCurveToPoint: CGPointMake(26.99, 19.82) controlPoint1: CGPointMake(26.81, 19.83) controlPoint2: CGPointMake(26.9, 19.82)];
                 [bezier12Path closePath];
                 bezier12Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier12Path fill];
-
-
+                
+                
                 //// Bezier 13 Drawing
                 UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                 [bezier13Path moveToPoint: CGPointMake(29.06, 20.54)];
@@ -3956,11 +3962,11 @@
                 [bezier13Path addCurveToPoint: CGPointMake(29.33, 21.1) controlPoint1: CGPointMake(29.32, 21.21) controlPoint2: CGPointMake(29.33, 21.16)];
                 [bezier13Path closePath];
                 bezier13Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier13Path fill];
-
-
+                
+                
                 //// Bezier 14 Drawing
                 UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                 [bezier14Path moveToPoint: CGPointMake(32.87, 21.17)];
@@ -4037,11 +4043,11 @@
                 [bezier14Path addCurveToPoint: CGPointMake(32.18, 20.61) controlPoint1: CGPointMake(32.03, 20.57) controlPoint2: CGPointMake(32.09, 20.58)];
                 [bezier14Path closePath];
                 bezier14Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier14Path fill];
-
-
+                
+                
                 //// Bezier 15 Drawing
                 UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                 [bezier15Path moveToPoint: CGPointMake(34.18, 19.82)];
@@ -4100,11 +4106,11 @@
                 [bezier15Path addCurveToPoint: CGPointMake(34.18, 19.82) controlPoint1: CGPointMake(34.01, 19.83) controlPoint2: CGPointMake(34.1, 19.82)];
                 [bezier15Path closePath];
                 bezier15Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier15Path fill];
-
-
+                
+                
                 //// Bezier 16 Drawing
                 UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                 [bezier16Path moveToPoint: CGPointMake(36.5, 21.63)];
@@ -4126,11 +4132,11 @@
                 [bezier16Path addCurveToPoint: CGPointMake(36.5, 21.63) controlPoint1: CGPointMake(36.55, 21.56) controlPoint2: CGPointMake(36.53, 21.6)];
                 [bezier16Path closePath];
                 bezier16Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier16Path fill];
-
-
+                
+                
                 //// Bezier 17 Drawing
                 UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
                 [bezier17Path moveToPoint: CGPointMake(38.39, 21.51)];
@@ -4170,13 +4176,13 @@
                 [bezier17Path addLineToPoint: CGPointMake(38.39, 21.51)];
                 [bezier17Path closePath];
                 bezier17Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier17Path fill];
             }
         }
-
-
+        
+        
         //// Bezier 18 Drawing
         UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
         [bezier18Path moveToPoint: CGPointMake(32.88, 8.22)];
@@ -4201,26 +4207,26 @@
         [bezier18Path addLineToPoint: CGPointMake(32.88, 4.3)];
         [bezier18Path closePath];
         bezier18Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier18Path fill];
-
-
-        //// Group 5
+        
+        
+        //// Group 6
         {
-            //// Group 6
+            //// Group 7
             {
-                //// Group 7
+                //// Group 8
                 {
-                    //// Group 8
+                    //// Group 9
                     {
                         //// Oval Drawing
                         UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(12.13, 3.02, 12.92, 12.92)];
-                        [fillColor8 setFill];
+                        [fillColor34 setFill];
                         [ovalPath fill];
-
-
-                        //// Group 9
+                        
+                        
+                        //// Group 10
                         {
                             //// Bezier 19 Drawing
                             UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
@@ -4252,14 +4258,14 @@
                             [bezier19Path addLineToPoint: CGPointMake(13.6, 13.58)];
                             [bezier19Path closePath];
                             bezier19Path.miterLimit = 4;
-
-                            [fillColor9 setFill];
+                            
+                            [fillColor35 setFill];
                             [bezier19Path fill];
                         }
                     }
-
-
-                    //// Group 10
+                    
+                    
+                    //// Group 11
                     {
                         //// Bezier 20 Drawing
                         UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
@@ -4298,16 +4304,16 @@
                         [bezier20Path addLineToPoint: CGPointMake(24.37, 13.06)];
                         [bezier20Path closePath];
                         bezier20Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier20Path fill];
                     }
                 }
-
-
-                //// Group 11
+                
+                
+                //// Group 12
                 {
-                    //// Group 12
+                    //// Group 13
                     {
                         //// Bezier 21 Drawing
                         UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
@@ -4328,11 +4334,11 @@
                         [bezier21Path addLineToPoint: CGPointMake(13.73, 9.63)];
                         [bezier21Path closePath];
                         bezier21Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier21Path fill];
-
-
+                        
+                        
                         //// Bezier 22 Drawing
                         UIBezierPath* bezier22Path = [UIBezierPath bezierPath];
                         [bezier22Path moveToPoint: CGPointMake(14.71, 9.45)];
@@ -4352,11 +4358,11 @@
                         [bezier22Path addCurveToPoint: CGPointMake(14.71, 9.45) controlPoint1: CGPointMake(15.02, 8.55) controlPoint2: CGPointMake(14.7, 8.96)];
                         [bezier22Path closePath];
                         bezier22Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier22Path fill];
-
-
+                        
+                        
                         //// Bezier 23 Drawing
                         UIBezierPath* bezier23Path = [UIBezierPath bezierPath];
                         [bezier23Path moveToPoint: CGPointMake(11.53, 11.29)];
@@ -4382,11 +4388,11 @@
                         [bezier23Path addCurveToPoint: CGPointMake(10.94, 10.09) controlPoint1: CGPointMake(10.69, 10.76) controlPoint2: CGPointMake(10.93, 10.49)];
                         [bezier23Path closePath];
                         bezier23Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier23Path fill];
-
-
+                        
+                        
                         //// Bezier 24 Drawing
                         UIBezierPath* bezier24Path = [UIBezierPath bezierPath];
                         [bezier24Path moveToPoint: CGPointMake(17.93, 11.24)];
@@ -4405,11 +4411,11 @@
                         [bezier24Path addLineToPoint: CGPointMake(17.93, 11.24)];
                         [bezier24Path closePath];
                         bezier24Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier24Path fill];
-
-
+                        
+                        
                         //// Bezier 25 Drawing
                         UIBezierPath* bezier25Path = [UIBezierPath bezierPath];
                         [bezier25Path moveToPoint: CGPointMake(21.5, 8.55)];
@@ -4436,11 +4442,11 @@
                         [bezier25Path addCurveToPoint: CGPointMake(21.26, 10.68) controlPoint1: CGPointMake(21.9, 10.32) controlPoint2: CGPointMake(21.65, 10.68)];
                         [bezier25Path closePath];
                         bezier25Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier25Path fill];
-
-
+                        
+                        
                         //// Bezier 26 Drawing
                         UIBezierPath* bezier26Path = [UIBezierPath bezierPath];
                         [bezier26Path moveToPoint: CGPointMake(8.91, 11.29)];
@@ -4459,13 +4465,13 @@
                         [bezier26Path addLineToPoint: CGPointMake(8.91, 11.29)];
                         [bezier26Path closePath];
                         bezier26Path.miterLimit = 4;
-
+                        
                         [fillColor10 setFill];
                         [bezier26Path fill];
                     }
-
-
-                    //// Group 13
+                    
+                    
+                    //// Group 14
                     {
                         //// Bezier 27 Drawing
                         UIBezierPath* bezier27Path = [UIBezierPath bezierPath];
@@ -4504,11 +4510,11 @@
                         [bezier27Path addLineToPoint: CGPointMake(23.01, 10.86)];
                         [bezier27Path closePath];
                         bezier27Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier27Path fill];
-
-
+                        
+                        
                         //// Bezier 28 Drawing
                         UIBezierPath* bezier28Path = [UIBezierPath bezierPath];
                         [bezier28Path moveToPoint: CGPointMake(14.37, 11.02)];
@@ -4528,11 +4534,11 @@
                         [bezier28Path addLineToPoint: CGPointMake(13.94, 9.43)];
                         [bezier28Path closePath];
                         bezier28Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier28Path fill];
-
-
+                        
+                        
                         //// Bezier 29 Drawing
                         UIBezierPath* bezier29Path = [UIBezierPath bezierPath];
                         [bezier29Path moveToPoint: CGPointMake(14.91, 9.25)];
@@ -4552,11 +4558,11 @@
                         [bezier29Path addCurveToPoint: CGPointMake(14.91, 9.25) controlPoint1: CGPointMake(15.22, 8.34) controlPoint2: CGPointMake(14.91, 8.76)];
                         [bezier29Path closePath];
                         bezier29Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier29Path fill];
-
-
+                        
+                        
                         //// Bezier 30 Drawing
                         UIBezierPath* bezier30Path = [UIBezierPath bezierPath];
                         [bezier30Path moveToPoint: CGPointMake(11.73, 11.08)];
@@ -4582,11 +4588,11 @@
                         [bezier30Path addCurveToPoint: CGPointMake(11.14, 9.89) controlPoint1: CGPointMake(10.89, 10.56) controlPoint2: CGPointMake(11.13, 10.28)];
                         [bezier30Path closePath];
                         bezier30Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier30Path fill];
-
-
+                        
+                        
                         //// Bezier 31 Drawing
                         UIBezierPath* bezier31Path = [UIBezierPath bezierPath];
                         [bezier31Path moveToPoint: CGPointMake(18.13, 11.04)];
@@ -4605,11 +4611,11 @@
                         [bezier31Path addLineToPoint: CGPointMake(18.13, 11.04)];
                         [bezier31Path closePath];
                         bezier31Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier31Path fill];
-
-
+                        
+                        
                         //// Bezier 32 Drawing
                         UIBezierPath* bezier32Path = [UIBezierPath bezierPath];
                         [bezier32Path moveToPoint: CGPointMake(22.1, 9.52)];
@@ -4625,11 +4631,11 @@
                         [bezier32Path addCurveToPoint: CGPointMake(22.97, 9.53) controlPoint1: CGPointMake(22.31, 11.13) controlPoint2: CGPointMake(22.97, 10.64)];
                         [bezier32Path closePath];
                         bezier32Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier32Path fill];
-
-
+                        
+                        
                         //// Bezier 33 Drawing
                         UIBezierPath* bezier33Path = [UIBezierPath bezierPath];
                         [bezier33Path moveToPoint: CGPointMake(18.84, 8.4)];
@@ -4644,11 +4650,11 @@
                         [bezier33Path addLineToPoint: CGPointMake(18.84, 8.4)];
                         [bezier33Path closePath];
                         bezier33Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier33Path fill];
-
-
+                        
+                        
                         //// Bezier 34 Drawing
                         UIBezierPath* bezier34Path = [UIBezierPath bezierPath];
                         [bezier34Path moveToPoint: CGPointMake(9.11, 11.08)];
@@ -4667,7 +4673,7 @@
                         [bezier34Path addLineToPoint: CGPointMake(9.11, 11.08)];
                         [bezier34Path closePath];
                         bezier34Path.miterLimit = 4;
-
+                        
                         [fillColor4 setFill];
                         [bezier34Path fill];
                     }
@@ -4677,18 +4683,19 @@
     }
 }
 
-- (void)drawCardMasterCard {
+- (void)drawIc_card_mastercardCanvas
+{
     //// Color Declarations
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
     UIColor* fillColor4 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-    UIColor* fillColor11 = [UIColor colorWithRed: 0.978 green: 0.636 blue: 0.15 alpha: 1];
-    UIColor* fillColor12 = [UIColor colorWithRed: 0.899 green: 0 blue: 0.139 alpha: 1];
-    UIColor* fillColor13 = [UIColor colorWithRed: 0.009 green: 0.143 blue: 0.375 alpha: 1];
-
-    //// ic_card_mastercard Group
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor36 = [UIColor colorWithRed: 0.925 green: 0.65 blue: 0.243 alpha: 1];
+    UIColor* fillColor37 = [UIColor colorWithRed: 0.81 green: 0.128 blue: 0.169 alpha: 1];
+    UIColor* fillColor38 = [UIColor colorWithRed: 0.042 green: 0.148 blue: 0.359 alpha: 1];
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -4705,26 +4712,26 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
             //// Oval Drawing
             UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(12.15, 3, 12.9, 12.9)];
-            [fillColor11 setFill];
+            [fillColor36 setFill];
             [ovalPath fill];
-
-
+            
+            
             //// Bezier 2 Drawing
             UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
             [bezier2Path moveToPoint: CGPointMake(24.37, 13.06)];
@@ -4762,11 +4769,11 @@
             [bezier2Path addCurveToPoint: CGPointMake(24.19, 13.07) controlPoint1: CGPointMake(24.28, 13.29) controlPoint2: CGPointMake(24.19, 13.19)];
             [bezier2Path closePath];
             bezier2Path.miterLimit = 4;
-
-            [fillColor11 setFill];
+            
+            [fillColor36 setFill];
             [bezier2Path fill];
-
-
+            
+            
             //// Bezier 3 Drawing
             UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
             [bezier3Path moveToPoint: CGPointMake(16.35, 8.79)];
@@ -4799,11 +4806,11 @@
             [bezier3Path addCurveToPoint: CGPointMake(16.35, 8.79) controlPoint1: CGPointMake(16.38, 9.25) controlPoint2: CGPointMake(16.37, 9.02)];
             [bezier3Path closePath];
             bezier3Path.miterLimit = 4;
-
-            [fillColor12 setFill];
+            
+            [fillColor37 setFill];
             [bezier3Path fill];
-
-
+            
+            
             //// Bezier 4 Drawing
             UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
             [bezier4Path moveToPoint: CGPointMake(24.37, 10.96)];
@@ -4841,11 +4848,11 @@
             [bezier4Path addCurveToPoint: CGPointMake(24.19, 10.97) controlPoint1: CGPointMake(24.28, 11.18) controlPoint2: CGPointMake(24.19, 11.08)];
             [bezier4Path closePath];
             bezier4Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier4Path fill];
-
-
+            
+            
             //// Bezier 5 Drawing
             UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
             [bezier5Path moveToPoint: CGPointMake(12.06, 11.34)];
@@ -4867,11 +4874,11 @@
             [bezier5Path addLineToPoint: CGPointMake(12.06, 11.34)];
             [bezier5Path closePath];
             bezier5Path.miterLimit = 4;
-
-            [fillColor13 setFill];
+            
+            [fillColor38 setFill];
             [bezier5Path fill];
-
-
+            
+            
             //// Bezier 6 Drawing
             UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
             [bezier6Path moveToPoint: CGPointMake(13.81, 9.73)];
@@ -4893,11 +4900,11 @@
             [bezier6Path addLineToPoint: CGPointMake(14.23, 11.31)];
             [bezier6Path closePath];
             bezier6Path.miterLimit = 4;
-
-            [fillColor13 setFill];
+            
+            [fillColor38 setFill];
             [bezier6Path fill];
-
-
+            
+            
             //// Bezier 7 Drawing
             UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
             [bezier7Path moveToPoint: CGPointMake(6.7, 11.38)];
@@ -4916,12 +4923,12 @@
             [bezier7Path addLineToPoint: CGPointMake(6.7, 11.38)];
             [bezier7Path closePath];
             bezier7Path.miterLimit = 4;
-
-            [fillColor13 setFill];
+            
+            [fillColor38 setFill];
             [bezier7Path fill];
-
-
-            //// Group 4
+            
+            
+            //// Group 5
             {
                 //// Bezier 8 Drawing
                 UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
@@ -4955,11 +4962,11 @@
                 [bezier8Path addCurveToPoint: CGPointMake(8.39, 10.18) controlPoint1: CGPointMake(8.25, 10.86) controlPoint2: CGPointMake(8.38, 10.58)];
                 [bezier8Path closePath];
                 bezier8Path.miterLimit = 4;
-
-                [fillColor13 setFill];
+                
+                [fillColor38 setFill];
                 [bezier8Path fill];
-
-
+                
+                
                 //// Bezier 9 Drawing
                 UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                 [bezier9Path moveToPoint: CGPointMake(17.6, 8.74)];
@@ -4989,11 +4996,11 @@
                 [bezier9Path addCurveToPoint: CGPointMake(17.6, 8.74) controlPoint1: CGPointMake(16.71, 9.25) controlPoint2: CGPointMake(17.07, 8.74)];
                 [bezier9Path closePath];
                 bezier9Path.miterLimit = 4;
-
-                [fillColor13 setFill];
+                
+                [fillColor38 setFill];
                 [bezier9Path fill];
-
-
+                
+                
                 //// Bezier 10 Drawing
                 UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                 [bezier10Path moveToPoint: CGPointMake(22.67, 10.74)];
@@ -5024,11 +5031,11 @@
                 [bezier10Path addLineToPoint: CGPointMake(23.52, 8.1)];
                 [bezier10Path closePath];
                 bezier10Path.miterLimit = 4;
-
-                [fillColor13 setFill];
+                
+                [fillColor38 setFill];
                 [bezier10Path fill];
-
-
+                
+                
                 //// Bezier 11 Drawing
                 UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                 [bezier11Path moveToPoint: CGPointMake(19.99, 11.38)];
@@ -5061,11 +5068,11 @@
                 [bezier11Path addCurveToPoint: CGPointMake(19.44, 10.18) controlPoint1: CGPointMake(19.3, 10.86) controlPoint2: CGPointMake(19.42, 10.58)];
                 [bezier11Path closePath];
                 bezier11Path.miterLimit = 4;
-
-                [fillColor13 setFill];
+                
+                [fillColor38 setFill];
                 [bezier11Path fill];
-
-
+                
+                
                 //// Bezier 12 Drawing
                 UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                 [bezier12Path moveToPoint: CGPointMake(10.4, 9.28)];
@@ -5088,11 +5095,11 @@
                 [bezier12Path addCurveToPoint: CGPointMake(10.4, 9.28) controlPoint1: CGPointMake(10.06, 9.39) controlPoint2: CGPointMake(10.19, 9.28)];
                 [bezier12Path closePath];
                 bezier12Path.miterLimit = 4;
-
-                [fillColor13 setFill];
+                
+                [fillColor38 setFill];
                 [bezier12Path fill];
-
-
+                
+                
                 //// Bezier 13 Drawing
                 UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                 [bezier13Path moveToPoint: CGPointMake(18.53, 7.99)];
@@ -5110,11 +5117,11 @@
                 [bezier13Path addCurveToPoint: CGPointMake(18.53, 7.99) controlPoint1: CGPointMake(18.45, 7.97) controlPoint2: CGPointMake(18.46, 7.97)];
                 [bezier13Path closePath];
                 bezier13Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier13Path fill];
-
-
+                
+                
                 //// Bezier 14 Drawing
                 UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                 [bezier14Path moveToPoint: CGPointMake(16.28, 8.49)];
@@ -5131,11 +5138,11 @@
                 [bezier14Path addLineToPoint: CGPointMake(16.28, 8.49)];
                 [bezier14Path closePath];
                 bezier14Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier14Path fill];
-
-
+                
+                
                 //// Bezier 15 Drawing
                 UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                 [bezier15Path moveToPoint: CGPointMake(12.24, 11.14)];
@@ -5157,11 +5164,11 @@
                 [bezier15Path addLineToPoint: CGPointMake(12.24, 11.14)];
                 [bezier15Path closePath];
                 bezier15Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier15Path fill];
-
-
+                
+                
                 //// Bezier 16 Drawing
                 UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                 [bezier16Path moveToPoint: CGPointMake(9.54, 9.35)];
@@ -5184,11 +5191,11 @@
                 [bezier16Path addCurveToPoint: CGPointMake(9.54, 9.35) controlPoint1: CGPointMake(9.81, 8.45) controlPoint2: CGPointMake(9.54, 8.85)];
                 [bezier16Path closePath];
                 bezier16Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier16Path fill];
-
-
+                
+                
                 //// Bezier 17 Drawing
                 UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
                 [bezier17Path moveToPoint: CGPointMake(22.85, 10.54)];
@@ -5209,11 +5216,11 @@
                 [bezier17Path addLineToPoint: CGPointMake(23.88, 11.17)];
                 [bezier17Path closePath];
                 bezier17Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier17Path fill];
-
-
+                
+                
                 //// Bezier 18 Drawing
                 UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
                 [bezier18Path moveToPoint: CGPointMake(13.99, 9.52)];
@@ -5236,12 +5243,12 @@
                 [bezier18Path addLineToPoint: CGPointMake(14.38, 11.11)];
                 [bezier18Path closePath];
                 bezier18Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier18Path fill];
             }
-
-
+            
+            
             //// Bezier 19 Drawing
             UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
             [bezier19Path moveToPoint: CGPointMake(6.88, 11.17)];
@@ -5260,12 +5267,12 @@
             [bezier19Path addLineToPoint: CGPointMake(6.88, 11.17)];
             [bezier19Path closePath];
             bezier19Path.miterLimit = 4;
-
+            
             [fillColor4 setFill];
             [bezier19Path fill];
-
-
-            //// Group 5
+            
+            
+            //// Group 6
             {
                 //// Bezier 20 Drawing
                 UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
@@ -5298,11 +5305,11 @@
                 [bezier20Path addCurveToPoint: CGPointMake(8.62, 9.98) controlPoint1: CGPointMake(8.4, 10.65) controlPoint2: CGPointMake(8.6, 10.37)];
                 [bezier20Path closePath];
                 bezier20Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier20Path fill];
-
-
+                
+                
                 //// Bezier 21 Drawing
                 UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
                 [bezier21Path moveToPoint: CGPointMake(20.17, 11.17)];
@@ -5335,11 +5342,11 @@
                 [bezier21Path addCurveToPoint: CGPointMake(19.67, 9.98) controlPoint1: CGPointMake(19.44, 10.65) controlPoint2: CGPointMake(19.65, 10.37)];
                 [bezier21Path closePath];
                 bezier21Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier21Path fill];
-
-
+                
+                
                 //// Bezier 22 Drawing
                 UIBezierPath* bezier22Path = [UIBezierPath bezierPath];
                 [bezier22Path moveToPoint: CGPointMake(22.05, 8.49)];
@@ -5356,16 +5363,16 @@
                 [bezier22Path addLineToPoint: CGPointMake(22.05, 8.49)];
                 [bezier22Path closePath];
                 bezier22Path.miterLimit = 4;
-
+                
                 [fillColor4 setFill];
                 [bezier22Path fill];
             }
         }
-
-
-        //// Group 6
+        
+        
+        //// Group 7
         {
-            //// Group 7
+            //// Group 8
             {
                 //// Bezier 23 Drawing
                 UIBezierPath* bezier23Path = [UIBezierPath bezierPath];
@@ -5427,11 +5434,11 @@
                 [bezier23Path addCurveToPoint: CGPointMake(4.97, 20.62) controlPoint1: CGPointMake(4.82, 20.6) controlPoint2: CGPointMake(4.91, 20.6)];
                 [bezier23Path closePath];
                 bezier23Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier23Path fill];
-
-
+                
+                
                 //// Bezier 24 Drawing
                 UIBezierPath* bezier24Path = [UIBezierPath bezierPath];
                 [bezier24Path moveToPoint: CGPointMake(7.08, 20.61)];
@@ -5472,11 +5479,11 @@
                 [bezier24Path addLineToPoint: CGPointMake(7.08, 20.61)];
                 [bezier24Path closePath];
                 bezier24Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier24Path fill];
-
-
+                
+                
                 //// Bezier 25 Drawing
                 UIBezierPath* bezier25Path = [UIBezierPath bezierPath];
                 [bezier25Path moveToPoint: CGPointMake(8.61, 20.54)];
@@ -5523,11 +5530,11 @@
                 [bezier25Path addCurveToPoint: CGPointMake(8.88, 21.1) controlPoint1: CGPointMake(8.87, 21.21) controlPoint2: CGPointMake(8.88, 21.16)];
                 [bezier25Path closePath];
                 bezier25Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier25Path fill];
-
-
+                
+                
                 //// Bezier 26 Drawing
                 UIBezierPath* bezier26Path = [UIBezierPath bezierPath];
                 [bezier26Path moveToPoint: CGPointMake(10.47, 19.82)];
@@ -5586,11 +5593,11 @@
                 [bezier26Path addCurveToPoint: CGPointMake(10.47, 19.82) controlPoint1: CGPointMake(10.29, 19.83) controlPoint2: CGPointMake(10.37, 19.82)];
                 [bezier26Path closePath];
                 bezier26Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier26Path fill];
-
-
+                
+                
                 //// Bezier 27 Drawing
                 UIBezierPath* bezier27Path = [UIBezierPath bezierPath];
                 [bezier27Path moveToPoint: CGPointMake(13.72, 19.82)];
@@ -5649,11 +5656,11 @@
                 [bezier27Path addCurveToPoint: CGPointMake(13.72, 19.82) controlPoint1: CGPointMake(13.55, 19.83) controlPoint2: CGPointMake(13.64, 19.82)];
                 [bezier27Path closePath];
                 bezier27Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier27Path fill];
-
-
+                
+                
                 //// Bezier 28 Drawing
                 UIBezierPath* bezier28Path = [UIBezierPath bezierPath];
                 [bezier28Path moveToPoint: CGPointMake(16.45, 21.17)];
@@ -5729,11 +5736,11 @@
                 [bezier28Path addCurveToPoint: CGPointMake(15.75, 20.61) controlPoint1: CGPointMake(15.61, 20.57) controlPoint2: CGPointMake(15.67, 20.58)];
                 [bezier28Path closePath];
                 bezier28Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier28Path fill];
-
-
+                
+                
                 //// Bezier 29 Drawing
                 UIBezierPath* bezier29Path = [UIBezierPath bezierPath];
                 [bezier29Path moveToPoint: CGPointMake(18.45, 21.17)];
@@ -5770,11 +5777,11 @@
                 [bezier29Path addLineToPoint: CGPointMake(18.09, 20.32)];
                 [bezier29Path closePath];
                 bezier29Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier29Path fill];
-
-
+                
+                
                 //// Bezier 30 Drawing
                 UIBezierPath* bezier30Path = [UIBezierPath bezierPath];
                 [bezier30Path moveToPoint: CGPointMake(20.45, 21.17)];
@@ -5811,11 +5818,11 @@
                 [bezier30Path addLineToPoint: CGPointMake(20.09, 20.32)];
                 [bezier30Path closePath];
                 bezier30Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier30Path fill];
-
-
+                
+                
                 //// Bezier 31 Drawing
                 UIBezierPath* bezier31Path = [UIBezierPath bezierPath];
                 [bezier31Path moveToPoint: CGPointMake(23.4, 20.62)];
@@ -5876,11 +5883,11 @@
                 [bezier31Path addCurveToPoint: CGPointMake(23.4, 20.62) controlPoint1: CGPointMake(23.25, 20.6) controlPoint2: CGPointMake(23.34, 20.6)];
                 [bezier31Path closePath];
                 bezier31Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier31Path fill];
-
-
+                
+                
                 //// Bezier 32 Drawing
                 UIBezierPath* bezier32Path = [UIBezierPath bezierPath];
                 [bezier32Path moveToPoint: CGPointMake(25.67, 21.17)];
@@ -5917,11 +5924,11 @@
                 [bezier32Path addLineToPoint: CGPointMake(25.31, 20.32)];
                 [bezier32Path closePath];
                 bezier32Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier32Path fill];
-
-
+                
+                
                 //// Bezier 33 Drawing
                 UIBezierPath* bezier33Path = [UIBezierPath bezierPath];
                 [bezier33Path moveToPoint: CGPointMake(26.99, 19.82)];
@@ -5980,11 +5987,11 @@
                 [bezier33Path addCurveToPoint: CGPointMake(26.99, 19.82) controlPoint1: CGPointMake(26.81, 19.83) controlPoint2: CGPointMake(26.9, 19.82)];
                 [bezier33Path closePath];
                 bezier33Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier33Path fill];
-
-
+                
+                
                 //// Bezier 34 Drawing
                 UIBezierPath* bezier34Path = [UIBezierPath bezierPath];
                 [bezier34Path moveToPoint: CGPointMake(29.06, 20.54)];
@@ -6031,11 +6038,11 @@
                 [bezier34Path addCurveToPoint: CGPointMake(29.33, 21.1) controlPoint1: CGPointMake(29.32, 21.21) controlPoint2: CGPointMake(29.33, 21.16)];
                 [bezier34Path closePath];
                 bezier34Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier34Path fill];
-
-
+                
+                
                 //// Bezier 35 Drawing
                 UIBezierPath* bezier35Path = [UIBezierPath bezierPath];
                 [bezier35Path moveToPoint: CGPointMake(32.87, 21.17)];
@@ -6111,11 +6118,11 @@
                 [bezier35Path addCurveToPoint: CGPointMake(32.18, 20.61) controlPoint1: CGPointMake(32.03, 20.57) controlPoint2: CGPointMake(32.09, 20.58)];
                 [bezier35Path closePath];
                 bezier35Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier35Path fill];
-
-
+                
+                
                 //// Bezier 36 Drawing
                 UIBezierPath* bezier36Path = [UIBezierPath bezierPath];
                 [bezier36Path moveToPoint: CGPointMake(34.18, 19.82)];
@@ -6174,11 +6181,11 @@
                 [bezier36Path addCurveToPoint: CGPointMake(34.18, 19.82) controlPoint1: CGPointMake(34.01, 19.83) controlPoint2: CGPointMake(34.09, 19.82)];
                 [bezier36Path closePath];
                 bezier36Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier36Path fill];
-
-
+                
+                
                 //// Bezier 37 Drawing
                 UIBezierPath* bezier37Path = [UIBezierPath bezierPath];
                 [bezier37Path moveToPoint: CGPointMake(36.5, 21.63)];
@@ -6200,11 +6207,11 @@
                 [bezier37Path addCurveToPoint: CGPointMake(36.5, 21.63) controlPoint1: CGPointMake(36.55, 21.56) controlPoint2: CGPointMake(36.53, 21.6)];
                 [bezier37Path closePath];
                 bezier37Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier37Path fill];
-
-
+                
+                
                 //// Bezier 38 Drawing
                 UIBezierPath* bezier38Path = [UIBezierPath bezierPath];
                 [bezier38Path moveToPoint: CGPointMake(38.39, 21.51)];
@@ -6244,13 +6251,13 @@
                 [bezier38Path addLineToPoint: CGPointMake(38.39, 21.51)];
                 [bezier38Path closePath];
                 bezier38Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier38Path fill];
             }
         }
-
-
+        
+        
         //// Bezier 39 Drawing
         UIBezierPath* bezier39Path = [UIBezierPath bezierPath];
         [bezier39Path moveToPoint: CGPointMake(32.87, 8.22)];
@@ -6275,19 +6282,22 @@
         [bezier39Path addLineToPoint: CGPointMake(32.87, 4.3)];
         [bezier39Path closePath];
         bezier39Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier39Path fill];
     }
 }
 
-- (void)drawCardUnknown {
+- (void)drawIc_card_unknownCanvas
+{
     //// Color Declarations
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
-    UIColor* fillColor14 = [UIColor colorWithRed: 0.439 green: 0.439 blue: 0.439 alpha: 1];
-
-    //// ic_card_unknown Group
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor32 = [UIColor colorWithRed: 0.229 green: 0.232 blue: 0.232 alpha: 1];
+    UIColor* strokeColor3 = [UIColor colorWithRed: 0.299 green: 0.646 blue: 0.357 alpha: 1];
+    UIColor* fillColor39 = [UIColor colorWithRed: 0.299 green: 0.646 blue: 0.357 alpha: 1];
+    
+    //// ic_card_unknown.svg Group
     {
         //// Group 2
         {
@@ -6306,18 +6316,18 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
+        
+        
         //// Bezier 2 Drawing
         UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
         [bezier2Path moveToPoint: CGPointMake(32.82, 8.24)];
@@ -6341,11 +6351,11 @@
         [bezier2Path addLineToPoint: CGPointMake(32.82, 4.32)];
         [bezier2Path closePath];
         bezier2Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier2Path fill];
-
-
+        
+        
         //// Group 3
         {
             //// Group 4
@@ -6390,11 +6400,11 @@
                 [bezier3Path addLineToPoint: CGPointMake(4.91, 20.64)];
                 [bezier3Path closePath];
                 bezier3Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier3Path fill];
-
-
+                
+                
                 //// Bezier 4 Drawing
                 UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
                 [bezier4Path moveToPoint: CGPointMake(7.02, 21.15)];
@@ -6474,11 +6484,11 @@
                 [bezier4Path addCurveToPoint: CGPointMake(7.02, 21.15) controlPoint1: CGPointMake(7.02, 21.03) controlPoint2: CGPointMake(7.02, 21.08)];
                 [bezier4Path closePath];
                 bezier4Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier4Path fill];
-
-
+                
+                
                 //// Bezier 5 Drawing
                 UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
                 [bezier5Path moveToPoint: CGPointMake(9.02, 21.2)];
@@ -6514,11 +6524,11 @@
                 [bezier5Path addLineToPoint: CGPointMake(8.66, 20.35)];
                 [bezier5Path closePath];
                 bezier5Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier5Path fill];
-
-
+                
+                
                 //// Bezier 6 Drawing
                 UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
                 [bezier6Path moveToPoint: CGPointMake(10.73, 20.65)];
@@ -6579,11 +6589,11 @@
                 [bezier6Path addCurveToPoint: CGPointMake(10.73, 20.65) controlPoint1: CGPointMake(10.58, 20.62) controlPoint2: CGPointMake(10.66, 20.63)];
                 [bezier6Path closePath];
                 bezier6Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier6Path fill];
-
-
+                
+                
                 //// Bezier 7 Drawing
                 UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
                 [bezier7Path moveToPoint: CGPointMake(13.61, 20.57)];
@@ -6630,11 +6640,11 @@
                 [bezier7Path addCurveToPoint: CGPointMake(13.88, 21.13) controlPoint1: CGPointMake(13.87, 21.24) controlPoint2: CGPointMake(13.88, 21.19)];
                 [bezier7Path closePath];
                 bezier7Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier7Path fill];
-
-
+                
+                
                 //// Bezier 8 Drawing
                 UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
                 [bezier8Path moveToPoint: CGPointMake(16.15, 21.2)];
@@ -6670,11 +6680,11 @@
                 [bezier8Path addLineToPoint: CGPointMake(15.79, 20.35)];
                 [bezier8Path closePath];
                 bezier8Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier8Path fill];
-
-
+                
+                
                 //// Bezier 9 Drawing
                 UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                 [bezier9Path moveToPoint: CGPointMake(17.86, 20.65)];
@@ -6735,11 +6745,11 @@
                 [bezier9Path addCurveToPoint: CGPointMake(17.86, 20.65) controlPoint1: CGPointMake(17.71, 20.62) controlPoint2: CGPointMake(17.8, 20.63)];
                 [bezier9Path closePath];
                 bezier9Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier9Path fill];
-
-
+                
+                
                 //// Bezier 10 Drawing
                 UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                 [bezier10Path moveToPoint: CGPointMake(19.44, 19.85)];
@@ -6798,11 +6808,11 @@
                 [bezier10Path addCurveToPoint: CGPointMake(19.44, 19.85) controlPoint1: CGPointMake(19.27, 19.85) controlPoint2: CGPointMake(19.35, 19.85)];
                 [bezier10Path closePath];
                 bezier10Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier10Path fill];
-
-
+                
+                
                 //// Bezier 11 Drawing
                 UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                 [bezier11Path moveToPoint: CGPointMake(23.4, 21.2)];
@@ -6879,11 +6889,11 @@
                 [bezier11Path addCurveToPoint: CGPointMake(22.71, 20.63) controlPoint1: CGPointMake(22.56, 20.6) controlPoint2: CGPointMake(22.63, 20.61)];
                 [bezier11Path closePath];
                 bezier11Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier11Path fill];
-
-
+                
+                
                 //// Bezier 12 Drawing
                 UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                 [bezier12Path moveToPoint: CGPointMake(25.41, 21.2)];
@@ -6919,11 +6929,11 @@
                 [bezier12Path addLineToPoint: CGPointMake(25.05, 20.35)];
                 [bezier12Path closePath];
                 bezier12Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier12Path fill];
-
-
+                
+                
                 //// Bezier 13 Drawing
                 UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                 [bezier13Path moveToPoint: CGPointMake(27.26, 20.64)];
@@ -6964,11 +6974,11 @@
                 [bezier13Path addLineToPoint: CGPointMake(27.26, 20.64)];
                 [bezier13Path closePath];
                 bezier13Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier13Path fill];
-
-
+                
+                
                 //// Bezier 14 Drawing
                 UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                 [bezier14Path moveToPoint: CGPointMake(29.26, 20.64)];
@@ -7009,11 +7019,11 @@
                 [bezier14Path addLineToPoint: CGPointMake(29.26, 20.64)];
                 [bezier14Path closePath];
                 bezier14Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier14Path fill];
-
-
+                
+                
                 //// Bezier 15 Drawing
                 UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                 [bezier15Path moveToPoint: CGPointMake(32.03, 20.57)];
@@ -7060,11 +7070,11 @@
                 [bezier15Path addCurveToPoint: CGPointMake(32.3, 21.13) controlPoint1: CGPointMake(32.29, 21.24) controlPoint2: CGPointMake(32.3, 21.19)];
                 [bezier15Path closePath];
                 bezier15Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier15Path fill];
-
-
+                
+                
                 //// Bezier 16 Drawing
                 UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                 [bezier16Path moveToPoint: CGPointMake(34.41, 20.64)];
@@ -7105,11 +7115,11 @@
                 [bezier16Path addLineToPoint: CGPointMake(34.41, 20.64)];
                 [bezier16Path closePath];
                 bezier16Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier16Path fill];
-
-
+                
+                
                 //// Bezier 17 Drawing
                 UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
                 [bezier17Path moveToPoint: CGPointMake(36.57, 21.2)];
@@ -7144,11 +7154,11 @@
                 [bezier17Path addLineToPoint: CGPointMake(36.21, 20.35)];
                 [bezier17Path closePath];
                 bezier17Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier17Path fill];
-
-
+                
+                
                 //// Bezier 18 Drawing
                 UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
                 [bezier18Path moveToPoint: CGPointMake(38.53, 21.15)];
@@ -7228,79 +7238,119 @@
                 [bezier18Path addCurveToPoint: CGPointMake(38.53, 21.15) controlPoint1: CGPointMake(38.52, 21.03) controlPoint2: CGPointMake(38.53, 21.08)];
                 [bezier18Path closePath];
                 bezier18Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier18Path fill];
             }
         }
-
-
+        
+        
         //// Group 5
         {
-            //// Bezier 19 Drawing
-            UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
-            [bezier19Path moveToPoint: CGPointMake(10.17, 2.66)];
-            [bezier19Path addCurveToPoint: CGPointMake(3.65, 9.18) controlPoint1: CGPointMake(6.57, 2.66) controlPoint2: CGPointMake(3.65, 5.58)];
-            [bezier19Path addCurveToPoint: CGPointMake(10.17, 15.7) controlPoint1: CGPointMake(3.65, 12.78) controlPoint2: CGPointMake(6.57, 15.7)];
-            [bezier19Path addCurveToPoint: CGPointMake(16.69, 9.18) controlPoint1: CGPointMake(13.77, 15.7) controlPoint2: CGPointMake(16.69, 12.78)];
-            [bezier19Path addCurveToPoint: CGPointMake(10.17, 2.66) controlPoint1: CGPointMake(16.68, 5.58) controlPoint2: CGPointMake(13.77, 2.66)];
-            [bezier19Path closePath];
-            [bezier19Path moveToPoint: CGPointMake(10.17, 14.81)];
-            [bezier19Path addCurveToPoint: CGPointMake(4.54, 9.18) controlPoint1: CGPointMake(7.07, 14.81) controlPoint2: CGPointMake(4.54, 12.28)];
-            [bezier19Path addCurveToPoint: CGPointMake(10.17, 3.55) controlPoint1: CGPointMake(4.54, 6.08) controlPoint2: CGPointMake(7.07, 3.55)];
-            [bezier19Path addCurveToPoint: CGPointMake(15.8, 9.18) controlPoint1: CGPointMake(13.28, 3.55) controlPoint2: CGPointMake(15.8, 6.08)];
-            [bezier19Path addCurveToPoint: CGPointMake(10.17, 14.81) controlPoint1: CGPointMake(15.8, 12.28) controlPoint2: CGPointMake(13.27, 14.81)];
-            [bezier19Path closePath];
-            bezier19Path.miterLimit = 4;
-
-            [fillColor14 setFill];
-            [bezier19Path fill];
-
-
             //// Group 6
             {
                 //// Group 7
                 {
-                    //// Bezier 20 Drawing
-                    UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
-                    [bezier20Path moveToPoint: CGPointMake(9.35, 9.92)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.89, 7.78) controlPoint1: CGPointMake(9.35, 8.66) controlPoint2: CGPointMake(10.89, 8.51)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.06, 7.18) controlPoint1: CGPointMake(10.89, 7.45) controlPoint2: CGPointMake(10.65, 7.18)];
-                    [bezier20Path addCurveToPoint: CGPointMake(8.76, 7.84) controlPoint1: CGPointMake(9.53, 7.18) controlPoint2: CGPointMake(9.09, 7.44)];
-                    [bezier20Path addLineToPoint: CGPointMake(7.91, 6.87)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.23, 5.84) controlPoint1: CGPointMake(8.47, 6.21) controlPoint2: CGPointMake(9.32, 5.84)];
-                    [bezier20Path addCurveToPoint: CGPointMake(12.43, 7.51) controlPoint1: CGPointMake(11.6, 5.84) controlPoint2: CGPointMake(12.43, 6.53)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.66, 10.06) controlPoint1: CGPointMake(12.43, 9.06) controlPoint2: CGPointMake(10.66, 9.17)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.85, 10.51) controlPoint1: CGPointMake(10.66, 10.23) controlPoint2: CGPointMake(10.75, 10.41)];
-                    [bezier20Path addLineToPoint: CGPointMake(9.7, 10.85)];
-                    [bezier20Path addCurveToPoint: CGPointMake(9.35, 9.92) controlPoint1: CGPointMake(9.48, 10.61) controlPoint2: CGPointMake(9.35, 10.29)];
-                    [bezier20Path closePath];
-                    [bezier20Path moveToPoint: CGPointMake(9.35, 12.27)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.21, 11.41) controlPoint1: CGPointMake(9.35, 11.8) controlPoint2: CGPointMake(9.74, 11.41)];
-                    [bezier20Path addCurveToPoint: CGPointMake(11.07, 12.27) controlPoint1: CGPointMake(10.67, 11.41) controlPoint2: CGPointMake(11.07, 11.8)];
-                    [bezier20Path addCurveToPoint: CGPointMake(10.21, 13.13) controlPoint1: CGPointMake(11.07, 12.74) controlPoint2: CGPointMake(10.68, 13.13)];
-                    [bezier20Path addCurveToPoint: CGPointMake(9.35, 12.27) controlPoint1: CGPointMake(9.74, 13.13) controlPoint2: CGPointMake(9.35, 12.73)];
-                    [bezier20Path closePath];
-                    bezier20Path.miterLimit = 4;
-
-                    [fillColor14 setFill];
-                    [bezier20Path fill];
+                    //// Group 8
+                    {
+                        //// Group 9
+                        {
+                            //// Bezier 19 Drawing
+                            UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
+                            [bezier19Path moveToPoint: CGPointMake(13.9, 7.8)];
+                            [bezier19Path addLineToPoint: CGPointMake(13.11, 7.8)];
+                            bezier19Path.miterLimit = 4;
+                            
+                            [fillColor32 setFill];
+                            [bezier19Path fill];
+                            
+                            
+                            //// Bezier 20 Drawing
+                            UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
+                            [bezier20Path moveToPoint: CGPointMake(7.72, 7.8)];
+                            [bezier20Path addLineToPoint: CGPointMake(6.93, 7.8)];
+                            bezier20Path.miterLimit = 4;
+                            
+                            [fillColor32 setFill];
+                            [bezier20Path fill];
+                            
+                            
+                            //// Bezier 21 Drawing
+                            UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
+                            [bezier21Path moveToPoint: CGPointMake(5.67, 7.8)];
+                            [bezier21Path addLineToPoint: CGPointMake(6.93, 7.8)];
+                            bezier21Path.miterLimit = 4;
+                            
+                            [fillColor32 setFill];
+                            [bezier21Path fill];
+                            
+                            
+                            //// Bezier 22 Drawing
+                            UIBezierPath* bezier22Path = [UIBezierPath bezierPath];
+                            [bezier22Path moveToPoint: CGPointMake(13.9, 7.8)];
+                            [bezier22Path addLineToPoint: CGPointMake(15.16, 7.8)];
+                            bezier22Path.miterLimit = 4;
+                            
+                            [fillColor32 setFill];
+                            [bezier22Path fill];
+                        }
+                    }
+                    
+                    
+                    //// Rectangle 2 Drawing
+                    UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(5.03, 7.8, 10.75, 7.1) cornerRadius: 0.8];
+                    [strokeColor3 setStroke];
+                    rectangle2Path.lineWidth = 1;
+                    [rectangle2Path stroke];
                 }
             }
+            
+            
+            //// Bezier 23 Drawing
+            UIBezierPath* bezier23Path = [UIBezierPath bezierPath];
+            [bezier23Path moveToPoint: CGPointMake(10.85, 11.75)];
+            [bezier23Path addLineToPoint: CGPointMake(10.85, 12.44)];
+            [bezier23Path addCurveToPoint: CGPointMake(10.64, 12.65) controlPoint1: CGPointMake(10.85, 12.56) controlPoint2: CGPointMake(10.75, 12.65)];
+            [bezier23Path addLineToPoint: CGPointMake(10.22, 12.65)];
+            [bezier23Path addCurveToPoint: CGPointMake(10.01, 12.44) controlPoint1: CGPointMake(10.1, 12.65) controlPoint2: CGPointMake(10.01, 12.55)];
+            [bezier23Path addLineToPoint: CGPointMake(10.01, 11.76)];
+            [bezier23Path addCurveToPoint: CGPointMake(9.54, 10.98) controlPoint1: CGPointMake(9.73, 11.61) controlPoint2: CGPointMake(9.54, 11.32)];
+            [bezier23Path addCurveToPoint: CGPointMake(10.43, 10.09) controlPoint1: CGPointMake(9.54, 10.49) controlPoint2: CGPointMake(9.94, 10.09)];
+            [bezier23Path addCurveToPoint: CGPointMake(11.32, 10.98) controlPoint1: CGPointMake(10.92, 10.09) controlPoint2: CGPointMake(11.32, 10.49)];
+            [bezier23Path addCurveToPoint: CGPointMake(10.85, 11.75) controlPoint1: CGPointMake(11.3, 11.31) controlPoint2: CGPointMake(11.12, 11.6)];
+            [bezier23Path closePath];
+            bezier23Path.miterLimit = 4;
+            
+            [fillColor39 setFill];
+            [bezier23Path fill];
+            
+            
+            //// Bezier 24 Drawing
+            UIBezierPath* bezier24Path = [UIBezierPath bezierPath];
+            [bezier24Path moveToPoint: CGPointMake(6.87, 7.65)];
+            [bezier24Path addLineToPoint: CGPointMake(6.87, 7.28)];
+            [bezier24Path addCurveToPoint: CGPointMake(10.41, 3.91) controlPoint1: CGPointMake(6.87, 5.36) controlPoint2: CGPointMake(8.39, 3.91)];
+            [bezier24Path addLineToPoint: CGPointMake(10.42, 3.91)];
+            [bezier24Path addCurveToPoint: CGPointMake(13.96, 7.28) controlPoint1: CGPointMake(12.44, 3.91) controlPoint2: CGPointMake(13.96, 5.36)];
+            [bezier24Path addLineToPoint: CGPointMake(13.96, 7.65)];
+            [strokeColor3 setStroke];
+            bezier24Path.lineWidth = 1;
+            [bezier24Path stroke];
         }
     }
 }
 
-- (void)drawCardVisa {
+- (void)drawIc_card_visaCanvas
+{
     //// Color Declarations
-    UIColor* fillColor = [UIColor colorWithRed: 0.651 green: 0.651 blue: 0.651 alpha: 1];
-    UIColor* fillColor2 = [UIColor colorWithRed: 0.951 green: 0.956 blue: 0.956 alpha: 1];
-    UIColor* fillColor11 = [UIColor colorWithRed: 0.978 green: 0.636 blue: 0.15 alpha: 1];
-    UIColor* fillColor15 = [UIColor colorWithRed: 0.031 green: 0.264 blue: 0.559 alpha: 1];
-
-    //// ic_card_visa Group
+    UIColor* fillColor29 = [UIColor colorWithRed: 0.642 green: 0.642 blue: 0.647 alpha: 1];
+    UIColor* fillColor30 = [UIColor colorWithRed: 0.946 green: 0.951 blue: 0.951 alpha: 1];
+    UIColor* fillColor36 = [UIColor colorWithRed: 0.925 green: 0.65 blue: 0.243 alpha: 1];
+    UIColor* fillColor40 = [UIColor colorWithRed: 0.03 green: 0.261 blue: 0.537 alpha: 1];
+    
+    //// Group 2
     {
-        //// Group 2
+        //// Group 3
         {
             //// Bezier Drawing
             UIBezierPath* bezierPath = [UIBezierPath bezierPath];
@@ -7317,19 +7367,19 @@
             [bezierPath addCurveToPoint: CGPointMake(39.97, 0) controlPoint1: CGPointMake(42, 0.91) controlPoint2: CGPointMake(41.09, 0)];
             [bezierPath closePath];
             bezierPath.miterLimit = 4;
-
-            [fillColor setFill];
+            
+            [fillColor29 setFill];
             [bezierPath fill];
-
-
+            
+            
             //// Rectangle Drawing
             UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0.5, 0.5, 41, 25.5) cornerRadius: 1.6];
-            [fillColor2 setFill];
+            [fillColor30 setFill];
             [rectanglePath fill];
         }
-
-
-        //// Group 3
+        
+        
+        //// Group 4
         {
             //// Bezier 2 Drawing
             UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
@@ -7340,12 +7390,12 @@
             [bezier2Path addLineToPoint: CGPointMake(11.72, 12.41)];
             [bezier2Path closePath];
             bezier2Path.miterLimit = 4;
-
-            [fillColor15 setFill];
+            
+            [fillColor40 setFill];
             [bezier2Path fill];
-
-
-            //// Group 4
+            
+            
+            //// Group 5
             {
                 //// Bezier 3 Drawing
                 UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
@@ -7368,11 +7418,11 @@
                 [bezier3Path addLineToPoint: CGPointMake(21.75, 4.22)];
                 [bezier3Path closePath];
                 bezier3Path.miterLimit = 4;
-
-                [fillColor15 setFill];
+                
+                [fillColor40 setFill];
                 [bezier3Path fill];
-
-
+                
+                
                 //// Bezier 4 Drawing
                 UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
                 [bezier4Path moveToPoint: CGPointMake(24.64, 9.43)];
@@ -7395,11 +7445,11 @@
                 [bezier4Path addLineToPoint: CGPointMake(27.31, 4.02)];
                 [bezier4Path closePath];
                 bezier4Path.miterLimit = 4;
-
-                [fillColor15 setFill];
+                
+                [fillColor40 setFill];
                 [bezier4Path fill];
-
-
+                
+                
                 //// Bezier 5 Drawing
                 UIBezierPath* bezier5Path = [UIBezierPath bezierPath];
                 [bezier5Path moveToPoint: CGPointMake(9.91, 4.02)];
@@ -7412,11 +7462,11 @@
                 [bezier5Path addLineToPoint: CGPointMake(9.91, 4.02)];
                 [bezier5Path closePath];
                 bezier5Path.miterLimit = 4;
-
-                [fillColor15 setFill];
+                
+                [fillColor40 setFill];
                 [bezier5Path fill];
-
-
+                
+                
                 //// Bezier 6 Drawing
                 UIBezierPath* bezier6Path = [UIBezierPath bezierPath];
                 [bezier6Path moveToPoint: CGPointMake(5.81, 4.02)];
@@ -7427,13 +7477,13 @@
                 [bezier6Path addCurveToPoint: CGPointMake(5.81, 4.02) controlPoint1: CGPointMake(6.67, 4.2) controlPoint2: CGPointMake(6.29, 4.04)];
                 [bezier6Path closePath];
                 bezier6Path.miterLimit = 4;
-
-                [fillColor11 setFill];
+                
+                [fillColor36 setFill];
                 [bezier6Path fill];
             }
         }
-
-
+        
+        
         //// Bezier 7 Drawing
         UIBezierPath* bezier7Path = [UIBezierPath bezierPath];
         [bezier7Path moveToPoint: CGPointMake(32.87, 8.24)];
@@ -7458,14 +7508,14 @@
         [bezier7Path addLineToPoint: CGPointMake(32.87, 4.32)];
         [bezier7Path closePath];
         bezier7Path.miterLimit = 4;
-
-        [fillColor setFill];
+        
+        [fillColor29 setFill];
         [bezier7Path fill];
-
-
-        //// Group 5
+        
+        
+        //// Group 6
         {
-            //// Group 6
+            //// Group 7
             {
                 //// Bezier 8 Drawing
                 UIBezierPath* bezier8Path = [UIBezierPath bezierPath];
@@ -7507,11 +7557,11 @@
                 [bezier8Path addLineToPoint: CGPointMake(4.97, 20.64)];
                 [bezier8Path closePath];
                 bezier8Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier8Path fill];
-
-
+                
+                
                 //// Bezier 9 Drawing
                 UIBezierPath* bezier9Path = [UIBezierPath bezierPath];
                 [bezier9Path moveToPoint: CGPointMake(7.08, 21.15)];
@@ -7591,11 +7641,11 @@
                 [bezier9Path addCurveToPoint: CGPointMake(7.08, 21.15) controlPoint1: CGPointMake(7.07, 21.03) controlPoint2: CGPointMake(7.08, 21.08)];
                 [bezier9Path closePath];
                 bezier9Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier9Path fill];
-
-
+                
+                
                 //// Bezier 10 Drawing
                 UIBezierPath* bezier10Path = [UIBezierPath bezierPath];
                 [bezier10Path moveToPoint: CGPointMake(9.07, 21.2)];
@@ -7632,11 +7682,11 @@
                 [bezier10Path addLineToPoint: CGPointMake(8.72, 20.35)];
                 [bezier10Path closePath];
                 bezier10Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier10Path fill];
-
-
+                
+                
                 //// Bezier 11 Drawing
                 UIBezierPath* bezier11Path = [UIBezierPath bezierPath];
                 [bezier11Path moveToPoint: CGPointMake(10.79, 20.65)];
@@ -7697,11 +7747,11 @@
                 [bezier11Path addCurveToPoint: CGPointMake(10.79, 20.65) controlPoint1: CGPointMake(10.63, 20.62) controlPoint2: CGPointMake(10.72, 20.63)];
                 [bezier11Path closePath];
                 bezier11Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier11Path fill];
-
-
+                
+                
                 //// Bezier 12 Drawing
                 UIBezierPath* bezier12Path = [UIBezierPath bezierPath];
                 [bezier12Path moveToPoint: CGPointMake(13.67, 20.57)];
@@ -7748,11 +7798,11 @@
                 [bezier12Path addCurveToPoint: CGPointMake(13.93, 21.13) controlPoint1: CGPointMake(13.93, 21.24) controlPoint2: CGPointMake(13.93, 21.19)];
                 [bezier12Path closePath];
                 bezier12Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier12Path fill];
-
-
+                
+                
                 //// Bezier 13 Drawing
                 UIBezierPath* bezier13Path = [UIBezierPath bezierPath];
                 [bezier13Path moveToPoint: CGPointMake(16.21, 21.2)];
@@ -7789,11 +7839,11 @@
                 [bezier13Path addLineToPoint: CGPointMake(15.85, 20.35)];
                 [bezier13Path closePath];
                 bezier13Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier13Path fill];
-
-
+                
+                
                 //// Bezier 14 Drawing
                 UIBezierPath* bezier14Path = [UIBezierPath bezierPath];
                 [bezier14Path moveToPoint: CGPointMake(17.92, 20.65)];
@@ -7854,11 +7904,11 @@
                 [bezier14Path addCurveToPoint: CGPointMake(17.92, 20.65) controlPoint1: CGPointMake(17.77, 20.62) controlPoint2: CGPointMake(17.85, 20.63)];
                 [bezier14Path closePath];
                 bezier14Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier14Path fill];
-
-
+                
+                
                 //// Bezier 15 Drawing
                 UIBezierPath* bezier15Path = [UIBezierPath bezierPath];
                 [bezier15Path moveToPoint: CGPointMake(19.5, 19.85)];
@@ -7917,11 +7967,11 @@
                 [bezier15Path addCurveToPoint: CGPointMake(19.5, 19.85) controlPoint1: CGPointMake(19.33, 19.85) controlPoint2: CGPointMake(19.41, 19.85)];
                 [bezier15Path closePath];
                 bezier15Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier15Path fill];
-
-
+                
+                
                 //// Bezier 16 Drawing
                 UIBezierPath* bezier16Path = [UIBezierPath bezierPath];
                 [bezier16Path moveToPoint: CGPointMake(23.46, 21.2)];
@@ -7998,11 +8048,11 @@
                 [bezier16Path addCurveToPoint: CGPointMake(22.77, 20.63) controlPoint1: CGPointMake(22.62, 20.6) controlPoint2: CGPointMake(22.69, 20.61)];
                 [bezier16Path closePath];
                 bezier16Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier16Path fill];
-
-
+                
+                
                 //// Bezier 17 Drawing
                 UIBezierPath* bezier17Path = [UIBezierPath bezierPath];
                 [bezier17Path moveToPoint: CGPointMake(25.47, 21.2)];
@@ -8038,11 +8088,11 @@
                 [bezier17Path addLineToPoint: CGPointMake(25.11, 20.35)];
                 [bezier17Path closePath];
                 bezier17Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier17Path fill];
-
-
+                
+                
                 //// Bezier 18 Drawing
                 UIBezierPath* bezier18Path = [UIBezierPath bezierPath];
                 [bezier18Path moveToPoint: CGPointMake(27.31, 20.64)];
@@ -8083,11 +8133,11 @@
                 [bezier18Path addLineToPoint: CGPointMake(27.31, 20.64)];
                 [bezier18Path closePath];
                 bezier18Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier18Path fill];
-
-
+                
+                
                 //// Bezier 19 Drawing
                 UIBezierPath* bezier19Path = [UIBezierPath bezierPath];
                 [bezier19Path moveToPoint: CGPointMake(29.31, 20.64)];
@@ -8128,11 +8178,11 @@
                 [bezier19Path addLineToPoint: CGPointMake(29.31, 20.64)];
                 [bezier19Path closePath];
                 bezier19Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier19Path fill];
-
-
+                
+                
                 //// Bezier 20 Drawing
                 UIBezierPath* bezier20Path = [UIBezierPath bezierPath];
                 [bezier20Path moveToPoint: CGPointMake(32.08, 20.57)];
@@ -8179,11 +8229,11 @@
                 [bezier20Path addCurveToPoint: CGPointMake(32.35, 21.13) controlPoint1: CGPointMake(32.34, 21.24) controlPoint2: CGPointMake(32.35, 21.19)];
                 [bezier20Path closePath];
                 bezier20Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier20Path fill];
-
-
+                
+                
                 //// Bezier 21 Drawing
                 UIBezierPath* bezier21Path = [UIBezierPath bezierPath];
                 [bezier21Path moveToPoint: CGPointMake(34.47, 20.64)];
@@ -8224,11 +8274,11 @@
                 [bezier21Path addLineToPoint: CGPointMake(34.47, 20.64)];
                 [bezier21Path closePath];
                 bezier21Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier21Path fill];
-
-
+                
+                
                 //// Bezier 22 Drawing
                 UIBezierPath* bezier22Path = [UIBezierPath bezierPath];
                 [bezier22Path moveToPoint: CGPointMake(36.63, 21.2)];
@@ -8264,11 +8314,11 @@
                 [bezier22Path addLineToPoint: CGPointMake(36.27, 20.35)];
                 [bezier22Path closePath];
                 bezier22Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier22Path fill];
-
-
+                
+                
                 //// Bezier 23 Drawing
                 UIBezierPath* bezier23Path = [UIBezierPath bezierPath];
                 [bezier23Path moveToPoint: CGPointMake(38.58, 21.15)];
@@ -8348,8 +8398,8 @@
                 [bezier23Path addCurveToPoint: CGPointMake(38.58, 21.15) controlPoint1: CGPointMake(38.58, 21.03) controlPoint2: CGPointMake(38.58, 21.08)];
                 [bezier23Path closePath];
                 bezier23Path.miterLimit = 4;
-
-                [fillColor setFill];
+                
+                [fillColor29 setFill];
                 [bezier23Path fill];
             }
         }
