@@ -81,6 +81,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"5.0.0" forHTTPHeaderField:@"API-Version"];
     
+    
     // Adds the version and lang of the SDK to the header
     [request addValue:[NSString stringWithFormat:@"iOS-Version/(%@) lang/(ObjC)", JudoKitVersion] forHTTPHeaderField:@"User-Agent"];
     [request addValue:[NSString stringWithFormat:@"iOSObjC-(%@)", JudoKitVersion] forHTTPHeaderField:@"Sdk-Version"];

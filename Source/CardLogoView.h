@@ -1,6 +1,6 @@
 //
 //  CardLogoView.h
-//  JudoKit
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //

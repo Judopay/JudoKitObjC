@@ -89,8 +89,9 @@
                         <constraint firstAttribute="height" constant="1" id="Yna-7M-ih0"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-un-lBD">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-un-lBD">
                     <rect key="frame" x="16" y="223.5" width="335" height="57.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <string key="text">This is a receipt example showing only the createdAt, amount and currency properties of the receipt object. Please refer to our API Reference Documentation for all the properties you can display.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -103,7 +104,6 @@
                 <constraint firstItem="lji-4S-hTK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="86" id="3GS-1V-Bg2">
                     <variation key="widthClass=compact" constant="86"/>
                 </constraint>
-                <constraint firstAttribute="trailing" secondItem="zfi-un-lBD" secondAttribute="trailing" constant="24" id="3V1-xM-ODk"/>
                 <constraint firstItem="K72-mG-57I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="5EI-DK-OKk"/>
                 <constraint firstItem="SAh-Vf-TSG" firstAttribute="leading" secondItem="zW0-0Q-9hG" secondAttribute="trailing" constant="47" id="6Ht-47-R1R"/>
                 <constraint firstItem="cKN-1i-b7O" firstAttribute="centerY" secondItem="K72-mG-57I" secondAttribute="centerY" id="9ET-QJ-4Dn"/>
@@ -113,7 +113,6 @@
                 <constraint firstItem="YXd-ER-n1p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GSC-0G-xQs"/>
                 <constraint firstAttribute="trailing" secondItem="lji-4S-hTK" secondAttribute="trailing" constant="20" id="IiN-GN-WsG"/>
                 <constraint firstAttribute="trailing" secondItem="SAh-Vf-TSG" secondAttribute="trailing" constant="20" id="JT5-Rb-bMy"/>
-                <constraint firstAttribute="bottom" secondItem="zfi-un-lBD" secondAttribute="bottom" constant="386" id="JwG-q2-eQH"/>
                 <constraint firstItem="YXd-ER-n1p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="86" id="KCh-gb-EwX">
                     <variation key="widthClass=compact" constant="86"/>
                 </constraint>
@@ -130,7 +129,6 @@
                 <constraint firstItem="WWu-ea-bHu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qfy-my-77v"/>
                 <constraint firstAttribute="trailing" secondItem="cKN-1i-b7O" secondAttribute="trailing" constant="20" id="qmP-Rc-Gtm"/>
                 <constraint firstItem="9lb-My-FVs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="rSh-yF-QNZ"/>
-                <constraint firstItem="zfi-un-lBD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="tRW-Dh-dT3"/>
                 <constraint firstItem="NGd-iX-WMf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="uPs-gK-XwO"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

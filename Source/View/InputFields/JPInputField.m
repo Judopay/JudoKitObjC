@@ -87,7 +87,7 @@
     
     if ([self containsLogo]) {
         UIView *logoView = [self logoView];
-        logoView.frame = CGRectMake(0, 0, 42, 27);
+        logoView.frame = CGRectMake(0, 0, 46, 30);
         [self addSubview:self.logoContainerView];
         self.logoContainerView.translatesAutoresizingMaskIntoConstraints = NO;
         self.logoContainerView.clipsToBounds = YES;
@@ -104,11 +104,11 @@
 - (void)setUpConstraints {
     [self addConstraint:@"H:|-13-[borderBottom]-13-|" option:NSLayoutFormatDirectionLeftToRight];
     [self addConstraint:@"H:|-13-[hintLabel]-13-|" option:NSLayoutFormatDirectionLeftToRight];
-    [self addConstraint: [self containsLogo] ? @"H:|-13-[text][logo(42)]-13-|" : @"H:|-13-[text]-13-|" option:NSLayoutFormatDirectionLeftToRight];
+    [self addConstraint: [self containsLogo] ? @"H:|-13-[text][logo(46)]-13-|" : @"H:|-13-[text]-13-|" option:NSLayoutFormatDirectionLeftToRight];
     
-    [self addConstraint:@"V:|[text][borderBottom(1)]-5-[hintLabel(15)]|" option:0];
+    [self addConstraint:@"V:|[text][borderBottom(0.5)]-5-[hintLabel(15)]|" option:0];
     if ([self containsLogo]) {
-        [self addConstraint:@"V:|[logo(27)]|" option:0];
+        [self addConstraint:@"V:|[logo(30)]|" option:0];
     }
 }
 
@@ -147,7 +147,7 @@
 
 - (void)updateCardLogo {
     CardLogoView *logoView = [self logoView];
-    logoView.frame = CGRectMake(0, 0, 42, 27);
+    logoView.frame = CGRectMake(0, 0, 46, 30);
     CardLogoView *oldLogoView = self.logoContainerView.subviews.firstObject;
     if (oldLogoView.type != logoView.type) {
         [UIView transitionFromView:oldLogoView toView:logoView duration:0.3 options:UIViewAnimationOptionTransitionFlipFromBottom completion:nil];
@@ -223,7 +223,7 @@
 }
 
 - (void)setBorderBottomAsNormal {
-    self.borderBottom.frame = CGRectMake(self.borderBottom.frame.origin.x, self.borderBottom.frame.origin.y, self.borderBottom.frame.size.width, 1.0f);
+    self.borderBottom.frame = CGRectMake(self.borderBottom.frame.origin.x, self.borderBottom.frame.origin.y, self.borderBottom.frame.size.width, 0.5f);
     self.borderBottom.backgroundColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:1.0f];
     self.textField.textColor = self.theme.judoTextColor;}
 
