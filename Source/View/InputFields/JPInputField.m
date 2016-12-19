@@ -106,9 +106,9 @@
     [self addConstraint:@"H:|-13-[hintLabel]-13-|" option:NSLayoutFormatDirectionLeftToRight];
     [self addConstraint: [self containsLogo] ? @"H:|-13-[text][logo(46)]-13-|" : @"H:|-13-[text]-13-|" option:NSLayoutFormatDirectionLeftToRight];
     
-    [self addConstraint:@"V:|[text][borderBottom(0.5)]-5-[hintLabel(15)]|" option:0];
+    [self addConstraint:@"V:|[text]-8-[borderBottom(0.5)]-5-[hintLabel(15)]|" option:0];
     if ([self containsLogo]) {
-        [self addConstraint:@"V:|[logo(30)]|" option:0];
+        [self addConstraint:@"V:|-5-[logo(30)]|" option:0];
     }
 }
 
@@ -242,7 +242,7 @@
 - (FloatingTextField *)textField {
     if (!_textField) {
         _textField = [FloatingTextField new];
-        _textField.floatingLabelYPadding = 2.0f;
+        _textField.keepBaseline = YES;
         _textField.floatingLabelFont = [UIFont systemFontOfSize:12.0f];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
     }

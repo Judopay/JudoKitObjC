@@ -328,9 +328,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[securityMessage]-(12)-|" options:0 metrics:nil views:@{@"securityMessage":self.securityMessageLabel}]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[card(fieldHeight)]-(10)-[start]-(10)-[expiry(fieldHeight)]-(10)-[billing]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"start":self.startDateInputField, @"expiry":self.expiryDateInputField, @"billing":self.billingCountryInputField}]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[card(fieldHeight)]-(5)-[start]-(5)-[expiry(fieldHeight)]-(5)-[billing]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"start":self.startDateInputField, @"expiry":self.expiryDateInputField, @"billing":self.billingCountryInputField}]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[card(fieldHeight)]-(10)-[issue(==start)]-(10)-[security(fieldHeight)]-(10)-[post]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"issue":self.issueNumberInputField, @"start":self.startDateInputField, @"security":self.securityCodeInputField, @"post":self.postCodeInputField}]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[card(fieldHeight)]-(5)-[issue(==start)]-(5)-[security(fieldHeight)]-(5)-[post]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"issue":self.issueNumberInputField, @"start":self.startDateInputField, @"security":self.securityCodeInputField, @"post":self.postCodeInputField}]];
     
     self.maestroFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.startDateInputField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:1.0];
     
