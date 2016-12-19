@@ -94,10 +94,7 @@
         self.logoContainerView.layer.cornerRadius = 2;
         [self.logoContainerView addSubview:logoView];
     }
-    
-    //self.backgroundColor = [UIColor blueColor];
-    //self.textField.backgroundColor = [UIColor greenColor];
-    
+
     [self setUpConstraints];
 }
 

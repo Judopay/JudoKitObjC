@@ -52,7 +52,7 @@
     
     self.textField.text = @"UK";
     self.textField.inputView = self.countryPicker;
-    
+    self.textField.placeholder = @" ";
     [self setActive:YES];
 }
 
