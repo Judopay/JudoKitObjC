@@ -138,7 +138,7 @@
 }
 
 - (NSString *)valueOrEmpty:(NSString *)value {
-    return value ?: @"";
+    return value ? value : @"";
 }
 
 - (NSURLSessionDataTask *)task:(NSURLRequest *)request completion:(JudoCompletionBlock)completion {
