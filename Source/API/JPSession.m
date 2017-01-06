@@ -113,32 +113,28 @@
     [userAgentParts addObject:[NSString stringWithFormat:@"iOS-ObjC/%@", JudoKitVersion]];
     
     //Model
-    [userAgentParts addObject:[self valueOrEmpty:device.model]];
+    [userAgentParts addObject:device.model];
     
     //Operating system
-    [userAgentParts addObject:[NSString stringWithFormat:@"%@/%@", [self valueOrEmpty:device.systemName], [self valueOrEmpty:device.systemVersion]]];
+    [userAgentParts addObject:[NSString stringWithFormat:@"%@/%@", device.systemName, device.systemVersion]];
     
-    //App Name and version
-    [userAgentParts addObject:[NSString stringWithFormat:@"%@/%@", [self valueOrEmpty:[mainBundle objectForInfoDictionaryKey:@"CFBundleName"]], [self valueOrEmpty:[mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]]];
+    NSString *appName = [mainBundle objectForInfoDictionaryKey:@"CFBundleName"];
+    NSString *appVersion = [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     
-    //Platform running on (simulator or device)
-    [userAgentParts addObject:[self valueOrEmpty:[mainBundle objectForInfoDictionaryKey:@"DTPlatformName"]]];
-    
-    NSMutableString *userAgent = [NSMutableString new];
-    
-    for (NSString *value in userAgentParts) {
-        if (value.length > 0 && ![value isEqualToString:@"/"]) {
-            [userAgent appendString:@" "];
-            NSString *replaceSpaces = [value stringByReplacingOccurrencesOfString:@" " withString:@""];
-            [userAgent appendString:replaceSpaces];
-        }
+    if (appName && appVersion) {
+        //App Name and version
+        NSString *appNameMinusSpaces = [appName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        [userAgentParts addObject:[NSString stringWithFormat:@"%@/%@", appNameMinusSpaces, appVersion]];
     }
     
-    return userAgent;
-}
-
-- (NSString *)valueOrEmpty:(NSString *)value {
-    return value ? value : @"";
+    NSString *platformName = [mainBundle objectForInfoDictionaryKey:@"DTPlatformName"];
+    
+    if (platformName) {
+        //Platform running on (simulator or device)
+        [userAgentParts addObject:platformName];
+    }
+    
+    return [userAgentParts componentsJoinedByString:@" "];
 }
 
 - (NSURLSessionDataTask *)task:(NSURLRequest *)request completion:(JudoCompletionBlock)completion {
