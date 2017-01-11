@@ -145,6 +145,7 @@
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
 		70347BCF1E269F6100AA5390 /* JPField.h in Headers */ = {isa = PBXBuildFile; fileRef = 70347BCD1E269F6100AA5390 /* JPField.h */; };
 		70347BD01E269F6100AA5390 /* JPField.m in Sources */ = {isa = PBXBuildFile; fileRef = 70347BCE1E269F6100AA5390 /* JPField.m */; };
+		70347BD61E26A97000AA5390 /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70347BD41E26A93100AA5390 /* TrackingTests.swift */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
 		7053F68E1D912B3100DDE952 /* JudoShield.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6912D91C96BA3400367660 /* JudoShield.framework */; };
 		709F325F1D9983420096DE81 /* JudoShield.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B6912D91C96BA3400367660 /* JudoShield.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -344,6 +345,7 @@
 		702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudoPayViewControllerTestable.h; sourceTree = "<group>"; };
 		70347BCD1E269F6100AA5390 /* JPField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPField.h; sourceTree = "<group>"; };
 		70347BCE1E269F6100AA5390 /* JPField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPField.m; sourceTree = "<group>"; };
+		70347BD41E26A93100AA5390 /* TrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingTests.swift; sourceTree = "<group>"; };
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70B0466C1DD6163E000FC842 /* JPTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTracking.h; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		3B678B641C6CE5190001DC2F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				70347BD11E26A8CD00AA5390 /* TrackingTests */,
 				3B9711831C7618C000E9A347 /* APITests */,
 				3B678B651C6CE5190001DC2F /* JudoKitObjCTests.m */,
 				3B678B671C6CE5190001DC2F /* Info.plist */,
@@ -654,6 +657,14 @@
 				702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */,
 			);
 			path = APITests;
+			sourceTree = "<group>";
+		};
+		70347BD11E26A8CD00AA5390 /* TrackingTests */ = {
+			isa = PBXGroup;
+			children = (
+				70347BD41E26A93100AA5390 /* TrackingTests.swift */,
+			);
+			name = TrackingTests;
 			sourceTree = "<group>";
 		};
 		70B0466B1DD6161F000FC842 /* Tracking */ = {
@@ -833,6 +844,7 @@
 					};
 					3B678B551C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 					};
 					3B678B5F1C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
@@ -1012,6 +1024,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70347BD61E26A97000AA5390 /* TrackingTests.swift in Sources */,
 				702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */,
 				3B4EB4021C982A25006265A0 /* VoidTransactionTests.swift in Sources */,
 				3B4EB3FF1C982A25006265A0 /* TokenPaymentTests.swift in Sources */,
@@ -1264,6 +1277,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1289,6 +1303,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
