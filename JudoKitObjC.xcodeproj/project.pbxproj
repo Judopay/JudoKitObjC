@@ -143,6 +143,8 @@
 		3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */; };
 		702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
+		70347BCF1E269F6100AA5390 /* JPField.h in Headers */ = {isa = PBXBuildFile; fileRef = 70347BCD1E269F6100AA5390 /* JPField.h */; };
+		70347BD01E269F6100AA5390 /* JPField.m in Sources */ = {isa = PBXBuildFile; fileRef = 70347BCE1E269F6100AA5390 /* JPField.m */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
 		7053F68E1D912B3100DDE952 /* JudoShield.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6912D91C96BA3400367660 /* JudoShield.framework */; };
 		709F325F1D9983420096DE81 /* JudoShield.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B6912D91C96BA3400367660 /* JudoShield.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -340,6 +342,8 @@
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
 		702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudoPayViewControllerTestable.h; sourceTree = "<group>"; };
+		70347BCD1E269F6100AA5390 /* JPField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPField.h; sourceTree = "<group>"; };
+		70347BCE1E269F6100AA5390 /* JPField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPField.m; sourceTree = "<group>"; };
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70B0466C1DD6163E000FC842 /* JPTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTracking.h; sourceTree = "<group>"; };
@@ -348,8 +352,6 @@
 		70B046751DD63865000FC842 /* JPTrackedField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTrackedField.m; sourceTree = "<group>"; };
 		70B0467D1DDB7C05000FC842 /* JPFieldTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFieldTracking.h; sourceTree = "<group>"; };
 		70B0467E1DDB7C05000FC842 /* JPFieldTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFieldTracking.m; sourceTree = "<group>"; };
-		70B046811DDB7C43000FC842 /* JPFieldTrackingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPFieldTrackingProtocol.h; sourceTree = "<group>"; };
-		70B046821DDB7D47000FC842 /* JPApplicationTrackingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPApplicationTrackingProtocol.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -663,8 +665,8 @@
 				70B046751DD63865000FC842 /* JPTrackedField.m */,
 				70B0467D1DDB7C05000FC842 /* JPFieldTracking.h */,
 				70B0467E1DDB7C05000FC842 /* JPFieldTracking.m */,
-				70B046811DDB7C43000FC842 /* JPFieldTrackingProtocol.h */,
-				70B046821DDB7D47000FC842 /* JPApplicationTrackingProtocol.h */,
+				70347BCD1E269F6100AA5390 /* JPField.h */,
+				70347BCE1E269F6100AA5390 /* JPField.m */,
 			);
 			name = Tracking;
 			sourceTree = "<group>";
@@ -705,6 +707,7 @@
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
 				3B704A921C89F1A800376773 /* CardInputField.h in Headers */,
+				70347BCF1E269F6100AA5390 /* JPField.h in Headers */,
 				3B678BB11C7327270001DC2F /* JPVoid.h in Headers */,
 				3B678BB51C7327410001DC2F /* JPReceipt.h in Headers */,
 				3BD353CB1C77803F0045658A /* JPCardDetails.h in Headers */,
@@ -996,6 +999,7 @@
 				3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
+				70347BD01E269F6100AA5390 /* JPField.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
 				3B6991571C8DD85B006ED1FB /* JPTheme.m in Sources */,

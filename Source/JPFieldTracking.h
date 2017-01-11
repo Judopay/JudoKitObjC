@@ -24,13 +24,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JPFieldTrackingProtocol.h"
+#import "JPField.h"
 
-@interface JPFieldTracking : NSObject<JPFieldTrackingProtocol>
+@interface JPFieldTracking : NSObject
 
-- (void)textFieldDidBeginEditing:(nonnull JPInputField *)textField;
-- (void)textFieldDidEndEditing:(nonnull JPInputField *)textField;
-- (void)didChangeInputText:(nonnull JPInputField *)textField;
+- (void)textFieldDidBeginEditing:(nonnull JPField *)textField;
+- (void)textFieldDidEndEditing:(nonnull JPField *)textField;
+- (void)didChangeInputText:(nonnull JPField *)textField;
 - (nonnull NSDictionary<NSString *, id> *)trackingAsDictionary;
 
 @end

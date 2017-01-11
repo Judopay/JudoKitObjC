@@ -27,6 +27,7 @@
 #import "FloatingTextField.h"
 #import "JPTrackedField.h"
 #import "JPFieldTracking.h"
+#import "JPField.h"
 
 @interface JPTracking()
 
@@ -50,19 +51,24 @@
 }
 
 - (void)textFieldDidBeginEditing:(nonnull JPInputField *)textField {
-    [self.fieldTracking textFieldDidBeginEditing:textField];
+    [self.fieldTracking textFieldDidBeginEditing:[self mapToJPField:textField]];
 }
 
 - (void)textFieldDidEndEditing:(nonnull JPInputField *)textField {
-    [self.fieldTracking textFieldDidEndEditing:textField];
+    [self.fieldTracking textFieldDidEndEditing:[self mapToJPField:textField]];
 }
 
 - (void)didChangeInputText:(nonnull JPInputField *)textField {
-    [self.fieldTracking didChangeInputText:textField];
+    [self.fieldTracking didChangeInputText:[self mapToJPField:textField]];
 }
 
 - (void)applicationDidBecomeActive:(nonnull UIApplication *)application {
     NSLog(@"Active");
+}
+    
+- (JPField *)mapToJPField:(JPInputField *)inputField {
+    JPField *field = [[JPField alloc] initWithName:inputField.fieldName value:inputField.textField.text isConsideredValid:inputField.isValid];
+    return field;
 }
 
 - (void)push {

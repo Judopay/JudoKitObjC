@@ -1,5 +1,5 @@
 //
-//  JPFieldTrackingProtocol.h
+//  JPField.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -22,14 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPInputField.h"
+#import <Foundation/Foundation.h>
 
-@protocol JPFieldTrackingProtocol <NSObject>
+@interface JPField : NSObject
 
-- (void)textFieldDidBeginEditing:(nonnull JPInputField *)textField;
-- (void)textFieldDidEndEditing:(nonnull JPInputField *)textField;
-- (void)didChangeInputText:(nonnull JPInputField *)textField;
-
+@property (nonnull, nonatomic, strong) NSString *name;
+@property (nonnull, nonatomic, strong) NSString *value;
+@property (nonatomic) BOOL isConsideredValid;
+    
+- (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid;
+    
 @end
-
-

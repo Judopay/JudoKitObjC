@@ -25,10 +25,8 @@
 #import <Foundation/Foundation.h>
 
 #import "JPInputField.h"
-#import "JPFieldTrackingProtocol.h"
-#import "JPApplicationTrackingProtocol.h"
 
-@interface JPTracking : NSObject<JPFieldTrackingProtocol, JPApplicationTrackingProtocol>
+@interface JPTracking : NSObject
 
 + (nonnull JPTracking *)sharedInstance;
 - (void)textFieldDidBeginEditing:(nonnull JPInputField *)textField;

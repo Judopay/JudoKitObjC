@@ -1,5 +1,5 @@
 //
-//  JPApplicationTrackingProtocol.h
+//  JPField.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -22,10 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPInputField.h"
+#import "JPField.h"
 
-@protocol JPApplicationTrackingProtocol <NSObject>
+@implementation JPField
+    
+- (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid {
+    self = [super init];
+    
+    if (self) {
+        self.name = name;
+        self.value = value;
+        self.isConsideredValid = isConsideredValid;
+    }
+    
+    return self;
 
-- (void)applicationDidBecomeActive:(nonnull UIApplication *)application;
-
+}
+    
 @end

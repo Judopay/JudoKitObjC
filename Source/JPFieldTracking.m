@@ -46,20 +46,20 @@
     return self;
 }
 
-- (void)textFieldDidBeginEditing:(nonnull JPInputField *)textField {
+- (void)textFieldDidBeginEditing:(nonnull JPField *)textField {
     JPTrackedField *field = [self getField:textField];
     
-    field.name = textField.fieldName;
+    field.name = textField.name;
     field.whenFocused = [self dateToString:[NSDate new]];
     
     [self.activeFields setObject:field forKey:field.name];
 }
 
-- (void)textFieldDidEndEditing:(nonnull JPInputField *)textField {
+- (void)textFieldDidEndEditing:(nonnull JPField *)textField {
     JPTrackedField *field = [self getField:textField];
     
     field.whenBlured = [self dateToString:[NSDate new]];
-    field.isConsideredValid = textField.isValid;
+    field.isConsideredValid = textField.isConsideredValid;
     
     //Ship off to the completed array.
     NSMutableArray<JPTrackedField *> *completedFields = [self.completedFields valueForKey:field.name] ? : [NSMutableArray new];
@@ -69,15 +69,15 @@
     [self.activeFields removeObjectForKey:field.name];
 }
 
-- (void)didChangeInputText:(nonnull JPInputField *)textField {
+- (void)didChangeInputText:(nonnull JPField *)textField {
     JPTrackedField *field = [self getField:textField];
     
-    if (field.currentLength == 0 && textField.textField.text.length > 0) {
+    if (field.currentLength == 0 && textField.value.length > 0) {
         field.whenEditingBegan = [self dateToString:[NSDate new]];
     }
     
     NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"/ "];
-    NSString *textMinusWhitespace = [[textField.textField.text componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+    NSString *textMinusWhitespace = [[textField.value componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
     
     NSInteger previousTextLength = field.currentLength;
     NSInteger currentTextLength = textMinusWhitespace.length;
@@ -133,13 +133,13 @@
     return [dictionary copy];
 }
 
-- (nonnull JPTrackedField *)getField:(nonnull JPInputField *)textField {
-    JPTrackedField *field = [self.activeFields valueForKey:textField.fieldName];
+- (nonnull JPTrackedField *)getField:(nonnull JPField *)textField {
+    JPTrackedField *field = [self.activeFields valueForKey:textField.name];
     
     if (!field) {
         field = [JPTrackedField new];
-        field.name = textField.fieldName;
-        field.currentLength = textField.textField.text.length;
+        field.name = textField.name;
+        field.currentLength = textField.value.length;
     }
     
     return field;
