@@ -38,6 +38,8 @@
 @property (nonatomic, strong) UIView *redBlock;
     
 @property (nonatomic, strong) CALayer *bottomBorder;
+    
+@property (nonatomic, strong) UILabel *hintLabel;
 
 @end
 
@@ -66,6 +68,14 @@
     
     //Set up the bottom Border
     self.bottomBorder = [CALayer layer];
+    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:0.5f];
+    self.bottomBorder.backgroundColor = borderColor.CGColor;
+    [self.layer addSublayer:self.bottomBorder];
+    
+    self.hintLabel = [UILabel new];
+    self.hintLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.hintLabel.font = [UIFont systemFontOfSize:12];
+    [self addSubview:self.hintLabel];
     
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
     self.textField.textColor = self.theme.judoInputFieldTextColor;
@@ -73,7 +83,8 @@
     self.textField.font = [UIFont boldSystemFontOfSize:16];
     [self.textField addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[text]|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"text":self.textField}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[text(40)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"text":self.textField}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintLabel]|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"hintLabel":self.hintLabel}]];
     
     [self setActive:false];
     
@@ -88,10 +99,12 @@
         self.logoContainerView.layer.cornerRadius = 2;
         [self.logoContainerView addSubview:logoView];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         
         [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
-        
+
+    
+        [self.hintLabel addConstraint:[NSLayoutConstraint constraintWithItem:self.hintLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:15.0]];
     }
     
     NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(46)]-13-|" : @"|-13-[text]-13-|";
@@ -99,13 +112,12 @@
     NSDictionary *views = @{@"text": self.textField, @"logo": self.logoContainerView};
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:NSLayoutFormatDirectionLeftToRight metrics:nil views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-13-[hintLabel]-13-|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:@{@"hintLabel":self.hintLabel}]];
 }
-
+   
 - (void)setUpBorderBottom {
-    self.bottomBorder.frame = CGRectMake(13.0f, self.frame.size.height - 1, self.frame.size.width - 26, 0.5f);
-    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:0.5f];
-    self.bottomBorder.backgroundColor = borderColor.CGColor;
-    [self.layer addSublayer:self.bottomBorder];
+    self.bottomBorder.frame = CGRectMake(13.0f, self.frame.size.height - 22, self.frame.size.width - 26, 0.5f);
 }
     
 - (void)errorAnimation:(BOOL)showRedBlock {
@@ -123,11 +135,12 @@
     };
     
     if (showRedBlock) {
-        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 1, self.bounds.size.width - 26.0f, 2.0);
+        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 22, self.bounds.size.width - 26.0f, 2.0);
         
         [UIView animateWithDuration:0.2 animations:^{
-            self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 1, self.bounds.size.width - 26.0f, 2.0);
+            self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 22, self.bounds.size.width - 26.0f, 2.0);
             self.textField.textColor = self.theme.judoErrorColor;
+            self.hintLabel.textColor = self.theme.judoErrorColor;
         } completion:blockAnimation];
     } else {
         blockAnimation(YES);
@@ -146,16 +159,16 @@
 - (void)setActive:(BOOL)active {
     self.textField.alpha = active ? 1.0f : 0.5f;
     self.logoContainerView.alpha = active ? 1.0f : 0.5f;
+    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:active ? 1.0f : 0.5f];
+    self.bottomBorder.backgroundColor = borderColor.CGColor;
 }
 
 - (void)dismissError {
     if (self.redBlock.bounds.origin.y < self.bounds.size.height) {
-        [UIView animateWithDuration:0.4 animations:^{
-            self.redBlock.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 2.0f);
-            self.textField.textColor = self.theme.judoTextColor;
-        } completion:^(BOOL finished) {
-            [self layoutIfNeeded];
-        }];
+        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height, self.bounds.size.width-26.0f, 0.5f);
+        self.hintLabel.textColor = self.theme.judoTextColor;
+        self.textField.textColor = self.theme.judoTextColor;
+        [self layoutIfNeeded];
     }
 }
 
@@ -210,7 +223,6 @@
     if (!_textField) {
         _textField = [FloatingTextField new];
         _textField.keepBaseline = YES;
-        _textField.floatingLabelYPadding = 6.0f;
         _textField.floatingLabelFont = [UIFont systemFontOfSize:12.0f];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
     }

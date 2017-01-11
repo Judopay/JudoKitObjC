@@ -143,7 +143,7 @@
 
 - (CGFloat)inputFieldHeight {
     if (_inputFieldHeight == 0) {
-        _inputFieldHeight = 48;
+        _inputFieldHeight = 68;
     }
     return _inputFieldHeight;
 }
