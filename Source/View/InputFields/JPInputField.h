@@ -221,7 +221,21 @@
  *  @param textField the textfield of which the content has changed
  */
 - (void)textFieldDidChangeValue:(UITextField *)textField;
+  
+/**
+ *  method to display a label hint
+ *
+ *  @param message the message to display
+ */
+- (void)displayHint:(NSString *)message;
+
+/**
+ *  method to display a label error
+ *
+ *  @param message the message to display
+ */
+- (void)displayError:(NSString *)message;
     
 - (void)setUpBorderBottom;
-
+    
 @end

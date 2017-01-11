@@ -99,12 +99,10 @@
         self.logoContainerView.layer.cornerRadius = 2;
         [self.logoContainerView addSubview:logoView];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(3.5)-[logo(30)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"logo":self.logoContainerView}]];
+
         
         [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
-
-    
-        [self.hintLabel addConstraint:[NSLayoutConstraint constraintWithItem:self.hintLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:15.0]];
     }
     
     NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(46)]-13-|" : @"|-13-[text]-13-|";
@@ -161,6 +159,7 @@
     self.logoContainerView.alpha = active ? 1.0f : 0.5f;
     UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:active ? 1.0f : 0.5f];
     self.bottomBorder.backgroundColor = borderColor.CGColor;
+    self.hintLabel.text = @"";
 }
 
 - (void)dismissError {
@@ -168,6 +167,7 @@
         self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height, self.bounds.size.width-26.0f, 0.5f);
         self.hintLabel.textColor = self.theme.judoTextColor;
         self.textField.textColor = self.theme.judoTextColor;
+        self.hintLabel.text = @"";
         [self layoutIfNeeded];
     }
 }
@@ -215,6 +215,16 @@
 
 - (NSString *)hintLabelText {
     return @"";
+}
+
+- (void)displayHint:(NSString *)message {
+    self.hintLabel.text = message;
+    self.hintLabel.textColor = self.theme.judoTextColor;
+}
+
+- (void)displayError:(NSString *)message {
+    self.hintLabel.text = message;
+    self.hintLabel.textColor = self.theme.judoErrorColor;
 }
 
 #pragma mark - Lazy Loading

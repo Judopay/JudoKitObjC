@@ -49,7 +49,7 @@
     
     self.countryPicker.delegate = self;
     self.countryPicker.dataSource = self;
-    
+    self.textField.placeholder = @" ";
     self.textField.text = @"UK";
     self.textField.inputView = self.countryPicker;
     

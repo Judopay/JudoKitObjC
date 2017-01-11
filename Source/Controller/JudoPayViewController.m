@@ -38,7 +38,6 @@
 #import "JPTheme.h"
 #import "LoadingView.h"
 #import "FloatingTextField.h"
-#import "HintLabel.h"
 
 #import "NSString+Card.h"
 #import "UIColor+Judo.h"
@@ -80,7 +79,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 @property (nonatomic, strong) NSLayoutConstraint *avsFieldsHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *securityMessageTopConstraint;
 
-@property (nonatomic, strong) HintLabel *hintLabel;
 @property (nonatomic, strong) UILabel *securityMessageLabel;
 
 @property (nonatomic, strong, readwrite) UIButton *paymentButton;
@@ -270,7 +268,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     
     // Themes (needs to be set before setting up subviews
     self.loadingView.theme = self.theme;
-    self.hintLabel.theme = self.theme;
     
     NSString *paymentButtonTitle = self.transactionType == TransactionTypeRegisterCard ? self.theme.registerCardTitle : self.theme.paymentButtonTitle;
     
@@ -293,16 +290,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.contentView addSubview:self.securityCodeInputField];
     [self.contentView addSubview:self.billingCountryInputField];
     [self.contentView addSubview:self.postCodeInputField];
-    [self.contentView addSubview:self.hintLabel];
     [self.contentView addSubview:self.securityMessageLabel];
     
     [self.view addSubview:self.paymentButton];
     [self.view addSubview:self.threeDSWebView];
     [self.view addSubview:self.loadingView];
-    
-    self.hintLabel.font = [UIFont systemFontOfSize:14];
-    self.hintLabel.numberOfLines = 3;
-    self.hintLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Delegates
     self.cardInputField.delegate = self;
@@ -344,19 +336,17 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[billing]-(-1)-[post(==billing)]-(-1)-|" options:0 metrics:nil views:@{@"billing":self.billingCountryInputField, @"post":self.postCodeInputField}]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[hint]-(12)-|" options:0 metrics:nil views:@{@"hint":self.hintLabel}]];
-    
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[securityMessage]-(12)-|" options:0 metrics:nil views:@{@"securityMessage":self.securityMessageLabel}]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(15)-[start]-(15)-[expiry(fieldHeight)]-(15)-[billing]-(20)-[hint(18)]-(15)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"start":self.startDateInputField, @"expiry":self.expiryDateInputField, @"billing":self.billingCountryInputField, @"hint":self.hintLabel}]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[start]-(5)-[expiry(fieldHeight)]-(5)-[billing]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"start":self.startDateInputField, @"expiry":self.expiryDateInputField, @"billing":self.billingCountryInputField}]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(15)-[issue(==start)]-(15)-[security(fieldHeight)]-(15)-[post]-(20)-[hint]-(15)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"issue":self.issueNumberInputField, @"start":self.startDateInputField, @"security":self.securityCodeInputField, @"post":self.postCodeInputField, @"hint":self.hintLabel}]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[issue(==start)]-(5)-[security(fieldHeight)]-(5)-[post]-(20)-|" options:0 metrics:@{@"fieldHeight":@(self.theme.inputFieldHeight)} views:@{@"card":self.cardInputField, @"issue":self.issueNumberInputField, @"start":self.startDateInputField, @"security":self.securityCodeInputField, @"post":self.postCodeInputField}]];
     
     self.maestroFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.startDateInputField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:1.0];
     
     self.avsFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.billingCountryInputField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];
     
-    self.securityMessageTopConstraint = [NSLayoutConstraint constraintWithItem:self.securityMessageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.hintLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0f];
+    self.securityMessageTopConstraint = [NSLayoutConstraint constraintWithItem:self.securityMessageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.postCodeInputField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0f];
     
     self.securityMessageLabel.hidden = !self.theme.showSecurityMessage;
     
@@ -544,9 +534,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 - (void)showHintAfterDefaultDelay:(JPInputField *)input {
     BOOL showHint = self.securityCodeInputField.isTokenPayment && !self.securityCodeInputField.textField.text.length;
     if (showHint) {
-        [self.hintLabel showHint:self.securityCodeInputField.hintLabelText];
+        [input displayHint:self.securityCodeInputField.hintLabelText];
     } else {
-        [self.hintLabel hideHint];
+        [input displayHint:@""];
     }
     
     [self updateSecurityMessagePosition:!showHint];
@@ -555,19 +545,19 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         NSString *hintLabelText = input.hintLabelText;
         if (hintLabelText.length && !input.textField.text.length && input.textField.isFirstResponder) {
             [self updateSecurityMessagePosition:NO];
-            [self.hintLabel showHint:hintLabelText];
+            [input displayHint:hintLabelText];
         }
     }];
 }
 
 - (void)updateSecurityMessagePosition:(BOOL)toggleUp {
     [self.contentView layoutIfNeeded];
-    self.securityMessageTopConstraint.constant = (toggleUp && !self.hintLabel.isActive) ? -self.hintLabel.bounds.size.height : 14.0;
+    //self.securityMessageTopConstraint.constant = (toggleUp && !self.hintLabel.isActive) ? -self.hintLabel.bounds.size.height : 14.0;
     [UIView animateWithDuration:0.3 animations:^{
         [self.contentView layoutIfNeeded];
     }];
 }
-
+/*
 - (void)showAlertOnHintLabel:(NSString *)message {
     [self.hintLabel showAlert:message];
     [self updateSecurityMessagePosition:NO];
@@ -576,7 +566,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 - (void)hideAlertOnHintLabel {
     [self.hintLabel hideAlert];
     [self updateSecurityMessagePosition:YES];
-}
+}*/
 
 #pragma mark - Lazy Loading
 
@@ -665,14 +655,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     return _postCodeInputField;
 }
 
-- (HintLabel *)hintLabel {
-    if (!_hintLabel) {
-        _hintLabel = [HintLabel new];
-        _hintLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    return _hintLabel;
-}
-
 - (UILabel *)securityMessageLabel {
     if (!_securityMessageLabel) {
         _securityMessageLabel = [UILabel new];
@@ -684,7 +666,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.theme.securityMessageString attributes:@{NSForegroundColorAttributeName:self.theme.judoTextColor, NSFontAttributeName:[UIFont systemFontOfSize:self.theme.securityMessageTextSize]}]];
         
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.alignment = NSTextAlignmentJustified;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
         paragraphStyle.lineSpacing = 3.0f;
         
         [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
@@ -725,7 +707,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 - (void)cardInput:(CardInputField *)input didFailWithError:(NSError *)error {
     [input errorAnimation:(error.code == JudoErrorInvalidCardNumberError)];
     if (error.userInfo[NSLocalizedDescriptionKey]) {
-        [self showAlertOnHintLabel:error.userInfo[NSLocalizedDescriptionKey]];
+        [input displayError:error.userInfo[NSLocalizedDescriptionKey]];
     }
 }
 
@@ -739,18 +721,18 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)cardInput:(CardInputField *)input didDetectNetwork:(CardNetwork)network {
     [self updateInputFieldsWithNetwork:network];
-    [self hideAlertOnHintLabel];
+    [input displayHint:@""];
 }
 
 - (void)dateInput:(DateInputField *)input didFailWithError:(NSError *)error {
     [input errorAnimation:(error.code == JudoErrorInputMismatchError)];
     if (error.userInfo[NSLocalizedDescriptionKey]) {
-        [self showAlertOnHintLabel:error.userInfo[NSLocalizedDescriptionKey]];
+        [input displayError:error.userInfo[NSLocalizedDescriptionKey]];
     }
 }
 
 - (void)dateInput:(DateInputField *)input didFindValidDate:(NSDate *)date {
-    [self hideAlertOnHintLabel];
+    [input displayHint:@""];
     if (input == self.startDateInputField) {
         [self.issueNumberInputField.textField becomeFirstResponder];
     } else {
@@ -773,7 +755,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)postCodeInputField:(PostCodeInputField *)input didFailWithError:(NSError *)error {
     if (error.userInfo[NSLocalizedDescriptionKey]) {
-        [self showAlertOnHintLabel:error.userInfo[NSLocalizedDescriptionKey]];
+        [input displayError:error.userInfo[NSLocalizedDescriptionKey]];
     }
 }
 
@@ -788,7 +770,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
             }
         }
     } else if (input == self.postCodeInputField) {
-        [self hideAlertOnHintLabel];
+        [input displayHint:@""];
     }
 }
 
