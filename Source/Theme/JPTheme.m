@@ -259,7 +259,7 @@
 }
 
 - (UIColor *)judoInputFieldBackgroundColor {
-    return _judoInputFieldBackgroundColor? _judoInputFieldBackgroundColor : [UIColor whiteColor];
+    return _judoInputFieldBackgroundColor? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
 @end

@@ -221,5 +221,7 @@
  *  @param textField the textfield of which the content has changed
  */
 - (void)textFieldDidChangeValue:(UITextField *)textField;
+    
+- (void)setUpBorderBottom;
 
 @end

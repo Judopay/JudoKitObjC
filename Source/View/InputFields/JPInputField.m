@@ -36,6 +36,8 @@
 @property (nonatomic, strong) UIView *logoContainerView;
 
 @property (nonatomic, strong) UIView *redBlock;
+    
+@property (nonatomic, strong) CALayer *bottomBorder;
 
 @end
 
@@ -55,8 +57,6 @@
     self.clipsToBounds = YES;
     
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    self.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
-    self.layer.borderWidth = 0.5;
     
     self.textField.delegate = self;
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
@@ -64,10 +64,13 @@
     [self addSubview:self.textField];
     [self addSubview:self.redBlock];
     
+    //Set up the bottom Border
+    self.bottomBorder = [CALayer layer];
+    
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
     self.textField.textColor = self.theme.judoInputFieldTextColor;
     self.textField.tintColor = self.theme.tintColor;
-    self.textField.font = [UIFont boldSystemFontOfSize:14];
+    self.textField.font = [UIFont boldSystemFontOfSize:16];
     [self.textField addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[text]|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"text":self.textField}]];
@@ -78,7 +81,7 @@
     
     if ([self containsLogo]) {
         UIView *logoView = [self logoView];
-        logoView.frame = CGRectMake(0, 0, 42, 27);
+        logoView.frame = CGRectMake(0, 0, 46, 30);
         [self addSubview:self.logoContainerView];
         self.logoContainerView.translatesAutoresizingMaskIntoConstraints = NO;
         self.logoContainerView.clipsToBounds = YES;
@@ -87,17 +90,24 @@
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         
-        [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:27.0]];
+        [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
         
     }
     
-    NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(42)]-13-|" : @"|-13-[text]-13-|";
+    NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(46)]-13-|" : @"|-13-[text]-13-|";
     
     NSDictionary *views = @{@"text": self.textField, @"logo": self.logoContainerView};
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:NSLayoutFormatDirectionLeftToRight metrics:nil views:views]];
 }
 
+- (void)setUpBorderBottom {
+    self.bottomBorder.frame = CGRectMake(13.0f, self.frame.size.height - 1, self.frame.size.width - 26, 0.5f);
+    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:0.5f];
+    self.bottomBorder.backgroundColor = borderColor.CGColor;
+    [self.layer addSublayer:self.bottomBorder];
+}
+    
 - (void)errorAnimation:(BOOL)showRedBlock {
     void (^blockAnimation)(BOOL) = ^void(BOOL didFinish) {
         CAKeyframeAnimation *contentViewAnimation = [CAKeyframeAnimation animation];
@@ -113,10 +123,10 @@
     };
     
     if (showRedBlock) {
-        self.redBlock.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 4.0);
+        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 1, self.bounds.size.width - 26.0f, 2.0);
         
         [UIView animateWithDuration:0.2 animations:^{
-            self.redBlock.frame = CGRectMake(0, self.bounds.size.height - 4, self.bounds.size.width, 4.0);
+            self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 1, self.bounds.size.width - 26.0f, 2.0);
             self.textField.textColor = self.theme.judoErrorColor;
         } completion:blockAnimation];
     } else {
@@ -126,7 +136,7 @@
 
 - (void)updateCardLogo {
     CardLogoView *logoView = [self logoView];
-    logoView.frame = CGRectMake(0, 0, 42, 27);
+    logoView.frame = CGRectMake(0, 0, 46, 30);
     CardLogoView *oldLogoView = self.logoContainerView.subviews.firstObject;
     if (oldLogoView.type != logoView.type) {
         [UIView transitionFromView:oldLogoView toView:logoView duration:0.3 options:UIViewAnimationOptionTransitionFlipFromBottom completion:nil];
@@ -141,7 +151,7 @@
 - (void)dismissError {
     if (self.redBlock.bounds.origin.y < self.bounds.size.height) {
         [UIView animateWithDuration:0.4 animations:^{
-            self.redBlock.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 4.0f);
+            self.redBlock.frame = CGRectMake(0, self.bounds.size.height, self.bounds.size.width, 2.0f);
             self.textField.textColor = self.theme.judoTextColor;
         } completion:^(BOOL finished) {
             [self layoutIfNeeded];
@@ -199,6 +209,7 @@
 - (FloatingTextField *)textField {
     if (!_textField) {
         _textField = [FloatingTextField new];
+        _textField.keepBaseline = YES;
         _textField.floatingLabelYPadding = 6.0f;
         _textField.floatingLabelFont = [UIFont systemFontOfSize:12.0f];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
