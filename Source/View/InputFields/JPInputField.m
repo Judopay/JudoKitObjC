@@ -115,7 +115,7 @@
 }
    
 - (void)setUpBorderBottom {
-    self.bottomBorder.frame = CGRectMake(13.0f, self.frame.size.height - 22, self.frame.size.width - 26, 0.5f);
+    self.bottomBorder.frame = [self makeBorderFrame:0.5f];
 }
     
 - (void)errorAnimation:(BOOL)showRedBlock {
@@ -133,10 +133,10 @@
     };
     
     if (showRedBlock) {
-        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 22, self.bounds.size.width - 26.0f, 2.0);
+        self.redBlock.frame = [self makeBorderFrame:2.0f];
         
         [UIView animateWithDuration:0.2 animations:^{
-            self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height - 22, self.bounds.size.width - 26.0f, 2.0);
+            self.redBlock.frame = [self makeBorderFrame:2.0f];
             self.textField.textColor = self.theme.judoErrorColor;
             self.hintLabel.textColor = self.theme.judoErrorColor;
         } completion:blockAnimation];
@@ -164,7 +164,7 @@
 
 - (void)dismissError {
     if (self.redBlock.bounds.origin.y < self.bounds.size.height) {
-        self.redBlock.frame = CGRectMake(13.0f, self.bounds.size.height, self.bounds.size.width-26.0f, 0.5f);
+        self.redBlock.frame = [self makeBorderFrame:0];
         self.hintLabel.textColor = self.theme.judoTextColor;
         self.textField.textColor = self.theme.judoTextColor;
         self.hintLabel.text = @"";
@@ -225,6 +225,10 @@
 - (void)displayError:(NSString *)message {
     self.hintLabel.text = message;
     self.hintLabel.textColor = self.theme.judoErrorColor;
+}
+    
+- (CGRect)makeBorderFrame:(CGFloat)height {
+    return CGRectMake(13.0f, self.frame.size.height - 22, self.frame.size.width - 26.0f, height);
 }
 
 #pragma mark - Lazy Loading
