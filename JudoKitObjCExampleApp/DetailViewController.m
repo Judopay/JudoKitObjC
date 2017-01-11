@@ -30,6 +30,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *dateStampLabel;
 @property (nonatomic, strong) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *resolutionLabel;
 
 @property (nonatomic, strong) NSDateFormatter *inputDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *outputDateFormatter;
@@ -52,6 +53,7 @@
         
         self.numberFormatter.currencyCode = self.transactionData.amount.currency;
         self.amountLabel.text = self.transactionData.amount.amount;
+        self.resolutionLabel.text = self.transactionData.message;
     }
 }
 
@@ -60,6 +62,7 @@
     if (self.transactionData) {
         self.numberFormatter.currencyCode = self.transactionData.amount.currency;
         self.amountLabel.text = [self.numberFormatter stringFromNumber:@([self.transactionData.amount.amount floatValue])];
+        self.resolutionLabel.text = self.transactionData.message;
     }
 }
 
