@@ -93,7 +93,7 @@
     
     [self.activeFields setObject:field forKey:field.name];
 }
-
+   
 - (nonnull NSDictionary<NSString *, id> *)trackingAsDictionary {
     NSMutableDictionary *dictionary = [NSMutableDictionary new];
     

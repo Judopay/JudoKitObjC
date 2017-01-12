@@ -25,6 +25,10 @@
 import XCTest
 @testable import JudoKitObjC
 
-public class TrackingTests : JudoTestCase {
+class FieldTrackingTests : JudoTestCase {
     //List expectations here.
+    
+    func test_StartedFieldMustBePresentInMetaData {
+    
+    }
 }
