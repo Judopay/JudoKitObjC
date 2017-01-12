@@ -28,7 +28,51 @@ import XCTest
 class FieldTrackingTests : JudoTestCase {
     //List expectations here.
     
-    func test_StartedFieldMustBePresentInMetaData {
+    func test_FieldFocusShouldCreateNewFieldSession() {
+    
+    }
+    
+    func test_WhenFieldSessionIsPresentFieldEditingMustUpdateThatFieldSession() {
+        
+    }
+    
+    func test_WhenFieldSessionIsNotPresentFieldEditingMustCreateNewFieldSession() {
+        
+    }
+    
+    func test_WhenFieldSessionIsPresentFieldBluringMustUpdateThatFieldSession() {
+        
+    }
+    
+    func test_WhenFieldSessionIsNotPresentFieldBluringMustCreateNewFieldSession() {
+        
+    }
+    
+    func test_FieldFocusAndFieldBluringSingleFieldNTimesMustCreateNDistinctFieldSessions() {
+    
+    }
+    
+    func test_totalKeystrokesForAFieldMustBeTheAbsoluteSumOFIndividualFieldSessions() {
+    
+    }
+    
+    func test_IncreasingFieldValueLengthByOneCharacterIsNotConsideredToBeAPastedEntry() {
+    
+    }
+    
+    func test_IncreasingFieldValueLengthByMoreThanOneCharacterIsConsideredToBeAPastedEntry() {
+        
+    }
+    
+    func test_DecreasingFieldValueLengthByOneCharacterIsNotConsideredToBeAPastedEntry() {
+        
+    }
+    
+    func test_DecreasingFieldValueLengthByMoreThanOneCharacterIsConsideredToBeAPastedEntry() {
+    
+    }
+    
+    func test_FieldFocusAndFieldBluringBetweenNDistinctFieldsResultsNDistinctFieldMetaDataEntries() {
     
     }
 }
