@@ -27,16 +27,20 @@
 @implementation JPField
     
 - (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid {
+    return [self initWithName:name value:value isConsideredValid:isConsideredValid dateOfAction:[NSDate new]];
+}
+    
+- (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid dateOfAction:(NSDate *)dateOfAction {
     self = [super init];
     
     if (self) {
         self.name = name;
         self.value = value;
         self.isConsideredValid = isConsideredValid;
+        self.dateOfAction = dateOfAction;
     }
     
     return self;
-
 }
     
 @end

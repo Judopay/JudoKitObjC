@@ -29,7 +29,9 @@
 @property (nonnull, nonatomic, strong) NSString *name;
 @property (nonnull, nonatomic, strong) NSString *value;
 @property (nonatomic) BOOL isConsideredValid;
+@property (nonnull, nonatomic, strong) NSDate *dateOfAction;
     
 - (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid;
+- (_Nonnull instancetype)initWithName:(nonnull NSString *)name value:(nonnull NSString *)value isConsideredValid:(BOOL)isConsideredValid dateOfAction:(nonnull NSDate *)dateOfAction;
     
 @end

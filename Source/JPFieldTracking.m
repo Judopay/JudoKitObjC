@@ -24,7 +24,7 @@
 
 #import "JPFieldTracking.h"
 #import "JPTrackedField.h"
-#import "FloatingTextField.h"
+#import "JPFieldMetaDataGenerator.h"
 
 @interface JPFieldTracking()
 
@@ -50,7 +50,7 @@
     JPTrackedField *field = [self getField:textField];
     
     field.name = textField.name;
-    field.whenFocused = [self dateToString:[NSDate new]];
+    field.whenFocused = [self dateToString:textField.dateOfAction];
     
     [self.activeFields setObject:field forKey:field.name];
 }
@@ -58,22 +58,18 @@
 - (void)textFieldDidEndEditing:(nonnull JPField *)textField {
     JPTrackedField *field = [self getField:textField];
     
-    field.whenBlured = [self dateToString:[NSDate new]];
+    field.whenBlured = [self dateToString:textField.dateOfAction];
     field.isConsideredValid = textField.isConsideredValid;
     
     //Ship off to the completed array.
-    NSMutableArray<JPTrackedField *> *completedFields = [self.completedFields valueForKey:field.name] ? : [NSMutableArray new];
-    [completedFields addObject:field];
-    
-    [self.completedFields setObject:completedFields forKey:field.name];
-    [self.activeFields removeObjectForKey:field.name];
+    [self moveActiveFieldToCompleted:field];
 }
 
 - (void)didChangeInputText:(nonnull JPField *)textField {
     JPTrackedField *field = [self getField:textField];
     
-    if (field.currentLength == 0 && textField.value.length > 0) {
-        field.whenEditingBegan = [self dateToString:[NSDate new]];
+    if ((field.currentLength == 0 || !field.whenEditingBegan) && textField.value.length > 0) {
+        field.whenEditingBegan = [self dateToString:textField.dateOfAction];
     }
     
     NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"/ "];
@@ -84,8 +80,8 @@
     
     NSInteger differenceInLength = currentTextLength - previousTextLength;
     
-    if (differenceInLength > 1) {
-        [field.whenPasted addObject:[self dateToString:[NSDate new]]];
+    if (differenceInLength > 1 || differenceInLength < -1) {
+        [field.whenPasted addObject:[self dateToString:textField.dateOfAction]];
     }
     
     field.totalKeystrokes += ABS(differenceInLength);
@@ -95,45 +91,18 @@
 }
    
 - (nonnull NSDictionary<NSString *, id> *)trackingAsDictionary {
-    NSMutableDictionary *dictionary = [NSMutableDictionary new];
-    
-    if (self.completedFields && self.completedFields.count > 0) {
-        NSInteger totalKeyStrokes = 0;
-        NSMutableArray<NSDictionary<NSString *, id> *> *fieldMetadata = [NSMutableArray new];
-        
-        for (NSString *completedFieldsKey in self.completedFields) {
-            NSMutableArray<JPTrackedField *> *completedFields = [self.completedFields valueForKey:completedFieldsKey];
-            
-            NSMutableArray<NSString *> *pastedFields = [NSMutableArray new];
-            NSMutableArray<NSDictionary<NSString *, id> *> *sessions = [NSMutableArray new];
-            
-            for (JPTrackedField *field in completedFields) {
-                if (field.whenPasted && field.whenPasted.count > 0) {
-                    [pastedFields addObjectsFromArray:field.whenPasted];
-                }
-                
-                [sessions addObject:
-                    @{
-                      @"timeStarted" : field.whenFocused,
-                      @"timeEdited" : field.whenEditingBegan,
-                      @"timeEnded" : field.whenBlured,
-                      @"valid" : field.isConsideredValid ? @YES : @NO
-                    }];
-                
-                totalKeyStrokes += field.totalKeystrokes;
-            }
-            
-            [fieldMetadata addObject:@{ @"field" : completedFieldsKey, @"sessions" : sessions, @"pasted" : pastedFields }];
-        }
-
-        [dictionary setObject:@(totalKeyStrokes) forKey:@"totalKeystrokes"];
-        [dictionary setObject:fieldMetadata forKey:@"fieldMetadata"];
-    }
-    
-    return [dictionary copy];
+    return [JPFieldMetaDataGenerator generateAsDictionary:self.completedFields];
 }
 
-- (nonnull JPTrackedField *)getField:(nonnull JPField *)textField {
+- (void)moveActiveFieldToCompleted:(JPTrackedField *)trackingField {
+    NSMutableArray<JPTrackedField *> *completedFields = [self.completedFields valueForKey:trackingField.name] ? : [NSMutableArray new];
+    [completedFields addObject:trackingField];
+    
+    [self.completedFields setObject:completedFields forKey:trackingField.name];
+    [self.activeFields removeObjectForKey:trackingField.name];
+}
+    
+- (nonnull JPTrackedField *)getField:(nonnull JPField *)textField{
     JPTrackedField *field = [self.activeFields valueForKey:textField.name];
     
     if (!field) {

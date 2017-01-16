@@ -26,13 +26,13 @@
 
 @interface JPTrackedField : NSObject
 
-@property (nonnull, nonatomic, strong) NSString *name;
+@property (nullable, nonatomic, strong) NSString *name;
 @property (nonatomic) NSInteger currentLength;
 @property (nonatomic) NSInteger totalKeystrokes;
 @property (nonatomic) BOOL isConsideredValid;
-@property (nonnull, nonatomic, strong) NSString *whenFocused;
-@property (nonnull, nonatomic, strong) NSString *whenBlured;
-@property (nonnull, nonatomic, strong) NSString *whenEditingBegan;
+@property (nullable, nonatomic, strong) NSString *whenFocused;
+@property (nullable, nonatomic, strong) NSString *whenBlured;
+@property (nullable, nonatomic, strong) NSString *whenEditingBegan;
 @property (nonnull, nonatomic, strong) NSMutableArray<NSString *> *whenPasted;
-
+    
 @end

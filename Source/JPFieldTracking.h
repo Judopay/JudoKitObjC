@@ -25,6 +25,7 @@
 #import <Foundation/Foundation.h>
 
 #import "JPField.h"
+#import "JPTrackedField.h"
 
 @interface JPFieldTracking : NSObject
 

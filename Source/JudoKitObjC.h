@@ -57,3 +57,7 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/CardInputField.h>
 #import <JudoKitObjC/NSError+Judo.h>
 #import <JudoKitObjC/CardLogoView.h>
+
+#import <JudoKitObjC/JPFieldTracking.h>
+#import <JudoKitObjC/JPTrackedField.h>
+#import <JudoKitObjC/JPFieldMetaDataGenerator.h>

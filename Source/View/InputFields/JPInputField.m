@@ -150,7 +150,7 @@
         }];
     }
 }
-
+   
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self setActive:YES];
     [self.delegate judoPayInputDidChangeText:self];

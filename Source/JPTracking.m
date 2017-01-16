@@ -28,10 +28,12 @@
 #import "JPTrackedField.h"
 #import "JPFieldTracking.h"
 #import "JPField.h"
+#import "JPApplicationTracking.h"
 
 @interface JPTracking()
 
 @property (nonnull, nonatomic, strong) JPFieldTracking *fieldTracking;
+@property (nonnull, nonatomic, strong) JPApplicationTracking *applicationTracking;
 
 @end
 
@@ -45,6 +47,7 @@
     dispatch_once(&oncePredicate, ^{
         sharedInstance = [self new];
         sharedInstance.fieldTracking = [JPFieldTracking new];
+        sharedInstance.applicationTracking = [JPApplicationTracking new];
     });
     
     return sharedInstance;
@@ -63,7 +66,7 @@
 }
 
 - (void)applicationDidBecomeActive:(nonnull UIApplication *)application {
-    NSLog(@"Active");
+    [self.applicationTracking applictionDidResume:[NSDate new]];
 }
     
 - (JPField *)mapToJPField:(JPInputField *)inputField {
@@ -72,10 +75,8 @@
 }
 
 - (void)push {
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.fieldTracking.trackingAsDictionary options:0 error:&error];
-    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", json);
+    [self.fieldTracking trackingAsDictionary];
+    [self.applicationTracking trackingAsDictionary];
 }
 
 @end
