@@ -364,7 +364,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 #pragma mark - Actions
 
-
 - (void)payButtonAction:(id)sender {
     if (!self.reference || !self.amount || !self.judoId) {
         if (self.completionBlock) {

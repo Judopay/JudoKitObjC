@@ -111,7 +111,7 @@
 }
    
 - (void)layoutSubviews {
-    if (!self.hasRedblockBeenLaidout) {
+    if (!self.hasRedblockBeenLaidout && self.frame.size.height == self.theme.inputFieldHeight) {
         [super layoutSubviews];
         [self redBlockAsUnactive];
         self.hasRedblockBeenLaidout = YES;
