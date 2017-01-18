@@ -254,16 +254,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     }
 }
 
-- (void)viewWillLayoutSubviews {
-    [self.cardInputField setUpBorderBottom];
-    [self.startDateInputField setUpBorderBottom];
-    [self.issueNumberInputField setUpBorderBottom];
-    [self.expiryDateInputField setUpBorderBottom];
-    [self.billingCountryInputField setUpBorderBottom];
-    [self.securityCodeInputField setUpBorderBottom];
-    [self.postCodeInputField setUpBorderBottom];
-}
-
 - (void)setupView {
     
     // Themes (needs to be set before setting up subviews

@@ -236,6 +236,4 @@
  */
 - (void)displayError:(NSString *)message;
     
-- (void)setUpBorderBottom;
-    
 @end

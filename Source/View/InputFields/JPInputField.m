@@ -37,9 +37,9 @@
 
 @property (nonatomic, strong) UIView *redBlock;
     
-@property (nonatomic, strong) CALayer *bottomBorder;
-    
 @property (nonatomic, strong) UILabel *hintLabel;
+
+@property (nonatomic) BOOL hasRedblockBeenLaidout;
 
 @end
 
@@ -55,6 +55,8 @@
 }
 
 - (void)setupView {
+    self.hasRedblockBeenLaidout = NO;
+    
     self.backgroundColor = self.theme.judoInputFieldBackgroundColor;
     self.clipsToBounds = YES;
     
@@ -65,12 +67,6 @@
     
     [self addSubview:self.textField];
     [self addSubview:self.redBlock];
-    
-    //Set up the bottom Border
-    self.bottomBorder = [CALayer layer];
-    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:0.5f];
-    self.bottomBorder.backgroundColor = borderColor.CGColor;
-    [self.layer addSublayer:self.bottomBorder];
     
     self.hintLabel = [UILabel new];
     self.hintLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -104,7 +100,7 @@
         
         [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
     }
-    
+
     NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(46)]-13-|" : @"|-13-[text]-13-|";
     
     NSDictionary *views = @{@"text": self.textField, @"logo": self.logoContainerView};
@@ -114,8 +110,12 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-13-[hintLabel]-13-|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:@{@"hintLabel":self.hintLabel}]];
 }
    
-- (void)setUpBorderBottom {
-    self.bottomBorder.frame = [self makeBorderFrame:0.5f];
+- (void)layoutSubviews {
+    if (!self.hasRedblockBeenLaidout) {
+        [super layoutSubviews];
+        [self redBlockAsUnactive];
+        self.hasRedblockBeenLaidout = YES;
+    }
 }
     
 - (void)errorAnimation:(BOOL)showRedBlock {
@@ -133,10 +133,9 @@
     };
     
     if (showRedBlock) {
-        self.redBlock.frame = [self makeBorderFrame:2.0f];
-        
+        [self redBlockAsError];
         [UIView animateWithDuration:0.2 animations:^{
-            self.redBlock.frame = [self makeBorderFrame:2.0f];
+            [self redBlockAsError];
             self.textField.textColor = self.theme.judoErrorColor;
             self.hintLabel.textColor = self.theme.judoErrorColor;
         } completion:blockAnimation];
@@ -157,14 +156,19 @@
 - (void)setActive:(BOOL)active {
     self.textField.alpha = active ? 1.0f : 0.5f;
     self.logoContainerView.alpha = active ? 1.0f : 0.5f;
-    UIColor *borderColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:active ? 1.0f : 0.5f];
-    self.bottomBorder.backgroundColor = borderColor.CGColor;
     self.hintLabel.text = @"";
+    
+    if (active) {
+        [self redBlockAsActive];
+    }
+    else {
+        [self redBlockAsUnactive];
+    }
 }
 
 - (void)dismissError {
-    if (self.redBlock.bounds.origin.y < self.bounds.size.height) {
-        self.redBlock.frame = [self makeBorderFrame:0];
+    if ([self.theme.judoErrorColor isEqual:self.redBlock.backgroundColor]) {
+        [self setActive:YES];
         self.hintLabel.textColor = self.theme.judoTextColor;
         self.textField.textColor = self.theme.judoTextColor;
         self.hintLabel.text = @"";
@@ -226,9 +230,24 @@
     self.hintLabel.text = message;
     self.hintLabel.textColor = self.theme.judoErrorColor;
 }
-    
-- (CGRect)makeBorderFrame:(CGFloat)height {
-    return CGRectMake(13.0f, self.frame.size.height - 22, self.frame.size.width - 26.0f, height);
+
+- (void)setRedBlockFrameAndBackgroundColor:(CGFloat)height backgroundColor:(UIColor *)backgroundColor {
+    self.redBlock.backgroundColor = backgroundColor;
+    self.redBlock.frame = CGRectMake(13.0f, self.frame.size.height - 22, self.frame.size.width - 26.0f, height);
+}
+
+- (void)redBlockAsError {
+    [self setRedBlockFrameAndBackgroundColor:2.0f backgroundColor:self.theme.judoErrorColor];
+}
+
+- (void)redBlockAsUnactive {
+    UIColor *backgroundColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:0.5f];
+    [self setRedBlockFrameAndBackgroundColor:0.5f backgroundColor:backgroundColor];
+}
+
+- (void)redBlockAsActive {
+    UIColor *backgroundColor = [[UIColor alloc] initWithRed:0.67f green:0.67f blue:0.67f alpha:1.0f];
+    [self setRedBlockFrameAndBackgroundColor:0.5f backgroundColor:backgroundColor];
 }
 
 #pragma mark - Lazy Loading
@@ -245,7 +264,7 @@
 
 - (UIView *)redBlock {
     if (!_redBlock) {
-        _redBlock = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 48.0f, 0.0f, 0.0f)];
+        _redBlock = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
         _redBlock.backgroundColor = self.theme.judoErrorColor;
     }
     return _redBlock;
