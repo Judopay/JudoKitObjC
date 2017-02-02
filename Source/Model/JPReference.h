@@ -55,6 +55,17 @@
 - (nonnull instancetype)initWithConsumerReference:(nonnull NSString *)ref;
 
 /**
+ *  initializer that will generate a unique payment reference
+ *
+ *  @param ref The consumer reference for a JPReference
+ *
+ *  @param ref The payment reference for a JPReference
+ *
+ *  @return a JPReference object
+ */
+- (nonnull instancetype)initWithConsumerReference:(nonnull NSString *)ref paymentReference:(nonnull NSString *)paymentReference;
+
+/**
  *  Convenient initializer that will generate a unique payment reference
  *
  *  @param ref The consumer reference for a JPReference

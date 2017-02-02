@@ -24,7 +24,7 @@
 
 #import "JudoKit.h"
 
-#import <JudoShield/JudoShield.h>
+#import <DeviceDNA/LegacyDeviceDNA.h>
 
 #import "JPSession.h"
 #import "JPPayment.h"
@@ -55,8 +55,10 @@
 @property (nonatomic, strong, readwrite) JPSession *apiSession;
 
 // deviceDNA for fraud prevention
-@property (nonatomic, strong) JudoShield *judoShield;
+@property (nonatomic, strong) LegacyDeviceDNA *deviceDNA;
 
+@property (nonatomic, strong) NSString *deviceIdentifier;
+    
 @end
 
 @implementation JudoKit
@@ -83,6 +85,9 @@
         if (!jailbrokenDevicesAllowed && [self isCurrentDeviceJailbroken]) {
             return self;
         }
+        
+        Credentials *credentials = [[Credentials alloc] initWithToken:token secret:secret];
+        self.deviceDNA = [[LegacyDeviceDNA alloc] initWithCredentials:credentials];
         
         NSString *plainString = [NSString stringWithFormat:@"%@:%@", token, secret];
         NSData *plainData = [plainString dataUsingEncoding:NSISOLatin1StringEncoding];
@@ -135,11 +140,11 @@
     transaction.reference = reference;
     transaction.apiSession = self.apiSession;
     
-    NSDictionary *deviceSignals = self.judoShield.encryptedDeviceSignal;
-    
-    if (deviceSignals) {
-        [transaction setDeviceSignal:deviceSignals];
-    }
+    [self.deviceDNA getEncryptedDeviceSignalsWithDeviceIdentifier:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
+        if (device) {
+            [transaction setDeviceSignal:device];
+        }
+    }];
     
     return transaction;
 }
@@ -178,11 +183,11 @@
     JPTransactionProcess *transactionProc = [[type alloc] initWithReceiptId:receiptId amount:amount];
     transactionProc.apiSession = self.apiSession;
     
-    NSDictionary *deviceSignals = self.judoShield.encryptedDeviceSignal;
-    
-    if (deviceSignals) {
-        [transactionProc setDeviceSignal:deviceSignals];
-    }
+    [self.deviceDNA getEncryptedDeviceSignalsWithDeviceIdentifier:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
+        if (device) {
+            [transactionProc setDeviceSignal:device];
+        }
+    }];
     
     return transactionProc;
 }
@@ -250,13 +255,6 @@
 		_theme = [JPTheme new];
 	}
 	return _theme;
-}
-
-- (JudoShield *)judoShield {
-    if (!_judoShield) {
-        _judoShield = [JudoShield new];
-    }
-    return _judoShield;
 }
 
 @end
