@@ -57,3 +57,8 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/CardInputField.h>
 #import <JudoKitObjC/NSError+Judo.h>
 #import <JudoKitObjC/CardLogoView.h>
+
+#import <JudoKitObjC/WalletRepositoryProtocol.h>
+#import <JudoKitObjC/WalletCard.h>
+#import <JudoKitObjC/WalletService.h>
+#import <JudoKitObjC/InMemoryWalletRepository.h>
