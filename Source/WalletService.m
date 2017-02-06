@@ -92,7 +92,7 @@
 
 - (nonnull NSArray<WalletCard *> *)get {
     NSArray<WalletCard *> *unorderedCards = [self getUnordered];
-    return [unorderedCards sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    NSArray *array = [unorderedCards sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         WalletCard *lhs = (WalletCard*)a;
         WalletCard *rhs = (WalletCard*)b;
         
@@ -103,8 +103,9 @@
             return false;
         }
         
-        return [lhs.dateCreated compare:rhs.dateCreated] == NSOrderedAscending;
+        return [lhs.dateCreated compare:rhs.dateCreated] == NSOrderedDescending;
     }];
+    return [[array reverseObjectEnumerator] allObjects];
 }
 
 - (nullable WalletCard *)getDefault {

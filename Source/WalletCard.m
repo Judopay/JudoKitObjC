@@ -104,8 +104,7 @@
     dateComponents.day = range.length;
     
     NSDate *now = [NSDate new];
-    
-    return [now laterDate:[calander dateFromComponents:dateComponents]];
+    return [now compare:[calander dateFromComponents:dateComponents]] == NSOrderedDescending;
 }
 
 @end

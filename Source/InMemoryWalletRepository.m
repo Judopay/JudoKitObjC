@@ -52,7 +52,7 @@
 
 - (nullable WalletCard *)get:(nonnull NSUUID *)walletId {
     for (WalletCard *card in self.repo) {
-        if (card.walletId == card.walletId) {
+        if ([walletId isEqual:card.walletId]) {
             return card;
         }
     }
@@ -64,7 +64,7 @@
     NSMutableArray<WalletCard *> *newCards = [NSMutableArray new];
     
     for (WalletCard *card in self.repo) {
-        if (card.walletId != walletId) {
+        if (![walletId isEqual:card.walletId]) {
             [newCards addObject:card];
         }
     }
