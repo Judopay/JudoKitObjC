@@ -26,26 +26,27 @@
 #import "UIColor+Judo.h"
 #import "WalletService.h"
 #import "InMemoryWalletRepository.h"
+#import "JPWalletDelegate.h"
 
 @interface JudoWalletManagementViewController()
 
 @property (nonnull, nonatomic, strong) JPTheme *theme;
 @property (nonnull, nonatomic, strong) WalletService *walletService;
+@property (nonatomic, weak) id<JPWalletDelegate> delegate;
+
+@property (nonatomic, strong, readwrite) UIScrollView *contentView;
 
 @end
 
 @implementation JudoWalletManagementViewController
 
-- (nonnull instancetype)init {
-    return [self initWithTheme:[JPTheme new]];
-}
-
-- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme {
+- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme delegate:(nullable id<JPWalletDelegate>)delegate; {
     self = [super init];
     
     if (self) {
         self.theme = theme;
         self.walletService = [[WalletService alloc] initWithWalletRepository:[InMemoryWalletRepository new]];
+        self.delegate = delegate;
     }
     
     return self;
@@ -55,10 +56,17 @@
     [super viewDidLoad];
     [self setUpNavigationBar];
     [self setUpView];
+    [self setUpConstraints];
 }
 
 - (void)setUpView {
     self.view.backgroundColor = [self.theme judoContentViewBackgroundColor];
+    
+    //[self.view addSubview:self.contentView];
+    //self.contentView.contentSize = self.view.bounds.size;
+    NSArray<WalletCard *> *walletCards = [self.walletService get];
+    
+     [self cardView];
 }
 
 - (void)setUpNavigationBar {
@@ -78,6 +86,45 @@
 
 - (void)dismissViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)setUpConstraints {
+    //[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[scrollView]|" options:0 metrics:nil views:@{@"scrollView":self.contentView}]];
+    
+}
+
+- (UIScrollView *)contentView {
+    if (!_contentView) {
+        _contentView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        _contentView.directionalLockEnabled = YES;
+        _contentView.showsHorizontalScrollIndicator = NO;
+        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _contentView;
+}
+
+- (UIView *)cardView {
+    CGRect rect = CGRectMake(13,80,self.view.frame.size.width - 26, 70);
+    UIView *card = [[UIView alloc] initWithFrame:rect];
+    card.backgroundColor = [UIColor redColor];
+    card.translatesAutoresizingMaskIntoConstraints = NO;
+    card.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
+    card.layer.borderWidth = 0.5;
+    card.backgroundColor = [self.theme judoContentViewBackgroundColor];
+    card.layer.cornerRadius = 5.0;
+    [self.view addSubview:card];
+    /*
+    NSLayoutConstraint *c;
+    c = [NSLayoutConstraint constraintWithItem:self.contentView
+                                     attribute:NSLayoutAttributeCenterX
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:card
+                                     attribute:NSLayoutAttributeCenterX
+                                    multiplier:1
+                                      constant:0];
+    [self.contentView addConstraint:c];*/
+    
+    return card;
 }
 
 @end

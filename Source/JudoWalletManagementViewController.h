@@ -25,9 +25,10 @@
 #import <UIKit/UIKit.h>
 
 #import "JPTheme.h"
+#include "JPWalletDelegate.h"
 
 @interface JudoWalletManagementViewController : UIViewController
 
-- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme;
+- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme delegate:(nullable id<JPWalletDelegate>)delegate;
 
 @end

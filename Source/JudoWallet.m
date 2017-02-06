@@ -50,7 +50,7 @@
 }
 
 - (void)manage {
-    JudoWalletManagementViewController *vc = [JudoWalletManagementViewController new];
+    JudoWalletManagementViewController *vc = [[JudoWalletManagementViewController alloc] initWithTheme:[JPTheme new] delegate:nil];
     [self initiateAndShow:vc];
 }
 
