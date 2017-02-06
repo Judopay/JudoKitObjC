@@ -24,6 +24,7 @@
 
 #import "JudoWallet.h"
 #import "JPSession.h"
+#import "JudoWalletManagementViewController.h"
 
 @interface JudoWallet()
 
@@ -49,7 +50,8 @@
 }
 
 - (void)manage {
-
+    JudoWalletManagementViewController *vc = [JudoWalletManagementViewController new];
+    [self initiateAndShow:vc];
 }
 
 - (void)payment {
@@ -66,6 +68,34 @@
 
 - (void)setTheme:(nonnull JPTheme *)theme {
     self.judoKit.theme = theme;
+}
+
+- (void)initiateAndShow:(JudoWalletManagementViewController *)viewController {
+    //viewController.theme = self.theme;
+    //self.activeViewController = viewController;
+    [self showViewController:[[UINavigationController alloc] initWithRootViewController:viewController]];
+}
+
+- (void)showViewController:(UIViewController *)vc {
+    vc.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    
+    while (rootViewController.presentedViewController) {
+        rootViewController = rootViewController.presentedViewController;
+        
+        if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navigationController = (UINavigationController *) rootViewController;
+            rootViewController = navigationController.viewControllers.lastObject;
+        }
+        
+        if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+            UITabBarController *tabBarController = (UITabBarController *) rootViewController;
+            rootViewController = tabBarController.selectedViewController;
+        }
+    }
+    
+    [rootViewController presentViewController:vc animated:YES completion:nil];
 }
 
 @end

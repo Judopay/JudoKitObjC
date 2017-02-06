@@ -37,7 +37,8 @@ typedef NS_ENUM(NSUInteger, TableViewContent) {
     TableViewContentRepeatPayment,
     TableViewContentTokenPreAuth,
     TableViewContentApplePayPayment,
-    TableViewContentApplePayPreAuth
+    TableViewContentApplePayPreAuth,
+    TableViewWalletCardManagement,
 };
 
 
@@ -139,7 +140,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 8;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -176,6 +177,10 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         case TableViewContentApplePayPreAuth:
             tvText = @"Apple Pay preAuth";
             tvDetailText = @"with a wallet card";
+            break;
+        case TableViewWalletCardManagement:
+            tvText = @"Wallet card management";
+            tvDetailText = @"manage wallet cards";
             break;
             
         default:
@@ -217,12 +222,20 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         case TableViewContentApplePayPreAuth:
             [self applePayPreAuthOperation];
             break;
+        case TableViewWalletCardManagement:
+            [self walletCardManagementOperation];
+            break;
         default:
             break;
     }
 }
 
 #pragma mark - Operations
+
+- (void)walletCardManagementOperation {
+    JudoWallet *wallet = [[JudoWallet alloc] initWithJudoKit:self.judoKitSession];
+    [wallet manage];
+}
 
 - (void)paymentOperation {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
