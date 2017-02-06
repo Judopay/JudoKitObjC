@@ -48,7 +48,7 @@
 
 - (void)add:(nonnull WalletCard *)card {
     if ([self walletIsFull]) {
-        //error
+        @throw [[NSException alloc] initWithName:@"WalletCardLimitPassed" reason:@"Too many cards have been added to the wallet." userInfo:nil];
     }
     
     if ([self walletIsEmpty]) {
@@ -67,11 +67,11 @@
     WalletCard *currentCard = [self get:card.walletId];
     
     if (!currentCard) {
-        //error
+        @throw [[NSException alloc] initWithName:@"unknownWalletCard" reason:@"Too many cards have been added to the wallet." userInfo:nil];
     }
     
     if ([self isIllegallyResigningDefault:currentCard updatedCard:card]) {
-        //error
+        @throw [[NSException alloc] initWithName:@"CannotResignDefaultCard" reason:@"Card cannot resign default status of this card." userInfo:nil];
     }
     
     [self.repo remove:card.walletId];
@@ -80,7 +80,7 @@
 
 - (void)remove:(nonnull WalletCard *)card {
     if ([[self getUnordered] count] > 1 && card.defaultPaymentMethod) {
-        //error
+        @throw [[NSException alloc] initWithName:@"CannotRemoveDefaultCard" reason:@"Default card cannot be removed if two or more cards are in wallet." userInfo:nil];
     }
     
     [self.repo remove:card.walletId];

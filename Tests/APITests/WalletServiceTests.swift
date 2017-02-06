@@ -117,13 +117,11 @@ class WalletServiceTests : JudoTestCase {
         
         //act //assert
         do {
-            try self.sut.update(secondAddedCard.withNonDefaultCard())
+            try self.sut.update(secondAddedCard.withNonDefault())
             XCTFail()
-        } catch let error as Error {
-            let walletError = error as! WalletError
-            XCTAssertNotNil(walletError)
-            XCTAssertNotNil(walletError.description())
-            XCTAssertTrue(walletError.description() == WalletError.cannotResignDefaultCard.description())
+        } catch let error {
+            XCTAssertNotNil(error)
+            XCTAssertTrue(error.localizedDescription == "Card cannot resign default status of this card.")
         }
     }*/
     

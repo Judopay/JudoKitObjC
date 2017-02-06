@@ -26,15 +26,15 @@
 
 @interface WalletCard : NSObject
 
-@property (nonnull, atomic, strong, readonly) NSUUID *walletId;
-@property (nonnull, atomic, strong, readonly) NSString *cardNumberLastFour;
-@property (nonnull, atomic, strong, readonly) NSString *expiryDate;
-@property (nonnull, atomic, strong, readonly) NSString *cardToken;
-@property (atomic, readonly) NSInteger cardType;
-@property (nullable, atomic, strong, readonly) NSString *assignedName;
-@property (nonnull, atomic, strong, readonly) NSDate *dateCreated;
-@property (nullable, atomic, strong, readonly) NSDate *dateUpdated;
-@property (atomic, readonly) BOOL defaultPaymentMethod;
+@property (nonnull, nonatomic, strong, readonly) NSUUID *walletId;
+@property (nonnull, nonatomic, strong, readonly) NSString *cardNumberLastFour;
+@property (nonnull, nonatomic, strong, readonly) NSString *expiryDate;
+@property (nonnull, nonatomic, strong, readonly) NSString *cardToken;
+@property (nonatomic, readonly) NSInteger cardType;
+@property (nullable, nonatomic, strong, readonly) NSString *assignedName;
+@property (nonnull, nonatomic, strong, readonly) NSDate *dateCreated;
+@property (nullable, nonatomic, strong, readonly) NSDate *dateUpdated;
+@property (nonatomic, readonly) BOOL defaultPaymentMethod;
 
 - (nonnull instancetype) initWithCardData:(nonnull NSString *)cardNumberLastFour
                          expiryDate:(nonnull NSString *)expiryDate

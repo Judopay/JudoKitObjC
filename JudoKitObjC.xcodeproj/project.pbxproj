@@ -147,6 +147,8 @@
 		700A8EB71E43573A0059F0C5 /* InMemoryWalletRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		700A8EB81E43573A0059F0C5 /* InMemoryWalletRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */; };
 		700A8EBB1E4390790059F0C5 /* WalletServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EB91E4390750059F0C5 /* WalletServiceTests.swift */; };
+		700A8ECC1E489DF50059F0C5 /* JudoWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8ECA1E489DF50059F0C5 /* JudoWallet.h */; };
+		700A8ECD1E489DF50059F0C5 /* JudoWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ECB1E489DF50059F0C5 /* JudoWallet.m */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -344,6 +346,9 @@
 		700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryWalletRepository.h; sourceTree = "<group>"; };
 		700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryWalletRepository.m; sourceTree = "<group>"; };
 		700A8EB91E4390750059F0C5 /* WalletServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletServiceTests.swift; sourceTree = "<group>"; };
+		700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPWalletDelegate.h; sourceTree = "<group>"; };
+		700A8ECA1E489DF50059F0C5 /* JudoWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudoWallet.h; sourceTree = "<group>"; };
+		700A8ECB1E489DF50059F0C5 /* JudoWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudoWallet.m; sourceTree = "<group>"; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -505,6 +510,8 @@
 				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
+				700A8ECA1E489DF50059F0C5 /* JudoWallet.h */,
+				700A8ECB1E489DF50059F0C5 /* JudoWallet.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -658,6 +665,7 @@
 				700A8EB21E434C000059F0C5 /* WalletService.m */,
 				700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */,
 				700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */,
+				700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */,
 			);
 			name = Wallet;
 			sourceTree = "<group>";
@@ -728,6 +736,7 @@
 				3B6991631C8F26FE006ED1FB /* NSTimer+Blocks.h in Headers */,
 				700A8EB71E43573A0059F0C5 /* InMemoryWalletRepository.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
+				700A8ECC1E489DF50059F0C5 /* JudoWallet.h in Headers */,
 				3B678B7B1C6DD8800001DC2F /* NSError+Judo.h in Headers */,
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
 				3B678B771C6CE7770001DC2F /* JPSession.h in Headers */,
@@ -981,6 +990,7 @@
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
 				3B53629B1C7CBD7000CEBAE2 /* HintLabel.m in Sources */,
+				700A8ECD1E489DF50059F0C5 /* JudoWallet.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,

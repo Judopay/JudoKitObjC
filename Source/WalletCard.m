@@ -26,15 +26,15 @@
 
 @interface WalletCard()
 
-@property (nonnull, atomic, strong, readwrite) NSUUID *walletId;
-@property (nonnull, atomic, strong, readwrite) NSString *cardNumberLastFour;
-@property (nonnull, atomic, strong, readwrite) NSString *expiryDate;
-@property (nonnull, atomic, strong, readwrite) NSString *cardToken;
-@property (atomic, readwrite) NSInteger cardType;
-@property (nullable, atomic, strong, readwrite) NSString *assignedName;
-@property (nonnull, atomic, strong, readwrite) NSDate *dateCreated;
-@property (nullable, atomic, strong, readwrite) NSDate *dateUpdated;
-@property (atomic, readwrite) BOOL defaultPaymentMethod;
+@property (nonnull, nonatomic, strong, readwrite) NSUUID *walletId;
+@property (nonnull, nonatomic, strong, readwrite) NSString *cardNumberLastFour;
+@property (nonnull, nonatomic, strong, readwrite) NSString *expiryDate;
+@property (nonnull, nonatomic, strong, readwrite) NSString *cardToken;
+@property (nonatomic, readwrite) NSInteger cardType;
+@property (nullable, nonatomic, strong, readwrite) NSString *assignedName;
+@property (nonnull, nonatomic, strong, readwrite) NSDate *dateCreated;
+@property (nullable, nonatomic, strong, readwrite) NSDate *dateUpdated;
+@property (nonatomic, readwrite) BOOL defaultPaymentMethod;
 
 @end
 
