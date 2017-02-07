@@ -26,7 +26,7 @@
 
 #import "JPTransactionData.h"
 
-static NSString * __nonnull const JudoKitVersion = @"6.2.7";
+static NSString * __nonnull const JudoKitVersion = @"6.2.9";
 
 @class JPSession;
 
@@ -98,7 +98,7 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
  *
  *  @param judoId      The judoID of the merchant to receive the payment
  *  @param amount      The amount and currency of the payment (default is GBP)
- *  @param reference   holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param consumerReference The consumer reference for this transaction
  *  @param cardDetails The card details to present in the input fields
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
@@ -108,13 +108,27 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
           cardDetails:(nullable JPCardDetails *)cardDetails
            completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
+/**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a payment with the judo API and respond in a completion block
+ *
+ *  @param judoId      The judoID of the merchant to receive the payment
+ *  @param amount      The amount and currency of the payment (default is GBP)
+ *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails The card details to present in the input fields
+ *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokePayment:(nonnull NSString *)judoId
+               amount:(nonnull JPAmount *)amount
+            reference:(nonnull JPReference *)reference
+          cardDetails:(nullable JPCardDetails *)cardDetails
+           completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
 /**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a pre-auth with the judo API and respond in a completion block
  *  
  *  @param judoId      The judoID of the merchant to receive the pre-auth
  *  @param amount      The amount and currency of the pre-auth (default is GBP)
- *  @param reference   holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param consumerReference The consumer reference for this transaction
  *  @param cardDetails The card details to present in the input fields
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
@@ -124,13 +138,28 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
           cardDetails:(nullable JPCardDetails *)cardDetails
            completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
+/**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a pre-auth with the judo API and respond in a completion block
+ *
+ *  @param judoId      The judoID of the merchant to receive the pre-auth
+ *  @param amount      The amount and currency of the pre-auth (default is GBP)
+ *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails The card details to present in the input fields
+ *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokePreAuth:(nonnull NSString *)judoId
+               amount:(nonnull JPAmount *)amount
+            reference:(nonnull JPReference *)reference
+          cardDetails:(nullable JPCardDetails *)cardDetails
+           completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+
 
 /**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a card registration with the judo API and respond in a completion block
  *
  *  @param judoId      The judoID of the merchant to receive the pre-auth
  *  @param amount      The amount and currency of the pre-auth (default is GBP)
- *  @param reference   holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param consumerReference The consumer reference for this transaction
  *  @param cardDetails The card details to present in the input fields
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
@@ -140,13 +169,27 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
                cardDetails:(nullable JPCardDetails *)cardDetails
                 completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
+/**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a card registration with the judo API and respond in a completion block
+ *
+ *  @param judoId      The judoID of the merchant to receive the pre-auth
+ *  @param amount      The amount and currency of the pre-auth (default is GBP)
+ *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails The card details to present in the input fields
+ *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeRegisterCard:(nonnull NSString *)judoId
+                    amount:(nonnull JPAmount *)amount
+                 reference:(nonnull JPReference *)reference
+               cardDetails:(nullable JPCardDetails *)cardDetails
+                completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
 /**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. This method needs the cardDetails object in order to show the known details to the user when entering the CV2. When the form has been successfully filled, the button will invoke a token payment with the judo API and respond in a completion block
  *
  *  @param judoId       The judoID of the merchant to receive the token payment
  *  @param amount       The amount and currency of the payment (default is GBP)
- *  @param reference    holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param consumerReference The consumer reference for this transaction
  *  @param cardDetails  The card details to present in the input fields
  *  @param paymentToken The consumer and card token to make a token payment with
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
@@ -158,13 +201,29 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
               paymentToken:(nonnull JPPaymentToken *)paymentToken
                 completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
+/**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. This method needs the cardDetails object in order to show the known details to the user when entering the CV2. When the form has been successfully filled, the button will invoke a token payment with the judo API and respond in a completion block
+ *
+ *  @param judoId       The judoID of the merchant to receive the token payment
+ *  @param amount       The amount and currency of the payment (default is GBP)
+ *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails  The card details to present in the input fields
+ *  @param paymentToken The consumer and card token to make a token payment with
+ *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeTokenPayment:(nonnull NSString *)judoId
+                    amount:(nonnull JPAmount *)amount
+                 reference:(nonnull JPReference *)reference
+               cardDetails:(nonnull JPCardDetails *)cardDetails
+              paymentToken:(nonnull JPPaymentToken *)paymentToken
+                completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
 /**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. This method needs the cardDetails object in order to show the known details to the user when entering the CV2. When the form has been successfully filled, the button will invoke a token pre-auth with the judo API and respond in a completion block
  *
  *  @param judoId       The judoID of the merchant to receive the token pre-auth
  *  @param amount       The amount and currency of the pre-auth (default is GBP)
- *  @param reference    holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param consumerReference The consumer reference for this transaction
  *  @param cardDetails  The card details to present in the input fields
  *  @param paymentToken The consumer and card token to make a token payment with
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
@@ -176,6 +235,22 @@ static NSString * __nonnull const JudoKitVersion = @"6.2.7";
               paymentToken:(nonnull JPPaymentToken *)paymentToken
                 completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
+/**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. This method needs the cardDetails object in order to show the known details to the user when entering the CV2. When the form has been successfully filled, the button will invoke a token pre-auth with the judo API and respond in a completion block
+ *
+ *  @param judoId       The judoID of the merchant to receive the token pre-auth
+ *  @param amount       The amount and currency of the pre-auth (default is GBP)
+ *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails  The card details to present in the input fields
+ *  @param paymentToken The consumer and card token to make a token payment with
+ *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeTokenPreAuth:(nonnull NSString *)judoId
+                    amount:(nonnull JPAmount *)amount
+                 reference:(nonnull JPReference *)reference
+               cardDetails:(nonnull JPCardDetails *)cardDetails
+              paymentToken:(nonnull JPPaymentToken *)paymentToken
+                completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
 
 /**
  *  This method only creates a JPPayment object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction

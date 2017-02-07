@@ -59,7 +59,7 @@
  *
  *  @param ref The consumer reference for a JPReference
  *
- *  @param ref The payment reference for a JPReference
+ *  @param ref The payment reference for a JPReference - This must be a unquie reference for this transaction. Every request to the api must contain a different payment reference.
  *
  *  @return a JPReference object
  */
