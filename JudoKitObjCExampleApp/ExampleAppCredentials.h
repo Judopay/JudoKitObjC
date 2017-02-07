@@ -26,9 +26,9 @@
 
 #pragma warning "set your own token and secret to see testing results"
 
-static NSString * const judoId  = @"<#YOUR JUDOID#>";
-static NSString * const token   = @"<#YOUR TOKEN#>";
-static NSString * const secret  = @"<#YOUR SECRET#>";
+static NSString * const judoId  = @"100915867";
+static NSString * const token   = @"Izx9omsBR15LatAl";
+static NSString * const secret  = @"b5787124845533d8e68d12a586fa3713871b876b528600ebfdc037afec880cd6";
 
 @interface ExampleAppCredentials : NSObject
 

@@ -27,10 +27,12 @@
 #import "JPWalletDelegate.h"
 #import "JudoKit.h"
 #import "JPTheme.h"
+#import "WalletService.h"
 
 @interface JudoWallet : NSObject
 
 @property (nullable, nonatomic, weak) id<JPWalletDelegate> delegate;
+@property (nonnull, nonatomic, strong) JudoKit *judoKit;
 
 - (nonnull instancetype)initWithToken:(nonnull NSString *)token secret:(nonnull NSString *)secret;
 - (nonnull instancetype)initWithJudoKit:(nonnull JudoKit *)judoKit;

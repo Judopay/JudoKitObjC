@@ -49,8 +49,6 @@
 		3B4EB4021C982A25006265A0 /* VoidTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */; };
 		3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */; };
-		3B53629A1C7CBD7000CEBAE2 /* HintLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362981C7CBD7000CEBAE2 /* HintLabel.h */; };
-		3B53629B1C7CBD7000CEBAE2 /* HintLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362991C7CBD7000CEBAE2 /* HintLabel.m */; };
 		3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */; };
 		3B5362A31C7CBD9000CEBAE2 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */; };
 		3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */; };
@@ -245,8 +243,6 @@
 		3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidTransactionTests.swift; sourceTree = "<group>"; };
 		3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JudoPayViewController.h; path = Controller/JudoPayViewController.h; sourceTree = "<group>"; };
 		3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JudoPayViewController.m; path = Controller/JudoPayViewController.m; sourceTree = "<group>"; };
-		3B5362981C7CBD7000CEBAE2 /* HintLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintLabel.h; path = View/HintLabel.h; sourceTree = "<group>"; };
-		3B5362991C7CBD7000CEBAE2 /* HintLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HintLabel.m; path = View/HintLabel.m; sourceTree = "<group>"; };
 		3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = View/LoadingView.h; sourceTree = "<group>"; };
 		3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = View/LoadingView.m; sourceTree = "<group>"; };
 		3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JP3DSWebView.h; path = View/JP3DSWebView.h; sourceTree = "<group>"; };
@@ -620,8 +616,6 @@
 				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
 				3B5AFC0B1C90925300DABB4C /* CardLogoView.h */,
 				3B5AFC0C1C90925300DABB4C /* CardLogoView.m */,
-				3B5362981C7CBD7000CEBAE2 /* HintLabel.h */,
-				3B5362991C7CBD7000CEBAE2 /* HintLabel.m */,
 				3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */,
 				3B5362A51C7CBE4A00CEBAE2 /* JP3DSWebView.m */,
 				3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */,
@@ -709,7 +703,6 @@
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				700A8EAB1E4339CE0059F0C5 /* WalletRepositoryProtocol.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
-				3B53629A1C7CBD7000CEBAE2 /* HintLabel.h in Headers */,
 				3B678B5A1C6CE5190001DC2F /* JudoKitObjC.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
@@ -1002,7 +995,6 @@
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
-				3B53629B1C7CBD7000CEBAE2 /* HintLabel.m in Sources */,
 				700A8ECD1E489DF50059F0C5 /* JudoWallet.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,

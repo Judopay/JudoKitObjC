@@ -26,12 +26,6 @@
 #import "JPSession.h"
 #import "JudoWalletManagementViewController.h"
 
-@interface JudoWallet()
-
-@property (nonnull, nonatomic, strong) JudoKit *judoKit;
-
-@end
-
 @implementation JudoWallet
 
 - (nonnull instancetype)initWithToken:(nonnull NSString *)token secret:(nonnull NSString *)secret {
@@ -50,7 +44,7 @@
 }
 
 - (void)manage {
-    JudoWalletManagementViewController *vc = [[JudoWalletManagementViewController alloc] initWithTheme:[JPTheme new] delegate:nil];
+    JudoWalletManagementViewController *vc = [[JudoWalletManagementViewController alloc] initWithJudoKit:self delegate:nil];
     [self initiateAndShow:vc];
 }
 

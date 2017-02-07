@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, TableViewContent) {
 
 static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableviewcellidentifier";
 
-@interface ViewController () <PKPaymentAuthorizationViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ViewController () <PKPaymentAuthorizationViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, JPWalletDelegate> {
     UIAlertController *_alertController;
     
     
@@ -234,6 +234,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 
 - (void)walletCardManagementOperation {
     JudoWallet *wallet = [[JudoWallet alloc] initWithJudoKit:self.judoKitSession];
+    wallet.delegate = self;
     [wallet manage];
 }
 
@@ -491,5 +492,14 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 - (NSString *)getSampleConsumerReference {
     return @"judoPay-sample-app-objc";
 }
+
+
+- (void)didAddCardToWallet:(nonnull WalletCard *)card {
+
+}
+- (void)didUpdateCardinWallet:(nonnull WalletCard *)card {}
+- (void)didRemoveCardFromWallet:(nonnull WalletCard *)card {}
+- (void)didCompletePayment:(nullable JPResponse *)response error:(nullable NSError *)error {}
+- (void)didSelectCardForNonPresentPayment:(nonnull WalletCard *)card {}
 
 @end

@@ -121,67 +121,67 @@
 + (nonnull NSString *)titleForCardNetwork:(CardNetwork)network {
     switch (network) {
         case CardNetworkUnknown:
-            return @"Unknown Card Network";
+        return @"Unknown Card Network";
         case CardNetworkVisa:
-            return @"Visa Card Network";
+        return @"Visa";
         case CardNetworkMasterCard:
-            return @"MasterCard Network";
+        return @"Mastercard";
         case CardNetworkVisaElectron:
-            return @"Visa Electron Network";
+        return @"Visa Electron";
         case CardNetworkSwitch:
-            return @"Switch Network";
+        return @"Switch";
         case CardNetworkSolo:
-            return @"Solo Network";
+        return @"Solo";
         case CardNetworkLaser:
-            return @"Laser Network";
+        return @"Laser";
         case CardNetworkChinaUnionPay:
-            return @"China UnionPay Network";
+        return @"China UnionPay";
         case CardNetworkAMEX:
-            return @"American Express Card Network";
+        return @"AmEx";
         case CardNetworkJCB:
-            return @"JCB Network";
+        return @"JCB";
         case CardNetworkMaestro:
-            return @"Maestro Card Network";
+        return @"Maestro";
         case CardNetworkVisaDebit:
-            return @"Visa Debit Card Network";
+        return @"Visa Debit";
         case CardNetworkMasterCardDebit:
-            return @"MasterCard Network";
+        return @"Mastercard Debit";
         case CardNetworkVisaPurchasing:
-            return @"Visa Purchasing Network";
+        return @"Visa Purchasing";
         case CardNetworkDiscover:
-            return @"Discover Network";
+        return @"Discover";
         case CardNetworkCarnet:
-            return @"Carnet Network";
+        return @"Carnet";
         case CardNetworkCarteBancaire:
-            return @"Carte Bancaire Network";
+        return @"Carte Bancaire";
         case CardNetworkDinersClub:
-            return @"Diners Club Network";
+        return @"Diners Club";
         case CardNetworkElo:
-            return @"Elo Network";
+        return @"Elo";
         case CardNetworkFarmersCard:
-            return @"Farmers Card Network";
+        return @"Farmers Card";
         case CardNetworkSoriana:
-            return @"Soriana Network";
+        return @"Soriana";
         case CardNetworkPrivateLabelCard:
-            return @"Private Label Card Network";
+        return @"Private Label";
         case CardNetworkQCard:
-            return @"Q Card Network";
+        return @"Q Card";
         case CardNetworkStyle:
-            return @"Style Network";
+        return @"Style";
         case CardNetworkTrueRewards:
-            return @"True Rewards Network";
+        return @"True Rewards";
         case CardNetworkUATP:
-            return @"UATP Network";
+        return @"UATP";
         case CardNetworkBankCard:
-            return @"Bank Card Network";
+        return @"Bank Card";
         case CardNetworkBanamex_Costco:
-            return @"Banamex Costco Network";
+        return @"Banamex Costco";
         case CardNetworkInterPayment:
-            return @"InterPayment Network";
+        return @"InterPayment";
         case CardNetworkInstaPayment:
-            return @"InstaPayment Network";
+        return @"InstaPayment";
         case CardNetworkDankort:
-            return @"Dankort Network";
+        return @"Dankort";
     }
 }
 
