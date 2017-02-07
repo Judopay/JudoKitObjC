@@ -1,5 +1,5 @@
 //
-//  WalletService.h
+//  NSError+JudoWallet.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -22,23 +22,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+
 #import <Foundation/Foundation.h>
 
-#import "WalletRepositoryProtocol.h"
-#import "WalletCard.h"
+extern NSString * _Nonnull const JudoWalletErrorDomain;
 
-@interface WalletService : NSObject
+extern NSString * _Nonnull const JudoWalletCardLimitPassedDescription;
+extern NSString * _Nonnull const JudoWalletCardLimitPassedError;
 
-@property(atomic, readonly) NSInteger maxNumberOfCardsAllowed;
+extern NSString * _Nonnull const JudoWalletUnknownWalletCardDescription;
+extern NSString * _Nonnull const JudoWalletUnknownWalletCardError;
 
-- (nonnull instancetype)initWithWalletRepository:(nonnull id<WalletRepositoryProtocol>)walletRepository;
+extern NSString * _Nonnull const JudoWalletCannotResignDefaultCardDescription;
+extern NSString * _Nonnull const JudoWalletCannotResignDefaultCardError;
 
-- (void)add:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error;
-- (void)update:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error;
-- (void)remove:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error;
-- (nullable WalletCard *)get:(nonnull NSUUID *)walletId;
-- (nonnull NSArray<WalletCard *> *)get;
-- (nullable WalletCard *)getDefault;
+extern NSString * _Nonnull const JudoWalletCannotRemoveDefaultCardDescription;
+extern NSString * _Nonnull const JudoWalletCannotRemoveDefaultCardError;
 
+extern NSInteger const JudoWalletErrorCode;
+
+@interface NSError (JudoWallet)
+
++ (nonnull NSError *)walletCardLimitPassed:(nullable NSError *)underlyingError;
++ (nonnull NSError *)unknownWalletCard:(nullable NSError *)underlyingError;
++ (nonnull NSError *)cannotResignDefaultCard:(nullable NSError *)underlyingError;
++ (nonnull NSError *)cannotRemoveDefaultCard:(nullable NSError *)underlyingError;
 
 @end

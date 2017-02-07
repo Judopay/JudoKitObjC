@@ -40,7 +40,7 @@ class WalletServiceTests : JudoTestCase {
         let addedCard = self.buildWalletCard(isDefault: false)
         
         //act
-        try! self.sut.add(addedCard)
+        self.sut.add(addedCard, error: nil)
         
         //assert
         let retrievedCard = self.sut.get(addedCard.walletId)
@@ -55,8 +55,8 @@ class WalletServiceTests : JudoTestCase {
         let secondAddedCard = self.buildWalletCard(isDefault: false)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
         
         //assert
         let firstRetrievedCard = self.sut.get(firstAddedCard.walletId)
@@ -74,8 +74,8 @@ class WalletServiceTests : JudoTestCase {
         let secondAddedCard = self.buildWalletCard(isDefault: true)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
         
         //assert
         let firstRetrievedCard = self.sut.get(firstAddedCard.walletId)
@@ -93,9 +93,9 @@ class WalletServiceTests : JudoTestCase {
         let secondAddedCard = self.buildWalletCard(isDefault: true)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
-        try! self.sut.update(secondAddedCard.withAssignedCardName("My updated name"))
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
+        self.sut.update(secondAddedCard.withAssignedCardName("My updated name"), error: nil)
         
         let firstRetrievedCard = self.sut.get(firstAddedCard.walletId)
         let secondRetrievedCard = self.sut.get(secondAddedCard.walletId)
@@ -106,24 +106,24 @@ class WalletServiceTests : JudoTestCase {
         XCTAssertTrue(secondRetrievedCard!.defaultPaymentMethod)
     }
     
-    /*func test_UpdatingDefaultCardToNonDefaultMustThrowException() {
+    func test_UpdatingDefaultCardToNonDefaultMustThrowException() {
         //arr
         let firstAddedCard = self.buildWalletCard(isDefault: false)
         let secondAddedCard = self.buildWalletCard(isDefault: true)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
         
         //act //assert
-        do {
-            try self.sut.update(secondAddedCard.withNonDefault())
-            XCTFail()
-        } catch let error {
-            XCTAssertNotNil(error)
-            XCTAssertTrue(error.localizedDescription == "Card cannot resign default status of this card.")
-        }
-    }*/
+        var error: NSError? = nil
+        self.sut.update(secondAddedCard.withNonDefault(), error: &error)
+        
+        //assert
+        XCTAssertNotNil(error)
+        XCTAssertTrue(error!.localizedDescription == JudoWalletCannotResignDefaultCardDescription)
+        XCTAssertTrue(error!.localizedFailureReason == JudoWalletCannotResignDefaultCardError)
+    }
     
     func test_UpdatingCardAsDefaultMustSetCardAsDefault() {
         //arr
@@ -131,10 +131,10 @@ class WalletServiceTests : JudoTestCase {
         let secondAddedCard = self.buildWalletCard(isDefault: false)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
         //Update the second card.
-        try! self.sut.update(secondAddedCard.withDefault())
+        self.sut.update(secondAddedCard.withDefault(), error: nil)
         
         //assert
         let firstRetrievedCard = self.sut.get(firstAddedCard.walletId)
@@ -146,33 +146,31 @@ class WalletServiceTests : JudoTestCase {
         XCTAssertTrue(secondRetrievedCard!.defaultPaymentMethod)
     }
     
-    /*func test_UpdatingCardWithUUIDThatDoesNotExistMustThrowException() {
+    func test_UpdatingCardWithUUIDThatDoesNotExistMustThrowException() {
         //arr
         let firstAddedCard = self.buildWalletCard(isDefault: true)
         
-        //act //assert
-        do {
-            try self.sut.update(card: firstAddedCard)
-            XCTFail()
-        } catch let error as Error {
-            let walletError = error as! WalletError
-            XCTAssertNotNil(walletError)
-            XCTAssertNotNil(walletError.description())
-            XCTAssertTrue(walletError.description() == WalletError.unknownWalletCard.description())
-        }
-    }*/
+        //act
+        var error: NSError? = nil
+        self.sut.update(firstAddedCard, error: &error)
+        
+        //assert
+        XCTAssertNotNil(error)
+        XCTAssertTrue(error!.localizedDescription == JudoWalletUnknownWalletCardDescription)
+        XCTAssertTrue(error!.localizedFailureReason == JudoWalletUnknownWalletCardError)
+    }
 
     func test_TryingToUpdateCardWithUUIDThatExistsMustReplaceThatCard() {
         //arr
         let firstAddedCard = self.buildWalletCard(isDefault: false)
         
         //act
-        try! self.sut.add(firstAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
         
         let retrievedCard = self.sut.get(firstAddedCard.walletId)!
         let newAssignedName = self.uuidString()
         
-        try! self.sut.update(retrievedCard.withAssignedCardName(newAssignedName))
+        self.sut.update(retrievedCard.withAssignedCardName(newAssignedName), error: nil)
         
         //assert
         let firstRetrievedCard = self.sut.get(firstAddedCard.walletId)
@@ -181,26 +179,23 @@ class WalletServiceTests : JudoTestCase {
         XCTAssertEqual(newAssignedName, firstRetrievedCard!.assignedName)
     }
     
-    /*func test_AttemptingToRemoveDefaultCardWhenWalletHasMoreThanOneCardMustThrowException() {
+    func test_AttemptingToRemoveDefaultCardWhenWalletHasMoreThanOneCardMustThrowException() {
         //arr
         let firstAddedCard = self.buildWalletCard(isDefault: false)
         let secondAddedCard = self.buildWalletCard(isDefault: true)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error:nil)
+        self.sut.add(secondAddedCard, error:nil)
+        
+        var error: NSError? = nil
+        self.sut.remove(secondAddedCard, error: &error)
         
         //assert
-        do {
-            try self.sut.remove(secondAddedCard)
-            XCTFail()
-        } catch let error as Error {
-            let walletError = error as! WalletError
-            XCTAssertNotNil(walletError)
-            XCTAssertNotNil(walletError.description())
-            XCTAssertTrue(walletError.description() == WalletError.cannotRemoveDefaultCard.description())
-        }
-    }*/
+        XCTAssertNotNil(error)
+        XCTAssertTrue(error!.localizedDescription == JudoWalletCannotRemoveDefaultCardDescription)
+        XCTAssertTrue(error!.localizedFailureReason == JudoWalletCannotRemoveDefaultCardError)
+    }
     
     func test_AttemptingToRemoveDefaultCardWhenWalletHasSingleCardMustNotThrowException() {
         //arr
@@ -208,11 +203,11 @@ class WalletServiceTests : JudoTestCase {
         let secondAddedCard = self.buildWalletCard(isDefault: true)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
         
-        try! self.sut.remove(firstAddedCard)
-        try! self.sut.remove(secondAddedCard)
+        self.sut.remove(firstAddedCard, error: nil)
+        self.sut.remove(secondAddedCard, error: nil)
         
         //assert
         let cards = self.sut.get()
@@ -246,7 +241,7 @@ class WalletServiceTests : JudoTestCase {
         let firstAddedCard = self.buildWalletCard(isDefault: false)
         
         //act assert
-        try! self.sut.remove(firstAddedCard)
+        self.sut.remove(firstAddedCard, error: nil)
     }
 
     func test_CallingGetDefaultCardMustReturnDefaultCard() {
@@ -257,10 +252,10 @@ class WalletServiceTests : JudoTestCase {
         let forthAddedCard = self.buildWalletCard(isDefault: false)
         
         //act
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
-        try! self.sut.add(thirdAddedCard)
-        try! self.sut.add(forthAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
+        self.sut.add(thirdAddedCard, error: nil)
+        self.sut.add(forthAddedCard, error: nil)
         
         //assert
         let retrievedCard = self.sut.getDefault()
@@ -275,15 +270,15 @@ class WalletServiceTests : JudoTestCase {
         let forthAddedCard = self.buildWalletCard(isDefault: false, alias: "forth")
         let fifthAddedCard = self.buildWalletCard(isDefault: false, alias: "fifth")
         
-        try! self.sut.add(firstAddedCard)
-        try! self.sut.add(secondAddedCard)
-        try! self.sut.add(thirdAddedCard)
+        self.sut.add(firstAddedCard, error: nil)
+        self.sut.add(secondAddedCard, error: nil)
+        self.sut.add(thirdAddedCard, error: nil)
         //3,1,2
-        try! self.sut.add(forthAddedCard)
-        try! self.sut.add(fifthAddedCard)
+        self.sut.add(forthAddedCard, error: nil)
+        self.sut.add(fifthAddedCard, error: nil)
         
-        try! self.sut.remove(secondAddedCard)
-        try! self.sut.update(firstAddedCard.withAssignedCardName("first-updated"))
+        self.sut.remove(secondAddedCard, error: nil)
+        self.sut.update(firstAddedCard.withAssignedCardName("first-updated"), error: nil)
         
         let walletCards = self.sut.get()
         XCTAssertEqual(walletCards.count, 4)
@@ -293,28 +288,26 @@ class WalletServiceTests : JudoTestCase {
         XCTAssertEqual(walletCards[3].walletId, firstAddedCard.walletId)
     }
     
-   /* func test_TryingToAddACardOverLimitThreasholdMustThrowException() {
+   func test_TryingToAddACardOverLimitThreasholdMustThrowException() {
         //arr
         let firstNCards = (1...sut.maxNumberOfCardsAllowed).map {
             return self.buildWalletCard(isDefault: false, alias: String(describing: $0))
         }
         
         for card in firstNCards {
-            try! self.sut.add(card)
+            self.sut.add(card, error:nil)
         }
         
-        //act //assert
-        do {
-            let throwingCard = self.buildWalletCard(isDefault: false, alias: "Throwing card")
-            try self.sut.add(throwingCard)
-            XCTFail()
-        } catch let error {
-            let walletError = error as! WalletError
-            XCTAssertNotNil(walletError)
-            XCTAssertNotNil(walletError.description())
-            XCTAssertTrue(walletError.description() == WalletError.walletCardLimitPassed.description())
-        }
-    }*/
+        //act 
+        var error: NSError? = nil
+        let throwingCard = self.buildWalletCard(isDefault: false, alias: "Throwing card")
+        self.sut.add(throwingCard, error:&error)
+    
+        //assert
+        XCTAssertNotNil(error)
+        XCTAssertTrue(error!.localizedDescription == JudoWalletCardLimitPassedDescription)
+        XCTAssertTrue(error!.localizedFailureReason == JudoWalletCardLimitPassedError)
+    }
     
     private func buildWalletCard(isDefault: Bool) -> WalletCard {
         return self.buildWalletCard(isDefault: isDefault, alias: self.uuidString())

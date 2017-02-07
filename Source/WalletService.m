@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "WalletService.h"
+#import "NSError+JudoWallet.h"
 
 @interface WalletService()
 
@@ -46,9 +47,10 @@
     return self;
 }
 
-- (void)add:(nonnull WalletCard *)card {
+- (void)add:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error {
     if ([self walletIsFull]) {
-        @throw [[NSException alloc] initWithName:@"WalletCardLimitPassed" reason:@"Too many cards have been added to the wallet." userInfo:nil];
+        *error = [NSError walletCardLimitPassed:nil];
+        return;
     }
     
     if ([self walletIsEmpty]) {
@@ -63,24 +65,27 @@
     }
 }
 
-- (void)update:(nonnull WalletCard *)card {
+- (void)update:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error {
     WalletCard *currentCard = [self get:card.walletId];
     
     if (!currentCard) {
-        @throw [[NSException alloc] initWithName:@"unknownWalletCard" reason:@"Too many cards have been added to the wallet." userInfo:nil];
+        *error = [NSError unknownWalletCard:nil];
+        return;
     }
     
     if ([self isIllegallyResigningDefault:currentCard updatedCard:card]) {
-        @throw [[NSException alloc] initWithName:@"CannotResignDefaultCard" reason:@"Card cannot resign default status of this card." userInfo:nil];
+        *error = [NSError cannotResignDefaultCard:nil];
+        return;
     }
     
     [self.repo remove:card.walletId];
-    [self add:card];
+    [self add:card error:error];
 }
 
-- (void)remove:(nonnull WalletCard *)card {
+- (void)remove:(nonnull WalletCard *)card error:(NSError * _Nullable * _Nullable)error {
     if ([[self getUnordered] count] > 1 && card.defaultPaymentMethod) {
-        @throw [[NSException alloc] initWithName:@"CannotRemoveDefaultCard" reason:@"Default card cannot be removed if two or more cards are in wallet." userInfo:nil];
+        *error = [NSError cannotRemoveDefaultCard:nil];
+        return;
     }
     
     [self.repo remove:card.walletId];

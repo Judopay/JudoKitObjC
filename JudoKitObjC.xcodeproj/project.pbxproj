@@ -151,6 +151,8 @@
 		700A8ED21E48BFC10059F0C5 /* JudoWalletManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED01E48BFC10059F0C5 /* JudoWalletManagementViewController.m */; };
 		700A8ED51E48C20D0059F0C5 /* WalletManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED31E48C2040059F0C5 /* WalletManagementTests.swift */; };
 		700A8ED61E48C3A30059F0C5 /* JPWalletDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EDA1E49E1600059F0C5 /* NSError+JudoWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EDB1E49E1600059F0C5 /* NSError+JudoWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -352,6 +354,8 @@
 		700A8ECF1E48BFC10059F0C5 /* JudoWalletManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudoWalletManagementViewController.h; sourceTree = "<group>"; };
 		700A8ED01E48BFC10059F0C5 /* JudoWalletManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudoWalletManagementViewController.m; sourceTree = "<group>"; };
 		700A8ED31E48C2040059F0C5 /* WalletManagementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletManagementTests.swift; sourceTree = "<group>"; };
+		700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+JudoWallet.h"; sourceTree = "<group>"; };
+		700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+JudoWallet.m"; sourceTree = "<group>"; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -525,7 +529,6 @@
 		3B678B641C6CE5190001DC2F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				701050B81E1E90C70001ED87 /* DeviceDNA */,
 				3B9711831C7618C000E9A347 /* APITests */,
 				3B678B651C6CE5190001DC2F /* JudoKitObjCTests.m */,
 				3B678B671C6CE5190001DC2F /* Info.plist */,
@@ -606,6 +609,8 @@
 				3B6991621C8F26FE006ED1FB /* NSTimer+Blocks.m */,
 				3B4EB38F1C981511006265A0 /* UIColor+Judo.h */,
 				3B4EB3901C981511006265A0 /* UIColor+Judo.m */,
+				700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */,
+				700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -674,14 +679,6 @@
 			name = Wallet;
 			sourceTree = "<group>";
 		};
-		701050B81E1E90C70001ED87 /* DeviceDNA */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = DeviceDNA;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		701050B91E1E90D70001ED87 /* DeviceDNA */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +721,7 @@
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				3B678BA51C7326F10001DC2F /* JPRegisterCard.h in Headers */,
 				3B678B871C6DF6130001DC2F /* JPTransaction.h in Headers */,
+				700A8EDA1E49E1600059F0C5 /* NSError+JudoWallet.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
 				700A8EAF1E433A8B0059F0C5 /* WalletCard.h in Headers */,
@@ -1012,6 +1010,7 @@
 				3B704AA31C89F1E800376773 /* BillingCountryInputField.m in Sources */,
 				700A8EB81E43573A0059F0C5 /* InMemoryWalletRepository.m in Sources */,
 				3B678B781C6CE7770001DC2F /* JPSession.m in Sources */,
+				700A8EDB1E49E1600059F0C5 /* NSError+JudoWallet.m in Sources */,
 				3B704A931C89F1A800376773 /* CardInputField.m in Sources */,
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,

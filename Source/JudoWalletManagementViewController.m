@@ -134,7 +134,8 @@
         
         JPCardDetails *cardDetails = response.items[0].cardDetails;
         WalletCard *card = [[WalletCard alloc] initWithCardData:cardDetails.cardLastFour expiryDate:cardDetails.formattedExpiryDate cardToken:cardDetails.cardToken cardType:1 assignedName:@"" defaultPaymentMethod:NO];
-        [self.walletService add:card];
+        NSError *walletError;
+        [self.walletService add:card error:&walletError];
         if (self.judoWalletSession.delegate) {
             [self.judoWalletSession.delegate didAddCardToWallet:card];
         }
