@@ -233,7 +233,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 #pragma mark - Operations
 
 - (void)walletCardManagementOperation {
-    JudoWallet *wallet = [[JudoWallet alloc] initWithJudoKit:self.judoKitSession];
+    JudoWallet *wallet = [[JudoWallet alloc] initWithJudoId:@"100972777" judoKit:self.judoKitSession];
     wallet.delegate = self;
     [wallet manage];
 }

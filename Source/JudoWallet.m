@@ -28,23 +28,24 @@
 
 @implementation JudoWallet
 
-- (nonnull instancetype)initWithToken:(nonnull NSString *)token secret:(nonnull NSString *)secret {
+- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId token:(nonnull NSString *)token secret:(nonnull NSString *)secret; {
     JudoKit *judoKit = [[JudoKit alloc] initWithToken:token secret:secret];
-    return [self initWithJudoKit:judoKit];
+    return [self initWithJudoId:judoId judoKit:judoKit];
 }
 
-- (nonnull instancetype)initWithJudoKit:(nonnull JudoKit *)judoKit {
+- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId judoKit:(nonnull JudoKit *)judoKit {
     self = [super init];
     
     if (self) {
         self.judoKit = judoKit;
+        self.judoId = judoId;
     }
     
     return self;
 }
 
 - (void)manage {
-    JudoWalletManagementViewController *vc = [[JudoWalletManagementViewController alloc] initWithJudoKit:self delegate:nil];
+    JudoWalletManagementViewController *vc = [[JudoWalletManagementViewController alloc] initWithJudoWallet:self];
     [self initiateAndShow:vc];
 }
 

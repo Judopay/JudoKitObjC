@@ -30,6 +30,6 @@
 
 @interface JudoWalletManagementViewController : UIViewController
 
-- (nonnull instancetype)initWithJudoKit:(nonnull JudoWallet *)judoWalletSession delegate:(nullable id<JPWalletDelegate>)delegate;
+- (nonnull instancetype)initWithJudoWallet:(nonnull JudoWallet *)judoWalletSession;
 
 @end

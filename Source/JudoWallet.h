@@ -33,9 +33,10 @@
 
 @property (nullable, nonatomic, weak) id<JPWalletDelegate> delegate;
 @property (nonnull, nonatomic, strong) JudoKit *judoKit;
+@property (nonnull, nonatomic, strong) NSString *judoId;
 
-- (nonnull instancetype)initWithToken:(nonnull NSString *)token secret:(nonnull NSString *)secret;
-- (nonnull instancetype)initWithJudoKit:(nonnull JudoKit *)judoKit;
+- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId token:(nonnull NSString *)token secret:(nonnull NSString *)secret;
+- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId judoKit:(nonnull JudoKit *)judoKit;
 - (void)manage;
 - (void)payment;
 - (void)nonPresentPayment;
