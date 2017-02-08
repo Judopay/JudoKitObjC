@@ -40,7 +40,6 @@
 @property (nonnull, nonatomic, strong) WalletService *walletService;
 @property (nonnull, nonatomic, strong) NSMutableArray<WalletCard *> *walletCards;
 
-@property (nonnull, nonatomic, strong) UIScrollView *contentView;
 @property (nonnull, nonatomic, strong) UIView *logoContainerView;
 @property (nonnull, nonatomic, strong) UITableView *cardsTableView;
 
@@ -64,15 +63,11 @@
     [super viewDidLoad];
     [self setUpNavigationBar];
     [self setUpView];
-  //  [self setUpConstraints];
 }
 
 - (void)setUpView {
     self.view.backgroundColor = [self.judoWalletSession.judoKit.theme judoContentViewBackgroundColor];
-    //[self.view addSubview:self.contentView];
-    //self.contentView.contentSize = self.view.bounds.size;
-            [self.view addSubview:self.cardsTableView];
-   //  [self cardView];
+    [self.view addSubview:self.cardsTableView];
 }
 
 - (void)setUpNavigationBar {
@@ -94,8 +89,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (UIView *)cardView {
-    CGRect rect = CGRectMake(0,0,self.view.frame.size.width - 26, 70);
+#pragma mark - Card views
+
+- (UIView *)generateDefaultCardView {
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width - 26, 70);
     UIView *card = [[UIView alloc] initWithFrame:rect];
     card.translatesAutoresizingMaskIntoConstraints = NO;
     card.layer.borderColor = self.judoWalletSession.judoKit.theme.judoInputFieldBorderColor.CGColor;
@@ -107,13 +104,13 @@
     addCardLabel.translatesAutoresizingMaskIntoConstraints = NO;
     addCardLabel.numberOfLines = 0;
     addCardLabel.text = @"Add Card";
-    addCardLabel.textColor = [UIColor blueColor];
     [addCardLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [card addSubview:addCardLabel];
     
-   // [self.view addSubview:card];
     return card;
 }
+
+#pragma mark - Lazy loading
 
 - (UITableView *)cardsTableView {
     if (!_cardsTableView) {
@@ -134,18 +131,6 @@
     }
     return _logoContainerView;
 }
-
-- (UIScrollView *)contentView {
-    if (!_contentView) {
-        _contentView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-        _contentView.directionalLockEnabled = YES;
-        _contentView.showsHorizontalScrollIndicator = NO;
-        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    return _contentView;
-}
-
-
 
 #pragma mark - UITableViewDataSource
 
@@ -180,10 +165,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    UIView *card = [self cardView];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *card = [self generateDefaultCardView];
     [cell addSubview:card];
+    
     return cell;
 }
 
