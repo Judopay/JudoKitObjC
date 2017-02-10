@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPCardDetails.h"
 
 @interface WalletCard : NSObject
 
@@ -42,6 +43,8 @@
                          cardType:(NSInteger)cardType
                          assignedName:(nullable NSString *)assignedName
                          defaultPaymentMethod:(BOOL)defaultPaymentMethod;
+
+- (nonnull instancetype)initWithCardDetails:(nonnull JPCardDetails *)cardDetails assignedName:(nullable NSString *)assignedName defaultPaymentMethod:(BOOL)defaultPaymentMethod;
 
 
 - (nonnull WalletCard *)withDefaultCard;

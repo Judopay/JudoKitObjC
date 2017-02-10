@@ -75,6 +75,10 @@
     return [self initWithWalletId:[NSUUID new] cardNumberLastFour:cardNumberLastFour expiryDate:expiryDate cardToken:cardToken cardType:cardType assignedName:assignedName dateCreated:[NSDate new] dateUpdated:nil defaultPaymentMethod:defaultPaymentMethod];
 }
 
+- (nonnull instancetype)initWithCardDetails:(nonnull JPCardDetails *)cardDetails assignedName:(nullable NSString *)assignedName defaultPaymentMethod:(BOOL)defaultPaymentMethod {
+    return [self initWithCardData:cardDetails.cardLastFour expiryDate:cardDetails.formattedExpiryDate cardToken:cardDetails.cardToken cardType:cardDetails.cardNetwork assignedName:assignedName defaultPaymentMethod:defaultPaymentMethod];
+}
+
 - (nonnull WalletCard *)withDefaultCard; {
     return [[WalletCard alloc] initWithWalletId:self.walletId cardNumberLastFour:self.cardNumberLastFour expiryDate:self.expiryDate cardToken:self.cardToken cardType:self.cardType assignedName:self.assignedName dateCreated:self.dateCreated dateUpdated:[NSDate new] defaultPaymentMethod:YES];
 }

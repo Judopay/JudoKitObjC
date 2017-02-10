@@ -33,6 +33,8 @@
 #import "JudoWallet.h"
 #import "JPCardDetails.h"
 #import "NSError+Judo.h"
+#import "CardLogoView.h"
+#import "CardInputField.h"
 
 @interface JudoWalletManagementViewController() <UITableViewDataSource, UITableViewDelegate>
 
@@ -91,8 +93,42 @@
 
 #pragma mark - Card views
 
-- (UIView *)generateDefaultCardView {
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width - 26, 70);
+- (UIView *)generateAddCardView {
+    CGRect rect = CGRectMake(0, 0, self.cardsTableView.frame.size.width, 70);
+    UIView *card = [[UIView alloc] initWithFrame:rect];
+    card.translatesAutoresizingMaskIntoConstraints = NO;
+    card.layer.borderColor = self.judoWalletSession.judoKit.theme.judoInputFieldBorderColor.CGColor;
+    card.layer.borderWidth = 0.5;
+    card.backgroundColor = [self.judoWalletSession.judoKit.theme judoContentViewBackgroundColor];
+    card.layer.cornerRadius = 5.0;
+    
+    /*UIView *logoView = [[CardLogoView alloc] initWithType:[CardInputField cardLogoTypeForNetworkType:CardNetworkUnknown]];
+    logoView.frame = CGRectMake(0,0, 46, 30);
+    [self.logoContainerView addSubview:logoView];
+    [card addSubview:self.logoContainerView];
+    */
+
+    //UIView *logoView = [[CardLogoView alloc] initWithType:[CardInputField cardLogoTypeForNetworkType:CardNetworkUnknown]];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectZero];
+    logoView.frame = CGRectMake(0, 0, 69, 45);
+    logoView.translatesAutoresizingMaskIntoConstraints = NO;
+    logoView.clipsToBounds = YES;
+    logoView.layer.cornerRadius = 2;
+    logoView.backgroundColor = [UIColor redColor];
+    [card addSubview:logoView];
+    
+    /*UILabel *addCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 30)];
+    addCardLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    addCardLabel.numberOfLines = 0;
+    addCardLabel.text = @"Add Card";
+    [addCardLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [card addSubview:addCardLabel];
+    */
+    return card;
+}
+
+- (UIView *)generateUpdateCardView {
+    CGRect rect = CGRectMake(0, 0, self.cardsTableView.frame.size.width, 70);
     UIView *card = [[UIView alloc] initWithFrame:rect];
     card.translatesAutoresizingMaskIntoConstraints = NO;
     card.layer.borderColor = self.judoWalletSession.judoKit.theme.judoInputFieldBorderColor.CGColor;
@@ -103,8 +139,8 @@
     UILabel *addCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 30)];
     addCardLabel.translatesAutoresizingMaskIntoConstraints = NO;
     addCardLabel.numberOfLines = 0;
-    addCardLabel.text = @"Add Card";
-    [addCardLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    addCardLabel.text = @"Update Card";
+    [addCardLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
     [card addSubview:addCardLabel];
     
     return card;
@@ -120,6 +156,7 @@
         _cardsTableView.dataSource = self;
         _cardsTableView.backgroundColor = [UIColor clearColor];
         _cardsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _cardsTableView.frame = CGRectMake(13, 0, self.view.frame.size.width - 26, self.view.frame.size.height);
     }
     return _cardsTableView;
 }
@@ -128,6 +165,8 @@
     if (!_logoContainerView) {
         _logoContainerView = [UIView new];
         _logoContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+        _logoContainerView.clipsToBounds = YES;
+        _logoContainerView.layer.cornerRadius = 2;
     }
     return _logoContainerView;
 }
@@ -164,10 +203,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    UIView *card = [self generateDefaultCardView];
+
+    UIView *card = indexPath.section < self.walletCards.count ? [self generateUpdateCardView] : [self generateAddCardView];
     [cell addSubview:card];
     
     return cell;
@@ -175,6 +215,10 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    indexPath.section < self.walletCards.count ? [self displayUpdateCardScreen] : [self displayRegisterCardScreen];
+}
+
+- (void)displayRegisterCardScreen {
     JPAmount *amount = [JPAmount amount:@"0.01" currency:@"GBP"];
     [self.judoWalletSession.judoKit invokeRegisterCard:@"100972777" amount:amount consumerReference:[[NSUUID UUID] UUIDString] cardDetails:nil completion:^(JPResponse * response, NSError * error) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -186,16 +230,26 @@
             return; // BAIL
         }
         
-        JPCardDetails *cardDetails = response.items[0].cardDetails;
-        WalletCard *card = [[WalletCard alloc] initWithCardData:cardDetails.cardLastFour expiryDate:cardDetails.formattedExpiryDate cardToken:cardDetails.cardToken cardType:1 assignedName:@"" defaultPaymentMethod:NO];
+        WalletCard *card = [[WalletCard alloc] initWithCardDetails:response.items[0].cardDetails assignedName:@"" defaultPaymentMethod:NO];
+        
         NSError *walletError;
         [self.walletService add:card error:&walletError];
+        
+        if (walletError) {
+            //throw big fat error.
+        }
+        
         self.walletCards = [[self.walletService get] mutableCopy];
         [self.cardsTableView reloadData];
+        
         if (self.judoWalletSession.delegate) {
             [self.judoWalletSession.delegate didAddCardToWallet:card];
         }
     }];
+}
+
+- (void)displayUpdateCardScreen {
+
 }
 
 @end
