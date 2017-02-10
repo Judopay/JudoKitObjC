@@ -24,7 +24,7 @@
 
 #import "JudoKit.h"
 
-#import <DeviceDNA/LegacyDeviceDNA.h>
+#import <DeviceDNA/DeviceDNA.h>
 
 #import "JPSession.h"
 #import "JPPayment.h"
@@ -55,7 +55,7 @@
 @property (nonatomic, strong, readwrite) JPSession *apiSession;
 
 // deviceDNA for fraud prevention
-@property (nonatomic, strong) LegacyDeviceDNA *deviceDNA;
+@property (nonatomic, strong) DeviceDNA *deviceDNA;
 
 @property (nonatomic, strong) NSString *deviceIdentifier;
     
@@ -87,7 +87,7 @@
         }
         
         Credentials *credentials = [[Credentials alloc] initWithToken:token secret:secret];
-        self.deviceDNA = [[LegacyDeviceDNA alloc] initWithCredentials:credentials];
+        self.deviceDNA = [[DeviceDNA alloc] initWithCredentials:credentials];
         
         NSString *plainString = [NSString stringWithFormat:@"%@:%@", token, secret];
         NSData *plainData = [plainString dataUsingEncoding:NSISOLatin1StringEncoding];
@@ -167,7 +167,7 @@
     transaction.reference = reference;
     transaction.apiSession = self.apiSession;
     
-    [self.deviceDNA getEncryptedDeviceSignalsWithDeviceIdentifier:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
+    [self.deviceDNA getDeviceSignals:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
         if (device) {
             [transaction setDeviceSignal:device];
         }
@@ -210,7 +210,7 @@
     JPTransactionProcess *transactionProc = [[type alloc] initWithReceiptId:receiptId amount:amount];
     transactionProc.apiSession = self.apiSession;
     
-    [self.deviceDNA getEncryptedDeviceSignalsWithDeviceIdentifier:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
+    [self.deviceDNA getDeviceSignals:^(NSDictionary * _Nullable device, NSError * _Nullable error) {
         if (device) {
             [transactionProc setDeviceSignal:device];
         }
