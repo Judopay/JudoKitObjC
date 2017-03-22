@@ -24,7 +24,7 @@
 
 #import "JudoKit.h"
 
-#import <JudoShield/JudoShield.h>
+#import <DeviceDNA/DeviceDNA.h>
 
 #import "JPSession.h"
 #import "JPPayment.h"
@@ -55,8 +55,10 @@
 @property (nonatomic, strong, readwrite) JPSession *apiSession;
 
 // deviceDNA for fraud prevention
-@property (nonatomic, strong) JudoShield *judoShield;
+@property (nonatomic, strong) DeviceDNA *deviceDNA;
 
+@property (nonatomic, strong) NSString *deviceIdentifier;
+    
 @end
 
 @implementation JudoKit
@@ -84,6 +86,9 @@
             return self;
         }
         
+        Credentials *credentials = [[Credentials alloc] initWithToken:token secret:secret];
+        self.deviceDNA = [[DeviceDNA alloc] initWithCredentials:credentials];
+        
         NSString *plainString = [NSString stringWithFormat:@"%@:%@", token, secret];
         NSData *plainData = [plainString dataUsingEncoding:NSISOLatin1StringEncoding];
         NSString *base64String = [plainData base64EncodedStringWithOptions:0];
@@ -94,6 +99,23 @@
         
     }
     return self;
+}
+
+- (void)sendWithCompletion:(nonnull JPTransaction *)transaction completion:(nonnull JudoCompletionBlock)completion {
+    NSDictionary *signals = [transaction deviceSignal];
+    
+    if (signals) {
+        [transaction sendWithCompletion:completion];
+    }
+    else {
+        [self.deviceDNA getDeviceSignals:^(NSDictionary<NSString *,NSString *> * _Nullable device, NSError * _Nullable error) {
+            if (device) {
+                [transaction setDeviceSignal:device];
+            }
+            
+            [transaction sendWithCompletion:completion];
+        }];
+    }
 }
 
 - (void)invokePayment:(NSString *)judoId amount:(JPAmount *)amount consumerReference:(NSString *)reference cardDetails:(JPCardDetails *)cardDetails completion:(void (^)(JPResponse *, NSError *))completion {
@@ -128,18 +150,39 @@
     [self initiateAndShow:controller];
 }
 
+- (void)invokePayment:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference cardDetails:(JPCardDetails *)cardDetails completion:(void (^)(JPResponse *, NSError *))completion {
+    JudoPayViewController *controller = [[JudoPayViewController alloc] initWithJudoId:judoId amount:amount reference:reference transaction:TransactionTypePayment currentSession:self cardDetails:cardDetails completion:completion];
+    [self initiateAndShow:controller];
+}
+
+- (void)invokePreAuth:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference cardDetails:(JPCardDetails *)cardDetails completion:(void (^)(JPResponse *, NSError *))completion {
+    JudoPayViewController *controller = [[JudoPayViewController alloc] initWithJudoId:judoId amount:amount reference:reference transaction:TransactionTypePreAuth currentSession:self cardDetails:cardDetails completion:completion];
+    [self initiateAndShow:controller];
+}
+
+- (void)invokeRegisterCard:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference cardDetails:(JPCardDetails *)cardDetails completion:(void (^)(JPResponse *, NSError *))completion {
+    JudoPayViewController *controller = [[JudoPayViewController alloc] initWithJudoId:judoId amount:amount reference:reference transaction:TransactionTypeRegisterCard currentSession:self cardDetails:cardDetails completion:completion];
+    [self initiateAndShow:controller];
+}
+
+- (void)invokeTokenPayment:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference cardDetails:(JPCardDetails *)cardDetails paymentToken:(JPPaymentToken *)paymentToken completion:(void (^)(JPResponse *, NSError *))completion {
+    JudoPayViewController *controller = [[JudoPayViewController alloc] initWithJudoId:judoId amount:amount reference:reference transaction:TransactionTypePayment currentSession:self cardDetails:cardDetails completion:completion];
+    controller.paymentToken = paymentToken;
+    [self initiateAndShow:controller];
+}
+
+- (void)invokeTokenPreAuth:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference cardDetails:(JPCardDetails *)cardDetails paymentToken:(JPPaymentToken *)paymentToken completion:(void (^)(JPResponse *, NSError *))completion {
+    JudoPayViewController *controller = [[JudoPayViewController alloc] initWithJudoId:judoId amount:amount reference:reference transaction:TransactionTypePreAuth currentSession:self cardDetails:cardDetails completion:completion];
+    controller.paymentToken = paymentToken;
+    [self initiateAndShow:controller];
+}
+
 - (JPTransaction *)transactionForTypeClass:(Class)type judoId:(NSString *)judoId amount:(JPAmount *)amount reference:(nonnull JPReference *)reference {
     JPTransaction *transaction = [type new];
     transaction.judoId = judoId;
     transaction.amount = amount;
     transaction.reference = reference;
     transaction.apiSession = self.apiSession;
-    
-    NSDictionary *deviceSignals = self.judoShield.encryptedDeviceSignal;
-    
-    if (deviceSignals) {
-        [transaction setDeviceSignal:deviceSignals];
-    }
     
     return transaction;
 }
@@ -178,12 +221,6 @@
     JPTransactionProcess *transactionProc = [[type alloc] initWithReceiptId:receiptId amount:amount];
     transactionProc.apiSession = self.apiSession;
     
-    NSDictionary *deviceSignals = self.judoShield.encryptedDeviceSignal;
-    
-    if (deviceSignals) {
-        [transactionProc setDeviceSignal:deviceSignals];
-    }
-    
     return transactionProc;
 }
 
@@ -216,6 +253,13 @@
 
 - (void)initiateAndShow:(JudoPayViewController *)viewController {
     viewController.theme = self.theme;
+    
+    [self.deviceDNA getDeviceSignals:^(NSDictionary<NSString *,NSString *> * _Nullable device, NSError * _Nullable error) {
+        if (device) {
+            viewController.transaction.deviceSignal = device;
+        }
+    }];
+    
     self.activeViewController = viewController;
     [self showViewController:[[UINavigationController alloc] initWithRootViewController:viewController]];
 }
@@ -250,13 +294,6 @@
 		_theme = [JPTheme new];
 	}
 	return _theme;
-}
-
-- (JudoShield *)judoShield {
-    if (!_judoShield) {
-        _judoShield = [JudoShield new];
-    }
-    return _judoShield;
 }
 
 @end

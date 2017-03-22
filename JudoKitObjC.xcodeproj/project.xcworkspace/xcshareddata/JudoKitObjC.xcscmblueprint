@@ -8,7 +8,8 @@
     "18183958D89FC50CCD8B131419490530C61A3596" : 0,
     "CD675D6B08F18484481B3C037D8994E547E3DD19" : 0,
     "47EE79DCC551FC45E1838439999F6FE9FE75D05C" : 0,
-    "A70586B93085561290C20D6C084F1307059DE8E2" : 0
+    "A70586B93085561290C20D6C084F1307059DE8E2" : 0,
+    "9B0BB94E48FB448BA1853ECDB6F77445793CAF1B" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EAE4DE34-1229-4F00-9B58-BA2D671FBBA7",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
@@ -16,7 +17,8 @@
     "18183958D89FC50CCD8B131419490530C61A3596" : "JudoKitObjC\/",
     "CD675D6B08F18484481B3C037D8994E547E3DD19" : "JudoKitObjC\/JudoShield\/",
     "47EE79DCC551FC45E1838439999F6FE9FE75D05C" : "JudoKit\/Judo-Swift\/",
-    "A70586B93085561290C20D6C084F1307059DE8E2" : ""
+    "A70586B93085561290C20D6C084F1307059DE8E2" : "",
+    "9B0BB94E48FB448BA1853ECDB6F77445793CAF1B" : "JudoKitObjC\/DeviceDNA\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "JudoKitObjC",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -31,6 +33,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JudoPay\/Judo-Swift",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47EE79DCC551FC45E1838439999F6FE9FE75D05C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JudoPay\/DeviceDNA-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9B0BB94E48FB448BA1853ECDB6F77445793CAF1B"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JudoPay\/Oprah-iOS.git",

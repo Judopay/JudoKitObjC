@@ -1,3 +1,3 @@
-[submodule "JudoShield"]
-	path = JudoShield
-	url = https://github.com/JudoPay/JudoShield.git
+[submodule "DeviceDNA"]
+	path = DeviceDNA
+	url = https://github.com/JudoPay/DeviceDNA-iOS.git

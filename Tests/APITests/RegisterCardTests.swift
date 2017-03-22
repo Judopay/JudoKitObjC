@@ -28,12 +28,10 @@ import CoreLocation
 
 class RegisterCardTests: JudoTestCase {
     
-    
     func testRegisterCard() {
         let payment = judo.registerCard(withJudoId: myJudoId, amount: nil, reference: validReference)
         XCTAssertNotNil(payment)
     }
-    
     
     func testJudoMakeValidRegisterCard() {
         // Given I have a Register Card
@@ -60,6 +58,30 @@ class RegisterCardTests: JudoTestCase {
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
+    func testJudoMakeValidRegisterCardWithDeviceSignals() {
+        // Given I have a Register Card
+        let payment = judo.registerCard(withJudoId: myJudoId, amount: nil, reference: validReference)
+        
+        // When I provide all the required fields
+        payment.card = validVisaTestCard
+        
+        // Then I should be able to register a card
+        let expectation = self.expectation(description: "payment expectation")
+        
+        judo.send(withCompletion: payment, completion: { (response, error) in
+            if let error = error {
+                XCTFail("api call failed with error: \(error)")
+            }
+            XCTAssertNotNil(response)
+            XCTAssertNotNil(response?.items?.first)
+            expectation.fulfill()
+        })
+        
+        XCTAssertNotNil(payment)
+        XCTAssertEqual(payment.judoId, myJudoId)
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
     
     func testJudoMakePaymentWithoutReference() {
         // Given I have a Register Card

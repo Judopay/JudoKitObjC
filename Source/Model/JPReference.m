@@ -47,6 +47,15 @@
     return self;
 }
 
+- (instancetype)initWithConsumerReference:(NSString *)ref paymentReference:(NSString *)paymentReference {
+    self = [super init];
+    if (self) {
+        self.paymentReference = paymentReference;
+        self.consumerReference = ref;
+    }
+    return self;
+}
+
 + (NSString *)generatePaymentReference {
     static NSDateFormatter *dateFormatter;
     static dispatch_once_t onceToken;
