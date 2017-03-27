@@ -143,7 +143,7 @@
 
 - (CGFloat)inputFieldHeight {
     if (_inputFieldHeight == 0) {
-        _inputFieldHeight = 48;
+        _inputFieldHeight = 68;
     }
     return _inputFieldHeight;
 }
@@ -259,7 +259,7 @@
 }
 
 - (UIColor *)judoInputFieldBackgroundColor {
-    return _judoInputFieldBackgroundColor? _judoInputFieldBackgroundColor : [UIColor whiteColor];
+    return _judoInputFieldBackgroundColor? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
 @end

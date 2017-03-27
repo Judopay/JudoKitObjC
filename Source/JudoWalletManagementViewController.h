@@ -1,5 +1,5 @@
 //
-//  HintLabel.h
+//  JudoWalletManagementViewController.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -24,57 +24,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPTheme;
+#import "JPTheme.h"
+#include "JPWalletDelegate.h"
+#import "JudoWallet.h"
 
-/**
- *  Label that sits below the payment entry form, showing alerts and hints
- */
-@interface HintLabel : UILabel
+@interface JudoWalletManagementViewController : UIViewController
 
-/**
- *  The hint text if a hint is being shown
- */
-@property (nonatomic, strong) NSAttributedString *hintText;
-
-/**
- *  The alert text if an alert occured
- */
-@property (nonatomic, strong) NSAttributedString *alertText;
-
-/**
- *  will return true if any of the texts is set
- */
-@property (nonatomic, assign, readonly) BOOL isActive;
-
-/**
- *  the current theme
- */
-@property (nonatomic, strong) JPTheme *theme;
-
-
-/**
- *  Makes the hint text visible in case there is no alert text occupying the space
- *
- *  @param hint The hint text string to show
- */
-- (void)showHint:(NSString *)hint;
-
-/**
- *  Hide the currently visible hint text and show the alert text if available
- */
-- (void)hideHint;
-
-
-/**
- *  Makes the alert text visible and overrides the hint text if it has been previously set and visible at the current time
- *
- *  @param alert The alert text string to show
- */
-- (void)showAlert:(NSString *)alert;
-
-/**
- *  Hide the currently visible alert text and show the hint text if available
- */
-- (void)hideAlert;
+- (nonnull instancetype)initWithJudoWallet:(nonnull JudoWallet *)judoWalletSession;
 
 @end

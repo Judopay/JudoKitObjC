@@ -49,8 +49,6 @@
 		3B4EB4021C982A25006265A0 /* VoidTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */; };
 		3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */; };
-		3B53629A1C7CBD7000CEBAE2 /* HintLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362981C7CBD7000CEBAE2 /* HintLabel.h */; };
-		3B53629B1C7CBD7000CEBAE2 /* HintLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362991C7CBD7000CEBAE2 /* HintLabel.m */; };
 		3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */; };
 		3B5362A31C7CBD9000CEBAE2 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */; };
 		3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */; };
@@ -139,6 +137,22 @@
 		3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B678BC81C735AB80001DC2F /* JudoKit.m */; };
 		3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */; };
 		3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */; };
+		700A8EAB1E4339CE0059F0C5 /* WalletRepositoryProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EA91E4339CE0059F0C5 /* WalletRepositoryProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EAF1E433A8B0059F0C5 /* WalletCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EAD1E433A8B0059F0C5 /* WalletCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EB01E433A8B0059F0C5 /* WalletCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EAE1E433A8B0059F0C5 /* WalletCard.m */; };
+		700A8EB31E434C000059F0C5 /* WalletService.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EB11E434C000059F0C5 /* WalletService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EB41E434C000059F0C5 /* WalletService.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EB21E434C000059F0C5 /* WalletService.m */; };
+		700A8EB71E43573A0059F0C5 /* InMemoryWalletRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EB81E43573A0059F0C5 /* InMemoryWalletRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */; };
+		700A8EBB1E4390790059F0C5 /* WalletServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A8EB91E4390750059F0C5 /* WalletServiceTests.swift */; };
+		700A8ECC1E489DF50059F0C5 /* JudoWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8ECA1E489DF50059F0C5 /* JudoWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8ECD1E489DF50059F0C5 /* JudoWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ECB1E489DF50059F0C5 /* JudoWallet.m */; };
+		700A8ED11E48BFC10059F0C5 /* JudoWalletManagementViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8ECF1E48BFC10059F0C5 /* JudoWalletManagementViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8ED21E48BFC10059F0C5 /* JudoWalletManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED01E48BFC10059F0C5 /* JudoWalletManagementViewController.m */; };
+		700A8ED51E48C20D0059F0C5 /* WalletManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED31E48C2040059F0C5 /* WalletManagementTests.swift */; };
+		700A8ED61E48C3A30059F0C5 /* JPWalletDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EDA1E49E1600059F0C5 /* NSError+JudoWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		700A8EDB1E49E1600059F0C5 /* NSError+JudoWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -231,8 +245,6 @@
 		3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidTransactionTests.swift; sourceTree = "<group>"; };
 		3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JudoPayViewController.h; path = Controller/JudoPayViewController.h; sourceTree = "<group>"; };
 		3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JudoPayViewController.m; path = Controller/JudoPayViewController.m; sourceTree = "<group>"; };
-		3B5362981C7CBD7000CEBAE2 /* HintLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintLabel.h; path = View/HintLabel.h; sourceTree = "<group>"; };
-		3B5362991C7CBD7000CEBAE2 /* HintLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HintLabel.m; path = View/HintLabel.m; sourceTree = "<group>"; };
 		3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = View/LoadingView.h; sourceTree = "<group>"; };
 		3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = View/LoadingView.m; sourceTree = "<group>"; };
 		3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JP3DSWebView.h; path = View/JP3DSWebView.h; sourceTree = "<group>"; };
@@ -328,6 +340,22 @@
 		3BD353CA1C77803F0045658A /* JPCardDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCardDetails.m; path = Model/JPCardDetails.m; sourceTree = "<group>"; };
 		3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoKitUIDedupTests.swift; sourceTree = "<group>"; };
 		3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DedupTestCase.swift; sourceTree = "<group>"; };
+		700A8EA91E4339CE0059F0C5 /* WalletRepositoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletRepositoryProtocol.h; sourceTree = "<group>"; };
+		700A8EAD1E433A8B0059F0C5 /* WalletCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletCard.h; sourceTree = "<group>"; };
+		700A8EAE1E433A8B0059F0C5 /* WalletCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletCard.m; sourceTree = "<group>"; };
+		700A8EB11E434C000059F0C5 /* WalletService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletService.h; sourceTree = "<group>"; };
+		700A8EB21E434C000059F0C5 /* WalletService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletService.m; sourceTree = "<group>"; };
+		700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InMemoryWalletRepository.h; sourceTree = "<group>"; };
+		700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InMemoryWalletRepository.m; sourceTree = "<group>"; };
+		700A8EB91E4390750059F0C5 /* WalletServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletServiceTests.swift; sourceTree = "<group>"; };
+		700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPWalletDelegate.h; sourceTree = "<group>"; };
+		700A8ECA1E489DF50059F0C5 /* JudoWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudoWallet.h; sourceTree = "<group>"; };
+		700A8ECB1E489DF50059F0C5 /* JudoWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudoWallet.m; sourceTree = "<group>"; };
+		700A8ECF1E48BFC10059F0C5 /* JudoWalletManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudoWalletManagementViewController.h; sourceTree = "<group>"; };
+		700A8ED01E48BFC10059F0C5 /* JudoWalletManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudoWalletManagementViewController.m; sourceTree = "<group>"; };
+		700A8ED31E48C2040059F0C5 /* WalletManagementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletManagementTests.swift; sourceTree = "<group>"; };
+		700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+JudoWallet.h"; sourceTree = "<group>"; };
+		700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+JudoWallet.m"; sourceTree = "<group>"; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -414,6 +442,7 @@
 				3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */,
 				3B4EB3B91C981EA7006265A0 /* Info.plist */,
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
+				700A8ED31E48C2040059F0C5 /* WalletManagementTests.swift */,
 			);
 			name = UITests;
 			path = JudoKitObjCExampleAppUITests;
@@ -424,6 +453,8 @@
 			children = (
 				3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */,
 				3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */,
+				700A8ECF1E48BFC10059F0C5 /* JudoWalletManagementViewController.h */,
+				700A8ED01E48BFC10059F0C5 /* JudoWalletManagementViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -478,6 +509,7 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				700A8EA71E43390B0059F0C5 /* Wallet */,
 				3B678B711C6CE6190001DC2F /* API */,
 				3B678B701C6CE5F70001DC2F /* Model */,
 				3B678B741C6CE68D0001DC2F /* View */,
@@ -488,6 +520,8 @@
 				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
+				700A8ECA1E489DF50059F0C5 /* JudoWallet.h */,
+				700A8ECB1E489DF50059F0C5 /* JudoWallet.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -495,7 +529,6 @@
 		3B678B641C6CE5190001DC2F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				701050B81E1E90C70001ED87 /* DeviceDNA */,
 				3B9711831C7618C000E9A347 /* APITests */,
 				3B678B651C6CE5190001DC2F /* JudoKitObjCTests.m */,
 				3B678B671C6CE5190001DC2F /* Info.plist */,
@@ -576,6 +609,8 @@
 				3B6991621C8F26FE006ED1FB /* NSTimer+Blocks.m */,
 				3B4EB38F1C981511006265A0 /* UIColor+Judo.h */,
 				3B4EB3901C981511006265A0 /* UIColor+Judo.m */,
+				700A8ED81E49E1600059F0C5 /* NSError+JudoWallet.h */,
+				700A8ED91E49E1600059F0C5 /* NSError+JudoWallet.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -586,8 +621,6 @@
 				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
 				3B5AFC0B1C90925300DABB4C /* CardLogoView.h */,
 				3B5AFC0C1C90925300DABB4C /* CardLogoView.m */,
-				3B5362981C7CBD7000CEBAE2 /* HintLabel.h */,
-				3B5362991C7CBD7000CEBAE2 /* HintLabel.m */,
 				3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */,
 				3B5362A51C7CBE4A00CEBAE2 /* JP3DSWebView.m */,
 				3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */,
@@ -608,6 +641,7 @@
 		3B9711831C7618C000E9A347 /* APITests */ = {
 			isa = PBXGroup;
 			children = (
+				700A8EB91E4390750059F0C5 /* WalletServiceTests.swift */,
 				3B4EB3E51C982A25006265A0 /* AuthenticationTests.swift */,
 				3B4EB3E61C982A25006265A0 /* CollectionTests.swift */,
 				3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */,
@@ -630,12 +664,19 @@
 			path = APITests;
 			sourceTree = "<group>";
 		};
-		701050B81E1E90C70001ED87 /* DeviceDNA */ = {
+		700A8EA71E43390B0059F0C5 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				700A8EA91E4339CE0059F0C5 /* WalletRepositoryProtocol.h */,
+				700A8EAD1E433A8B0059F0C5 /* WalletCard.h */,
+				700A8EAE1E433A8B0059F0C5 /* WalletCard.m */,
+				700A8EB11E434C000059F0C5 /* WalletService.h */,
+				700A8EB21E434C000059F0C5 /* WalletService.m */,
+				700A8EB51E43573A0059F0C5 /* InMemoryWalletRepository.h */,
+				700A8EB61E43573A0059F0C5 /* InMemoryWalletRepository.m */,
+				700A8EC91E489CA90059F0C5 /* JPWalletDelegate.h */,
 			);
-			name = DeviceDNA;
-			path = ..;
+			name = Wallet;
 			sourceTree = "<group>";
 		};
 		701050B91E1E90D70001ED87 /* DeviceDNA */ = {
@@ -655,12 +696,15 @@
 			files = (
 				3B678BA91C7327040001DC2F /* JPCollection.h in Headers */,
 				3B678B7F1C6DE0FA0001DC2F /* JPPagination.h in Headers */,
+				700A8ED61E48C3A30059F0C5 /* JPWalletDelegate.h in Headers */,
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
+				700A8EAB1E4339CE0059F0C5 /* WalletRepositoryProtocol.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
-				3B53629A1C7CBD7000CEBAE2 /* HintLabel.h in Headers */,
 				3B678B5A1C6CE5190001DC2F /* JudoKitObjC.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
+				700A8ED11E48BFC10059F0C5 /* JudoWalletManagementViewController.h in Headers */,
+				700A8EB31E434C000059F0C5 /* WalletService.h in Headers */,
 				3B678B951C6E282B0001DC2F /* JPCard.h in Headers */,
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
@@ -677,8 +721,10 @@
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				3B678BA51C7326F10001DC2F /* JPRegisterCard.h in Headers */,
 				3B678B871C6DF6130001DC2F /* JPTransaction.h in Headers */,
+				700A8EDA1E49E1600059F0C5 /* NSError+JudoWallet.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
+				700A8EAF1E433A8B0059F0C5 /* WalletCard.h in Headers */,
 				3B704A921C89F1A800376773 /* CardInputField.h in Headers */,
 				3B678BB11C7327270001DC2F /* JPVoid.h in Headers */,
 				3B678BB51C7327410001DC2F /* JPReceipt.h in Headers */,
@@ -691,7 +737,9 @@
 				3B678BA11C7326D30001DC2F /* JPPreAuth.h in Headers */,
 				3B6912D11C93179100367660 /* NSArray+Prefix.h in Headers */,
 				3B6991631C8F26FE006ED1FB /* NSTimer+Blocks.h in Headers */,
+				700A8EB71E43573A0059F0C5 /* InMemoryWalletRepository.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
+				700A8ECC1E489DF50059F0C5 /* JudoWallet.h in Headers */,
 				3B678B7B1C6DD8800001DC2F /* NSError+Judo.h in Headers */,
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
 				3B678B771C6CE7770001DC2F /* JPSession.h in Headers */,
@@ -804,6 +852,7 @@
 					};
 					3B678B551C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 					};
 					3B678B5F1C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
@@ -923,6 +972,7 @@
 				3B78361B1CA1638900A7DCDE /* JudoKitMaestroTests.swift in Sources */,
 				3B78361A1CA1638900A7DCDE /* JudoKitAVSPaymentTests.swift in Sources */,
 				3B7836191CA1638900A7DCDE /* JudoKit3DSPaymentTests.swift in Sources */,
+				700A8ED51E48C20D0059F0C5 /* WalletManagementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,11 +988,12 @@
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
+				700A8EB41E434C000059F0C5 /* WalletService.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
-				3B53629B1C7CBD7000CEBAE2 /* HintLabel.m in Sources */,
+				700A8ECD1E489DF50059F0C5 /* JudoWallet.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
@@ -955,8 +1006,11 @@
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
 				3B678B881C6DF6130001DC2F /* JPTransaction.m in Sources */,
 				3B5362A31C7CBD9000CEBAE2 /* LoadingView.m in Sources */,
+				700A8ED21E48BFC10059F0C5 /* JudoWalletManagementViewController.m in Sources */,
 				3B704AA31C89F1E800376773 /* BillingCountryInputField.m in Sources */,
+				700A8EB81E43573A0059F0C5 /* InMemoryWalletRepository.m in Sources */,
 				3B678B781C6CE7770001DC2F /* JPSession.m in Sources */,
+				700A8EDB1E49E1600059F0C5 /* NSError+JudoWallet.m in Sources */,
 				3B704A931C89F1A800376773 /* CardInputField.m in Sources */,
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
@@ -967,6 +1021,7 @@
 				3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
+				700A8EB01E433A8B0059F0C5 /* WalletCard.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
 				3B6991571C8DD85B006ED1FB /* JPTheme.m in Sources */,
@@ -995,6 +1050,7 @@
 				3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */,
 				3B4EB3FD1C982A25006265A0 /* RegisterCardTests.swift in Sources */,
 				3B4EB3F61C982A25006265A0 /* JudoTestCase.swift in Sources */,
+				700A8EBB1E4390790059F0C5 /* WalletServiceTests.swift in Sources */,
 				3B4EB3F81C982A25006265A0 /* ListTests.swift in Sources */,
 				3B4EB3F91C982A25006265A0 /* PaymentTests.swift in Sources */,
 				3B4EB4001C982A25006265A0 /* TokenPreAuthTests.swift in Sources */,
@@ -1231,6 +1287,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1256,6 +1313,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
