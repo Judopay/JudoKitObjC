@@ -144,6 +144,14 @@
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
 		70F102E51CB281AB006EEC48 /* BillingCountry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5AFC0F1C9184F700DABB4C /* BillingCountry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BBDB1F0D1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */; };
+		BBDB1F0E1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */; };
+		BBDB1F0F1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */; };
+		BBDB1F101E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */; };
+		BBDB1F111E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */; };
+		BBDB1F121E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */; };
+		BBDB1F131E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */; };
+		BBDB1F141E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */; };
 		DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9711991C761B9700E9A347 /* JPAddress.m */; };
 /* End PBXBuildFile section */
 
@@ -331,6 +339,8 @@
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
+		BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = gw1.judopay.com.cer; sourceTree = "<group>"; };
+		BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "judopay-sandbox.com.cer"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +484,7 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BBDB1EF81E9505C200AD0A95 /* Certs */,
 				3B678B711C6CE6190001DC2F /* API */,
 				3B678B701C6CE5F70001DC2F /* Model */,
 				3B678B741C6CE68D0001DC2F /* View */,
@@ -640,6 +651,15 @@
 			name = DeviceDNA;
 			sourceTree = "<group>";
 		};
+		BBDB1EF81E9505C200AD0A95 /* Certs */ = {
+			isa = PBXGroup;
+			children = (
+				BBDB1F0B1E9519E000AD0A95 /* gw1.judopay.com.cer */,
+				BBDB1F0C1E9519E000AD0A95 /* judopay-sandbox.com.cer */,
+			);
+			name = Certs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -783,7 +803,7 @@
 				TargetAttributes = {
 					3B4EB3971C981EA7006265A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 95V535S6TQ;
+						DevelopmentTeam = 2H6XMULB5Z;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
 								enabled = 0;
@@ -836,8 +856,10 @@
 			files = (
 				3B4EB3AD1C981EA7006265A0 /* LaunchScreen.storyboard in Resources */,
 				3B4EB3AA1C981EA7006265A0 /* Assets.xcassets in Resources */,
+				BBDB1F131E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */,
 				3B4EB3A81C981EA7006265A0 /* Main.storyboard in Resources */,
 				3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */,
+				BBDB1F0F1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +867,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBDB1F141E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */,
+				BBDB1F101E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +876,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBDB1F111E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */,
+				BBDB1F0D1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +885,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBDB1F121E9519E000AD0A95 /* judopay-sandbox.com.cer in Resources */,
+				BBDB1F0E1E9519E000AD0A95 /* gw1.judopay.com.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,6 +1068,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2H6XMULB5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
@@ -1060,6 +1089,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2H6XMULB5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",

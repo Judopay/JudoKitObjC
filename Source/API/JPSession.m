@@ -29,7 +29,10 @@
 #import "NSError+Judo.h"
 #import "JudoKit.h"
 
-@interface JPSession ()
+#define SUNBOX_CERT @"judopay-sandbox.com"
+#define RELEASE_CERT @"gw1.judopay.com"
+
+@interface JPSession () <NSURLSessionDelegate>
 
 @property (nonatomic, strong, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -138,7 +141,9 @@
 }
 
 - (NSURLSessionDataTask *)task:(NSURLRequest *)request completion:(JudoCompletionBlock)completion {
-    return [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+    return [urlSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         // check if an error occurred
         if (error) {
@@ -226,6 +231,37 @@
     }];
 }
 
+#pragma mark - URLSession SSL pinning
+
+-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    
+    // Get remote certificate
+    SecTrustRef serverTrust = challenge.protectionSpace.serverTrust;
+    SecCertificateRef certificate = SecTrustGetCertificateAtIndex(serverTrust, 0);
+    
+    // Set SSL policies for domain name check
+    NSMutableArray *policies = [NSMutableArray array];
+    [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)challenge.protectionSpace.host)];
+    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
+    
+    // Evaluate server certificate
+    SecTrustResultType result;
+    SecTrustEvaluate(serverTrust, &result);
+    BOOL certificateIsValid = (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+    
+    // Get local and remote cert data
+    NSData *remoteCertificateData = CFBridgingRelease(SecCertificateCopyData(certificate));
+    NSData *localCertificate = [NSData dataWithContentsOfFile:[self pathToCert]];
+    
+    // The pinnning check
+    if ([remoteCertificateData isEqualToData:localCertificate] && certificateIsValid) {
+        NSURLCredential *credential = [NSURLCredential credentialForTrust:serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+    } else {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, NULL);
+    }
+}
+
 #pragma mark - getters and setters
 
 - (NSString *)endpoint {
@@ -233,6 +269,14 @@
         return @"https://gw1.judopay-sandbox.com/";
     } else {
         return @"https://gw1.judopay.com/";
+    }
+}
+
+- (NSString *)pathToCert {
+    if (self.sandboxed) {
+        return [[NSBundle mainBundle]pathForResource:SUNBOX_CERT ofType:@"cer"];
+    } else {
+        return [[NSBundle mainBundle]pathForResource:RELEASE_CERT ofType:@"cer"];
     }
 }
 
