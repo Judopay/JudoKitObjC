@@ -6,25 +6,29 @@
 
 # Judopay Objective-C SDK
 
-The Judopay Objective-C SDK is a framework for integrating easy, fast and secure payments inside your app with Judopay. It contains an exhaustive in-app payments and security toolkit that makes integration simple and quick. If you are integrating your app in swift, we highly recommend using [JudoKit](https://github.com/Judopay/JudoKit).
+The Judopay Objective-C SDK is a framework for integrating easy, fast and secure payments inside your app with [Judopay](https://www.judopay.com/). It contains an exhaustive in-app payments and security toolkit that makes integration simple and quick. If you are integrating your app in Swift, we highly recommend using [JudoKit](https://github.com/Judopay/JudoKit).
 
 Use our UI components for a seamless user experience for card data capture. Minimise your [PCI scope](https://www.pcisecuritystandards.org/pci_security/completing_self_assessment) with a UI that can be themed or customised to match the look and feel of your app.
 
 ## Requirements
 
-- Versions >= 7.0 require Xcode 9 and Swift 4.
-- Versions >= 6.2.5 require Xcode 8 and Swift 3.
-- Version 6.2.4 is the last version to be support Xcode 7.3.1 and Swift 2.2.
+Version 8.0+ requires Xcode 10 and Swift 4.2
+
+Version 7.0+ requires Xcode 9 and Swift 4
+
+Version 6.2.5+ requires Xcode 8 and Swift 3
+
+Version 6.2.4 is the last version to support Xcode 7.3.1 and Swift 2.2
 
 ## Getting started
 
 #### 1. Integration
 
-Add `#import <JudoKitObjC/JudoKitObjC.h>` to the top of the file where you want to use the SDK.
+If your integration is based on **Carthage**, then visit [our GitHub Wiki](https://github.com/JudoPay/JudoKitObjC/wiki/Carthage).
 
-If you are integrating using Cocoapods, follow the steps below (if your integration is based on Carthage, then visit https://github.com/JudoPay/JudoKitObjC/wiki/Carthage.
+If you are integrating using **CocoaPods**, follow the steps below.
 
-- You can install CocoaPods with the following command:
+- You can install CocoaPods using [Homebrew](https://brew.sh/) or with the following command:
 
 ```bash
 $ gem install cocoapods
@@ -35,16 +39,17 @@ $ gem install cocoapods
 ```ruby
 platform :ios, '10.0'
 
-pod 'JudoKitObjC', '~> 7.1'
+pod 'JudoKitObjC', '~> 8.0'
 ```
 
-- Then, run the following command:
+- Then run the following command:
 
 ```bash
 $ pod install
 ```
 
 - Please make sure to always **use the newly generated `.xcworkspace`** file not the projects `.xcodeproj` file.
+
 - In your Xcode environment, go to your `Project Navigator` (blue project icon) called `Pods`, select the `JudoKitObjC` target and open the tab called `Build Phases`.
 - Add a new `Run Script Phase` and drag it above the `Compile Sources` build phase.
 - In the shell script, paste the following line:
@@ -55,14 +60,16 @@ sh "${PODS_ROOT}/DeviceDNA/Framework/strip-frameworks-cocoapods.sh"
 
 #### 2. Setup
 
-You can set your token and secret here when initializing the session:
+Add `#import <JudoKitObjC/JudoKitObjC.h>` to the top of the file where you want to use the SDK.
+
+You need to set your token and secret when initializing JudoKitObjC:
 
 ```objc
 // initialize the SDK by setting it up with a token and a secret
 self.judoKitSession = [[JudoKit alloc] initWithToken:token secret:secret];
 ```
 
-To instruct the SDK to communicate with the Sandbox, include the following lines in the ViewController where the payment should be initiated:
+To instruct the SDK to communicate with the Sandbox environment, include the following lines in the ViewController where the payment should be initiated:
 
 ```objc
 // setting the SDK to Sandbox Mode - once this is set, the SDK wil stay in Sandbox mode until the process is killed
@@ -92,4 +99,4 @@ When you are ready to go live you can remove this line.
 
 ## Next steps
 
-Judo's Objective-C SDK supports a range of customization options. For more information on using Judopay for iOS see our [wiki documentation](https://github.com/JudoPay/JudoKitObjC/wiki/) or [API reference](https://judopay.github.io/JudoKitObjC).
+Judopay's Objective-C SDK supports a range of customization options. For more information on using Judopay for iOS see our [wiki documentation](https://github.com/JudoPay/JudoKitObjC/wiki/) or [API reference](https://judopay.github.io/JudoKitObjC).

@@ -128,36 +128,36 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [super textFieldDidChangeValue:textField];
-    
+
     [self didChangeInputText];
-    
-    [self.delegate judoPayInput:self didValidate:self.isValid];
-    
-    NSUInteger characterCount = textField.text.length;
-    
-    BOOL valid = YES;
-    
-    switch (self.billingCountry) {
-        case BillingCountryUK:
-            if (characterCount >= 8) {
-                valid = NO;
-            }
-            break;
-        case BillingCountryCanada:
-            if (characterCount >= 6) {
-                valid = NO;
-            }
-            break;
-        default:
-            break;
-    }
-    
+
+    BOOL valid = [self isValid];
+
+    [self.delegate judoPayInput:self didValidate:valid];
+
     if (!valid) {
-        [self errorAnimation:YES];
-        [self.delegate postCodeInputField:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:[NSString stringWithFormat:@"Check %@", [self descriptionForBillingCountry:self.billingCountry]]]];
-        return; // BAIL
+        NSUInteger characterCount = textField.text.length;
+
+        switch (self.billingCountry) {
+            case BillingCountryUK:
+                if (characterCount >= 7) {
+                    [self showError];
+                }
+                break;
+            case BillingCountryCanada:
+                if (characterCount >= 6) {
+                    [self showError];
+                }
+                break;
+            default:
+                break;
+        }
     }
-    
+}
+
+- (void)showError {
+    [self errorAnimation:YES];
+    [self.delegate postCodeInputField:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:[NSString stringWithFormat:@"Check %@", [self descriptionForBillingCountry:self.billingCountry]]]];
 }
 
 - (NSString *)title {

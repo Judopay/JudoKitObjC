@@ -56,6 +56,23 @@
         if (dictionary[@"town"]) {
             self.town = dictionary[@"town"];
         }
+        if (dictionary[@"countryCode"]) {
+            int countryCode = [dictionary[@"countryCode"] intValue];
+            switch (countryCode) {
+                case 826:
+                    self.billingCountry = @"UK";
+                    break;
+                case 124:
+                    self.billingCountry = @"Canada";
+                    break;
+                case 840:
+                    self.billingCountry = @"USA";
+                    break;
+                default:
+                    self.billingCountry = @"Other";
+                    break;
+            }
+        }
     }
     return self;
 }
@@ -76,6 +93,15 @@
     }
     if (self.town) {
         dictionary[@"town"] = self.town;
+    }
+    if (self.billingCountry) {
+        if ([self.billingCountry isEqual:@"UK"]) {
+            dictionary[@"countryCode"] = [NSNumber numberWithInt:826];
+        } else if ([self.billingCountry isEqual:@"Canada"]) {
+            dictionary[@"countryCode"] = [NSNumber numberWithInt:124];
+        } else if ([self.billingCountry isEqual:@"USA"]) {
+            dictionary[@"countryCode"] = [NSNumber numberWithInt:840];
+        }
     }
     return [dictionary copy];
 }

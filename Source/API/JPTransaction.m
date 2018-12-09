@@ -237,21 +237,12 @@
 
 - (void)setPkPayment:(PKPayment *)pkPayment error:(NSError *__autoreleasing *)error {
     _pkPayment = pkPayment;
-    
+
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
-    
-    if (pkPayment.token.paymentMethod) {
-        tokenDict[@"paymentInstrumentName"] = pkPayment.token.paymentMethod.displayName;
-        tokenDict[@"paymentNetwork"] = pkPayment.token.paymentMethod.network;
-    } else {
-        tokenDict[@"paymentInstrumentName"] = pkPayment.token.paymentInstrumentName;
-        tokenDict[@"paymentNetwork"] = pkPayment.token.paymentNetwork;
-    }
-    
-    tokenDict[@"paymentData"] = [NSJSONSerialization JSONObjectWithData:pkPayment.token.paymentData
-                                                                options:NSJSONReadingAllowFragments
-                                                                  error:error];
-    
+    tokenDict[@"paymentInstrumentName"] = pkPayment.token.paymentMethod.displayName;
+    tokenDict[@"paymentNetwork"] = pkPayment.token.paymentMethod.network;
+    tokenDict[@"paymentData"] = [NSJSONSerialization JSONObjectWithData:pkPayment.token.paymentData options:NSJSONReadingAllowFragments error:error];
+
     self.parameters[@"pkPayment"] = @{@"token":tokenDict};
 }
 

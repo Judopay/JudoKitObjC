@@ -241,6 +241,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                 [self dismissViewControllerAnimated:YES completion:nil];
                 return; // BAIL
             }
+            NSLog(@"Error: %@", error.description);
             self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
             [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
             [self dismissViewControllerAnimated:YES completion:nil];
