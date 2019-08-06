@@ -482,28 +482,32 @@
 
 - (void)paymentWithApplePayWithConfiguration:(ApplePayConfiguration *)configuration {
     
-    PKPaymentRequest *paymentRequest = [PKPaymentRequest new];
-    paymentRequest.merchantIdentifier = configuration.merchantId;
-    paymentRequest.countryCode = configuration.country;
-    paymentRequest.currencyCode = configuration.amount.currency;
-    
-    // TODO: Figure out a way of implementing networks
-    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkVisa, PKPaymentNetworkMasterCard];
-    paymentRequest.merchantCapabilities = PKMerchantCapability3DS;
-    
-    
-    paymentRequest.paymentSummaryItems = @[[PKPaymentSummaryItem summaryItemWithLabel:@"item"
-                                                                               amount: [NSDecimalNumber decimalNumberWithString:@"0.1"]]];
-    
+    PKPaymentRequest *paymentRequest = [configuration generatePaymentRequest];
     PKPaymentAuthorizationViewController *viewController;
-    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
+    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    // TODO: Handle PassKit delegate methods
-    // viewController.delegate = self;
+    viewController.delegate = self;
     
     [self.topMostViewController presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                       didAuthorizePayment:(PKPayment *)payment
+                                   handler:(void (^)(PKPaymentAuthorizationResult * _Nonnull))completion  API_AVAILABLE(ios(11.0)){
     
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                       didAuthorizePayment:(PKPayment *)payment
+                                completion:(void (^)(PKPaymentAuthorizationStatus status))completion {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    completion(PKPaymentAuthorizationStatusSuccess);
 }
 
 @end

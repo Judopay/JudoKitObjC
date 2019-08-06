@@ -432,10 +432,10 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 
 @end
 
-@interface JudoKit (ApplePay)
+@interface JudoKit (ApplePay) <PKPaymentAuthorizationViewControllerDelegate>
 
 /**
- *  This methods allows for payment using Apple Pay
+ *  This method will request and process Apple Pay payments.
  *
  *  @param configuration    An ApplePayConfiguration object that sets Apple Pay payment properties.
  */

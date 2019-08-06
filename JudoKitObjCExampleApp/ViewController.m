@@ -63,7 +63,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 @property BOOL isApplePayPayment;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) ApplePayConfiguration *applePayConfiguration;
 
 @end
 
@@ -91,14 +90,29 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = self.tableFooterView;
+}
+
+- (ApplePayConfiguration *)applePayConfiguration {
     
-    // Setting up Apple Pay Configurations
-    JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
-    self.applePayConfiguration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
-                                                                        amount:amount
-                                                                     reference:self.reference
-                                                                    merchantId:merchantId
-                                                                       country:@"GB"];
+    NSArray<PKPaymentSummaryItem *> *paymentSummaryItems = @[
+                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 1"
+                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.01 $"]],
+                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 2"
+                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.02 $"]],
+                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 3"
+                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.03 $"]],
+                                     [PKPaymentSummaryItem summaryItemWithLabel:@"John Doe"
+                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.06 $"]]
+                                     ];
+    
+    ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
+                                                                               reference:self.reference
+                                                                              merchantId:merchantId
+                                                                                currency:@"GBP"
+                                                                             countryCode:@"GB"
+                                                                     paymentSummaryItems:paymentSummaryItems];
+    
+    return configuration;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
