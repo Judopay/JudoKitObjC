@@ -63,6 +63,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 @property BOOL isApplePayPayment;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) ApplePayConfiguration *applePayConfiguration;
 
 @end
 
@@ -90,6 +91,14 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = self.tableFooterView;
+    
+    // Setting up Apple Pay Configurations
+    JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
+    self.applePayConfiguration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
+                                                                        amount:amount
+                                                                     reference:self.reference
+                                                                    merchantId:merchantId
+                                                                       country:@"GB"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -459,46 +468,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 
 - (void)initApplePaySleve:(BOOL)isPayment {
     self.isApplePayPayment = isPayment;
-    
-    PKPaymentRequest *paymentRequest = [PKPaymentRequest new];
-    /*
-     Our merchant identifier needs to match what we previously set up in
-     the Capabilities window (or the developer portal).
-     */
-    paymentRequest.merchantIdentifier = @"<#YOUR-MERCHANT-ID#>";
-    
-    /*
-     Both country code and currency code are standard ISO formats. Country
-     should be the region you will process the payment in. Currency should
-     be the currency you would like to charge in.
-     */
-    paymentRequest.countryCode = @"GB";
-    paymentRequest.currencyCode = @"GBP";
-    
-    // The networks we are able to accept.
-    paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
-    
-    /*
-     we at Judo support 3DS
-     */
-    paymentRequest.merchantCapabilities = PKMerchantCapability3DS;
-    
-    /*
-     An array of `PKPaymentSummaryItems` that we'd like to display on the
-     sheet.
-     */
-    NSMutableArray *items = [NSMutableArray new];
-    [items addObject:[PKPaymentSummaryItem summaryItemWithLabel:@"Fish" amount:[NSDecimalNumber decimalNumberWithString:@"0.01 £"]]];
-    [items addObject:[PKPaymentSummaryItem summaryItemWithLabel:@"Chips" amount:[NSDecimalNumber decimalNumberWithString:@"0.01 £"]]];
-    [items addObject:[PKPaymentSummaryItem summaryItemWithLabel:@"#1 Fish and Chips" amount:[NSDecimalNumber decimalNumberWithString:@"0.02 £"]]];
-    
-    paymentRequest.paymentSummaryItems = [items copy];
-    
-    // Display the view controller.
-    PKPaymentAuthorizationViewController *viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
-    viewController.delegate = self;
-    
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self.judoKitSession paymentWithApplePayWithConfiguration: self.applePayConfiguration];
 }
 
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus status))completion {

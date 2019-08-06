@@ -28,6 +28,7 @@
 #import "JPSession.h"
 #import "JudoPaymentMethodsViewController.h"
 #import "PaymentMethods.h"
+#import "ApplePayConfiguration.h"
 
 static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 
@@ -428,5 +429,16 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                                        judoId:(nonnull NSString *)judoId
                                        amount:(nullable JPAmount *)amount
                                     reference:(nonnull JPReference *)reference;
+
+@end
+
+@interface JudoKit (ApplePay)
+
+/**
+ *  This methods allows for payment using Apple Pay
+ *
+ *  @param configuration    An ApplePayConfiguration object that sets Apple Pay payment properties.
+ */
+- (void)paymentWithApplePayWithConfiguration: (ApplePayConfiguration *)configuration;
 
 @end

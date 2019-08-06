@@ -61,3 +61,4 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPVCOResult.h>
 #import <JudoKitObjC/PaymentMethods.h>
 #import <JudoKitObjC/JPEnhancedPaymentDetail.h>
+#import <JudoKitObjC/ApplePayConfiguration.h>
