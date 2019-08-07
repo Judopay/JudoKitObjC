@@ -56,7 +56,10 @@
     return self;
 }
 
+#pragma mark - Helper methods
+
 - (void)setupDefaults {
+    self.transactionType = TransactionTypePayment;
     self.merchantCapabilities = MerchantCapability3DS;
     self.shippingType = ShippingTypeShipping;
     self.returnedContactInfo = ReturnedInfoBillingContacts;

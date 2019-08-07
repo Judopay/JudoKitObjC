@@ -24,6 +24,8 @@
 
 #import "ApplePayWrappers.h"
 
+#pragma mark - PaymentSummaryItem
+
 @implementation PaymentSummaryItem
 
 - (instancetype)initWithLabel:(NSString *)label
@@ -45,6 +47,23 @@
     return [self initWithLabel:label
                         amount:amount
                           type:PaymentSummaryItemTypeFinal];
+}
+
+@end
+
+#pragma mark - PaymentShippingMethod
+
+@implementation PaymentShippingMethod
+
+- (instancetype)initWithIdentifier:(NSString *)identifier
+                         andDetail:(NSString *)detail {
+    
+    if (self = [super init]) {
+        self.identifier = identifier;
+        self.detail = detail;
+    }
+    
+    return self;
 }
 
 @end

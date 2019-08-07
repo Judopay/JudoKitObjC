@@ -67,6 +67,7 @@
 
 @property(nonatomic, strong) ApplePayManager *manager;
 @property(nonatomic, strong) ApplePayConfiguration *configuration;
+@property(nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
 @property(nonatomic, strong) JudoCompletionBlock completionBlock;
 
 @end
@@ -494,36 +495,32 @@
 
 @implementation JudoKit (ApplePay)
 
-//---------------------------------------------------------------------------------
-// MARK - Invoke method with configuration and completion block
-//---------------------------------------------------------------------------------
+#pragma mark - Apple Pay invocation method
 
 - (void)invokeApplePayWithConfiguration:(ApplePayConfiguration *)configuration
                              completion:(JudoCompletionBlock)completion {
     
     self.configuration = configuration;
+    self.configuration.merchantId = @"merchant-com.judopay.JudoKitObjC";
     self.manager = [[ApplePayManager alloc] initWithConfiguration:configuration];
     
-    PKPaymentAuthorizationViewController* viewController;
-    viewController = self.manager.pkPaymentAuthorizationViewController;
-    viewController.delegate = self;
+    self.viewController = self.manager.pkPaymentAuthorizationViewController;
+    
+    self.viewController.delegate = self;
     
     self.completionBlock = completion;
     
-    [self.topMostViewController presentViewController:viewController animated:YES completion:nil];
+    [self.topMostViewController presentViewController:self.viewController animated:YES completion:nil];
 }
 
 
-//---------------------------------------------------------------------------------
-// MARK - Delegate methods
-//---------------------------------------------------------------------------------
+#pragma mark - PKPaymentAuthorizationViewControllerDelegate methods
 
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
-                                completion:(void (^)(PKPaymentAuthorizationStatus status))completion {
+                                completion:(void (^)(PKPaymentAuthorizationStatus))completion {
     
     JPTransaction *transaction;
-    
     
     if (self.configuration.transactionType == TransactionTypePreAuth) {
         transaction = [self preAuthWithJudoId:self.configuration.judoId
@@ -540,10 +537,12 @@
     
     [transaction sendWithCompletion:^(JPResponse * response, NSError * error) {
         
+        //TODO: - TEST THIS SCENARIO
         if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
             response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
         }
         
+        //TODO: - TEST THIS SCENARIO
         if (self.configuration.returnedContactInfo & ReturnedInfoShippingAddress) {
             response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
         }

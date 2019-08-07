@@ -31,15 +31,44 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Object responsible for generating the PKPaymentAuthorizationViewController
+ * based on the ApplePayConfiguration object set at initialization, while also
+ * providing helper methods and getters related to the ApplePay transaction.
+ */
 @interface ApplePayManager : NSObject
 
+/**
+ * Designated initializer
+ *
+ * @param configuration - responsible for configuring the PKPaymentRequest object.
+ */
 - (instancetype)initWithConfiguration:(ApplePayConfiguration *)configuration;
 
+/**
+ * A helper getter that generates a JPAmount object based on the last PaymentSummaryItem element
+ * defined in the ApplePayConfiguration. Needed as a parameter for JPTransaction.
+ */
 - (JPAmount *)jpAmount;
+
+/**
+ * A helper getter that generates a JPReference object based on the consumer reference
+ * defined in the ApplePayConfiguration. Needed as a parameter for JPTransaction.
+ */
 - (JPReference *)jpReference;
+
+/**
+ * A helper method that converts a PKContact object into a ContactInformation object
+ * that is passed into JPResult to give merchants access to either billing or shipping
+ * contact information.
+ */
 - (ContactInformation *)contactInformationFromPaymentContact:(PKContact *)contact;
 
-- (PKPaymentRequest *)pkPaymentRequest;
+/**
+ * The PKPaymentAuthorizationViewController that should pe presented in order to invoke
+ * the ApplePay payment sheet. It is initialized from a PKPaymentRequest item that was
+ * created based on the parameters passed by ApplePayConfiguration.
+ */
 - (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController;
 
 @end

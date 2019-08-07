@@ -31,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- * A configuration file responsible for creating the PKPaymentRequest object that will be used
- * when calling the PKAuthorizationController and invoke the Apple Pay sheet that prompts the
- * user to authorize the payment request.
+ * A configuration file responsible for setting all the necessary parameters
+ * for a succesful initialization of the PKPaymentAuthorizationViewController,
+ * and serves as the only method for modifying the payment request parameters.
  */
 @interface ApplePayConfiguration : NSObject
 
@@ -41,6 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
  * [REQUIRED] The JudoPay ID parameter
  */
 @property (nonatomic, strong) NSString * _Nonnull judoId;
+
+/**
+ * [DEFAULT] The type of the transaction. Can be either Payment or PreAuth.
+ *           Defaults to TransactionTypePayment. If different type is selected than
+ *           those specified, will default to payment.
+ */
+@property (nonatomic, assign) TransactionType transactionType;
 
 /**
  * [REQUIRED] The payment reference number
@@ -63,11 +70,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * _Nonnull countryCode;
 
 /**
- * [REQUIRED] The type of the transaction. Can be either Payment or PreAuth.
- */
-@property (nonatomic, assign) TransactionType transactionType;
-
-/**
  * [REQUIRED] An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
  *            The last summary item must specify the total amount to be payed.
  */
@@ -76,23 +78,24 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * [DEFAULT] An array of supported card networks.
  *           If not set, defaults to Visa, MasterCard, AmEx and Maestro.
- *           NOTE: Maestro is only available starting with iOS 12.0.
+ *
+ * [NOTE: Maestro is only available starting with iOS 12.0]
  */
 @property (nonatomic, strong) NSArray<NSNumber *> *supportedCardNetworks;
 
 /**
- * [DEFAULT] A bit field of the payment processing protocols and card types that you support.
+ * [DEFAULT] A bitmask of the payment processing protocols and card types that you support.
  *           If not set, defaults to 3D Security.
  */
 @property (nonatomic, assign) MerchantCapability merchantCapabilities;
 
 /**
- * [OPTIONAL] A list of fields required for a billing contant in order to process the transaction
+ * [OPTIONAL] A bitmask specifying the required billing contant fields in order to process the transaction
  */
 @property (nonatomic, assign) ContactField requiredBillingContactFields;
 
 /**
- * [OPTIONAL] A list of fields required for a shipping contant in order to process the transaction
+ * [OPTIONAL] A bitmask specifying the required shipping contant fields in order to process the transaction
  */
 @property (nonatomic, assign) ContactField requiredShippingContactFields;
 
@@ -109,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * [DEFAULT] The billing / shipping information to be returned to the merchant.
- *           If not set, defaults to Billing Address and Billing Contact information.
+ *           If not set, defaults to Billing Contact information.
  */
 @property (nonatomic, assign) ReturnedInfo returnedContactInfo;
 
@@ -122,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param merchantId          - The merchant identifier that is the one specified in the app's entitlements
  * @param currency            - The three-letter ISO 4217 currency code used for the payment request
  * @param countryCode         - The two-letter ISO 3166 country code where the payment will be processed
- * @param paymentSummaryItems - An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
+ * @param paymentSummaryItems - An array of items that summarize the amount of the payment (total, shipping, tax, etc.)
  */
 - (instancetype) initWithJudoId: (NSString *)judoId
                       reference: (NSString *)reference

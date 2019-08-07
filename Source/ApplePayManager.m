@@ -31,6 +31,8 @@
 
 @implementation ApplePayManager
 
+#pragma mark - Initializers
+
 - (instancetype)initWithConfiguration:(ApplePayConfiguration *)configuration {
     if (self = [super init]) {
         self.configuration = configuration;
@@ -38,9 +40,7 @@
     return self;
 }
 
-//---------------------------------------------------------------------------------
-// MARK - Convert last summary item to JPAmount object
-//---------------------------------------------------------------------------------
+#pragma mark - Generated objects based on configuration
 
 - (JPAmount *)jpAmount {
     
@@ -54,23 +54,15 @@
     return [[JPReference alloc] initWithConsumerReference:self.configuration.reference];
 }
 
-- (ContactInformation *)contactInformationFromPaymentContact:(PKContact *)contact {
+- (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController {
     
-    PostalAddress *postalAddress = [[PostalAddress alloc] initWithSteet:contact.postalAddress.street
-                                                                   city:contact.postalAddress.city
-                                                                  state:contact.postalAddress.state
-                                                             postalCode:contact.postalAddress.postalCode
-                                                                country:contact.postalAddress.country];
+    PKPaymentAuthorizationViewController *viewController;
     
-    return [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
-                                                       name:contact.name
-                                                phoneNumber:contact.phoneNumber.stringValue
-                                              postalAddress:postalAddress];
+    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: self.pkPaymentRequest];
+    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    return viewController;
 }
-
-//---------------------------------------------------------------------------------
-// MARK - PKPaymentRequest getter
-//---------------------------------------------------------------------------------
 
 - (PKPaymentRequest *)pkPaymentRequest {
     
@@ -109,23 +101,70 @@
     return paymentRequest;
 }
 
-//---------------------------------------------------------------------------------
-// MARK - PKPaymentAuthorizationViewController getter
-//---------------------------------------------------------------------------------
-
-- (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController {
-    
-    PKPaymentAuthorizationViewController *viewController;
-    
-    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: self.pkPaymentRequest];
-    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    return viewController;
+- (PKMerchantCapability)pkMerchantCapabilities {
+    switch (self.configuration.merchantCapabilities) {
+        case MerchantCapability3DS:
+            return PKMerchantCapability3DS;
+        case MerchantCapabilityEMV:
+            return PKMerchantCapabilityEMV;
+        case MerchantCapabilityCredit:
+            return PKMerchantCapabilityCredit;
+        case MerchantCapabilityDebit:
+            return PKMerchantCapabilityDebit;
+    }
 }
 
-//---------------------------------------------------------------------------------
-// MARK - Convert CardNetwork to PKPaymentNetwork
-//---------------------------------------------------------------------------------
+- (PKShippingType)pkShippingType {
+    switch (self.configuration.shippingType) {
+        case ShippingTypeShipping:
+            return PKShippingTypeShipping;
+        case ShippingTypeDelivery:
+            return PKShippingTypeDelivery;
+        case ShippingTypeStorePickup:
+            return PKShippingTypeStorePickup;
+        case ShippingTypeServicePickup:
+            return PKShippingTypeServicePickup;
+    }
+}
+
+- (NSArray<PKShippingMethod *> *)pkShippingMethods {
+    NSMutableArray *pkShippingMethods = [NSMutableArray new];
+    
+    for (PaymentShippingMethod *shippingMethod in self.configuration.shippingMethods) {
+        PKShippingMethod *pkShippingMethod = [PKShippingMethod new];
+        pkShippingMethod.identifier = shippingMethod.identifier;
+        pkShippingMethod.detail = shippingMethod.detail;
+        [pkShippingMethods addObject:pkShippingMethod];
+    }
+    
+    return pkShippingMethods;
+}
+
+- (NSArray<PKPaymentSummaryItem *> *)pkPaymentSummaryItems {
+    
+    NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
+    
+    for (PaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
+        [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
+                                                                             amount:item.amount]];
+    }
+    
+    return pkPaymentSummaryItems;
+}
+
+- (NSArray<PKPaymentNetwork> *)pkPaymentNetworks {
+    
+    NSMutableArray<PKPaymentNetwork> *pkPaymentNetworks = [[NSMutableArray alloc] init];
+    
+    for (NSNumber *cardNetwork in self.configuration.supportedCardNetworks) {
+        PKPaymentNetwork network = [self pkPaymentNetworkForCardNetwork: cardNetwork.intValue];
+        if (network) [pkPaymentNetworks addObject: network];
+    }
+    
+    return pkPaymentNetworks;
+}
+
+#pragma mark - Conversions to PassKit objects
 
 - (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork: (CardNetwork)cardNetwork {
     
@@ -150,77 +189,6 @@
             return nil;
     }
 }
-
-//---------------------------------------------------------------------------------
-// MARK - Convert CardNetwork array to PKPaymentNetwork array
-//---------------------------------------------------------------------------------
-
-- (NSArray<PKPaymentNetwork> *)pkPaymentNetworks {
-    
-    NSMutableArray<PKPaymentNetwork> *pkPaymentNetworks = [[NSMutableArray alloc] init];
-    
-    for (NSNumber *cardNetwork in self.configuration.supportedCardNetworks) {
-        PKPaymentNetwork network = [self pkPaymentNetworkForCardNetwork: cardNetwork.intValue];
-        if (network) [pkPaymentNetworks addObject: network];
-    }
-    
-    return pkPaymentNetworks;
-}
-
-//---------------------------------------------------------------------------------
-// MARK - Convert MerchantCapability to PKMerchantCapability
-//---------------------------------------------------------------------------------
-
-- (PKMerchantCapability)pkMerchantCapabilities {
-    switch (self.configuration.merchantCapabilities) {
-        case MerchantCapability3DS:
-            return PKMerchantCapability3DS;
-        case MerchantCapabilityEMV:
-            return PKMerchantCapabilityEMV;
-        case MerchantCapabilityCredit:
-            return PKMerchantCapabilityCredit;
-        case MerchantCapabilityDebit:
-            return PKMerchantCapabilityDebit;
-    }
-}
-
-//---------------------------------------------------------------------------------
-// MARK - Convert ShippingType to PKShippingType
-//---------------------------------------------------------------------------------
-
-- (PKShippingType)pkShippingType {
-    switch (self.configuration.shippingType) {
-        case ShippingTypeShipping:
-            return PKShippingTypeShipping;
-        case ShippingTypeDelivery:
-            return PKShippingTypeDelivery;
-        case ShippingTypeStorePickup:
-            return PKShippingTypeStorePickup;
-        case ShippingTypeServicePickup:
-            return PKShippingTypeServicePickup;
-    }
-}
-
-//---------------------------------------------------------------------------------
-// MARK - Convert PaymentShippingMethod array to PKShippingMethod array
-//---------------------------------------------------------------------------------
-
-- (NSArray<PKShippingMethod *> *)pkShippingMethods {
-    NSMutableArray *pkShippingMethods = [NSMutableArray new];
-    
-    for (PaymentShippingMethod *shippingMethod in self.configuration.shippingMethods) {
-        PKShippingMethod *pkShippingMethod = [PKShippingMethod new];
-        pkShippingMethod.identifier = shippingMethod.identifier;
-        pkShippingMethod.detail = shippingMethod.detail;
-        [pkShippingMethods addObject:pkShippingMethod];
-    }
-    
-    return pkShippingMethods;
-}
-
-//---------------------------------------------------------------------------------
-// MARK - Convert ContactField array to PKContactField set
-//---------------------------------------------------------------------------------
 
 - (NSSet<PKContactField> *)pkContactFieldsFromFields: (ContactField)contactFields {
     
@@ -249,29 +217,22 @@
     return pkContactFields;
 }
 
-//---------------------------------------------------------------------------------
-// MARK - Convert ContactField array to PKAddressField bitmask
-//---------------------------------------------------------------------------------
-
 -(PKAddressField)pkAddressFieldsFromFields: (ContactField)contactFields {
     return (PKAddressField)contactFields;
 }
 
-//---------------------------------------------------------------------------------
-// MARK - Convert ContactField array to PKAddressField bitmask
-//---------------------------------------------------------------------------------
-
-- (NSArray<PKPaymentSummaryItem *> *)pkPaymentSummaryItems {
+- (ContactInformation *)contactInformationFromPaymentContact:(PKContact *)contact {
     
-    NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
+    PostalAddress *postalAddress = [[PostalAddress alloc] initWithSteet:contact.postalAddress.street
+                                                                   city:contact.postalAddress.city
+                                                                  state:contact.postalAddress.state
+                                                             postalCode:contact.postalAddress.postalCode
+                                                                country:contact.postalAddress.country];
     
-    for (PaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
-        [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
-                                                                             amount:item.amount]];
-    }
-    
-    return pkPaymentSummaryItems;
+    return [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
+                                                       name:contact.name
+                                                phoneNumber:contact.phoneNumber.stringValue
+                                              postalAddress:postalAddress];
 }
-
 
 @end

@@ -26,8 +26,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - Apple pay properties
-
+/**
+ * Lists the available merchant capabilities.
+ * Default is MerchantCapability3DS.
+ */
 typedef NS_ENUM(NSInteger, MerchantCapability) {
     MerchantCapability3DS,
     MerchantCapabilityEMV,
@@ -35,11 +37,19 @@ typedef NS_ENUM(NSInteger, MerchantCapability) {
     MerchantCapabilityDebit
 };
 
+/**
+ * Lists the available payment summary item types.
+ * Default is PaymentSummaryItemTypeFinal.
+ */
 typedef NS_ENUM(NSInteger, PaymentSummaryItemType) {
     PaymentSummaryItemTypeFinal,
     PaymentSummaryItemTypePending
 };
 
+/**
+ * Lists the available payment shipping types.
+ * Default is ShippingTypeShipping.
+ */
 typedef NS_ENUM(NSInteger, PaymentShippingType) {
     ShippingTypeShipping,
     ShippingTypeDelivery,
@@ -47,8 +57,10 @@ typedef NS_ENUM(NSInteger, PaymentShippingType) {
     ShippingTypeServicePickup
 };
 
-#pragma mark - Apple pay constants
-
+/**
+ * Lists the available payment shipping types.
+ * Default is ShippingTypeShipping.
+ */
 typedef NS_OPTIONS(NSInteger, ContactField) {
     ContactFieldNone = 0,
     ContactFieldPostalAddress = 1 << 0,
@@ -58,6 +70,10 @@ typedef NS_OPTIONS(NSInteger, ContactField) {
     ContactFieldAll = (ContactFieldPostalAddress|ContactFieldPhone|ContactFieldEmail|ContactFieldName)
 };
 
+/**
+ * Lists the available options for the returned contact info after the transaction.
+ * Default is ReturnedInfoBillingContacts.
+ */
 typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
     ReturnedInfoNone = 0,
     ReturnedInfoBillingContacts = 1 << 0,
@@ -65,29 +81,73 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
     ReturnedInfoAll = (ReturnedInfoBillingContacts|ReturnedInfoShippingAddress)
 };
 
-#pragma mark - Apple Pay PaymentSummaryItem
-
+/**
+ * An object used in ApplePayConfiguration to specify the purchase items, price
+ * and payment type, either final or pending (ex: taxi fares)
+ */
 @interface PaymentSummaryItem : NSObject
 
+/**
+ * The title of the purchased item
+ */
 @property (nonatomic, strong) NSString *label;
+
+/**
+ * The amount to be payed for this specific item
+ */
 @property (nonatomic, strong) NSDecimalNumber *amount;
+
+/**
+ * The type of the payment (final or pending)
+ * Defaults to PaymentSummaryItemTypeFinal
+ */
 @property (nonatomic, assign) PaymentSummaryItemType type;
 
+/**
+ * Designated initializer
+ *
+ * @param label  - title of the item
+ * @param amount - amount to be payed for this item
+ * @param type   - payment type for this item (final / pending)
+ */
 - (instancetype)initWithLabel: (NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(PaymentSummaryItemType)type;
 
+/**
+ * Convenience initializer that sets payment type to PaymentSummaryItemTypeFinal by default
+ *
+ * @param label  - title of the item
+ * @param amount - amount to be payed for this item
+ */
 - (instancetype)initWithLabel: (NSString *)label
                        amount: (NSDecimalNumber *)amount;
 
 @end
 
-#pragma mark - Apple Pay PaymentShippingMethod
-
+/**
+ * Defines a shipping method for delivering physical goods.
+ */
 @interface PaymentShippingMethod : NSObject
 
+/**
+ * Identifier for the shipping method, used by the app.
+ */
 @property (nonatomic, strong) NSString *identifier;
+
+/**
+ * A user-readable description of the shipping method.
+ */
 @property (nonatomic, strong) NSString *detail;
+
+/**
+ * Designated initializer
+ *
+ * @param identifier - identifier for the shipping method, used by the app.
+ * @param detail     - a user-readable description of the shipping method.
+ */
+- (instancetype)initWithIdentifier: (NSString *)identifier
+                         andDetail: (NSString *)detail;
 
 @end
 

@@ -184,9 +184,8 @@
 		44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */; };
 		44B81DDA22D7480700FE048D /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 44B81DD822D7480700FE048D /* UIView+SafeAnchors.h */; };
 		44B81DDB22D7480700FE048D /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B81DD922D7480700FE048D /* UIView+SafeAnchors.m */; };
-		44F5E0D622DDF1FB0001160D /* ZappMerchantLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F5E0CC22DDD18B0001160D /* ZappMerchantLib.framework */; };
-		44F5E0D722DDF1FB0001160D /* ZappMerchantLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44F5E0CC22DDD18B0001160D /* ZappMerchantLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
+		52DC43D722FB4D3A0098F931 /* ZappMerchantLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52DC43D622FB4D1E0098F931 /* ZappMerchantLib.framework */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -282,46 +281,39 @@
 			remoteGlobalIDString = 3B678B551C6CE5190001DC2F;
 			remoteInfo = JudoKitObjC;
 		};
-		44F5E0C322DDD18B0001160D /* PBXContainerItemProxy */ = {
+		52DC43CD22FB4D1E0098F931 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+			containerPortal = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A76635CC188D3AB300D6C26C;
 			remoteInfo = ZappMerchantLib;
 		};
-		44F5E0C522DDD18B0001160D /* PBXContainerItemProxy */ = {
+		52DC43CF22FB4D1E0098F931 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+			containerPortal = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CD8F887B1BB5A0A400E754B6;
 			remoteInfo = ZappMerchantLibExportHeaders;
 		};
-		44F5E0C722DDD18B0001160D /* PBXContainerItemProxy */ = {
+		52DC43D122FB4D1E0098F931 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+			containerPortal = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A76635DC188D3AB300D6C26C;
 			remoteInfo = ZappMerchantLibTests;
 		};
-		44F5E0C922DDD18B0001160D /* PBXContainerItemProxy */ = {
+		52DC43D322FB4D1E0098F931 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+			containerPortal = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CDC4373918D305F5004DBB05;
 			remoteInfo = ZappMerchantLibResources;
 		};
-		44F5E0CB22DDD18B0001160D /* PBXContainerItemProxy */ = {
+		52DC43D522FB4D1E0098F931 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+			containerPortal = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EE3E77712149D4830085551F;
-			remoteInfo = ZappMerchantLibFramework;
-		};
-		44F5E0D822DDF1FB0001160D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EE3E77702149D4830085551F;
 			remoteInfo = ZappMerchantLibFramework;
 		};
 /* End PBXContainerItemProxy section */
@@ -334,7 +326,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */,
-				44F5E0D722DDF1FB0001160D /* ZappMerchantLib.framework in Embed Frameworks */,
 				1577945721108B90007BD3E1 /* TrustKit.framework in Embed Frameworks */,
 				3B4EB3C51C981ED2006265A0 /* JudoKitObjC.framework in Embed Frameworks */,
 			);
@@ -526,8 +517,9 @@
 		44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewController.m; path = Controller/JudoPaymentMethodsViewController.m; sourceTree = "<group>"; };
 		44B81DD822D7480700FE048D /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		44B81DD922D7480700FE048D /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SafeAnchors.m"; sourceTree = "<group>"; };
-		44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZappMerchantLib.xcodeproj; path = ZappMerchantLib/ZappMerchantLib.xcodeproj; sourceTree = "<group>"; };
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
+		52DC43B922FB4CDA0098F931 /* ZappMerchantLib.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = ZappMerchantLib.xcworkspace; path = ZappMerchantLib/ZappMerchantLib.xcworkspace; sourceTree = "<group>"; };
+		52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZappMerchantLib.xcodeproj; path = ZappMerchantLib/ZappMerchantLib.xcodeproj; sourceTree = "<group>"; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -543,7 +535,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */,
-				44F5E0D622DDF1FB0001160D /* ZappMerchantLib.framework in Frameworks */,
 				1577945621108B90007BD3E1 /* TrustKit.framework in Frameworks */,
 				3B4EB3C41C981ED2006265A0 /* JudoKitObjC.framework in Frameworks */,
 			);
@@ -560,6 +551,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DC43D722FB4D3A0098F931 /* ZappMerchantLib.framework in Frameworks */,
 				15779455211085A9007BD3E1 /* TrustKit.framework in Frameworks */,
 				701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */,
 			);
@@ -594,6 +586,8 @@
 		15779454211085A9007BD3E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */,
+				52DC43B922FB4CDA0098F931 /* ZappMerchantLib.xcworkspace */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -707,7 +701,6 @@
 		3B678B4C1C6CE5190001DC2F = {
 			isa = PBXGroup;
 			children = (
-				44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				701050B91E1E90D70001ED87 /* DeviceDNA */,
 				3B678B581C6CE5190001DC2F /* Source */,
@@ -733,9 +726,9 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3067413522FB216A00417C85 /* Managers */,
 				44290B0222F051720088F827 /* Functions.h */,
 				44290B0122F051720088F827 /* Functions.m */,
+				3067413522FB216A00417C85 /* Managers */,
 				447CBD5522DCA81700C1C9E1 /* ViewModel */,
 				3B678B711C6CE6190001DC2F /* API */,
 				3B678B701C6CE5F70001DC2F /* Model */,
@@ -924,14 +917,14 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
-		44F5E0B322DDD18B0001160D /* Products */ = {
+		52DC43BD22FB4D1E0098F931 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44F5E0C422DDD18B0001160D /* libZappMerchantLib.a */,
-				44F5E0C622DDD18B0001160D /* libZappMerchantLibExportHeaders.a */,
-				44F5E0C822DDD18B0001160D /* ZappMerchantLibTests.xctest */,
-				44F5E0CA22DDD18B0001160D /* ZappMerchantLibResources.bundle */,
-				44F5E0CC22DDD18B0001160D /* ZappMerchantLib.framework */,
+				52DC43CE22FB4D1E0098F931 /* libZappMerchantLib.a */,
+				52DC43D022FB4D1E0098F931 /* libZappMerchantLibExportHeaders.a */,
+				52DC43D222FB4D1E0098F931 /* ZappMerchantLibTests.xctest */,
+				52DC43D422FB4D1E0098F931 /* ZappMerchantLibResources.bundle */,
+				52DC43D622FB4D1E0098F931 /* ZappMerchantLib.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1036,7 +1029,6 @@
 			dependencies = (
 				3B4EB3C11C981EC4006265A0 /* PBXTargetDependency */,
 				1577945921108B90007BD3E1 /* PBXTargetDependency */,
-				44F5E0D922DDF1FB0001160D /* PBXTargetDependency */,
 			);
 			name = JudoKitObjCExampleApp;
 			productName = JudoKitObjCExampleApp;
@@ -1154,8 +1146,8 @@
 					ProjectRef = 1577943921108303007BD3E1 /* TrustKit.xcodeproj */;
 				},
 				{
-					ProductGroup = 44F5E0B322DDD18B0001160D /* Products */;
-					ProjectRef = 44F5E0B222DDD18B0001160D /* ZappMerchantLib.xcodeproj */;
+					ProductGroup = 52DC43BD22FB4D1E0098F931 /* Products */;
+					ProjectRef = 52DC43BC22FB4D1E0098F931 /* ZappMerchantLib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1226,39 +1218,39 @@
 			remoteRef = 1577945221108303007BD3E1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44F5E0C422DDD18B0001160D /* libZappMerchantLib.a */ = {
+		52DC43CE22FB4D1E0098F931 /* libZappMerchantLib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZappMerchantLib.a;
-			remoteRef = 44F5E0C322DDD18B0001160D /* PBXContainerItemProxy */;
+			remoteRef = 52DC43CD22FB4D1E0098F931 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44F5E0C622DDD18B0001160D /* libZappMerchantLibExportHeaders.a */ = {
+		52DC43D022FB4D1E0098F931 /* libZappMerchantLibExportHeaders.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZappMerchantLibExportHeaders.a;
-			remoteRef = 44F5E0C522DDD18B0001160D /* PBXContainerItemProxy */;
+			remoteRef = 52DC43CF22FB4D1E0098F931 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44F5E0C822DDD18B0001160D /* ZappMerchantLibTests.xctest */ = {
+		52DC43D222FB4D1E0098F931 /* ZappMerchantLibTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ZappMerchantLibTests.xctest;
-			remoteRef = 44F5E0C722DDD18B0001160D /* PBXContainerItemProxy */;
+			remoteRef = 52DC43D122FB4D1E0098F931 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44F5E0CA22DDD18B0001160D /* ZappMerchantLibResources.bundle */ = {
+		52DC43D422FB4D1E0098F931 /* ZappMerchantLibResources.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ZappMerchantLibResources.bundle;
-			remoteRef = 44F5E0C922DDD18B0001160D /* PBXContainerItemProxy */;
+			remoteRef = 52DC43D322FB4D1E0098F931 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44F5E0CC22DDD18B0001160D /* ZappMerchantLib.framework */ = {
+		52DC43D622FB4D1E0098F931 /* ZappMerchantLib.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ZappMerchantLib.framework;
-			remoteRef = 44F5E0CB22DDD18B0001160D /* PBXContainerItemProxy */;
+			remoteRef = 52DC43D522FB4D1E0098F931 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1472,11 +1464,6 @@
 			isa = PBXTargetDependency;
 			target = 3B678B551C6CE5190001DC2F /* JudoKitObjC */;
 			targetProxy = 3B678B621C6CE5190001DC2F /* PBXContainerItemProxy */;
-		};
-		44F5E0D922DDF1FB0001160D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZappMerchantLibFramework;
-			targetProxy = 44F5E0D822DDF1FB0001160D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
