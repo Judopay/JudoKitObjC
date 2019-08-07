@@ -4,7 +4,3 @@
 [submodule "TrustKit"]
 	path = TrustKit
 	url = https://github.com/datatheorem/TrustKit.git
-[submodule "ZappMerchantLib"]
-	path = ZappMerchantLib
-	url = https://github.com/Judopay/ZappMerchantLib-R2-iOS.git
-	branch = feature/carthage_support
