@@ -449,7 +449,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     }
 }
 
-- (void)applePayPaymentOperation {
+- (void) applePayPaymentOperation {
     [self initApplePaySleve:YES];
 }
 
@@ -474,7 +474,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
      */
     paymentRequest.countryCode = @"GB";
     paymentRequest.currencyCode = @"GBP";
-    
+      
     // The networks we are able to accept.
     paymentRequest.supportedNetworks = @[PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa];
     
