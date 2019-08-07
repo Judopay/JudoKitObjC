@@ -94,23 +94,23 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 
 - (ApplePayConfiguration *)applePayConfiguration {
     
-    NSArray<PKPaymentSummaryItem *> *paymentSummaryItems = @[
-                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 1"
-                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.01 $"]],
-                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 2"
-                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.02 $"]],
-                                     [PKPaymentSummaryItem summaryItemWithLabel:@"Item 3"
-                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.03 $"]],
-                                     [PKPaymentSummaryItem summaryItemWithLabel:@"John Doe"
-                                                                         amount:[NSDecimalNumber decimalNumberWithString:@"0.06 $"]]
-                                     ];
+    NSArray *items = @[
+                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.1 $"]],
+                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 2"
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.2 $"]],
+                       [[PaymentSummaryItem alloc] initWithLabel:@"Total"
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.3 $"]]
+                       ];
     
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
                                                                                reference:self.reference
                                                                               merchantId:merchantId
                                                                                 currency:@"GBP"
                                                                              countryCode:@"GB"
-                                                                     paymentSummaryItems:paymentSummaryItems];
+                                                                     paymentSummaryItems:items];
+    
+    configuration.requiredBillingContactFields = ContactFieldEmail | ContactFieldPhone;
     
     return configuration;
 }
@@ -481,8 +481,29 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 }
 
 - (void)initApplePaySleve:(BOOL)isPayment {
-    self.isApplePayPayment = isPayment;
-    [self.judoKitSession paymentWithApplePayWithConfiguration: self.applePayConfiguration];
+    [self.judoKitSession invokeApplePayWithConfiguration: self.applePayConfiguration
+                                              completion:^(JPResponse * _Nullable response, NSError * _Nullable error) {
+                                                  
+                                                  if (error || response.items.count == 0) {
+                                                      if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                          return;
+                                                      }
+                                                      
+                                                      self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
+                                                      [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                                                      [self dismissViewControllerAnimated:YES completion:^{
+                                                          [self presentViewController:self->_alertController animated:YES completion:nil];
+                                                      }];
+                                                      return;
+                                                  }
+                                                  
+                                                  DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+                                                  [self dismissViewControllerAnimated:YES completion:^{
+                                                      [self.navigationController pushViewController:viewController animated:YES];
+                                                  }];
+                                                  
+                                              }];
 }
 
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus status))completion {

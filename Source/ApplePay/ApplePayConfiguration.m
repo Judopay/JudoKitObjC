@@ -23,7 +23,6 @@
 //  SOFTWARE.
 
 #import "ApplePayConfiguration.h"
-#import "ExampleAppCredentials.h"
 
 @implementation ApplePayConfiguration
 
@@ -43,7 +42,7 @@
                     merchantId:(NSString *)merchantId
                       currency:(NSString *)currency
                    countryCode:(NSString *)countryCode
-           paymentSummaryItems:(NSArray<PKPaymentSummaryItem *> *)paymentSummaryItems {
+           paymentSummaryItems:(NSArray<PaymentSummaryItem *> *)paymentSummaryItems {
     
     self = [self init];
     
@@ -57,74 +56,16 @@
     return self;
 }
 
-#pragma mark - Instance methods
-
-- (PKPaymentRequest *)generatePaymentRequest {
-    
-    PKPaymentRequest *paymentRequest = [PKPaymentRequest new];
-    paymentRequest.merchantIdentifier = self.merchantId;
-    
-    paymentRequest.countryCode = self.countryCode;
-    paymentRequest.currencyCode = self.currency;
-    
-    paymentRequest.supportedNetworks = self.pkPaymentNetworks;
-    paymentRequest.merchantCapabilities = self.merchantCapabilities;
-    
-    paymentRequest.paymentSummaryItems = self.paymentSummaryItems;
-    
-    return paymentRequest;
-}
-
-#pragma mark - Helper methods
-
 - (void)setupDefaults {
-    self.judoId = judoId;
-    self.merchantId = merchantId;
-    self.merchantCapabilities = PKMerchantCapability3DS;
-    self.shippingType = PKShippingTypeShipping;
-    self.returnedContactInfo = BillingContacts | BillingAddress;
+    self.merchantCapabilities = MerchantCapability3DS;
+    self.shippingType = ShippingTypeShipping;
+    self.returnedContactInfo = ReturnedInfoBillingContacts;
     self.supportedCardNetworks = @[@(CardNetworkVisa), @(CardNetworkMaestro), @(CardNetworkAMEX)];
     
     // Adds Maestro to the list of available card networks if iOS 12 or above
     if (@available(iOS 12.0, *)) {
         self.supportedCardNetworks = [self.supportedCardNetworks arrayByAddingObject:@(CardNetworkMaestro)];
     }
-}
-
-- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork: (CardNetwork)cardNetwork {
-    
-    switch (cardNetwork) {
-        case CardNetworkVisa:
-            return PKPaymentNetworkVisa;
-            
-        case CardNetworkMasterCard:
-            return PKPaymentNetworkMasterCard;
-            
-        case CardNetworkAMEX:
-            return PKPaymentNetworkAmex;
-            
-        case CardNetworkMaestro:
-            if (@available(iOS 12.0, *)) {
-                return PKPaymentNetworkMaestro;
-            } else {
-                return nil;
-            }
-            
-        default:
-            return nil;
-    }
-}
-
-- (NSArray<PKPaymentNetwork> *)pkPaymentNetworks {
-    
-    NSMutableArray<PKPaymentNetwork> *pkPaymentNetworks = [[NSMutableArray alloc] init];
-    
-    for (NSNumber *cardNetwork in self.supportedCardNetworks) {
-        PKPaymentNetwork network = [self pkPaymentNetworkForCardNetwork: cardNetwork.intValue];
-        if (network) [pkPaymentNetworks addObject: network];
-    }
-    
-    return pkPaymentNetworks;
 }
 
 @end

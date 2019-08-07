@@ -27,8 +27,9 @@
 #import "JPTransactionData.h"
 #import "JPSession.h"
 #import "JudoPaymentMethodsViewController.h"
-#import "PaymentMethods.h"
+#import "ApplePayManager.h"
 #import "ApplePayConfiguration.h"
+#import "PaymentMethods.h"
 
 static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 
@@ -438,7 +439,9 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
  *  This method will request and process Apple Pay payments.
  *
  *  @param configuration    An ApplePayConfiguration object that sets Apple Pay payment properties.
+ *  @param completion       The completion handler which will respond with a JPResponse object or an NSError
  */
-- (void)paymentWithApplePayWithConfiguration: (ApplePayConfiguration *)configuration;
+- (void)invokeApplePayWithConfiguration: (ApplePayConfiguration *)configuration
+                             completion:(JudoCompletionBlock)completion;
 
 @end

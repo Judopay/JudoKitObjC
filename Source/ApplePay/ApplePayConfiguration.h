@@ -23,19 +23,12 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <PassKit/PassKit.h>
+#import "ApplePayWrappers.h"
 #import "JPCardDetails.h"
+#import "JPTransactionData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * The billing and shipping information available to be returned to the merchant after the payment
- */
-typedef NS_OPTIONS(NSInteger, ReturnedContactInfo) {
-    BillingContacts = 1 << 0,
-    ShippingContacts = 1 << 1,
-    BillingAddress = 1 << 2
-};
 
 /**
  * A configuration file responsible for creating the PKPaymentRequest object that will be used
@@ -70,9 +63,15 @@ typedef NS_OPTIONS(NSInteger, ReturnedContactInfo) {
 @property (nonatomic, strong) NSString * _Nonnull countryCode;
 
 /**
- * [REQUIRED] An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
+ * [REQUIRED] The type of the transaction. Can be either Payment or PreAuth.
  */
-@property (nonatomic, strong) NSArray<PKPaymentSummaryItem *> * _Nonnull paymentSummaryItems;
+@property (nonatomic, assign) TransactionType transactionType;
+
+/**
+ * [REQUIRED] An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
+ *            The last summary item must specify the total amount to be payed.
+ */
+@property (nonatomic, strong) NSArray<PaymentSummaryItem *> * _Nonnull paymentSummaryItems;
 
 /**
  * [DEFAULT] An array of supported card networks.
@@ -85,34 +84,34 @@ typedef NS_OPTIONS(NSInteger, ReturnedContactInfo) {
  * [DEFAULT] A bit field of the payment processing protocols and card types that you support.
  *           If not set, defaults to 3D Security.
  */
-@property (nonatomic, assign) PKMerchantCapability merchantCapabilities;
+@property (nonatomic, assign) MerchantCapability merchantCapabilities;
 
 /**
  * [OPTIONAL] A list of fields required for a billing contant in order to process the transaction
  */
-@property (nonatomic, strong) NSArray<PKContactField> * _Nullable requiredBillingContactFields;
+@property (nonatomic, assign) ContactField requiredBillingContactFields;
 
 /**
  * [OPTIONAL] A list of fields required for a shipping contant in order to process the transaction
  */
-@property (nonatomic, strong) NSArray<PKContactField> * _Nullable requiredShippingContactFields;
+@property (nonatomic, assign) ContactField requiredShippingContactFields;
 
 /**
  * [OPTIONAL] An array that describes the supported shipping methods
  */
-@property (nonatomic, strong) NSArray<PKShippingMethod *> * _Nullable shippingMethods;
+@property (nonatomic, strong) NSArray<PaymentShippingMethod *> * _Nullable shippingMethods;
 
 /**
  * [DEFAULT] The type of shipping used for this request.
  *           If not set, defaults to PKShippingTypeShipping.
  */
-@property (nonatomic, assign) PKShippingType shippingType;
+@property (nonatomic, assign) PaymentShippingType shippingType;
 
 /**
  * [DEFAULT] The billing / shipping information to be returned to the merchant.
  *           If not set, defaults to Billing Address and Billing Contact information.
  */
-@property (nonatomic, assign) ReturnedContactInfo returnedContactInfo;
+@property (nonatomic, assign) ReturnedInfo returnedContactInfo;
 
 /**
  * Designated initializer necesary for the bare minimum configuration of a PKPaymentRequest object.
@@ -130,13 +129,7 @@ typedef NS_OPTIONS(NSInteger, ReturnedContactInfo) {
                      merchantId: (NSString *)merchantId
                        currency: (NSString *)currency
                     countryCode: (NSString *)countryCode
-            paymentSummaryItems: (NSArray<PKPaymentSummaryItem *> *)paymentSummaryItems;
-
-/**
- * Method that generates the PKPaymentRequest object that will be used when calling the PKAuthorizationController
- * and invoke the Apple Pay sheet that prompts the user to authorize the payment request
- */
-- (PKPaymentRequest *)generatePaymentRequest;
+            paymentSummaryItems: (NSArray<PaymentSummaryItem *> *)paymentSummaryItems;
 
 @end
 

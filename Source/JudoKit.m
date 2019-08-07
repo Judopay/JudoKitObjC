@@ -46,6 +46,8 @@
 #import "JPTheme.h"
 #import "JPTransactionEnricher.h"
 #import "ApplePayConfiguration.h"
+#import "JPResponse.h"
+#import "JPAmount.h"
 
 @interface JPSession ()
 @property(nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -55,6 +57,18 @@
 @property(nonatomic, strong, readwrite) JPSession *apiSession;
 @property(nonatomic, strong) JPTransactionEnricher *enricher;
 @property(nonatomic, strong) NSString *deviceIdentifier;
+
+- (UIViewController *)topMostViewController;
+
+@end
+
+
+@interface JudoKit ()
+
+@property(nonatomic, strong) ApplePayManager *manager;
+@property(nonatomic, strong) ApplePayConfiguration *configuration;
+@property(nonatomic, strong) JudoCompletionBlock completionBlock;
+
 @end
 
 @implementation JudoKit
@@ -480,34 +494,73 @@
 
 @implementation JudoKit (ApplePay)
 
-- (void)paymentWithApplePayWithConfiguration:(ApplePayConfiguration *)configuration {
+//---------------------------------------------------------------------------------
+// MARK - Invoke method with configuration and completion block
+//---------------------------------------------------------------------------------
+
+- (void)invokeApplePayWithConfiguration:(ApplePayConfiguration *)configuration
+                             completion:(JudoCompletionBlock)completion {
     
-    PKPaymentRequest *paymentRequest = [configuration generatePaymentRequest];
-    PKPaymentAuthorizationViewController *viewController;
-    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: paymentRequest];
-    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.configuration = configuration;
+    self.manager = [[ApplePayManager alloc] initWithConfiguration:configuration];
     
+    PKPaymentAuthorizationViewController* viewController;
+    viewController = self.manager.pkPaymentAuthorizationViewController;
     viewController.delegate = self;
+    
+    self.completionBlock = completion;
     
     [self.topMostViewController presentViewController:viewController animated:YES completion:nil];
 }
 
-- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
-                       didAuthorizePayment:(PKPayment *)payment
-                                   handler:(void (^)(PKPaymentAuthorizationResult * _Nonnull))completion  API_AVAILABLE(ios(11.0)){
-    
-    [controller dismissViewControllerAnimated:YES completion:nil];
-}
+//---------------------------------------------------------------------------------
+// MARK - Delegate methods
+//---------------------------------------------------------------------------------
 
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus status))completion {
+    
+    JPTransaction *transaction;
+    
+    
+    if (self.configuration.transactionType == TransactionTypePreAuth) {
+        transaction = [self preAuthWithJudoId:self.configuration.judoId
+                                       amount:self.manager.jpAmount
+                                    reference:self.manager.jpReference];
+    } else {
+        transaction = [self paymentWithJudoId:self.configuration.judoId
+                                       amount:self.manager.jpAmount
+                                    reference:self.manager.jpReference];
+    }
+    
+    NSError *error;
+    [transaction setPkPayment:payment error:&error];
+    
+    [transaction sendWithCompletion:^(JPResponse * response, NSError * error) {
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoShippingAddress) {
+            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
+        }
+        
+        if (error || response.items.count == 0) {
+            self.completionBlock(response, error);
+            completion(PKPaymentAuthorizationStatusFailure);
+            return;
+        }
+        
+        self.completionBlock(response, error);
+        completion(PKPaymentAuthorizationStatusSuccess);
+    }];
+}
+
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
-    completion(PKPaymentAuthorizationStatusSuccess);
 }
 
 @end

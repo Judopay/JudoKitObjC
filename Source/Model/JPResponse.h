@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "ContactInformation.h"
 
 @class JPPagination;
 @class JPTransactionData;
@@ -41,6 +42,16 @@
  *  The current pagination response
  */
 @property (nonatomic, strong) JPPagination * _Nullable pagination;
+
+/**
+ * Billing contact information returned from ApplePay
+ */
+@property (nonatomic, strong) ContactInformation * _Nullable billingInfo;
+
+/**
+ * Shipping contact information returned from ApplePay
+ */
+@property (nonatomic, strong) ContactInformation * _Nullable shippingInfo;
 
 /**
  *  Initialize a Response object with pagination if available
