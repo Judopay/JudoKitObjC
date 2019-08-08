@@ -23,15 +23,14 @@
 //  SOFTWARE.
 
 #import "CardInputField.h"
-
 #import "NSString+Card.h"
 #import "NSError+Judo.h"
-
 #import "FloatingTextField.h"
-
 #import "JPCard.h"
 #import "JPTheme.h"
 #import "CardLogoView.h"
+#import "NSString+Validation.h"
+#import "NSString+Manipulation.h"
 
 @interface JPInputField ()
 
@@ -67,7 +66,7 @@
         return YES;
     }
     
-    newString = [newString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    newString = [newString stringByRemovingWhitespaces];
     
     if (!newString.isNumeric) {
         return NO;
@@ -114,7 +113,7 @@
             cardNumberLength = 15;
         }
         
-        if ([self.textField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == cardNumberLength) {
+        if ([self.textField.text stringByRemovingWhitespaces].length == cardNumberLength) {
             if (self.textField.text.isCardNumberValid) {
                 [self.delegate cardInput:self didFindValidNumber:self.textField.text];
             } else {

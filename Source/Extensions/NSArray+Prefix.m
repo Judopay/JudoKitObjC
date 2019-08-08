@@ -27,14 +27,16 @@
 @implementation NSArray (Prefix)
 
 - (BOOL)containsPrefix:(NSString *)prefix {
+    __block BOOL result = NO;
     
-    for (NSString *p in self) {
-        if ([prefix hasPrefix:p]) {
-            return YES;
+    [self enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([prefix hasPrefix: obj]) {
+            *stop = YES;
+            result = YES;
         }
-    }
+    }];
     
-    return NO;
+    return result;
 }
 
 @end

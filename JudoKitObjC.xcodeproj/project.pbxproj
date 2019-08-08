@@ -40,6 +40,15 @@
 		3067413022FB190F00417C85 /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067412E22FB190F00417C85 /* ContactInformation.m */; };
 		3067413322FB1D8B00417C85 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067413122FB1D8B00417C85 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3067413422FB1D8B00417C85 /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067413222FB1D8B00417C85 /* PostalAddress.m */; };
+		3067414722FC20BE00417C85 /* JPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067413822FC20BA00417C85 /* JPConstants.h */; };
+		3067416222FC210E00417C85 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067415C22FC210E00417C85 /* NSString+Validation.m */; };
+		3067416322FC210E00417C85 /* NSString+Manipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067415D22FC210E00417C85 /* NSString+Manipulation.m */; };
+		3067416422FC210E00417C85 /* NSString+Manipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067415E22FC210E00417C85 /* NSString+Manipulation.h */; };
+		3067416522FC210E00417C85 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067415F22FC210E00417C85 /* NSString+Validation.h */; };
+		3067416622FC210E00417C85 /* JPTheme+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067416022FC210E00417C85 /* JPTheme+Additions.h */; };
+		3067416722FC210E00417C85 /* JPTheme+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067416122FC210E00417C85 /* JPTheme+Additions.m */; };
+		3067416A22FC212900417C85 /* JPCardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067416822FC212900417C85 /* JPCardNetwork.m */; };
+		3067416B22FC212900417C85 /* JPCardNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067416922FC212900417C85 /* JPCardNetwork.h */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -361,6 +370,15 @@
 		3067412E22FB190F00417C85 /* ContactInformation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactInformation.m; sourceTree = "<group>"; };
 		3067413122FB1D8B00417C85 /* PostalAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
 		3067413222FB1D8B00417C85 /* PostalAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostalAddress.m; sourceTree = "<group>"; };
+		3067413822FC20BA00417C85 /* JPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPConstants.h; sourceTree = "<group>"; };
+		3067415C22FC210E00417C85 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Validation.m"; path = "Extensions/NSString+Validation.m"; sourceTree = "<group>"; };
+		3067415D22FC210E00417C85 /* NSString+Manipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Manipulation.m"; path = "Extensions/NSString+Manipulation.m"; sourceTree = "<group>"; };
+		3067415E22FC210E00417C85 /* NSString+Manipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Manipulation.h"; path = "Extensions/NSString+Manipulation.h"; sourceTree = "<group>"; };
+		3067415F22FC210E00417C85 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Validation.h"; path = "Extensions/NSString+Validation.h"; sourceTree = "<group>"; };
+		3067416022FC210E00417C85 /* JPTheme+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JPTheme+Additions.h"; path = "Extensions/JPTheme+Additions.h"; sourceTree = "<group>"; };
+		3067416122FC210E00417C85 /* JPTheme+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JPTheme+Additions.m"; path = "Extensions/JPTheme+Additions.m"; sourceTree = "<group>"; };
+		3067416822FC212900417C85 /* JPCardNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCardNetwork.m; path = Model/JPCardNetwork.m; sourceTree = "<group>"; };
+		3067416922FC212900417C85 /* JPCardNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPCardNetwork.h; path = Model/JPCardNetwork.h; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -759,6 +777,9 @@
 			isa = PBXGroup;
 			children = (
 				3067411422FAE38700417C85 /* ApplePay */,
+				3067416922FC212900417C85 /* JPCardNetwork.h */,
+				3067416822FC212900417C85 /* JPCardNetwork.m */,
+				3067413822FC20BA00417C85 /* JPConstants.h */,
 				44290B0E22F051F50088F827 /* JPBrowser.h */,
 				44290B1922F051F60088F827 /* JPBrowser.m */,
 				44290B0F22F051F50088F827 /* JPClientDetails.h */,
@@ -833,6 +854,12 @@
 		3B678B731C6CE6500001DC2F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3067416022FC210E00417C85 /* JPTheme+Additions.h */,
+				3067416122FC210E00417C85 /* JPTheme+Additions.m */,
+				3067415E22FC210E00417C85 /* NSString+Manipulation.h */,
+				3067415D22FC210E00417C85 /* NSString+Manipulation.m */,
+				3067415F22FC210E00417C85 /* NSString+Validation.h */,
+				3067415C22FC210E00417C85 /* NSString+Validation.m */,
 				44290B0922F051D20088F827 /* CLLocation+JPDictionaryConvertible.h */,
 				44290B0A22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m */,
 				3B6912CF1C93179100367660 /* NSArray+Prefix.h */,
@@ -944,11 +971,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3067416622FC210E00417C85 /* JPTheme+Additions.h in Headers */,
 				3B678BA91C7327040001DC2F /* JPCollection.h in Headers */,
 				3B678B7F1C6DE0FA0001DC2F /* JPPagination.h in Headers */,
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
 				447CBD5D22DCA93600C1C9E1 /* PaymentMethods.h in Headers */,
 				44290B0422F051720088F827 /* Functions.h in Headers */,
+				3067416522FC210E00417C85 /* NSString+Validation.h in Headers */,
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
 				3B678B5A1C6CE5190001DC2F /* JudoKitObjC.h in Headers */,
@@ -972,6 +1001,7 @@
 				306740EC22F86E8F00417C85 /* ApplePayConfiguration.h in Headers */,
 				3B704AA21C89F1E800376773 /* BillingCountryInputField.h in Headers */,
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
+				3067416422FC210E00417C85 /* NSString+Manipulation.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3067412B22FB00D600417C85 /* ApplePayManager.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
@@ -984,9 +1014,11 @@
 				44290B1A22F051F60088F827 /* JPDictionaryConvertible.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
+				3067414722FC20BE00417C85 /* JPConstants.h in Headers */,
 				3B704A921C89F1A800376773 /* CardInputField.h in Headers */,
 				1577945D2110C8CF007BD3E1 /* JPSaveCard.h in Headers */,
 				3B678BB11C7327270001DC2F /* JPVoid.h in Headers */,
+				3067416B22FC212900417C85 /* JPCardNetwork.h in Headers */,
 				3B678BB51C7327410001DC2F /* JPReceipt.h in Headers */,
 				3BD353CB1C77803F0045658A /* JPCardDetails.h in Headers */,
 				15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */,
@@ -1355,16 +1387,19 @@
 				3B678B9E1C7326C00001DC2F /* JPPayment.m in Sources */,
 				3B678BB21C7327270001DC2F /* JPVoid.m in Sources */,
 				3BD353CC1C77803F0045658A /* JPCardDetails.m in Sources */,
+				3067416722FC210E00417C85 /* JPTheme+Additions.m in Sources */,
 				3B678BA21C7326D30001DC2F /* JPPreAuth.m in Sources */,
 				3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */,
 				44290B0822F051B00088F827 /* JPTransactionEnricher.m in Sources */,
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
+				3067416322FC210E00417C85 /* NSString+Manipulation.m in Sources */,
 				306740ED22F86E8F00417C85 /* ApplePayConfiguration.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				3067413022FB190F00417C85 /* ContactInformation.m in Sources */,
+				3067416A22FC212900417C85 /* JPCardNetwork.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */,
@@ -1386,6 +1421,7 @@
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
 				3B678B881C6DF6130001DC2F /* JPTransaction.m in Sources */,
+				3067416222FC210E00417C85 /* NSString+Validation.m in Sources */,
 				44290B0C22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m in Sources */,
 				15CFC9EB1FB738E600430D31 /* JPVCOResult.m in Sources */,
 				3B5362A31C7CBD9000CEBAE2 /* LoadingView.m in Sources */,

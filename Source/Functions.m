@@ -29,6 +29,7 @@
 
 #import "JudoKit.h"
 #import "Functions.h"
+#import "NSString+Manipulation.h"
 
 NSString *getUserAgent() {
     UIDevice *device = UIDevice.currentDevice;
@@ -50,7 +51,7 @@ NSString *getUserAgent() {
     
     if (appName && appVersion) {
         //App Name and version
-        NSString *appNameMinusSpaces = [appName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *appNameMinusSpaces = [appName stringByRemovingWhitespaces];
         [userAgentParts addObject:[NSString stringWithFormat:@"%@/%@", appNameMinusSpaces, appVersion]];
     }
     
@@ -77,11 +78,14 @@ NSString *getIPAddress() {
         // Loop through linked list of interfaces
         temp_addr = interfaces;
         while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                }
+            
+            BOOL isValidFamily = temp_addr->ifa_addr->sa_family == AF_INET;
+            BOOL isValidName = [[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"];
+            
+            if(isValidFamily && isValidName) {
+                address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
             }
+            
             temp_addr = temp_addr->ifa_next;
         }
     }

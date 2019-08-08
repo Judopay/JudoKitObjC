@@ -47,7 +47,7 @@ JPTransactionEnricher;
 /**
  *  The reference of the transaction
  */
-@property (nonatomic, strong) JPReference * _Nonnull reference;
+@property (nonatomic, strong) JPReference * _Nullable reference;
 
 /**
  *  The amount and currency of the transaction
@@ -109,7 +109,7 @@ JPTransactionEnricher;
  *  @param pkPayment the PKPayment object that was returned from PassKit
  *  @param error     an error if the PKPayment object was faulty
  */
-- (void)setPkPayment:(nonnull PKPayment *)pkPayment error:(NSError * __autoreleasing _Nullable * _Nullable)error;
+- (int)setPkPayment:(nonnull PKPayment *)pkPayment error:(NSError * __autoreleasing _Nullable * _Nullable)error;
 
 /**
  *  set the VCOResult object

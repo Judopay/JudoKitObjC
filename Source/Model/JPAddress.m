@@ -39,25 +39,28 @@
 }
 
 - (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    self = [super init];
-    if (self) {
-        if (dictionary[@"line1"]) {
-            self.line1 = dictionary[@"line1"];
-        }
-        if (dictionary[@"line2"]) {
-            self.line2 = dictionary[@"line2"];
-        }
-        if (dictionary[@"line3"]) {
-            self.line3 = dictionary[@"line3"];
-        }
-        if (dictionary[@"postCode"]) {
-            self.postCode = dictionary[@"postCode"];
-        }
-        if (dictionary[@"town"]) {
-            self.town = dictionary[@"town"];
-        }
+    if (self = [super init]) {
+        [self populateWith:dictionary];
     }
     return self;
+}
+
+- (void)populateWith:(NSDictionary *)dictionary {
+    if (dictionary[@"line1"]) {
+        self.line1 = dictionary[@"line1"];
+    }
+    if (dictionary[@"line2"]) {
+        self.line2 = dictionary[@"line2"];
+    }
+    if (dictionary[@"line3"]) {
+        self.line3 = dictionary[@"line3"];
+    }
+    if (dictionary[@"postCode"]) {
+        self.postCode = dictionary[@"postCode"];
+    }
+    if (dictionary[@"town"]) {
+        self.town = dictionary[@"town"];
+    }
 }
 
 - (NSDictionary *)dictionaryRepresentation {

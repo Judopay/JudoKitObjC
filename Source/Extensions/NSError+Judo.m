@@ -56,7 +56,7 @@ NSString * const ErrorTransactionDeclined = @"A transaction that was sent to the
     return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorRequestFailed userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorRequestFailed title:UnableToProcessRequestErrorTitle]];
 }
 
-+ (NSError *)judoJSONSerializationFailedWithError:(NSError *)error {
++ (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error {
     return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorJSONSerializationFailed userInfo:@{NSUnderlyingErrorKey:error}];
 }
 
@@ -93,7 +93,7 @@ NSString * const ErrorTransactionDeclined = @"A transaction that was sent to the
 
 + (NSError *)judoErrorFromDictionary:(NSDictionary *)dict {
     NSString *messageFromDict = dict[@"message"];
-    NSString *errorMessage = messageFromDict != nil ? messageFromDict : UnableToProcessRequestErrorDesc;
+    NSString *errorMessage = messageFromDict == nil ? UnableToProcessRequestErrorDesc : messageFromDict;
     return [NSError errorWithDomain:JudoErrorDomain code:[dict[@"code"] integerValue] userInfo:[self userDataDictWithDescription:errorMessage failureReason:nil title:UnableToProcessRequestErrorTitle currentDict:dict]];
 }
 
@@ -124,9 +124,9 @@ NSString * const ErrorTransactionDeclined = @"A transaction that was sent to the
 + (NSError *)judoInputMismatchErrorWithMessage:(NSString *)message {
     if (message) {
         return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorInputMismatchError userInfo:@{NSLocalizedDescriptionKey:message}];
-    } else {
-        return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorInputMismatchError userInfo:nil];
     }
+    
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorInputMismatchError userInfo:nil];
 }
 
 + (NSDictionary *)userDataDictWithDescription:(NSString*)description failureReason:(NSString*)failureReason title:(NSString*)title{

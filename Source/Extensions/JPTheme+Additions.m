@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  JPTheme+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import "JPTheme+Additions.h"
 
-@implementation JudoPaymentMethodsViewModel
+@implementation JPTheme (Additions)
 
--(instancetype)initWithJudoId: (nonnull NSString *)judoId
-                       amount: (nonnull JPAmount *)amount
-            consumerReference: (nonnull JPReference *)reference
-               paymentMethods: (PaymentMethods)methods
-                  cardDetails: (nullable JPCardDetails *)cardDetails {
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _cardDetails = cardDetails;
+- (nonnull NSString *)titleForTransactionWithType:(TransactionType)transactionType {
+    switch (transactionType) {
+        case TransactionTypePayment:
+        case TransactionTypePreAuth:
+            return self.paymentTitle;
+        case TransactionTypeRegisterCard:
+            return self.registerCardTitle;
+        case TransactionTypeSaveCard:
+            return self.registerCardTitle;
+        case TransactionTypeRefund:
+            return self.refundTitle;
     }
-    return self;
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  JPTheme+Additions.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import <Foundation/Foundation.h>
+#import "JPTheme.h"
+#import "JPTransactionData.h"
 
-@implementation JudoPaymentMethodsViewModel
+@interface JPTheme (Additions)
 
--(instancetype)initWithJudoId: (nonnull NSString *)judoId
-                       amount: (nonnull JPAmount *)amount
-            consumerReference: (nonnull JPReference *)reference
-               paymentMethods: (PaymentMethods)methods
-                  cardDetails: (nullable JPCardDetails *)cardDetails {
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _cardDetails = cardDetails;
-    }
-    return self;
-}
+- (nonnull NSString *)titleForTransactionWithType:(TransactionType)transactionType;
 
 @end

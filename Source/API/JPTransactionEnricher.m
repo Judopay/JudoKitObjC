@@ -76,8 +76,8 @@
         return;
     }
 
-    _completionBlock = completion;
-    _transaction = transaction;
+    self.completionBlock = completion;
+    self.transaction = transaction;
     
     if (CLLocationManager.locationServicesEnabled
         && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways
@@ -114,7 +114,7 @@
 #pragma mark: CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (locations.count > 0) {
-        _lastKnownLocation = locations.lastObject;
+        self.lastKnownLocation = locations.lastObject;
     }
     [self enrichWithLocation:self.lastKnownLocation];
 }

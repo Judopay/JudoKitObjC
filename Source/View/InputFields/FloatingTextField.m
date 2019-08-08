@@ -24,13 +24,18 @@
 
 #import "FloatingTextField.h"
 #import "NSString+TextDirection.h"
+#import <math.h>
 
 static CGFloat const kFloatingLabelShowAnimationDuration = 0.3f;
 static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 
-@implementation FloatingTextField {
-    BOOL _isFloatingLabelFontDefault;
-}
+@interface FloatingTextField ()
+@property(nonatomic, assign)  BOOL isFloatingLabelFontDefault;
+@property (nonatomic, strong, readwrite) UILabel * floatingLabel;
+@end
+
+@implementation FloatingTextField
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -50,22 +55,22 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 }
 
 - (void)commonInit {
-    _floatingLabel = [UILabel new];
-    _floatingLabel.alpha = 0.0f;
-    [self addSubview:_floatingLabel];
+    self.floatingLabel = [UILabel new];
+    self.floatingLabel.alpha = 0.0f;
+    [self addSubview:self.floatingLabel];
     
     // some basic default fonts/colors
-    _floatingLabelFont = [self defaultFloatingLabelFont];
-    _floatingLabel.font = _floatingLabelFont;
-    _floatingLabelTextColor = [UIColor grayColor];
-    _floatingLabel.textColor = _floatingLabelTextColor;
-    _animateEvenIfNotFirstResponder = NO;
-    _floatingLabelShowAnimationDuration = kFloatingLabelShowAnimationDuration;
-    _floatingLabelHideAnimationDuration = kFloatingLabelHideAnimationDuration;
+    self.floatingLabelFont = [self defaultFloatingLabelFont];
+    self.floatingLabel.font = self.floatingLabelFont;
+    self.floatingLabelTextColor = [UIColor grayColor];
+    self.floatingLabel.textColor = self.floatingLabelTextColor;
+    self.animateEvenIfNotFirstResponder = NO;
+    self.floatingLabelShowAnimationDuration = kFloatingLabelShowAnimationDuration;
+    self.floatingLabelHideAnimationDuration = kFloatingLabelHideAnimationDuration;
     [self setFloatingLabelText:self.placeholder];
     
-    _adjustsClearButtonRect = YES;
-    _isFloatingLabelFontDefault = YES;
+    self.adjustsClearButtonRect = YES;
+    self.isFloatingLabelFontDefault = YES;
 }
 
 #pragma mark -
@@ -89,18 +94,18 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 - (void)updateDefaultFloatingLabelFont {
     UIFont *derivedFont = [self defaultFloatingLabelFont];
     
-    if (_isFloatingLabelFontDefault) {
+    if (self.isFloatingLabelFontDefault) {
         self.floatingLabelFont = derivedFont;
     }
     else {
         // dont apply to the label, just store for future use where floatingLabelFont may be reset to nil
-        _floatingLabelFont = derivedFont;
+        self.floatingLabelFont = derivedFont;
     }
 }
 
 - (UIColor *)labelActiveColor {
-    if (_floatingLabelActiveTextColor) {
-        return _floatingLabelActiveTextColor;
+    if (self.floatingLabelActiveTextColor) {
+        return self.floatingLabelActiveTextColor;
     }
     else if ([self respondsToSelector:@selector(tintColor)]) {
         return [self performSelector:@selector(tintColor)];
@@ -113,7 +118,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
         _floatingLabelFont = floatingLabelFont;
     }
     _floatingLabel.font = _floatingLabelFont ? _floatingLabelFont : [self defaultFloatingLabelFont];
-    _isFloatingLabelFontDefault = floatingLabelFont == nil;
+    self.isFloatingLabelFontDefault = floatingLabelFont == nil;
     [self setFloatingLabelText:self.placeholder];
     [self invalidateIntrinsicContentSize];
 }
@@ -241,7 +246,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 
 - (CGRect)insetRectForBounds:(CGRect)rect {
     CGFloat topInset = ceilf(_floatingLabel.bounds.size.height + _placeholderYPadding);
-    topInset = MIN(topInset, [self maxTopInset]);
+    topInset = fmin(topInset, self.maxTopInset);
     return CGRectMake(rect.origin.x, rect.origin.y + topInset / 2.0f, rect.size.width, rect.size.height);
 }
 
@@ -249,12 +254,11 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     CGRect rect = [super clearButtonRectForBounds:bounds];
     if (0 != self.adjustsClearButtonRect
         && _floatingLabel.text.length // for when there is no floating title label text
+        && ([self.text length] || self.keepBaseline)
         ) {
-        if ([self.text length] || self.keepBaseline) {
-            CGFloat topInset = ceilf(_floatingLabel.font.lineHeight + _placeholderYPadding);
-            topInset = MIN(topInset, [self maxTopInset]);
-            rect = CGRectMake(rect.origin.x, rect.origin.y + topInset / 2.0f, rect.size.width, rect.size.height);
-        }
+        CGFloat topInset = ceilf(_floatingLabel.font.lineHeight + _placeholderYPadding);
+        topInset = fmin(topInset, self.maxTopInset);
+        rect = CGRectMake(rect.origin.x, rect.origin.y + topInset / 2.0f, rect.size.width, rect.size.height);
     }
     return CGRectIntegral(rect);
 }
@@ -263,7 +267,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     CGRect rect = [super leftViewRectForBounds:bounds];
     
     CGFloat topInset = ceilf(_floatingLabel.font.lineHeight + _placeholderYPadding);
-    topInset = MIN(topInset, [self maxTopInset]);
+    topInset = fmin(topInset, self.maxTopInset);
     rect = CGRectOffset(rect, 0, topInset / 2.0f);
     
     return rect;
@@ -274,14 +278,14 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     CGRect rect = [super rightViewRectForBounds:bounds];
     
     CGFloat topInset = ceilf(_floatingLabel.font.lineHeight + _placeholderYPadding);
-    topInset = MIN(topInset, [self maxTopInset]);
+    topInset = fmin(topInset, self.maxTopInset);
     rect = CGRectOffset(rect, 0, topInset / 2.0f);
     
     return rect;
 }
 
 - (CGFloat)maxTopInset {
-    return MAX(0, floorf(self.bounds.size.height - self.font.lineHeight - 4.0f));
+    return fmax(0, floorf(self.bounds.size.height - self.font.lineHeight - 4.0f));
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {

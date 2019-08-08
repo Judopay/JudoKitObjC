@@ -181,10 +181,8 @@
         case CardNetworkMaestro:
             if (@available(iOS 12.0, *)) {
                 return PKPaymentNetworkMaestro;
-            } else {
-                return nil;
             }
-            
+
         default:
             return nil;
     }
@@ -194,7 +192,7 @@
     
     NSMutableSet *pkContactFields = [NSMutableSet new];
     
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, *)) { //!OCLINT (remove OCLINT warning regarding early exit)
         
         if (contactFields & ContactFieldPostalAddress) {
             [pkContactFields addObject:PKContactFieldPostalAddress];

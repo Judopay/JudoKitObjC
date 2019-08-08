@@ -23,9 +23,9 @@
 //  SOFTWARE.
 
 #import "IssueNumberInputField.h"
-#import "NSString+Card.h"
 #import "FloatingTextField.h"
 #import "JPTheme.h"
+#import "NSString+Validation.h"
 
 @implementation IssueNumberInputField
 

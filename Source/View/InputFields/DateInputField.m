@@ -28,7 +28,7 @@
 #import "JPTheme.h"
 #import "NSError+Judo.h"
 #import "NSDate+Judo.h"
-#import "NSString+Card.h"
+#import "NSString+Validation.h"
 
 @interface DateInputField ()
 
@@ -43,7 +43,7 @@
 
 #pragma mark - Superclass methods
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string { //!OCLINT
     
     if (self.textField != textField) {
         return YES;
@@ -58,22 +58,20 @@
     } else if (newString.length == 2) {
         
         if (string.length != 0) {
-            if (string.length == 0) {
-                return YES;
-            }
-            
             if (!string.isNumeric) {
                 return NO;
             }
             
-            if ([newString integerValue] <= 0 || [newString integerValue] > 12) {
+            if (newString.integerValue <= 0 || newString.integerValue > 12) {
                 return NO;
             }
             
             self.textField.text = [newString stringByAppendingString:@"/"];
             return NO;
         }
+        
         self.textField.text = [newString substringToIndex:1];
+        
         return NO;
         
     } else if (newString.length == 3) {
@@ -91,9 +89,9 @@
         
         if (self.isStartDate) {
             return lastNumber == deciYear || lastNumber == deciYear - 1;
-        } else {
-            return lastNumber == deciYear || lastNumber == deciYear + 1;
         }
+        
+        return lastNumber == deciYear || lastNumber == deciYear + 1;
         
     } else if (newString.length == 5) {
         
@@ -104,10 +102,9 @@
         }
         
         return YES;
-    } else {
-        [self.delegate dateInput:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:nil]];
-        return NO;
     }
+    [self.delegate dateInput:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:nil]];
+    return NO;
 }
 
 - (BOOL)isValid {
@@ -125,11 +122,10 @@
     if (self.isStartDate) {
         NSDate *minimumDate = [[NSDate new] dateByAddingYears:-10];
         return [beginningOfMonthDate compare:[NSDate new]] == NSOrderedAscending && [beginningOfMonthDate compare:minimumDate] == NSOrderedDescending;
-    } else {
-        NSDate *endOfMonthDate = [beginningOfMonthDate endOfMonthDate];
-        NSDate *maximumDate = [[NSDate new] dateByAddingYears:10];
-        return [endOfMonthDate compare:[NSDate new]] == NSOrderedDescending && [endOfMonthDate compare:maximumDate] == NSOrderedAscending;
     }
+    NSDate *endOfMonthDate = [beginningOfMonthDate endOfMonthDate];
+    NSDate *maximumDate = [[NSDate new] dateByAddingYears:10];
+    return [endOfMonthDate compare:[NSDate new]] == NSOrderedDescending && [endOfMonthDate compare:maximumDate] == NSOrderedAscending;
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {

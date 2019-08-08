@@ -178,9 +178,8 @@
     UIColor *dgc = [UIColor colorWithRed:75/255.0f green:75/255.0f blue:75/255.0f alpha:1.0f];
     if ([self.tintColor colorMode]) {
         return dgc;
-    } else {
-        return [dgc inverseColor];
     }
+    return [dgc inverseColor];
 }
 
 - (UIColor *)judoNavigationBarTitleColor {
@@ -190,9 +189,8 @@
     UIColor *dgc = [UIColor colorWithRed:75/255.0f green:75/255.0f blue:75/255.0f alpha:1.0f];
     if ([self.tintColor colorMode]) {
         return dgc;
-    } else {
-        return [dgc inverseColor];
     }
+    return [dgc inverseColor];
 }
 
 - (UIColor *)judoInputFieldTextColor {
@@ -206,9 +204,8 @@
     UIColor *lgc = [UIColor colorWithRed:180/255.0f green:180/255.0f blue:180/255.0f alpha:1.0];
     if ([self.tintColor colorMode]) {
         return lgc;
-    } else {
-        return [lgc inverseColor];
     }
+    return [lgc inverseColor];
 }
 
 - (UIColor *)judoInputFieldBorderColor {
@@ -222,9 +219,8 @@
     UIColor *bgc = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
     if ([self.tintColor colorMode]) {
         return bgc;
-    } else {
-        return [bgc inverseColor];
     }
+    return [bgc inverseColor];
 }
 
 - (UIColor *)judoButtonColor {
@@ -245,9 +241,8 @@
     UIColor *lbc = [UIColor colorWithRed:210/255.0f green:210/255.0f blue:210/255.0f alpha:0.8f];
     if ([self.tintColor colorMode]) {
         return lbc;
-    } else {
-        return [lbc inverseColor];
     }
+    return [lbc inverseColor];
 }
 
 - (UIColor *)judoErrorColor {
@@ -260,9 +255,8 @@
     }
     if ([self.tintColor colorMode]) {
         return [UIColor whiteColor];
-    } else {
-        return [UIColor blackColor];
     }
+        return [UIColor blackColor];
 }
 
 - (UIColor *)judoInputFieldBackgroundColor {

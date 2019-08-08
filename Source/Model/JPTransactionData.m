@@ -31,36 +31,39 @@
 @implementation JPTransactionData
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    self = [super init];
-    if (self) {
-        self.receiptId = dictionary[@"receiptId"];
-        self.paymentReference = dictionary[@"yourPaymentReference"];
-        self.type = [self transactionTypeForString:dictionary[@"type"]];
-        self.createdAt = dictionary[@"createdAt"];
-        self.result = [self transactionResultForString:dictionary[@"result"]];
-        self.message = dictionary[@"message"];
-        self.judoId = dictionary[@"judoId"];
-        self.merchantName = dictionary[@"merchantName"];
-        self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];
-        NSString *currency = dictionary[@"currency"];
-        if (dictionary[@"refunds"]) {
-            self.refunds = [[JPAmount alloc] initWithAmount:dictionary[@"refunds"] currency:currency];
-        }
-        self.originalAmount = dictionary[@"originalAmount"];
-        
-        self.netAmount = dictionary[@"netAmount"];
-        NSString *amount = dictionary[@"amount"];
-        if (amount != nil) {
-            self.amount = [[JPAmount alloc] initWithAmount:amount currency:currency];
-        }
-        NSDictionary *cardDetailsDictionary = dictionary[@"cardDetails"];
-        if (cardDetailsDictionary) {
-            self.cardDetails = [[JPCardDetails alloc] initWithDictionary:cardDetailsDictionary];
-        }
-        self.consumer = [[JPConsumer alloc] initWithDictionary:dictionary[@"consumer"]];
-        self.rawData = dictionary;
+    if(self = [super init]) {
+        [self populateWith:dictionary];
     }
     return self;
+}
+
+- (void)populateWith:(NSDictionary *)dictionary {
+    self.receiptId = dictionary[@"receiptId"];
+    self.paymentReference = dictionary[@"yourPaymentReference"];
+    self.type = [self transactionTypeForString:dictionary[@"type"]];
+    self.createdAt = dictionary[@"createdAt"];
+    self.result = [self transactionResultForString:dictionary[@"result"]];
+    self.message = dictionary[@"message"];
+    self.judoId = dictionary[@"judoId"];
+    self.merchantName = dictionary[@"merchantName"];
+    self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];
+    NSString *currency = dictionary[@"currency"];
+    if (dictionary[@"refunds"]) {
+        self.refunds = [[JPAmount alloc] initWithAmount:dictionary[@"refunds"] currency:currency];
+    }
+    self.originalAmount = dictionary[@"originalAmount"];
+    
+    self.netAmount = dictionary[@"netAmount"];
+    NSString *amount = dictionary[@"amount"];
+    if (amount != nil) {
+        self.amount = [[JPAmount alloc] initWithAmount:amount currency:currency];
+    }
+    NSDictionary *cardDetailsDictionary = dictionary[@"cardDetails"];
+    if (cardDetailsDictionary) {
+        self.cardDetails = [[JPCardDetails alloc] initWithDictionary:cardDetailsDictionary];
+    }
+    self.consumer = [[JPConsumer alloc] initWithDictionary:dictionary[@"consumer"]];
+    self.rawData = dictionary;
 }
 
 - (TransactionResult)transactionResultForString:(NSString *)resultString {

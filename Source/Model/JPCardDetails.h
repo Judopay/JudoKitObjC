@@ -31,127 +31,127 @@ typedef NS_ENUM(NSUInteger, CardNetwork) {
     /**
      * Unknown
      */
-    CardNetworkUnknown = 0,
+    CardNetworkUnknown,
     /**
      * Visa Card Network
      */
-    CardNetworkVisa = 1,
+    CardNetworkVisa,
     /**
      * MasterCard Network
      */
-    CardNetworkMasterCard = 2,
+    CardNetworkMasterCard,
     /**
      * Visa Electron Network
      */
-    CardNetworkVisaElectron = 3,
+    CardNetworkVisaElectron,
     /**
      * Switch Network
      */
-    CardNetworkSwitch = 4,
+    CardNetworkSwitch,
     /**
      * Solo Network
      */
-    CardNetworkSolo = 5,
+    CardNetworkSolo,
     /**
      * Laser Network
      */
-    CardNetworkLaser = 6,
+    CardNetworkLaser,
     /**
      * China UnionPay Network
      */
-    CardNetworkChinaUnionPay = 7,
+    CardNetworkChinaUnionPay,
     /**
      * American Express Card Network
      */
-    CardNetworkAMEX = 8,
+    CardNetworkAMEX,
     /**
      * JCB Network
      */
-    CardNetworkJCB = 9,
+    CardNetworkJCB,
     /**
      * Maestro Card Network
      */
-    CardNetworkMaestro = 10,
+    CardNetworkMaestro,
     /**
      * Visa Debit Card Network
      */
-    CardNetworkVisaDebit = 11,
+    CardNetworkVisaDebit,
     /**
      * MasterCard Network
      */
-    CardNetworkMasterCardDebit = 12,
+    CardNetworkMasterCardDebit,
     /**
      * Visa Purchasing Network
      */
-    CardNetworkVisaPurchasing = 13,
+    CardNetworkVisaPurchasing,
     /**
      * Discover Network
      */
-    CardNetworkDiscover = 14,
+    CardNetworkDiscover,
     /**
      * Carnet Network
      */
-    CardNetworkCarnet = 15,
+    CardNetworkCarnet,
     /**
      * Carte Bancaire Network
      */
-    CardNetworkCarteBancaire = 16,
+    CardNetworkCarteBancaire,
     /**
      * Diners Club Network
      */
-    CardNetworkDinersClub = 17,
+    CardNetworkDinersClub,
     /**
      * Elo Network
      */
-    CardNetworkElo = 18,
+    CardNetworkElo,
     /**
      * Farmers Card Network
      */
-    CardNetworkFarmersCard = 19,
+    CardNetworkFarmersCard,
     /**
      * Soriana Network
      */
-    CardNetworkSoriana = 20,
+    CardNetworkSoriana,
     /**
      * Private Label Card Network
      */
-    CardNetworkPrivateLabelCard = 21,
+    CardNetworkPrivateLabelCard,
     /**
      * Q Card Network
      */
-    CardNetworkQCard = 22,
+    CardNetworkQCard,
     /**
      * Style Network
      */
-    CardNetworkStyle = 23,
+    CardNetworkStyle,
     /**
      * True Rewards Network
      */
-    CardNetworkTrueRewards = 24,
+    CardNetworkTrueRewards,
     /**
      * UATP Network
      */
-    CardNetworkUATP = 25,
+    CardNetworkUATP,
     /**
      * Bank Card Network
      */
-    CardNetworkBankCard = 26,
+    CardNetworkBankCard,
     /**
      * Banamex Costco Network
      */
-    CardNetworkBanamex_Costco = 27,
+    CardNetworkBanamex_Costco,
     /**
      * InterPayment Network
      */
-    CardNetworkInterPayment = 28,
+    CardNetworkInterPayment,
     /**
      * InstaPayment Network
      */
-    CardNetworkInstaPayment = 29,
+    CardNetworkInstaPayment,
     /**
      * Dankort Network
      */
-    CardNetworkDankort = 30
+    CardNetworkDankort
 };
 
 
@@ -195,7 +195,9 @@ typedef NS_ENUM(NSUInteger, CardNetwork) {
  */
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
-- (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber expiryMonth:(NSInteger)month expiryYear:(NSInteger)year;
+- (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber
+                               expiryMonth:(NSInteger)month
+                                expiryYear:(NSInteger)year;
 
 /**
  *  Get a formatted string with the right whitespacing for a certain card type
@@ -210,14 +212,5 @@ typedef NS_ENUM(NSUInteger, CardNetwork) {
  *  @return a string with the date as shown on the credit card with the right format
  */
 - (nullable NSString *)formattedExpiryDate;
-
-/**
- *  the title for a given card network
- *
- *  @param network the network
- *
- *  @return a title string
- */
-+ (nonnull NSString *)titleForCardNetwork:(CardNetwork)network;
 
 @end

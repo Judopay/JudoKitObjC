@@ -1,0 +1,11 @@
+
+rule-configurations:
+  - key: LONG_VARIABLE_NAME
+    value: 35
+  - key: TOO_MANY_METHODS
+    value: 45
+
+disable-rules:
+  - HighNcssMethod
+  - UnusedMethodParameter
+  - BitwiseOperatorInConditional

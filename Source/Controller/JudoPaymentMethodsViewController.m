@@ -133,7 +133,7 @@
         [self.stackView addArrangedSubview:cardPaymentButton];
     }
 
-    if (self.viewModel.paymentMethods & PaymentMethodBankApp && PBBAAppUtils.isCFIAppAvailable) {
+    if (self.viewModel.paymentMethods & PaymentMethodBankApp /*&& PBBAAppUtils.isCFIAppAvailable*/) {
         PBBAButton *pbbaButton = [[PBBAButton alloc] initWithFrame: CGRectZero];
         pbbaButton.delegate = self;
         pbbaButton.cornerRadius = self.theme.buttonCornerRadius;
@@ -155,18 +155,19 @@
 }
 
 - (void)paymentMethodButtonDidTap:(UIView *)button {
-    switch (button.tag) {
-        case PaymentMethodCard:
-            [self onCardPaymentButtonDidTap];
-            break;
-
-        case PaymentMethodApplePay:
-            [self onApplePayButtonDidTap];
-            break;
-
-        default:
-            @throw NSInvalidArgumentException;
+    
+    if (button.tag == PaymentMethodCard) {
+        [self onCardPaymentButtonDidTap];
+        return;
     }
+    
+    if (button.tag == PaymentMethodApplePay) {
+        [self onApplePayButtonDidTap];
+        return;
+    }
+    
+    @throw NSInvalidArgumentException;
+
 }
 
 - (void)onCardPaymentButtonDidTap {

@@ -23,12 +23,10 @@
 //  SOFTWARE.
 
 #import "SecurityCodeInputField.h"
-
 #import "FloatingTextField.h"
 #import "CardLogoView.h"
 #import "JPTheme.h"
-
-#import "NSString+Card.h"
+#import "NSString+Validation.h"
 
 @interface JPInputField ()
 
@@ -118,9 +116,8 @@
 - (NSInteger)securityCodeLengthForCardNetwork:(CardNetwork)network {
     if (network == CardNetworkAMEX) {
         return 4;
-    } else {
-        return 3;
     }
+    return 3;
 }
 
 @end

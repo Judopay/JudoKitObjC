@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  JPCardNetwork.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import <Foundation/Foundation.h>
+#import "JPCardDetails.h"
 
-@implementation JudoPaymentMethodsViewModel
+@interface JPCardNetwork : NSObject
 
--(instancetype)initWithJudoId: (nonnull NSString *)judoId
-                       amount: (nonnull JPAmount *)amount
-            consumerReference: (nonnull JPReference *)reference
-               paymentMethods: (PaymentMethods)methods
-                  cardDetails: (nullable JPCardDetails *)cardDetails {
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _cardDetails = cardDetails;
-    }
-    return self;
-}
+@property (nonatomic, strong) NSArray <NSString *> *numberPrefixes;
+@property (nonatomic, assign) CardNetwork network;
+@property (nonatomic, assign) NSUInteger securityCodeLength;
+@property (nonatomic, strong) NSString *numberPattern;
 
++ (instancetype)networkWith:(CardNetwork)type
+             numberPrefixes:(NSString *)prefixes;
+
++ (instancetype)networkWith:(CardNetwork)type
+             numberPrefixes:(NSString *)prefixes
+         securityCodeLength:(NSUInteger)length
+              numberPattern:(NSString *)pattern;
+
++ (NSArray<JPCardNetwork *> *)supportedNetworks;
++ (NSString *)nameOfCardNetwork:(CardNetwork)network;
++ (CardNetwork)cardNetworkForCardNumber:(NSString *)cardNumber;
++ (JPCardNetwork *)cardNetworkWithType:(CardNetwork)netwrokType;
++ (NSString *)defaultNumberPattern;
 @end

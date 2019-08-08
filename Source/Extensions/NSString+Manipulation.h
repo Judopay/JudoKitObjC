@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  NSString+Manipulation.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation JudoPaymentMethodsViewModel
+@interface NSString (Manipulation)
 
--(instancetype)initWithJudoId: (nonnull NSString *)judoId
-                       amount: (nonnull JPAmount *)amount
-            consumerReference: (nonnull JPReference *)reference
-               paymentMethods: (PaymentMethods)methods
-                  cardDetails: (nullable JPCardDetails *)cardDetails {
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _cardDetails = cardDetails;
-    }
-    return self;
-}
+/*
+ * Helper method that removes all occurences of characters defined in a given set
+ */
+- (nullable NSString *)stringByReplacingCharactersInSet:(nonnull NSCharacterSet *)charSet
+                                             withString:(nonnull NSString *)aString;
+
+- (nonnull NSString *)stringByRemovingWhitespaces;
+- (nonnull NSString *)formatWithPattern:(nonnull NSString *)pattern;
+- (nonnull NSDictionary<NSString *, NSString *> *)extractURLComponentsQueryItems;
 
 @end
+

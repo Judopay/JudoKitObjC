@@ -47,6 +47,8 @@
 #import "JPAddress.h"
 #import "UIView+SafeAnchors.h"
 #import "Functions.h"
+#import "NSString+Manipulation.h"
+#import "JPTheme+Additions.h"
 
 @import CoreLocation;
 
@@ -55,11 +57,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     return opt << 16;
 }
 
-@interface JudoPayViewController () <UIWebViewDelegate, JudoPayInputDelegate> {
-    BOOL _paymentEnabled;
-    BOOL _isMakingTransaction;
-    CGFloat _currentKeyboardHeight;
-}
+@interface JudoPayViewController () <UIWebViewDelegate, JudoPayInputDelegate>
+
+@property(nonatomic, assign) BOOL paymentEnabled;
+@property(nonatomic, assign) BOOL isMakingTransaction;
+@property(nonatomic, assign) CGFloat currentKeyboardHeight;
 
 @property(nonatomic, readonly) BOOL isTokenPayment;
 
@@ -114,7 +116,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     CGRect keyboardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 
-    _currentKeyboardHeight = keyboardRect.size.height;
+    self.currentKeyboardHeight = keyboardRect.size.height;
 
     self.keyboardHeightConstraint.constant = -1 * keyboardRect.size.height + self.view.safeAreaEdgeInsets.bottom;
 
@@ -133,7 +135,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     UIViewAnimationCurve animationCurve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGFloat animationDuration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
 
-    _currentKeyboardHeight = 0.0;
+    self.currentKeyboardHeight = 0.0;
 
     self.keyboardHeightConstraint.constant = 0;
 
@@ -151,10 +153,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     UIViewAnimationCurve animationCurve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGFloat animationDuration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-
     CGRect keyboardRect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 
-    _currentKeyboardHeight = keyboardRect.size.height;
+    self.currentKeyboardHeight = keyboardRect.size.height;
 
     self.keyboardHeightConstraint.constant = -1 * keyboardRect.size.height;
 
@@ -208,7 +209,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                name:UIKeyboardWillShowNotification
                              object:nil];
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:getUserAgent(), @"UserAgent", nil];
+    NSDictionary *dictionary = @{@"UserAgent": getUserAgent()};
     [NSUserDefaults.standardUserDefaults registerDefaults:dictionary];
     [NSUserDefaults.standardUserDefaults synchronize];
 
@@ -227,7 +228,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self setupView];
 
     self.judoKitSession.apiSession.uiClientMode = YES;
-    self.title = self.transactionTitle;
+    self.title = [self.theme titleForTransactionWithType:self.transactionType];
     self.threeDSWebView.delegate = self;
 
     // Button Actions
@@ -281,6 +282,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 - (void)setupView {
 
     // Themes (needs to be set before setting up subviews
+    self.loadingView = [LoadingView new];
     self.loadingView.theme = self.theme;
 
     NSString *paymentButtonTitle = (self.transactionType == TransactionTypeRegisterCard || self.transactionType == TransactionTypeSaveCard) ? self.theme.registerCardTitle : self.theme.paymentButtonTitle;
@@ -292,6 +294,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     self.startDateInputField.isStartDate = YES;
 
     // View
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    self.scrollView.directionalLockEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+
     [self.view addSubview:self.scrollView];
     self.scrollView.contentSize = self.view.bounds.size;
 
@@ -354,25 +361,74 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[card]-(-1)-|" options:0 metrics:nil views:@{@"card": self.cardInputField}]];
 
-    [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:self.cardInputField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.scrollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:2]];
+    [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:self.cardInputField
+                                                                attribute:NSLayoutAttributeWidth
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.scrollView
+                                                                attribute:NSLayoutAttributeWidth
+                                                               multiplier:1.0
+                                                                 constant:2]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[expiry]-(-1)-[security(==expiry)]-(-1)-|" options:0 metrics:nil views:@{@"expiry": self.expiryDateInputField, @"security": self.securityCodeInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[expiry]-(-1)-[security(==expiry)]-(-1)-|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"expiry": self.expiryDateInputField, @"security": self.securityCodeInputField}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[start]-(-1)-[issue(==start)]-(-1)-|" options:0 metrics:nil views:@{@"start": self.startDateInputField, @"issue": self.issueNumberInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[start]-(-1)-[issue(==start)]-(-1)-|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"start": self.startDateInputField, @"issue": self.issueNumberInputField}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[billing]-(-1)-[post(==billing)]-(-1)-|" options:0 metrics:nil views:@{@"billing": self.billingCountryInputField, @"post": self.postCodeInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[billing]-(-1)-[post(==billing)]-(-1)-|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"billing": self.billingCountryInputField, @"post": self.postCodeInputField}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[securityMessage]-(12)-|" options:0 metrics:nil views:@{@"securityMessage": self.securityMessageLabel}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[securityMessage]-(12)-|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"securityMessage": self.securityMessageLabel}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[start]-(5)-[expiry(fieldHeight)]-(5)-[billing]-(20)-|" options:0 metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)} views:@{@"card": self.cardInputField, @"start": self.startDateInputField, @"expiry": self.expiryDateInputField, @"billing": self.billingCountryInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[start]-(5)-[expiry(fieldHeight)]-(5)-[billing]-(20)-|"
+                                                                            options:0
+                                                                            metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)}
+                                                                              views:@{@"card": self.cardInputField,
+                                                                                      @"start": self.startDateInputField,
+                                                                                      @"expiry": self.expiryDateInputField,
+                                                                                      @"billing": self.billingCountryInputField}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[issue(==start)]-(5)-[security(fieldHeight)]-(5)-[post]-(20)-|" options:0 metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)} views:@{@"card": self.cardInputField, @"issue": self.issueNumberInputField, @"start": self.startDateInputField, @"security": self.securityCodeInputField, @"post": self.postCodeInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[issue(==start)]-(5)-[security(fieldHeight)]-(5)-[post]-(20)-|"
+                                                                            options:0
+                                                                            metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)}
+                                                                              views:@{@"card": self.cardInputField,
+                                                                                      @"issue": self.issueNumberInputField,
+                                                                                      @"start": self.startDateInputField,
+                                                                                      @"security": self.securityCodeInputField,
+                                                                                      @"post": self.postCodeInputField}]];
 
-    self.maestroFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.startDateInputField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:1.0];
+    self.maestroFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.startDateInputField
+                                                                      attribute:NSLayoutAttributeHeight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:nil
+                                                                      attribute:NSLayoutAttributeNotAnAttribute
+                                                                     multiplier:1.0
+                                                                       constant:1.0];
 
-    self.avsFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.billingCountryInputField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0.0];
+    self.avsFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.billingCountryInputField
+                                                                  attribute:NSLayoutAttributeHeight
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:nil
+                                                                  attribute:NSLayoutAttributeNotAnAttribute
+                                                                 multiplier:1.0
+                                                                   constant:0.0];
 
-    self.securityMessageTopConstraint = [NSLayoutConstraint constraintWithItem:self.securityMessageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.postCodeInputField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0f];
+    self.securityMessageTopConstraint = [NSLayoutConstraint constraintWithItem:self.securityMessageLabel
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.postCodeInputField
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                    multiplier:1.0
+                                                                      constant:0.0f];
 
     self.securityMessageLabel.hidden = !self.theme.showSecurityMessage;
 
@@ -399,8 +455,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 }
 
 #pragma mark - Actions
-
-
 - (void)payButtonAction:(id)sender {
     if (!self.reference || !self.judoId) {
         if (self.completionBlock) {
@@ -409,11 +463,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         return; // BAIL
     }
 
-    if (_isMakingTransaction) {
+    if (self.isMakingTransaction) {
         return; // BAIL
     }
 
-    _isMakingTransaction = YES;
+    self.isMakingTransaction = YES;
     self.paymentNavBarButton.enabled = NO;
 
     [self.securityCodeInputField.textField resignFirstResponder];
@@ -426,12 +480,10 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         [self.transaction setPaymentToken:self.paymentToken];
     } else {
         JPAddress *address = nil;
-        if (self.theme.avsEnabled) {
-            if (self.postCodeInputField.textField.text) {
-                address = [JPAddress new];
-                address.postCode = self.postCodeInputField.textField.text;
-                address.billingCountry = self.billingCountryInputField.textField.text;
-            }
+        if (self.theme.avsEnabled && self.postCodeInputField.textField.text) {
+            address = [JPAddress new];
+            address.postCode = self.postCodeInputField.textField.text;
+            address.billingCountry = self.billingCountryInputField.textField.text;
         }
 
         NSString *issueNumber = nil;
@@ -445,7 +497,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         NSString *cardNumberString = self.cardDetails.cardNumber;
 
         if (!cardNumberString) {
-            cardNumberString = [self.cardInputField.textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+            cardNumberString = [self.cardInputField.textField.text stringByRemovingWhitespaces];
         }
 
         JPCard *card = [[JPCard alloc] initWithCardNumber:cardNumberString
@@ -458,40 +510,45 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
         [self.transaction setCard:card];
     }
+    
+    [self sendPaymentRequest];
+}
 
+- (void)sendPaymentRequest {
     [self.judoKitSession sendWithCompletion:self.transaction completion:^(JPResponse *response, NSError *error) {
-        if (error) {
-            if (error.domain == JudoErrorDomain && error.code == JudoError3DSRequest) {
-                if (!error.userInfo) {
-                    if (self.completionBlock) {
-                        self.completionBlock(nil, [NSError judoResponseParseError]);
-                        return; // BAIL
-                    }
-                }
-
-                NSError *load3DSerror = nil;
-
-                self.pending3DSReceiptId = [self.threeDSWebView load3DSWithPayload:error.userInfo error:&load3DSerror];
-
-                if (load3DSerror && self.completionBlock) {
-                    self.completionBlock(nil, load3DSerror);
-                    [self.loadingView stopAnimating];
-                    return; // BAIL
-                }
-
-                self.loadingView.actionLabel.text = self.theme.redirecting3DSTitle;
-                self.title = self.theme.authenticationTitle;
-                [self paymentEnabled:NO];
-
-            } else if (self.completionBlock) {
-                self.completionBlock(nil, error);
-            }
-        } else if (response) {
-            if (self.completionBlock) {
-                self.completionBlock(response, nil);
-                [self.loadingView stopAnimating];
-            }
+        if (!self.completionBlock) {
+            return;
         }
+        
+        if (response) {
+            self.completionBlock(response, nil);
+            [self.loadingView stopAnimating];
+            return;
+        }
+        
+        if (error && error.domain == JudoErrorDomain && error.code == JudoError3DSRequest) {
+            if (!error.userInfo) {
+                self.completionBlock(nil, [NSError judoResponseParseError]);
+                return; // BAIL
+            }
+            
+            NSError *load3DSerror = nil;
+            
+            self.pending3DSReceiptId = [self.threeDSWebView load3DSWithPayload:error.userInfo error:&load3DSerror];
+            
+            if (load3DSerror) {
+                self.completionBlock(nil, load3DSerror);
+                [self.loadingView stopAnimating];
+                return; // BAIL
+            }
+            
+            self.loadingView.actionLabel.text = self.theme.redirecting3DSTitle;
+            self.title = self.theme.authenticationTitle;
+            [self paymentEnabled:NO];
+            return;
+        }
+        
+        self.completionBlock(nil, error);
     }];
 }
 
@@ -540,7 +597,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 }
 
 - (void)paymentEnabled:(BOOL)enabled {
-    _paymentEnabled = enabled;
+    self.paymentEnabled = enabled;
     self.paymentButton.hidden = !enabled;
 
     self.keyboardHeightConstraint.constant = -_currentKeyboardHeight + self.view.safeAreaEdgeInsets.bottom;
@@ -580,38 +637,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         [self.scrollView layoutIfNeeded];
     }];
 }
-/*
-- (void)showAlertOnHintLabel:(NSString *)message {
-    [self.hintLabel showAlert:message];
-    [self updateSecurityMessagePosition:NO];
-}
-
-- (void)hideAlertOnHintLabel {
-    [self.hintLabel hideAlert];
-    [self updateSecurityMessagePosition:YES];
-}*/
 
 #pragma mark - Lazy Loading
 
 - (BOOL)isTokenPayment {
     return self.paymentToken != nil;
-}
-
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-        _scrollView.directionalLockEnabled = YES;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    return _scrollView;
-}
-
-- (LoadingView *)loadingView {
-    if (!_loadingView) {
-        _loadingView = [LoadingView new];
-    }
-    return _loadingView;
 }
 
 - (JP3DSWebView *)threeDSWebView {
@@ -679,30 +709,32 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 }
 
 - (UILabel *)securityMessageLabel {
-    if (!_securityMessageLabel) {
-        _securityMessageLabel = [UILabel new];
-        _securityMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _securityMessageLabel.numberOfLines = 0;
-
-        NSDictionary *attributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
-                NSFontAttributeName: [UIFont boldSystemFontOfSize:self.theme.securityMessageTextSize]};
-
-        NSDictionary *boldAttributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
-                NSFontAttributeName: [UIFont systemFontOfSize:self.theme.securityMessageTextSize]};
-
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Secure server: "
-                                                                                             attributes:attributes];
-
-        [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.theme.securityMessageString
-                                                                                 attributes:boldAttributes]];
-
-        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.alignment = NSTextAlignmentLeft;
-        paragraphStyle.lineSpacing = 3.0f;
-
-        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
-        _securityMessageLabel.attributedText = attributedString;
+    if (_securityMessageLabel) {
+        return _securityMessageLabel;
     }
+    
+    _securityMessageLabel = [UILabel new];
+    _securityMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _securityMessageLabel.numberOfLines = 0;
+    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
+                                 NSFontAttributeName: [UIFont boldSystemFontOfSize:self.theme.securityMessageTextSize]};
+    
+    NSDictionary *boldAttributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
+                                     NSFontAttributeName: [UIFont systemFontOfSize:self.theme.securityMessageTextSize]};
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Secure server: "
+                                                                                         attributes:attributes];
+    
+    [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.theme.securityMessageString
+                                                                             attributes:boldAttributes]];
+    
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    paragraphStyle.lineSpacing = 3.0f;
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+    _securityMessageLabel.attributedText = attributedString;
     return _securityMessageLabel;
 }
 
@@ -716,22 +748,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
     }
     return _paymentButton;
-}
-
-- (NSString *)transactionTitle {
-    switch (self.transactionType) {
-        case TransactionTypePayment:
-        case TransactionTypePreAuth:
-            return self.theme.paymentTitle;
-        case TransactionTypeRegisterCard:
-            return self.theme.registerCardTitle;
-        case TransactionTypeSaveCard:
-            return self.theme.registerCardTitle;
-        case TransactionTypeRefund:
-            return self.theme.refundTitle;
-        default:
-            return @"Invalid";
-    }
 }
 
 #pragma mark - JudoPayInputDelegate
@@ -793,13 +809,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)judoPayInput:(JPInputField *)input didValidate:(BOOL)valid {
     if (input == self.securityCodeInputField) {
-        if (self.theme.avsEnabled) {
-            if (valid) {
-                [self.postCodeInputField.textField becomeFirstResponder];
-                [self toggleAVSVisibility:YES completion:^{
-                    [self.scrollView scrollRectToVisible:self.postCodeInputField.frame animated:YES];
-                }];
-            }
+        if (self.theme.avsEnabled && valid) {
+            [self.postCodeInputField.textField becomeFirstResponder];
+            [self toggleAVSVisibility:YES completion:^{
+                [self.scrollView scrollRectToVisible:self.postCodeInputField.frame animated:YES];
+            }];
         }
     } else if (input == self.postCodeInputField) {
         [input displayHint:@""];
@@ -824,63 +838,54 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *urlString = request.URL.absoluteString;
 
-    if ([urlString rangeOfString:@"Parse3DS"].location != NSNotFound) {
-        NSString *bodyString = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
-        if (!bodyString) {
-            if (self.completionBlock) {
-                self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
-            }
-            return NO;
+    if ([urlString rangeOfString:@"Parse3DS"].location == NSNotFound) {
+        return YES;
+    }
+    
+    NSString *bodyString = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+    if (!bodyString) {
+        if (self.completionBlock) {
+            self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
         }
-
-        NSMutableDictionary *results = [NSMutableDictionary dictionary];
-
-        NSArray *pairs = [bodyString componentsSeparatedByString:@"&"];
-
-        for (NSString *pair in pairs) {
-            if ([pair rangeOfString:@"="].location != NSNotFound) {
-                NSArray *components = [pair componentsSeparatedByString:@"="];
-                NSString *value = components[1];
-                NSString *escapedVal = [value stringByRemovingPercentEncoding];
-
-                results[components[0]] = escapedVal;
-            }
-        }
-
-        if (self.pending3DSReceiptId) {
-            if (self.transactionType == TransactionTypeRegisterCard) {
-                self.loadingView.actionLabel.text = self.theme.verifying3DSRegisterCardTitle;
-            } else {
-                self.loadingView.actionLabel.text = self.theme.verifying3DSPaymentTitle;
-            }
-            [self.loadingView startAnimating];
-            self.title = self.theme.authenticationTitle;
-            [self.transaction threeDSecureWithParameters:results receiptId:self.pending3DSReceiptId completion:^(JPResponse *response, NSError *error) {
-                [self.loadingView stopAnimating];
-                if (self.completionBlock) {
-                    if (error) {
-                        self.completionBlock(nil, error);
-                    } else if (response) {
-                        self.completionBlock(response, nil);
-                    } else {
-                        self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
-                    }
-                }
-            }];
-        } else {
-            if (self.completionBlock) {
-                self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
-            }
-        }
-
-        [UIView animateWithDuration:0.3 animations:^{
-            self.threeDSWebView.alpha = 0.0f;
-        }                completion:^(BOOL finished) {
-            [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-        }];
         return NO;
     }
-    return YES;
+    
+    NSDictionary *results = [bodyString extractURLComponentsQueryItems];
+    
+    if (self.pending3DSReceiptId) {
+        if (self.transactionType == TransactionTypeRegisterCard) {
+            self.loadingView.actionLabel.text = self.theme.verifying3DSRegisterCardTitle;
+        } else {
+            self.loadingView.actionLabel.text = self.theme.verifying3DSPaymentTitle;
+        }
+        
+        [self.loadingView startAnimating];
+        self.title = self.theme.authenticationTitle;
+        [self.transaction threeDSecureWithParameters:results
+                                           receiptId:self.pending3DSReceiptId
+                                          completion:^(JPResponse *response, NSError *error) {
+            [self.loadingView stopAnimating];
+            if (self.completionBlock) {
+                if (response) {
+                    self.completionBlock(response, nil);
+                } else {
+                    NSError *judoError = error ? error : [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil];
+                    self.completionBlock(nil, judoError);
+                }
+            }
+        }];
+    } else {
+        if (self.completionBlock) {
+            self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
+        }
+    }
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{ self.threeDSWebView.alpha = 0.0f;}
+                     completion:^(BOOL finished) {
+                         [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+                     }];
+    return NO;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

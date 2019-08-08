@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  NSString+Validation.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,40 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import "NSString+Validation.h"
 
-@implementation JudoPaymentMethodsViewModel
+@implementation NSString (Validation)
 
--(instancetype)initWithJudoId: (nonnull NSString *)judoId
-                       amount: (nonnull JPAmount *)amount
-            consumerReference: (nonnull JPReference *)reference
-               paymentMethods: (PaymentMethods)methods
-                  cardDetails: (nullable JPCardDetails *)cardDetails {
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _cardDetails = cardDetails;
+- (BOOL)isNumeric {
+    NSString *regexPattern = @"^[0-9]*$";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
+    return [regex matchesInString:self options:NSMatchingAnchored range:NSMakeRange(0, self.length)].count;
+}
+
+- (BOOL)isAlphaNumeric {
+    NSCharacterSet *nonAlphaNumeric = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    return [self rangeOfCharacterFromSet:nonAlphaNumeric].location == NSNotFound;
+}
+
+- (BOOL)isLuhnValid {
+    NSUInteger total = 0;
+    NSUInteger len = [self length];
+    
+    for (NSUInteger index = len; index > 0;) {
+        BOOL odd = (len - index) & 1;
+        --index;
+        unichar character = [self characterAtIndex: index];
+        if(character < '0' || character > '9') continue;
+        character -= '0';
+        if(odd) character *= 2;
+        if(character >= 10) {
+            total += 1;
+            character -= 10;
+        }
+        total += character;
     }
-    return self;
+    
+    return (total % 10) == 0;
 }
 
 @end

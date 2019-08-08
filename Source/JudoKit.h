@@ -104,6 +104,141 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                                secret:(nonnull NSString *)secret;
 
 /**
+ *  This method only creates a JPPayment object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction
+ *
+ *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param amount    The amount and currency of the payment (default is GBP)
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPPayment object
+ */
+- (nonnull JPPayment *)paymentWithJudoId:(nonnull NSString *)judoId
+                                  amount:(nonnull JPAmount *)amount
+                               reference:(nonnull JPReference *)reference;
+
+/**
+ *  This method only creates a JPPreAuth object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction
+ *
+ *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param amount    The amount and currency of the pre-auth (default is GBP)
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPPreAuth object
+ */
+- (nonnull JPPreAuth *)preAuthWithJudoId:(nonnull NSString *)judoId
+                                  amount:(nonnull JPAmount *)amount
+                               reference:(nonnull JPReference *)reference;
+
+/**
+ *  This method only creates a JPRegisterCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
+ *
+ *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPRegisterCard object
+ */
+- (nonnull JPRegisterCard *)registerCardWithJudoId:(nonnull NSString *)judoId
+                                         reference:(nonnull JPReference *)reference;
+
+/**
+ *  This method only creates a JPSaveCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
+ *
+ *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPSaveCard object
+ */
+- (nonnull JPSaveCard *)saveCardWithJudoId:(nonnull NSString *)judoId
+                                 reference:(nonnull JPReference *)reference;
+
+/**
+ *  This method creates a JPCollection object that can be used to collect a previously pre-authorized transaction.
+ *
+ *  @param receiptId The receipt ID
+ *  @param amount    The amount and currency of the collection (default is GBP)
+ *
+ *  @return a JPCollection object
+ */
+- (nonnull JPCollection *)collectionWithReceiptId:(nonnull NSString *)receiptId
+                                           amount:(nonnull JPAmount *)amount;
+
+/**
+ *  This method creates a JPVoid object that can be used to void a previously pre-authorized transaction to free the reserved funds on the user's card
+ *
+ *  @param receiptId The receipt ID
+ *  @param amount    The amount and currency of the void (default is GBP)
+ *
+ *  @return a JPVoid object
+ */
+- (nonnull JPVoid *)voidWithReceiptId:(nonnull NSString *)receiptId
+                               amount:(nonnull JPAmount *)amount;
+
+/**
+ *  This method creates a JPRefund object that can be used to refund a previous payment transaction and refunds the given amount back to the user's card
+ *
+ *  @param receiptId The receipt ID
+ *  @param amount    The amount and currency of the refund (default is GBP)
+ *
+ *  @return a JPRefund object
+ */
+- (nonnull JPRefund *)refundWithReceiptId:(nonnull NSString *)receiptId
+                                   amount:(nonnull JPAmount *)amount;
+
+/**
+ *  Create a JPReceipt object to query for a given receipt ID or all receipts.
+ *
+ *  @param receiptId the receipt ID to query for - nil for a list of all receipts
+ *
+ *  @return a JPReceipt object
+ */
+- (nonnull JPReceipt *)receipt:(nullable NSString *)receiptId;
+
+/**
+ *  A helper method that lists all the transaction for a given class that conforms to JPTransaction (JPPayment, JPPreAuth, JPRegisterCard, JPSaveCard)
+ *
+ *  @param type       The class that conforms to JPTransaction to be queried for its list
+ *  @param pagination An optional pagination object for multi-paged requests
+ *  @param completion The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)list:(nonnull Class)type
+   paginated:(nullable JPPagination *)pagination
+  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+
+/**
+ *  Helper method that creates a Transaction based on the Class that is passed (JPPayment, JPPreAuth, JPRegisterCard or JPSaveCard)
+ *
+ *  @param type      The class that conforms to JPTransaction to be created with this method
+ *  @param judoId    The judoID of the merchant
+ *  @param amount    The amount and currency of the transaction (default is GBP)
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPTransaction object
+ */
+- (nonnull JPTransaction *)transactionForTypeClass:(nonnull Class)type
+                                            judoId:(nonnull NSString *)judoId
+                                            amount:(nullable JPAmount *)amount
+                                         reference:(nonnull JPReference *)reference;
+
+/**
+ *  Helper method that creates a Transaction based on the TransactionType that is passed (Payment, PreAuth, RegisterCard or SaveCard)
+ *
+ *  @param type      The TransactionType to be created with this method
+ *  @param judoId    The judoID of the merchant
+ *  @param amount    The amount and currency of the transaction (default is GBP)
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPTransaction object
+ */
+- (nullable JPTransaction *)transactionForType:(TransactionType)type
+                                       judoId:(nonnull NSString *)judoId
+                                       amount:(nullable JPAmount *)amount
+                                    reference:(nonnull JPReference *)reference;
+
+@end
+
+@interface JudoKit (Invokers)
+
+/**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the payment will finish or any errors encountered the completion block will be invoked with related details.
  *
  *  @param judoId               The judoID of the merchant to receive the payment
@@ -299,137 +434,6 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
-
-/**
- *  This method only creates a JPPayment object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction
- *
- *  @param judoId    The judoID of the merchant to receive the transaction
- *  @param amount    The amount and currency of the payment (default is GBP)
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPPayment object
- */
-- (nonnull JPPayment *)paymentWithJudoId:(nonnull NSString *)judoId
-                                  amount:(nonnull JPAmount *)amount
-                               reference:(nonnull JPReference *)reference;
-
-/**
- *  This method only creates a JPPreAuth object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction
- *
- *  @param judoId    The judoID of the merchant to receive the transaction
- *  @param amount    The amount and currency of the pre-auth (default is GBP)
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPPreAuth object
- */
-- (nonnull JPPreAuth *)preAuthWithJudoId:(nonnull NSString *)judoId
-                                  amount:(nonnull JPAmount *)amount
-                               reference:(nonnull JPReference *)reference;
-
-/**
- *  This method only creates a JPRegisterCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
- *
- *  @param judoId    The judoID of the merchant to receive the transaction
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPRegisterCard object
- */
-- (nonnull JPRegisterCard *)registerCardWithJudoId:(nonnull NSString *)judoId
-                                         reference:(nonnull JPReference *)reference;
-
-/**
- *  This method only creates a JPSaveCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
- *
- *  @param judoId    The judoID of the merchant to receive the transaction
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPSaveCard object
- */
-- (nonnull JPSaveCard *)saveCardWithJudoId:(nonnull NSString *)judoId
-                                 reference:(nonnull JPReference *)reference;
-
-/**
- *  This method creates a JPCollection object that can be used to collect a previously pre-authorized transaction.
- *
- *  @param receiptId The receipt ID
- *  @param amount    The amount and currency of the collection (default is GBP)
- *
- *  @return a JPCollection object
- */
-- (nonnull JPCollection *)collectionWithReceiptId:(nonnull NSString *)receiptId
-                                           amount:(nonnull JPAmount *)amount;
-
-/**
- *  This method creates a JPVoid object that can be used to void a previously pre-authorized transaction to free the reserved funds on the user's card
- *
- *  @param receiptId The receipt ID
- *  @param amount    The amount and currency of the void (default is GBP)
- *
- *  @return a JPVoid object
- */
-- (nonnull JPVoid *)voidWithReceiptId:(nonnull NSString *)receiptId
-                               amount:(nonnull JPAmount *)amount;
-
-/**
- *  This method creates a JPRefund object that can be used to refund a previous payment transaction and refunds the given amount back to the user's card
- *
- *  @param receiptId The receipt ID
- *  @param amount    The amount and currency of the refund (default is GBP)
- *
- *  @return a JPRefund object
- */
-- (nonnull JPRefund *)refundWithReceiptId:(nonnull NSString *)receiptId
-                                   amount:(nonnull JPAmount *)amount;
-
-/**
- *  Create a JPReceipt object to query for a given receipt ID or all receipts.
- *
- *  @param receiptId the receipt ID to query for - nil for a list of all receipts
- *
- *  @return a JPReceipt object
- */
-- (nonnull JPReceipt *)receipt:(nullable NSString *)receiptId;
-
-/**
- *  A helper method that lists all the transaction for a given class that conforms to JPTransaction (JPPayment, JPPreAuth, JPRegisterCard, JPSaveCard)
- *
- *  @param type       The class that conforms to JPTransaction to be queried for its list
- *  @param pagination An optional pagination object for multi-paged requests
- *  @param completion The completion handler which will respond with a JPResponse object or an NSError
- */
-- (void)list:(nonnull Class)type
-   paginated:(nullable JPPagination *)pagination
-  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
-
-/**
- *  Helper method that creates a Transaction based on the Class that is passed (JPPayment, JPPreAuth, JPRegisterCard or JPSaveCard)
- *
- *  @param type      The class that conforms to JPTransaction to be created with this method
- *  @param judoId    The judoID of the merchant
- *  @param amount    The amount and currency of the transaction (default is GBP)
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPTransaction object
- */
-- (nonnull JPTransaction *)transactionForTypeClass:(nonnull Class)type
-                                            judoId:(nonnull NSString *)judoId
-                                            amount:(nullable JPAmount *)amount
-                                         reference:(nonnull JPReference *)reference;
-
-/**
- *  Helper method that creates a Transaction based on the TransactionType that is passed (Payment, PreAuth, RegisterCard or SaveCard)
- *
- *  @param type      The TransactionType to be created with this method
- *  @param judoId    The judoID of the merchant
- *  @param amount    The amount and currency of the transaction (default is GBP)
- *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *
- *  @return a JPTransaction object
- */
-- (nonnull JPTransaction *)transactionForType:(TransactionType)type
-                                       judoId:(nonnull NSString *)judoId
-                                       amount:(nullable JPAmount *)amount
-                                    reference:(nonnull JPReference *)reference;
 
 @end
 

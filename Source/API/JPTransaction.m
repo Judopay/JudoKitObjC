@@ -46,15 +46,14 @@
 
 @end
 
-@interface JPTransaction () {
-    PKPayment *_pkPayment;
-    JPVCOResult *_vcoResult;
-}
+@interface JPTransaction ()
 
 @property (nonatomic, strong) NSString *currentTransactionReference;
 @property (nonatomic, assign) BOOL initialRecurringPayment;
 @property (nonatomic, strong) NSMutableDictionary *parameters;
 
+@property (nonatomic, strong) PKPayment *pkPayment;
+@property (nonatomic, strong) JPVCOResult *vcoResult;
 @end
 
 @implementation JPTransaction
@@ -87,7 +86,7 @@
     }];
 }
 
-- (NSError *)validateTransaction {
+- (NSError *)validateTransaction { //!OCLINT
     if (!self.judoId) {
         return [NSError judoJudoIdMissingError];
     }
@@ -100,13 +99,14 @@
         return [NSError judoReferenceMissingError];
     }
     
-    if (![self isKindOfClass:[JPRegisterCard class]] && ![self isKindOfClass:[JPSaveCard class]] && !self.amount) {
+    if (![self isKindOfClass:JPRegisterCard.class] && ![self isKindOfClass:JPSaveCard.class] && !self.amount) {
         return [NSError judoAmountMissingError];
     }
     
     if (self.reference.paymentReference == self.currentTransactionReference) {
         return [NSError judoDuplicateTransactionError];
     }
+    
     return nil;
 }
 
@@ -231,8 +231,9 @@
     return _pkPayment;
 }
 
-- (void)setPkPayment:(PKPayment *)pkPayment error:(NSError *__autoreleasing *)error {
-    _pkPayment = pkPayment;
+- (int)setPkPayment:(PKPayment *)pkPayment
+               error:(NSError *__autoreleasing *)error {
+    self.pkPayment = pkPayment;
     
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
     
@@ -249,6 +250,7 @@
                                                                   error:error];
     
     self.parameters[@"pkPayment"] = @{@"token":tokenDict};
+    return error ? 1 : 0;
 }
 
 - (JPVCOResult *)vcoResult {
@@ -256,7 +258,7 @@
 }
 
 - (void)setVCOResult:(JPVCOResult *)vcoResult {
-    _vcoResult = vcoResult;
+    self.vcoResult = vcoResult;
     self.parameters[@"wallet"] = @{@"callid": vcoResult.callId,
                                    @"encryptedKey": vcoResult.encryptedKey,
                                    @"encryptedPaymentData": vcoResult.encryptedPaymentData

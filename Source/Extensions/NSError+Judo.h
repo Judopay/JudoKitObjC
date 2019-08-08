@@ -33,7 +33,7 @@ extern NSString * const JudoErrorDomain;
 @interface NSError (Judo)
 
 + (NSError *)judoRequestFailedError;
-+ (NSError *)judoJSONSerializationFailedWithError:(NSError *)error;
++ (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error;
 + (NSError *)judoJudoIdMissingError;
 + (NSError *)judoPaymentMethodMissingError;
 + (NSError *)judoAmountMissingError;

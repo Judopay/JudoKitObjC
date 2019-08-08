@@ -27,21 +27,21 @@
 @implementation UIColor (Judo)
 
 - (UIColor *)inverseColor {
-    CGFloat r;
-    CGFloat g;
-    CGFloat b;
-    CGFloat a;
-    [self getRed:&r green:&g blue:&b alpha:&a];
-    return [UIColor colorWithRed:1 - r green:1 - g blue:1 - b alpha:a];
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    return [UIColor colorWithRed:1 - red green:1 - green blue:1 - blue alpha:alpha];
 }
 
 - (CGFloat)greyScale {
-    CGFloat r;
-    CGFloat g;
-    CGFloat b;
-    CGFloat a;
-    [self getRed:&r green:&g blue:&b alpha:&a];
-    return (0.299 * r + 0.587 * g + 0.114 * b);
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    return 0.299 * red + 0.587 * green + 0.114 * blue;
 }
 
 - (BOOL)colorMode {

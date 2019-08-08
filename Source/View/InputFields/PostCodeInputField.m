@@ -27,7 +27,7 @@
 #import "FloatingTextField.h"
 
 #import "NSError+Judo.h"
-#import "NSString+Card.h"
+#import "NSString+Validation.h"
 
 static NSString * const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
 static NSString * const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
@@ -52,30 +52,31 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     if (_billingCountry == billingCountry) {
         return; // BAIL
     }
+    
     _billingCountry = billingCountry;
     
-    switch (_billingCountry) {
-        case BillingCountryUK:
-        case BillingCountryCanada:
-            self.textField.keyboardType = UIKeyboardTypeDefault;
-            break;
-        default:
-            self.textField.keyboardType = UIKeyboardTypeNumberPad;
-            break;
+    if (_billingCountry == BillingCountryUK || _billingCountry == BillingCountryCanada) {
+        self.textField.keyboardType = UIKeyboardTypeDefault;
+    } else {
+        self.textField.keyboardType = UIKeyboardTypeNumberPad;
     }
+
     NSString *placeholder = [NSString stringWithFormat:@"Billing %@", [self descriptionForBillingCountry:_billingCountry]];
     [self.textField setPlaceholder:placeholder floatingTitle:placeholder];
 }
 
 - (NSString *)descriptionForBillingCountry:(BillingCountry)country {
-    switch (country) {
-    case BillingCountryUSA:
+    
+    if (country == BillingCountryUSA) {
         return @"ZIP code";
-    case BillingCountryCanada:
-        return @"postal code";
-    default:
-        return @"postcode";
     }
+    
+    if (country == BillingCountryCanada) {
+        return @"postal code";
+    }
+    
+    return @"postcode";
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -137,19 +138,12 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     
     BOOL valid = YES;
     
-    switch (self.billingCountry) {
-        case BillingCountryUK:
-            if (characterCount >= 8) {
-                valid = NO;
-            }
-            break;
-        case BillingCountryCanada:
-            if (characterCount >= 6) {
-                valid = NO;
-            }
-            break;
-        default:
-            break;
+    if (self.billingCountry == BillingCountryUK && characterCount >= 8) {
+        valid = NO;
+    }
+    
+    if (self.billingCountry == BillingCountryCanada && characterCount >= 6) {
+        valid = NO;
     }
     
     if (!valid) {
