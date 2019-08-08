@@ -108,7 +108,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)keyboardWillShow:(NSNotification *)note {
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
-        return; // BAIL
+        return;
     }
 
     UIViewAnimationCurve animationCurve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
@@ -129,7 +129,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)keyboardWillHide:(NSNotification *)note {
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
-        return; // BAIL
+        return;
     }
 
     UIViewAnimationCurve animationCurve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
@@ -148,7 +148,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 - (void)keyboardWillChangeFrame:(NSNotification *)note {
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        return; // BAIL
+        return;
     }
 
     UIViewAnimationCurve animationCurve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
@@ -460,11 +460,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         if (self.completionBlock) {
             self.completionBlock(nil, [NSError judoParameterError]);
         }
-        return; // BAIL
+        return;
     }
 
     if (self.isMakingTransaction) {
-        return; // BAIL
+        return;
     }
 
     self.isMakingTransaction = YES;
@@ -529,7 +529,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         if (error && error.domain == JudoErrorDomain && error.code == JudoError3DSRequest) {
             if (!error.userInfo) {
                 self.completionBlock(nil, [NSError judoResponseParseError]);
-                return; // BAIL
+                return;
             }
             
             NSError *load3DSerror = nil;
@@ -539,7 +539,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
             if (load3DSerror) {
                 self.completionBlock(nil, load3DSerror);
                 [self.loadingView stopAnimating];
-                return; // BAIL
+                return;
             }
             
             self.loadingView.actionLabel.text = self.theme.redirecting3DSTitle;

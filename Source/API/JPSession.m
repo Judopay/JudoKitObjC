@@ -90,7 +90,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(nil, error);
             });
-            return; // BAIL
+            return;
         }
     }
     
@@ -120,7 +120,6 @@
     
     // Adds the version and lang of the SDK to the header
     [request addValue: getUserAgent() forHTTPHeaderField:@"User-Agent"];
-    
     NSString *uiClientModeString = @"Judo-SDK";
     
     if (self.uiClientMode) {
@@ -134,7 +133,6 @@
     
     // Set auth header
     [request addValue:self.authorizationHeader forHTTPHeaderField:@"Authorization"];
-    
     return request;
 }
 
@@ -148,13 +146,12 @@
         if (!completion) {
             return;
         }
-                             
         // check if an error occurred
         if (error || !data) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(nil, error ? error : [NSError judoRequestFailedError]);
             });
-            return; // BAIL
+            return;
         }
         
         // serialize json
@@ -171,7 +168,7 @@
                 }
                 completion(nil, jsonError);
             });
-            return; // BAIL
+            return;
         }
         
         // check if API Error was returned
@@ -179,7 +176,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(nil, [NSError judoErrorFromDictionary:responseJSON]);
             });
-            return; // BAIL
+            return; 
         }
         
         // check if 3DS was requested
@@ -187,7 +184,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(nil, [NSError judo3DSRequestWithPayload:responseJSON]);
             });
-            return; // BAIL
+            return; 
         }
         
         JPPagination *pagination = nil;
@@ -219,7 +216,6 @@
 #pragma mark - URLSession SSL pinning
 
 -(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-    
     TSKPinningValidator *pinningValidator = [self.trustKit pinningValidator];
     // Pass the authentication challenge to the validator; if the validation fails, the connection will be blocked
     if (![pinningValidator handleChallenge:challenge completionHandler:completionHandler]) {

@@ -260,7 +260,6 @@
                                       consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
                                          paymentMethods:methods
                                             cardDetails:cardDetails];
-    
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel
                                                                                                 currentSession:self

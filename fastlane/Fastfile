@@ -6,7 +6,7 @@ platform :ios do
   end
   
   lane :generate_code_quality_reports do
-    # sh("cd .. && ./clang-format.sh lint") # check code format
+    sh("cd .. && ./clang-format.sh lint") # check code format
     scan(use_clang_report_name: true)     # run tests and generate reports
     oclint(report_type: 'html')             # run static code analyzer
     # slather                               # generate code coverage reports
