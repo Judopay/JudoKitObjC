@@ -221,7 +221,9 @@
     return (PKAddressField)contactFields;
 }
 
-- (ContactInformation *)contactInformationFromPaymentContact:(PKContact *)contact {
+- (nullable ContactInformation *)contactInformationFromPaymentContact:(nullable PKContact *)contact {
+    
+    if (!contact) return nil;
     
     PostalAddress *postalAddress = [[PostalAddress alloc] initWithSteet:contact.postalAddress.street
                                                                    city:contact.postalAddress.city
@@ -229,10 +231,10 @@
                                                              postalCode:contact.postalAddress.postalCode
                                                                 country:contact.postalAddress.country];
     
-    return [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
-                                                       name:contact.name
-                                                phoneNumber:contact.phoneNumber.stringValue
-                                              postalAddress:postalAddress];
+    return  [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
+                                                        name:contact.name
+                                                 phoneNumber:contact.phoneNumber.stringValue
+                                               postalAddress:postalAddress];
 }
 
 @end

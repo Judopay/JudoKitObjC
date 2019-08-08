@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  * that is passed into JPResult to give merchants access to either billing or shipping
  * contact information.
  */
-- (ContactInformation *)contactInformationFromPaymentContact:(PKContact *)contact;
+- (nullable ContactInformation *)contactInformationFromPaymentContact:(nullable PKContact *)contact;
 
 /**
  * The PKPaymentAuthorizationViewController that should pe presented in order to invoke

@@ -77,8 +77,8 @@ typedef NS_OPTIONS(NSInteger, ContactField) {
 typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
     ReturnedInfoNone = 0,
     ReturnedInfoBillingContacts = 1 << 0,
-    ReturnedInfoShippingAddress = 1 << 1,
-    ReturnedInfoAll = (ReturnedInfoBillingContacts|ReturnedInfoShippingAddress)
+    ReturnedInfoShippingContacts = 1 << 1,
+    ReturnedInfoAll = (ReturnedInfoBillingContacts|ReturnedInfoShippingContacts)
 };
 
 /**

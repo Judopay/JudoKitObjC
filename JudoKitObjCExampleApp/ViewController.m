@@ -110,6 +110,9 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                                               currency:@"GBP"
                                                            countryCode:@"GB"
                                                    paymentSummaryItems:items];
+    
+    self.configuration.requiredShippingContactFields = ContactFieldEmail;
+    self.configuration.returnedContactInfo = ReturnedInfoShippingContacts;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

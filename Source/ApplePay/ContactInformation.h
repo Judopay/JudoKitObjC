@@ -47,10 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @param phoneNumber - the phone number returned from a PKContact object
  * @param postalAddress - a PostalAddress object containing location information
  */
-- (instancetype)initWithEmailAddress: (NSString *)emailAddress
-                                name: (NSPersonNameComponents *)name
-                         phoneNumber:(NSString *)phoneNumber
-                       postalAddress:(PostalAddress *)postalAddress;
+- (instancetype)initWithEmailAddress: (nullable NSString *)emailAddress
+                                name: (nullable NSPersonNameComponents *)name
+                         phoneNumber:(nullable NSString *)phoneNumber
+                       postalAddress:(nullable PostalAddress *)postalAddress;
 
 @end
 

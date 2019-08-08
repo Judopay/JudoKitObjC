@@ -537,20 +537,18 @@
     
     [transaction sendWithCompletion:^(JPResponse * response, NSError * error) {
         
-        //TODO: - TEST THIS SCENARIO
-        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
-            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
-        }
-        
-        //TODO: - TEST THIS SCENARIO
-        if (self.configuration.returnedContactInfo & ReturnedInfoShippingAddress) {
-            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
-        }
-        
         if (error || response.items.count == 0) {
             self.completionBlock(response, error);
             completion(PKPaymentAuthorizationStatusFailure);
             return;
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
         }
         
         self.completionBlock(response, error);
