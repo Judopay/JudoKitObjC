@@ -22,13 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "ApplePayWrappers.h"
 #import "JPCardDetails.h"
 #import "JPTransactionData.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 
 /**
  * A configuration file responsible for setting all the necessary parameters
@@ -40,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * [REQUIRED] The JudoPay ID parameter
  */
-@property (nonatomic, strong) NSString * _Nonnull judoId;
+@property (nonatomic, strong) NSString *_Nonnull judoId;
 
 /**
  * [DEFAULT] The type of the transaction. Can be either Payment or PreAuth.
@@ -52,28 +51,28 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * [REQUIRED] The payment reference number
  */
-@property (nonatomic, strong) NSString * _Nonnull reference;
+@property (nonatomic, strong) NSString *_Nonnull reference;
 
 /**
  * [REQUIRED] The merchant identifier that is the one specified in the app's entitlements
  */
-@property (nonatomic, strong) NSString * _Nonnull merchantId;
+@property (nonatomic, strong) NSString *_Nonnull merchantId;
 
 /**
  * [REQUIRED] The three-letter ISO 4217 currency code used for the payment request
  */
-@property (nonatomic, strong) NSString * _Nonnull currency;
+@property (nonatomic, strong) NSString *_Nonnull currency;
 
 /**
  * [REQUIRED] The two-letter ISO 3166 country code where the payment will be processed
  */
-@property (nonatomic, strong) NSString * _Nonnull countryCode;
+@property (nonatomic, strong) NSString *_Nonnull countryCode;
 
 /**
  * [REQUIRED] An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
  *            The last summary item must specify the total amount to be payed.
  */
-@property (nonatomic, strong) NSArray<PaymentSummaryItem *> * _Nonnull paymentSummaryItems;
+@property (nonatomic, strong) NSArray<PaymentSummaryItem *> *_Nonnull paymentSummaryItems;
 
 /**
  * [DEFAULT] An array of supported card networks.
@@ -102,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * [OPTIONAL] An array that describes the supported shipping methods
  */
-@property (nonatomic, strong) NSArray<PaymentShippingMethod *> * _Nullable shippingMethods;
+@property (nonatomic, strong) NSArray<PaymentShippingMethod *> *_Nullable shippingMethods;
 
 /**
  * [DEFAULT] The type of shipping used for this request.
@@ -127,12 +126,12 @@ NS_ASSUME_NONNULL_BEGIN
  * @param countryCode         - The two-letter ISO 3166 country code where the payment will be processed
  * @param paymentSummaryItems - An array of items that summarize the amount of the payment (total, shipping, tax, etc.)
  */
-- (instancetype) initWithJudoId: (NSString *)judoId
-                      reference: (NSString *)reference
-                     merchantId: (NSString *)merchantId
-                       currency: (NSString *)currency
-                    countryCode: (NSString *)countryCode
-            paymentSummaryItems: (NSArray<PaymentSummaryItem *> *)paymentSummaryItems;
+- (instancetype)initWithJudoId:(NSString *)judoId
+                     reference:(NSString *)reference
+                    merchantId:(NSString *)merchantId
+                      currency:(NSString *)currency
+                   countryCode:(NSString *)countryCode
+           paymentSummaryItems:(NSArray<PaymentSummaryItem *> *)paymentSummaryItems;
 
 @end
 

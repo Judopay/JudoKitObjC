@@ -30,18 +30,18 @@
 @implementation IssueNumberInputField
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+
     NSString *oldString = textField.text;
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
-    
+
     if (!newString.length) {
         return YES;
     }
-    
+
     if (!newString.isNumeric) {
         return NO;
     }
-    
+
     return [newString isNumeric] && newString.length <= 3;
 }
 
@@ -53,14 +53,14 @@
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [super textFieldDidChangeValue:textField];
-    
+
     [self didChangeInputText];
-    
+
     [self.delegate issueNumberInputDidEnterCode:self withIssueNumber:self.textField.text];
 }
 
 - (NSAttributedString *)placeholder {
-    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName:[self.theme judoPlaceholderTextColor]}];
+    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : [self.theme judoPlaceholderTextColor]}];
 }
 
 - (NSString *)title {

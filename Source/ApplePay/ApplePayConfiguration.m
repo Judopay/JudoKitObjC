@@ -29,11 +29,11 @@
 #pragma mark - Initializers
 
 - (instancetype)init {
-    
+
     if (self = [super init]) {
         [self setupDefaults];
     }
-    
+
     return self;
 }
 
@@ -43,16 +43,18 @@
                       currency:(NSString *)currency
                    countryCode:(NSString *)countryCode
            paymentSummaryItems:(NSArray<PaymentSummaryItem *> *)paymentSummaryItems {
-    
-    self = [self init];
-    
+
+    if (self = [super init]) {
+        [self setupDefaults];
+    }
+
     self.judoId = judoId;
     self.reference = reference;
     self.merchantId = merchantId;
     self.currency = currency;
     self.countryCode = countryCode;
     self.paymentSummaryItems = paymentSummaryItems;
-    
+
     return self;
 }
 
@@ -63,8 +65,8 @@
     self.merchantCapabilities = MerchantCapability3DS;
     self.shippingType = ShippingTypeShipping;
     self.returnedContactInfo = ReturnedInfoBillingContacts;
-    self.supportedCardNetworks = @[@(CardNetworkVisa), @(CardNetworkMaestro), @(CardNetworkAMEX)];
-    
+    self.supportedCardNetworks = @[ @(CardNetworkVisa), @(CardNetworkMasterCard), @(CardNetworkAMEX) ];
+
     // Adds Maestro to the list of available card networks if iOS 12 or above
     if (@available(iOS 12.0, *)) {
         self.supportedCardNetworks = [self.supportedCardNetworks arrayByAddingObject:@(CardNetworkMaestro)];

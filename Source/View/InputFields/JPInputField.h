@@ -22,9 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "JPCardDetails.h"
 #import "BillingCountry.h"
+#import "JPCardDetails.h"
+#import <UIKit/UIKit.h>
 
 @class JPTheme;
 
@@ -176,7 +176,6 @@
  */
 @property (nonatomic, assign, readonly) BOOL isValid;
 
-
 /**
  *  Designated Initializer for the JPInputField and its subclasses
  *
@@ -221,7 +220,7 @@
  *  @param textField the textfield of which the content has changed
  */
 - (void)textFieldDidChangeValue:(UITextField *)textField;
-  
+
 /**
  *  method to display a label hint
  *
@@ -235,5 +234,5 @@
  *  @param message the message to display
  */
 - (void)displayError:(NSString *)message;
-    
+
 @end

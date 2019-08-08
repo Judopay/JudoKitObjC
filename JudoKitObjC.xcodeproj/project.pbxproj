@@ -49,6 +49,7 @@
 		3067416722FC210E00417C85 /* JPTheme+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067416122FC210E00417C85 /* JPTheme+Additions.m */; };
 		3067416A22FC212900417C85 /* JPCardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067416822FC212900417C85 /* JPCardNetwork.m */; };
 		3067416B22FC212900417C85 /* JPCardNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067416922FC212900417C85 /* JPCardNetwork.h */; };
+		3067416F22FC51C000417C85 /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3067416E22FC51C000417C85 /* MockJPTransactionData.json */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -379,6 +380,7 @@
 		3067416122FC210E00417C85 /* JPTheme+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JPTheme+Additions.m"; path = "Extensions/JPTheme+Additions.m"; sourceTree = "<group>"; };
 		3067416822FC212900417C85 /* JPCardNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCardNetwork.m; path = Model/JPCardNetwork.m; sourceTree = "<group>"; };
 		3067416922FC212900417C85 /* JPCardNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPCardNetwork.h; path = Model/JPCardNetwork.h; sourceTree = "<group>"; };
+		3067416E22FC51C000417C85 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -757,6 +759,7 @@
 				3B678B591C6CE5190001DC2F /* JudoKitObjC.h */,
 				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
+				3067416E22FC51C000417C85 /* MockJPTransactionData.json */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
 			);
 			path = Source;
@@ -1310,6 +1313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3067416F22FC51C000417C85 /* MockJPTransactionData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@
 
 #import "JPSaveCard.h"
 
-static NSString * const kSaveCardPathKey = @"transactions/savecard";
+static NSString *const kSaveCardPathKey = @"transactions/savecard";
 
 @implementation JPSaveCard
 

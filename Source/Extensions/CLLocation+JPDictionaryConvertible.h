@@ -22,10 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <CoreLocation/CoreLocation.h>
 #import "JPDictionaryConvertible.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface CLLocation (JPDictionaryConvertible) <JPDictionaryConvertible>
 
 @end
-

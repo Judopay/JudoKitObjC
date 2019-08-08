@@ -28,49 +28,49 @@
 #import <DeviceDNA/DeviceDNA.h>
 
 #import "Functions.h"
+#import "JPBrowser.h"
+#import "JPClientDetails.h"
+#import "JPConsumerDevice.h"
 #import "JPEnhancedPaymentDetail.h"
 #import "JPSDKInfo.h"
-#import "JPConsumerDevice.h"
-#import "JPClientDetails.h"
 #import "JPThreeDSecure.h"
-#import "JPBrowser.h"
 #import "JPTransaction.h"
 #import "JudoKit.h"
 
 @interface JPTransactionEnricher () <CLLocationManagerDelegate>
 
-@property(nonatomic, strong) DeviceDNA *deviceDNA;
-@property(nonatomic, strong) CLLocationManager *locationManager;
-@property(nonatomic, strong) CLLocation *lastKnownLocation;
+@property (nonatomic, strong) DeviceDNA *deviceDNA;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *lastKnownLocation;
 
-@property(nonatomic, copy, nullable) void (^completionBlock)(void);
-@property(nonatomic, weak) JPTransaction *transaction;
+@property (nonatomic, copy, nullable) void (^completionBlock)(void);
+@property (nonatomic, weak) JPTransaction *transaction;
 
-@property(nonatomic, strong) NSArray *enricheablePaths;
+@property (nonatomic, strong) NSArray *enricheablePaths;
 @end
 
 @implementation JPTransactionEnricher
 
-- (instancetype) initWithToken:(NSString *)token secret:(NSString *)secret {
+- (instancetype)initWithToken:(NSString *)token secret:(NSString *)secret {
     if (self = [super init]) {
         Credentials *credentials = [[Credentials alloc] initWithToken:token secret:secret];
         _deviceDNA = [[DeviceDNA alloc] initWithCredentials:credentials];
-        
+
         _locationManager = [CLLocationManager new];
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         _locationManager.delegate = self;
-        
-        _enricheablePaths = @[@"transactions/payments",
-                              @"transactions/preauths",
-                              @"transactions/registercard",
-                              @"transactions/checkcard"];
+
+        _enricheablePaths = @[ @"transactions/payments",
+                               @"transactions/preauths",
+                               @"transactions/registercard",
+                               @"transactions/checkcard" ];
     }
     return self;
 }
 
 - (void)enrichTransaction:(nonnull JPTransaction *)transaction
-           withCompletion:(nonnull void(^)(void))completion {
-    
+           withCompletion:(nonnull void (^)(void))completion {
+
     if (![self.enricheablePaths containsObject:transaction.transactionPath]) {
         completion();
         return;
@@ -78,19 +78,17 @@
 
     self.completionBlock = completion;
     self.transaction = transaction;
-    
-    if (CLLocationManager.locationServicesEnabled
-        && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways
-            || CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse)) {
-            [self.locationManager requestLocation];
-        } else {
-            [self enrichWithLocation:self.lastKnownLocation];
-        }
+
+    if (CLLocationManager.locationServicesEnabled && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways || CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse)) {
+        [self.locationManager requestLocation];
+    } else {
+        [self enrichWithLocation:self.lastKnownLocation];
+    }
 }
 
 - (void)enrichWithLocation:(CLLocation *)location {
     [self.deviceDNA getDeviceSignals:^(NSDictionary<NSString *, NSString *> *_Nullable device, NSError *_Nullable error) {
-        JPEnhancedPaymentDetail *detail = [self buildEnhancedPaymentDetail:device andLocation: location];
+        JPEnhancedPaymentDetail *detail = [self buildEnhancedPaymentDetail:device andLocation:location];
         [self.transaction setPaymentDetail:detail];
         [self.transaction setDeviceSignal:device];
         self.completionBlock();
@@ -99,19 +97,19 @@
 
 - (JPEnhancedPaymentDetail *)buildEnhancedPaymentDetail:(NSDictionary<NSString *, NSString *> *)device
                                             andLocation:(CLLocation *)location {
-    
-    JPThreeDSecure *threeDSecure = [JPThreeDSecure secureWithBrowser: [JPBrowser new]];
-   
+
+    JPThreeDSecure *threeDSecure = [JPThreeDSecure secureWithBrowser:[JPBrowser new]];
+
     JPConsumerDevice *consumerDevice = [JPConsumerDevice deviceWithIpAddress:getIPAddress()
-                                                               clientDetails:[JPClientDetails detailsWithDictionary: device]
+                                                               clientDetails:[JPClientDetails detailsWithDictionary:device]
                                                                  geoLocation:location
                                                                 threeDSecure:threeDSecure];
-    
+
     return [JPEnhancedPaymentDetail detailWithSdkInfo:[JPSDKInfo infoWithVersion:JudoKitVersion name:@"iOS-ObjC"]
                                        consumerDevice:consumerDevice];
 }
 
-#pragma mark: CLLocationManagerDelegate
+#pragma mark : CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (locations.count > 0) {
         self.lastKnownLocation = locations.lastObject;
@@ -123,7 +121,7 @@
     [self enrichWithLocation:self.lastKnownLocation];
 }
 
--(CLLocation *)lastKnownLocation {
+- (CLLocation *)lastKnownLocation {
     if (!_lastKnownLocation) {
         _lastKnownLocation = [[CLLocation alloc] initWithLatitude:0.0 longitude:0.0];
     }

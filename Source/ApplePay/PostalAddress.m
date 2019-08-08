@@ -26,12 +26,12 @@
 
 @implementation PostalAddress
 
-- (instancetype)initWithSteet: (NSString *)street
-                         city: (NSString *)city
-                        state: (NSString *)state
-                   postalCode: (NSString *)postalCode
-                      country: (NSString *)country {
-    
+- (instancetype)initWithSteet:(NSString *)street
+                         city:(NSString *)city
+                        state:(NSString *)state
+                   postalCode:(NSString *)postalCode
+                      country:(NSString *)country {
+
     if (self = [super init]) {
         self.street = street;
         self.city = city;
@@ -39,7 +39,7 @@
         self.postalCode = postalCode;
         self.country = country;
     }
-    
+
     return self;
 }
 

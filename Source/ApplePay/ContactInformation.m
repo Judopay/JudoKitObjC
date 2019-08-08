@@ -30,15 +30,89 @@
                                 name:(NSPersonNameComponents *)name
                          phoneNumber:(NSString *)phoneNumber
                        postalAddress:(PostalAddress *)postalAddress {
-    
+
     if (self = [super init]) {
         self.emailAddress = emailAddress;
         self.name = name;
         self.phoneNumber = phoneNumber;
         self.postalAddress = postalAddress;
     }
-    
+
     return self;
+}
+
+- (NSString *)toString {
+    NSMutableString *contactString = [NSMutableString new];
+
+    if (self.emailAddress) {
+        [contactString appendFormat:@"Email: %@\n", self.emailAddress];
+    }
+
+    if (self.name) {
+        [contactString appendFormat:@"Name: %@\n", [self nameStringFromNameComponents:self.name]];
+    }
+
+    if (self.phoneNumber) {
+        [contactString appendFormat:@"Phone: %@\n", self.phoneNumber];
+    }
+
+    if (self.postalAddress) {
+        [contactString appendFormat:@"Postal Address: %@\n", [self addressStringFromPostalAddress:self.postalAddress]];
+    }
+
+    return contactString;
+}
+
+- (NSString *)nameStringFromNameComponents:(NSPersonNameComponents *)nameComponents {
+    NSMutableString *nameString = [NSMutableString new];
+
+    if (nameComponents.namePrefix) {
+        [nameString appendFormat:@"%@ ", nameComponents.namePrefix];
+    }
+
+    if (nameComponents.givenName) {
+        [nameString appendFormat:@"%@ ", nameComponents.givenName];
+    }
+
+    if (nameComponents.middleName) {
+        [nameString appendFormat:@"%@ ", nameComponents.middleName];
+    }
+
+    if (nameComponents.familyName) {
+        [nameString appendFormat:@"%@ ", nameComponents.familyName];
+    }
+
+    if (nameComponents.nameSuffix) {
+        [nameString appendString:nameComponents.nameSuffix];
+    }
+
+    return nameString;
+}
+
+- (NSString *)addressStringFromPostalAddress:(PostalAddress *)postalAddress {
+    NSMutableString *postalString = [NSMutableString new];
+
+    if (postalAddress.street) {
+        [postalString appendFormat:@"%@ ", postalAddress.street];
+    }
+
+    if (postalAddress.city) {
+        [postalString appendFormat:@"%@ ", postalAddress.city];
+    }
+
+    if (postalAddress.country) {
+        [postalString appendFormat:@"%@ ", postalAddress.country];
+    }
+
+    if (postalAddress.state) {
+        [postalString appendFormat:@"%@ ", postalAddress.state];
+    }
+
+    if (postalAddress.postalCode) {
+        [postalString appendFormat:@"%@ ", postalAddress.postalCode];
+    }
+
+    return postalString;
 }
 
 @end

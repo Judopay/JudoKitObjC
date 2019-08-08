@@ -67,7 +67,7 @@ typedef NS_OPTIONS(NSInteger, ContactField) {
     ContactFieldPhone = 1 << 1,
     ContactFieldEmail = 1 << 2,
     ContactFieldName = 1 << 3,
-    ContactFieldAll = (ContactFieldPostalAddress|ContactFieldPhone|ContactFieldEmail|ContactFieldName)
+    ContactFieldAll = (ContactFieldPostalAddress | ContactFieldPhone | ContactFieldEmail | ContactFieldName)
 };
 
 /**
@@ -78,7 +78,7 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
     ReturnedInfoNone = 0,
     ReturnedInfoBillingContacts = 1 << 0,
     ReturnedInfoShippingContacts = 1 << 1,
-    ReturnedInfoAll = (ReturnedInfoBillingContacts|ReturnedInfoShippingContacts)
+    ReturnedInfoAll = (ReturnedInfoBillingContacts | ReturnedInfoShippingContacts)
 };
 
 /**
@@ -110,7 +110,7 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  * @param amount - amount to be payed for this item
  * @param type   - payment type for this item (final / pending)
  */
-- (instancetype)initWithLabel: (NSString *)label
+- (instancetype)initWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(PaymentSummaryItemType)type;
 
@@ -120,8 +120,8 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  * @param label  - title of the item
  * @param amount - amount to be payed for this item
  */
-- (instancetype)initWithLabel: (NSString *)label
-                       amount: (NSDecimalNumber *)amount;
+- (instancetype)initWithLabel:(NSString *)label
+                       amount:(NSDecimalNumber *)amount;
 
 @end
 
@@ -146,8 +146,8 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  * @param identifier - identifier for the shipping method, used by the app.
  * @param detail     - a user-readable description of the shipping method.
  */
-- (instancetype)initWithIdentifier: (NSString *)identifier
-                         andDetail: (NSString *)detail;
+- (instancetype)initWithIdentifier:(NSString *)identifier
+                         andDetail:(NSString *)detail;
 
 @end
 

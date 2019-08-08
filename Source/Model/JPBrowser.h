@@ -22,20 +22,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
 #import "JPDictionaryConvertible.h"
+#import <UIKit/UIKit.h>
 
 @interface JPBrowser : NSObject <JPDictionaryConvertible>
-@property(nonatomic, strong, readonly) NSString *_Nullable acceptHeader;
-@property(nonatomic, strong, readonly) NSTimeZone *_Nullable timeZone;
-@property(nonatomic, strong, readonly) NSString *_Nullable userAgent;
-@property(nonatomic, strong, readonly) NSString *_Nullable language;
+@property (nonatomic, strong, readonly) NSString *_Nullable acceptHeader;
+@property (nonatomic, strong, readonly) NSTimeZone *_Nullable timeZone;
+@property (nonatomic, strong, readonly) NSString *_Nullable userAgent;
+@property (nonatomic, strong, readonly) NSString *_Nullable language;
 
-@property(nonatomic, strong, readonly) NSString *_Nullable javaEnabled;
-@property(nonatomic, strong, readonly) NSString *_Nullable javascriptEnabled;
-@property(nonatomic, strong, readonly) NSString *_Nullable colorDepth;
+@property (nonatomic, strong, readonly) NSString *_Nullable javaEnabled;
+@property (nonatomic, strong, readonly) NSString *_Nullable javascriptEnabled;
+@property (nonatomic, strong, readonly) NSString *_Nullable colorDepth;
 
-@property(nonatomic, readonly) CGSize screenSize;
+@property (nonatomic, readonly) CGSize screenSize;
 
 - (nonnull instancetype)init;
 

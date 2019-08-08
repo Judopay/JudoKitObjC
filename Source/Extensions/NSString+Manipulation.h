@@ -37,4 +37,3 @@
 - (nonnull NSDictionary<NSString *, NSString *> *)extractURLComponentsQueryItems;
 
 @end
-

@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "PostalAddress.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,23 +37,22 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The billing / shipping email address if specified in the ApplePayConfiguration object;
  */
-@property (nonatomic, strong) NSString * _Nullable emailAddress;
+@property (nonatomic, strong) NSString *_Nullable emailAddress;
 
 /**
  * The name of the person if specified in the ApplePayConfiguration object;
  */
-@property (nonatomic, strong) NSPersonNameComponents * _Nullable name;
+@property (nonatomic, strong) NSPersonNameComponents *_Nullable name;
 
 /**
  * The billing / shipping phone number if specified in the ApplePayConfiguration object;
  */
-@property (nonatomic, strong) NSString * _Nullable phoneNumber;
+@property (nonatomic, strong) NSString *_Nullable phoneNumber;
 
 /**
  * The billing / shipping postal address if specified in the ApplePayConfiguration object;
  */
-@property (nonatomic, strong) PostalAddress * _Nullable postalAddress;
-
+@property (nonatomic, strong) PostalAddress *_Nullable postalAddress;
 
 /**
  * Designated initializer
@@ -63,10 +62,15 @@ NS_ASSUME_NONNULL_BEGIN
  * @param phoneNumber - the phone number returned from a PKContact object
  * @param postalAddress - a PostalAddress object containing location information
  */
-- (instancetype)initWithEmailAddress: (nullable NSString *)emailAddress
-                                name: (nullable NSPersonNameComponents *)name
+- (instancetype)initWithEmailAddress:(nullable NSString *)emailAddress
+                                name:(nullable NSPersonNameComponents *)name
                          phoneNumber:(nullable NSString *)phoneNumber
                        postalAddress:(nullable PostalAddress *)postalAddress;
+
+/**
+ * Helper method that generates a human-readable string from all the initialized parameters.
+ */
+- (NSString *)toString;
 
 @end
 

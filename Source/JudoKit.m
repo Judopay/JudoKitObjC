@@ -26,49 +26,52 @@
 
 #import <DeviceDNA/DeviceDNA.h>
 
-#import "JPSession.h"
-#import "JPPayment.h"
-#import "JPPreAuth.h"
-#import "JPRefund.h"
-#import "JPReceipt.h"
-#import "JPReference.h"
-#import "JPRegisterCard.h"
-#import "JPSaveCard.h"
-#import "JPVoid.h"
-#import "JPCollection.h"
-#import "JPTransactionData.h"
-#import "JudoPayViewController.h"
-#import "JPInputField.h"
+#import "ApplePayConfiguration.h"
 #import "CardInputField.h"
 #import "DateInputField.h"
 #import "FloatingTextField.h"
-#import "JudoPaymentMethodsViewModel.h"
-#import "JPTheme.h"
-#import "JPTransactionEnricher.h"
-#import "ApplePayConfiguration.h"
-#import "JPResponse.h"
 #import "JPAmount.h"
+#import "JPCollection.h"
+#import "JPInputField.h"
+#import "JPPayment.h"
+#import "JPPreAuth.h"
+#import "JPReceipt.h"
+#import "JPReference.h"
+#import "JPRefund.h"
+#import "JPRegisterCard.h"
+#import "JPResponse.h"
+#import "JPSaveCard.h"
+#import "JPSession.h"
+#import "JPTheme.h"
+#import "JPTransactionData.h"
+#import "JPTransactionEnricher.h"
+#import "JPVoid.h"
+#import "JudoPayViewController.h"
+#import "JudoPaymentMethodsViewModel.h"
+
+//TODO: Remove these once mocked JPResponse is no longer needed
+#import "JPConsumer.h"
+#import "JPPaymentToken.h"
 
 @interface JPSession ()
-@property(nonatomic, strong, readwrite) NSString *authorizationHeader;
+@property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @end
 
 @interface JudoKit ()
-@property(nonatomic, strong, readwrite) JPSession *apiSession;
-@property(nonatomic, strong) JPTransactionEnricher *enricher;
-@property(nonatomic, strong) NSString *deviceIdentifier;
+@property (nonatomic, strong, readwrite) JPSession *apiSession;
+@property (nonatomic, strong) JPTransactionEnricher *enricher;
+@property (nonatomic, strong) NSString *deviceIdentifier;
 
 - (UIViewController *)topMostViewController;
 
 @end
 
-
 @interface JudoKit ()
 
-@property(nonatomic, strong) ApplePayManager *manager;
-@property(nonatomic, strong) ApplePayConfiguration *configuration;
-@property(nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
-@property(nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) ApplePayManager *manager;
+@property (nonatomic, strong) ApplePayConfiguration *configuration;
+@property (nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
+@property (nonatomic, strong) JudoCompletionBlock completionBlock;
 
 @end
 
@@ -93,7 +96,8 @@
 
     self = [super init];
 
-    if (!self) return self;
+    if (!self)
+        return self;
 
     // Check if device is jailbroken and SDK was set to restrict access.
     // self is returned here without setting the token and secret.
@@ -186,19 +190,19 @@
 }
 
 - (JPPayment *)paymentWithJudoId:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference {
-    return (JPPayment *) [self transactionForTypeClass:JPPayment.class judoId:judoId amount:amount reference:reference];
+    return (JPPayment *)[self transactionForTypeClass:JPPayment.class judoId:judoId amount:amount reference:reference];
 }
 
 - (JPPreAuth *)preAuthWithJudoId:(NSString *)judoId amount:(JPAmount *)amount reference:(JPReference *)reference {
-    return (JPPreAuth *) [self transactionForTypeClass:JPPreAuth.class judoId:judoId amount:amount reference:reference];
+    return (JPPreAuth *)[self transactionForTypeClass:JPPreAuth.class judoId:judoId amount:amount reference:reference];
 }
 
 - (JPRegisterCard *)registerCardWithJudoId:(NSString *)judoId reference:(JPReference *)reference {
-    return (JPRegisterCard *) [self transactionForTypeClass:JPRegisterCard.class judoId:judoId amount:nil reference:reference];
+    return (JPRegisterCard *)[self transactionForTypeClass:JPRegisterCard.class judoId:judoId amount:nil reference:reference];
 }
 
 - (JPSaveCard *)saveCardWithJudoId:(NSString *)judoId reference:(JPReference *)reference {
-    return (JPSaveCard *) [self transactionForTypeClass:JPSaveCard.class judoId:judoId amount:nil reference:reference];
+    return (JPSaveCard *)[self transactionForTypeClass:JPSaveCard.class judoId:judoId amount:nil reference:reference];
 }
 
 - (JPTransactionProcess *)transactionProcessForType:(Class)type receiptId:(NSString *)receiptId amount:(JPAmount *)amount {
@@ -208,15 +212,15 @@
 }
 
 - (JPCollection *)collectionWithReceiptId:(NSString *)receiptId amount:(JPAmount *)amount {
-    return (JPCollection *) [self transactionProcessForType:JPCollection.class receiptId:receiptId amount:amount];
+    return (JPCollection *)[self transactionProcessForType:JPCollection.class receiptId:receiptId amount:amount];
 }
 
 - (JPVoid *)voidWithReceiptId:(NSString *)receiptId amount:(JPAmount *)amount {
-    return (JPVoid *) [self transactionProcessForType:JPVoid.class receiptId:receiptId amount:amount];
+    return (JPVoid *)[self transactionProcessForType:JPVoid.class receiptId:receiptId amount:amount];
 }
 
 - (JPRefund *)refundWithReceiptId:(NSString *)receiptId amount:(JPAmount *)amount {
-    return (JPRefund *) [self transactionProcessForType:JPRefund.class receiptId:receiptId amount:amount];
+    return (JPRefund *)[self transactionProcessForType:JPRefund.class receiptId:receiptId amount:amount];
 }
 
 - (JPReceipt *)receipt:(NSString *)receiptId {
@@ -240,12 +244,12 @@
         topViewController = topViewController.presentedViewController;
 
         if ([topViewController isKindOfClass:UINavigationController.class]) {
-            UINavigationController *navigationController = (UINavigationController *) topViewController;
+            UINavigationController *navigationController = (UINavigationController *)topViewController;
             topViewController = navigationController.viewControllers.lastObject;
         }
 
         if ([topViewController isKindOfClass:UITabBarController.class]) {
-            UITabBarController *tabBarController = (UITabBarController *) topViewController;
+            UITabBarController *tabBarController = (UITabBarController *)topViewController;
             topViewController = tabBarController.selectedViewController;
         }
     }
@@ -263,7 +267,6 @@
 
 @end
 
-
 @implementation JudoKit (Invokers)
 
 - (void)invokePayment:(nonnull NSString *)judoId
@@ -274,11 +277,11 @@
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
     JudoPaymentMethodsViewModel *viewModel =
-    [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
-                                                 amount:amount
-                                      consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
-                                         paymentMethods:methods
-                                            cardDetails:cardDetails];
+        [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
+                                                     amount:amount
+                                          consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
+                                             paymentMethods:methods
+                                                cardDetails:cardDetails];
 
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel
@@ -479,7 +482,6 @@
     [self.topMostViewController presentViewController:self.viewController animated:YES completion:nil];
 }
 
-
 #pragma mark - PKPaymentAuthorizationViewControllerDelegate methods
 
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
@@ -501,7 +503,32 @@
     NSError *error;
     [transaction setPkPayment:payment error:&error];
 
-    [transaction sendWithCompletion:^(JPResponse * response, NSError * error) {
+    [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
+        
+        //------------------------------------------------------------------------------
+        // TODO: Remove once finished showcasing billing / shipping contact information
+        //
+        // This is used for mocking purposes only to showcase the shipping
+        // information displayed to the merchant.
+        //-------------------------------------------------------------------------------
+
+        response = self.mockJPResponse;
+        error = nil;
+
+        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
+        }
+
+        if (self.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
+        }
+
+        self.completionBlock(response, error);
+
+        completion(PKPaymentAuthorizationStatusSuccess);
+        return;
+
+        //------------------------------------------------------------------------------
 
         if (error || response.items.count == 0) {
             self.completionBlock(response, error);
@@ -524,6 +551,21 @@
 
 - (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+// TODO: Remove once finished mocking JPResponse
+- (JPResponse *)mockJPResponse {
+
+    NSString *path = [[NSBundle bundleForClass:JudoKit.class] pathForResource:@"MockJPTransactionData" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSDictionary *transactionDataDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                              options:kNilOptions
+                                                                                error:nil];
+
+    JPResponse *response = [JPResponse new];
+    [response appendItem:transactionDataDictionary];
+
+    return response;
 }
 
 @end

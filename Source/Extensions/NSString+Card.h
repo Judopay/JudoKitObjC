@@ -32,6 +32,6 @@
 @property (nonatomic, assign, readonly) BOOL isCardNumberValid;
 
 - (nullable NSString *)cardPresentationStringWithAcceptedNetworks:(nonnull NSArray *)networks
-                                                            error:(NSError * _Nullable * _Nullable)error;
+                                                            error:(NSError *_Nullable *_Nullable)error;
 
 @end

@@ -22,23 +22,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "PaymentMethods.h"
+#import <Foundation/Foundation.h>
 
 @class JPAmount, JPCardDetails, JPReference;
 
 @interface JudoPaymentMethodsViewModel : NSObject
 
-@property (nonatomic, strong, readonly) NSString * _Nonnull judoId;
-@property (nonatomic, strong, readonly) JPAmount * _Nonnull amount;
-@property (nonatomic, strong, readonly) JPReference * _Nonnull reference;
-@property (nonatomic, strong, readonly) JPCardDetails * _Nullable cardDetails;
+@property (nonatomic, strong, readonly) NSString *_Nonnull judoId;
+@property (nonatomic, strong, readonly) JPAmount *_Nonnull amount;
+@property (nonatomic, strong, readonly) JPReference *_Nonnull reference;
+@property (nonatomic, strong, readonly) JPCardDetails *_Nullable cardDetails;
 
 @property (readonly) PaymentMethods paymentMethods;
 
--(instancetype _Nonnull)initWithJudoId: (nonnull NSString *)judoId
-                                amount: (nonnull JPAmount *)amount
-                     consumerReference: (nonnull JPReference *)reference
-                        paymentMethods: (PaymentMethods)methods
-                           cardDetails: (nullable JPCardDetails *)cardDetails;
+- (instancetype _Nonnull)initWithJudoId:(nonnull NSString *)judoId
+                                 amount:(nonnull JPAmount *)amount
+                      consumerReference:(nonnull JPReference *)reference
+                         paymentMethods:(PaymentMethods)methods
+                            cardDetails:(nullable JPCardDetails *)cardDetails;
 @end

@@ -22,12 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "ApplePayConfiguration.h"
+#import "ContactInformation.h"
+#import "JPAmount.h"
+#import "JPReference.h"
 #import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
-#import "ApplePayConfiguration.h"
-#import "JPReference.h"
-#import "JPAmount.h"
-#import "ContactInformation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

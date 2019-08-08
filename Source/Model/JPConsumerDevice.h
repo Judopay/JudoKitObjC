@@ -22,19 +22,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Foundation/Foundation.h>
 
 #import "JPDictionaryConvertible.h"
 
 @class JPClientDetails, JPGeoLocation, JPThreeDSecure;
 
 @interface JPConsumerDevice : NSObject <JPDictionaryConvertible>
-@property(nonatomic, strong, readonly) NSString *_Nullable ipAddress;
-@property(nonatomic, strong, readonly) JPClientDetails *_Nullable clientDetails;
-@property(nonatomic, strong, readonly) CLLocation *_Nullable geoLocation;
-@property(nonatomic, strong, readonly) JPThreeDSecure *_Nullable threeDSecure;
-@property(nonatomic, strong, readonly) NSString *_Nullable paymentType;
+@property (nonatomic, strong, readonly) NSString *_Nullable ipAddress;
+@property (nonatomic, strong, readonly) JPClientDetails *_Nullable clientDetails;
+@property (nonatomic, strong, readonly) CLLocation *_Nullable geoLocation;
+@property (nonatomic, strong, readonly) JPThreeDSecure *_Nullable threeDSecure;
+@property (nonatomic, strong, readonly) NSString *_Nullable paymentType;
 
 - (nonnull instancetype)initWithIpAddress:(nonnull NSString *)ipAddress
                             clientDetails:(nonnull JPClientDetails *)clientDetails

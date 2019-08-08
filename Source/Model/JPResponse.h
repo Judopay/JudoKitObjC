@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "ContactInformation.h"
+#import <Foundation/Foundation.h>
 
 @class JPPagination;
 @class JPTransactionData;
@@ -36,22 +36,22 @@
 /**
  *  The array that contains the transaction response objects
  */
-@property (nonatomic, strong) NSArray<JPTransactionData *> * _Nullable items;
+@property (nonatomic, strong) NSArray<JPTransactionData *> *_Nullable items;
 
 /**
  *  The current pagination response
  */
-@property (nonatomic, strong) JPPagination * _Nullable pagination;
+@property (nonatomic, strong) JPPagination *_Nullable pagination;
 
 /**
  * Billing contact information returned from ApplePay
  */
-@property (nonatomic, strong) ContactInformation * _Nullable billingInfo;
+@property (nonatomic, strong) ContactInformation *_Nullable billingInfo;
 
 /**
  * Shipping contact information returned from ApplePay
  */
-@property (nonatomic, strong) ContactInformation * _Nullable shippingInfo;
+@property (nonatomic, strong) ContactInformation *_Nullable shippingInfo;
 
 /**
  *  Initialize a Response object with pagination if available

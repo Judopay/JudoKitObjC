@@ -49,7 +49,7 @@
     return self;
 }
 
-- (void)sendWithCompletion:(void(^)(JPResponse *, NSError *))completion {
+- (void)sendWithCompletion:(void (^)(JPResponse *, NSError *))completion {
     [self.apiSession POST:self.transactionProcessingPath parameters:self.parameters completion:completion];
 }
 
@@ -87,7 +87,7 @@
 #pragma mark - setters
 
 - (void)setLocation:(CLLocationCoordinate2D)location {
-    self.parameters[@"consumerLocation"] = @{@"latitude":@(location.latitude), @"longitude":@(location.longitude)};
+    self.parameters[@"consumerLocation"] = @{@"latitude" : @(location.latitude), @"longitude" : @(location.longitude)};
 }
 
 - (void)setDeviceSignal:(NSDictionary *)deviceSignal {

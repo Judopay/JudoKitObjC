@@ -48,125 +48,125 @@
     return network;
 }
 
-+(NSDictionary<NSNumber *, NSString*> *)networkNames {
++ (NSDictionary<NSNumber *, NSString *> *)networkNames {
     static NSDictionary *_networkNames;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _networkNames = @{
-                        @(CardNetworkUnknown): @"Unknown Card Network",
-                        @(CardNetworkVisa): @"Visa",
-                        @(CardNetworkMasterCard): @"Mastercard",
-                        @(CardNetworkVisaElectron):  @"Visa Electron",
-                        @(CardNetworkSwitch): @"Switch",
-                        @(CardNetworkSolo): @"Solo",
-                        @(CardNetworkLaser): @"Laser",
-                        @(CardNetworkChinaUnionPay): @"China UnionPay",
-                        @(CardNetworkAMEX): @"AmEx",
-                        @(CardNetworkJCB): @"JCB",
-                        @(CardNetworkMaestro): @"Maestro",
-                        @(CardNetworkVisaDebit): @"Visa Debit",
-                        @(CardNetworkMasterCardDebit): @"Mastercard Debit",
-                        @(CardNetworkVisaPurchasing): @"Visa Purchasing",
-                        @(CardNetworkDiscover): @"Discover",
-                        @(CardNetworkCarnet): @"Carnet",
-                        @(CardNetworkCarteBancaire): @"Carte Bancaire",
-                        @(CardNetworkDinersClub): @"Diners Club",
-                        @(CardNetworkElo): @"Elo",
-                        @(CardNetworkFarmersCard): @"Farmers Card",
-                        @(CardNetworkSoriana): @"Soriana",
-                        @(CardNetworkPrivateLabelCard): @"Private Label",
-                        @(CardNetworkQCard): @"Q Card",
-                        @(CardNetworkStyle): @"Style",
-                        @(CardNetworkTrueRewards): @"True Rewards",
-                        @(CardNetworkUATP): @"UATP",
-                        @(CardNetworkBankCard): @"Bank Card",
-                        @(CardNetworkBanamex_Costco): @"Banamex Costco",
-                        @(CardNetworkInterPayment): @"InterPayment",
-                        @(CardNetworkInstaPayment): @"InstaPayment",
-                        @(CardNetworkDankort): @"Dankort"
-                        };
+            @(CardNetworkUnknown) : @"Unknown Card Network",
+            @(CardNetworkVisa) : @"Visa",
+            @(CardNetworkMasterCard) : @"Mastercard",
+            @(CardNetworkVisaElectron) : @"Visa Electron",
+            @(CardNetworkSwitch) : @"Switch",
+            @(CardNetworkSolo) : @"Solo",
+            @(CardNetworkLaser) : @"Laser",
+            @(CardNetworkChinaUnionPay) : @"China UnionPay",
+            @(CardNetworkAMEX) : @"AmEx",
+            @(CardNetworkJCB) : @"JCB",
+            @(CardNetworkMaestro) : @"Maestro",
+            @(CardNetworkVisaDebit) : @"Visa Debit",
+            @(CardNetworkMasterCardDebit) : @"Mastercard Debit",
+            @(CardNetworkVisaPurchasing) : @"Visa Purchasing",
+            @(CardNetworkDiscover) : @"Discover",
+            @(CardNetworkCarnet) : @"Carnet",
+            @(CardNetworkCarteBancaire) : @"Carte Bancaire",
+            @(CardNetworkDinersClub) : @"Diners Club",
+            @(CardNetworkElo) : @"Elo",
+            @(CardNetworkFarmersCard) : @"Farmers Card",
+            @(CardNetworkSoriana) : @"Soriana",
+            @(CardNetworkPrivateLabelCard) : @"Private Label",
+            @(CardNetworkQCard) : @"Q Card",
+            @(CardNetworkStyle) : @"Style",
+            @(CardNetworkTrueRewards) : @"True Rewards",
+            @(CardNetworkUATP) : @"UATP",
+            @(CardNetworkBankCard) : @"Bank Card",
+            @(CardNetworkBanamex_Costco) : @"Banamex Costco",
+            @(CardNetworkInterPayment) : @"InterPayment",
+            @(CardNetworkInstaPayment) : @"InstaPayment",
+            @(CardNetworkDankort) : @"Dankort"
+        };
     });
-    
+
     return _networkNames;
 }
 
-+(NSArray<JPCardNetwork *> *)supportedNetworks {
++ (NSArray<JPCardNetwork *> *)supportedNetworks {
     static NSArray *_networks;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _networks = @[
-                     [JPCardNetwork networkWith:CardNetworkVisa
-                                 numberPrefixes:kVisaPrefixes],
+            [JPCardNetwork networkWith:CardNetworkVisa
+                        numberPrefixes:kVisaPrefixes],
 
-                     [JPCardNetwork networkWith:CardNetworkUATP
-                                 numberPrefixes:kUATPPrefixes],
+            [JPCardNetwork networkWith:CardNetworkUATP
+                        numberPrefixes:kUATPPrefixes],
 
-                     [JPCardNetwork networkWith:CardNetworkDankort
-                                 numberPrefixes:kDankortPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkInterPayment
-                                 numberPrefixes:kInterPaymentPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkChinaUnionPay
-                                 numberPrefixes:kChinaUnionPayPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkAMEX
-                                 numberPrefixes:kAMEXPrefixes
-                             securityCodeLength:4
-                                  numberPattern:kAMEXPattern],
+            [JPCardNetwork networkWith:CardNetworkDankort
+                        numberPrefixes:kDankortPrefixes],
 
-                     [JPCardNetwork networkWith:CardNetworkMaestro
-                                 numberPrefixes:kMaestroPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkDinersClub
-                                 numberPrefixes:kDinersClubPrefixes
-                             securityCodeLength:3
-                                  numberPattern:kDinersClubPattern],
+            [JPCardNetwork networkWith:CardNetworkInterPayment
+                        numberPrefixes:kInterPaymentPrefixes],
 
-                     [JPCardNetwork networkWith:CardNetworkInstaPayment
-                                 numberPrefixes:kInstaPaymentPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkJCB
-                                 numberPrefixes:kJCBPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkMasterCard
-                                 numberPrefixes:kMasterCardPrefixes],
-                     
-                     [JPCardNetwork networkWith:CardNetworkDiscover
-                                 numberPrefixes:kDiscoverPrefixes],
-                     ];
+            [JPCardNetwork networkWith:CardNetworkChinaUnionPay
+                        numberPrefixes:kChinaUnionPayPrefixes],
+
+            [JPCardNetwork networkWith:CardNetworkAMEX
+                        numberPrefixes:kAMEXPrefixes
+                    securityCodeLength:4
+                         numberPattern:kAMEXPattern],
+
+            [JPCardNetwork networkWith:CardNetworkMaestro
+                        numberPrefixes:kMaestroPrefixes],
+
+            [JPCardNetwork networkWith:CardNetworkDinersClub
+                        numberPrefixes:kDinersClubPrefixes
+                    securityCodeLength:3
+                         numberPattern:kDinersClubPattern],
+
+            [JPCardNetwork networkWith:CardNetworkInstaPayment
+                        numberPrefixes:kInstaPaymentPrefixes],
+
+            [JPCardNetwork networkWith:CardNetworkJCB
+                        numberPrefixes:kJCBPrefixes],
+
+            [JPCardNetwork networkWith:CardNetworkMasterCard
+                        numberPrefixes:kMasterCardPrefixes],
+
+            [JPCardNetwork networkWith:CardNetworkDiscover
+                        numberPrefixes:kDiscoverPrefixes],
+        ];
     });
-    
+
     return _networks;
 }
 
 + (CardNetwork)cardNetworkForCardNumber:(NSString *)cardNumber {
     __block CardNetwork network = CardNetworkUnknown;
-    NSArray<JPCardNetwork *> * networks = [JPCardNetwork supportedNetworks];
-    
-    [networks enumerateObjectsUsingBlock:^(JPCardNetwork * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray<JPCardNetwork *> *networks = [JPCardNetwork supportedNetworks];
+
+    [networks enumerateObjectsUsingBlock:^(JPCardNetwork *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         if ([obj.numberPrefixes containsPrefix:cardNumber]) {
             *stop = YES;
             network = obj.network;
             return;
         }
     }];
-    
+
     return network;
 }
 
 + (JPCardNetwork *)cardNetworkWithType:(CardNetwork)netwrokType {
     __block JPCardNetwork *network = nil;
-    NSArray<JPCardNetwork *> * networks = [JPCardNetwork supportedNetworks];
+    NSArray<JPCardNetwork *> *networks = [JPCardNetwork supportedNetworks];
 
-    [networks enumerateObjectsUsingBlock:^(JPCardNetwork * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [networks enumerateObjectsUsingBlock:^(JPCardNetwork *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         if (obj.network == netwrokType) {
             *stop = YES;
             network = obj;
             return;
         }
     }];
-    
+
     return network;
 }
 

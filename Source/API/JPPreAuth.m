@@ -24,7 +24,7 @@
 
 #import "JPPreAuth.h"
 
-static NSString * const kPreauthPathKey = @"transactions/preauths";
+static NSString *const kPreauthPathKey = @"transactions/preauths";
 
 @implementation JPPreAuth
 

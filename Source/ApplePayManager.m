@@ -43,9 +43,9 @@
 #pragma mark - Generated objects based on configuration
 
 - (JPAmount *)jpAmount {
-    
+
     PaymentSummaryItem *lastSummaryItem = self.configuration.paymentSummaryItems.lastObject;
-    
+
     return [[JPAmount alloc] initWithAmount:lastSummaryItem.amount.stringValue
                                    currency:self.configuration.currency];
 }
@@ -55,19 +55,19 @@
 }
 
 - (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController {
-    
+
     PKPaymentAuthorizationViewController *viewController;
-    
-    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest: self.pkPaymentRequest];
+
+    viewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:self.pkPaymentRequest];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
+
     return viewController;
 }
 
 - (PKPaymentRequest *)pkPaymentRequest {
-    
+
     PKPaymentRequest *paymentRequest = [PKPaymentRequest new];
-    
+
     paymentRequest.merchantIdentifier = self.configuration.merchantId;
     paymentRequest.countryCode = self.configuration.countryCode;
     paymentRequest.currencyCode = self.configuration.currency;
@@ -75,29 +75,29 @@
     paymentRequest.merchantCapabilities = self.pkMerchantCapabilities;
     paymentRequest.shippingType = self.pkShippingType;
     paymentRequest.shippingMethods = self.pkShippingMethods;
-    
+
     ContactField requiredShippingContactFields = self.configuration.requiredShippingContactFields;
     ContactField requiredBillingContactFields = self.configuration.requiredBillingContactFields;
-    
+
     // For devices prior to iOS 11.0, PKAddressField properties will be set instead of PKContactField
     if (@available(iOS 11.0, *)) {
-        
-        NSSet<PKContactField> *pkShippingFields = [self pkContactFieldsFromFields: requiredShippingContactFields];
-        NSSet<PKContactField> *pkBillingFields = [self pkContactFieldsFromFields: requiredBillingContactFields];
-        
+
+        NSSet<PKContactField> *pkShippingFields = [self pkContactFieldsFromFields:requiredShippingContactFields];
+        NSSet<PKContactField> *pkBillingFields = [self pkContactFieldsFromFields:requiredBillingContactFields];
+
         paymentRequest.requiredShippingContactFields = pkShippingFields;
         paymentRequest.requiredBillingContactFields = pkBillingFields;
-        
+
     } else {
-        PKAddressField pkShippingFields = [self pkAddressFieldsFromFields: requiredShippingContactFields];
-        PKAddressField pkBillingFields = [self pkAddressFieldsFromFields: requiredBillingContactFields];
-        
+        PKAddressField pkShippingFields = [self pkAddressFieldsFromFields:requiredShippingContactFields];
+        PKAddressField pkBillingFields = [self pkAddressFieldsFromFields:requiredBillingContactFields];
+
         paymentRequest.requiredShippingAddressFields = pkShippingFields;
         paymentRequest.requiredBillingAddressFields = pkBillingFields;
     }
-    
+
     paymentRequest.paymentSummaryItems = self.pkPaymentSummaryItems;
-    
+
     return paymentRequest;
 }
 
@@ -129,55 +129,56 @@
 
 - (NSArray<PKShippingMethod *> *)pkShippingMethods {
     NSMutableArray *pkShippingMethods = [NSMutableArray new];
-    
+
     for (PaymentShippingMethod *shippingMethod in self.configuration.shippingMethods) {
         PKShippingMethod *pkShippingMethod = [PKShippingMethod new];
         pkShippingMethod.identifier = shippingMethod.identifier;
         pkShippingMethod.detail = shippingMethod.detail;
         [pkShippingMethods addObject:pkShippingMethod];
     }
-    
+
     return pkShippingMethods;
 }
 
 - (NSArray<PKPaymentSummaryItem *> *)pkPaymentSummaryItems {
-    
+
     NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
-    
+
     for (PaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
         [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
                                                                              amount:item.amount]];
     }
-    
+
     return pkPaymentSummaryItems;
 }
 
 - (NSArray<PKPaymentNetwork> *)pkPaymentNetworks {
-    
+
     NSMutableArray<PKPaymentNetwork> *pkPaymentNetworks = [[NSMutableArray alloc] init];
-    
+
     for (NSNumber *cardNetwork in self.configuration.supportedCardNetworks) {
-        PKPaymentNetwork network = [self pkPaymentNetworkForCardNetwork: cardNetwork.intValue];
-        if (network) [pkPaymentNetworks addObject: network];
+        PKPaymentNetwork network = [self pkPaymentNetworkForCardNetwork:cardNetwork.intValue];
+        if (network)
+            [pkPaymentNetworks addObject:network];
     }
-    
+
     return pkPaymentNetworks;
 }
 
 #pragma mark - Conversions to PassKit objects
 
-- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork: (CardNetwork)cardNetwork {
-    
+- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)cardNetwork {
+
     switch (cardNetwork) {
         case CardNetworkVisa:
             return PKPaymentNetworkVisa;
-            
+
         case CardNetworkMasterCard:
             return PKPaymentNetworkMasterCard;
-            
+
         case CardNetworkAMEX:
             return PKPaymentNetworkAmex;
-            
+
         case CardNetworkMaestro:
             if (@available(iOS 12.0, *)) {
                 return PKPaymentNetworkMaestro;
@@ -188,51 +189,51 @@
     }
 }
 
-- (NSSet<PKContactField> *)pkContactFieldsFromFields: (ContactField)contactFields {
-    
+- (NSSet<PKContactField> *)pkContactFieldsFromFields:(ContactField)contactFields {
+
     NSMutableSet *pkContactFields = [NSMutableSet new];
-    
+
     if (@available(iOS 11.0, *)) { //!OCLINT (remove OCLINT warning regarding early exit)
-        
+
         if (contactFields & ContactFieldPostalAddress) {
             [pkContactFields addObject:PKContactFieldPostalAddress];
         }
-        
+
         if (contactFields & ContactFieldPhone) {
             [pkContactFields addObject:PKContactFieldPhoneNumber];
         }
-        
+
         if (contactFields & ContactFieldEmail) {
             [pkContactFields addObject:PKContactFieldEmailAddress];
         }
-        
+
         if (contactFields & ContactFieldName) {
             [pkContactFields addObject:PKContactFieldName];
         }
-        
     }
-    
+
     return pkContactFields;
 }
 
--(PKAddressField)pkAddressFieldsFromFields: (ContactField)contactFields {
+- (PKAddressField)pkAddressFieldsFromFields:(ContactField)contactFields {
     return (PKAddressField)contactFields;
 }
 
 - (nullable ContactInformation *)contactInformationFromPaymentContact:(nullable PKContact *)contact {
-    
-    if (!contact) return nil;
-    
+
+    if (!contact)
+        return nil;
+
     PostalAddress *postalAddress = [[PostalAddress alloc] initWithSteet:contact.postalAddress.street
                                                                    city:contact.postalAddress.city
                                                                   state:contact.postalAddress.state
                                                              postalCode:contact.postalAddress.postalCode
                                                                 country:contact.postalAddress.country];
-    
-    return  [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
-                                                        name:contact.name
-                                                 phoneNumber:contact.phoneNumber.stringValue
-                                               postalAddress:postalAddress];
+
+    return [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
+                                                       name:contact.name
+                                                phoneNumber:contact.phoneNumber.stringValue
+                                              postalAddress:postalAddress];
 }
 
 @end

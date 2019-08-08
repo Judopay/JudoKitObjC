@@ -26,7 +26,7 @@
 
 @class JPResponse;
 
-typedef void (^JudoCompletionBlock)(JPResponse * _Nullable, NSError * _Nullable);
+typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
 
 /**
  *  The Session class is a wrapper for all REST API calls
@@ -36,12 +36,12 @@ typedef void (^JudoCompletionBlock)(JPResponse * _Nullable, NSError * _Nullable)
 /**
  *  The endpoint for REST API calls to the judo API
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull endpoint;
+@property (nonatomic, strong, readonly) NSString *_Nonnull endpoint;
 
 /**
  *  Token and secret are saved in the authorizationHeader for authentication of REST API calls
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable authorizationHeader;
+@property (nonatomic, strong, readonly) NSString *_Nullable authorizationHeader;
 
 /**
  *  identifying whether developers are using their own UI or the Judo Out of the box UI
@@ -52,7 +52,6 @@ typedef void (^JudoCompletionBlock)(JPResponse * _Nullable, NSError * _Nullable)
  *  Set the app to sandboxed mode
  */
 @property (nonatomic, assign) BOOL sandboxed;
-
 
 /**
  *  POST Helper Method for accessing the judo REST API

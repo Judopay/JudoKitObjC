@@ -63,7 +63,7 @@
         dateFormatter = [NSDateFormatter new];
         [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
     });
-    
+
     NSString *uuidString = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSCharacterSet *invalidCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"-+ :"];
     return [[NSString stringWithFormat:@"%@%@", uuidString, [dateFormatter stringFromDate:[NSDate date]]] stringByReplacingCharactersInSet:invalidCharacterSet withString:@""];

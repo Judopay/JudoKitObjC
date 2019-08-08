@@ -22,13 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPDictionaryConvertible.h"
+#import <Foundation/Foundation.h>
 
 @interface JPSDKInfo : NSObject <JPDictionaryConvertible>
 
-@property(nonatomic, strong, readonly) NSString *_Nullable version;
-@property(nonatomic, strong, readonly) NSString *_Nullable name;
+@property (nonatomic, strong, readonly) NSString *_Nullable version;
+@property (nonatomic, strong, readonly) NSString *_Nullable name;
 
 - (nonnull instancetype)initWithVersion:(nonnull NSString *)version
                                    name:(nonnull NSString *)name;

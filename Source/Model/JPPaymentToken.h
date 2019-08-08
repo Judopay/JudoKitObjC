@@ -32,17 +32,17 @@
 /**
  *  Our unique reference for this Consumer. Used in conjunction with the card token in repeat transactions.
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable consumerToken;
+@property (nonatomic, strong, readonly) NSString *_Nullable consumerToken;
 
 /**
  *  Can be used to charge future payments against this card.
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable cardToken;
+@property (nonatomic, strong, readonly) NSString *_Nullable cardToken;
 
 /**
  *  CV2 of the card
  */
-@property (nonatomic, strong) NSString * _Nullable secureCode;
+@property (nonatomic, strong) NSString *_Nullable secureCode;
 
 /**
  *  Designated initializer

@@ -26,8 +26,8 @@
 
 @implementation JPClientDetails
 
-static NSString * const kClientDetailsKey = @"key";
-static NSString * const kClientDetailsValueKey = @"value";
+static NSString *const kClientDetailsKey = @"key";
+static NSString *const kClientDetailsValueKey = @"value";
 
 - (instancetype)initWithKey:(NSString *)key value:(NSString *)value {
     if (self = [super init]) {
@@ -46,9 +46,9 @@ static NSString * const kClientDetailsValueKey = @"value";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kClientDetailsKey: self.key,
-             kClientDetailsValueKey: self.value
-             };
+        kClientDetailsKey : self.key,
+        kClientDetailsValueKey : self.value
+    };
 }
 
 @end

@@ -37,13 +37,12 @@
 /**
  *  the receipt ID - nil for a list of all receipts
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable receiptId;
+@property (nonatomic, strong, readonly) NSString *_Nullable receiptId;
 
 /**
  *  The current Session to access the Judo API
  */
-@property (nonatomic, strong) JPSession * _Nullable apiSession;
-
+@property (nonatomic, strong) JPSession *_Nullable apiSession;
 
 /**
  *  Initialization for a Receipt Object, in case you want to use this function, you need to enable it in your judo Dashboard
@@ -59,7 +58,7 @@
  *
  *  @param completion a completion block that is called when the request finishes
  */
-- (void)sendWithCompletion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+- (void)sendWithCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  This method will return a list of receipts, See [List all transactions](<https://www.judopay.com/docs/v4_1/restful-api/api-reference/#transactions>) for more information.
@@ -67,6 +66,6 @@
  *  @param pagination The offset, number of items and order in which to return the items
  *  @param completion a completion block that is called when the request finishes
  */
-- (void)listWithPagination:(nullable JPPagination *)pagination completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+- (void)listWithPagination:(nullable JPPagination *)pagination completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end

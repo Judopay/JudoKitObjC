@@ -26,8 +26,8 @@
 
 #import "JPTheme.h"
 
-#import "FloatingTextField.h"
 #import "CardLogoView.h"
+#import "FloatingTextField.h"
 
 @interface JPInputField ()
 
@@ -36,7 +36,7 @@
 @property (nonatomic, strong) UIView *logoContainerView;
 
 @property (nonatomic, strong) UIView *redBlock;
-    
+
 @property (nonatomic, strong) UILabel *hintLabel;
 
 @property (nonatomic) BOOL hasRedblockBeenLaidout;
@@ -46,46 +46,46 @@
 @implementation JPInputField
 
 - (instancetype)initWithTheme:(JPTheme *)theme {
-	self = [super init];
-	if (self) {
+    self = [super init];
+    if (self) {
         self.theme = theme;
         [self setupView];
-	}
-	return self;
+    }
+    return self;
 }
 
 - (void)setupView {
     self.hasRedblockBeenLaidout = NO;
-    
+
     self.backgroundColor = self.theme.judoInputFieldBackgroundColor;
     self.clipsToBounds = YES;
-    
+
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     self.textField.delegate = self;
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
-    
+
     [self addSubview:self.textField];
     [self addSubview:self.redBlock];
-    
+
     self.hintLabel = [UILabel new];
     self.hintLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.hintLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:self.hintLabel];
-    
+
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
     self.textField.textColor = self.theme.judoInputFieldTextColor;
     self.textField.tintColor = self.theme.tintColor;
     self.textField.font = [UIFont boldSystemFontOfSize:16];
     [self.textField addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[text(40)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"text":self.textField}]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintLabel]|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"hintLabel":self.hintLabel}]];
-    
+
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[text(40)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"text" : self.textField}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintLabel]|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"hintLabel" : self.hintLabel}]];
+
     [self setActive:false];
-    
+
     [self.textField setPlaceholder:[self title] floatingTitle:[self title]];
-    
+
     if ([self containsLogo]) {
         UIView *logoView = [self logoView];
         logoView.frame = CGRectMake(0, 0, 46, 30);
@@ -94,22 +94,21 @@
         self.logoContainerView.clipsToBounds = YES;
         self.logoContainerView.layer.cornerRadius = 2;
         [self.logoContainerView addSubview:logoView];
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(3.5)-[logo(30)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"logo":self.logoContainerView}]];
 
-        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(3.5)-[logo(30)]" options:NSLayoutFormatAlignAllBaseline metrics:nil views:@{@"logo" : self.logoContainerView}]];
+
         [self.logoContainerView addConstraint:[NSLayoutConstraint constraintWithItem:self.logoContainerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0]];
     }
 
     NSString *visualFormat = [self containsLogo] ? @"|-13-[text][logo(46)]-13-|" : @"|-13-[text]-13-|";
-    
-    NSDictionary *views = @{@"text": self.textField, @"logo": self.logoContainerView};
-    
+
+    NSDictionary *views = @{@"text" : self.textField, @"logo" : self.logoContainerView};
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:NSLayoutFormatDirectionLeftToRight metrics:nil views:views]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-13-[hintLabel]-13-|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:@{@"hintLabel":self.hintLabel}]];
+
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-13-[hintLabel]-13-|" options:NSLayoutFormatDirectionLeftToRight metrics:nil views:@{@"hintLabel" : self.hintLabel}]];
 }
-   
+
 - (void)layoutSubviews {
     if (!self.hasRedblockBeenLaidout) {
         [super layoutSubviews];
@@ -117,28 +116,30 @@
         self.hasRedblockBeenLaidout = YES;
     }
 }
-    
+
 - (void)errorAnimation:(BOOL)showRedBlock {
     void (^blockAnimation)(BOOL) = ^void(BOOL didFinish) {
         CAKeyframeAnimation *contentViewAnimation = [CAKeyframeAnimation animation];
         contentViewAnimation.keyPath = @"position.x";
-        contentViewAnimation.values = @[@0, @10, @(-8), @6, @(-4), @2, @0];
-        contentViewAnimation.keyTimes = @[@0, @(1 / 11.0), @(3 / 11.0), @(5 / 11.0), @(7 / 11.0), @(9 / 11.0), @1];
+        contentViewAnimation.values = @[ @0, @10, @(-8), @6, @(-4), @2, @0 ];
+        contentViewAnimation.keyTimes = @[ @0, @(1 / 11.0), @(3 / 11.0), @(5 / 11.0), @(7 / 11.0), @(9 / 11.0), @1 ];
         contentViewAnimation.duration = 0.4;
         contentViewAnimation.additive = YES;
-        
+
         [self.layer addAnimation:contentViewAnimation forKey:@"wiggle"];
-        
+
         [self layoutIfNeeded];
     };
-    
+
     if (showRedBlock) {
         [self redBlockAsError];
-        [UIView animateWithDuration:0.2 animations:^{
-            [self redBlockAsError];
-            self.textField.textColor = self.theme.judoErrorColor;
-            self.hintLabel.textColor = self.theme.judoErrorColor;
-        } completion:blockAnimation];
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             [self redBlockAsError];
+                             self.textField.textColor = self.theme.judoErrorColor;
+                             self.hintLabel.textColor = self.theme.judoErrorColor;
+                         }
+                         completion:blockAnimation];
     } else {
         blockAnimation(YES);
     }
@@ -157,11 +158,10 @@
     self.textField.alpha = active ? 1.0f : 0.5f;
     self.logoContainerView.alpha = active ? 1.0f : 0.5f;
     self.hintLabel.text = @"";
-    
+
     if (active) {
         [self redBlockAsActive];
-    }
-    else {
+    } else {
         [self redBlockAsUnactive];
     }
 }

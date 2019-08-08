@@ -38,12 +38,12 @@
 }
 
 - (instancetype)initWithAmount:(NSString *)amount currency:(NSString *)currency {
-	self = [super init];
-	if (self) {
+    self = [super init];
+    if (self) {
         self.amount = amount;
         self.currency = currency;
-	}
-	return self;
+    }
+    return self;
 }
 
 @end

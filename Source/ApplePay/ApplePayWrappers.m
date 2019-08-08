@@ -31,19 +31,19 @@
 - (instancetype)initWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(PaymentSummaryItemType)type {
-    
-    if(self = [super init]) {
+
+    if (self = [super init]) {
         self.label = label;
         self.amount = amount;
         self.type = type;
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount {
-    
+
     return [self initWithLabel:label
                         amount:amount
                           type:PaymentSummaryItemTypeFinal];
@@ -57,12 +57,12 @@
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
                          andDetail:(NSString *)detail {
-    
+
     if (self = [super init]) {
         self.identifier = identifier;
         self.detail = detail;
     }
-    
+
     return self;
 }
 

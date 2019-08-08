@@ -26,8 +26,8 @@
 
 @interface JPPaymentToken ()
 
-@property (nonatomic, strong, readwrite) NSString * consumerToken;
-@property (nonatomic, strong, readwrite) NSString * cardToken;
+@property (nonatomic, strong, readwrite) NSString *consumerToken;
+@property (nonatomic, strong, readwrite) NSString *cardToken;
 
 @end
 

@@ -26,9 +26,9 @@
 
 typedef NS_ENUM(NSUInteger, JPTextDirection) {
     JPTextDirectionNeutral = 0,
-    
+
     JPTextDirectionLeftToRight,
-    
+
     JPTextDirectionRightToLeft,
 };
 

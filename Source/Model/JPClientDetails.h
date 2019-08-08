@@ -22,19 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPDictionaryConvertible.h"
+#import <Foundation/Foundation.h>
 
 @interface JPClientDetails : NSObject <JPDictionaryConvertible>
 
-@property(nonatomic, strong, readonly) NSString *_Nullable key;
-@property(nonatomic, strong, readonly) NSString *_Nullable value;
+@property (nonatomic, strong, readonly) NSString *_Nullable key;
+@property (nonatomic, strong, readonly) NSString *_Nullable value;
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key
                               value:(nonnull NSString *)value;
 
 + (nonnull instancetype)detailsWithDictionary:(nonnull NSDictionary *)dictionary;
 
-
 @end
-

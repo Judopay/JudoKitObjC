@@ -28,7 +28,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const JudoErrorDomain;
+extern NSString *const JudoErrorDomain;
 
 @interface NSError (Judo)
 
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, JudoError) {
     JudoErrorResponseParseError,
     JudoErrorInvalidCardNumberError,
     JudoErrorJailbrokenDeviceDisallowed,
-    
+
     JudoErrorGeneral_Error = 0,
     JudoErrorGeneral_Model_Error = 1,
     JudoErrorUnauthorized = 7,

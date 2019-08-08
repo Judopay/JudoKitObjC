@@ -23,82 +23,82 @@
 //  SOFTWARE.
 
 #import "JudoPayViewController.h"
-#import "JPTransaction.h"
-#import "JPSession.h"
-#import "JP3DSWebView.h"
-#import "JPPaymentToken.h"
+#import "BillingCountryInputField.h"
 #import "CardInputField.h"
 #import "DateInputField.h"
-#import "SecurityCodeInputField.h"
-#import "PostCodeInputField.h"
-#import "BillingCountryInputField.h"
-#import "IssueNumberInputField.h"
-#import "NSError+Judo.h"
-#import "JudoKit.h"
-#import "JPTheme.h"
-#import "LoadingView.h"
 #import "FloatingTextField.h"
+#import "IssueNumberInputField.h"
+#import "JP3DSWebView.h"
+#import "JPPaymentToken.h"
+#import "JPSession.h"
+#import "JPTheme.h"
+#import "JPTransaction.h"
+#import "JudoKit.h"
+#import "LoadingView.h"
+#import "NSError+Judo.h"
+#import "PostCodeInputField.h"
+#import "SecurityCodeInputField.h"
 
-#import "NSString+Card.h"
-#import "UIColor+Judo.h"
-#import "NSTimer+Blocks.h"
-#import "UIViewController+JPTheme.h"
-#import "JPCard.h"
-#import "JPAddress.h"
-#import "UIView+SafeAnchors.h"
 #import "Functions.h"
-#import "NSString+Manipulation.h"
+#import "JPAddress.h"
+#import "JPCard.h"
 #import "JPTheme+Additions.h"
+#import "NSString+Card.h"
+#import "NSString+Manipulation.h"
+#import "NSTimer+Blocks.h"
+#import "UIColor+Judo.h"
+#import "UIView+SafeAnchors.h"
+#import "UIViewController+JPTheme.h"
 
 @import CoreLocation;
 
 static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCurve curve) {
-    UIViewAnimationOptions opt = (UIViewAnimationOptions) curve;
+    UIViewAnimationOptions opt = (UIViewAnimationOptions)curve;
     return opt << 16;
 }
 
 @interface JudoPayViewController () <UIWebViewDelegate, JudoPayInputDelegate>
 
-@property(nonatomic, assign) BOOL paymentEnabled;
-@property(nonatomic, assign) BOOL isMakingTransaction;
-@property(nonatomic, assign) CGFloat currentKeyboardHeight;
+@property (nonatomic, assign) BOOL paymentEnabled;
+@property (nonatomic, assign) BOOL isMakingTransaction;
+@property (nonatomic, assign) CGFloat currentKeyboardHeight;
 
-@property(nonatomic, readonly) BOOL isTokenPayment;
+@property (nonatomic, readonly) BOOL isTokenPayment;
 
-@property(nonatomic, strong, readwrite) JPAmount *amount;
-@property(nonatomic, strong, readwrite) NSString *judoId;
-@property(nonatomic, strong, readwrite) JPReference *reference;
+@property (nonatomic, strong, readwrite) JPAmount *amount;
+@property (nonatomic, strong, readwrite) NSString *judoId;
+@property (nonatomic, strong, readwrite) JPReference *reference;
 
-@property(nonatomic, strong) NSString *pending3DSReceiptId;
-@property(nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) NSString *pending3DSReceiptId;
+@property (nonatomic, strong) JudoCompletionBlock completionBlock;
 
-@property(nonatomic, strong) JPCardDetails *cardDetails;
+@property (nonatomic, strong) JPCardDetails *cardDetails;
 
-@property(nonatomic, strong, readwrite) UIScrollView *scrollView;
+@property (nonatomic, strong, readwrite) UIScrollView *scrollView;
 
-@property(nonatomic, strong) NSLayoutConstraint *keyboardHeightConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *maestroFieldsHeightConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *avsFieldsHeightConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *securityMessageTopConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *keyboardHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *maestroFieldsHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *avsFieldsHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *securityMessageTopConstraint;
 
-@property(nonatomic, strong) UILabel *securityMessageLabel;
+@property (nonatomic, strong) UILabel *securityMessageLabel;
 
-@property(nonatomic, strong, readwrite) UIButton *paymentButton;
-@property(nonatomic, strong) UIBarButtonItem *paymentNavBarButton;
+@property (nonatomic, strong, readwrite) UIButton *paymentButton;
+@property (nonatomic, strong) UIBarButtonItem *paymentNavBarButton;
 
-@property(nonatomic, strong, readwrite) LoadingView *loadingView;
-@property(nonatomic, strong, readwrite) JP3DSWebView *threeDSWebView;
+@property (nonatomic, strong, readwrite) LoadingView *loadingView;
+@property (nonatomic, strong, readwrite) JP3DSWebView *threeDSWebView;
 
-@property(nonatomic, assign, readwrite) TransactionType transactionType;
-@property(nonatomic, strong, readwrite) JPTransaction *transaction;
+@property (nonatomic, assign, readwrite) TransactionType transactionType;
+@property (nonatomic, strong, readwrite) JPTransaction *transaction;
 
-@property(nonatomic, strong, readwrite) CardInputField *cardInputField;
-@property(nonatomic, strong, readwrite) DateInputField *expiryDateInputField;
-@property(nonatomic, strong, readwrite) SecurityCodeInputField *securityCodeInputField;
-@property(nonatomic, strong, readwrite) DateInputField *startDateInputField;
-@property(nonatomic, strong, readwrite) IssueNumberInputField *issueNumberInputField;
-@property(nonatomic, strong, readwrite) PostCodeInputField *postCodeInputField;
-@property(nonatomic, strong, readwrite) BillingCountryInputField *billingCountryInputField;
+@property (nonatomic, strong, readwrite) CardInputField *cardInputField;
+@property (nonatomic, strong, readwrite) DateInputField *expiryDateInputField;
+@property (nonatomic, strong, readwrite) SecurityCodeInputField *securityCodeInputField;
+@property (nonatomic, strong, readwrite) DateInputField *startDateInputField;
+@property (nonatomic, strong, readwrite) IssueNumberInputField *issueNumberInputField;
+@property (nonatomic, strong, readwrite) PostCodeInputField *postCodeInputField;
+@property (nonatomic, strong, readwrite) BillingCountryInputField *billingCountryInputField;
 
 @end
 
@@ -122,9 +122,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self.paymentButton setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptionsWithCurve(animationCurve) animations:^{
-        [self.paymentButton layoutIfNeeded];
-    }                completion:nil];
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:animationOptionsWithCurve(animationCurve)
+                     animations:^{
+                         [self.paymentButton layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification *)note {
@@ -141,9 +145,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self.paymentButton setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:animationDuration delay:0.0 options:animationOptionsWithCurve(animationCurve) animations:^{
-        [self.paymentButton layoutIfNeeded];
-    }                completion:nil];
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:animationOptionsWithCurve(animationCurve)
+                     animations:^{
+                         [self.paymentButton layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 - (void)keyboardWillChangeFrame:(NSNotification *)note {
@@ -161,10 +169,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self.paymentButton setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:animationDuration delay:0.0
-                        options:animationOptionsWithCurve(animationCurve) animations:^{
-                [self.paymentButton layoutIfNeeded];
-            }        completion:nil];
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:animationOptionsWithCurve(animationCurve)
+                     animations:^{
+                         [self.paymentButton layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 #pragma mark - Initialization
@@ -208,8 +219,8 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                            selector:@selector(keyboardWillChangeFrame:)
                                name:UIKeyboardWillShowNotification
                              object:nil];
-    
-    NSDictionary *dictionary = @{@"UserAgent": getUserAgent()};
+
+    NSDictionary *dictionary = @{@"UserAgent" : getUserAgent()};
     [NSUserDefaults.standardUserDefaults registerDefaults:dictionary];
     [NSUserDefaults.standardUserDefaults synchronize];
 
@@ -327,18 +338,18 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     // Layout Constraints
     self.keyboardHeightConstraint = [self.paymentButton.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor constant:0];
     NSArray *constraints = @[
-            [self.paymentButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
-            [self.paymentButton.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
-            [self.paymentButton.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-            self.keyboardHeightConstraint,
+        [self.paymentButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
+        [self.paymentButton.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [self.paymentButton.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
+        self.keyboardHeightConstraint,
 
-            [self.scrollView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
-            [self.scrollView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
+        [self.scrollView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [self.scrollView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
 
-            [self.loadingView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
-            [self.loadingView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-            [self.loadingView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor],
-            [self.loadingView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor],
+        [self.loadingView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [self.loadingView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
+        [self.loadingView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor],
+        [self.loadingView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor],
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
@@ -346,20 +357,20 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]-1-[button]"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:@{@"scrollView": self.scrollView,
-                                                                                @"button": self.paymentButton}]];
+                                                                        views:@{@"scrollView" : self.scrollView,
+                                                                                @"button" : self.paymentButton}]];
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[tdsecure]-|"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:@{@"tdsecure": self.threeDSWebView}]];
+                                                                        views:@{@"tdsecure" : self.threeDSWebView}]];
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(68)-[tdsecure]-(30)-|"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:@{@"tdsecure": self.threeDSWebView}]];
+                                                                        views:@{@"tdsecure" : self.threeDSWebView}]];
 
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[card]-(-1)-|" options:0 metrics:nil views:@{@"card": self.cardInputField}]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[card]-(-1)-|" options:0 metrics:nil views:@{@"card" : self.cardInputField}]];
 
     [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:self.cardInputField
                                                                 attribute:NSLayoutAttributeWidth
@@ -372,39 +383,39 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[expiry]-(-1)-[security(==expiry)]-(-1)-|"
                                                                             options:0
                                                                             metrics:nil
-                                                                              views:@{@"expiry": self.expiryDateInputField, @"security": self.securityCodeInputField}]];
+                                                                              views:@{@"expiry" : self.expiryDateInputField, @"security" : self.securityCodeInputField}]];
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[start]-(-1)-[issue(==start)]-(-1)-|"
                                                                             options:0
                                                                             metrics:nil
-                                                                              views:@{@"start": self.startDateInputField, @"issue": self.issueNumberInputField}]];
+                                                                              views:@{@"start" : self.startDateInputField, @"issue" : self.issueNumberInputField}]];
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[billing]-(-1)-[post(==billing)]-(-1)-|"
                                                                             options:0
                                                                             metrics:nil
-                                                                              views:@{@"billing": self.billingCountryInputField, @"post": self.postCodeInputField}]];
+                                                                              views:@{@"billing" : self.billingCountryInputField, @"post" : self.postCodeInputField}]];
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(12)-[securityMessage]-(12)-|"
                                                                             options:0
                                                                             metrics:nil
-                                                                              views:@{@"securityMessage": self.securityMessageLabel}]];
+                                                                              views:@{@"securityMessage" : self.securityMessageLabel}]];
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[start]-(5)-[expiry(fieldHeight)]-(5)-[billing]-(20)-|"
                                                                             options:0
-                                                                            metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)}
-                                                                              views:@{@"card": self.cardInputField,
-                                                                                      @"start": self.startDateInputField,
-                                                                                      @"expiry": self.expiryDateInputField,
-                                                                                      @"billing": self.billingCountryInputField}]];
+                                                                            metrics:@{@"fieldHeight" : @(self.theme.inputFieldHeight)}
+                                                                              views:@{@"card" : self.cardInputField,
+                                                                                      @"start" : self.startDateInputField,
+                                                                                      @"expiry" : self.expiryDateInputField,
+                                                                                      @"billing" : self.billingCountryInputField}]];
 
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[card(fieldHeight)]-(5)-[issue(==start)]-(5)-[security(fieldHeight)]-(5)-[post]-(20)-|"
                                                                             options:0
-                                                                            metrics:@{@"fieldHeight": @(self.theme.inputFieldHeight)}
-                                                                              views:@{@"card": self.cardInputField,
-                                                                                      @"issue": self.issueNumberInputField,
-                                                                                      @"start": self.startDateInputField,
-                                                                                      @"security": self.securityCodeInputField,
-                                                                                      @"post": self.postCodeInputField}]];
+                                                                            metrics:@{@"fieldHeight" : @(self.theme.inputFieldHeight)}
+                                                                              views:@{@"card" : self.cardInputField,
+                                                                                      @"issue" : self.issueNumberInputField,
+                                                                                      @"start" : self.startDateInputField,
+                                                                                      @"security" : self.securityCodeInputField,
+                                                                                      @"post" : self.postCodeInputField}]];
 
     self.maestroFieldsHeightConstraint = [NSLayoutConstraint constraintWithItem:self.startDateInputField
                                                                       attribute:NSLayoutAttributeHeight
@@ -510,46 +521,47 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
         [self.transaction setCard:card];
     }
-    
+
     [self sendPaymentRequest];
 }
 
 - (void)sendPaymentRequest {
-    [self.judoKitSession sendWithCompletion:self.transaction completion:^(JPResponse *response, NSError *error) {
-        if (!self.completionBlock) {
-            return;
-        }
-        
-        if (response) {
-            self.completionBlock(response, nil);
-            [self.loadingView stopAnimating];
-            return;
-        }
-        
-        if (error && error.domain == JudoErrorDomain && error.code == JudoError3DSRequest) {
-            if (!error.userInfo) {
-                self.completionBlock(nil, [NSError judoResponseParseError]);
-                return; // BAIL
-            }
-            
-            NSError *load3DSerror = nil;
-            
-            self.pending3DSReceiptId = [self.threeDSWebView load3DSWithPayload:error.userInfo error:&load3DSerror];
-            
-            if (load3DSerror) {
-                self.completionBlock(nil, load3DSerror);
-                [self.loadingView stopAnimating];
-                return; // BAIL
-            }
-            
-            self.loadingView.actionLabel.text = self.theme.redirecting3DSTitle;
-            self.title = self.theme.authenticationTitle;
-            [self paymentEnabled:NO];
-            return;
-        }
-        
-        self.completionBlock(nil, error);
-    }];
+    [self.judoKitSession sendWithCompletion:self.transaction
+                                 completion:^(JPResponse *response, NSError *error) {
+                                     if (!self.completionBlock) {
+                                         return;
+                                     }
+
+                                     if (response) {
+                                         self.completionBlock(response, nil);
+                                         [self.loadingView stopAnimating];
+                                         return;
+                                     }
+
+                                     if (error && error.domain == JudoErrorDomain && error.code == JudoError3DSRequest) {
+                                         if (!error.userInfo) {
+                                             self.completionBlock(nil, [NSError judoResponseParseError]);
+                                             return; // BAIL
+                                         }
+
+                                         NSError *load3DSerror = nil;
+
+                                         self.pending3DSReceiptId = [self.threeDSWebView load3DSWithPayload:error.userInfo error:&load3DSerror];
+
+                                         if (load3DSerror) {
+                                             self.completionBlock(nil, load3DSerror);
+                                             [self.loadingView stopAnimating];
+                                             return; // BAIL
+                                         }
+
+                                         self.loadingView.actionLabel.text = self.theme.redirecting3DSTitle;
+                                         self.title = self.theme.authenticationTitle;
+                                         [self paymentEnabled:NO];
+                                         return;
+                                     }
+
+                                     self.completionBlock(nil, error);
+                                 }];
 }
 
 - (void)doneButtonAction:(id)sender {
@@ -563,12 +575,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.issueNumberInputField setNeedsUpdateConstraints];
     [self.startDateInputField setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.issueNumberInputField layoutIfNeeded];
-        [self.startDateInputField layoutIfNeeded];
-        [self.expiryDateInputField layoutIfNeeded];
-        [self.securityCodeInputField layoutIfNeeded];
-    }];
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         [self.issueNumberInputField layoutIfNeeded];
+                         [self.startDateInputField layoutIfNeeded];
+                         [self.expiryDateInputField layoutIfNeeded];
+                         [self.securityCodeInputField layoutIfNeeded];
+                     }];
 }
 
 - (void)toggleAVSVisibility:(BOOL)isVisible completion:(void (^)(void))completion {
@@ -576,15 +589,16 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self.billingCountryInputField setNeedsUpdateConstraints];
     [self.postCodeInputField setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.billingCountryInputField layoutIfNeeded];
-        [self.postCodeInputField layoutIfNeeded];
-
-    }                completion:^(BOOL finished) {
-        if (completion) {
-            completion();
+    [UIView animateWithDuration:0.2
+        animations:^{
+            [self.billingCountryInputField layoutIfNeeded];
+            [self.postCodeInputField layoutIfNeeded];
         }
-    }];
+        completion:^(BOOL finished) {
+            if (completion) {
+                completion();
+            }
+        }];
 }
 
 - (void)updateInputFieldsWithNetwork:(CardNetwork)network {
@@ -604,9 +618,12 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self.paymentButton setNeedsUpdateConstraints];
 
-    [UIView animateWithDuration:0.25 delay:0.0 options:(enabled ? UIViewAnimationOptionCurveEaseOut : UIViewAnimationOptionCurveEaseIn) animations:^{
-        [self.paymentButton layoutIfNeeded];
-    }                completion:nil];
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(enabled ? UIViewAnimationOptionCurveEaseOut : UIViewAnimationOptionCurveEaseIn)animations:^{
+                            [self.paymentButton layoutIfNeeded];
+                        }
+                     completion:nil];
 
     self.paymentNavBarButton.enabled = enabled;
 }
@@ -621,21 +638,23 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [self updateSecurityMessagePosition:!showHint];
 
-    [NSTimer scheduleWithDelay:3.0 handler:^(CFRunLoopTimerRef runLoopTimerRef) {
-        NSString *hintLabelText = input.hintLabelText;
-        if (hintLabelText.length && !input.textField.text.length && input.textField.isFirstResponder) {
-            [self updateSecurityMessagePosition:NO];
-            [input displayHint:hintLabelText];
-        }
-    }];
+    [NSTimer scheduleWithDelay:3.0
+                       handler:^(CFRunLoopTimerRef runLoopTimerRef) {
+                           NSString *hintLabelText = input.hintLabelText;
+                           if (hintLabelText.length && !input.textField.text.length && input.textField.isFirstResponder) {
+                               [self updateSecurityMessagePosition:NO];
+                               [input displayHint:hintLabelText];
+                           }
+                       }];
 }
 
 - (void)updateSecurityMessagePosition:(BOOL)toggleUp {
     [self.scrollView layoutIfNeeded];
     //self.securityMessageTopConstraint.constant = (toggleUp && !self.hintLabel.isActive) ? -self.hintLabel.bounds.size.height : 14.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.scrollView layoutIfNeeded];
-    }];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         [self.scrollView layoutIfNeeded];
+                     }];
 }
 
 #pragma mark - Lazy Loading
@@ -712,27 +731,27 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if (_securityMessageLabel) {
         return _securityMessageLabel;
     }
-    
+
     _securityMessageLabel = [UILabel new];
     _securityMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _securityMessageLabel.numberOfLines = 0;
-    
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
-                                 NSFontAttributeName: [UIFont boldSystemFontOfSize:self.theme.securityMessageTextSize]};
-    
-    NSDictionary *boldAttributes = @{NSForegroundColorAttributeName: self.theme.judoTextColor,
-                                     NSFontAttributeName: [UIFont systemFontOfSize:self.theme.securityMessageTextSize]};
-    
+
+    NSDictionary *attributes = @{NSForegroundColorAttributeName : self.theme.judoTextColor,
+                                 NSFontAttributeName : [UIFont boldSystemFontOfSize:self.theme.securityMessageTextSize]};
+
+    NSDictionary *boldAttributes = @{NSForegroundColorAttributeName : self.theme.judoTextColor,
+                                     NSFontAttributeName : [UIFont systemFontOfSize:self.theme.securityMessageTextSize]};
+
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Secure server: "
                                                                                          attributes:attributes];
-    
+
     [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.theme.securityMessageString
                                                                              attributes:boldAttributes]];
-    
+
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.alignment = NSTextAlignmentLeft;
     paragraphStyle.lineSpacing = 3.0f;
-    
+
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
     _securityMessageLabel.attributedText = attributedString;
     return _securityMessageLabel;
@@ -811,9 +830,10 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if (input == self.securityCodeInputField) {
         if (self.theme.avsEnabled && valid) {
             [self.postCodeInputField.textField becomeFirstResponder];
-            [self toggleAVSVisibility:YES completion:^{
-                [self.scrollView scrollRectToVisible:self.postCodeInputField.frame animated:YES];
-            }];
+            [self toggleAVSVisibility:YES
+                           completion:^{
+                               [self.scrollView scrollRectToVisible:self.postCodeInputField.frame animated:YES];
+                           }];
         }
     } else if (input == self.postCodeInputField) {
         [input displayHint:@""];
@@ -841,7 +861,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if ([urlString rangeOfString:@"Parse3DS"].location == NSNotFound) {
         return YES;
     }
-    
+
     NSString *bodyString = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
     if (!bodyString) {
         if (self.completionBlock) {
@@ -849,42 +869,42 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         }
         return NO;
     }
-    
+
     NSDictionary *results = [bodyString extractURLComponentsQueryItems];
-    
+
     if (self.pending3DSReceiptId) {
         if (self.transactionType == TransactionTypeRegisterCard) {
             self.loadingView.actionLabel.text = self.theme.verifying3DSRegisterCardTitle;
         } else {
             self.loadingView.actionLabel.text = self.theme.verifying3DSPaymentTitle;
         }
-        
+
         [self.loadingView startAnimating];
         self.title = self.theme.authenticationTitle;
         [self.transaction threeDSecureWithParameters:results
                                            receiptId:self.pending3DSReceiptId
                                           completion:^(JPResponse *response, NSError *error) {
-            [self.loadingView stopAnimating];
-            if (self.completionBlock) {
-                if (response) {
-                    self.completionBlock(response, nil);
-                } else {
-                    NSError *judoError = error ? error : [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil];
-                    self.completionBlock(nil, judoError);
-                }
-            }
-        }];
+                                              [self.loadingView stopAnimating];
+                                              if (self.completionBlock) {
+                                                  if (response) {
+                                                      self.completionBlock(response, nil);
+                                                  } else {
+                                                      NSError *judoError = error ? error : [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil];
+                                                      self.completionBlock(nil, judoError);
+                                                  }
+                                              }
+                                          }];
     } else {
         if (self.completionBlock) {
             self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
         }
     }
-    
+
     [UIView animateWithDuration:0.3
-                     animations:^{ self.threeDSWebView.alpha = 0.0f;}
-                     completion:^(BOOL finished) {
-                         [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-                     }];
+        animations:^{ self.threeDSWebView.alpha = 0.0f; }
+        completion:^(BOOL finished) {
+            [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+        }];
     return NO;
 }
 
@@ -893,17 +913,19 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if ([webView.request.URL.absoluteString isEqualToString:@"about:blank"]) {
         alphaVal = 0.0f;
     }
-    [UIView animateWithDuration:0.5 animations:^{
-        self.threeDSWebView.alpha = alphaVal;
-        [self.loadingView stopAnimating];
-    }];
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.threeDSWebView.alpha = alphaVal;
+                         [self.loadingView stopAnimating];
+                     }];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.threeDSWebView.alpha = 0.0f;
-        [self.loadingView stopAnimating];
-    }];
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.threeDSWebView.alpha = 0.0f;
+                         [self.loadingView stopAnimating];
+                     }];
 
     if (self.completionBlock) {
         self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:error]);

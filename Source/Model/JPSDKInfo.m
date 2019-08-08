@@ -26,8 +26,8 @@
 
 @implementation JPSDKInfo
 
-static NSString * const kVersionKey = @"Version";
-static NSString * const kNameKey = @"Name";
+static NSString *const kVersionKey = @"Version";
+static NSString *const kNameKey = @"Name";
 
 - (instancetype)initWithVersion:(NSString *)version name:(NSString *)name {
     if (self = [super init]) {
@@ -44,9 +44,9 @@ static NSString * const kNameKey = @"Name";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kVersionKey : self.version,
-             kNameKey: self.name
-             };
+        kVersionKey : self.version,
+        kNameKey : self.name
+    };
 }
 
 @end

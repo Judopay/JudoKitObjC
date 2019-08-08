@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, TableViewContent) {
     TableViewContentPaymentMethods
 };
 
-static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableviewcellidentifier";
+static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcellidentifier";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate> {
     UIAlertController *_alertController;
@@ -59,8 +59,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 @property (nonatomic, strong) JudoKit *judoKitSession;
 
 @property (nonatomic, nonnull, strong) NSString *reference;
-
-@property (nonatomic, strong) ApplePayConfiguration *configuration;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
@@ -89,30 +87,33 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = self.tableFooterView;
-    
-    [self setupApplePayConfiguration];
 }
 
-- (void)setupApplePayConfiguration {
+- (ApplePayConfiguration* )applePayConfigurationWithTransactionType: (TransactionType)transactionType {
     
     NSArray *items = @[
                        [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
                                                           amount:[NSDecimalNumber decimalNumberWithString:@"0.1 $"]],
-                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
+                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 2"
                                                           amount:[NSDecimalNumber decimalNumberWithString:@"0.2 $"]],
                        [[PaymentSummaryItem alloc] initWithLabel:@"Tim Apple"
                                                           amount:[NSDecimalNumber decimalNumberWithString:@"0.3 $"]]
                        ];
     
-    self.configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
+    ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
                                                              reference:self.reference
                                                             merchantId:merchantId
                                                               currency:@"GBP"
                                                            countryCode:@"GB"
                                                    paymentSummaryItems:items];
     
-    self.configuration.requiredShippingContactFields = ContactFieldEmail;
-    self.configuration.returnedContactInfo = ReturnedInfoShippingContacts;
+    configuration.transactionType = transactionType;
+    
+    configuration.requiredShippingContactFields = ContactFieldAll;
+    configuration.requiredBillingContactFields = ContactFieldAll;
+    configuration.returnedContactInfo = ReturnedInfoAll;
+    
+    return configuration;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -473,18 +474,18 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 }
 
 - (void)applePayPaymentOperation {
-    self.configuration.transactionType = TransactionTypePayment;
-    [self initApplePaySleve];
+    ApplePayConfiguration *configuration = [self applePayConfigurationWithTransactionType:TransactionTypePayment];
+    [self initApplePaySleveWithConfiguration:configuration];
 }
 
 - (void)applePayPreAuthOperation {
-    self.configuration.transactionType = TransactionTypePreAuth;
-    [self initApplePaySleve];
+    ApplePayConfiguration *configuration = [self applePayConfigurationWithTransactionType:TransactionTypePayment];
+    [self initApplePaySleveWithConfiguration:configuration];
 }
 
-- (void)initApplePaySleve {
-    [self.judoKitSession invokeApplePayWithConfiguration: self.configuration
-                                              completion:^(JPResponse * _Nullable response, NSError * _Nullable error) {
+- (void)initApplePaySleveWithConfiguration: (ApplePayConfiguration *)configuration {
+    [self.judoKitSession invokeApplePayWithConfiguration: configuration
+                                              completion:^(JPResponse *_Nullable response, NSError *_Nullable error) {
                                                   
                                                   if (error || response.items.count == 0) {
                                                       if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -493,14 +494,22 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                                       }
                                                       
                                                       self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
+                                                      
                                                       [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                                                      
                                                       [self dismissViewControllerAnimated:YES completion:^{
                                                           [self presentViewController:self->_alertController animated:YES completion:nil];
                                                       }];
+                                                      
                                                       return;
                                                   }
                                                   
                                                   DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+                                                  
+                                                  viewController.transactionData = response.items.firstObject;
+                                                  viewController.billingInformation = response.billingInfo;
+                                                  viewController.shippingInformation = response.shippingInfo;
+                                                  
                                                   [self dismissViewControllerAnimated:YES completion:^{
                                                       [self.navigationController pushViewController:viewController animated:YES];
                                                   }];

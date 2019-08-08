@@ -32,6 +32,6 @@
                                secret:(nonnull NSString *)secret;
 
 - (void)enrichTransaction:(nonnull JPTransaction *)transaction
-           withCompletion:(nonnull void(^)(void))completion;
+           withCompletion:(nonnull void (^)(void))completion;
 
 @end

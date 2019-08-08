@@ -22,18 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPDictionaryConvertible.h"
+#import <Foundation/Foundation.h>
 
 @class JPBrowser;
 
 @interface JPThreeDSecure : NSObject <JPDictionaryConvertible>
 
-@property(nonatomic, strong, readonly) JPBrowser *_Nullable browser;
+@property (nonatomic, strong, readonly) JPBrowser *_Nullable browser;
 
 - (nonnull instancetype)initWithBrowser:(nonnull JPBrowser *)browser;
 
 + (nonnull instancetype)secureWithBrowser:(nonnull JPBrowser *)browser;
 
 @end
-

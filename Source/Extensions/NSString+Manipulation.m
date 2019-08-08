@@ -29,9 +29,9 @@
 - (NSString *)stringByReplacingCharactersInSet:(NSCharacterSet *)charSet withString:(NSString *)aString {
     NSMutableString *string = [NSMutableString stringWithCapacity:self.length];
     for (NSUInteger index = 0; index < self.length; ++index) {
-        unichar character = [self characterAtIndex: index];
-        if ([charSet characterIsMember: character]) {
-            [string appendString: aString];
+        unichar character = [self characterAtIndex:index];
+        if ([charSet characterIsMember:character]) {
+            [string appendString:aString];
         } else {
             [string appendFormat:@"%C", character];
         }
@@ -44,13 +44,13 @@
 }
 
 - (nonnull NSString *)formatWithPattern:(nonnull NSString *)pattern {
-    const char*patternString = pattern.UTF8String;
+    const char *patternString = pattern.UTF8String;
     NSString *returnString = @"";
     NSInteger patternIndex = 0;
-    
+
     for (int i = 0; i < self.length; i++) {
         const char element = patternString[patternIndex];
-        
+
         if (element == 'X') {
             char num = [self characterAtIndex:i];
             returnString = [returnString stringByAppendingString:[NSString stringWithFormat:@"%c", num]];
@@ -59,26 +59,26 @@
             returnString = [returnString stringByAppendingString:[NSString stringWithFormat:@" %c", num]];
             patternIndex++;
         }
-        
+
         patternIndex++;
     }
-    
+
     return returnString;
 }
 
 - (nonnull NSDictionary<NSString *, NSString *> *)extractURLComponentsQueryItems {
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
-    
+
     for (NSString *pair in [self componentsSeparatedByString:@"&"]) {
         if ([pair rangeOfString:@"="].location != NSNotFound) {
             NSArray *components = [pair componentsSeparatedByString:@"="];
             NSString *key = [components firstObject];
             NSString *value = [[components lastObject] stringByRemovingPercentEncoding];
-           
+
             results[key] = value;
         }
     }
-    
+
     return results;
 }
 

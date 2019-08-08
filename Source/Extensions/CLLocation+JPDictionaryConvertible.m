@@ -26,15 +26,15 @@
 
 @implementation CLLocation (JPDictionaryConvertible)
 
-static NSString * const kLatitudeKey = @"latitude";
-static NSString * const kLongitudeKey = @"longitude";
+static NSString *const kLatitudeKey = @"latitude";
+static NSString *const kLongitudeKey = @"longitude";
 
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kLatitudeKey: @(self.coordinate.latitude),
-             kLongitudeKey: @(self.coordinate.longitude)
-             };
+        kLatitudeKey : @(self.coordinate.latitude),
+        kLongitudeKey : @(self.coordinate.longitude)
+    };
 }
 
 @end
