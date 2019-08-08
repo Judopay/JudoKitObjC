@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ApplePayConfiguration.m
 //  JudoKitObjCExample
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
