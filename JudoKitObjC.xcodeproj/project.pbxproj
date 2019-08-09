@@ -49,13 +49,14 @@
 		3067430B22FD6A9500417C85 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430922FD6A9500417C85 /* ApplePayManager.h */; };
 		3067430E22FD6AA600417C85 /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */; };
 		3067430F22FD6AA600417C85 /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */; };
-		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
+		3067431122FD703100417C85 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3067431022FD703100417C85 /* DetailViewController.xib */; };
+		3067431422FD704500417C85 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067431322FD704500417C85 /* DetailViewController.m */; };
+		3067431622FD7D2500417C85 /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3067431522FD7D2500417C85 /* MockJPTransactionData.json */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
 		3B4EB39C1C981EA7006265A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39B1C981EA7006265A0 /* main.m */; };
 		3B4EB39F1C981EA7006265A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39E1C981EA7006265A0 /* AppDelegate.m */; };
 		3B4EB3A21C981EA7006265A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3A11C981EA7006265A0 /* ViewController.m */; };
-		3B4EB3A51C981EA7006265A0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3A41C981EA7006265A0 /* DetailViewController.m */; };
 		3B4EB3A81C981EA7006265A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4EB3A61C981EA7006265A0 /* Main.storyboard */; };
 		3B4EB3AA1C981EA7006265A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B4EB3A91C981EA7006265A0 /* Assets.xcassets */; };
 		3B4EB3AD1C981EA7006265A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4EB3AB1C981EA7006265A0 /* LaunchScreen.storyboard */; };
@@ -388,7 +389,10 @@
 		3067430922FD6A9500417C85 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
 		3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayConfiguration.m; sourceTree = "<group>"; };
 		3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayConfiguration.h; sourceTree = "<group>"; };
-		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		3067431022FD703100417C85 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		3067431222FD704500417C85 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		3067431322FD704500417C85 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3067431522FD7D2500417C85 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
 		3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitObjCExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -397,8 +401,6 @@
 		3B4EB39E1C981EA7006265A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3B4EB3A01C981EA7006265A0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3B4EB3A11C981EA7006265A0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3B4EB3A31C981EA7006265A0 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		3B4EB3A41C981EA7006265A0 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3B4EB3A71C981EA7006265A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B4EB3A91C981EA7006265A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B4EB3AC1C981EA7006265A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -649,9 +651,9 @@
 				3B4EB39E1C981EA7006265A0 /* AppDelegate.m */,
 				3B4EB3A01C981EA7006265A0 /* ViewController.h */,
 				3B4EB3A11C981EA7006265A0 /* ViewController.m */,
-				3B4EB3A31C981EA7006265A0 /* DetailViewController.h */,
-				3B4EB3A41C981EA7006265A0 /* DetailViewController.m */,
-				3B35F63F1C98626400DBAF59 /* DetailViewController.xib */,
+				3067431222FD704500417C85 /* DetailViewController.h */,
+				3067431322FD704500417C85 /* DetailViewController.m */,
+				3067431022FD703100417C85 /* DetailViewController.xib */,
 				3B4EB3A61C981EA7006265A0 /* Main.storyboard */,
 				3B4EB3A91C981EA7006265A0 /* Assets.xcassets */,
 				3B4EB3AB1C981EA7006265A0 /* LaunchScreen.storyboard */,
@@ -765,6 +767,7 @@
 				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
+				3067431522FD7D2500417C85 /* MockJPTransactionData.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1303,7 +1306,7 @@
 				3B4EB3AD1C981EA7006265A0 /* LaunchScreen.storyboard in Resources */,
 				3B4EB3AA1C981EA7006265A0 /* Assets.xcassets in Resources */,
 				3B4EB3A81C981EA7006265A0 /* Main.storyboard in Resources */,
-				3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */,
+				3067431122FD703100417C85 /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3067431622FD7D2500417C85 /* MockJPTransactionData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,7 +1371,7 @@
 				3B4EB39F1C981EA7006265A0 /* AppDelegate.m in Sources */,
 				3B4EB3A21C981EA7006265A0 /* ViewController.m in Sources */,
 				3B4EB39C1C981EA7006265A0 /* main.m in Sources */,
-				3B4EB3A51C981EA7006265A0 /* DetailViewController.m in Sources */,
+				3067431422FD704500417C85 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

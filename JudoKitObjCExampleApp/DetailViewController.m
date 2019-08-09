@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "DetailViewController.h"
+#import "ContactInformation.h"
 
 @import JudoKitObjC;
 
@@ -31,6 +32,10 @@
 @property (nonatomic, strong) IBOutlet UILabel *dateStampLabel;
 @property (nonatomic, strong) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resolutionLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *billingAddressStackView;
+@property (weak, nonatomic) IBOutlet UIStackView *shippingAddressStackView;
+@property (weak, nonatomic) IBOutlet UILabel *billingAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shippingAddressLabel;
 
 @property (nonatomic, strong) NSDateFormatter *inputDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *outputDateFormatter;
@@ -55,6 +60,17 @@
         self.amountLabel.text = self.transactionData.amount.amount;
         self.resolutionLabel.text = self.transactionData.message;
     }
+    
+    if (self.billingInformation) {
+        [self.billingAddressStackView setHidden:NO];
+        self.billingAddressLabel.text = self.billingInformation.toString;
+    }
+    
+    if (self.shippingInformation) {
+        [self.shippingAddressStackView setHidden:NO];
+        self.shippingAddressLabel.text = self.shippingInformation.toString;
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
