@@ -45,6 +45,10 @@
 		306741CC22FD684500417C85 /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C622FD684500417C85 /* ApplePayWrappers.h */; };
 		306741CD22FD684500417C85 /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741C722FD684500417C85 /* ContactInformation.m */; };
 		306741CE22FD684500417C85 /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741C822FD684500417C85 /* PostalAddress.m */; };
+		3067430A22FD6A9500417C85 /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067430822FD6A9300417C85 /* ApplePayManager.m */; };
+		3067430B22FD6A9500417C85 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430922FD6A9500417C85 /* ApplePayManager.h */; };
+		3067430E22FD6AA600417C85 /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */; };
+		3067430F22FD6AA600417C85 /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -380,6 +384,10 @@
 		306741C622FD684500417C85 /* ApplePayWrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayWrappers.h; sourceTree = "<group>"; };
 		306741C722FD684500417C85 /* ContactInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInformation.m; sourceTree = "<group>"; };
 		306741C822FD684500417C85 /* PostalAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostalAddress.m; sourceTree = "<group>"; };
+		3067430822FD6A9300417C85 /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
+		3067430922FD6A9500417C85 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
+		3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayConfiguration.m; sourceTree = "<group>"; };
+		3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayConfiguration.h; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -617,8 +625,19 @@
 				306741C722FD684500417C85 /* ContactInformation.m */,
 				306741C322FD684400417C85 /* PostalAddress.h */,
 				306741C822FD684500417C85 /* PostalAddress.m */,
+				3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */,
+				3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */,
 			);
 			name = ApplePay;
+			sourceTree = "<group>";
+		};
+		3067430722FD6A1D00417C85 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3067430922FD6A9500417C85 /* ApplePayManager.h */,
+				3067430822FD6A9300417C85 /* ApplePayManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */ = {
@@ -736,6 +755,7 @@
 				44290B0122F051720088F827 /* Functions.m */,
 				447CBD5522DCA81700C1C9E1 /* ViewModel */,
 				3B678B711C6CE6190001DC2F /* API */,
+				3067430722FD6A1D00417C85 /* Managers */,
 				3B678B701C6CE5F70001DC2F /* Model */,
 				3B678B741C6CE68D0001DC2F /* View */,
 				3B5362921C7CBD2100CEBAE2 /* Controller */,
@@ -1005,6 +1025,7 @@
 				1577945D2110C8CF007BD3E1 /* JPSaveCard.h in Headers */,
 				3B678BB11C7327270001DC2F /* JPVoid.h in Headers */,
 				3B678BB51C7327410001DC2F /* JPReceipt.h in Headers */,
+				3067430F22FD6AA600417C85 /* ApplePayConfiguration.h in Headers */,
 				3BD353CB1C77803F0045658A /* JPCardDetails.h in Headers */,
 				15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */,
 				44290B0722F051B00088F827 /* JPTransactionEnricher.h in Headers */,
@@ -1014,6 +1035,7 @@
 				3BD353C71C7774780045658A /* JPConsumer.h in Headers */,
 				3B704A961C89F1B700376773 /* DateInputField.h in Headers */,
 				3B678BA11C7326D30001DC2F /* JPPreAuth.h in Headers */,
+				3067430B22FD6A9500417C85 /* ApplePayManager.h in Headers */,
 				3B6912D11C93179100367660 /* NSArray+Prefix.h in Headers */,
 				3B6991631C8F26FE006ED1FB /* NSTimer+Blocks.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
@@ -1395,10 +1417,12 @@
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
 				306741CE22FD684500417C85 /* PostalAddress.m in Sources */,
 				3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */,
+				3067430A22FD6A9500417C85 /* ApplePayManager.m in Sources */,
 				3B678B801C6DE0FA0001DC2F /* JPPagination.m in Sources */,
 				3B5AFC0E1C90925300DABB4C /* CardLogoView.m in Sources */,
 				306741B322FD5E7D00417C85 /* NSString+Validation.m in Sources */,
 				3B704A8B1C89F18000376773 /* JPInputField.m in Sources */,
+				3067430E22FD6AA600417C85 /* ApplePayConfiguration.m in Sources */,
 				3BD353C41C77557F0045658A /* JPTransactionData.m in Sources */,
 				306741CD22FD684500417C85 /* ContactInformation.m in Sources */,
 				447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */,
