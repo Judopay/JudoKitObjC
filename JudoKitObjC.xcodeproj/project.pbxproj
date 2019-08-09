@@ -39,19 +39,20 @@
 		306741B122FD5E7D00417C85 /* NSString+Manipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741AD22FD5E7D00417C85 /* NSString+Manipulation.h */; };
 		306741B222FD5E7D00417C85 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741AE22FD5E7D00417C85 /* NSString+Validation.h */; };
 		306741B322FD5E7D00417C85 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741AF22FD5E7D00417C85 /* NSString+Validation.m */; };
-		306741C922FD684500417C85 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C322FD684400417C85 /* PostalAddress.h */; };
+		306741C922FD684500417C85 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C322FD684400417C85 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		306741CA22FD684500417C85 /* ApplePayWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741C422FD684400417C85 /* ApplePayWrappers.m */; };
-		306741CB22FD684500417C85 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C522FD684500417C85 /* ContactInformation.h */; };
-		306741CC22FD684500417C85 /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C622FD684500417C85 /* ApplePayWrappers.h */; };
+		306741CB22FD684500417C85 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C522FD684500417C85 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		306741CC22FD684500417C85 /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 306741C622FD684500417C85 /* ApplePayWrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		306741CD22FD684500417C85 /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741C722FD684500417C85 /* ContactInformation.m */; };
 		306741CE22FD684500417C85 /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 306741C822FD684500417C85 /* PostalAddress.m */; };
 		3067430A22FD6A9500417C85 /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067430822FD6A9300417C85 /* ApplePayManager.m */; };
-		3067430B22FD6A9500417C85 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430922FD6A9500417C85 /* ApplePayManager.h */; };
+		3067430B22FD6A9500417C85 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430922FD6A9500417C85 /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3067430E22FD6AA600417C85 /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067430C22FD6AA600417C85 /* ApplePayConfiguration.m */; };
-		3067430F22FD6AA600417C85 /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */; };
+		3067430F22FD6AA600417C85 /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3067430D22FD6AA600417C85 /* ApplePayConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3067431122FD703100417C85 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3067431022FD703100417C85 /* DetailViewController.xib */; };
 		3067431422FD704500417C85 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3067431322FD704500417C85 /* DetailViewController.m */; };
 		3067431622FD7D2500417C85 /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3067431522FD7D2500417C85 /* MockJPTransactionData.json */; };
+		3067432C22FDA00A00417C85 /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067431D22FD9FB300417C85 /* ApplePayTests.swift */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
 		3B4EB39C1C981EA7006265A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39B1C981EA7006265A0 /* main.m */; };
@@ -393,6 +394,7 @@
 		3067431222FD704500417C85 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		3067431322FD704500417C85 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3067431522FD7D2500417C85 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
+		3067431D22FD9FB300417C85 /* ApplePayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
 		3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitObjCExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -941,6 +943,7 @@
 				702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */,
 				15CFC9EC1FB74A4200430D31 /* VCOTests.swift */,
 				44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */,
+				3067431D22FD9FB300417C85 /* ApplePayTests.swift */,
 			);
 			path = APITests;
 			sourceTree = "<group>";
@@ -1160,7 +1163,7 @@
 					};
 					3B678B551C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1010;
 					};
 					3B678B5F1C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
@@ -1475,6 +1478,7 @@
 				702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */,
 				3B4EB4011C982A25006265A0 /* TransactionTests.swift in Sources */,
 				3B4EB3FA1C982A25006265A0 /* PreAuthTests.swift in Sources */,
+				3067432C22FDA00A00417C85 /* ApplePayTests.swift in Sources */,
 				3B4EB3F51C982A25006265A0 /* CollectionTests.swift in Sources */,
 				3B4EB3F71C982A25006265A0 /* JudoTests.swift in Sources */,
 				3B4EB3FC1C982A25006265A0 /* RefundTests.swift in Sources */,
