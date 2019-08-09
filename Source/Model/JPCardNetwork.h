@@ -22,12 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPCardDetails.h"
+#import <Foundation/Foundation.h>
 
 @interface JPCardNetwork : NSObject
 
-@property (nonatomic, strong) NSArray <NSString *> *numberPrefixes;
+@property (nonatomic, strong) NSArray<NSString *> *numberPrefixes;
 @property (nonatomic, assign) CardNetwork network;
 @property (nonatomic, assign) NSUInteger securityCodeLength;
 @property (nonatomic, strong) NSString *numberPattern;

@@ -32,13 +32,12 @@
 /**
  *  The amount to process, to two decimal places
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull amount;
+@property (nonatomic, strong, readonly) NSString *_Nonnull amount;
 
 /**
  *  The currency ISO Code - GBP is default
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull currency;
-
+@property (nonatomic, strong, readonly) NSString *_Nonnull currency;
 
 /**
  *  Convenient initializer for amount

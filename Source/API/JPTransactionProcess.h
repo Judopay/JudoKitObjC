@@ -38,17 +38,17 @@
 /**
  *  The receipt ID for a collection, void or refund
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull receiptId;
+@property (nonatomic, strong, readonly) NSString *_Nonnull receiptId;
 
 /**
  *  The amount of the collection, void or refund
  */
-@property (nonatomic, strong, readonly) JPAmount * _Nonnull amount;
+@property (nonatomic, strong, readonly) JPAmount *_Nonnull amount;
 
 /**
  *  The payment reference String for a collection, void or refund
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull paymentReference;
+@property (nonatomic, strong, readonly) NSString *_Nonnull paymentReference;
 
 /**
  *  Location coordinate for fraud prevention in this transaction
@@ -58,17 +58,17 @@
 /**
  *  Device identification for this transaction
  */
-@property (nonatomic, strong) NSDictionary * _Nullable deviceSignal;
+@property (nonatomic, strong) NSDictionary *_Nullable deviceSignal;
 
 /**
  *  Helper method for subclasses to be able to access the dynamic path value
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable transactionProcessingPath;
+@property (nonatomic, strong, readonly) NSString *_Nullable transactionProcessingPath;
 
 /**
  *  the current api session variable
  */
-@property (nonatomic, strong) JPSession * _Nullable apiSession;
+@property (nonatomic, strong) JPSession *_Nullable apiSession;
 
 /**
  *  Starting point and a reactive method to create a collection, void or refund
@@ -85,6 +85,6 @@
  *
  *  @param completion a completion block that is called when the request finishes
  */
-- (void)sendWithCompletion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+- (void)sendWithCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end

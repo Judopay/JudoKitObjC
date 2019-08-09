@@ -23,29 +23,29 @@
 //  SOFTWARE.
 
 #import "JPConsumerDevice.h"
+#import "CLLocation+JPDictionaryConvertible.h"
 #import "JPClientDetails.h"
 #import "JPThreeDSecure.h"
-#import "CLLocation+JPDictionaryConvertible.h"
 
 @implementation JPConsumerDevice
 
-static NSString * const kIPAddressKey = @"IpAddress";
-static NSString * const kClientDetailsKey = @"ClientDetails";
-static NSString * const kGeoLocationKey = @"GeoLocation";
-static NSString * const kThreeDSecureKey = @"ThreeDSecure";
-static NSString * const kPaymentTypeKey = @"PaymentType";
-static NSString * const kPaymentTypeEcomm = @"ECOMM";
+static NSString *const kIPAddressKey = @"IpAddress";
+static NSString *const kClientDetailsKey = @"ClientDetails";
+static NSString *const kGeoLocationKey = @"GeoLocation";
+static NSString *const kThreeDSecureKey = @"ThreeDSecure";
+static NSString *const kPaymentTypeKey = @"PaymentType";
+static NSString *const kPaymentTypeEcomm = @"ECOMM";
 
 - (instancetype)initWithIpAddress:(NSString *)ipAddress
                     clientDetails:(JPClientDetails *)clientDetails
                       geoLocation:(CLLocation *)geoLocation
                      threeDSecure:(JPThreeDSecure *)threeDSecure {
     if (self = [super init]) {
-        _ipAddress     = ipAddress;
+        _ipAddress = ipAddress;
         _clientDetails = clientDetails;
-        _geoLocation   = geoLocation;
-        _threeDSecure  = threeDSecure;
-        _paymentType   = kPaymentTypeEcomm;
+        _geoLocation = geoLocation;
+        _threeDSecure = threeDSecure;
+        _paymentType = kPaymentTypeEcomm;
     }
     return self;
 }
@@ -63,12 +63,12 @@ static NSString * const kPaymentTypeEcomm = @"ECOMM";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kIPAddressKey: self.ipAddress,
-             kClientDetailsKey: [self.clientDetails toDictionary],
-             kGeoLocationKey: [self.geoLocation toDictionary],
-             kThreeDSecureKey: [self.threeDSecure toDictionary],
-             kPaymentTypeKey: self.paymentType
-             };
+        kIPAddressKey : self.ipAddress,
+        kClientDetailsKey : [self.clientDetails toDictionary],
+        kGeoLocationKey : [self.geoLocation toDictionary],
+        kThreeDSecureKey : [self.threeDSecure toDictionary],
+        kPaymentTypeKey : self.paymentType
+    };
 }
 
 @end

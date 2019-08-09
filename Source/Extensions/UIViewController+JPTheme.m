@@ -22,9 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIViewController+JPTheme.h"
 #import "JPTheme.h"
 #import "UIColor+Judo.h"
+#import "UIViewController+JPTheme.h"
 
 @implementation UIViewController (JPTheme)
 
@@ -36,7 +36,7 @@
     }
 
     navigationBar.tintColor = theme.judoTextColor;
-    navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: theme.judoNavigationBarTitleColor};
+    navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : theme.judoNavigationBarTitleColor};
 
     self.view.backgroundColor = [theme judoContentViewBackgroundColor];
 }

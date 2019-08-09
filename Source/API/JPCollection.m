@@ -24,7 +24,7 @@
 
 #import "JPCollection.h"
 
-static NSString * const kCollectionPathKey = @"/transactions/collections";
+static NSString *const kCollectionPathKey = @"/transactions/collections";
 
 @implementation JPCollection
 

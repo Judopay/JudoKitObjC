@@ -28,11 +28,11 @@
 @implementation JPResponse
 
 - (instancetype)initWithPagination:(JPPagination *)pagination {
-	self = [super init];
-	if (self) {
+    self = [super init];
+    if (self) {
         self.pagination = pagination;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (void)appendItems:(NSArray *)items {
@@ -44,7 +44,7 @@
 }
 
 - (void)appendItem:(NSDictionary *)item {
-    [self appendItems:@[item]];
+    [self appendItems:@[ item ]];
 }
 
 @end

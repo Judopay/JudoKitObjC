@@ -26,9 +26,9 @@
 
 @interface JPVCOResult ()
 
-@property (nonatomic, strong, readwrite) NSString * callId;
-@property (nonatomic, strong, readwrite) NSString * encryptedKey;
-@property (nonatomic, strong, readwrite) NSString * encryptedPaymentData;
+@property (nonatomic, strong, readwrite) NSString *callId;
+@property (nonatomic, strong, readwrite) NSString *encryptedKey;
+@property (nonatomic, strong, readwrite) NSString *encryptedPaymentData;
 
 @end
 

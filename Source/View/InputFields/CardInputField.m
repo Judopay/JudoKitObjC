@@ -23,14 +23,14 @@
 //  SOFTWARE.
 
 #import "CardInputField.h"
-#import "NSString+Card.h"
-#import "NSError+Judo.h"
+#import "CardLogoView.h"
 #import "FloatingTextField.h"
 #import "JPCard.h"
 #import "JPTheme.h"
-#import "CardLogoView.h"
-#import "NSString+Validation.h"
+#import "NSError+Judo.h"
+#import "NSString+Card.h"
 #import "NSString+Manipulation.h"
+#import "NSString+Validation.h"
 
 @interface JPInputField ()
 
@@ -52,39 +52,39 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+
     self.currentTextRange = textField.selectedTextRange;
-    
+
     if (string.length > 0 && self.textField.secureTextEntry) {
         self.textField.secureTextEntry = NO;
     }
-    
+
     NSString *oldString = textField.text;
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
-    
+
     if (!newString.length || !string.length) {
         return YES;
     }
-    
+
     newString = [newString stringByRemovingWhitespaces];
-    
+
     if (!newString.isNumeric) {
         return NO;
     }
-    
+
     NSError *error = nil;
-    
+
     NSString *cardPresentationString = [newString cardPresentationStringWithAcceptedNetworks:self.theme.acceptedCardNetworks error:&error];
-    
+
     if (error) {
         [self.delegate cardInput:self didFailWithError:error];
         return NO;
     }
-    
+
     if (cardPresentationString) {
         [self dismissError];
     }
-    
+
     return YES;
 }
 
@@ -94,25 +94,25 @@
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [super textFieldDidChangeValue:textField];
-    
+
     [self didChangeInputText];
-    
+
     NSError *error = nil;
-    
+
     self.textField.text = [self.textField.text cardPresentationStringWithAcceptedNetworks:self.theme.acceptedCardNetworks error:&error];
-    
+
     if (error) {
         [self.delegate cardInput:self didFailWithError:error];
     } else {
         CardNetwork network = self.textField.text.cardNetwork;
         [self.delegate cardInput:self didDetectNetwork:network];
-        
+
         NSUInteger cardNumberLength = 16;
-        
+
         if (network == CardNetworkAMEX || network == CardNetworkUATP) {
             cardNumberLength = 15;
         }
-        
+
         if ([self.textField.text stringByRemovingWhitespaces].length == cardNumberLength) {
             if (self.textField.text.isCardNumberValid) {
                 [self.delegate cardInput:self didFindValidNumber:self.textField.text];
@@ -120,12 +120,11 @@
                 [self.delegate cardInput:self didFailWithError:[NSError judoInvalidCardNumberError]];
             }
         }
-        
     }
 }
 
 - (NSAttributedString *)placeholder {
-    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName:self.theme.judoPlaceholderTextColor}];
+    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : self.theme.judoPlaceholderTextColor}];
 }
 
 - (BOOL)containsLogo {

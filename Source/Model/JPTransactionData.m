@@ -25,13 +25,13 @@
 #import "JPTransactionData.h"
 #import "JPAmount.h"
 #import "JPCardDetails.h"
-#import "JPPaymentToken.h"
 #import "JPConsumer.h"
+#import "JPPaymentToken.h"
 
 @implementation JPTransactionData
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if(self = [super init]) {
+    if (self = [super init]) {
         [self populateWith:dictionary];
     }
     return self;
@@ -52,7 +52,7 @@
         self.refunds = [[JPAmount alloc] initWithAmount:dictionary[@"refunds"] currency:currency];
     }
     self.originalAmount = dictionary[@"originalAmount"];
-    
+
     self.netAmount = dictionary[@"netAmount"];
     NSString *amount = dictionary[@"amount"];
     if (amount != nil) {

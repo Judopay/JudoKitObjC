@@ -32,7 +32,7 @@
 /**
  *  "time-descending" or "time-ascending"
  */
-@property (nonatomic, strong, readonly) NSString * _Nonnull sort;
+@property (nonatomic, strong, readonly) NSString *_Nonnull sort;
 
 /**
  *  the page size of the paginated response
@@ -44,7 +44,6 @@
  */
 @property (nonatomic, assign, readonly) NSInteger offset;
 
-
 /**
  *  convenient initializer for a JPPagination object
  *
@@ -54,6 +53,6 @@
  *
  *  @return a instance of JPPagination with the given parameters
  */
-+ (nonnull instancetype)paginationWithOffset:(NSNumber * _Nonnull)offset pageSize:(NSNumber * _Nonnull)pageSize sort:(NSString * _Nonnull)sort;
++ (nonnull instancetype)paginationWithOffset:(NSNumber *_Nonnull)offset pageSize:(NSNumber *_Nonnull)pageSize sort:(NSString *_Nonnull)sort;
 
 @end

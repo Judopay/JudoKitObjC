@@ -27,7 +27,7 @@
 
 @implementation JPThreeDSecure
 
-static NSString * const kBrowserKey = @"Browser";
+static NSString *const kBrowserKey = @"Browser";
 
 - (instancetype)initWithBrowser:(JPBrowser *)browser {
     self = [super init];
@@ -45,8 +45,8 @@ static NSString * const kBrowserKey = @"Browser";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kBrowserKey: [self.browser toDictionary]
-             };
+        kBrowserKey : [self.browser toDictionary]
+    };
 }
 
 @end

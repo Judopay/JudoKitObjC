@@ -31,4 +31,3 @@
 @property (nonatomic, assign, readonly) BOOL isLuhnValid;
 
 @end
-

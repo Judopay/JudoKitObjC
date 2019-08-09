@@ -32,11 +32,11 @@
 
 - (NSDate *)endOfMonthDate {
     NSCalendarUnit componentUnits = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitWeekOfYear;
-    
+
     NSDateComponents *components = [[NSCalendar currentCalendar] components:componentUnits fromDate:self];
-    
+
     components.month += 1;
-    
+
     return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 

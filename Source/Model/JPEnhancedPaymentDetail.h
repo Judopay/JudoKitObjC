@@ -22,15 +22,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPDictionaryConvertible.h"
+#import <Foundation/Foundation.h>
 
 @class JPSDKInfo, JPConsumerDevice;
 
 @interface JPEnhancedPaymentDetail : NSObject <JPDictionaryConvertible>
 
-@property(nonatomic, strong, readonly) JPSDKInfo *_Nullable sdkInfo;
-@property(nonatomic, strong, readonly) JPConsumerDevice *_Nullable consumerDevice;
+@property (nonatomic, strong, readonly) JPSDKInfo *_Nullable sdkInfo;
+@property (nonatomic, strong, readonly) JPConsumerDevice *_Nullable consumerDevice;
 
 - (nonnull instancetype)initWithSdkInfo:(nonnull JPSDKInfo *)sdkInfo
                          consumerDevice:(nonnull JPConsumerDevice *)consumerDevice;

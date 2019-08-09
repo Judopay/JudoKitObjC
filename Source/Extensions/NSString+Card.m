@@ -22,14 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSString+Card.h"
-#import "NSArray+Prefix.h"
-#import "NSError+Judo.h"
 #import "JPCardNetwork.h"
 #import "JPConstants.h"
-#import "NSString+Validation.h"
+#import "NSArray+Prefix.h"
+#import "NSError+Judo.h"
+#import "NSString+Card.h"
 #import "NSString+Manipulation.h"
-#import "JPCardNetwork.h"
+#import "NSString+Validation.h"
 
 @implementation NSString (Card)
 
@@ -37,34 +36,34 @@
                                                    error:(NSError **)error {
     // strip whitespaces
     NSString *strippedString = [self stringByRemovingWhitespaces];
-    
+
     // check if count is between 0 and 16
     if (strippedString.length == 0) {
         return @"";
     }
-    
+
     CardNetwork network = strippedString.cardNetwork;
     BOOL isValidCardNumber = [self isValidCardNumber:strippedString
                                           forNetwork:network
                                     acceptedNetworks:networks
                                                error:error];
-    
+
     if (!isValidCardNumber) {
         return nil;
     }
-    
+
     // Only try to format if a specific card number has been recognized
     if (network == CardNetworkUnknown) {
         return strippedString;
     }
-    
+
     JPCardNetwork *cardNetwork = [JPCardNetwork cardNetworkWithType:network];
-    NSString *pattern =  [JPCardNetwork defaultNumberPattern];
+    NSString *pattern = [JPCardNetwork defaultNumberPattern];
 
     if (cardNetwork) {
         pattern = cardNetwork.numberPattern;
     }
-    
+
     return [strippedString formatWithPattern:pattern];
 }
 
@@ -74,7 +73,7 @@
 
 - (BOOL)isCardNumberValid {
     NSString *strippedSelf = [self stringByRemovingWhitespaces];
-    
+
     if ([strippedSelf rangeOfString:@"."].location != NSNotFound || !strippedSelf.isLuhnValid) {
         return false;
     }
@@ -83,7 +82,7 @@
     if (network == CardNetworkUATP || network == CardNetworkAMEX) {
         return strippedSelf.length == 15;
     }
-    
+
     return strippedSelf.length == 16;
 }
 
@@ -91,17 +90,17 @@
                forNetwork:(CardNetwork)network
          acceptedNetworks:(NSArray *)networks
                     error:(NSError **)error {
-    
+
     if (number.length > 16 || ![number isNumeric]) {
         if (error != NULL) {
             *error = [NSError judoInputMismatchErrorWithMessage:@"Check card number"];
         }
         return NO;
     }
-    
+
     // make sure to only check for the allowed networks
     BOOL networkAccepted = [networks containsObject:@(network)];
-    
+
     if (!networkAccepted && network != CardNetworkUnknown) {
         if (error != NULL) {
             NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:network];
@@ -110,14 +109,14 @@
         }
         return NO;
     }
-    
+
     if (network == CardNetworkAMEX && number.length > 15) {
         if (error != NULL) {
             *error = [NSError judoInputMismatchErrorWithMessage:@"Check card number"];
         }
         return NO;
     }
-    
+
     return YES;
 }
 

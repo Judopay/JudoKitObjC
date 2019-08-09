@@ -44,20 +44,20 @@
     return self;
 }
 
-- (void)sendWithCompletion:(void(^)(JPResponse *, NSError *))completion {
-    
+- (void)sendWithCompletion:(void (^)(JPResponse *, NSError *))completion {
+
     NSString *path = @"transactions/";
-    
+
     if (self.receiptId) {
         path = [path stringByAppendingString:self.receiptId];
     }
-    
+
     [self.apiSession GET:path parameters:nil completion:completion];
 }
 
-- (void)listWithPagination:(JPPagination *)pagination completion:(void(^)(JPResponse *, NSError *))completion {
+- (void)listWithPagination:(JPPagination *)pagination completion:(void (^)(JPResponse *, NSError *))completion {
     NSString *path = [NSString stringWithFormat:@"transactions?pageSize=%li&offset=%li&sort=%@", (long)pagination.pageSize, (long)pagination.offset, pagination.sort];
-    
+
     [self.apiSession GET:path parameters:nil completion:completion];
 }
 

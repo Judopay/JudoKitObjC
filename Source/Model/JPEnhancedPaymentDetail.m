@@ -23,13 +23,13 @@
 //  SOFTWARE.
 
 #import "JPEnhancedPaymentDetail.h"
-#import "JPSDKInfo.h"
 #import "JPConsumerDevice.h"
+#import "JPSDKInfo.h"
 
 @implementation JPEnhancedPaymentDetail
 
-static NSString * const kSDKInfoKey = @"SDK_INFO";
-static NSString * const kConsumerDeviceKey = @"ConsumerDevice";
+static NSString *const kSDKInfoKey = @"SDK_INFO";
+static NSString *const kConsumerDeviceKey = @"ConsumerDevice";
 
 - (instancetype)initWithSdkInfo:(JPSDKInfo *)sdkInfo
                  consumerDevice:(JPConsumerDevice *)consumerDevice {
@@ -49,9 +49,9 @@ static NSString * const kConsumerDeviceKey = @"ConsumerDevice";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kSDKInfoKey: [self.sdkInfo toDictionary],
-             kConsumerDeviceKey: [self.consumerDevice toDictionary]
-             };
+        kSDKInfoKey : [self.sdkInfo toDictionary],
+        kConsumerDeviceKey : [self.consumerDevice toDictionary]
+    };
 }
 
 @end

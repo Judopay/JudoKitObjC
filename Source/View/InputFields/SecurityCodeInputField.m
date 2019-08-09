@@ -23,8 +23,8 @@
 //  SOFTWARE.
 
 #import "SecurityCodeInputField.h"
-#import "FloatingTextField.h"
 #import "CardLogoView.h"
+#import "FloatingTextField.h"
 #import "JPTheme.h"
 #import "NSString+Validation.h"
 
@@ -42,21 +42,21 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+
     if (self.textField != textField) {
         return YES;
     }
-    
+
     if (string.length > 0 && self.textField.secureTextEntry) {
         self.textField.secureTextEntry = NO;
     }
-    
+
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
+
     if (newString.length == 0) {
         return YES;
     }
-    
+
     return newString.isNumeric && newString.length <= [self securityCodeLengthForCardNetwork:self.cardNetwork];
 }
 
@@ -68,14 +68,14 @@
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [super textFieldDidChangeValue:textField];
-    
+
     [self didChangeInputText];
-    
+
     [self.delegate judoPayInput:self didValidate:self.textField.text.length == [self securityCodeLengthForCardNetwork:self.cardNetwork]];
 }
 
 - (NSAttributedString *)placeholder {
-    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName:self.theme.judoPlaceholderTextColor}];
+    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : self.theme.judoPlaceholderTextColor}];
 }
 
 - (BOOL)containsLogo {

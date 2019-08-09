@@ -29,15 +29,15 @@
 
 @implementation JPBrowser
 
-static NSString * const kAcceptHeaderKey = @"AcceptHeader";
-static NSString * const kTimeZoneKey = @"TimeZone";
-static NSString * const kUserAgentKey = @"UserAgent";
-static NSString * const kLanguageKey = @"Language";
-static NSString * const kJavaEnabledKey = @"JavaEnabled";
-static NSString * const kJavascriptEnabledKey = @"JavascriptEnabled";
-static NSString * const kColorDepthKey = @"ColorDepth";
-static NSString * const kScreenHeightKey = @"ScreenHeight";
-static NSString * const kScreenWidthKey = @"ScreenWidth";
+static NSString *const kAcceptHeaderKey = @"AcceptHeader";
+static NSString *const kTimeZoneKey = @"TimeZone";
+static NSString *const kUserAgentKey = @"UserAgent";
+static NSString *const kLanguageKey = @"Language";
+static NSString *const kJavaEnabledKey = @"JavaEnabled";
+static NSString *const kJavascriptEnabledKey = @"JavascriptEnabled";
+static NSString *const kColorDepthKey = @"ColorDepth";
+static NSString *const kScreenHeightKey = @"ScreenHeight";
+static NSString *const kScreenWidthKey = @"ScreenWidth";
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -57,16 +57,16 @@ static NSString * const kScreenWidthKey = @"ScreenWidth";
 #pragma mark - JPDictionaryConvertible
 - (NSDictionary *)toDictionary {
     return @{
-             kAcceptHeaderKey: self.acceptHeader,
-             kTimeZoneKey: self.timeZone.abbreviation,
-             kUserAgentKey: self.userAgent,
-             kLanguageKey: self.language,
-             kJavaEnabledKey: self.javaEnabled,
-             kJavascriptEnabledKey: self.javascriptEnabled,
-             kColorDepthKey: self.colorDepth,
-             kScreenHeightKey: @(self.screenSize.height),
-             kScreenWidthKey: @(self.screenSize.width)
-             };
+        kAcceptHeaderKey : self.acceptHeader,
+        kTimeZoneKey : self.timeZone.abbreviation,
+        kUserAgentKey : self.userAgent,
+        kLanguageKey : self.language,
+        kJavaEnabledKey : self.javaEnabled,
+        kJavascriptEnabledKey : self.javascriptEnabled,
+        kColorDepthKey : self.colorDepth,
+        kScreenHeightKey : @(self.screenSize.height),
+        kScreenWidthKey : @(self.screenSize.width)
+    };
 }
 
 @end

@@ -24,8 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JPTransactionData.h"
 #import "JPSession.h"
+#import "JPTransactionData.h"
 #import "JudoPaymentMethodsViewController.h"
 #import "PaymentMethods.h"
 
@@ -55,17 +55,17 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 /**
  *  JudoKit api session
  */
-@property(nonatomic, strong, readonly) JPSession *_Nonnull apiSession;
+@property (nonatomic, strong, readonly) JPSession *_Nonnull apiSession;
 
 /**
  *  The theme of any judoSession
  */
-@property(nonatomic, strong) JPTheme *_Nonnull theme;
+@property (nonatomic, strong) JPTheme *_Nonnull theme;
 
 /**
  *  The currently active and visible viewController instance
  */
-@property(nonatomic, weak) JudoPayViewController *_Nullable activeViewController;
+@property (nonatomic, weak) JudoPayViewController *_Nullable activeViewController;
 
 /**
  *  Designated initializer of JudoKit
@@ -199,8 +199,8 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
  *  @param completion The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)list:(nonnull Class)type
-   paginated:(nullable JPPagination *)pagination
-  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+     paginated:(nullable JPPagination *)pagination
+    completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  Helper method that creates a Transaction based on the Class that is passed (JPPayment, JPPreAuth, JPRegisterCard or JPSaveCard)
@@ -228,9 +228,9 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
  *  @return a JPTransaction object
  */
 - (nullable JPTransaction *)transactionForType:(TransactionType)type
-                                       judoId:(nonnull NSString *)judoId
-                                       amount:(nullable JPAmount *)amount
-                                    reference:(nonnull JPReference *)reference;
+                                        judoId:(nonnull NSString *)judoId
+                                        amount:(nullable JPAmount *)amount
+                                     reference:(nonnull JPReference *)reference;
 
 @end
 

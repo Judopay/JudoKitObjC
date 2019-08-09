@@ -22,9 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import <Foundation/Foundation.h>
+
 /**
  *  BillingCountry enum to simplify identifying a billing country for a given card
  */
+
 typedef NS_ENUM(NSUInteger, BillingCountry) {
     /**
      *  United Kingdom

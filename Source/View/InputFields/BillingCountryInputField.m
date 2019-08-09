@@ -46,13 +46,13 @@
 
 - (void)setupView {
     [super setupView];
-    
+
     self.countryPicker.delegate = self;
     self.countryPicker.dataSource = self;
     self.textField.placeholder = @" ";
     self.textField.text = @"UK";
     self.textField.inputView = self.countryPicker;
-    
+
     [self setActive:YES];
 }
 
@@ -101,7 +101,7 @@
 
 - (NSArray *)allCountries {
     if (!_allCountries) {
-        _allCountries = @[@(BillingCountryUK), @(BillingCountryCanada), @(BillingCountryUSA), @(BillingCountryOther)];
+        _allCountries = @[ @(BillingCountryUK), @(BillingCountryCanada), @(BillingCountryUSA), @(BillingCountryOther) ];
     }
     return _allCountries;
 }

@@ -29,9 +29,9 @@
 #import "NSError+Judo.h"
 #import "NSString+Validation.h"
 
-static NSString * const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
-static NSString * const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
-static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
+static NSString *const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
+static NSString *const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
+static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 
 @interface JPInputField ()
 
@@ -52,9 +52,9 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     if (_billingCountry == billingCountry) {
         return;
     }
-    
+
     _billingCountry = billingCountry;
-    
+
     if (_billingCountry == BillingCountryUK || _billingCountry == BillingCountryCanada) {
         self.textField.keyboardType = UIKeyboardTypeDefault;
     } else {
@@ -66,30 +66,29 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 }
 
 - (NSString *)descriptionForBillingCountry:(BillingCountry)country {
-    
+
     if (country == BillingCountryUSA) {
         return @"ZIP code";
     }
-    
+
     if (country == BillingCountryCanada) {
         return @"postal code";
     }
-    
-    return @"postcode";
 
+    return @"postcode";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField != self.textField) {
         return YES;
     }
-    
+
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
+
     if (newString.length == 0) {
         return YES;
     }
-    
+
     switch (self.billingCountry) {
         case BillingCountryUK:
             return newString.isAlphaNumeric && newString.length <= 8;
@@ -106,13 +105,13 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     if (self.billingCountry == BillingCountryOther) {
         return YES;
     }
-    
+
     NSString *newString = [self.textField.text uppercaseString];
-    
+
     NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:kUKRegexString options:NSRegularExpressionAnchorsMatchLines error:nil];
     NSRegularExpression *canadaRegex = [NSRegularExpression regularExpressionWithPattern:kCanadaRegexString options:NSRegularExpressionAnchorsMatchLines error:nil];
     NSRegularExpression *usaRegex = [NSRegularExpression regularExpressionWithPattern:kUSARegexString options:NSRegularExpressionAnchorsMatchLines error:nil];
-    
+
     switch (self.billingCountry) {
         case BillingCountryUK:
             return [ukRegex numberOfMatchesInString:newString options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, newString.length)] > 0;
@@ -123,35 +122,34 @@ static NSString * const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
         default:
             return newString.isNumeric && newString.length <= 8;
     }
-    
+
     return NO;
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)textField {
     [super textFieldDidChangeValue:textField];
-    
+
     [self didChangeInputText];
-    
+
     [self.delegate judoPayInput:self didValidate:self.isValid];
-    
+
     NSUInteger characterCount = textField.text.length;
-    
+
     BOOL valid = YES;
-    
+
     if (self.billingCountry == BillingCountryUK && characterCount >= 8) {
         valid = NO;
     }
-    
+
     if (self.billingCountry == BillingCountryCanada && characterCount >= 6) {
         valid = NO;
     }
-    
+
     if (!valid) {
         [self errorAnimation:YES];
         [self.delegate postCodeInputField:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:[NSString stringWithFormat:@"Check %@", [self descriptionForBillingCountry:self.billingCountry]]]];
         return; 
     }
-    
 }
 
 - (NSString *)title {

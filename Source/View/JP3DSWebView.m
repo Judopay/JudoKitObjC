@@ -28,16 +28,16 @@
 @implementation JP3DSWebView
 
 - (instancetype)init {
-	self = [super init];
-	if (self) {
+    self = [super init];
+    if (self) {
         [self setupView];
-	}
-	return self;
+    }
+    return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:CGRectZero];
-	return self;
+    self = [super initWithFrame:CGRectZero];
+    return self;
 }
 
 - (void)setupView {
@@ -46,9 +46,9 @@
 }
 
 - (NSString *)load3DSWithPayload:(NSDictionary *)payload error:(NSError **)error {
-    
+
     NSCharacterSet *allowedCharSet = [NSCharacterSet characterSetWithCharactersInString:@":/=,!$&'()*+;[]@#?"].invertedSet;
-    
+
     NSString *urlString = payload[@"acsUrl"];
     NSURL *url = [NSURL URLWithString:urlString];
     NSString *mdParameter = payload[@"md"];
@@ -56,26 +56,25 @@
     NSString *paReqString = payload[@"paReq"];
     NSString *paReqStringEscaped = [paReqString stringByAddingPercentEncodingWithAllowedCharacters:allowedCharSet];
     NSString *termUrlString = [@"https://pay.judopay.com/iOS/Parse3DS" stringByAddingPercentEncodingWithAllowedCharacters:allowedCharSet];
-    
+
     if (!url || !mdParameter || !receiptId || !paReqString || !paReqStringEscaped || !termUrlString) {
         if (error != NULL) {
             *error = [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil];
         }
         return nil;
     }
-    
+
     NSData *postData = [[NSString stringWithFormat:@"MD=%@&PaReq=%@&TermUrl=%@", mdParameter, paReqStringEscaped, termUrlString] dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    
+
     request.HTTPMethod = @"POST";
     [request setValue:[NSString stringWithFormat:@"%li", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
     request.HTTPBody = postData;
-    
+
     [self loadRequest:request];
-    
+
     return receiptId;
-    
 }
 
 @end

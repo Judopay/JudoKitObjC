@@ -22,12 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
 
 @class JPResponse, JPPagination, JPSession, JPPaymentToken, JPCard, JPAmount, JPReference, JPVCOResult, JPEnhancedPaymentDetail,
-JPTransactionEnricher;
+    JPTransactionEnricher;
 
 /**
  *  Superclass Helper for Payment, Pre-auth, RegisterCard and SaveCard
@@ -37,42 +37,42 @@ JPTransactionEnricher;
 /**
  *  path variable made for subclassing to identify the api path
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable transactionPath;
+@property (nonatomic, strong, readonly) NSString *_Nullable transactionPath;
 
 /**
  *  The judo ID for the transaction
  */
-@property (nonatomic, strong) NSString * _Nonnull judoId;
+@property (nonatomic, strong) NSString *_Nonnull judoId;
 
 /**
  *  The reference of the transaction
  */
-@property (nonatomic, strong) JPReference * _Nullable reference;
+@property (nonatomic, strong) JPReference *_Nullable reference;
 
 /**
  *  The amount and currency of the transaction
  */
-@property (nonatomic, strong) JPAmount * _Nullable amount;
+@property (nonatomic, strong) JPAmount *_Nullable amount;
 
 /**
  *  The card info of the transaction
  */
-@property (nonatomic, strong) JPCard * _Nullable card;
+@property (nonatomic, strong) JPCard *_Nullable card;
 
 /**
  *  The payment token of the transaction
  */
-@property (nonatomic, strong) JPPaymentToken * _Nullable paymentToken;
+@property (nonatomic, strong) JPPaymentToken *_Nullable paymentToken;
 
 /**
  *  the PKPayment object for ApplePay
  */
-@property (nonatomic, strong, readonly) PKPayment * _Nullable pkPayment;
+@property (nonatomic, strong, readonly) PKPayment *_Nullable pkPayment;
 
 /**
  *  The VCOPaymentDetails object for Visa Checkout payment
  */
-@property (nonatomic, strong, readonly) JPVCOResult * _Nullable vcoResult;
+@property (nonatomic, strong, readonly) JPVCOResult *_Nullable vcoResult;
 
 /**
  *  Location coordinate for fraud prevention in this transaction
@@ -82,26 +82,26 @@ JPTransactionEnricher;
 /**
  *  Device identification for this transaction
  */
-@property (nonatomic, strong) NSDictionary * _Nullable deviceSignal;
+@property (nonatomic, strong) NSDictionary *_Nullable deviceSignal;
 
 /**
  *  Mobile number of the entity initiating the transaction
  */
-@property (nonatomic, strong) NSString * _Nullable mobileNumber;
+@property (nonatomic, strong) NSString *_Nullable mobileNumber;
 
 /**
  *  Email address of the entity initiating the transaction
  */
-@property (nonatomic, strong) NSString * _Nullable emailAddress;
+@property (nonatomic, strong) NSString *_Nullable emailAddress;
 
 /**
  *  The current Session to access the Judo API
  */
-@property (nonatomic, strong) JPSession * _Nullable apiSession;
+@property (nonatomic, strong) JPSession *_Nullable apiSession;
 
-@property (nonatomic, strong) JPTransactionEnricher * _Nullable enricher;
+@property (nonatomic, strong) JPTransactionEnricher *_Nullable enricher;
 
-@property (nonatomic, strong) JPEnhancedPaymentDetail * _Nullable paymentDetail;
+@property (nonatomic, strong) JPEnhancedPaymentDetail *_Nullable paymentDetail;
 
 /**
  *  set the PKPayment object
@@ -109,7 +109,7 @@ JPTransactionEnricher;
  *  @param pkPayment the PKPayment object that was returned from PassKit
  *  @param error     an error if the PKPayment object was faulty
  */
-- (int)setPkPayment:(nonnull PKPayment *)pkPayment error:(NSError * __autoreleasing _Nullable * _Nullable)error;
+- (int)setPkPayment:(nonnull PKPayment *)pkPayment error:(NSError *__autoreleasing _Nullable *_Nullable)error;
 
 /**
  *  set the VCOResult object
@@ -130,7 +130,7 @@ JPTransactionEnricher;
  *
  *  @param completion a completion block that is called when the request finishes
  */
-- (void)sendWithCompletion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+- (void)sendWithCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  threeDSecure call - this method will automatically trigger a Session Call to the judo REST API and execute the finalizing 3DS call on top of the information that had been sent in the previous methods
@@ -141,14 +141,14 @@ JPTransactionEnricher;
  */
 - (void)threeDSecureWithParameters:(nonnull NSDictionary *)parameters
                          receiptId:(nonnull NSString *)receiptId
-                        completion:(nonnull void (^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+                        completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  This method will return a list of transactions, filtered to just show the payment or preAuth transactions. The method will show the first 10 items in a Time Descending order. See [List all transactions](<https://www.judopay.com/docs/v4_1/restful-api/api-reference/#transactions>) for more information.
  *
  *  @param completion a completion block that is called when the request finishes
  */
-- (void)listWithCompletion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+- (void)listWithCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  This method will return a list of transactions, filtered to just show the payment or pre-auth transactions. See [List all transactions](<https://www.judopay.com/docs/v4_1/restful-api/api-reference/#transactions>) for more information.
@@ -157,6 +157,6 @@ JPTransactionEnricher;
  *  @param completion a completion block that is called when the request finishes
  */
 - (void)listWithPagination:(nullable JPPagination *)pagination
-                completion:(nonnull void(^)(JPResponse * _Nullable, NSError * _Nullable))completion;
+                completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end

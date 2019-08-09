@@ -26,11 +26,10 @@
 
 @interface FloatingTextField : UITextField
 
-
 /**
  * Read-only access to the floating label.
  */
-@property (nonatomic, strong, readonly) UILabel * floatingLabel;
+@property (nonatomic, strong, readonly) UILabel *floatingLabel;
 
 /**
  * Padding to be applied to the y coordinate of the floating label upon presentation.
@@ -56,19 +55,19 @@
  * - the custom specified attributed placeholder font at 70% of its size
  * - the custom specified textField font at 70% of its size
  */
-@property (nonatomic, strong) UIFont * floatingLabelFont;
+@property (nonatomic, strong) UIFont *floatingLabelFont;
 
 /**
  * Text color to be applied to the floating label.
  * Defaults to `[UIColor grayColor]`.
  */
-@property (nonatomic, strong) IBInspectable UIColor * floatingLabelTextColor;
+@property (nonatomic, strong) IBInspectable UIColor *floatingLabelTextColor;
 
 /**
  * Text color to be applied to the floating label while the field is a first responder.
  * Tint color is used by default if an `floatingLabelActiveTextColor` is not provided.
  */
-@property (nonatomic, strong) IBInspectable UIColor * floatingLabelActiveTextColor;
+@property (nonatomic, strong) IBInspectable UIColor *floatingLabelActiveTextColor;
 
 /**
  * Indicates whether the floating label's appearance should be animated regardless of first responder status.

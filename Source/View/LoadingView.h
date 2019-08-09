@@ -41,7 +41,6 @@
  */
 @property (nonatomic, strong) JPTheme *theme;
 
-
 /**
  *  Method to start the animation of the activityIndicator and make the view visible
  */

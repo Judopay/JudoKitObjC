@@ -32,14 +32,14 @@
 @implementation JPCardDetails
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-	if (self = [super init]) {
+    if (self = [super init]) {
         self.cardLastFour = dictionary[@"cardLastfour"];
         self.endDate = dictionary[@"endDate"];
         self.cardToken = dictionary[@"cardToken"];
         self.cardNumber = dictionary[@"cardNumber"];
         self.cardNetwork = ((NSNumber *)dictionary[@"cardType"]).integerValue;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (instancetype)initWithCardNumber:(NSString *)cardNumber
@@ -88,24 +88,23 @@
     } else if (self.cardNumber) {
         self.cardLastFour = [self.cardNumber substringFromIndex:self.cardNumber.length - 4];
     }
-    
+
     if (self.cardNetwork == CardNetworkAMEX) {
         return [NSString stringWithFormat:@"**** ****** *%@", self.cardLastFour];
     }
-    
+
     if (self.cardNetwork == CardNetworkUnknown) {
         return [NSString stringWithFormat:@"**** %@", self.cardLastFour];
     }
-    
+
     return [NSString stringWithFormat:@"**** **** **** %@", self.cardLastFour];
-    
 }
 
 - (nullable NSString *)formattedExpiryDate {
     if (!self.endDate) {
         return nil;
     }
-    
+
     if (self.endDate.length == 4) {
         NSString *prefix = [self.endDate substringToIndex:2];
         NSString *suffix = [self.endDate substringFromIndex:2];

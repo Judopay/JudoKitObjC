@@ -32,17 +32,17 @@
 /**
  *  The callId returned by the Visa Checkout SDK
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable callId;
+@property (nonatomic, strong, readonly) NSString *_Nullable callId;
 
 /**
  *  The encrypted key returned by the Visa Checkout SDK
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable encryptedKey;
+@property (nonatomic, strong, readonly) NSString *_Nullable encryptedKey;
 
 /**
  *  The encrypted payment data returned by the Visa Checkout SDK
  */
-@property (nonatomic, strong, readonly) NSString * _Nullable encryptedPaymentData;
+@property (nonatomic, strong, readonly) NSString *_Nullable encryptedPaymentData;
 
 /**
  *  Designated initializer

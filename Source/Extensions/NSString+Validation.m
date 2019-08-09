@@ -40,21 +40,23 @@
 - (BOOL)isLuhnValid {
     NSUInteger total = 0;
     NSUInteger len = [self length];
-    
+
     for (NSUInteger index = len; index > 0;) {
         BOOL odd = (len - index) & 1;
         --index;
-        unichar character = [self characterAtIndex: index];
-        if(character < '0' || character > '9') continue;
+        unichar character = [self characterAtIndex:index];
+        if (character < '0' || character > '9')
+            continue;
         character -= '0';
-        if(odd) character *= 2;
-        if(character >= 10) {
+        if (odd)
+            character *= 2;
+        if (character >= 10) {
             total += 1;
             character -= 10;
         }
         total += character;
     }
-    
+
     return (total % 10) == 0;
 }
 

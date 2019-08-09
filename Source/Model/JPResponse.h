@@ -35,12 +35,12 @@
 /**
  *  The array that contains the transaction response objects
  */
-@property (nonatomic, strong) NSArray<JPTransactionData *> * _Nullable items;
+@property (nonatomic, strong) NSArray<JPTransactionData *> *_Nullable items;
 
 /**
  *  The current pagination response
  */
-@property (nonatomic, strong) JPPagination * _Nullable pagination;
+@property (nonatomic, strong) JPPagination *_Nullable pagination;
 
 /**
  *  Initialize a Response object with pagination if available

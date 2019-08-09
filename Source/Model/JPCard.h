@@ -34,35 +34,32 @@
 /**
  *  <#Description#>
  */
-@property (nonatomic, strong) NSString * _Nullable cardNumber;
+@property (nonatomic, strong) NSString *_Nullable cardNumber;
 
 /**
  *  <#Description#>
  */
-@property (nonatomic, strong) NSString * _Nullable expiryDate;
+@property (nonatomic, strong) NSString *_Nullable expiryDate;
 
 /**
  *  <#Description#>
  */
-@property (nonatomic, strong) NSString * _Nullable secureCode;
-
-
-/**
- *  <#Description#>
- */
-@property (nonatomic, strong) NSString * _Nullable startDate;
+@property (nonatomic, strong) NSString *_Nullable secureCode;
 
 /**
  *  <#Description#>
  */
-@property (nonatomic, strong) NSString * _Nullable issueNumber;
-
+@property (nonatomic, strong) NSString *_Nullable startDate;
 
 /**
  *  <#Description#>
  */
-@property (nonatomic, strong) JPAddress * _Nullable cardAddress;
+@property (nonatomic, strong) NSString *_Nullable issueNumber;
 
+/**
+ *  <#Description#>
+ */
+@property (nonatomic, strong) JPAddress *_Nullable cardAddress;
 
 /**
  *  <#Description#>
