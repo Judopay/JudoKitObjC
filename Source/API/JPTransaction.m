@@ -76,7 +76,7 @@
 
     if (validationError) {
         completion(nil, validationError);
-        return; 
+        return;
     }
 
     self.currentTransactionReference = self.reference.paymentReference;

@@ -148,7 +148,7 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     if (!valid) {
         [self errorAnimation:YES];
         [self.delegate postCodeInputField:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:[NSString stringWithFormat:@"Check %@", [self descriptionForBillingCountry:self.billingCountry]]]];
-        return; 
+        return;
     }
 }
 

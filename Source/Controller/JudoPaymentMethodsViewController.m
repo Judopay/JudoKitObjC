@@ -25,25 +25,25 @@
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
 
-#import "UIView+SafeAnchors.h"
+#import "JPResponse.h"
+#import "JPSession.h"
 #import "JPTheme.h"
 #import "JPTransaction.h"
 #import "JudoPayViewController.h"
-#import "JPResponse.h"
-#import "JPSession.h"
+#import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
 #import "UIColor+Judo.h"
+#import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
-#import "JudoPaymentMethodsViewModel.h"
 
 @interface JudoPaymentMethodsViewController ()
 
-@property(nonatomic, strong) UIStackView *stackView;
-@property(nonatomic, strong) JPTheme *theme;
-@property(nonatomic, strong) JudoPaymentMethodsViewModel *viewModel;
+@property (nonatomic, strong) UIStackView *stackView;
+@property (nonatomic, strong) JPTheme *theme;
+@property (nonatomic, strong) JudoPaymentMethodsViewModel *viewModel;
 
-@property(nonatomic, strong) JudoCompletionBlock completionBlock;
-@property(nonatomic, strong) JudoKit *judoKitSession;
+@property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) JudoKit *judoKitSession;
 
 @property PaymentMethods methods;
 
@@ -79,14 +79,14 @@
     [self.view addSubview:self.stackView];
 
     NSArray *constraints = @[
-            [self.stackView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor
-                                                      constant:self.theme.buttonsSpacing],
+        [self.stackView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor
+                                                  constant:self.theme.buttonsSpacing],
 
-            [self.stackView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor
-                                                       constant:-self.theme.buttonsSpacing],
+        [self.stackView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor
+                                                   constant:-self.theme.buttonsSpacing],
 
-            [self.stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor
-                                                     constant:self.theme.buttonsSpacing]
+        [self.stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor
+                                                 constant:self.theme.buttonsSpacing]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
@@ -145,19 +145,18 @@
 }
 
 - (void)paymentMethodButtonDidTap:(UIView *)button {
-    
+
     if (button.tag == PaymentMethodCard) {
         [self onCardPaymentButtonDidTap];
         return;
     }
-    
+
     if (button.tag == PaymentMethodApplePay) {
         [self onApplePayButtonDidTap];
         return;
     }
-    
-    @throw NSInvalidArgumentException;
 
+    @throw NSInvalidArgumentException;
 }
 
 - (void)onCardPaymentButtonDidTap {
@@ -173,20 +172,19 @@
     };
 
     JudoPayViewController *viewController =
-            [[JudoPayViewController alloc] initWithJudoId:self.viewModel.judoId
-                                                   amount:self.viewModel.amount
-                                                reference:self.viewModel.reference
-                                              transaction:TransactionTypePayment
-                                           currentSession:self.judoKitSession
-                                              cardDetails:self.viewModel.cardDetails
-                                               completion:completion];
+        [[JudoPayViewController alloc] initWithJudoId:self.viewModel.judoId
+                                               amount:self.viewModel.amount
+                                            reference:self.viewModel.reference
+                                          transaction:TransactionTypePayment
+                                       currentSession:self.judoKitSession
+                                          cardDetails:self.viewModel.cardDetails
+                                           completion:completion];
     viewController.theme = self.theme;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)onApplePayButtonDidTap {
 }
-
 
 - (void)backButtonAction:(id)sender {
     if (self.completionBlock) {

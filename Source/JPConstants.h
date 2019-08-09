@@ -28,9 +28,9 @@
 #import <Foundation/Foundation.h>
 
 /* Patterns */
-static NSString * kDefaultNumberPattern         = @"XXXX XXXX XXXX XXXX";
-static NSString * kAMEXPattern         = @"XXXX XXXXXX XXXXX";
-static NSString * kDinersClubPattern   = @"XXXX XXXXXX XXXX";
+static NSString *kDefaultNumberPattern = @"XXXX XXXX XXXX XXXX";
+static NSString *kAMEXPattern = @"XXXX XXXXXX XXXXX";
+static NSString *kDinersClubPattern = @"XXXX XXXXXX XXXX";
 
 static NSString *kVisaPrefixes = @"4";
 static NSString *kUATPPrefixes = @"1";

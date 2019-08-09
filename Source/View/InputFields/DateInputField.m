@@ -138,7 +138,7 @@
     }
 
     if (![self.dateFormatter dateFromString:textField.text]) {
-        return; 
+        return;
     }
 
     if (self.isValid) {
@@ -186,7 +186,7 @@
 
 - (void)setIsStartDate:(BOOL)isStartDate {
     if (_isStartDate == isStartDate) {
-        return; 
+        return;
     }
     _isStartDate = isStartDate;
     [self.textField setPlaceholder:self.title floatingTitle:self.title];
