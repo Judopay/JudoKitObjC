@@ -33,7 +33,7 @@
     return [JPCardNetwork networkWith:type
                        numberPrefixes:prefixes
                    securityCodeLength:3
-                        numberPattern:kDefaultNumberPattern];
+                        numberPattern:[self defaultNumberPattern]];
 }
 
 + (instancetype)networkWith:(CardNetwork)type
@@ -171,7 +171,7 @@
 }
 
 + (NSString *)defaultNumberPattern {
-    return kDefaultNumberPattern;
+    return kVISAPattern;
 }
 
 + (NSString *)nameOfCardNetwork:(CardNetwork)network {
