@@ -26,6 +26,7 @@
 
 #import "ApplePayConfiguration.h"
 #import "ApplePayManager.h"
+
 #import "JPSession.h"
 #import "JPTransactionData.h"
 #import "JudoPaymentMethodsViewController.h"

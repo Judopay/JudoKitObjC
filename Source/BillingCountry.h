@@ -27,6 +27,7 @@
 /**
  *  BillingCountry enum to simplify identifying a billing country for a given card
  */
+
 typedef NS_ENUM(NSUInteger, BillingCountry) {
     /**
      *  United Kingdom

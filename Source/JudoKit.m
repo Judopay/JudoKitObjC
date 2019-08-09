@@ -504,7 +504,7 @@
     [transaction setPkPayment:payment error:&error];
 
     [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
-        
+
         //------------------------------------------------------------------------------
         // TODO: Remove once finished showcasing billing / shipping contact information
         //
