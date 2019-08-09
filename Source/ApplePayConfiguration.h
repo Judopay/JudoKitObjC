@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * A configuration file responsible for setting all the necessary parameters
- * for a succesful initialization of the PKPaymentAuthorizationViewController,
+ * for a successful initialization of the PKPaymentAuthorizationViewController,
  * and serves as the only method for modifying the payment request parameters.
  */
 @interface ApplePayConfiguration : NSObject
