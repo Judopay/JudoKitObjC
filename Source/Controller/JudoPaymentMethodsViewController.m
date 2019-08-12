@@ -24,7 +24,6 @@
 
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
-#import <ZappMerchantLib/ZappMerchantLib.h>
 
 #import "JPResponse.h"
 #import "JPSession.h"
@@ -37,7 +36,7 @@
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
 
-@interface JudoPaymentMethodsViewController () <PBBAButtonDelegate>
+@interface JudoPaymentMethodsViewController ()
 
 @property (nonatomic, strong) UIStackView *stackView;
 @property (nonatomic, strong) JPTheme *theme;
@@ -133,15 +132,6 @@
         [self.stackView addArrangedSubview:cardPaymentButton];
     }
 
-    if (self.viewModel.paymentMethods & PaymentMethodBankApp /*&& PBBAAppUtils.isCFIAppAvailable*/) {
-        PBBAButton *pbbaButton = [[PBBAButton alloc] initWithFrame:CGRectZero];
-        pbbaButton.delegate = self;
-        pbbaButton.cornerRadius = self.theme.buttonCornerRadius;
-
-        [[pbbaButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight] setActive:YES];
-        [self.stackView addArrangedSubview:pbbaButton];
-    }
-
     if (self.viewModel.paymentMethods & PaymentMethodApplePay && [PKPaymentAuthorizationViewController canMakePayments]) {
         PKPaymentButton *applePayButton = [PKPaymentButton buttonWithType:PKPaymentButtonTypePlain style:PKPaymentButtonStyleBlack];
         [applePayButton setTag:PaymentMethodApplePay];
@@ -194,11 +184,6 @@
 }
 
 - (void)onApplePayButtonDidTap {
-}
-
-#pragma mark - PBBAButtonDelegate
-- (BOOL)pbbaButtonDidPress:(nonnull PBBAButton *)pbbaButton {
-    return YES;
 }
 
 - (void)backButtonAction:(id)sender {
