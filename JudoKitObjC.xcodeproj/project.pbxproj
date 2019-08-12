@@ -41,6 +41,7 @@
 		30D185332301AFC50097F85F /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185312301AFC50097F85F /* ApplePayConfiguration.m */; };
 		30D185372301AFD90097F85F /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185352301AFD90097F85F /* ApplePayManager.m */; };
 		30D185382301AFD90097F85F /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185362301AFD90097F85F /* ApplePayManager.h */; };
+		30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30D1853F2301B2940097F85F /* MockJPTransactionData.json */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -342,6 +343,7 @@
 		30D185312301AFC50097F85F /* ApplePayConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayConfiguration.m; sourceTree = "<group>"; };
 		30D185352301AFD90097F85F /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
 		30D185362301AFD90097F85F /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
+		30D1853F2301B2940097F85F /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
 				30673FFB22F42EA500417C85 /* JPConstants.h */,
+				30D1853F2301B2940097F85F /* MockJPTransactionData.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
