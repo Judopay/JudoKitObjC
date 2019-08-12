@@ -34,9 +34,9 @@ class ApplePayTests: JudoTestCase {
         super.setUp()
         
         let items = [
-            PaymentSummaryItem(label: "Item 1", amount: NSDecimalNumber(string: "0.001$")),
-            PaymentSummaryItem(label: "Item 2", amount: NSDecimalNumber(string: "0.001$")),
-            PaymentSummaryItem(label: "Tim Apple", amount: NSDecimalNumber(string: "0.003$"))
+            PaymentSummaryItem(label: "Item 1", amount: NSDecimalNumber(string: "0.01")),
+            PaymentSummaryItem(label: "Item 2", amount: NSDecimalNumber(string: "0.02")),
+            PaymentSummaryItem(label: "Tim Apple", amount: NSDecimalNumber(string: "0.03"))
         ]
         
         configuration = ApplePayConfiguration(judoId: myJudoId,
@@ -71,8 +71,12 @@ class ApplePayTests: JudoTestCase {
                       "Configuration's supportedCardNetworks does not contain AmEx")
         XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.masterCard.rawValue)),
                       "Configuration's supportedCardNetworks does not contain MasterCard")
-        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.maestro.rawValue)),
-                      "Configuration's supportedCardNetworks does not contain Maestro")
+
+        if #available(iOS 12.0, *) {
+            XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.maestro.rawValue)),
+                          "Configuration's supportedCardNetworks does not contain Maestro")
+        }
+        
         XCTAssertEqual(configuration.transactionType, TransactionType.payment,
                        "Configuration's transactionType does not default to Payment")
         XCTAssertEqual(configuration.shippingType, PaymentShippingType.ShippingTypeShipping,
@@ -90,6 +94,8 @@ class ApplePayTests: JudoTestCase {
     func test_OnValidConfiguration_ManagerReturnsValidPKAuthorizationViewController() {
         XCTAssertNotNil(manager.pkPaymentAuthorizationViewController(),
                         "PKPaymentAuthorizationViewController must be initialized on valid configuration")
+        XCTAssertTrue(manager.pkPaymentAuthorizationViewController()!.isKind(of: PKPaymentAuthorizationViewController.self),
+                      "Returned controller must be of type PKPaymentAuthorizationViewController")
     }
     
     /**
