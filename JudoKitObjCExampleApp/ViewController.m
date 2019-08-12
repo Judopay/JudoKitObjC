@@ -513,11 +513,11 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     NSArray *items = @[
                        [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.01$"]],
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.01"]],
                        [[PaymentSummaryItem alloc] initWithLabel:@"Item 2"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.02$"]],
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.02"]],
                        [[PaymentSummaryItem alloc] initWithLabel:@"Tim Apple"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.03$"]]
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.03"]]
                        ];
     
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
