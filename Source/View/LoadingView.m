@@ -100,7 +100,7 @@
 
 - (void)setTheme:(JPTheme *)theme {
     if (_theme == theme) {
-        return; // BAIL
+        return;
     }
     _theme = theme;
     self.backgroundColor = self.theme.judoLoadingBackgroundColor;
