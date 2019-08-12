@@ -26,6 +26,8 @@
 
 #import <DeviceDNA/DeviceDNA.h>
 
+#import "ApplePayConfiguration.h"
+#import "ApplePayManager.h"
 #import "CardInputField.h"
 #import "DateInputField.h"
 #import "FloatingTextField.h"
@@ -37,6 +39,7 @@
 #import "JPReference.h"
 #import "JPRefund.h"
 #import "JPRegisterCard.h"
+#import "JPResponse.h"
 #import "JPSaveCard.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -45,6 +48,7 @@
 #import "JPVoid.h"
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
+#import "NSError+Judo.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -54,6 +58,10 @@
 @property (nonatomic, strong, readwrite) JPSession *apiSession;
 @property (nonatomic, strong) JPTransactionEnricher *enricher;
 @property (nonatomic, strong) NSString *deviceIdentifier;
+@property (nonatomic, strong) ApplePayManager *manager;
+@property (nonatomic, strong) ApplePayConfiguration *configuration;
+@property (nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
+@property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @end
 
 @implementation JudoKit
@@ -436,6 +444,113 @@
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
                                       completion:completion];
+}
+
+@end
+
+@implementation JudoKit (ApplePay)
+
+#pragma mark - Apple Pay invocation method
+
+- (void)invokeApplePayWithConfiguration:(ApplePayConfiguration *)configuration
+                             completion:(JudoCompletionBlock)completion {
+    
+    self.configuration = configuration;
+    self.manager = [[ApplePayManager alloc] initWithConfiguration:configuration];
+    
+    self.viewController = self.manager.pkPaymentAuthorizationViewController;
+    
+    self.viewController.delegate = self;
+    
+    self.completionBlock = completion;
+    
+    [self.topMostViewController presentViewController:self.viewController animated:YES completion:nil];
+}
+
+#pragma mark - PKPaymentAuthorizationViewControllerDelegate methods
+
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                       didAuthorizePayment:(PKPayment *)payment
+                                completion:(void (^)(PKPaymentAuthorizationStatus))completion {
+    
+    JPTransaction *transaction;
+    
+    if (self.configuration.transactionType == TransactionTypePreAuth) {
+        transaction = [self preAuthWithJudoId:self.configuration.judoId
+                                       amount:self.manager.jpAmount
+                                    reference:self.manager.jpReference];
+    } else {
+        transaction = [self paymentWithJudoId:self.configuration.judoId
+                                       amount:self.manager.jpAmount
+                                    reference:self.manager.jpReference];
+    }
+    
+    NSError *error;
+    [transaction setPkPayment:payment error:&error];
+
+#ifndef DEBUG
+    if (error) {
+        self.completionBlock(nil, [NSError judoJSONSerializationFailedWithError: error]);
+        completion(PKPaymentAuthorizationStatusFailure);
+        return;
+    }
+#endif
+    
+    [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
+        
+#ifdef DEBUG
+        response = self.mockJPResponse;
+        error = nil;
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
+        }
+        
+        self.completionBlock(response, error);
+        
+        completion(PKPaymentAuthorizationStatusSuccess);
+#else
+        if (error || response.items.count == 0) {
+            self.completionBlock(response, error);
+            completion(PKPaymentAuthorizationStatusFailure);
+            return;
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [self.manager contactInformationFromPaymentContact:payment.billingContact];
+        }
+        
+        if (self.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+            response.shippingInfo = [self.manager contactInformationFromPaymentContact:payment.shippingContact];
+        }
+        
+        self.completionBlock(response, error);
+        completion(PKPaymentAuthorizationStatusSuccess);
+#endif
+    }];
+}
+
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (JPResponse *)mockJPResponse {
+    
+    NSString *path = [[NSBundle bundleForClass:JudoKit.class] pathForResource:@"MockJPTransactionData" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSDictionary *transactionDataDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                              options:kNilOptions
+                                                                                error:nil];
+    
+    JPResponse *response = [JPResponse new];
+    [response appendItem:transactionDataDictionary];
+    
+    return response;
 }
 
 @end

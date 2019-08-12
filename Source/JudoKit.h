@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <PassKit/PassKit.h>
 
 #import "JPSession.h"
 #import "JPTransactionData.h"
@@ -32,6 +33,7 @@
 static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 
 @class JudoPayViewController;
+@class ApplePayConfiguration;
 
 @class JPPayment, JPPreAuth, JPRegisterCard, JPSaveCard, JPTransaction;
 @class JPCollection, JPVoid, JPRefund;
@@ -434,3 +436,21 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end
+
+
+@interface JudoKit (ApplePay) <PKPaymentAuthorizationViewControllerDelegate>
+
+/**
+ *  This method will request and process Apple Pay payments. It works by presenting the
+ *  PKAuthorizationViewController object and using its delegate methods to send a JPTransaction object
+ *  and return the payment completion block. Besides the usual response, JPResponse also stores the
+ *  optional billing and shipping contact information.
+ *
+ *  @param configuration    An ApplePayConfiguration object that sets Apple Pay payment properties.
+ *  @param completion       The completion handler which will respond with a JPResponse object or an NSError.
+ */
+- (void)invokeApplePayWithConfiguration:(nonnull ApplePayConfiguration *)configuration
+                             completion:(nonnull JudoCompletionBlock)completion;
+
+@end
+
