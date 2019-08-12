@@ -50,7 +50,7 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 
 - (void)setBillingCountry:(BillingCountry)billingCountry {
     if (_billingCountry == billingCountry) {
-        return; // BAIL
+        return;
     }
 
     _billingCountry = billingCountry;
@@ -148,7 +148,7 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
     if (!valid) {
         [self errorAnimation:YES];
         [self.delegate postCodeInputField:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:[NSString stringWithFormat:@"Check %@", [self descriptionForBillingCountry:self.billingCountry]]]];
-        return; // BAIL
+        return;
     }
 }
 

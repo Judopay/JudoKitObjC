@@ -32,7 +32,6 @@
         case TransactionTypePreAuth:
             return self.paymentTitle;
         case TransactionTypeRegisterCard:
-            return self.registerCardTitle;
         case TransactionTypeSaveCard:
             return self.registerCardTitle;
         case TransactionTypeRefund:

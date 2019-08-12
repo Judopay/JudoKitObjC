@@ -134,11 +134,11 @@
     [self didChangeInputText];
 
     if (textField.text.length != 5) {
-        return; // BAIL
+        return;
     }
 
     if (![self.dateFormatter dateFromString:textField.text]) {
-        return; // BAIL
+        return;
     }
 
     if (self.isValid) {
@@ -186,7 +186,7 @@
 
 - (void)setIsStartDate:(BOOL)isStartDate {
     if (_isStartDate == isStartDate) {
-        return; //BAIL
+        return;
     }
     _isStartDate = isStartDate;
     [self.textField setPlaceholder:self.title floatingTitle:self.title];
