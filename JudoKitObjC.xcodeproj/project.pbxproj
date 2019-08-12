@@ -31,18 +31,18 @@
 		15CFC9EE1FB74B0C00430D31 /* VCOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFC9EC1FB74A4200430D31 /* VCOTests.swift */; };
 		15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 15CFC9E81FB7371300430D31 /* JPVCOResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30673FFC22F42EA500417C85 /* JPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30673FFB22F42EA500417C85 /* JPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D1851F2301ADEB0097F85F /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185122301ADEB0097F85F /* ContactInformation.h */; };
+		30D1851F2301ADEB0097F85F /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185122301ADEB0097F85F /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30D185202301ADEB0097F85F /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851A2301ADEB0097F85F /* PostalAddress.m */; };
-		30D185212301ADEB0097F85F /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851B2301ADEB0097F85F /* PostalAddress.h */; };
-		30D185222301ADEB0097F85F /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851C2301ADEB0097F85F /* ApplePayWrappers.h */; };
+		30D185212301ADEB0097F85F /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851B2301ADEB0097F85F /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30D185222301ADEB0097F85F /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851C2301ADEB0097F85F /* ApplePayWrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30D185232301ADEB0097F85F /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851D2301ADEB0097F85F /* ContactInformation.m */; };
 		30D185242301ADEB0097F85F /* ApplePayWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851E2301ADEB0097F85F /* ApplePayWrappers.m */; };
-		30D185322301AFC50097F85F /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185292301AFC50097F85F /* ApplePayConfiguration.h */; };
+		30D185322301AFC50097F85F /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185292301AFC50097F85F /* ApplePayConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30D185332301AFC50097F85F /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185312301AFC50097F85F /* ApplePayConfiguration.m */; };
 		30D185372301AFD90097F85F /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185352301AFD90097F85F /* ApplePayManager.m */; };
-		30D185382301AFD90097F85F /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185362301AFD90097F85F /* ApplePayManager.h */; };
+		30D185382301AFD90097F85F /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185362301AFD90097F85F /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30D1853F2301B2940097F85F /* MockJPTransactionData.json */; };
-		30D185532301B3FD0097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
+		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -1340,7 +1340,6 @@
 				3B704A8B1C89F18000376773 /* JPInputField.m in Sources */,
 				3BD353C41C77557F0045658A /* JPTransactionData.m in Sources */,
 				44340F1822F4531200B36D65 /* JPCardNetwork.m in Sources */,
-				30D185532301B3FD0097F85F /* ApplePayTests.swift in Sources */,
 				30D185232301ADEB0097F85F /* ContactInformation.m in Sources */,
 				447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */,
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
@@ -1391,6 +1390,7 @@
 				702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */,
 				3B4EB4011C982A25006265A0 /* TransactionTests.swift in Sources */,
 				3B4EB3FA1C982A25006265A0 /* PreAuthTests.swift in Sources */,
+				30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */,
 				3B4EB3F51C982A25006265A0 /* CollectionTests.swift in Sources */,
 				3B4EB3F71C982A25006265A0 /* JudoTests.swift in Sources */,
 				3B4EB3FC1C982A25006265A0 /* RefundTests.swift in Sources */,
@@ -1459,7 +1459,6 @@
 		3B4EB3BB1C981EA7006265A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1482,7 +1481,6 @@
 		3B4EB3BC1C981EA7006265A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1707,7 +1705,6 @@
 		3B678B6E1C6CE5190001DC2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2354U295GD;
@@ -1725,7 +1722,6 @@
 		3B678B6F1C6CE5190001DC2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2354U295GD;
