@@ -30,7 +30,6 @@
 typedef NS_OPTIONS(NSUInteger, PaymentMethods) {
     PaymentMethodNone = 0,
     PaymentMethodCard = 1 << 0,
-    PaymentMethodBankApp = 1 << 1,
-    PaymentMethodApplePay = 1 << 2,
-    PaymentMethodsAll = PaymentMethodCard | PaymentMethodBankApp | PaymentMethodApplePay
+    PaymentMethodApplePay = 1 << 1,
+    PaymentMethodsAll = PaymentMethodCard | PaymentMethodApplePay
 };

@@ -26,6 +26,8 @@
 
 #import <DeviceDNA/DeviceDNA.h>
 
+#import "ApplePayConfiguration.h"
+#import "ApplePayManager.h"
 #import "CardInputField.h"
 #import "DateInputField.h"
 #import "FloatingTextField.h"
@@ -46,9 +48,7 @@
 #import "JPVoid.h"
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
-
-#import "ApplePayConfiguration.h"
-#import "ApplePayManager.h"
+#import "NSError+Judo.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -58,9 +58,6 @@
 @property (nonatomic, strong, readwrite) JPSession *apiSession;
 @property (nonatomic, strong) JPTransactionEnricher *enricher;
 @property (nonatomic, strong) NSString *deviceIdentifier;
-@end
-
-@interface JudoKit ()
 @property (nonatomic, strong) ApplePayManager *manager;
 @property (nonatomic, strong) ApplePayConfiguration *configuration;
 @property (nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
@@ -459,7 +456,6 @@
                              completion:(JudoCompletionBlock)completion {
     
     self.configuration = configuration;
-    self.configuration.merchantId = @"merchant-com.judopay.JudoKitObjC";
     self.manager = [[ApplePayManager alloc] initWithConfiguration:configuration];
     
     self.viewController = self.manager.pkPaymentAuthorizationViewController;
@@ -491,16 +487,18 @@
     
     NSError *error;
     [transaction setPkPayment:payment error:&error];
+
+#ifndef DEBUG
+    if (error) {
+        self.completionBlock(nil, [NSError judoJSONSerializationFailedWithError: error]);
+        completion(PKPaymentAuthorizationStatusFailure);
+        return;
+    }
+#endif
     
     [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
         
-        //------------------------------------------------------------------------------
-        // TODO: Remove once finished showcasing billing / shipping contact information
-        //
-        // This is used for mocking purposes only to showcase the shipping
-        // information displayed to the merchant.
-        //-------------------------------------------------------------------------------
-        
+#ifdef DEBUG
         response = self.mockJPResponse;
         error = nil;
         
@@ -515,10 +513,7 @@
         self.completionBlock(response, error);
         
         completion(PKPaymentAuthorizationStatusSuccess);
-        return;
-        
-        //------------------------------------------------------------------------------
-        
+#else
         if (error || response.items.count == 0) {
             self.completionBlock(response, error);
             completion(PKPaymentAuthorizationStatusFailure);
@@ -535,6 +530,7 @@
         
         self.completionBlock(response, error);
         completion(PKPaymentAuthorizationStatusSuccess);
+#endif
     }];
 }
 
@@ -542,7 +538,7 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-// TODO: Remove once finished mocking JPResponse
+
 - (JPResponse *)mockJPResponse {
     
     NSString *path = [[NSBundle bundleForClass:JudoKit.class] pathForResource:@"MockJPTransactionData" ofType:@"json"];

@@ -38,6 +38,68 @@
                BlueprintName = "JudoKitObjCTests"
                ReferencedContainer = "container:JudoKitObjC.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AuthenticationTests">
+               </Test>
+               <Test
+                  Identifier = "CardDetailsSetTests">
+               </Test>
+               <Test
+                  Identifier = "CollectionTests">
+               </Test>
+               <Test
+                  Identifier = "DedupTestCase">
+               </Test>
+               <Test
+                  Identifier = "ErrorMessageContentsTests">
+               </Test>
+               <Test
+                  Identifier = "JudoTestCase">
+               </Test>
+               <Test
+                  Identifier = "JudoTests">
+               </Test>
+               <Test
+                  Identifier = "ListTests">
+               </Test>
+               <Test
+                  Identifier = "PaymentTests">
+               </Test>
+               <Test
+                  Identifier = "PreAuthTests">
+               </Test>
+               <Test
+                  Identifier = "ReceiptTests">
+               </Test>
+               <Test
+                  Identifier = "RefundTests">
+               </Test>
+               <Test
+                  Identifier = "RegisterCardTests">
+               </Test>
+               <Test
+                  Identifier = "SaveCardTests">
+               </Test>
+               <Test
+                  Identifier = "TokenPaymentTests">
+               </Test>
+               <Test
+                  Identifier = "TokenPreAuthTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionEnricherTests">
+               </Test>
+               <Test
+                  Identifier = "TransactionTests">
+               </Test>
+               <Test
+                  Identifier = "VCOTests">
+               </Test>
+               <Test
+                  Identifier = "VoidTransactionTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
