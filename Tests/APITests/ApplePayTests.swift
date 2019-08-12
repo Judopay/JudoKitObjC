@@ -119,7 +119,7 @@ class ApplePayTests: JudoTestCase {
     func test_OnValidConfiguration_ManagerGeneratesCorrectJPAmount() {
         XCTAssertNotNil(manager.jpAmount(),
                         "JPAmount must not be nil on correct configuration")
-        XCTAssertEqual(manager.jpAmount().amount, "0.003",
+        XCTAssertEqual(manager.jpAmount().amount, "0.03",
                        "JPAmount does not display the correct amount")
         XCTAssertEqual(manager.jpAmount().currency, "GBP",
                        "JPAmount does not display the correct currency")
