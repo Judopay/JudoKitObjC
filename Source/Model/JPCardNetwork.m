@@ -33,7 +33,7 @@
     return [JPCardNetwork networkWith:type
                        numberPrefixes:prefixes
                    securityCodeLength:3
-                        numberPattern:kVISAPattern];
+                        numberPattern:[self defaultNumberPattern]];
 }
 
 + (instancetype)networkWith:(CardNetwork)type
@@ -155,12 +155,12 @@
     return network;
 }
 
-+ (JPCardNetwork *)cardNetworkWithType:(CardNetwork)netwrokType {
++ (JPCardNetwork *)cardNetworkWithType:(CardNetwork)networkType {
     __block JPCardNetwork *network = nil;
     NSArray<JPCardNetwork *> *networks = [JPCardNetwork supportedNetworks];
 
     [networks enumerateObjectsUsingBlock:^(JPCardNetwork *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-        if (obj.network == netwrokType) {
+        if (obj.network == networkType) {
             *stop = YES;
             network = obj;
             return;

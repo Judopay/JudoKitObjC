@@ -43,6 +43,6 @@
 + (NSArray<JPCardNetwork *> *)supportedNetworks;
 + (NSString *)nameOfCardNetwork:(CardNetwork)network;
 + (CardNetwork)cardNetworkForCardNumber:(NSString *)cardNumber;
-+ (JPCardNetwork *)cardNetworkWithType:(CardNetwork)netwrokType;
++ (JPCardNetwork *)cardNetworkWithType:(CardNetwork)networkType;
 + (NSString *)defaultNumberPattern;
 @end

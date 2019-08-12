@@ -69,14 +69,14 @@
 - (void)sendWithCompletion:(JudoCompletionBlock)completion {
 
     if (!completion) {
-        return; // BAIL
+        return;
     }
 
     NSError *validationError = [self validateTransaction];
 
     if (validationError) {
         completion(nil, validationError);
-        return; // BAIL
+        return;
     }
 
     self.currentTransactionReference = self.reference.paymentReference;
