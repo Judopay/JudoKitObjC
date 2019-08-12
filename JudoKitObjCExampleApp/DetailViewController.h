@@ -25,9 +25,12 @@
 #import <UIKit/UIKit.h>
 
 @class JPTransactionData;
+@class ContactInformation;
 
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) JPTransactionData *transactionData;
+@property (nonatomic, strong) ContactInformation *_Nullable billingInformation;
+@property (nonatomic, strong) ContactInformation *_Nullable shippingInformation;
 
 @end
