@@ -25,6 +25,7 @@
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
 
+#import "JudoKit.h"
 #import "JPResponse.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -184,6 +185,16 @@
 }
 
 - (void)onApplePayButtonDidTap {
+  __weak JudoPaymentMethodsViewController *weakSelf = self;
+  [self.judoKitSession invokeApplePayWithConfiguration:self.viewModel.applePayConfiguration completion:^(JPResponse * _Nullable response, NSError * _Nullable error) {
+    if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+      [weakSelf.navigationController popViewControllerAnimated:YES];
+      return;
+    }
+    weakSelf.completionBlock(response, error);
+  }];
+
+  
 }
 
 - (void)backButtonAction:(id)sender {
