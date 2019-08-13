@@ -1,6 +1,6 @@
 //
 //  PostalAddress.h
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
@@ -87,7 +87,9 @@ NS_ASSUME_NONNULL_BEGIN
                          city:(nullable NSString *)city
                         state:(nullable NSString *)state
                    postalCode:(nullable NSString *)postalCode
-                      country:(nullable NSString *)country;
+                      country:(nullable NSString *)country
+        subAdministrativeArea:(nullable NSString *)subAdministrativeArea
+                  sublocality:(nullable NSString *)sublocality;
 
 @end
 

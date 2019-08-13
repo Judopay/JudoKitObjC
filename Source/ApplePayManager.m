@@ -1,6 +1,6 @@
 //
 //  ApplePayManager.m
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
@@ -228,7 +228,9 @@
                                                                    city:contact.postalAddress.city
                                                                   state:contact.postalAddress.state
                                                              postalCode:contact.postalAddress.postalCode
-                                                                country:contact.postalAddress.country];
+                                                                country:contact.postalAddress.country
+                                                  subAdministrativeArea:contact.postalAddress.subAdministrativeArea
+                                                            sublocality:contact.postalAddress.subLocality];
 
     return [[ContactInformation alloc] initWithEmailAddress:contact.emailAddress
                                                        name:contact.name

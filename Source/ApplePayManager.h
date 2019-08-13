@@ -1,6 +1,6 @@
 //
 //  ApplePayManager.h
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  * the ApplePay payment sheet. It is initialized from a PKPaymentRequest item that was
  * created based on the parameters passed by ApplePayConfiguration.
  */
-- (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController;
+- (nullable PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController;
 
 @end
 

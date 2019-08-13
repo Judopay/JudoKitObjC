@@ -1,6 +1,6 @@
 //
 //  PostalAddress.m
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
@@ -30,7 +30,9 @@
                          city:(NSString *)city
                         state:(NSString *)state
                    postalCode:(NSString *)postalCode
-                      country:(NSString *)country {
+                      country:(NSString *)country
+        subAdministrativeArea:(nullable NSString *)subAdministrativeArea
+                  sublocality:(nullable NSString *)sublocality {
 
     if (self = [super init]) {
         self.street = street;
@@ -38,6 +40,8 @@
         self.state = state;
         self.postalCode = postalCode;
         self.country = country;
+        self.subAdministrativeArea = subAdministrativeArea;
+        self.sublocality = sublocality;
     }
 
     return self;

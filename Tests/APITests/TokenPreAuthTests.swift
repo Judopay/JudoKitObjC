@@ -41,7 +41,7 @@ class TokenPreAuthTests: JudoTestCase {
             } else {
                 guard let uData = data else {
                     XCTFail("no data available")
-                    return // BAIL
+                    return
                 }
                 
                 let consumerToken = uData.items?.first?.consumer.consumerToken
@@ -110,7 +110,7 @@ class TokenPreAuthTests: JudoTestCase {
             } else {
                 guard let uData = data else {
                     XCTFail("no data available")
-                    return // BAIL
+                    return
                 }
                 
                 let consumerToken = uData.items?.first?.consumer.consumerToken
@@ -151,7 +151,7 @@ class TokenPreAuthTests: JudoTestCase {
             } else {
                 guard let uData = data else {
                     XCTFail("no data available")
-                    return // BAIL
+                    return 
                 }
                 
                 let consumerToken = uData.items?.first?.consumer.consumerToken
