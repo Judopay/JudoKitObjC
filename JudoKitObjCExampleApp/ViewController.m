@@ -24,6 +24,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "ApplePayButtonViewController.h"
 #import "ViewController.h"
 #import "DetailViewController.h"
 #import "ExampleAppCredentials.h"
@@ -40,7 +41,8 @@ typedef NS_ENUM(NSUInteger, TableViewContent) {
     TableViewContentTokenPreAuth,
     TableViewContentApplePayPayment,
     TableViewContentApplePayPreAuth,
-    TableViewContentPaymentMethods
+    TableViewContentPaymentMethods,
+    TableViewApplePayButton
 };
 
 static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableviewcellidentifier";
@@ -132,7 +134,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9;
+    return 10;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
@@ -188,6 +190,10 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
             tvText = @"Payment Method";
             tvDetailText = @"with default payment methods";
             break;
+      case TableViewApplePayButton:
+        tvText = @"Apple Pay Button";
+        tvDetailText = @"Standalone ApplePay Button";
+        break;
 
         default:
             break;
@@ -242,6 +248,8 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         case TableViewContentPaymentMethods:
             [self paymentMethodOption];
             break;
+      case TableViewApplePayButton:
+        [self standaloneApplePayButton];
 
         default:
             break;
@@ -249,6 +257,11 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 }
 
 #pragma mark - Operations
+
+- (void)standaloneApplePayButton {
+  ApplePayButtonViewController *standaloneApplePayButtonVC = [[ApplePayButtonViewController alloc] initWithCurrentSession: self.judoKitSession];
+  [self.navigationController pushViewController:standaloneApplePayButtonVC animated:YES];
+}
 
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
@@ -505,7 +518,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     return _tableFooterView;
 }
 
-- (NSString *)getSampleConsumerReference {
+- (NSString *) getSampleConsumerReference {
     return @"judoPay-sample-app-objc";
 }
 
