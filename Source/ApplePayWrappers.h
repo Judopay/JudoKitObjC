@@ -1,6 +1,6 @@
 //
 //  ApplePayWrappers.h
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
@@ -58,8 +58,7 @@ typedef NS_ENUM(NSInteger, PaymentShippingType) {
 };
 
 /**
- * Lists the available payment shipping types.
- * Default is ShippingTypeShipping.
+ * Lists the available contact fields required for ApplePay
  */
 typedef NS_OPTIONS(NSInteger, ContactField) {
     ContactFieldNone = 0,

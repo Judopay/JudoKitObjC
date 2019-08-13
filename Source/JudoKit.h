@@ -437,7 +437,6 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
 
 @end
 
-
 @interface JudoKit (ApplePay) <PKPaymentAuthorizationViewControllerDelegate>
 
 /**
@@ -453,4 +452,3 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                              completion:(nonnull JudoCompletionBlock)completion;
 
 @end
-

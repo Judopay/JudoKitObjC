@@ -1,6 +1,6 @@
 //
 //  ApplePayManager.h
-//  JudoKitObjCExample
+//  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
 //
