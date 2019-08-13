@@ -262,15 +262,16 @@
                amount:(nonnull JPAmount *)amount
     consumerReference:(nonnull NSString *)reference
        paymentMethods:(PaymentMethods)methods
+applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
           cardDetails:(nullable JPCardDetails *)cardDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
-    JudoPaymentMethodsViewModel *viewModel =
-        [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
-                                                     amount:amount
-                                          consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
-                                             paymentMethods:methods
-                                                cardDetails:cardDetails];
+  JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
+                                                                                        amount:amount
+                                                                             consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
+                                                                                paymentMethods:methods
+                                                                         applePayConfiguration:applePayConfigs
+                                                                                   cardDetails:cardDetails];
 
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel

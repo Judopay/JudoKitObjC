@@ -26,6 +26,7 @@
 #import <PassKit/PassKit.h>
 #import <ZappMerchantLib/ZappMerchantLib.h>
 
+#import "JudoKit.h"
 #import "JPResponse.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -36,6 +37,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+
 
 @interface JudoPaymentMethodsViewController () <PBBAButtonDelegate>
 
@@ -194,6 +196,14 @@
 }
 
 - (void)onApplePayButtonDidTap {
+  __weak JudoPaymentMethodsViewController *weakSelf = self;
+  [self.judoKitSession invokeApplePayWithConfiguration:self.viewModel.applePayConfiguration completion:^(JPResponse * _Nullable response, NSError * _Nullable error) {
+    if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+      [weakSelf.navigationController popViewControllerAnimated:YES];
+      return;
+    }
+    weakSelf.completionBlock(response, error);
+  }];
 }
 
 #pragma mark - PBBAButtonDelegate
