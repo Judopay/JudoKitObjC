@@ -229,6 +229,7 @@
                                                                   state:contact.postalAddress.state
                                                              postalCode:contact.postalAddress.postalCode
                                                                 country:contact.postalAddress.country
+                                                                isoCode:contact.postalAddress.ISOCountryCode
                                                   subAdministrativeArea:contact.postalAddress.subAdministrativeArea
                                                             sublocality:contact.postalAddress.subLocality];
 

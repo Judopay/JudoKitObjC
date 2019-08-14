@@ -31,6 +31,7 @@
                         state:(NSString *)state
                    postalCode:(NSString *)postalCode
                       country:(NSString *)country
+                      isoCode:(NSString *)isoCode
         subAdministrativeArea:(nullable NSString *)subAdministrativeArea
                   sublocality:(nullable NSString *)sublocality {
 
@@ -40,6 +41,7 @@
         self.state = state;
         self.postalCode = postalCode;
         self.country = country;
+        self.isoCode = isoCode;
         self.subAdministrativeArea = subAdministrativeArea;
         self.sublocality = sublocality;
     }
