@@ -67,26 +67,26 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 @implementation ViewController
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  
-  self.locationManager = [[CLLocationManager alloc] init];
-  if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-    [self.locationManager requestWhenInUseAuthorization];
-  }
-  
-  // initialize the SDK by setting it up with a token and a secret
-  self.judoKitSession = [[JudoKit alloc] initWithToken:token secret:secret];
-  
-  self.currentCurrency = @"GBP";
-  
-  self.reference = [self getSampleConsumerReference];
-  
-  // setting the SDK to Sandbox Mode - once this is set, the SDK wil stay in Sandbox mode until the process is killed
-  self.judoKitSession.apiSession.sandboxed = YES;
-  self.judoKitSession.theme.showSecurityMessage = YES;
-  
-  self.tableView.backgroundColor = [UIColor clearColor];
-  self.tableView.tableFooterView = self.tableFooterView;
+    [super viewDidLoad];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
+    // initialize the SDK by setting it up with a token and a secret
+    self.judoKitSession = [[JudoKit alloc] initWithToken:token secret:secret];
+
+    self.currentCurrency = @"GBP";
+
+    self.reference = [self getSampleConsumerReference];
+
+    // setting the SDK to Sandbox Mode - once this is set, the SDK wil stay in Sandbox mode until the process is killed
+    self.judoKitSession.apiSession.sandboxed = YES;
+    self.judoKitSession.theme.showSecurityMessage = YES;
+
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = self.tableFooterView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -378,57 +378,57 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 - (void)saveCardOperation {
   [self.judoKitSession invokeSaveCard:judoId consumerReference:self.reference cardDetails:nil completion:^(JPResponse * response, NSError * error) {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    if (error && response.items.count == 0) {
-      if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        return;
-      }
-      self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
-      [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-      return;
-    }
-    
-    JPTransactionData *tData = response.items[0];
-    if (tData.cardDetails) {
-      self.cardDetails = tData.cardDetails;
-      self.payToken = tData.paymentToken;
-    }
-  }];
+
+        if (error && response.items.count == 0) {
+            if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
+            self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
+            [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            return;
+        }
+
+        JPTransactionData *tData = response.items[0];
+        if (tData.cardDetails) {
+            self.cardDetails = tData.cardDetails;
+            self.payToken = tData.paymentToken;
+        }
+    }];
 }
 
 - (void)tokenPaymentOperation {
-  if (self.cardDetails) {
-    JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
-    
-    [self.judoKitSession invokeTokenPayment:judoId amount:amount consumerReference:self.reference cardDetails:self.cardDetails paymentToken:self.payToken completion:^(JPResponse * response, NSError * error) {
-      if (error || response.items.count == 0) {
-        if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
-          [self dismissViewControllerAnimated:YES completion:nil];
-          return; // BAIL
-        }
-        self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
-        [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        return; // BAIL
-      }
-      JPTransactionData *tData = response.items[0];
-      if (tData.cardDetails) {
-        self.cardDetails = tData.cardDetails;
-        self.payToken = tData.paymentToken;
-      }
-      DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-      viewController.transactionData = tData;
-      [self dismissViewControllerAnimated:YES completion:^{
-        [self.navigationController pushViewController:viewController animated:YES];
-      }];
-    }];
-    
-  } else {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"you need to create a card token before you can do a pre auth" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
-  }
+    if (self.cardDetails) {
+        JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
+
+        [self.judoKitSession invokeTokenPayment:judoId amount:amount consumerReference:self.reference cardDetails:self.cardDetails paymentToken:self.payToken completion:^(JPResponse * response, NSError * error) {
+            if (error || response.items.count == 0) {
+                if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    return;
+                }
+                self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
+                [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
+            JPTransactionData *tData = response.items[0];
+            if (tData.cardDetails) {
+                self.cardDetails = tData.cardDetails;
+                self.payToken = tData.paymentToken;
+            }
+            DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+            viewController.transactionData = tData;
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.navigationController pushViewController:viewController animated:YES];
+            }];
+        }];
+
+    } else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"you need to create a card token before you can do a pre auth" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 - (void)tokenPreAuthOperation {

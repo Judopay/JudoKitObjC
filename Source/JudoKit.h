@@ -438,7 +438,6 @@ applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
 
 @end
 
-
 @interface JudoKit (ApplePay) <PKPaymentAuthorizationViewControllerDelegate>
 
 /**
