@@ -50,6 +50,9 @@
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
 
+#import "ApplePayConfiguration.h"
+#import "ApplePayManager.h"
+
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @end
@@ -259,15 +262,16 @@
                amount:(nonnull JPAmount *)amount
     consumerReference:(nonnull NSString *)reference
        paymentMethods:(PaymentMethods)methods
+applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
           cardDetails:(nullable JPCardDetails *)cardDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
-    JudoPaymentMethodsViewModel *viewModel =
-        [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
-                                                     amount:amount
-                                          consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
-                                             paymentMethods:methods
-                                                cardDetails:cardDetails];
+  JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
+                                                                                        amount:amount
+                                                                             consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
+                                                                                paymentMethods:methods
+                                                                         applePayConfiguration:applePayConfigs
+                                                                                   cardDetails:cardDetails];
 
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel
@@ -463,7 +467,6 @@
     self.viewController.delegate = self;
 
     self.completionBlock = completion;
-
     [self.topMostViewController presentViewController:self.viewController animated:YES completion:nil];
 }
 
@@ -472,9 +475,9 @@
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
-
+  
     JPTransaction *transaction;
-
+  
     if (self.configuration.transactionType == TransactionTypePreAuth) {
         transaction = [self preAuthWithJudoId:self.configuration.judoId
                                        amount:self.manager.jpAmount
@@ -545,10 +548,10 @@
     NSDictionary *transactionDataDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                               options:kNilOptions
                                                                                 error:nil];
-
+  
     JPResponse *response = [JPResponse new];
     [response appendItem:transactionDataDictionary];
-
+  
     return response;
 }
 

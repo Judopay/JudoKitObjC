@@ -43,6 +43,16 @@
                </Test>
             </SkippedTests>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3B678B5F1C6CE5190001DC2F"
+               BuildableName = "JudoKitObjCTests.xctest"
+               BlueprintName = "JudoKitObjCTests"
+               ReferencedContainer = "container:JudoKitObjC.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

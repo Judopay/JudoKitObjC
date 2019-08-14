@@ -88,6 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
                         state:(nullable NSString *)state
                    postalCode:(nullable NSString *)postalCode
                       country:(nullable NSString *)country
+                      isoCode:(nullable NSString *)isoCode
         subAdministrativeArea:(nullable NSString *)subAdministrativeArea
                   sublocality:(nullable NSString *)sublocality;
 

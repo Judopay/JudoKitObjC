@@ -201,8 +201,8 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
  *  @param completion The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)list:(nonnull Class)type
-     paginated:(nullable JPPagination *)pagination
-    completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+   paginated:(nullable JPPagination *)pagination
+  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
  *  Helper method that creates a Transaction based on the Class that is passed (JPPayment, JPPreAuth, JPRegisterCard or JPSaveCard)
@@ -252,6 +252,7 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                amount:(nonnull JPAmount *)amount
     consumerReference:(nonnull NSString *)reference
        paymentMethods:(PaymentMethods)methods
+applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
           cardDetails:(nullable JPCardDetails *)cardDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
@@ -452,3 +453,4 @@ static NSString *__nonnull const JudoKitVersion = @"7.1.0";
                              completion:(nonnull JudoCompletionBlock)completion;
 
 @end
+
