@@ -37,7 +37,7 @@
         _amount = amount;
         _reference = reference;
         _paymentMethods = methods;
-      _applePayConfiguration = applePayConfiguration;
+        _applePayConfiguration = applePayConfiguration;
         _cardDetails = cardDetails;
     }
     return self;

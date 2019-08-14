@@ -234,7 +234,7 @@
 
 - (int)setPkPayment:(PKPayment *)pkPayment
               error:(NSError *__autoreleasing *)error {
-    
+
     self.pkPayment = pkPayment;
 
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
@@ -253,34 +253,34 @@
 
     self.parameters[@"pkPayment"] = @{@"token" : tokenDict};
     [self handleApplePayMetadataFromPKPayment:pkPayment];
-    
+
     return error ? 1 : 0;
 }
 
 - (void)handleApplePayMetadataFromPKPayment:(PKPayment *)pkPayment {
-    
+
     NSString *emailAddress = pkPayment.billingContact.emailAddress;
     NSString *phoneNumber = pkPayment.billingContact.phoneNumber.stringValue;
-    
+
     if (emailAddress != nil) {
         self.parameters[@"emailAddress"] = emailAddress;
     }
-    
+
     if (phoneNumber != nil) {
         self.parameters[@"mobileNumber"] = phoneNumber;
     }
-    
+
     NSMutableDictionary *cardAddress = [NSMutableDictionary new];
-    
+
     cardAddress[@"address1"] = pkPayment.billingContact.postalAddress.street;
     cardAddress[@"city"] = pkPayment.billingContact.postalAddress.city;
     cardAddress[@"postCode"] = pkPayment.billingContact.postalAddress.postalCode;
     cardAddress[@"countryCode"] = pkPayment.billingContact.postalAddress.ISOCountryCode;
-    
+
     cardAddress[@"line1"] = pkPayment.billingContact.postalAddress.street;
     cardAddress[@"line2"] = pkPayment.billingContact.postalAddress.city;
     cardAddress[@"line3"] = pkPayment.billingContact.postalAddress.postalCode;
-    
+
     self.parameters[@"cardAddress"] = cardAddress;
 }
 

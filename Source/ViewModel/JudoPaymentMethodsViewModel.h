@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "PaymentMethods.h"
 #import "ApplePayConfiguration.h"
+#import "PaymentMethods.h"
 #import <Foundation/Foundation.h>
 
 @class JPAmount, JPCardDetails, JPReference;
@@ -38,11 +38,10 @@
 
 @property (readonly) PaymentMethods paymentMethods;
 
-
 - (instancetype _Nonnull)initWithJudoId:(nonnull NSString *)judoId
                                  amount:(nonnull JPAmount *)amount
                       consumerReference:(nonnull JPReference *)reference
                          paymentMethods:(PaymentMethods)methods
-                            applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
+                  applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
                             cardDetails:(nullable JPCardDetails *)cardDetails;
 @end
