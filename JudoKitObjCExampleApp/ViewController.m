@@ -190,11 +190,11 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
             tvText = @"Payment Method";
             tvDetailText = @"with default payment methods";
             break;
-      case TableViewApplePayButton:
-        tvText = @"Apple Pay Button";
-        tvDetailText = @"Standalone ApplePay Button";
-        break;
-
+        case TableViewApplePayButton:
+            tvText = @"Apple Pay Button";
+            tvDetailText = @"Standalone ApplePay Button";
+            break;
+            
         default:
             break;
     }
@@ -248,10 +248,10 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         case TableViewContentPaymentMethods:
             [self paymentMethodOption];
             break;
-
+            
         case TableViewApplePayButton:
-        [self standaloneApplePayButton];
-
+            [self standaloneApplePayButton];
+            
         default:
             break;
     }
@@ -260,15 +260,15 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 #pragma mark - Operations
 
 - (void)standaloneApplePayButton {
-  ApplePayButtonViewController *standaloneApplePayButtonVC = [[ApplePayButtonViewController alloc] initWithCurrentSession: self.judoKitSession];
-  [self.navigationController pushViewController:standaloneApplePayButtonVC animated:YES];
+    ApplePayButtonViewController *standaloneApplePayButtonVC = [[ApplePayButtonViewController alloc] initWithCurrentSession: self.judoKitSession];
+    [self.navigationController pushViewController:standaloneApplePayButtonVC animated:YES];
 }
 
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
     
     ApplePayConfiguration *configuration = [self applePayConfigurationWithType:TransactionTypePayment];
-
+    
     [self.judoKitSession invokePayment:judoId
                                 amount:amount
                      consumerReference:self.reference
