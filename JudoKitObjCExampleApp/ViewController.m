@@ -252,25 +252,9 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
-    NSArray *items = @[
-                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.01$"]],
-                       [[PaymentSummaryItem alloc] initWithLabel:@"Item 2"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.02$"]],
-                       [[PaymentSummaryItem alloc] initWithLabel:@"Tim Apple"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.03$"]]
-                       ];
     
-    ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
-                                                                               reference:self.reference
-                                                                              merchantId:merchantId
-                                                                                currency:self.currentCurrency
-                                                                             countryCode:@"GB"
-                                                                     paymentSummaryItems:items];
-    configuration.requiredShippingContactFields = ContactFieldAll;
-    
-    
-    
+    ApplePayConfiguration *configuration = [self applePayConfigurationWithType:TransactionTypePayment];
+
     [self.judoKitSession invokePayment:judoId
                                 amount:amount
                      consumerReference:self.reference
@@ -281,12 +265,12 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                 if (error || response.items.count == 0) {
                                     if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                                         [self dismissViewControllerAnimated:YES completion:nil];
-                                        return; // BAIL
+                                        return;
                                     }
                                     self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
                                     [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
                                     [self dismissViewControllerAnimated:YES completion:nil];
-                                    return; // BAIL
+                                    return;
                                 }
                                 JPTransactionData *tData = response.items[0];
                                 if (tData.cardDetails) {
@@ -308,12 +292,12 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                 [self dismissViewControllerAnimated:YES completion:nil];
-                return; // BAIL
+                return;
             }
             self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
             [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
             [self dismissViewControllerAnimated:YES completion:nil];
-            return; // BAIL
+            return;
         }
         JPTransactionData *tData = response.items[0];
         if (tData.cardDetails) {
@@ -335,12 +319,12 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                 [self dismissViewControllerAnimated:YES completion:nil];
-                return; // BAIL
+                return;
             }
             self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
             [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
             [self dismissViewControllerAnimated:YES completion:nil];
-            return; // BAIL
+            return;
         }
         JPTransactionData *tData = response.items[0];
         if (tData.cardDetails) {
@@ -361,11 +345,11 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         if (error && response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                 [self dismissViewControllerAnimated:YES completion:nil];
-                return; // BAIL
+                return;
             }
             self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
             [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-            return; // BAIL
+            return;
         }
         JPTransactionData *tData = response.items[0];
         if (tData.cardDetails) {
@@ -439,12 +423,12 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
             if (error || response.items.count == 0) {
                 if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                     [self dismissViewControllerAnimated:YES completion:nil];
-                    return; // BAIL
+                    return;
                 }
                 self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
                 [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
                 [self dismissViewControllerAnimated:YES completion:nil];
-                return; // BAIL
+                return; 
             }
             JPTransactionData *tData = response.items[0];
             if (tData.cardDetails) {
@@ -481,7 +465,19 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                               completion:^(JPResponse *_Nullable response, NSError *_Nullable error) {
                                                   
                                                   if (error || response.items.count == 0) {
+                                                      if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                          return;
+                                                      }
                                                       
+                                                      self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
+                                                      
+                                                      [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                                                      
+                                                      [self dismissViewControllerAnimated:YES completion:^{
+                                                          [self presentViewController:self->_alertController animated:YES completion:nil];
+                                                      }];
+                                                      return;
                                                   }
                                                   
                                                   DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
@@ -519,11 +515,11 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     NSArray *items = @[
                        [[PaymentSummaryItem alloc] initWithLabel:@"Item 1"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.01$"]],
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.01"]],
                        [[PaymentSummaryItem alloc] initWithLabel:@"Item 2"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.02$"]],
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.02"]],
                        [[PaymentSummaryItem alloc] initWithLabel:@"Tim Apple"
-                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.03$"]]
+                                                          amount:[NSDecimalNumber decimalNumberWithString:@"0.03"]]
                        ];
     
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
