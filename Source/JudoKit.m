@@ -259,19 +259,19 @@
 @implementation JudoKit (Invokers)
 
 - (void)invokePayment:(nonnull NSString *)judoId
-               amount:(nonnull JPAmount *)amount
-    consumerReference:(nonnull NSString *)reference
-       paymentMethods:(PaymentMethods)methods
-applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
-          cardDetails:(nullable JPCardDetails *)cardDetails
-           completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
+                     amount:(nonnull JPAmount *)amount
+          consumerReference:(nonnull NSString *)reference
+             paymentMethods:(PaymentMethods)methods
+    applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
+                cardDetails:(nullable JPCardDetails *)cardDetails
+                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
-  JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
-                                                                                        amount:amount
-                                                                             consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
-                                                                                paymentMethods:methods
-                                                                         applePayConfiguration:applePayConfigs
-                                                                                   cardDetails:cardDetails];
+    JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
+                                                                                          amount:amount
+                                                                               consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
+                                                                                  paymentMethods:methods
+                                                                           applePayConfiguration:applePayConfigs
+                                                                                     cardDetails:cardDetails];
 
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel
@@ -475,9 +475,9 @@ applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
-  
+
     JPTransaction *transaction;
-  
+
     if (self.configuration.transactionType == TransactionTypePreAuth) {
         transaction = [self preAuthWithJudoId:self.configuration.judoId
                                        amount:self.manager.jpAmount
@@ -548,10 +548,10 @@ applePayConfiguratation:(nullable ApplePayConfiguration*)applePayConfigs
     NSDictionary *transactionDataDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                               options:kNilOptions
                                                                                 error:nil];
-  
+
     JPResponse *response = [JPResponse new];
     [response appendItem:transactionDataDictionary];
-  
+
     return response;
 }
 

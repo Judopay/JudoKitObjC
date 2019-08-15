@@ -266,10 +266,13 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.currentCurrency];
 
+    ApplePayConfiguration *configuration = [self applePayConfigurationWithType:TransactionTypePayment];
+
     [self.judoKitSession invokePayment:judoId
                                 amount:amount
                      consumerReference:self.reference
                         paymentMethods:PaymentMethodsAll
+               applePayConfiguratation: configuration
                            cardDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
                                 if (error || response.items.count == 0) {
@@ -479,7 +482,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                           return;
                                                       }
-
+                                                      
                                                       self->_alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.userInfo[NSLocalizedDescriptionKey] preferredStyle:UIAlertControllerStyleAlert];
 
                                                       [self->_alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
@@ -487,7 +490,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                                       [self dismissViewControllerAnimated:YES completion:^{
                                                           [self presentViewController:self->_alertController animated:YES completion:nil];
                                                       }];
-
                                                       return;
                                                   }
 
@@ -518,7 +520,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     return _tableFooterView;
 }
 
-- (NSString *) getSampleConsumerReference {
+- (NSString *)getSampleConsumerReference {
     return @"judoPay-sample-app-objc";
 }
 

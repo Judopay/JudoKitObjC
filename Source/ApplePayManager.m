@@ -225,7 +225,6 @@
         return nil;
 
     PostalAddress *postalAddress = [[PostalAddress alloc] initWithSteet:contact.postalAddress.street
-                                    
                                                                    city:contact.postalAddress.city
                                                                   state:contact.postalAddress.state
                                                              postalCode:contact.postalAddress.postalCode
