@@ -170,20 +170,43 @@
 - (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)cardNetwork {
 
     switch (cardNetwork) {
-        case CardNetworkVisa:
-            return PKPaymentNetworkVisa;
-
+            
+        case CardNetworkAMEX:
+            return PKPaymentNetworkAmex;
+            
+        case CardNetworkCarteBancaire:
+            return PKPaymentNetworkCarteBancaire;
+            
+        case CardNetworkChinaUnionPay:
+            return PKPaymentNetworkChinaUnionPay;
+            
+        case CardNetworkDiscover:
+            return PKPaymentNetworkDiscover;
+            
+        case CardNetworkJCB:
+            return PKPaymentNetworkJCB;
+            
         case CardNetworkMasterCard:
             return PKPaymentNetworkMasterCard;
 
-        case CardNetworkAMEX:
-            return PKPaymentNetworkAmex;
-
+        case CardNetworkVisa:
+            return PKPaymentNetworkVisa;
+            
+        case CardNetworkVisaElectron:
+            if (@available(iOS 12.0, *)) {
+                return PKPaymentNetworkElectron;
+            }
+         
         case CardNetworkMaestro:
             if (@available(iOS 12.0, *)) {
                 return PKPaymentNetworkMaestro;
             }
-
+            
+        case CardNetworkElo:
+            if (@available(iOS 12.1.1, *)) {
+                return PKPaymentNetworkElo;
+            }
+        
         default:
             return nil;
     }
