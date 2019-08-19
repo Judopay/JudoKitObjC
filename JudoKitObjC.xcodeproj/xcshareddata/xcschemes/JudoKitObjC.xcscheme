@@ -40,12 +40,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "DedupTestCase">
-               </Test>
-               <Test
-                  Identifier = "ErrorMessageContentsTests">
-               </Test>
-               <Test
                   Identifier = "JudoTestCase">
                </Test>
                <Test
