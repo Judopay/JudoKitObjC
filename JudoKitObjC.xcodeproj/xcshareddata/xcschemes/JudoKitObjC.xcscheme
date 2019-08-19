@@ -40,12 +40,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "CardDetailsSetTests">
-               </Test>
-               <Test
-                  Identifier = "CollectionTests">
-               </Test>
-               <Test
                   Identifier = "DedupTestCase">
                </Test>
                <Test

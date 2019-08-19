@@ -72,7 +72,7 @@ class AuthenticationTests: JudoTestCase {
         let expectation = self.expectation(description: "testInvalidTokenAndSecret")
         
         payment.send { [weak self] (response, error) in
-            self?.assert(error: error, as: JudoError.errorAuthenticationFailure)
+            self?.assert(error: error, as: .errorAuthenticationFailure)
             expectation.fulfill()
         }
         
@@ -97,7 +97,7 @@ class AuthenticationTests: JudoTestCase {
         payment.card = validVisaTestCard
         
         payment.send { [weak self] (response, error) in
-            self?.assert(error: error, as: JudoError.errorAccountLocationNotFound);
+            self?.assert(error: error, as: .errorAccountLocationNotFound);
             expectation.fulfill()
         }
         
@@ -122,7 +122,7 @@ class AuthenticationTests: JudoTestCase {
         payment.card = validVisaTestCard
         
         payment.send { [weak self] (response, error) in
-            self?.assert(error: error, as: JudoError.errorGeneral_Model_Error);
+            self?.assert(error: error, as: .errorGeneral_Model_Error);
             expectation.fulfill()
         }
         
