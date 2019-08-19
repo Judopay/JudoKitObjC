@@ -27,118 +27,134 @@ import XCTest
 
 class AuthenticationTests: JudoTestCase {
     
-    func testCreateJudoTransactionRequest() {
-        // Given I have an SDK
-        // And I have valid token and secret
-        let myToken = token
-        let mySecret = secret
-        // And I have a luhn valid Judo ID
-        let myLuhnValidJudoId = "1000009"
+    /**
+     * GIVEN: I have a valid token / secret and a valid Judo ID
+     *
+     * WHEN:  I access the API and make a request
+     *
+     * THEN:  I get back a valid JPTransaction object
+     */
+    func test_CreateValidJudoTransactionRequest() {
         
-        // When I access the API
-        let myJudoSession = JudoKit(token: myToken, secret: mySecret)
+        let request = judo.transaction(for: .payment,
+                                              judoId: myJudoId,
+                                              amount: oneGBPAmount,
+                                              reference: validReference)
         
-        // Then I can make a request
-        let request = myJudoSession.transaction(for: .payment, judoId: myLuhnValidJudoId, amount: oneGBPAmount, reference: validReference)
+        XCTAssertNotNil(request,
+                        "JPTransaction object must not be nil")
+        XCTAssertEqual(request?.amount?.amount, oneGBPAmount.amount,
+                       "JPTransaction object must be initialized with correct amount")
+        XCTAssertEqual(request?.amount?.currency, oneGBPAmount.currency,
+                       "JPTransaction object must be initialized with correct currency")
+        XCTAssertEqual(request?.judoId, myJudoId,
+                       "JPTransaction object must be initialized with valid Judo ID")
+        XCTAssertEqual(request?.reference?.consumerReference, validReference.consumerReference,
+                       "JPTransaction object must be initialized with valid consumer reference")
         
-        XCTAssertNotNil(request)
     }
     
-    func testTransactionInvalidTokenSecretNoPaymentMethod() {
-        // Given I have an SDK
-        // And I have invalid token and secret
-        let invalidToken = "a3xQdxP6iHdWg1zy"
-        let invalidSecret = "2094c2f5484ba42557917aad2b2c2d294a35dddadb93de3c35d6910e6c461bfb"
+    /**
+     * GIVEN: I have an invalid token / secret and a valid Judo ID
+     *
+     * WHEN:  I access the API and attept to make a transaction
+     *
+     * THEN:  I get back an authentication error
+     */
+    func test_OnInvalidTokenAndSecret_ReturnAuthenticationError() {
         
-        let myLuhnValidJudoId = "1000009"
-        
-        let myInvalidJudoSession = JudoKit(token: invalidToken, secret: invalidSecret)
-        
-        let expectation = self.expectation(description: "testTransactionInvalidTokenSecretNoPaymentMethod")
-        
-        // When I make a transaction
-        let payment = myInvalidJudoSession.payment(withJudoId: myLuhnValidJudoId, amount: JPAmount(amount: "1.00", currency: "GBP"), reference: JPReference(consumerReference: "reference"))
+        let payment = invalidJudo.payment(withJudoId: myJudoId,
+                                                 amount: oneGBPAmount,
+                                                 reference: validReference)
         
         payment.card = self.validVisaTestCard
         
-        payment.send { (response, error) in
-            XCTAssertEqual(error!._code, Int(JudoError.errorAuthenticationFailure.rawValue))
+        let expectation = self.expectation(description: "testInvalidTokenAndSecret")
+        
+        payment.send { [weak self] (response, error) in
+            self?.assert(error: error, as: JudoError.errorAuthenticationFailure)
             expectation.fulfill()
         }
         
         self.waitForExpectations(timeout: 30.0, handler: nil)
-        
     }
     
-    func testTransactionInvalidTokenSecretValidCard() {
-        // Given I have an SDK
-        // And I have invalid token and secret
-        let invalidToken = "a3xQdxP6iHdWg1zy"
-        let invalidSecret = "2094c2f5484ba42557917aad2b2c2d294a35dddadb93de3c35d6910e6c461bfb"
+    /**
+     * GIVEN: I have a valid token / secret and an non-existent but valid Judo ID
+     *
+     * WHEN:  I access the API and attept to make a transaction
+     *
+     * THEN:  I get back an invalid account error
+     */
+    func test_OnNonExistentJudoID_ReturnAccountNotFoundError() {
+
+        let expectation = self.expectation(description: "testNonExistentJudoID")
         
-        let myLuhnValidJudoId = "1000009"
+        let payment = judo.payment(withJudoId: "1000009",
+                                          amount: oneGBPAmount,
+                                          reference: validReference)
         
-        let myInvalidJudoSession = JudoKit(token: invalidToken, secret: invalidSecret)
-        
-        let expectation = self.expectation(description: "testTransactionInvalidTokenSecretValidCard")
-        
-        // When I make a transaction
-        let payment = myInvalidJudoSession.payment(withJudoId: myLuhnValidJudoId, amount: JPAmount(amount: "1.00", currency: "GBP"), reference: JPReference(consumerReference: "reference"))
         payment.card = validVisaTestCard
         
-        payment.send { (response, error) in
-            // Then an error is returned
-            XCTAssertEqual(error!._code, Int(JudoError.errorAuthenticationFailure.rawValue))
+        payment.send { [weak self] (response, error) in
+            self?.assert(error: error, as: JudoError.errorAccountLocationNotFound);
             expectation.fulfill()
         }
         
         self.waitForExpectations(timeout: 30.0, handler: nil)
     }
     
-    
-    func testTransactionInvalidJudoId() {
-        // Given I have an SDK
-        // And I have invalid token and secret
-        let myLuhnValidJudoId = "1000009"
+    /**
+     * GIVEN: I have a valid token / secret and an invalid Judo ID
+     *
+     * WHEN:  I access the API and attept to make a transaction
+     *
+     * THEN:  I get back an invalid model error
+     */
+    func test_OnInvalidJudoID_ReturnInvalidModelError() {
         
-        let expectation = self.expectation(description: "testTransactionInvalidTokenSecretValidCard")
+        let expectation = self.expectation(description: "testInvalidJudoID")
         
-        // When I make a transaction
-        let payment = judo.payment(withJudoId: myLuhnValidJudoId, amount: oneGBPAmount, reference: validReference)
+        let payment = judo.payment(withJudoId: "invalid_judo_id",
+                                          amount: oneGBPAmount,
+                                          reference: validReference)
+        
         payment.card = validVisaTestCard
         
-        payment.send { (response, error) in
-            // Then an error is returned
-            XCTAssertEqual(error!._code, Int(JudoError.errorAccountLocationNotFound.rawValue))
+        payment.send { [weak self] (response, error) in
+            self?.assert(error: error, as: JudoError.errorGeneral_Model_Error);
             expectation.fulfill()
         }
         
         self.waitForExpectations(timeout: 30.0, handler: nil)
     }
     
-    
-    func testValidTransaction() {
-        // Given I have a Transaction
-        // And I have a valid judo ID
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I have a valid token, secret and Judo ID
+     *
+     * WHEN:  I access the API and attept to make a transaction
+     *
+     * THEN:  I get back a valid response and no error
+     */
+    func test_OnValidParameters_ReturnValidTransaction() {
+
+        let payment = judo.payment(withJudoId: myJudoId,
+                                          amount: oneGBPAmount,
+                                          reference: validReference)
+        
         payment.card = validVisaTestCard
         
         let expectation = self.expectation(description: "testValidTransaction")
         
-        // When I submit any valid transaction with the valid judo ID
         payment.send { (response, error) in
             
-            // Then I receive a valid transaction response
-            XCTAssertNotNil(response)
-            
-            XCTAssertNotNil(response?.items?.first)
-            
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Error must be nil on valid transaction")
+            XCTAssertNotNil(response, "Response must not be nil on valid transaction")
+            XCTAssertNotNil(response?.items?.first, "Response must contain at least on JPTransactionData objects")
             
             expectation.fulfill()
         }
         
         self.waitForExpectations(timeout: 30, handler: nil)
     }
-    
 }
