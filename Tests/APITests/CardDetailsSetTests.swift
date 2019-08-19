@@ -109,7 +109,7 @@ extension CardDetailsSetTests {
         
         let vc = JudoPayViewController(judoId: myJudoId,
                                        amount: oneGBPAmount,
-                                       reference: validReference,
+                                       reference: JPReference(consumerReference: UUID().uuidString),
                                        transaction: .payment,
                                        currentSession: judo,
                                        cardDetails: cardDetails) { (_, _) in }

@@ -37,7 +37,7 @@ class DedupTestCase: JudoTestCase {
         
         let payment = judo.payment(withJudoId: myJudoId,
                                    amount: oneGBPAmount,
-                                   reference: validReference)
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         XCTAssertNotNil(payment,
                         "A valid JPPayment object must be created when correctly initialized")
@@ -57,7 +57,7 @@ class DedupTestCase: JudoTestCase {
         
         let payment = judo.payment(withJudoId: myJudoId,
                                    amount: oneGBPAmount,
-                                   reference: JPReference(consumerReference: "example1"))
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
         
@@ -79,7 +79,7 @@ class DedupTestCase: JudoTestCase {
             
             let payment2 = self.judo.payment(withJudoId: myJudoId,
                                              amount: self.oneGBPAmount,
-                                             reference: JPReference(consumerReference: "example2"))
+                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             payment2.card = self.validVisaTestCard
             
@@ -116,7 +116,7 @@ class DedupTestCase: JudoTestCase {
         
         let payment = judo.payment(withJudoId: myJudoId,
                                    amount: oneGBPAmount,
-                                   reference: JPReference(consumerReference: "common reference"))
+                                   reference: JPReference(consumerReference: UUID().uuidString))
 
         payment.card = validVisaTestCard
         

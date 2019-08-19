@@ -42,7 +42,7 @@ class CollectionTests: JudoTestCase {
 
         let preAuth = judo.preAuth(withJudoId: myJudoId,
                                    amount: oneGBPAmount,
-                                   reference: JPReference(consumerReference: "example reference"))
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         XCTAssertNotNil(preAuth,
                         "A valid JPPreAuth object must be created when correctly initialized")

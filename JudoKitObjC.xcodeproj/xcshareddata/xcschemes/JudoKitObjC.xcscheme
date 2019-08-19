@@ -40,19 +40,7 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "JudoTestCase">
-               </Test>
-               <Test
-                  Identifier = "JudoTests">
-               </Test>
-               <Test
                   Identifier = "ListTests">
-               </Test>
-               <Test
-                  Identifier = "PaymentTests">
-               </Test>
-               <Test
-                  Identifier = "PreAuthTests">
                </Test>
                <Test
                   Identifier = "ReceiptTests">
