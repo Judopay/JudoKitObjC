@@ -27,9 +27,9 @@
 #import "NSArray+Prefix.h"
 #import "NSError+Judo.h"
 #import "NSString+Card.h"
+#import "NSString+Localize.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
-#import "NSString+Localize.h"
 
 @implementation NSString (Card)
 
@@ -94,7 +94,7 @@
 
     if (number.length > 16 || ![number isNumeric]) {
         if (error != NULL) {
-            *error = [NSError judoInputMismatchErrorWithMessage: [@"check_card_number" localized]];
+            *error = [NSError judoInputMismatchErrorWithMessage:[@"check_card_number" localized]];
         }
         return NO;
     }
@@ -113,7 +113,7 @@
 
     if (network == CardNetworkAMEX && number.length > 15) {
         if (error != NULL) {
-            *error = [NSError judoInputMismatchErrorWithMessage: [@"check_card_number" localized]];
+            *error = [NSError judoInputMismatchErrorWithMessage:[@"check_card_number" localized]];
         }
         return NO;
     }

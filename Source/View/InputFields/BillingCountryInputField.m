@@ -28,7 +28,6 @@
 #import "FloatingTextField.h"
 #import "NSString+Localize.h"
 
-
 @interface JPInputField ()
 
 - (void)setupView;

@@ -22,15 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "NSString+Localize.h"
+#import <Foundation/Foundation.h>
 
 @implementation NSString (Manipulation)
 
-
 - (nonnull NSString *)localized {
     NSBundle *bundle = [NSBundle bundleForClass:[JPTheme class]];
-    return NSLocalizedStringFromTableInBundle(self,nil, bundle, nil);
+    return NSLocalizedStringFromTableInBundle(self, nil, bundle, nil);
 }
 
 @end

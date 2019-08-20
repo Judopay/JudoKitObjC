@@ -29,10 +29,9 @@
 #import "JPTheme.h"
 #import "NSError+Judo.h"
 #import "NSString+Card.h"
+#import "NSString+Localize.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
-#import "NSString+Localize.h"
-
 
 @interface JPInputField ()
 

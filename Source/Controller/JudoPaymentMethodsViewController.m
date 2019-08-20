@@ -33,10 +33,10 @@
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
+#import "NSString+Localize.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
-#import "NSString+Localize.h"
 
 @interface JudoPaymentMethodsViewController ()
 

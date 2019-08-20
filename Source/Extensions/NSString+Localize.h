@@ -6,10 +6,9 @@
 //  Copyright © 2019 Judo Payments. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "JPTheme.h"
+#import <Foundation/Foundation.h>
 
 @interface NSString (Localize)
 - (nonnull NSString *)localized;
 @end
-

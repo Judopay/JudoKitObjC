@@ -25,7 +25,6 @@
 #import "LoadingView.h"
 #import "JPTheme.h"
 
-
 @interface LoadingView ()
 
 @property (nonatomic, strong) UIView *blockView;

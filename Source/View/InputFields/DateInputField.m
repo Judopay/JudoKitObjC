@@ -28,8 +28,8 @@
 #import "JPTheme.h"
 #import "NSDate+Judo.h"
 #import "NSError+Judo.h"
-#import "NSString+Validation.h"
 #import "NSString+Localize.h"
+#import "NSString+Validation.h"
 
 @interface DateInputField ()
 
@@ -158,7 +158,7 @@
 }
 
 - (NSString *)title {
-    return self.isStartDate ?[ @"start_date_label" localized] : [@"expiry_date_label" localized];
+    return self.isStartDate ? [@"start_date_label" localized] : [@"expiry_date_label" localized];
 }
 
 - (NSString *)hintLabelText {

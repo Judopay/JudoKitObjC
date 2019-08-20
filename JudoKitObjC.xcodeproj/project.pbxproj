@@ -525,6 +525,11 @@
 		829330FD230AF0F900689DC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		82933101230AF3B300689DC4 /* NSString+Localize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Localize.h"; path = "Extensions/NSString+Localize.h"; sourceTree = "<group>"; };
 		82933103230AF4FB00689DC4 /* NSString+Localize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Localize.m"; path = "Extensions/NSString+Localize.m"; sourceTree = "<group>"; };
+		82933105230C3C7300689DC4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		82933106230C3C7C00689DC4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		82933107230C3C8800689DC4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		82933108230C3C9200689DC4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		82933109230C3C9A00689DC4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8296A5E62302ED3E00E369C1 /* ApplePayButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplePayButtonViewController.h; sourceTree = "<group>"; };
 		8296A5E72302ED3E00E369C1 /* ApplePayButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayButtonViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1148,6 +1153,11 @@
 				English,
 				en,
 				Base,
+				fr,
+				nl,
+				es,
+				"pt-PT",
+				de,
 			);
 			mainGroup = 3B678B4C1C6CE5190001DC2F;
 			productRefGroup = 3B678B571C6CE5190001DC2F /* Products */;
@@ -1475,6 +1485,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				829330FD230AF0F900689DC4 /* en */,
+				82933105230C3C7300689DC4 /* fr */,
+				82933106230C3C7C00689DC4 /* nl */,
+				82933107230C3C8800689DC4 /* es */,
+				82933108230C3C9200689DC4 /* pt-PT */,
+				82933109230C3C9A00689DC4 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

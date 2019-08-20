@@ -27,8 +27,8 @@
 #import "FloatingTextField.h"
 
 #import "NSError+Judo.h"
-#import "NSString+Validation.h"
 #import "NSString+Localize.h"
+#import "NSString+Validation.h"
 
 static NSString *const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
 static NSString *const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
