@@ -45,6 +45,7 @@
 #import "JPTheme+Additions.h"
 #import "NSString+Card.h"
 #import "NSString+Manipulation.h"
+#import "NSString+Localize.h"
 #import "NSTimer+Blocks.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
@@ -742,7 +743,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     NSDictionary *boldAttributes = @{NSForegroundColorAttributeName : self.theme.judoTextColor,
                                      NSFontAttributeName : [UIFont systemFontOfSize:self.theme.securityMessageTextSize]};
 
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Secure server: "
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString: [@"secure_server" localized]
                                                                                          attributes:attributes];
 
     [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.theme.securityMessageString
@@ -762,7 +763,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         _paymentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
-        [_paymentButton setTitle:@"Pay" forState:UIControlStateNormal];
+        [_paymentButton setTitle: [@"pay" localized] forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
     }

@@ -26,6 +26,8 @@
 #import "FloatingTextField.h"
 #import "JPTheme.h"
 #import "NSString+Validation.h"
+#import "NSString+Localize.h"
+
 
 @implementation IssueNumberInputField
 
@@ -64,11 +66,11 @@
 }
 
 - (NSString *)title {
-    return @"Issue number";
+    return [@"issue_number_label" localized];
 }
 
 - (NSString *)hintLabelText {
-    return @"Issue number on front of card";
+    return [@"issue_number_front_of_card" localized];
 }
 
 @end

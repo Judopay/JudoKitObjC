@@ -26,6 +26,8 @@
 #import "BillingCountry.h"
 
 #import "FloatingTextField.h"
+#import "NSString+Localize.h"
+
 
 @interface JPInputField ()
 
@@ -50,7 +52,7 @@
     self.countryPicker.delegate = self;
     self.countryPicker.dataSource = self;
     self.textField.placeholder = @" ";
-    self.textField.text = @"UK";
+    self.textField.text = [@"united_kingdom" localized];
     self.textField.inputView = self.countryPicker;
 
     [self setActive:YES];
@@ -59,13 +61,13 @@
 - (NSString *)titleForBillingCountry:(BillingCountry)country {
     switch (country) {
         case BillingCountryUK:
-            return @"UK";
+            return [@"united_kingdom" localized];
         case BillingCountryCanada:
-            return @"Canada";
+            return [@"canada" localized];
         case BillingCountryUSA:
-            return @"USA";
+            return [@"united_states" localized];
         default:
-            return @"Other";
+            return [@"other_country" localized];
     }
 }
 

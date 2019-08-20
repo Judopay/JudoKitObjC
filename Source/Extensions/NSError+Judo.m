@@ -24,36 +24,37 @@
 
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
+#import "NSString+Localize.h"
 
 NSString *const JudoErrorDomain = @"com.judo.error";
 
-NSString *const UnableToProcessRequestErrorDesc = @"Sorry, we're currently unable to process this request.";
-NSString *const UnableToProcessRequestErrorTitle = @"Unable to process";
+NSString *const UnableToProcessRequestErrorDesc = @"unable_to_processRequest_error_desc";
+NSString *const UnableToProcessRequestErrorTitle = @"unable_to_process_request_error_title";
 
 NSString *const JPErrorTitleKey = @"JPErrorTitleKey";
 
-NSString *const ErrorRequestFailed = @"The request responded without data";
-NSString *const ErrorPaymentMethodMissing = @"The payment method (card details, token or PKPayment) has not been set for a transaction that requires it (custom UI)";
-NSString *const ErrorAmountMissing = @"The amount has not been set for a transaction that requires it (custom UI)";
-NSString *const ErrorReferenceMissing = @"The reference has not been set for a transaction that requires it (custom UI)";
-NSString *const ErrorResponseParseError = @"An error with a response from the backend API";
-NSString *const ErrorUserDidCancel = @"Received when user cancels the payment journey";
-NSString *const ErrorParameterError = @"A parameter entered into the dictionary (request body to Judo API) is not set";
-NSString *const ErrorFailed3DSRequest = @"After receiving the 3DS payload, when the payload has faulty data, the WebView fails to load the 3DS Page or the resolution page";
-NSString *const ErrorJailbrokenDeviceDisallowed = @"The device the code is currently running is jailbroken. Jailbroken devices are not allowed when instantiating a new Judo session";
+NSString *const ErrorRequestFailed = @"error_request_failed";
+NSString *const ErrorPaymentMethodMissing = @"error_payment_method_missing";
+NSString *const ErrorAmountMissing = @"error_amount_missing";
+NSString *const ErrorReferenceMissing = @"error_reference_missing";
+NSString *const ErrorResponseParseError = @"error_response_parse_error";
+NSString *const ErrorUserDidCancel = @"error_user_did_cancel";
+NSString *const ErrorParameterError = @"error_parameter_error";
+NSString *const ErrorFailed3DSRequest = @"error_failed_3DS_request";
+NSString *const ErrorJailbrokenDeviceDisallowed = @"error_jailbroken_device_disallowed";
 
-NSString *const Error3DSRequest = @"Error when routing to 3DS";
-NSString *const ErrorUnderlyingError = @"An error in the iOS system with an enclosed underlying error";
-NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the backend returned declined";
+NSString *const Error3DSRequest = @"error_3DS_request";
+NSString *const ErrorUnderlyingError = @"error_underlying_error";
+NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 
 @implementation NSError (Judo)
 
 + (NSError *)judoJailbrokenDeviceDisallowedError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorJailbrokenDeviceDisallowed userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorJailbrokenDeviceDisallowed title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorJailbrokenDeviceDisallowed userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorJailbrokenDeviceDisallowed localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoRequestFailedError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorRequestFailed userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorRequestFailed title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorRequestFailed userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorRequestFailed localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error {
@@ -65,15 +66,15 @@ NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the 
 }
 
 + (NSError *)judoAmountMissingError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorAmountMissing userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorAmountMissing title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorAmountMissing userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorAmountMissing localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoPaymentMethodMissingError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorPaymentMethodMissing userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorPaymentMethodMissing title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorPaymentMethodMissing userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorPaymentMethodMissing localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoReferenceMissingError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorReferenceMissing userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorReferenceMissing title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorReferenceMissing userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorReferenceMissing localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoDuplicateTransactionError {
@@ -82,9 +83,9 @@ NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the 
 
 + (NSError *)judo3DSRequestFailedErrorWithUnderlyingError:(NSError *)underlyingError {
     if (underlyingError) {
-        return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorFailed3DSRequest userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorFailed3DSRequest title:UnableToProcessRequestErrorTitle currentDict:@{NSUnderlyingErrorKey : underlyingError}]];
+        return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorFailed3DSRequest userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorFailed3DSRequest localized] title:[UnableToProcessRequestErrorTitle localized] currentDict:@{NSUnderlyingErrorKey : underlyingError}]];
     }
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorFailed3DSRequest userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorFailed3DSRequest title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorFailed3DSRequest userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorFailed3DSRequest localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoErrorFromTransactionData:(JPTransactionData *)data {
@@ -93,8 +94,8 @@ NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the 
 
 + (NSError *)judoErrorFromDictionary:(NSDictionary *)dict {
     NSString *messageFromDict = dict[@"message"];
-    NSString *errorMessage = messageFromDict == nil ? UnableToProcessRequestErrorDesc : messageFromDict;
-    return [NSError errorWithDomain:JudoErrorDomain code:[dict[@"code"] integerValue] userInfo:[self userDataDictWithDescription:errorMessage failureReason:nil title:UnableToProcessRequestErrorTitle currentDict:dict]];
+    NSString *errorMessage = messageFromDict == nil ? [UnableToProcessRequestErrorDesc localized] : messageFromDict;
+    return [NSError errorWithDomain:JudoErrorDomain code:[dict[@"code"] integerValue] userInfo:[self userDataDictWithDescription:errorMessage failureReason:nil title:[UnableToProcessRequestErrorTitle localized] currentDict:dict]];
 }
 
 + (NSError *)judoErrorFromError:(NSError *)error {
@@ -102,11 +103,11 @@ NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the 
 }
 
 + (NSError *)judoUserDidCancelError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorUserDidCancel userInfo:[self userDataDictWithDescription:nil failureReason:ErrorUserDidCancel title:nil]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorUserDidCancel userInfo:[self userDataDictWithDescription:nil failureReason:[ErrorUserDidCancel localized] title:nil]];
 }
 
 + (NSError *)judoParameterError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorParameterError userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorParameterError title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorParameterError userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorParameterError localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judoInvalidCardNumberError {
@@ -114,7 +115,7 @@ NSString *const ErrorTransactionDeclined = @"A transaction that was sent to the 
 }
 
 + (NSError *)judoResponseParseError {
-    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorResponseParseError userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc failureReason:ErrorResponseParseError title:UnableToProcessRequestErrorTitle]];
+    return [NSError errorWithDomain:JudoErrorDomain code:JudoErrorResponseParseError userInfo:[self userDataDictWithDescription:[UnableToProcessRequestErrorDesc localized] failureReason:[ErrorResponseParseError localized] title:[UnableToProcessRequestErrorTitle localized]]];
 }
 
 + (NSError *)judo3DSRequestWithPayload:(NSDictionary *)payload {

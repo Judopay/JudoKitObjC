@@ -29,6 +29,7 @@
 #import "NSString+Card.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
+#import "NSString+Localize.h"
 
 @implementation NSString (Card)
 
@@ -93,7 +94,7 @@
 
     if (number.length > 16 || ![number isNumeric]) {
         if (error != NULL) {
-            *error = [NSError judoInputMismatchErrorWithMessage:@"Check card number"];
+            *error = [NSError judoInputMismatchErrorWithMessage: [@"check_card_number" localized]];
         }
         return NO;
     }
@@ -104,7 +105,7 @@
     if (!networkAccepted && network != CardNetworkUnknown) {
         if (error != NULL) {
             NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:network];
-            NSString *message = [NSString stringWithFormat:@"We do not accept %@", cardNetworkName];
+            NSString *message = [[NSString stringWithFormat:@"We do not accept %@", cardNetworkName] localized];
             *error = [NSError judoInputMismatchErrorWithMessage:message];
         }
         return NO;
@@ -112,7 +113,7 @@
 
     if (network == CardNetworkAMEX && number.length > 15) {
         if (error != NULL) {
-            *error = [NSError judoInputMismatchErrorWithMessage:@"Check card number"];
+            *error = [NSError judoInputMismatchErrorWithMessage: [@"check_card_number" localized]];
         }
         return NO;
     }

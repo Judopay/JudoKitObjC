@@ -28,6 +28,7 @@
 
 #import "NSError+Judo.h"
 #import "NSString+Validation.h"
+#import "NSString+Localize.h"
 
 static NSString *const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
 static NSString *const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
@@ -61,21 +62,21 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
         self.textField.keyboardType = UIKeyboardTypeNumberPad;
     }
 
-    NSString *placeholder = [NSString stringWithFormat:@"Billing %@", [self descriptionForBillingCountry:_billingCountry]];
+    NSString *placeholder = [self descriptionForBillingCountry:_billingCountry];
     [self.textField setPlaceholder:placeholder floatingTitle:placeholder];
 }
 
 - (NSString *)descriptionForBillingCountry:(BillingCountry)country {
 
     if (country == BillingCountryUSA) {
-        return @"ZIP code";
+        return [@"billing_zip_code" localized];
     }
 
     if (country == BillingCountryCanada) {
-        return @"postal code";
+        return [@"billing_postcode" localized];
     }
 
-    return @"postcode";
+    return [@"billing_postcode" localized];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -153,7 +154,7 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 }
 
 - (NSString *)title {
-    return [NSString stringWithFormat:@"Billing %@", [self descriptionForBillingCountry:self.billingCountry]];
+    return [self descriptionForBillingCountry:self.billingCountry];
 }
 
 - (CGFloat)titleWidth {

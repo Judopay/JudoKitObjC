@@ -203,6 +203,9 @@
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
 		70F102E51CB281AB006EEC48 /* BillingCountry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5AFC0F1C9184F700DABB4C /* BillingCountry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		829330FC230AF0F900689DC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829330FE230AF0F900689DC4 /* Localizable.strings */; };
+		82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */ = {isa = PBXBuildFile; fileRef = 82933101230AF3B300689DC4 /* NSString+Localize.h */; };
+		82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */ = {isa = PBXBuildFile; fileRef = 82933103230AF4FB00689DC4 /* NSString+Localize.m */; };
 		8296A5E82302ED3E00E369C1 /* ApplePayButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296A5E72302ED3E00E369C1 /* ApplePayButtonViewController.m */; };
 		DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9711991C761B9700E9A347 /* JPAddress.m */; };
 /* End PBXBuildFile section */
@@ -519,6 +522,9 @@
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
+		829330FD230AF0F900689DC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		82933101230AF3B300689DC4 /* NSString+Localize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Localize.h"; path = "Extensions/NSString+Localize.h"; sourceTree = "<group>"; };
+		82933103230AF4FB00689DC4 /* NSString+Localize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Localize.m"; path = "Extensions/NSString+Localize.m"; sourceTree = "<group>"; };
 		8296A5E62302ED3E00E369C1 /* ApplePayButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplePayButtonViewController.h; sourceTree = "<group>"; };
 		8296A5E72302ED3E00E369C1 /* ApplePayButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayButtonViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -694,6 +700,7 @@
 		3B678B4C1C6CE5190001DC2F = {
 			isa = PBXGroup;
 			children = (
+				829330FE230AF0F900689DC4 /* Localizable.strings */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				701050B91E1E90D70001ED87 /* DeviceDNA */,
 				3B678B581C6CE5190001DC2F /* Source */,
@@ -856,6 +863,8 @@
 				44DA43EE22F82FE500C34231 /* NSString+Manipulation.m */,
 				44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */,
 				44DA43F822F8D9F500C34231 /* JPTheme+Additions.m */,
+				82933101230AF3B300689DC4 /* NSString+Localize.h */,
+				82933103230AF4FB00689DC4 /* NSString+Localize.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -967,6 +976,7 @@
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
+				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				30D185222301ADEB0097F85F /* ApplePayWrappers.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
@@ -1096,7 +1106,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Judo Payments";
 				TargetAttributes = {
 					3B4EB3971C981EA7006265A0 = {
@@ -1242,6 +1252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */,
+				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1329,7 @@
 				3B678B9E1C7326C00001DC2F /* JPPayment.m in Sources */,
 				30D185202301ADEB0097F85F /* PostalAddress.m in Sources */,
 				3B678BB21C7327270001DC2F /* JPVoid.m in Sources */,
+				82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */,
 				3BD353CC1C77803F0045658A /* JPCardDetails.m in Sources */,
 				3B678BA21C7326D30001DC2F /* JPPreAuth.m in Sources */,
 				3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */,
@@ -1459,6 +1471,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		829330FE230AF0F900689DC4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				829330FD230AF0F900689DC4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1544,6 +1564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1601,6 +1622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

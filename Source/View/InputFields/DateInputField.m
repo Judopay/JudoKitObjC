@@ -1,5 +1,5 @@
 //
-//  DateInputField.m
+//
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -29,6 +29,7 @@
 #import "NSDate+Judo.h"
 #import "NSError+Judo.h"
 #import "NSString+Validation.h"
+#import "NSString+Localize.h"
 
 @interface DateInputField ()
 
@@ -144,9 +145,9 @@
     if (self.isValid) {
         [self.delegate dateInput:self didFindValidDate:textField.text];
     } else {
-        NSString *errorMessage = @"Check expiry date";
+        NSString *errorMessage = [@"check_expiry_date" localized];
         if (self.isStartDate) {
-            errorMessage = @"Check start date";
+            errorMessage = [@"check_start_date" localized];
         }
         [self.delegate dateInput:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:errorMessage]];
     }
@@ -157,11 +158,11 @@
 }
 
 - (NSString *)title {
-    return self.isStartDate ? @"Start date" : @"Expiry date";
+    return self.isStartDate ?[ @"start_date_label" localized] : [@"expiry_date_label" localized];
 }
 
 - (NSString *)hintLabelText {
-    return @"MM/YY";
+    return [@"date_hint" localized];
 }
 
 #pragma mark - Lazy Loading
@@ -169,7 +170,7 @@
 - (NSDateFormatter *)dateFormatter {
     if (!_dateFormatter) {
         _dateFormatter = [NSDateFormatter new];
-        _dateFormatter.dateFormat = @"MM/yy";
+        _dateFormatter.dateFormat = [@"date_format" localized];
     }
     return _dateFormatter;
 }

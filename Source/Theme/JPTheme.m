@@ -25,6 +25,7 @@
 #import "JPTheme.h"
 #import "JPCardDetails.h"
 #import "UIColor+Judo.h"
+#import "NSString+Localize.h"
 
 @implementation JPTheme
 
@@ -50,98 +51,98 @@
 
 - (NSString *)paymentButtonTitle {
     if (!_paymentButtonTitle) {
-        _paymentButtonTitle = @"Pay";
+        _paymentButtonTitle = [@"pay" localized];
     }
     return _paymentButtonTitle;
 }
 
 - (NSString *)registerCardButtonTitle {
     if (!_registerCardButtonTitle) {
-        _registerCardButtonTitle = @"Add card";
+        _registerCardButtonTitle = [@"add_card" localized];
     }
     return _registerCardButtonTitle;
 }
 
 - (NSString *)registerCardNavBarButtonTitle {
     if (!_registerCardNavBarButtonTitle) {
-        _registerCardNavBarButtonTitle = @"Add";
+        _registerCardNavBarButtonTitle = [@"add" localized];
     }
     return _registerCardNavBarButtonTitle;
 }
 
 - (NSString *)backButtonTitle {
     if (!_backButtonTitle) {
-        _backButtonTitle = @"Back";
+        _backButtonTitle = [@"back" localized];
     }
     return _backButtonTitle;
 }
 
 - (NSString *)paymentTitle {
     if (!_paymentTitle) {
-        _paymentTitle = @"Payment";
+        _paymentTitle = [@"payment" localized];
     }
     return _paymentTitle;
 }
 
 - (NSString *)registerCardTitle {
     if (!_registerCardTitle) {
-        _registerCardTitle = @"Add card";
+        _registerCardTitle = [@"add_card" localized];
     }
     return _registerCardTitle;
 }
 
 - (NSString *)refundTitle {
     if (!_refundTitle) {
-        _refundTitle = @"Refund";
+        _refundTitle = [@"refund" localized];
     }
     return _refundTitle;
 }
 
 - (NSString *)authenticationTitle {
     if (!_authenticationTitle) {
-        _authenticationTitle = @"Authentication";
+        _authenticationTitle = [@"authentication" localized];
     }
     return _authenticationTitle;
 }
 
 - (NSString *)loadingIndicatorRegisterCardTitle {
     if (!_loadingIndicatorRegisterCardTitle) {
-        _loadingIndicatorRegisterCardTitle = @"Adding card...";
+        _loadingIndicatorRegisterCardTitle = [@"adding_card" localized];
     }
     return _loadingIndicatorRegisterCardTitle;
 }
 
 - (NSString *)loadingIndicatorProcessingTitle {
     if (!_loadingIndicatorProcessingTitle) {
-        _loadingIndicatorProcessingTitle = @"Processing payment...";
+        _loadingIndicatorProcessingTitle = [@"processing_payment" localized];
     }
     return _loadingIndicatorProcessingTitle;
 }
 
 - (NSString *)redirecting3DSTitle {
     if (!_redirecting3DSTitle) {
-        _redirecting3DSTitle = @"Redirecting...";
+        _redirecting3DSTitle = [@"redirecting" localized];
     }
     return _redirecting3DSTitle;
 }
 
 - (NSString *)verifying3DSPaymentTitle {
     if (!_verifying3DSPaymentTitle) {
-        _verifying3DSPaymentTitle = @"Verifying payment";
+        _verifying3DSPaymentTitle = [@"verifying_payment" localized];
     }
     return _verifying3DSPaymentTitle;
 }
 
 - (NSString *)verifying3DSRegisterCardTitle {
     if (!_verifying3DSRegisterCardTitle) {
-        _verifying3DSRegisterCardTitle = @"Verifying card";
+        _verifying3DSRegisterCardTitle = [@"verifying_card" localized];
     }
     return _verifying3DSRegisterCardTitle;
 }
 
 - (NSString *)securityMessageString {
     if (!_securityMessageString) {
-        _securityMessageString = @"Your card details are encrypted using SSL before transmission to our secure payment service provider. They will not be stored on this device or on our servers.";
+        _securityMessageString = [@"secure_server_transmission" localized];
     }
     return _securityMessageString;
 }

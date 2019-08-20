@@ -31,6 +31,8 @@
 #import "NSString+Card.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
+#import "NSString+Localize.h"
+
 
 @interface JPInputField ()
 
@@ -136,11 +138,11 @@
 }
 
 - (NSString *)title {
-    return @"Card number";
+    return [@"card_number_label" localized];
 }
 
 - (NSString *)hintLabelText {
-    return @"Long card number";
+    return [@"long_card_number" localized];
 }
 
 + (CardLogoType)cardLogoTypeForNetworkType:(CardNetwork)network {
