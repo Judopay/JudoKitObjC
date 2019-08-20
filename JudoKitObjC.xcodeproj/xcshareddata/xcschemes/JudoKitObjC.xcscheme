@@ -49,9 +49,6 @@
                   Identifier = "RefundTests">
                </Test>
                <Test
-                  Identifier = "RegisterCardTests">
-               </Test>
-               <Test
                   Identifier = "SaveCardTests">
                </Test>
                <Test
