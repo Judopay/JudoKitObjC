@@ -40,15 +40,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "ListTests">
-               </Test>
-               <Test
-                  Identifier = "ReceiptTests">
-               </Test>
-               <Test
-                  Identifier = "RefundTests">
-               </Test>
-               <Test
                   Identifier = "VCOTests">
                </Test>
             </SkippedTests>
