@@ -67,7 +67,7 @@ class TokenPreAuthTests: JudoTestCase {
             paymentToken.secureCode = self.validVisaTestCard.secureCode
             
             let preAuth = self.judo.preAuth(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: reference)
             
             preAuth.paymentToken = paymentToken
@@ -117,7 +117,7 @@ class TokenPreAuthTests: JudoTestCase {
             }
             
             let preAuth = self.judo.preAuth(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             preAuth.send(completion: { [weak self] (response, error) -> () in
@@ -168,7 +168,7 @@ class TokenPreAuthTests: JudoTestCase {
             paymentToken.secureCode = self.validVisaTestCard.secureCode
             
             let preAuth = self.judo.preAuth(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             preAuth.paymentToken = paymentToken

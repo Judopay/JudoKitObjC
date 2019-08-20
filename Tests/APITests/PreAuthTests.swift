@@ -50,7 +50,7 @@ class PreAuthTests: JudoTestCase {
     func test_OnValidJPPreAuth_ReturnResponse() {
         
         let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: UUID().uuidString))
         
         preAuth.card = validVisaTestCard
@@ -176,7 +176,7 @@ class PreAuthTests: JudoTestCase {
     func test_OnPreAuthWithoutReference_ReturnError() {
         
         let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: ""))
         
         preAuth.card = validVisaTestCard
@@ -207,7 +207,7 @@ class PreAuthTests: JudoTestCase {
                                     paymentReference: "")
         
         let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         preAuth.card = validVisaTestCard
@@ -239,7 +239,7 @@ class PreAuthTests: JudoTestCase {
                                     paymentReference: " ")
         
         let preAuth = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         preAuth.card = validVisaTestCard
@@ -271,7 +271,7 @@ class PreAuthTests: JudoTestCase {
                                     paymentReference: String(repeating: "a", count: 51))
         
         let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         preAuth.card = validVisaTestCard

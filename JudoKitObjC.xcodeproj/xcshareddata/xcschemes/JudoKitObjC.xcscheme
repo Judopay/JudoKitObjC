@@ -49,16 +49,7 @@
                   Identifier = "RefundTests">
                </Test>
                <Test
-                  Identifier = "TransactionEnricherTests">
-               </Test>
-               <Test
-                  Identifier = "TransactionTests">
-               </Test>
-               <Test
                   Identifier = "VCOTests">
-               </Test>
-               <Test
-                  Identifier = "VoidTransactionTests">
                </Test>
             </SkippedTests>
          </TestableReference>

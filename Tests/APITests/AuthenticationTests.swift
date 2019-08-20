@@ -40,14 +40,14 @@ class AuthenticationTests: JudoTestCase {
         
         let request = judo.transaction(for: .payment,
                                               judoId: myJudoId,
-                                              amount: oneGBPAmount,
+                                              amount: JPAmount(amount: "0.01", currency: "GBP"),
                                               reference: JPReference(consumerReference: consumerReference))
         
         XCTAssertNotNil(request,
                         "JPTransaction object must not be nil")
-        XCTAssertEqual(request?.amount?.amount, oneGBPAmount.amount,
+        XCTAssertEqual(request?.amount?.amount, "0.01",
                        "JPTransaction object must be initialized with correct amount")
-        XCTAssertEqual(request?.amount?.currency, oneGBPAmount.currency,
+        XCTAssertEqual(request?.amount?.currency, "GBP",
                        "JPTransaction object must be initialized with correct currency")
         XCTAssertEqual(request?.judoId, myJudoId,
                        "JPTransaction object must be initialized with valid Judo ID")
@@ -66,7 +66,7 @@ class AuthenticationTests: JudoTestCase {
     func test_OnInvalidTokenAndSecret_ReturnAuthenticationError() {
         
         let payment = invalidJudo.payment(withJudoId: myJudoId,
-                                                 amount: oneGBPAmount,
+                                                 amount: JPAmount(amount: "0.01", currency: "GBP"),
                                                  reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = self.validVisaTestCard
@@ -93,7 +93,7 @@ class AuthenticationTests: JudoTestCase {
         let expectation = self.expectation(description: "testNonExistentJudoID")
         
         let payment = judo.payment(withJudoId: "1000009",
-                                          amount: oneGBPAmount,
+                                          amount: JPAmount(amount: "0.01", currency: "GBP"),
                                           reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
@@ -118,7 +118,7 @@ class AuthenticationTests: JudoTestCase {
         let expectation = self.expectation(description: "testInvalidJudoID")
         
         let payment = judo.payment(withJudoId: "invalid_judo_id",
-                                          amount: oneGBPAmount,
+                                          amount: JPAmount(amount: "0.01", currency: "GBP"),
                                           reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
@@ -141,7 +141,7 @@ class AuthenticationTests: JudoTestCase {
     func test_OnValidParameters_ReturnValidTransaction() {
 
         let payment = judo.payment(withJudoId: myJudoId,
-                                          amount: oneGBPAmount,
+                                          amount: JPAmount(amount: "0.01", currency: "GBP"),
                                           reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
