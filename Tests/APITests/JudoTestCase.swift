@@ -74,6 +74,6 @@ extension JudoTestCase {
         }
         
         XCTAssertEqual(error.code, Int(judoError.rawValue),
-                       "Error must return code: \(judoError.rawValue) instead of \(error.code)")
+                       "Error must return code: \(error.code) instead of \(judoError.rawValue)")
     }
 }
