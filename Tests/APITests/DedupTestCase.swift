@@ -36,8 +36,8 @@ class DedupTestCase: JudoTestCase {
     func test_JPPaymentInitialization() {
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
-                                   reference: validReference)
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         XCTAssertNotNil(payment,
                         "A valid JPPayment object must be created when correctly initialized")
@@ -56,8 +56,8 @@ class DedupTestCase: JudoTestCase {
     func test_OnDifferentReferences_AllowDuplicateTransactions() {
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
-                                   reference: JPReference(consumerReference: "example1"))
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
         
@@ -78,8 +78,8 @@ class DedupTestCase: JudoTestCase {
             }
             
             let payment2 = self.judo.payment(withJudoId: myJudoId,
-                                             amount: self.oneGBPAmount,
-                                             reference: JPReference(consumerReference: "example2"))
+                                             amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             payment2.card = self.validVisaTestCard
             
@@ -115,8 +115,8 @@ class DedupTestCase: JudoTestCase {
     func test_OnDifferentReferences_DenyDuplicateTransactions() {
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
-                                   reference: JPReference(consumerReference: "common reference"))
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
 
         payment.card = validVisaTestCard
         
