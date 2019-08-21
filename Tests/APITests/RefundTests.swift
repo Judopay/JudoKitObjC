@@ -27,49 +27,59 @@ import XCTest
 
 class RefundTests: JudoTestCase {
     
-    func testRefund() {
+    /**
+     * GIVEN: I make a transaction and get a valid receipt ID and amount
+     *
+     * WHEN:  I create a JPRefund object with the receipt ID and amount and call 'send'
+     *
+     * THEN:  I should get back a succesful response and no error
+     */
+    func test_OnValidReceiptIDAndAmount_ReturnValidResponse() {
         
-        let expectation = self.expectation(description: "payment expectation")
+        let expectation = self.expectation(description: "testRefund")
         
-        // Given I have made a payment
-        let preAuth = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        let preAuth = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
         preAuth.card = validVisaTestCard
         
         preAuth.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-                expectation.fulfill()
+                XCTFail("API call failed with error: \(error)")
                 return
             }
             
-            // And I have a receipt ID of a given transaction
-            // And I have the amount of that transaction
-            guard let receiptId = response?.items?.first?.receiptId,
-                let amount = response?.items?.first?.amount else {
-                    XCTFail("receipt ID was not available in response")
-                    expectation.fulfill()
-                    return
+            guard let receiptId = response?.items?.first?.receiptId else {
+                XCTFail("Receipt ID was not available in response.")
+                return
             }
             
-            // When I perform a refund up to the original amount
+            guard let amount = response?.items?.first?.amount else {
+                XCTFail("Amount was not available in response.")
+                return
+            }
+            
             let refund = self.judo.refund(withReceiptId: receiptId, amount: amount)
+            
             refund.send(completion: { (response, error) -> () in
-                // Then I receive a successful response
+
                 if let error = error {
-                    XCTFail("api call failed with error: \(error)")
+                    XCTFail("API call failed with error: \(error)")
                 }
                 
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(response?.items?.first)
+                XCTAssertNotNil(response,
+                                "Response must not be nil on valid receipt")
+                
+                XCTAssertNotNil(response?.items?.first,
+                                "Response must contain at least one JPTransactionData object")
                 
                 expectation.fulfill();
             })
             
             XCTAssertNotNil(refund)
         })
-        
-        XCTAssertNotNil(preAuth)
-        XCTAssertEqual(preAuth.judoId, myJudoId)
         
         self.waitForExpectations(timeout: 30, handler: nil)
         

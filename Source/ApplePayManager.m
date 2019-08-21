@@ -167,46 +167,46 @@
 
 #pragma mark - Conversions to PassKit objects
 
-- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)cardNetwork {
+- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)cardNetwork { //!OCLINT
 
     switch (cardNetwork) {
-            
+
         case CardNetworkAMEX:
             return PKPaymentNetworkAmex;
-            
+
         case CardNetworkCarteBancaire:
             return PKPaymentNetworkCarteBancaire;
-            
+
         case CardNetworkChinaUnionPay:
             return PKPaymentNetworkChinaUnionPay;
-            
+
         case CardNetworkDiscover:
             return PKPaymentNetworkDiscover;
-            
+
         case CardNetworkJCB:
             return PKPaymentNetworkJCB;
-            
+
         case CardNetworkMasterCard:
             return PKPaymentNetworkMasterCard;
 
         case CardNetworkVisa:
             return PKPaymentNetworkVisa;
-            
+
         case CardNetworkVisaElectron:
             if (@available(iOS 12.0, *)) {
                 return PKPaymentNetworkElectron;
             }
-         
+
         case CardNetworkMaestro:
             if (@available(iOS 12.0, *)) {
                 return PKPaymentNetworkMaestro;
             }
-            
+
         case CardNetworkElo:
             if (@available(iOS 12.1.1, *)) {
                 return PKPaymentNetworkElo;
             }
-        
+
         default:
             return nil;
     }

@@ -27,22 +27,37 @@ import XCTest
 
 class TransactionTests: JudoTestCase {
     
-    func testTransaction() {
-        // Given I have a Transaction
-        let makePayment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I want to make a payment with valid amount, Judo ID and reference
+     *
+     *  WHEN: I select valid card for transaction and make the payment
+     *
+     *  THEN: I should obtain a valid JPResponse and no error
+     */
+    func test_OnValidCard_ReturnSuccesfulResponse() {
         
-        // And I have valid card details
-        makePayment.card = validVisaTestCard
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        let expectation = self.expectation(description: "testTransactionExpectation")
+        payment.card = validVisaTestCard
         
-        // When I submit the card details
-        makePayment.send(completion: { (response, error) -> () in
-            // And the transaction is successful
-            // Then I receive a successful response
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            XCTAssertEqual(response?.items?.first?.result, TransactionResult.success)
+        let expectation = self.expectation(description: "testValidVisaCard")
+        
+        payment.send(completion: { (response, error) -> () in
+            
+            if let error = error {
+                XCTFail("API call failed with error: \(error)")
+            }
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid receipt")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object")
+            
+            XCTAssertEqual(response?.items?.first?.result, TransactionResult.success,
+                           "Response should return a succesful transaction result")
             
             expectation.fulfill()
         })
@@ -50,28 +65,26 @@ class TransactionTests: JudoTestCase {
         self.waitForExpectations(timeout: 30.0, handler: nil)
     }
     
-    func testTransactionDeclinedResponse() {
-        // Given I have a Transaction
-        let makePayment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I want to make a payment with valid amount, Judo ID and reference
+     *
+     *  WHEN: I select an invalid card for transaction and make the payment
+     *
+     *  THEN: I should obtain an error and no response
+     */
+    func test_OnValidCard_ReturnDeclinedError() {
         
-        // And I have valid card details
-        makePayment.card = declinedVisaTestCard
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        let expectation = self.expectation(description: "testTransactionDeclinedResponseExpectation")
+        payment.card = declinedVisaTestCard
         
-        // When I submit the card details
-        makePayment.send(completion: { (response, error) -> () in
-            // And the transaction is successful
-            // Then I receive an error
-            XCTAssertNotNil(error)
-            
-            if let error = error {
-                XCTAssertNotNil(error._userInfo)
-                XCTAssertEqual(error._code, Int(JudoError.errorTransactionDeclined.rawValue))
-            } else {
-                XCTFail("api call did not fail")
-            }
-            
+        let expectation = self.expectation(description: "testInvalidCard")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            XCTAssertNil(response, "Response must be nil when invalid card has been passed")
+            self?.assert(error: error, as: .errorTransactionDeclined)
             expectation.fulfill()
         })
         
