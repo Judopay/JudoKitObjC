@@ -75,7 +75,7 @@ class CardDetailsSetTests : JudoTestCase {
     }
     
     /**
-     * GIVEN: I have initialized the JudoPayViewController with valid no card details and
+     * GIVEN: I have initialized the JudoPayViewController with no card details and
      *        with a payment token
      *
      * THEN:  The card input field and the expiry date fields must not contain values
@@ -89,8 +89,10 @@ class CardDetailsSetTests : JudoTestCase {
         let cardInputField = jpvc.cardInputField
         let expiryDateInputField = jpvc.expiryDateInputField
         
-        XCTAssertEqual("", cardInputField?.textField.text)
-        XCTAssertEqual("", expiryDateInputField?.textField.text)
+        XCTAssertEqual("", cardInputField?.textField.text,
+                       "Card Input field must be empty on no card details provided")
+        XCTAssertEqual("", expiryDateInputField?.textField.text,
+                       "Expiry Date field must be empty on no card details provided")
     }
 }
 
