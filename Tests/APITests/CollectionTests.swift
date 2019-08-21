@@ -41,7 +41,7 @@ class CollectionTests: JudoTestCase {
         let expectation = self.expectation(description: "testPreAuth")
 
         let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: UUID().uuidString))
         
         XCTAssertNotNil(preAuth,

@@ -36,7 +36,9 @@ class RegisterCardTests: JudoTestCase {
     func test_OnValidParameters_JPRegisterCardInitializesSuccesfully() {
         let registration = judo.registerCard(withJudoId: myJudoId,
                                              reference: JPReference(consumerReference: UUID().uuidString))
-        XCTAssertNotNil(registration)
+        
+        XCTAssertNotNil(registration,
+                        "JPRegisterCard should be succesfully initialized with valid parameters")
     }
     
     /**

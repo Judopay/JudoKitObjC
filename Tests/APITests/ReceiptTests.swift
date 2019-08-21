@@ -37,7 +37,7 @@ class ReceiptTests: JudoTestCase {
     func test_OnValidReceiptID_JPReceiptReturnsValidResponse() {
 
         let initialPayment = judo.payment(withJudoId: myJudoId,
-                                          amount: oneGBPAmount,
+                                          amount: JPAmount(amount: "0.01", currency: "GBP"),
                                           reference: JPReference(consumerReference: UUID().uuidString))
         
         initialPayment.card = validVisaTestCard

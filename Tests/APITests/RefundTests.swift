@@ -39,7 +39,7 @@ class RefundTests: JudoTestCase {
         let expectation = self.expectation(description: "testRefund")
         
         let preAuth = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: UUID().uuidString))
         
         preAuth.card = validVisaTestCard

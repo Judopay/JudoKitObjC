@@ -108,7 +108,7 @@ extension CardDetailsSetTests {
                                               paymentToken: JPPaymentToken?) -> JudoPayViewController {
         
         let vc = JudoPayViewController(judoId: myJudoId,
-                                       amount: oneGBPAmount,
+                                       amount: JPAmount(amount: "0.01", currency: "GBP"),
                                        reference: JPReference(consumerReference: UUID().uuidString),
                                        transaction: .payment,
                                        currentSession: judo,

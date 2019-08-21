@@ -38,38 +38,6 @@
                BlueprintName = "JudoKitObjCTests"
                ReferencedContainer = "container:JudoKitObjC.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ListTests">
-               </Test>
-               <Test
-                  Identifier = "ReceiptTests">
-               </Test>
-               <Test
-                  Identifier = "RefundTests">
-               </Test>
-               <Test
-                  Identifier = "SaveCardTests">
-               </Test>
-               <Test
-                  Identifier = "TokenPaymentTests">
-               </Test>
-               <Test
-                  Identifier = "TokenPreAuthTests">
-               </Test>
-               <Test
-                  Identifier = "TransactionEnricherTests">
-               </Test>
-               <Test
-                  Identifier = "TransactionTests">
-               </Test>
-               <Test
-                  Identifier = "VCOTests">
-               </Test>
-               <Test
-                  Identifier = "VoidTransactionTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
