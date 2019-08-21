@@ -109,9 +109,9 @@
 
 - (NSString *)hintLabelText {
     if (self.isTokenPayment) {
-        return [@"please_reenter_the_card_security_code" localized];
+        return @"please_reenter_the_card_security_code".localized;
     }
-    return [@"security_code" localized];
+    return @"security_code".localized;
 }
 
 - (NSInteger)securityCodeLengthForCardNetwork:(CardNetwork)network {

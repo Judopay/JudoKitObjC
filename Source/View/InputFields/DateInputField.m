@@ -145,9 +145,9 @@
     if (self.isValid) {
         [self.delegate dateInput:self didFindValidDate:textField.text];
     } else {
-        NSString *errorMessage = [@"check_expiry_date" localized];
+        NSString *errorMessage = @"check_expiry_date".localized;
         if (self.isStartDate) {
-            errorMessage = [@"check_start_date" localized];
+            errorMessage = @"check_start_date".localized;
         }
         [self.delegate dateInput:self didFailWithError:[NSError judoInputMismatchErrorWithMessage:errorMessage]];
     }
@@ -158,11 +158,11 @@
 }
 
 - (NSString *)title {
-    return self.isStartDate ? [@"start_date_label" localized] : [@"expiry_date_label" localized];
+    return self.isStartDate ? @"start_date_label".localized : @"expiry_date_label".localized;
 }
 
 - (NSString *)hintLabelText {
-    return [@"date_hint" localized];
+    return @"date_hint".localized;
 }
 
 #pragma mark - Lazy Loading
@@ -170,7 +170,7 @@
 - (NSDateFormatter *)dateFormatter {
     if (!_dateFormatter) {
         _dateFormatter = [NSDateFormatter new];
-        _dateFormatter.dateFormat = [@"date_format" localized];
+        _dateFormatter.dateFormat = @"date_format".localized;
     }
     return _dateFormatter;
 }

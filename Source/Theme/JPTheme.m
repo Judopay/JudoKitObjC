@@ -51,98 +51,98 @@
 
 - (NSString *)paymentButtonTitle {
     if (!_paymentButtonTitle) {
-        _paymentButtonTitle = [@"pay" localized];
+        _paymentButtonTitle = @"pay".localized;
     }
     return _paymentButtonTitle;
 }
 
 - (NSString *)registerCardButtonTitle {
     if (!_registerCardButtonTitle) {
-        _registerCardButtonTitle = [@"add_card" localized];
+        _registerCardButtonTitle = @"add_card".localized;
     }
     return _registerCardButtonTitle;
 }
 
 - (NSString *)registerCardNavBarButtonTitle {
     if (!_registerCardNavBarButtonTitle) {
-        _registerCardNavBarButtonTitle = [@"add" localized];
+        _registerCardNavBarButtonTitle = @"add".localized;
     }
     return _registerCardNavBarButtonTitle;
 }
 
 - (NSString *)backButtonTitle {
     if (!_backButtonTitle) {
-        _backButtonTitle = [@"back" localized];
+        _backButtonTitle = @"back".localized;
     }
     return _backButtonTitle;
 }
 
 - (NSString *)paymentTitle {
     if (!_paymentTitle) {
-        _paymentTitle = [@"payment" localized];
+        _paymentTitle = @"payment".localized;
     }
     return _paymentTitle;
 }
 
 - (NSString *)registerCardTitle {
     if (!_registerCardTitle) {
-        _registerCardTitle = [@"add_card" localized];
+        _registerCardTitle = @"add_card".localized;
     }
     return _registerCardTitle;
 }
 
 - (NSString *)refundTitle {
     if (!_refundTitle) {
-        _refundTitle = [@"refund" localized];
+        _refundTitle = @"refund".localized;
     }
     return _refundTitle;
 }
 
 - (NSString *)authenticationTitle {
     if (!_authenticationTitle) {
-        _authenticationTitle = [@"authentication" localized];
+        _authenticationTitle = @"authentication".localized;
     }
     return _authenticationTitle;
 }
 
 - (NSString *)loadingIndicatorRegisterCardTitle {
     if (!_loadingIndicatorRegisterCardTitle) {
-        _loadingIndicatorRegisterCardTitle = [@"adding_card" localized];
+        _loadingIndicatorRegisterCardTitle = @"adding_card".localized;
     }
     return _loadingIndicatorRegisterCardTitle;
 }
 
 - (NSString *)loadingIndicatorProcessingTitle {
     if (!_loadingIndicatorProcessingTitle) {
-        _loadingIndicatorProcessingTitle = [@"processing_payment" localized];
+        _loadingIndicatorProcessingTitle = @"processing_payment".localized;
     }
     return _loadingIndicatorProcessingTitle;
 }
 
 - (NSString *)redirecting3DSTitle {
     if (!_redirecting3DSTitle) {
-        _redirecting3DSTitle = [@"redirecting" localized];
+        _redirecting3DSTitle = @"redirecting".localized;
     }
     return _redirecting3DSTitle;
 }
 
 - (NSString *)verifying3DSPaymentTitle {
     if (!_verifying3DSPaymentTitle) {
-        _verifying3DSPaymentTitle = [@"verifying_payment" localized];
+        _verifying3DSPaymentTitle = @"verifying_payment".localized;
     }
     return _verifying3DSPaymentTitle;
 }
 
 - (NSString *)verifying3DSRegisterCardTitle {
     if (!_verifying3DSRegisterCardTitle) {
-        _verifying3DSRegisterCardTitle = [@"verifying_card" localized];
+        _verifying3DSRegisterCardTitle = @"verifying_card".localized;
     }
     return _verifying3DSRegisterCardTitle;
 }
 
 - (NSString *)securityMessageString {
     if (!_securityMessageString) {
-        _securityMessageString = [@"secure_server_transmission" localized];
+        _securityMessageString = @"secure_server_transmission".localized;
     }
     return _securityMessageString;
 }

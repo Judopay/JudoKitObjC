@@ -69,7 +69,7 @@
 - (void)loadView {
     [super loadView];
 
-    self.title = [@"payment_method" localized];
+    self.title = @"payment_method".localized;
 
     self.stackView = [UIStackView new];
     self.stackView.axis = UILayoutConstraintAxisVertical;
@@ -98,7 +98,7 @@
     headingLabel.numberOfLines = 0;
     headingLabel.textAlignment = NSTextAlignmentCenter;
     headingLabel.textColor = self.theme.judoTextColor;
-    headingLabel.text = [@"select_payment_method" localized];
+    headingLabel.text = @"select_payment_method".localized;
 
     [self.stackView addArrangedSubview:headingLabel];
     [self setupPaymentMethodButtons];
@@ -116,7 +116,7 @@
     if (self.viewModel.paymentMethods & PaymentMethodCard) {
         UIButton *cardPaymentButton = [[UIButton alloc] init];
         [cardPaymentButton setTag:PaymentMethodCard];
-        [cardPaymentButton setTitle:[@"card_payment" localized] forState:UIControlStateNormal];
+        [cardPaymentButton setTitle:@"card_payment".localized forState:UIControlStateNormal];
 
         [cardPaymentButton.titleLabel setFont:self.theme.buttonFont];
         [cardPaymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];

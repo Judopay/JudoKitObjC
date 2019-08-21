@@ -65,11 +65,11 @@
 }
 
 - (NSString *)title {
-    return [@"issue_number_label" localized];
+    return @"issue_number_label".localized;
 }
 
 - (NSString *)hintLabelText {
-    return [@"issue_number_front_of_card" localized];
+    return @"issue_number_front_of_card".localized;
 }
 
 @end

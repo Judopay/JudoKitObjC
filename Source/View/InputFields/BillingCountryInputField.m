@@ -51,7 +51,7 @@
     self.countryPicker.delegate = self;
     self.countryPicker.dataSource = self;
     self.textField.placeholder = @" ";
-    self.textField.text = [@"united_kingdom" localized];
+    self.textField.text = @"united_kingdom".localized;
     self.textField.inputView = self.countryPicker;
 
     [self setActive:YES];
@@ -60,13 +60,13 @@
 - (NSString *)titleForBillingCountry:(BillingCountry)country {
     switch (country) {
         case BillingCountryUK:
-            return [@"united_kingdom" localized];
+            return @"united_kingdom".localized;
         case BillingCountryCanada:
-            return [@"canada" localized];
+            return @"canada".localized;
         case BillingCountryUSA:
-            return [@"united_states" localized];
+            return @"united_states".localized;
         default:
-            return [@"other_country" localized];
+            return @"other_country".localized;
     }
 }
 

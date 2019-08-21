@@ -69,14 +69,14 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 - (NSString *)descriptionForBillingCountry:(BillingCountry)country {
 
     if (country == BillingCountryUSA) {
-        return [@"billing_zip_code" localized];
+        return @"billing_zip_code".localized;
     }
 
     if (country == BillingCountryCanada) {
-        return [@"billing_postcode" localized];
+        return @"billing_postcode".localized;
     }
 
-    return [@"billing_postcode" localized];
+    return @"billing_postcode".localized;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

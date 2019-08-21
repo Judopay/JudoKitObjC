@@ -137,11 +137,11 @@
 }
 
 - (NSString *)title {
-    return [@"card_number_label" localized];
+    return @"card_number_label".localized;
 }
 
 - (NSString *)hintLabelText {
-    return [@"long_card_number" localized];
+    return @"long_card_number".localized;
 }
 
 + (CardLogoType)cardLogoTypeForNetworkType:(CardNetwork)network {
