@@ -34,7 +34,7 @@ class CollectionTests: JudoTestCase {
      * WHEN:  I perform a collection with the receipt ID and the amount
      *
      * THEN:  I should receive a succesful response with at least one
-     *        JPTransactionData items
+     *        JPTransactionData item
      */
     func test_OnCollectionCreation_WithValidReceiptAndAmount_ReturnValidResponse() {
         
