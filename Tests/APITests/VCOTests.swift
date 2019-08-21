@@ -27,26 +27,39 @@ import XCTest
 @testable import JudoKitObjC
 
 class VCOTests : JudoTestCase {
-    func testVCOTransaction() {
-        // Given I have a Transaction
-        let makePayment: JPTransaction = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    
+    /**
+     * GIVEN: I want to make a payment with valid amount, Judo ID and reference
+     *
+     *  WHEN: I select valid Visa Checkout details
+     *
+     *  THEN: I should obtain a valid JPResponse and no error
+     */
+    func test_OnValidVisaCheckout_ReturnJPResponse() {
 
-        // And I have a valid Visa Checkout result
-        makePayment.setVCOResult(validVCOResult)
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
 
-        let expectation = self.expectation(description: "testTransactionExpectation")
+        payment.setVCOResult(validVCOResult)
 
-        // When I submit the card details
-        makePayment.send(completion: { (response, error) -> () in
+        let expectation = self.expectation(description: "testVisaCheckout")
+
+        payment.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            } else {
-                // And the transaction is successful
-                // Then I receive a successful response
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(response?.items?.first)
-                XCTAssertEqual(response?.items?.first?.result, TransactionResult.success)
+                XCTFail("API call failed with error: \(error)")
             }
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid receipt")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object")
+            
+            XCTAssertEqual(response?.items?.first?.result, TransactionResult.success,
+                           "Response should return a succesful transaction result")
+            
             expectation.fulfill()
         })
 

@@ -22,7 +22,6 @@
 //  SOFTWARE.
 
 import XCTest
-
 @testable import JudoKitObjC
 
 class ApplePayTests: JudoTestCase {

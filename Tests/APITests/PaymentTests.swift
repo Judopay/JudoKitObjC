@@ -28,261 +28,264 @@ import CoreLocation
 
 class PaymentTests: JudoTestCase {
     
-    func testPayment() {
-        let references = JPReference(consumerReference: "consumer0053252")
+    /**
+     * GIVEN: I call JudoKit's payment method with valid parameters
+     *
+     * THEN:  A valid JPPayment object must be returned
+     */
+    func test_JPPaymentInitialization() {
+        let references = JPReference(consumerReference: UUID().uuidString)
         let amount = JPAmount(amount: "30", currency: "GBP")
+        
         let payment = judo.payment(withJudoId: myJudoId, amount: amount, reference: references)
         XCTAssertNotNil(payment)
     }
     
-    func testJudoMakeValidPayment() {
-        // Given I have a Payment
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I initialize JPPayment correctly
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  A JPResponse object and no error must be returned
+     */
+    func test_OnValidJPPayment_ReturnResponse() {
+
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        // When I provide all the required fields
         payment.card = validVisaTestCard
         
-        // Then I should be able to make a payment
-        let expectation = self.expectation(description: "payment expectation")
+        let expectation = self.expectation(description: "testValidJPPayment")
         
         payment.send { (response, error) in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid JPPayment configuration")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
+            
             expectation.fulfill()
         }
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func testJudoMakeValidPaymentWithDeviceSignals() {
-        // Given I have a Payment
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
-        
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
-        
-        // Then I should be able to make a payment
-        let expectation = self.expectation(description: "payment expectation")
-        
-        judo.send(withCompletion: payment) { (response, error) in
-            if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            expectation.fulfill()
-        }
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func testJudoMakePaymentWithSingaporeDollar() {
-        // Given I have a Payment
-        let amount = JPAmount(amount: "17.72", currency: "SGD")
-        let payment = judo.payment(withJudoId: myJudoId, amount: amount, reference: validReference)
-        
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
-        
-        // Then I should be able to make a payment
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func testJudoMakePaymentWithoutAmount() {
-        // Given I have a Payment
-        // When I do not provide an amount
-        let payment = judo.payment(withJudoId: myJudoId, amount: invalidAmount, reference: validReference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    
-    func testJudoMakePaymentWithoutCurrency() {
-        // Given I have a Payment
-        // When I do not provide a currency
-        let payment = judo.payment(withJudoId: myJudoId, amount: invalidCurrencyAmount, reference: validReference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    
-    func testJudoMakePaymentWithoutReference() {
-        // Given I have a Payment
-        // When I do not provide a consumer reference
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: invalidReference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test_PassingAnEmptyPaymentReferenceMustResultInPaymentError() {
-        // Given I have a Payment
-        // When I provide an empty payment reference
-        let reference = JPReference(consumerReference: UUID().uuidString, paymentReference: "")
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: reference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test_PassingAWhiteSpacePaymentReferenceMustResultInPaymentError() {
-        // Given I have a Payment
-        // When I provide a whitespace payment reference
-        let reference = JPReference(consumerReference: UUID().uuidString, paymentReference: " ")
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: reference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test_PassingAPaymentReferenceOver50CharsMustResultInPaymentError() {
-        // Given I have a Payment
-        // When I provide a payment reference over 50 chars
-        let reference = JPReference(consumerReference: UUID().uuidString, paymentReference: String(repeating: "a", count: 51))
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: reference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-            
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func test_PassingAUniquePaymentReferenceMustResultInASuccessfulPayment() {
-        // Given I have a Payment
-        // When I provide a valid payment reference
-        let reference = JPReference(consumerReference: UUID().uuidString, paymentReference: UUID().uuidString)
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: reference)
+    /**
+     * GIVEN: I initialize JPPayment with Singapore dollars
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  A JPResponse object and no error must be returned
+     */
+    func test_OnPaymentWithSingaporeDollars_ReturnResponse() {
 
-        // When I provide all the required fields
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "17.72", currency: "SGD"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
         payment.card = validVisaTestCard
         
-        // Then I should be able to make a payment
-        let expectation = self.expectation(description: "payment expectation")
+        let expectation = self.expectation(description: "testSingaporeDollars")
         
         payment.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid JPPayment configuration")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
+            
             expectation.fulfill()
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with an invalid amount
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithoutAmount_ReturnError() {
+
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testInvalidAmount")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with an invalid currency
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithoutCurrency_ReturnError() {
+
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: ""),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testInvalidCurrency")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with an invalid reference
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithoutReference_ReturnError() {
+
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: ""))
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testInvalidCurrency")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with an empty payment reference
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithEmptyPaymentReference_ReturnError() {
+
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: "")
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with a payment reference that contains
+     *        whitespaces only
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithWhitespacePaymentReference_ReturnError() {
+
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: " ")
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPayment with a payment reference that contains
+     *        more than 50 characters
+     *
+     * WHEN:  I call JPPayment's 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPaymentWithLongPaymentReference_ReturnError() {
+ 
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: String(repeating: "a", count: 51))
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        payment.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        payment.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
         
         self.waitForExpectations(timeout: 30, handler: nil)
     }

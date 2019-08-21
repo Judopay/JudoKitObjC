@@ -27,155 +27,215 @@ import XCTest
 
 class TokenPaymentTests: JudoTestCase {
     
-    func testJudoMakeValidTokenPayment() {
-        // Given I have an SDK
-        // When I provide the required fields
-        let registerCard = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have registered a card and obtained a valid consumer and card token
+     *
+     * WHEN:  I make a payment with an initialized JPPaymentToken
+     *
+     * THEN:  I should get back a valid JPResponse and no error
+     */
+    func test_OnValidJPPaymentToken_ReturnValidJPResponse() {
+        
+        let reference = JPReference(consumerReference: UUID().uuidString)
+        
+        let registerCard = judo.registerCard(withJudoId: myJudoId,
+                                             reference: reference)
         
         registerCard.card = validVisaTestCard
         
-        let expectation = self.expectation(description: "token payment expectation")
+        let expectation = self.expectation(description: "testTokenPayment")
         
-        registerCard.send(completion: { (data, error) -> () in
+        registerCard.send(completion: { [weak self] (response, error) -> () in
+            
+            guard let self = self else { return }
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            } else {
-                guard let uData = data else {
-                    XCTFail("no data available")
-                    return
+                XCTFail("API call failed with error: \(error)")
+            }
+            
+            guard let consumerToken = response?.items?.first?.consumer.consumerToken else {
+                XCTFail("No consumer token found in response")
+                return
+            }
+            guard let cardToken = response?.items?.first?.cardDetails?.cardToken else {
+                XCTFail("No card token found in response")
+                return
+            }
+            
+            let paymentToken = JPPaymentToken(consumerToken: consumerToken, cardToken: cardToken)
+            
+            paymentToken.secureCode = self.validVisaTestCard.secureCode
+            
+            let payment = self.judo.payment(withJudoId: myJudoId,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                            reference: reference)
+            
+            payment.paymentToken = paymentToken
+            
+            payment.send(completion: { (response, error) -> () in
+                
+                if let error = error {
+                    XCTFail("API call failed with error: \(error)")
                 }
                 
-                let consumerToken = uData.items?.first?.consumer.consumerToken
-                let cardToken = uData.items?.first?.cardDetails?.cardToken
+                XCTAssertNotNil(response,
+                                "Response must not be nil on valid receipt")
                 
-                let payToken = JPPaymentToken(consumerToken: consumerToken!, cardToken: cardToken!)
+                XCTAssertNotNil(response?.items?.first,
+                                "Response must contain at least one JPTransactionData object")
                 
-                payToken.secureCode = self.validVisaTestCard.secureCode
-                
-                // Then I should be able to make a token payment
-                let payment = self.judo.payment(withJudoId: myJudoId, amount: self.oneGBPAmount, reference: self.validReference)
-                payment.paymentToken = payToken
-                payment.send(completion: { (data, error) -> () in
-                    if let error = error {
-                        XCTFail("api call failed with error: \(error)")
-                    }
-                    expectation.fulfill()
-                })
-            }
+                expectation.fulfill()
+            })
+            
         })
-        XCTAssertNotNil(registerCard)
-        XCTAssertEqual(registerCard.judoId, myJudoId)
         
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakeTokenPaymentWithoutToken() {
-        // Given I have an SDK
-        let registerCard = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have a JPRegisterCard object and registered the card
+     *
+     * WHEN:  I make a payment without passing a JPPaymentToken
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnNoJPPaymentToken_ReturnError() {
+        
+        let registerCard = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: UUID().uuidString))
+        
         registerCard.card = validVisaTestCard
         
-        let expectation = self.expectation(description: "token payment expectation")
+        let expectation = self.expectation(description: "testNoTokenPayment")
         
-        registerCard.send(completion: { (data, error) -> () in
+        registerCard.send(completion: { [weak self] (_, error) -> () in
+            
+            guard let self = self else { return }
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            } else {
-                
-                // When I do not provide a card token
-                let payment = self.judo.payment(withJudoId: myJudoId, amount: self.oneGBPAmount, reference: self.validReference)
-                payment.send(completion: { (data, error) -> () in
-                    XCTAssertEqual(error!._code, Int(JudoError.errorPaymentMethodMissing.rawValue))
-                    expectation.fulfill()
-                })
+                XCTFail("API call failed with error: \(error)")
             }
+            
+            let payment = self.judo.payment(withJudoId: myJudoId,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                            reference: JPReference(consumerReference: UUID().uuidString))
+            
+            payment.send(completion: { [weak self] (response, error) -> () in
+                XCTAssertNil(response, "Response must be nil when no payment token has been passed")
+                self?.assert(error: error, as: .errorPaymentMethodMissing)
+                expectation.fulfill()
+            })
+            
         })
-        XCTAssertNotNil(registerCard)
-        XCTAssertEqual(registerCard.judoId, myJudoId)
-        
+
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakeTokenPaymentWithoutReference() {
-        // Given I have an SDK
-        let registerCard = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have registered the card with some reference ID
+     *
+     * WHEN: I make a payment with a different reference ID
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnWrongReferencePassed_ReturnError() {
+
+        let registerCard = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: UUID().uuidString))
         registerCard.card = validVisaTestCard
         
-        let expectation = self.expectation(description: "token payment expectation")
+        let expectation = self.expectation(description: "testDifferentReferences")
         
-        registerCard.send(completion: { (data, error) -> () in
+        registerCard.send(completion: { [weak self] (response, error) -> () in
+            
+            guard let self = self else { return }
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            } else {
-                guard let uData = data else {
-                    XCTFail("no data available")
-                    return
-                }
-                
-                let consumerToken = uData.items?.first?.consumer.consumerToken
-                let cardToken = uData.items?.first?.cardDetails?.cardToken
-                
-                let payToken = JPPaymentToken(consumerToken: consumerToken!, cardToken: cardToken!)
-                
-                // When I do not provide a consumer reference
-                // Then I should receive an error
-                let payment = self.judo.payment(withJudoId: myJudoId, amount: self.oneGBPAmount, reference: self.invalidReference)
-                payment.paymentToken = payToken
-                payment.send(completion: { (response, error) -> () in
-                    XCTAssertNil(response)
-                    XCTAssertNotNil(error)
-                    XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-                    
-                    expectation.fulfill()
-                })
+                XCTFail("API call failed with error: \(error)")
             }
+            
+            guard let consumerToken = response?.items?.first?.consumer.consumerToken else {
+                XCTFail("No consumer token found in response")
+                return
+            }
+            guard let cardToken = response?.items?.first?.cardDetails?.cardToken else {
+                XCTFail("No card token found in response")
+                return
+            }
+            
+            let paymentToken = JPPaymentToken(consumerToken: consumerToken, cardToken: cardToken)
+            
+            paymentToken.secureCode = self.validVisaTestCard.secureCode
+            
+            let payment = self.judo.payment(withJudoId: myJudoId,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                            reference: JPReference(consumerReference: UUID().uuidString))
+            
+            payment.paymentToken = paymentToken
+            
+            payment.send(completion: { [weak self] (response, error) -> () in
+                XCTAssertNil(response, "Response must be nil invalid reference has been passed")
+                self?.assert(error: error, as: .errorCardTokenDoesntMatchConsumer)
+                expectation.fulfill()
+            })
         })
-        XCTAssertNotNil(registerCard)
-        XCTAssertEqual(registerCard.judoId, myJudoId)
-        
+            
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakeTokenPaymentWithoutAmount() {
-        // Given I have an SDK
-        let registerCard = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have registered the card and got back card and consumer tokens
+     *
+     * WHEN:  I make a payment with an invalid amount
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnTokenPaymentWithoutAmount_ReturnError() {
+
+        let reference = JPReference(consumerReference: UUID().uuidString)
+        
+        let registerCard = judo.registerCard(withJudoId: myJudoId,
+                                             reference: reference)
+        
         registerCard.card = validVisaTestCard
         
-        let expectation = self.expectation(description: "token payment expectation")
+        let expectation = self.expectation(description: "testInvalidAmount")
         
-        registerCard.send(completion: { (data, error) -> () in
+        registerCard.send(completion: { [weak self] (response, error) -> () in
+            
+            guard let self = self else { return }
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            } else {
-                guard let uData = data else {
-                    XCTFail("no data available")
-                    return 
-                }
-                
-                let consumerToken = uData.items?.first?.consumer.consumerToken
-                let cardToken = uData.items?.first?.cardDetails?.cardToken
-                
-                let payToken = JPPaymentToken(consumerToken: consumerToken!, cardToken: cardToken!)
-                
-                // When I do not provide an amount
-                // Then I should receive an error
-                let payment = self.judo.payment(withJudoId: myJudoId, amount: self.invalidCurrencyAmount, reference: self.validReference)
-                payment.paymentToken = payToken
-                payment.send(completion: { (response, error) -> () in
-                    XCTAssertNil(response)
-                    XCTAssertNotNil(error)
-                    XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-                    
-                    expectation.fulfill()
-                })
+                XCTFail("API call failed with error: \(error)")
             }
+            
+            guard let consumerToken = response?.items?.first?.consumer.consumerToken else {
+                XCTFail("No consumer token found in response")
+                return
+            }
+            guard let cardToken = response?.items?.first?.cardDetails?.cardToken else {
+                XCTFail("No card token found in response")
+                return
+            }
+            
+            let paymentToken = JPPaymentToken(consumerToken: consumerToken, cardToken: cardToken)
+            
+            paymentToken.secureCode = self.validVisaTestCard.secureCode
+            
+            let payment = self.judo.payment(withJudoId: myJudoId,
+                                            amount: JPAmount(amount: "", currency: "GBP"),
+                                            reference: JPReference(consumerReference: UUID().uuidString))
+            
+            payment.paymentToken = paymentToken
+            
+            payment.send(completion: { [weak self] (response, error) -> () in
+                XCTAssertNil(response, "Response must be nil when invalid amount has been passed")
+                self?.assert(error: error, as: .errorGeneral_Model_Error)
+                expectation.fulfill()
+            })
+            
         })
-        // Then
-        XCTAssertNotNil(registerCard)
-        XCTAssertEqual(registerCard.judoId, myJudoId)
-        
+ 
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     

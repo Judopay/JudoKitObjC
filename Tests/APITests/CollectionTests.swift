@@ -27,54 +27,97 @@ import XCTest
 
 class CollectionTests: JudoTestCase {
     
-    func testCollection() {
+    /**
+     * GIVEN: I have made a pre-authorization request and received a receipt ID
+     *        and an amount
+     *
+     * WHEN:  I perform a collection with the receipt ID and the amount
+     *
+     * THEN:  I should receive a succesful response with at least one
+     *        JPTransactionData item
+     */
+    func test_OnCollectionCreation_WithValidReceiptAndAmount_ReturnValidResponse() {
         
-        let expectation = self.expectation(description: "payment expectation")
+        let expectation = self.expectation(description: "testPreAuth")
+
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        // Given I have made a pre-authorisation
-        let preAuth = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        XCTAssertNotNil(preAuth,
+                        "A valid JPPreAuth object must be created when correctly initialized")
+        
+        XCTAssertEqual(preAuth.judoId, myJudoId,
+                       "The JudoID stored in the PreAuth object does not match the one passed")
+        
         preAuth.card = validVisaTestCard
         
         preAuth.send { (response, error) in
             
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
                 expectation.fulfill()
                 return
             }
             
-            // And I have a receipt ID of a given transaction
-            // And I have the amount of that transaction
-            guard let receiptId = response?.items?.first?.receiptId,
-                let amount = response?.items?.first?.amount else {
-                    XCTFail("receipt ID was not available in response")
-                    expectation.fulfill()
-                    return
+            guard let receiptId = response?.items?.first?.receiptId else {
+                XCTFail("Receipt ID was not available in response")
+                return
             }
             
-            // When I perform a collection
+            guard let amount = response?.items?.first?.amount else {
+                XCTFail("Amount was not available in response")
+                return
+            }
+            
             let collection = self.judo.collection(withReceiptId: receiptId, amount: amount)
+            
             collection.send(completion: { (response, error) -> () in
-                // Then I receive a successful response
+                
                 if let error = error {
                     XCTFail("api call failed with error: \(error)")
                 }
                 
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(response?.items?.first)
+                XCTAssertNotNil(response,
+                                "Response must not be nil on valid Collection configuration")
+                
+                XCTAssertNotNil(response?.items?.first,
+                                "Response must contain at least one JPTransactionData object on valid Collection configuration")
                 
                 expectation.fulfill();
             })
             
             XCTAssertNotNil(collection)
-            
         }
         
-        XCTAssertNotNil(preAuth)
-        XCTAssertEqual(preAuth.judoId, myJudoId)
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I intantiate a Collection with an invalid receipt ID
+     *
+     * WHEN:  I perform a collection with the receipt ID and the amount
+     *
+     * THEN:  I should receive an error and no response
+     */
+    func test_OnCollectionCreation_WithInvalidReceiptAndAmount_ReturnNil() {
+        
+        let expectation = self.expectation(description: "testCollection")
+        
+        let collection = self.judo.collection(withReceiptId: "invalid-receipt-id",
+                                              amount: JPAmount(amount: "0.01", currency: "GBP"))
+        
+        collection.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response,
+                            "Response must be nil on invalid Collection configuration")
+            
+            self?.assert(error: error, as: .errorUncaught_Error)
+            
+            expectation.fulfill();
+        })
         
         self.waitForExpectations(timeout: 30, handler: nil)
-        
     }
     
 }

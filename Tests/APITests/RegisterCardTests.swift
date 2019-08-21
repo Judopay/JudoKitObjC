@@ -28,81 +28,79 @@ import CoreLocation
 
 class RegisterCardTests: JudoTestCase {
     
-    func testRegisterCard() {
-        let payment = judo.registerCard(withJudoId: myJudoId, reference: validReference)
-        XCTAssertNotNil(payment)
+    /**
+     * GIVEN: I call JudoKit's `registerCard` method with valid Judo ID and reference
+     *
+     * THEN:  I should be able to initialize a valid JPRegisterCard object
+     */
+    func test_OnValidParameters_JPRegisterCardInitializesSuccesfully() {
+        let registration = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: UUID().uuidString))
+        
+        XCTAssertNotNil(registration,
+                        "JPRegisterCard should be succesfully initialized with valid parameters")
     }
     
-    func testJudoMakeValidRegisterCard() {
-        // Given I have a Register Card
-        let payment = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have a valid JPRegisterCard object
+     *
+     * WHEN:  I call its 'send' method to register the card
+     *
+     * THEN:  I should get back a succesful response and no error
+     */
+    func test_OnValidJPRegisterCard_ValidJPResponeMustBeReturned() {
         
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
+        let registration = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: UUID().uuidString))
         
-        // Then I should be able to register a card
-        let expectation = self.expectation(description: "payment expectation")
         
-        payment.send(completion: { (response, error) -> () in
+        registration.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testRegistration")
+        
+        registration.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func testJudoMakeValidRegisterCardWithDeviceSignals() {
-        // Given I have a Register Card
-        let payment = judo.registerCard(withJudoId: myJudoId, reference: validReference)
-        
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
-        
-        // Then I should be able to register a card
-        let expectation = self.expectation(description: "payment expectation")
-        
-        judo.send(withCompletion: payment, completion: { (response, error) in
-            if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func testRegisterCardWithInvalidReference() {
-        // Given I have a Register Card
-        // When I do not provide a consumer reference
-        let payment = judo.registerCard(withJudoId: myJudoId, reference: invalidReference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid receipt")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object")
             
             expectation.fulfill()
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I have a JPRegisterCard object with an invalid reference
+     *
+     * WHEN:  I call its 'send' method to register the card
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnJPRegisterCardWithInvalidReference_ReturnError() {
+        
+        let registration = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: ""))
+        
+        registration.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testInvalidReference")
+        
+        registration.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response,
+                         "JPResponse must be nil on JPRegisterCard with invalid reference")
+            
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
         
         self.waitForExpectations(timeout: 30, handler: nil)
     }

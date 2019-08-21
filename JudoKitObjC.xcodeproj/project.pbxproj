@@ -888,9 +888,11 @@
 			children = (
 				30D185522301B3FD0097F85F /* ApplePayTests.swift */,
 				3B4EB3E51C982A25006265A0 /* AuthenticationTests.swift */,
+				702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */,
 				3B4EB3E61C982A25006265A0 /* CollectionTests.swift */,
 				3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */,
 				703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */,
+				702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */,
 				3B4EB3E71C982A25006265A0 /* JudoTestCase.swift */,
 				3B4EB3E81C982A25006265A0 /* JudoTests.swift */,
 				3B4EB3E91C982A25006265A0 /* ListTests.swift */,
@@ -902,12 +904,10 @@
 				1577946021121FFA007BD3E1 /* SaveCardTests.swift */,
 				3B4EB3F01C982A25006265A0 /* TokenPaymentTests.swift */,
 				3B4EB3F11C982A25006265A0 /* TokenPreAuthTests.swift */,
-				3B4EB3F21C982A25006265A0 /* TransactionTests.swift */,
-				3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */,
-				702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */,
-				702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */,
-				15CFC9EC1FB74A4200430D31 /* VCOTests.swift */,
 				44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */,
+				3B4EB3F21C982A25006265A0 /* TransactionTests.swift */,
+				15CFC9EC1FB74A4200430D31 /* VCOTests.swift */,
+				3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */,
 			);
 			path = APITests;
 			sourceTree = "<group>";

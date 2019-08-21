@@ -29,81 +29,76 @@ import CoreLocation
 
 class SaveCardTests: JudoTestCase {
 
-    func testSaveCard() {
-        let payment = judo.saveCard(withJudoId: myJudoId, reference: validReference)
-        XCTAssertNotNil(payment)
+    /**
+     * GIVEN: I call JudoKit's `saveCard` method with valid Judo ID and reference
+     *
+     * THEN:  I should be able to initialize a valid JPSaveCard object
+     */
+    func test_OnValidParameters_JPSaveCardInitializesSuccesfully() {
+        let save = judo.saveCard(withJudoId: myJudoId,
+                                 reference: JPReference(consumerReference: UUID().uuidString))
+        XCTAssertNotNil(save, "JPRegisterCard should be succesfully initialized with valid parameters")
     }
 
-    func testJudoMakeValidSaveCard() {
-        // Given I have a Save Card
-        let payment = judo.saveCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have a JPSaveCard object with an invalid reference
+     *
+     * WHEN:  I call its 'send' method to register the card
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnValidJPSaveCard_ValidJPResponeMustBeReturned() {
 
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
+        let save = judo.saveCard(withJudoId: myJudoId,
+                                 reference: JPReference(consumerReference: UUID().uuidString))
 
-        // Then I should be able to save a card
-        let expectation = self.expectation(description: "expectation")
+        save.card = validVisaTestCard
 
-        payment.send(completion: { (response, error) -> () in
+        let expectation = self.expectation(description: "testSaveCard")
+
+        save.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid receipt")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object")
+            
             expectation.fulfill()
         })
-
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
 
         self.waitForExpectations(timeout: 30, handler: nil)
     }
 
-    func testJudoMakeValidSaveCardWithDeviceSignals() {
-        // Given I have a Save Card
-        let payment = judo.saveCard(withJudoId: myJudoId, reference: validReference)
+    /**
+     * GIVEN: I have a JPSaveCard object with an invalid reference
+     *
+     * WHEN:  I call its 'send' method to register the card
+     *
+     * THEN:  I should get back an error and no response
+     */
+    func test_OnJPSaveCardWithInvalidReference_ReturnError() {
 
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
+        let save = judo.saveCard(withJudoId: myJudoId,
+                                 reference: JPReference(consumerReference: ""))
 
-        // Then I should be able to save a card
-        let expectation = self.expectation(description: "expectation")
+        save.card = validVisaTestCard
 
-        judo.send(withCompletion: payment, completion: { (response, error) in
-            if let error = error {
-                XCTFail("api call failed with error: \(error)")
-            }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
+        let expectation = self.expectation(description: "testInvalidReference")
+
+        save.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response,
+                         "JPResponse must be nil on JPSaveCard with invalid reference")
+            
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
             expectation.fulfill()
         })
-
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-
-    func testSaveCardWithInvalidReference() {
-        // Given I have a Save Card
-        // When I do not provide a consumer reference
-        let payment = judo.saveCard(withJudoId: myJudoId, reference: invalidReference)
-
-        payment.card = validVisaTestCard
-
-        // Then I should receive an error
-        let expectation = self.expectation(description: "expectation")
-
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
-
-            expectation.fulfill()
-        })
-
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
 
         self.waitForExpectations(timeout: 30, handler: nil)
     }
