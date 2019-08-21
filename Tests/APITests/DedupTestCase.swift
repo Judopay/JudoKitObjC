@@ -25,70 +25,118 @@
 import XCTest
 @testable import JudoKitObjC
 
+
 class DedupTestCase: JudoTestCase {
 
-    func testJudoMakeSuccesfulDedupPayment() {
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: JudoKit's payment method is called with valid parameters
+     *
+     * THEN:  A valid JPPayment object must be initialized and returned
+     */
+    func test_JPPaymentInitialization() {
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
+        XCTAssertNotNil(payment,
+                        "A valid JPPayment object must be created when correctly initialized")
+        
+        XCTAssertEqual(payment.judoId, myJudoId,
+                       "The JudoID stored in the JPPayment object does not match the one passed")
+    }
+    
+    /**
+     * GIVEN: I create a valid payment transaction
+     *
+     * WHEN:  I create another payment transaction with a different reference
+     *
+     * THEN:  The transaction succeeds and a JPResponse object is returned
+     */
+    func test_OnDifferentReferences_AllowDuplicateTransactions() {
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
         
         let expectation = self.expectation(description: "payment expectation")
         
-        payment.send(completion: { (response, error) -> () in
+        payment.send(completion: { [weak self] (response, error) -> () in
             
-            if let error = error {
-                XCTFail("api call failed with error: \(error)")
+            guard let self = self else {
+                XCTFail()
+                expectation.fulfill()
+                return
             }
             
-            let payment2 = self.judo.payment(withJudoId: myJudoId, amount: self.oneGBPAmount, reference: JPReference(consumerReference: "consumer reference"))
+            if let error = error {
+                XCTFail("API call failed with error: \(error)")
+                expectation.fulfill()
+                return
+            }
+            
+            let payment2 = self.judo.payment(withJudoId: myJudoId,
+                                             amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             payment2.card = self.validVisaTestCard
             
             payment2.send(completion: { (response, error) in
+                
                 if let error = error {
-                    XCTFail("api call failed with error: \(error)")
+                    XCTFail("API call failed with error: \(error)")
+                    expectation.fulfill()
+                    return
                 }
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(response?.items?.first)
+                
+                XCTAssertNotNil(response,
+                                "Second transaction with different reference must return valid JPResponse object")
+                
+                XCTAssertNotNil(response?.items?.first,
+                                "Returned JPResponse object must contain at least one JPTransactionData object")
+                
                 expectation.fulfill()
             })
             
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakeDeclinedDedupPayment() {
-        // Given I have a Payment
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I create a valid payment transaction
+     *
+     * WHEN:  I create another payment transaction with the same reference
+     *
+     * THEN:  The transaction fails and a 'Duplicate Transaction' error returns
+     */
+    func test_OnDifferentReferences_DenyDuplicateTransactions() {
         
-        // When I provide all the required fields
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+
         payment.card = validVisaTestCard
         
-        // Then I should be able to make a payment
         let expectation = self.expectation(description: "payment expectation")
         
         payment.send(completion: { (response, error) -> () in
             
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
+                return
             }
             
-            payment.send(completion: { (response, error) in
-                XCTAssertEqual(Int(JudoError.errorDuplicateTransaction.rawValue), error?._code)
+            payment.send(completion: { [weak self] (response, error) in
+                XCTAssertNil(response, "JPResponse should not be returned on duplicate transactions")
+                self?.assert(error: error, as: .errorDuplicateTransaction)
                 expectation.fulfill()
             })
             
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
         self.waitForExpectations(timeout: 30, handler: nil)
     }
-
 }

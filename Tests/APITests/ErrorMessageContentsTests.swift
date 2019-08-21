@@ -29,111 +29,69 @@ let ErrorTransactionDeclined = "A transaction that was sent to the backend retur
 
 class ErrorMessageContentsTests: JudoTestCase {
     
+    /* Request Failed Error */
     func test_ErrorRequestFailed() {
-        let actual = NSError.judoRequestFailedError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorRequestFailed)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoRequestFailedError() as NSError
+        assert(error, as: ErrorRequestFailed)
     }
     
+    /* Missing Payment Method Error */
     func test_ErrorPaymentMethodMissing() {
-        let actual = NSError.judoPaymentMethodMissingError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorPaymentMethodMissing)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoPaymentMethodMissingError() as NSError
+        assert(error, as: ErrorPaymentMethodMissing);
     }
     
+    /* Missing Amount Error */
     func test_ErrorAmountMissing() {
-        let actual = NSError.judoAmountMissingError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorAmountMissing)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoAmountMissingError() as NSError
+        assert(error, as: ErrorAmountMissing)
     }
     
+    /* Missing Reference Error */
     func test_ErrorReferenceMissing() {
-        let actual = NSError.judoReferenceMissingError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorReferenceMissing)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoReferenceMissingError() as NSError
+        assert(error, as: ErrorReferenceMissing)
     }
     
+    /* Response Parse Error */
     func test_ErrorResponseParseError() {
-        let actual = NSError.judoResponseParseError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorResponseParseError)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoResponseParseError() as NSError
+        assert(error, as: ErrorResponseParseError)
     }
     
+    /* User Did Cancel Error */
     func test_ErrorUserDidCancel() {
-        let actual = NSError.judoUserDidCancelError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, nil);
+        let error = NSError.judoUserDidCancelError() as NSError
+        let devDescription = error.userInfo[NSLocalizedFailureReasonErrorKey] as? String
         XCTAssertEqual(devDescription, ErrorUserDidCancel)
-        XCTAssertEqual(errorTitle, nil)
     }
     
+    /* Parameter Error */
     func test_ErrorParameterError() {
-        let actual = NSError.judoParameterError() as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as! String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as! String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as! String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorParameterError)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judoParameterError() as NSError
+        assert(error, as: ErrorParameterError)
     }
     
+    /* Failed 3DS Request Error */
     func test_ErrorFailed3DSRequest() {
-        let actual = NSError.judo3DSRequestFailedError(withUnderlyingError: nil) as NSError
-        
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorFailed3DSRequest)
-        XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        let error = NSError.judo3DSRequestFailedError(withUnderlyingError: nil) as NSError
+        assert(error, as: ErrorFailed3DSRequest)
     }
     
+    /* Jailbroken Devices Not Allowed Error */
     func test_JailbrokenDeviceDisallowedError() {
-        let actual = NSError.judoJailbrokenDeviceDisallowedError() as NSError
+        let error = NSError.judoJailbrokenDeviceDisallowedError() as NSError
+        assert(error, as: ErrorJailbrokenDeviceDisallowed)
+    }
+    
+    /* Helper assessment method */
+    private func assert(_ error: NSError, as type: String) {
+        let errorTitle = error.userInfo[JPErrorTitleKey] as? String
+        let errorDescription = error.userInfo[NSLocalizedDescriptionKey] as? String
+        let devDescription = error.userInfo[NSLocalizedFailureReasonErrorKey] as? String
         
-        let errorDescription = actual.userInfo[NSLocalizedDescriptionKey] as? String
-        let devDescription = actual.userInfo[NSLocalizedFailureReasonErrorKey] as? String
-        let errorTitle = actual.userInfo[JPErrorTitleKey] as? String
-        
-        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
-        XCTAssertEqual(devDescription, ErrorJailbrokenDeviceDisallowed)
         XCTAssertEqual(errorTitle, UnableToProcessRequestErrorTitle)
+        XCTAssertEqual(errorDescription, UnableToProcessRequestErrorDesc)
+        XCTAssertEqual(devDescription, type)
     }
 }

@@ -27,129 +27,265 @@ import XCTest
 
 class PreAuthTests: JudoTestCase {
     
-    func testJudoMakeValidPreAuth() {
-        // Given I have a Pre-authorization
-        let payment = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I call JudoKit's preAuth method with valid parameters
+     *
+     * THEN:  A valid JPPreAuth object must be returned
+     */
+    func test_JPPreAuthInitialization() {
+        let references = JPReference(consumerReference: UUID().uuidString)
+        let amount = JPAmount(amount: "30", currency: "GBP")
         
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
+        let preAuth = judo.preAuth(withJudoId: myJudoId, amount: amount, reference: references)
+        XCTAssertNotNil(preAuth)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPreAuth correctly
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  A JPResponse object and no error must be returned
+     */
+    func test_OnValidJPPreAuth_ReturnResponse() {
         
-        // Then I should be able to make a Pre-authorization
-        let expectation = self.expectation(description: "payment expectation")
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        payment.send(completion: { (response, error) -> () in
+        preAuth.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testValidJPPreAuth")
+        
+        preAuth.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid JPPreAuth configuration")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
+            
             expectation.fulfill()
         })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
+
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    func testJudoMakeValidPreAuthWithDeviceSignals() {
-        // Given I have a Pre-authorization
-        let payment = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+    /**
+     * GIVEN: I initialize JPPreAuth with Singapore dollars
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  A JPResponse object and no error must be returned
+     */
+    func test_OnPreAuthWithSingaporeDollars_ReturnResponse() {
         
-        // When I provide all the required fields
-        payment.card = validVisaTestCard
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "17.72", currency: "SGD"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        // Then I should be able to make a Pre-authorization
-        let expectation = self.expectation(description: "payment expectation")
+        preAuth.card = validVisaTestCard
         
-        judo.send(withCompletion: payment, completion: { (response, error) in
+        let expectation = self.expectation(description: "testSingaporeDollars")
+        
+        preAuth.send(completion: { (response, error) -> () in
+            
             if let error = error {
-                XCTFail("api call failed with error: \(error)")
+                XCTFail("API call failed with error: \(error)")
             }
-            XCTAssertNotNil(response)
-            XCTAssertNotNil(response?.items?.first)
-            expectation.fulfill()
-        })
-        
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
-        self.waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-    func testJudoMakePreAuthWithoutAmount() {
-        // Given I have a Pre-authorization
-        // When I do not provide an amount
-        let payment = judo.preAuth(withJudoId: myJudoId, amount: invalidAmount, reference: validReference)
-        
-        payment.card = validVisaTestCard
-        
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
-        
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
+            
+            XCTAssertNotNil(response,
+                            "Response must not be nil on valid JPPreAuth configuration")
+            
+            XCTAssertNotNil(response?.items?.first,
+                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
             
             expectation.fulfill()
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakePreAuthWithoutCurrency() {
-        // Given I have a Pre-authorization
-        // When I do not provide a currency
-        let payment = judo.preAuth(withJudoId: myJudoId, amount: invalidCurrencyAmount, reference: validReference)
+    /**
+     * GIVEN: I initialize JPPreAuth with an invalid amount
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithoutAmount_ReturnError() {
         
-        payment.card = validVisaTestCard
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
+        preAuth.card = validVisaTestCard
         
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
+        let expectation = self.expectation(description: "testInvalidAmount")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
             
             expectation.fulfill()
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
-        
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
-    
-    func testJudoMakePreAuthWithoutReference() {
-        // Given I have a Pre-authorization
-        // When I do not provide a consumer reference
-        let payment = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: invalidReference)
+    /**
+     * GIVEN: I initialize JPPreAuth with an invalid currency
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithoutCurrency_ReturnError() {
         
-        payment.card = validVisaTestCard
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: ""),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         
-        // Then I should receive an error
-        let expectation = self.expectation(description: "payment expectation")
+        preAuth.card = validVisaTestCard
         
-        payment.send(completion: { (response, error) -> () in
-            XCTAssertNil(response)
-            XCTAssertNotNil(error)
-            XCTAssertEqual(error!._code, Int(JudoError.errorGeneral_Model_Error.rawValue))
+        let expectation = self.expectation(description: "testInvalidCurrency")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
             
             expectation.fulfill()
         })
         
-        XCTAssertNotNil(payment)
-        XCTAssertEqual(payment.judoId, myJudoId)
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+
+    /**
+     * GIVEN: I initialize JPPreAuth with an invalid reference
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithoutReference_ReturnError() {
+        
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: ""))
+        
+        preAuth.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testInvalidCurrency")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
         
         self.waitForExpectations(timeout: 30, handler: nil)
     }
     
+    /**
+     * GIVEN: I initialize JPPreAuth with an empty payment reference
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithEmptyPaymentReference_ReturnError() {
+        
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: "")
+        
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        preAuth.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
     
+    /**
+     * GIVEN: I initialize JPPreAuth with a payment reference that contains
+     *        whitespaces only
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithWhitespacePaymentReference_ReturnError() {
+        
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: " ")
+        
+        let preAuth = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        preAuth.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    /**
+     * GIVEN: I initialize JPPreAuth with a payment reference that contains
+     *        more than 50 characters
+     *
+     * WHEN:  I call JPPreAuth 'send' method
+     *
+     * THEN:  An error and no JPResponse must be returned
+     */
+    func test_OnPreAuthWithLongPaymentReference_ReturnError() {
+        
+        let reference = JPReference(consumerReference: UUID().uuidString,
+                                    paymentReference: String(repeating: "a", count: 51))
+        
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: reference)
+        
+        preAuth.card = validVisaTestCard
+        
+        let expectation = self.expectation(description: "testEmptyPaymentReference")
+        
+        preAuth.send(completion: { [weak self] (response, error) -> () in
+            
+            XCTAssertNil(response, "JPResponse must be nil on incorrect configuration")
+            self?.assert(error: error, as: .errorGeneral_Model_Error)
+            
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 30, handler: nil)
+    }
 }
