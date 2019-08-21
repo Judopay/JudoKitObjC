@@ -27,50 +27,60 @@ import XCTest
 
 class VoidTransactionTests: JudoTestCase {
     
+    /**
+     * GIVEN: I made a preAuth transaction and obtained receipt ID and amount
+     *
+     *  WHEN: I make a void transaction with the receipt ID and amount
+     *
+     *  THEN: I should obtain a valid JPResponse and no error
+     */
     func testVoidTransaction() {
         
-        let expectation = self.expectation(description: "payment expectation")
+        let expectation = self.expectation(description: "testVoidTransaction")
         
-        // Given I have made a pre-authorisation
-        let preAuth = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
         preAuth.card = validVisaTestCard
         
         preAuth.send(completion: { (response, error) -> () in
+            
             if let error = error {
                 XCTFail("api call failed with error: \(error)")
-                expectation.fulfill()
                 return
             }
             
-            // And I have a receipt ID of a given transaction
-            // And I have the amount of that transaction
-            guard let receiptId = response?.items?.first?.receiptId,
-                let amount = response?.items?.first?.amount else {
-                    XCTFail("receipt ID was not available in response")
-                    expectation.fulfill()
-                    return
+            guard let receiptId = response?.items?.first?.receiptId else {
+                XCTFail("Receipt ID was not available in response.")
+                return
             }
             
-            // When I perform a void
+            guard let amount = response?.items?.first?.amount else {
+                XCTFail("Amount was not available in response.")
+                return
+            }
+            
             let collection = self.judo.void(withReceiptId: receiptId, amount: amount)
             
             collection.send(completion: { (response, error) -> () in
-                // Then I receive a successful response
+
                 if let error = error {
-                    XCTFail("api call failed with error: \(error)")
+                    XCTFail("API call failed with error: \(error)")
                 }
                 
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(response?.items?.first)
+                XCTAssertNotNil(response,
+                                "Response must not be nil on valid receipt")
+                
+                XCTAssertNotNil(response?.items?.first,
+                                "Response must contain at least one JPTransactionData object")
+                
+                XCTAssertEqual(response?.items?.first?.result, TransactionResult.success,
+                               "Response should return a succesful transaction result")
                 
                 expectation.fulfill();
             })
-            
-            XCTAssertNotNil(collection)
         })
-        
-        XCTAssertNotNil(preAuth)
-        XCTAssertEqual(preAuth.judoId, myJudoId)
         
         self.waitForExpectations(timeout: 30, handler: nil)
         

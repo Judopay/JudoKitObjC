@@ -51,7 +51,7 @@ class PaymentTests: JudoTestCase {
     func test_OnValidJPPayment_ReturnResponse() {
 
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: UUID().uuidString))
         
         payment.card = validVisaTestCard
@@ -177,7 +177,7 @@ class PaymentTests: JudoTestCase {
     func test_OnPaymentWithoutReference_ReturnError() {
 
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: JPReference(consumerReference: ""))
         
         payment.card = validVisaTestCard
@@ -208,7 +208,7 @@ class PaymentTests: JudoTestCase {
                                     paymentReference: "")
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         payment.card = validVisaTestCard
@@ -240,7 +240,7 @@ class PaymentTests: JudoTestCase {
                                     paymentReference: " ")
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         payment.card = validVisaTestCard
@@ -272,7 +272,7 @@ class PaymentTests: JudoTestCase {
                                     paymentReference: String(repeating: "a", count: 51))
         
         let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: oneGBPAmount,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
                                    reference: reference)
         
         payment.card = validVisaTestCard

@@ -67,7 +67,7 @@ class TokenPaymentTests: JudoTestCase {
             paymentToken.secureCode = self.validVisaTestCard.secureCode
             
             let payment = self.judo.payment(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: reference)
             
             payment.paymentToken = paymentToken
@@ -117,7 +117,7 @@ class TokenPaymentTests: JudoTestCase {
             }
             
             let payment = self.judo.payment(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             payment.send(completion: { [weak self] (response, error) -> () in
@@ -168,7 +168,7 @@ class TokenPaymentTests: JudoTestCase {
             paymentToken.secureCode = self.validVisaTestCard.secureCode
             
             let payment = self.judo.payment(withJudoId: myJudoId,
-                                            amount: self.oneGBPAmount,
+                                            amount: JPAmount(amount: "0.01", currency: "GBP"),
                                             reference: JPReference(consumerReference: UUID().uuidString))
             
             payment.paymentToken = paymentToken

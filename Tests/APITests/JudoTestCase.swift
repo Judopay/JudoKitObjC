@@ -37,15 +37,6 @@ class JudoTestCase: XCTestCase {
     let validVisaTestCard = JPCard(cardNumber: "4976000000003436", expiryDate: "12/20", secureCode: "452")
     let declinedVisaTestCard = JPCard(cardNumber: "4221690000004963", expiryDate: "12/20", secureCode: "125")
     
-    // Amount
-    let oneGBPAmount = JPAmount(amount: "1.00", currency: "GBP")
-    let invalidAmount = JPAmount(amount: "", currency: "GBP")
-    let invalidCurrencyAmount = JPAmount(amount: "1.00", currency: "")
-    
-    // References
-    let validReference = JPReference(consumerReference: "consumer reference")
-    let invalidReference = JPReference(consumerReference: "")
-    
     // VCO Result
     let validVCOResult = JPVCOResult(callId: "2587385100467218001",
                                      encryptedKey: "xJRr2tLAs0n0ztToEMhhG8ELBg3mi7TKLVuqn4pA3FAHhgvR29y1YUhVMdrradFw6gk6+XwF05JEdL6uSWhjH8ZMZoBUsHbglqtg0pnm8tbDQzmaBzztLnOaPbwVYLe8",

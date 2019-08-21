@@ -27,9 +27,21 @@ import XCTest
 
 class TransactionEnricherTests: JudoTestCase {
     
+    /**
+     * GIVEN: I have an enriched JPPayment object
+     *
+     *  WHEN: I make a payment with the enriched object
+     *
+     *  THEN: JPPayment's `paymentDetails` must be populated with valid data
+     */
     func testEnrichPaymentTransaction() {
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
+        
         payment.card = validVisaTestCard
+        
         let expectation = self.expectation(description: "expectation")
         
         payment.send(completion: { (response, error) -> () in
@@ -41,8 +53,17 @@ class TransactionEnricherTests: JudoTestCase {
         }
     }
     
+    /**
+     * GIVEN: I have an enriched JPPreAuth object
+     *
+     *  WHEN: I make a preAuth with the enriched object
+     *
+     *  THEN: JPPreAuth `paymentDetails` must be populated with valid data
+     */
     func testEnrichPreAuthTransaction() {
-        let preAuth = judo.preAuth(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        let preAuth = judo.preAuth(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         preAuth.card = validVisaTestCard
         let expectation = self.expectation(description: "expectation")
         
@@ -55,8 +76,16 @@ class TransactionEnricherTests: JudoTestCase {
         }
     }
     
+    /**
+     * GIVEN: I have an enriched JPRegisterCard object
+     *
+     *  WHEN: I make a card registration with the enriched object
+     *
+     *  THEN: JPRegisterCard `paymentDetails` must be populated with valid data
+     */
     func testEnrichRegisterCardTransaction() {
-        let registerCard = judo.registerCard(withJudoId: myJudoId, reference: validReference)
+        let registerCard = judo.registerCard(withJudoId: myJudoId,
+                                             reference: JPReference(consumerReference: UUID().uuidString))
         registerCard.card = validVisaTestCard
         let expectation = self.expectation(description: "expectation")
 
@@ -69,8 +98,16 @@ class TransactionEnricherTests: JudoTestCase {
         }
     }
 
+    /**
+     * GIVEN: I have an enriched JPSaveCard object
+     *
+     *  WHEN: I make a card save with the enriched object
+     *
+     *  THEN: JPSaveCard `paymentDetails` must be populated with valid data
+     */
     func testNotEnrichSaveCardTransaction() {
-        let saveCard = self.judo.saveCard(withJudoId: myJudoId, reference: validReference)
+        let saveCard = self.judo.saveCard(withJudoId: myJudoId,
+                                          reference: JPReference(consumerReference: UUID().uuidString))
         let expectation = self.expectation(description: "expectation")
 
         saveCard.send(completion: { (response, error) -> () in
@@ -82,8 +119,17 @@ class TransactionEnricherTests: JudoTestCase {
         }
     }
     
+    /**
+     * GIVEN: I have an enriched JPPayment object with
+     *
+     *  WHEN: I make a payment with the enriched object
+     *
+     *  THEN: JPPayment should have valid SDK info stored
+     */
     func testEnrichTransactionWithSDKInfo() {
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         payment.card = validVisaTestCard
         let expectation = self.expectation(description: "expectation")
         
@@ -100,8 +146,17 @@ class TransactionEnricherTests: JudoTestCase {
         }
     }
     
+    /**
+     * GIVEN: I have an enriched JPPayment object
+     *
+     *  WHEN: I make a payment with the enriched object
+     *
+     *  THEN: JPPayment should have valid consumer device info stored
+     */
     func testEnrichTransactionWithConsumerDevice() {
-        let payment = judo.payment(withJudoId: myJudoId, amount: oneGBPAmount, reference: validReference)
+        let payment = judo.payment(withJudoId: myJudoId,
+                                   amount: JPAmount(amount: "0.01", currency: "GBP"),
+                                   reference: JPReference(consumerReference: UUID().uuidString))
         payment.card = validVisaTestCard
         let expectation = self.expectation(description: "expectation")
         
