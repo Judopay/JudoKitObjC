@@ -28,7 +28,7 @@
 
 NSString *const JudoErrorDomain = @"com.judo.error";
 
-NSString *const UnableToProcessRequestErrorDesc = @"unable_to_processRequest_error_desc";
+NSString *const UnableToProcessRequestErrorDesc = @"unable_to_process_request_error_desc";
 NSString *const UnableToProcessRequestErrorTitle = @"unable_to_process_request_error_title";
 
 NSString *const JPErrorTitleKey = @"JPErrorTitleKey";

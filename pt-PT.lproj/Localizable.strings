@@ -48,7 +48,7 @@
 "card_payment" = "Card Payment";
 
 //NSError+Judo
-"unable_to_processRequest_error_desc" = "Sorry, we're currently unable to process this request.";
+"unable_to_process_request_error_desc" = "Sorry, we're currently unable to process this request.";
 "unable_to_process_request_error_title" = "Unable to process";
 "error_request_failed" = "The request responded without data";
 "error_payment_method_missing" = "The payment method (card details, token or PKPayment) has not been set for a transaction that requires it (custom UI)";
