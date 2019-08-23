@@ -36,10 +36,15 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/CardLogoView.h>
 #import <JudoKitObjC/JPAddress.h>
 #import <JudoKitObjC/JPAmount.h>
+#import <JudoKitObjC/JPBrowser.h>
 #import <JudoKitObjC/JPCard.h>
 #import <JudoKitObjC/JPCardDetails.h>
+#import <JudoKitObjC/JPCardNetwork.h>
+#import <JudoKitObjC/JPClientDetails.h>
 #import <JudoKitObjC/JPCollection.h>
+#import <JudoKitObjC/JPConstants.h>
 #import <JudoKitObjC/JPConsumer.h>
+#import <JudoKitObjC/JPConsumerDevice.h>
 #import <JudoKitObjC/JPEnhancedPaymentDetail.h>
 #import <JudoKitObjC/JPInputField.h>
 #import <JudoKitObjC/JPPagination.h>
@@ -51,9 +56,11 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPRefund.h>
 #import <JudoKitObjC/JPRegisterCard.h>
 #import <JudoKitObjC/JPResponse.h>
+#import <JudoKitObjC/JPSDKInfo.h>
 #import <JudoKitObjC/JPSaveCard.h>
 #import <JudoKitObjC/JPSession.h>
 #import <JudoKitObjC/JPTheme.h>
+#import <JudoKitObjC/JPThreeDSecure.h>
 #import <JudoKitObjC/JPTransaction.h>
 #import <JudoKitObjC/JPTransactionData.h>
 #import <JudoKitObjC/JPTransactionProcess.h>

@@ -29,7 +29,7 @@
 
 @interface DetailViewController : UIViewController
 
-@property (nonatomic, strong) JPTransactionData *transactionData;
+@property (nonatomic, strong) JPTransactionData *_Nonnull transactionData;
 @property (nonatomic, strong) ContactInformation *_Nullable billingInformation;
 @property (nonatomic, strong) ContactInformation *_Nullable shippingInformation;
 

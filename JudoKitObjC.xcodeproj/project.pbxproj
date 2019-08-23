@@ -30,19 +30,28 @@
 		15CFC9EB1FB738E600430D31 /* JPVCOResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFC9EA1FB738E600430D31 /* JPVCOResult.m */; };
 		15CFC9EE1FB74B0C00430D31 /* VCOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFC9EC1FB74A4200430D31 /* VCOTests.swift */; };
 		15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 15CFC9E81FB7371300430D31 /* JPVCOResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30673FFC22F42EA500417C85 /* JPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30673FFB22F42EA500417C85 /* JPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D1851F2301ADEB0097F85F /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185122301ADEB0097F85F /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D185202301ADEB0097F85F /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851A2301ADEB0097F85F /* PostalAddress.m */; };
-		30D185212301ADEB0097F85F /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851B2301ADEB0097F85F /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D185222301ADEB0097F85F /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D1851C2301ADEB0097F85F /* ApplePayWrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D185232301ADEB0097F85F /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851D2301ADEB0097F85F /* ContactInformation.m */; };
-		30D185242301ADEB0097F85F /* ApplePayWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D1851E2301ADEB0097F85F /* ApplePayWrappers.m */; };
-		30D185322301AFC50097F85F /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185292301AFC50097F85F /* ApplePayConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D185332301AFC50097F85F /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185312301AFC50097F85F /* ApplePayConfiguration.m */; };
-		30D185372301AFD90097F85F /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D185352301AFD90097F85F /* ApplePayManager.m */; };
-		30D185382301AFD90097F85F /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D185362301AFD90097F85F /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30D1853F2301B2940097F85F /* MockJPTransactionData.json */; };
+		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
+		302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */; };
+		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
+		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB50FB23100E1C00B73D66 /* ApplePayWrappers.m */; };
+		30DB510423100E1C00B73D66 /* ApplePayConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB50FC23100E1C00B73D66 /* ApplePayConfiguration.m */; };
+		30DB510523100E1C00B73D66 /* PostalAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB50FD23100E1C00B73D66 /* PostalAddress.m */; };
+		30DB510623100E1C00B73D66 /* ContactInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB50FE23100E1C00B73D66 /* ContactInformation.m */; };
+		30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FF23100E1C00B73D66 /* ApplePayWrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB510823100E1C00B73D66 /* ApplePayConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB510023100E1C00B73D66 /* ApplePayConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511123100E5100B73D66 /* JudoKitObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB511623100E5200B73D66 /* JPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511223100E5200B73D66 /* JPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB511723100E5200B73D66 /* BillingCountry.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511323100E5200B73D66 /* BillingCountry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB511823100E5200B73D66 /* PaymentMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511423100E5200B73D66 /* PaymentMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB512123100E6B00B73D66 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB511A23100E6B00B73D66 /* Functions.m */; };
+		30DB512223100E6B00B73D66 /* Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511B23100E6B00B73D66 /* Functions.h */; };
+		30DB512423100E6B00B73D66 /* ApplePayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB511F23100E6B00B73D66 /* ApplePayManager.m */; };
+		30DB512523100E6B00B73D66 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512023100E6B00B73D66 /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DB512923100EED00B73D66 /* CardLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB512723100EED00B73D66 /* CardLogoView.m */; };
+		30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512823100EED00B73D66 /* CardLogoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -77,9 +86,6 @@
 		3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5362A51C7CBE4A00CEBAE2 /* JP3DSWebView.m */; };
 		3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5AFC071C9079E600DABB4C /* NSString+TextDirection.h */; };
 		3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5AFC081C9079E600DABB4C /* NSString+TextDirection.m */; };
-		3B5AFC0D1C90925300DABB4C /* CardLogoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5AFC0B1C90925300DABB4C /* CardLogoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3B5AFC0E1C90925300DABB4C /* CardLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5AFC0C1C90925300DABB4C /* CardLogoView.m */; };
-		3B678B5A1C6CE5190001DC2F /* JudoKitObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B678B591C6CE5190001DC2F /* JudoKitObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B678B611C6CE5190001DC2F /* JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; };
 		3B678B771C6CE7770001DC2F /* JPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B678B751C6CE7770001DC2F /* JPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B678B781C6CE7770001DC2F /* JPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B678B761C6CE7770001DC2F /* JPSession.m */; };
@@ -158,8 +164,6 @@
 		3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B678BC81C735AB80001DC2F /* JudoKit.m */; };
 		3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */; };
 		3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */; };
-		44290B0322F051720088F827 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 44290B0122F051720088F827 /* Functions.m */; };
-		44290B0422F051720088F827 /* Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 44290B0222F051720088F827 /* Functions.h */; };
 		44290B0722F051B00088F827 /* JPTransactionEnricher.h in Headers */ = {isa = PBXBuildFile; fileRef = 44290B0522F051B00088F827 /* JPTransactionEnricher.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		44290B0822F051B00088F827 /* JPTransactionEnricher.m in Sources */ = {isa = PBXBuildFile; fileRef = 44290B0622F051B00088F827 /* JPTransactionEnricher.m */; };
 		44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */ = {isa = PBXBuildFile; fileRef = 44290B0922F051D20088F827 /* CLLocation+JPDictionaryConvertible.h */; };
@@ -177,18 +181,15 @@
 		44290B2422F051F60088F827 /* JPClientDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 44290B1722F051F60088F827 /* JPClientDetails.m */; };
 		44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 44290B1822F051F60088F827 /* JPEnhancedPaymentDetail.m */; };
 		44290B2622F051F60088F827 /* JPBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44290B1922F051F60088F827 /* JPBrowser.m */; };
-		44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 44340F1522F4531200B36D65 /* JPCardNetwork.h */; };
+		44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 44340F1522F4531200B36D65 /* JPCardNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44340F1822F4531200B36D65 /* JPCardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 44340F1622F4531200B36D65 /* JPCardNetwork.m */; };
 		447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */; };
 		447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */; };
 		447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */; };
 		447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */; };
-		447CBD5D22DCA93600C1C9E1 /* PaymentMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD5C22DCA93600C1C9E1 /* PaymentMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		447CBD6022DCAD0800C1C9E1 /* JudoKitPaymentMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */; };
 		44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */; };
-		44B81DDA22D7480700FE048D /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 44B81DD822D7480700FE048D /* UIView+SafeAnchors.h */; };
-		44B81DDB22D7480700FE048D /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B81DD922D7480700FE048D /* UIView+SafeAnchors.m */; };
 		44DA43DD22F82B9300C34231 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 44DA43DC22F82B9300C34231 /* NSString+Validation.h */; };
 		44DA43EC22F82BD700C34231 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DA43EB22F82BD700C34231 /* NSString+Validation.m */; };
 		44DA43EF22F82FE500C34231 /* NSString+Manipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 44DA43ED22F82FE500C34231 /* NSString+Manipulation.h */; };
@@ -202,7 +203,6 @@
 		702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
-		70F102E51CB281AB006EEC48 /* BillingCountry.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5AFC0F1C9184F700DABB4C /* BillingCountry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829330FC230AF0F900689DC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829330FE230AF0F900689DC4 /* Localizable.strings */; };
 		82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */ = {isa = PBXBuildFile; fileRef = 82933101230AF3B300689DC4 /* NSString+Localize.h */; };
 		82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */ = {isa = PBXBuildFile; fileRef = 82933103230AF4FB00689DC4 /* NSString+Localize.m */; };
@@ -337,19 +337,28 @@
 		15CFC9E81FB7371300430D31 /* JPVCOResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPVCOResult.h; path = Model/JPVCOResult.h; sourceTree = "<group>"; };
 		15CFC9EA1FB738E600430D31 /* JPVCOResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPVCOResult.m; path = Model/JPVCOResult.m; sourceTree = "<group>"; };
 		15CFC9EC1FB74A4200430D31 /* VCOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCOTests.swift; sourceTree = "<group>"; };
-		30673FFB22F42EA500417C85 /* JPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPConstants.h; sourceTree = "<group>"; };
-		30D185122301ADEB0097F85F /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
-		30D1851A2301ADEB0097F85F /* PostalAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostalAddress.m; sourceTree = "<group>"; };
-		30D1851B2301ADEB0097F85F /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
-		30D1851C2301ADEB0097F85F /* ApplePayWrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayWrappers.h; sourceTree = "<group>"; };
-		30D1851D2301ADEB0097F85F /* ContactInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInformation.m; sourceTree = "<group>"; };
-		30D1851E2301ADEB0097F85F /* ApplePayWrappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayWrappers.m; sourceTree = "<group>"; };
-		30D185292301AFC50097F85F /* ApplePayConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayConfiguration.h; sourceTree = "<group>"; };
-		30D185312301AFC50097F85F /* ApplePayConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayConfiguration.m; sourceTree = "<group>"; };
-		30D185352301AFD90097F85F /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
-		30D185362301AFD90097F85F /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
-		30D1853F2301B2940097F85F /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
+		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
+		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
+		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
+		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
+		30DB50FB23100E1C00B73D66 /* ApplePayWrappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayWrappers.m; sourceTree = "<group>"; };
+		30DB50FC23100E1C00B73D66 /* ApplePayConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayConfiguration.m; sourceTree = "<group>"; };
+		30DB50FD23100E1C00B73D66 /* PostalAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostalAddress.m; sourceTree = "<group>"; };
+		30DB50FE23100E1C00B73D66 /* ContactInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInformation.m; sourceTree = "<group>"; };
+		30DB50FF23100E1C00B73D66 /* ApplePayWrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayWrappers.h; sourceTree = "<group>"; };
+		30DB510023100E1C00B73D66 /* ApplePayConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayConfiguration.h; sourceTree = "<group>"; };
+		30DB511123100E5100B73D66 /* JudoKitObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JudoKitObjC.h; path = Model/JudoKitObjC.h; sourceTree = "<group>"; };
+		30DB511223100E5200B73D66 /* JPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPConstants.h; path = Model/JPConstants.h; sourceTree = "<group>"; };
+		30DB511323100E5200B73D66 /* BillingCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BillingCountry.h; path = Model/BillingCountry.h; sourceTree = "<group>"; };
+		30DB511423100E5200B73D66 /* PaymentMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentMethods.h; path = Model/PaymentMethods.h; sourceTree = "<group>"; };
+		30DB511A23100E6B00B73D66 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
+		30DB511B23100E6B00B73D66 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
+		30DB511F23100E6B00B73D66 /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
+		30DB512023100E6B00B73D66 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
+		30DB512723100EED00B73D66 /* CardLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardLogoView.m; path = View/CardLogoView.m; sourceTree = "<group>"; };
+		30DB512823100EED00B73D66 /* CardLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardLogoView.h; path = View/CardLogoView.h; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -389,11 +398,8 @@
 		3B5362A51C7CBE4A00CEBAE2 /* JP3DSWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JP3DSWebView.m; path = View/JP3DSWebView.m; sourceTree = "<group>"; };
 		3B5AFC071C9079E600DABB4C /* NSString+TextDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TextDirection.h"; path = "Extensions/NSString+TextDirection.h"; sourceTree = "<group>"; };
 		3B5AFC081C9079E600DABB4C /* NSString+TextDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TextDirection.m"; path = "Extensions/NSString+TextDirection.m"; sourceTree = "<group>"; };
-		3B5AFC0B1C90925300DABB4C /* CardLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardLogoView.h; sourceTree = "<group>"; };
-		3B5AFC0C1C90925300DABB4C /* CardLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardLogoView.m; sourceTree = "<group>"; };
 		3B5AFC0F1C9184F700DABB4C /* BillingCountry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillingCountry.h; sourceTree = "<group>"; };
 		3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JudoKitObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B678B591C6CE5190001DC2F /* JudoKitObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudoKitObjC.h; sourceTree = "<group>"; };
 		3B678B5B1C6CE5190001DC2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B678B601C6CE5190001DC2F /* JudoKitObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JudoKitObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B678B671C6CE5190001DC2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -477,8 +483,6 @@
 		3BD353CA1C77803F0045658A /* JPCardDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCardDetails.m; path = Model/JPCardDetails.m; sourceTree = "<group>"; };
 		3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoKitUIDedupTests.swift; sourceTree = "<group>"; };
 		3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DedupTestCase.swift; sourceTree = "<group>"; };
-		44290B0122F051720088F827 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
-		44290B0222F051720088F827 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
 		44290B0522F051B00088F827 /* JPTransactionEnricher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPTransactionEnricher.h; path = API/JPTransactionEnricher.h; sourceTree = "<group>"; };
 		44290B0622F051B00088F827 /* JPTransactionEnricher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPTransactionEnricher.m; path = API/JPTransactionEnricher.m; sourceTree = "<group>"; };
 		44290B0922F051D20088F827 /* CLLocation+JPDictionaryConvertible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocation+JPDictionaryConvertible.h"; path = "Extensions/CLLocation+JPDictionaryConvertible.h"; sourceTree = "<group>"; };
@@ -502,12 +506,9 @@
 		447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JPTheme.m"; path = "Extensions/UIViewController+JPTheme.m"; sourceTree = "<group>"; };
 		447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JudoPaymentMethodsViewModel.h; path = ViewModel/JudoPaymentMethodsViewModel.h; sourceTree = "<group>"; };
 		447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewModel.m; path = ViewModel/JudoPaymentMethodsViewModel.m; sourceTree = "<group>"; };
-		447CBD5C22DCA93600C1C9E1 /* PaymentMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethods.h; sourceTree = "<group>"; };
 		447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitPaymentMethodTests.swift; sourceTree = "<group>"; };
 		44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JudoPaymentMethodsViewController.h; path = Controller/JudoPaymentMethodsViewController.h; sourceTree = "<group>"; };
 		44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewController.m; path = Controller/JudoPaymentMethodsViewController.m; sourceTree = "<group>"; };
-		44B81DD822D7480700FE048D /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SafeAnchors.h"; sourceTree = "<group>"; };
-		44B81DD922D7480700FE048D /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SafeAnchors.m"; sourceTree = "<group>"; };
 		44DA43DC22F82B9300C34231 /* NSString+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Validation.h"; path = "Extensions/NSString+Validation.h"; sourceTree = "<group>"; };
 		44DA43EB22F82BD700C34231 /* NSString+Validation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Validation.m"; path = "Extensions/NSString+Validation.m"; sourceTree = "<group>"; };
 		44DA43ED22F82FE500C34231 /* NSString+Manipulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Manipulation.h"; path = "Extensions/NSString+Manipulation.h"; sourceTree = "<group>"; };
@@ -594,28 +595,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		30D185252301ADF20097F85F /* ApplePay */ = {
+		30DB50F823100E1C00B73D66 /* ApplePay */ = {
 			isa = PBXGroup;
 			children = (
-				30D185292301AFC50097F85F /* ApplePayConfiguration.h */,
-				30D185312301AFC50097F85F /* ApplePayConfiguration.m */,
-				30D1851C2301ADEB0097F85F /* ApplePayWrappers.h */,
-				30D1851E2301ADEB0097F85F /* ApplePayWrappers.m */,
-				30D185122301ADEB0097F85F /* ContactInformation.h */,
-				30D1851D2301ADEB0097F85F /* ContactInformation.m */,
-				30D1851B2301ADEB0097F85F /* PostalAddress.h */,
-				30D1851A2301ADEB0097F85F /* PostalAddress.m */,
+				30DB510023100E1C00B73D66 /* ApplePayConfiguration.h */,
+				30DB50FC23100E1C00B73D66 /* ApplePayConfiguration.m */,
+				30DB50FF23100E1C00B73D66 /* ApplePayWrappers.h */,
+				30DB50FB23100E1C00B73D66 /* ApplePayWrappers.m */,
+				30DB50F923100E1C00B73D66 /* ContactInformation.h */,
+				30DB50FE23100E1C00B73D66 /* ContactInformation.m */,
+				30DB50FA23100E1C00B73D66 /* PostalAddress.h */,
+				30DB50FD23100E1C00B73D66 /* PostalAddress.m */,
 			);
 			name = ApplePay;
+			path = Model/ApplePay;
 			sourceTree = "<group>";
 		};
-		30D185342301AFCB0097F85F /* Managers */ = {
+		30DB511923100E6B00B73D66 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				30D185362301AFD90097F85F /* ApplePayManager.h */,
-				30D185352301AFD90097F85F /* ApplePayManager.m */,
+				30DB511A23100E6B00B73D66 /* Functions.m */,
+				30DB511B23100E6B00B73D66 /* Functions.h */,
 			);
-			name = Managers;
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		30DB511C23100E6B00B73D66 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		30DB511E23100E6B00B73D66 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				30DB512023100E6B00B73D66 /* ApplePayManager.h */,
+				30DB511F23100E6B00B73D66 /* ApplePayManager.m */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */ = {
@@ -731,22 +750,19 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				44290B0222F051720088F827 /* Functions.h */,
-				44290B0122F051720088F827 /* Functions.m */,
-				447CBD5522DCA81700C1C9E1 /* ViewModel */,
-				3B678B711C6CE6190001DC2F /* API */,
-				30D185342301AFCB0097F85F /* Managers */,
-				3B678B701C6CE5F70001DC2F /* Model */,
-				3B678B741C6CE68D0001DC2F /* View */,
-				3B5362921C7CBD2100CEBAE2 /* Controller */,
-				3B678B731C6CE6500001DC2F /* Extensions */,
-				3B6991531C8DD841006ED1FB /* Theme */,
-				3B678B591C6CE5190001DC2F /* JudoKitObjC.h */,
-				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
-				30673FFB22F42EA500417C85 /* JPConstants.h */,
-				30D1853F2301B2940097F85F /* MockJPTransactionData.json */,
+				3B678B5B1C6CE5190001DC2F /* Info.plist */,
+				3B678B711C6CE6190001DC2F /* API */,
+				3B5362921C7CBD2100CEBAE2 /* Controller */,
+				3B678B731C6CE6500001DC2F /* Extensions */,
+				30DB511923100E6B00B73D66 /* Helpers */,
+				30DB511E23100E6B00B73D66 /* Managers */,
+				30DB511C23100E6B00B73D66 /* Mocks */,
+				3B678B701C6CE5F70001DC2F /* Model */,
+				3B6991531C8DD841006ED1FB /* Theme */,
+				3B678B741C6CE68D0001DC2F /* View */,
+				447CBD5522DCA81700C1C9E1 /* ViewModel */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -765,30 +781,30 @@
 		3B678B701C6CE5F70001DC2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				30D185252301ADF20097F85F /* ApplePay */,
+				30DB50F823100E1C00B73D66 /* ApplePay */,
+				30DB511323100E5200B73D66 /* BillingCountry.h */,
+				3B9711981C761B9700E9A347 /* JPAddress.h */,
+				3B9711991C761B9700E9A347 /* JPAddress.m */,
+				3B678B891C6DF9D00001DC2F /* JPAmount.h */,
+				3B678B8A1C6DF9D00001DC2F /* JPAmount.m */,
 				44290B0E22F051F50088F827 /* JPBrowser.h */,
 				44290B1922F051F60088F827 /* JPBrowser.m */,
+				3B678B931C6E282B0001DC2F /* JPCard.h */,
+				3B678B941C6E282B0001DC2F /* JPCard.m */,
+				3BD353C91C77803F0045658A /* JPCardDetails.h */,
+				3BD353CA1C77803F0045658A /* JPCardDetails.m */,
+				44340F1522F4531200B36D65 /* JPCardNetwork.h */,
+				44340F1622F4531200B36D65 /* JPCardNetwork.m */,
 				44290B0F22F051F50088F827 /* JPClientDetails.h */,
 				44290B1722F051F60088F827 /* JPClientDetails.m */,
+				30DB511223100E5200B73D66 /* JPConstants.h */,
+				3BD353C51C7774780045658A /* JPConsumer.h */,
+				3BD353C61C7774780045658A /* JPConsumer.m */,
 				44290B1322F051F60088F827 /* JPConsumerDevice.h */,
 				44290B1022F051F50088F827 /* JPConsumerDevice.m */,
 				44290B0D22F051F50088F827 /* JPDictionaryConvertible.h */,
 				44290B1222F051F60088F827 /* JPEnhancedPaymentDetail.h */,
 				44290B1822F051F60088F827 /* JPEnhancedPaymentDetail.m */,
-				44290B1522F051F60088F827 /* JPSDKInfo.h */,
-				44290B1622F051F60088F827 /* JPSDKInfo.m */,
-				44290B1422F051F60088F827 /* JPThreeDSecure.h */,
-				44290B1122F051F50088F827 /* JPThreeDSecure.m */,
-				3B9711981C761B9700E9A347 /* JPAddress.h */,
-				3B9711991C761B9700E9A347 /* JPAddress.m */,
-				3B678B891C6DF9D00001DC2F /* JPAmount.h */,
-				3B678B8A1C6DF9D00001DC2F /* JPAmount.m */,
-				3B678B931C6E282B0001DC2F /* JPCard.h */,
-				3B678B941C6E282B0001DC2F /* JPCard.m */,
-				3BD353C91C77803F0045658A /* JPCardDetails.h */,
-				3BD353CA1C77803F0045658A /* JPCardDetails.m */,
-				3BD353C51C7774780045658A /* JPConsumer.h */,
-				3BD353C61C7774780045658A /* JPConsumer.m */,
 				3B678B7D1C6DE0FA0001DC2F /* JPPagination.h */,
 				3B678B7E1C6DE0FA0001DC2F /* JPPagination.m */,
 				3B678B971C71D9D60001DC2F /* JPPaymentToken.h */,
@@ -797,13 +813,16 @@
 				3B678B8E1C6DFF340001DC2F /* JPReference.m */,
 				3B678B811C6DE2850001DC2F /* JPResponse.h */,
 				3B678B821C6DE2850001DC2F /* JPResponse.m */,
+				44290B1522F051F60088F827 /* JPSDKInfo.h */,
+				44290B1622F051F60088F827 /* JPSDKInfo.m */,
+				44290B1422F051F60088F827 /* JPThreeDSecure.h */,
+				44290B1122F051F50088F827 /* JPThreeDSecure.m */,
 				3BD353C11C77557F0045658A /* JPTransactionData.h */,
 				3BD353C21C77557F0045658A /* JPTransactionData.m */,
 				15CFC9E81FB7371300430D31 /* JPVCOResult.h */,
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
-				447CBD5C22DCA93600C1C9E1 /* PaymentMethods.h */,
-				44340F1522F4531200B36D65 /* JPCardNetwork.h */,
-				44340F1622F4531200B36D65 /* JPCardNetwork.m */,
+				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
+				30DB511423100E5200B73D66 /* PaymentMethods.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -844,6 +863,8 @@
 			children = (
 				44290B0922F051D20088F827 /* CLLocation+JPDictionaryConvertible.h */,
 				44290B0A22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m */,
+				44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */,
+				44DA43F822F8D9F500C34231 /* JPTheme+Additions.m */,
 				3B6912CF1C93179100367660 /* NSArray+Prefix.h */,
 				3B6912D01C93179100367660 /* NSArray+Prefix.m */,
 				3B69D5E61C99A7550075FFD8 /* NSDate+Judo.h */,
@@ -852,24 +873,22 @@
 				3B678B7A1C6DD8800001DC2F /* NSError+Judo.m */,
 				3B6912DC1C96BFED00367660 /* NSString+Card.h */,
 				3B6912DD1C96BFED00367660 /* NSString+Card.m */,
+				82933101230AF3B300689DC4 /* NSString+Localize.h */,
+				82933103230AF4FB00689DC4 /* NSString+Localize.m */,
+				44DA43ED22F82FE500C34231 /* NSString+Manipulation.h */,
+				44DA43EE22F82FE500C34231 /* NSString+Manipulation.m */,
 				3B5AFC071C9079E600DABB4C /* NSString+TextDirection.h */,
 				3B5AFC081C9079E600DABB4C /* NSString+TextDirection.m */,
+				44DA43DC22F82B9300C34231 /* NSString+Validation.h */,
+				44DA43EB22F82BD700C34231 /* NSString+Validation.m */,
 				3B6991611C8F26FE006ED1FB /* NSTimer+Blocks.h */,
 				3B6991621C8F26FE006ED1FB /* NSTimer+Blocks.m */,
 				3B4EB38F1C981511006265A0 /* UIColor+Judo.h */,
 				3B4EB3901C981511006265A0 /* UIColor+Judo.m */,
-				44B81DD822D7480700FE048D /* UIView+SafeAnchors.h */,
-				44B81DD922D7480700FE048D /* UIView+SafeAnchors.m */,
+				302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */,
+				302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */,
 				447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */,
 				447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */,
-				44DA43DC22F82B9300C34231 /* NSString+Validation.h */,
-				44DA43EB22F82BD700C34231 /* NSString+Validation.m */,
-				44DA43ED22F82FE500C34231 /* NSString+Manipulation.h */,
-				44DA43EE22F82FE500C34231 /* NSString+Manipulation.m */,
-				44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */,
-				44DA43F822F8D9F500C34231 /* JPTheme+Additions.m */,
-				82933101230AF3B300689DC4 /* NSString+Localize.h */,
-				82933103230AF4FB00689DC4 /* NSString+Localize.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -877,13 +896,13 @@
 		3B678B741C6CE68D0001DC2F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
-				3B5AFC0B1C90925300DABB4C /* CardLogoView.h */,
-				3B5AFC0C1C90925300DABB4C /* CardLogoView.m */,
+				30DB512823100EED00B73D66 /* CardLogoView.h */,
+				30DB512723100EED00B73D66 /* CardLogoView.m */,
 				3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */,
 				3B5362A51C7CBE4A00CEBAE2 /* JP3DSWebView.m */,
 				3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */,
 				3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */,
+				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -953,53 +972,54 @@
 				3B678BA91C7327040001DC2F /* JPCollection.h in Headers */,
 				3B678B7F1C6DE0FA0001DC2F /* JPPagination.h in Headers */,
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
-				30673FFC22F42EA500417C85 /* JPConstants.h in Headers */,
-				447CBD5D22DCA93600C1C9E1 /* PaymentMethods.h in Headers */,
-				44290B0422F051720088F827 /* Functions.h in Headers */,
+				30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */,
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
-				3B678B5A1C6CE5190001DC2F /* JudoKitObjC.h in Headers */,
 				447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
+				30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */,
+				30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
 				3B678B951C6E282B0001DC2F /* JPCard.h in Headers */,
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
+				30DB511723100E5200B73D66 /* BillingCountry.h in Headers */,
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
 				447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */,
 				3B678B991C71D9D60001DC2F /* JPPaymentToken.h in Headers */,
-				30D1851F2301ADEB0097F85F /* ContactInformation.h in Headers */,
 				3B97119B1C76353E00E9A347 /* JPAddress.h in Headers */,
 				3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */,
 				44DA43F922F8D9F500C34231 /* JPTheme+Additions.h in Headers */,
 				3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */,
-				44B81DDA22D7480700FE048D /* UIView+SafeAnchors.h in Headers */,
 				3BD353C31C77557F0045658A /* JPTransactionData.h in Headers */,
+				30DB510823100E1C00B73D66 /* ApplePayConfiguration.h in Headers */,
 				3B6991561C8DD85B006ED1FB /* JPTheme.h in Headers */,
-				3B5AFC0D1C90925300DABB4C /* CardLogoView.h in Headers */,
 				3B704AA21C89F1E800376773 /* BillingCountryInputField.h in Headers */,
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
-				30D185222301ADEB0097F85F /* ApplePayWrappers.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
+				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
 				44DA43EF22F82FE500C34231 /* NSString+Manipulation.h in Headers */,
 				3B678BA51C7326F10001DC2F /* JPRegisterCard.h in Headers */,
+				302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */,
 				3B678B871C6DF6130001DC2F /* JPTransaction.h in Headers */,
 				44290B1A22F051F60088F827 /* JPDictionaryConvertible.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
+				30DB512223100E6B00B73D66 /* Functions.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
 				3B704A921C89F1A800376773 /* CardInputField.h in Headers */,
 				1577945D2110C8CF007BD3E1 /* JPSaveCard.h in Headers */,
 				3B678BB11C7327270001DC2F /* JPVoid.h in Headers */,
 				3B678BB51C7327410001DC2F /* JPReceipt.h in Headers */,
+				30DB511623100E5200B73D66 /* JPConstants.h in Headers */,
+				30DB512523100E6B00B73D66 /* ApplePayManager.h in Headers */,
 				3BD353CB1C77803F0045658A /* JPCardDetails.h in Headers */,
 				15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */,
-				30D185382301AFD90097F85F /* ApplePayManager.h in Headers */,
 				44290B0722F051B00088F827 /* JPTransactionEnricher.h in Headers */,
 				3B678BAD1C7327160001DC2F /* JPRefund.h in Headers */,
 				3B6912DE1C96BFED00367660 /* NSString+Card.h in Headers */,
@@ -1015,12 +1035,11 @@
 				44290B2122F051F60088F827 /* JPThreeDSecure.h in Headers */,
 				3B678B7B1C6DD8800001DC2F /* NSError+Judo.h in Headers */,
 				44290B1F22F051F60088F827 /* JPEnhancedPaymentDetail.h in Headers */,
-				30D185322301AFC50097F85F /* ApplePayConfiguration.h in Headers */,
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
+				30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */,
 				3B678B771C6CE7770001DC2F /* JPSession.h in Headers */,
+				30DB511823100E5200B73D66 /* PaymentMethods.h in Headers */,
 				3BF476F21C748B5B008AE0D3 /* JudoKit.h in Headers */,
-				30D185212301ADEB0097F85F /* PostalAddress.h in Headers */,
-				70F102E51CB281AB006EEC48 /* BillingCountry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,10 +1166,9 @@
 			};
 			buildConfigurationList = 3B678B501C6CE5190001DC2F /* Build configuration list for PBXProject "JudoKitObjC" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				fr,
@@ -1261,7 +1279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D185472301B2940097F85F /* MockJPTransactionData.json in Resources */,
+				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1337,7 +1355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B678B9E1C7326C00001DC2F /* JPPayment.m in Sources */,
-				30D185202301ADEB0097F85F /* PostalAddress.m in Sources */,
+				30DB510623100E1C00B73D66 /* ContactInformation.m in Sources */,
 				3B678BB21C7327270001DC2F /* JPVoid.m in Sources */,
 				82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */,
 				3BD353CC1C77803F0045658A /* JPCardDetails.m in Sources */,
@@ -1348,45 +1366,45 @@
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
+				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
+				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
+				302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */,
 				44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */,
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				44290B1E22F051F60088F827 /* JPThreeDSecure.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
-				44B81DDB22D7480700FE048D /* UIView+SafeAnchors.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
 				44290B2622F051F60088F827 /* JPBrowser.m in Sources */,
-				44290B0322F051720088F827 /* Functions.m in Sources */,
 				44DA43EC22F82BD700C34231 /* NSString+Validation.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
 				3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */,
+				30DB512423100E6B00B73D66 /* ApplePayManager.m in Sources */,
+				30DB510523100E1C00B73D66 /* PostalAddress.m in Sources */,
 				3B678B801C6DE0FA0001DC2F /* JPPagination.m in Sources */,
-				3B5AFC0E1C90925300DABB4C /* CardLogoView.m in Sources */,
 				3B704A8B1C89F18000376773 /* JPInputField.m in Sources */,
+				30DB510423100E1C00B73D66 /* ApplePayConfiguration.m in Sources */,
 				3BD353C41C77557F0045658A /* JPTransactionData.m in Sources */,
 				44340F1822F4531200B36D65 /* JPCardNetwork.m in Sources */,
-				30D185232301ADEB0097F85F /* ContactInformation.m in Sources */,
 				447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */,
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
-				30D185242301ADEB0097F85F /* ApplePayWrappers.m in Sources */,
 				3B678B881C6DF6130001DC2F /* JPTransaction.m in Sources */,
 				44290B0C22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m in Sources */,
-				30D185332301AFC50097F85F /* ApplePayConfiguration.m in Sources */,
 				15CFC9EB1FB738E600430D31 /* JPVCOResult.m in Sources */,
 				3B5362A31C7CBD9000CEBAE2 /* LoadingView.m in Sources */,
 				3B704AA31C89F1E800376773 /* BillingCountryInputField.m in Sources */,
 				3B678B781C6CE7770001DC2F /* JPSession.m in Sources */,
-				30D185372301AFD90097F85F /* ApplePayManager.m in Sources */,
 				3B704A931C89F1A800376773 /* CardInputField.m in Sources */,
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
 				3B704A8F1C89F19800376773 /* IssueNumberInputField.m in Sources */,
 				3B6912DF1C96BFED00367660 /* NSString+Card.m in Sources */,
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
+				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
 				44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */,
 				3B678BAA1C7327040001DC2F /* JPCollection.m in Sources */,
 				44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */,
