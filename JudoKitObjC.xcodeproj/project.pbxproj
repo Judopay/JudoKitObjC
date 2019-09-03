@@ -52,6 +52,7 @@
 		30DB512523100E6B00B73D66 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512023100E6B00B73D66 /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB512923100EED00B73D66 /* CardLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB512723100EED00B73D66 /* CardLogoView.m */; };
 		30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512823100EED00B73D66 /* CardLogoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30DEFA79231E789C00E0B0A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829330FE230AF0F900689DC4 /* Localizable.strings */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -1261,6 +1262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DEFA79231E789C00E0B0A6 /* Localizable.strings in Resources */,
 				3B4EB3AD1C981EA7006265A0 /* LaunchScreen.storyboard in Resources */,
 				3B4EB3AA1C981EA7006265A0 /* Assets.xcassets in Resources */,
 				3B4EB3A81C981EA7006265A0 /* Main.storyboard in Resources */,

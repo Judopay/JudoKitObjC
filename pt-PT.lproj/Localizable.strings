@@ -1,83 +1,100 @@
-/* 
-  Localizable.strings
-  JudoKitObjC
-
-  Created by Gheorghe Cojocaru on 8/19/19.
-  Copyright © 2019 Judo Payments. All rights reserved.
-*/
+//
+//  Localizable.strings (Portuguese)
+//  JudoKitObjC
+//
+//  Copyright (c) 2016 Alternative Payments Ltd
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 
 
 //CardInputField
-"card_number_label" = "Card number";
-"long_card_number" = "Long card number";
+"card_number_label" = "Número do Cartão";
+"long_card_number" = "Número grande do cartão";
 
 //SecurityCodeInputField
-"please_reenter_the_card_security_code" = "Re-enter security code";
-"security_code" = "Security code";
+"please_reenter_the_card_security_code" = "Por favor, insira novamente o código de segurança do cartão";
+"security_code" = "Código de Segurança";
 
 //IssueNumberInputField
-"issue_number_label" = "Issue number";
-"issue_number_front_of_card" = "Issue number on front of card";
+"issue_number_label" = "Número de Expedição";
+"issue_number_front_of_card" = "Número de Expedição na frente do cartão";
 
 //DateInputField
-"check_expiry_date" = "Check expiry date";
-"check_start_date" = "Check start date";
-"start_date_label" = "Start date";
-"expiry_date_label" = "Expiry date";
+"check_expiry_date" = "Confirmar data de expiração";
+"check_start_date" = "Confirmar data de validade";
+"start_date_label" = "Data de Validade";
+"expiry_date_label" = "Data de Expiração";
 "date_hint" = "MM/YY";
 "date_format" = "MM/yy";
 
 //PostcodeInputField
-"billing_postcode" = "Billing postcode";
-"billing_zip_code" = "Billing ZIP code";
-"billing_postal_code" = "Billing postal code";
+"billing_postcode" = "Código Postal";
+"billing_zip_code" = "Código Postal";
+"billing_postal_code" = "Código Postal";
 
 //BillingCountryInputField
-"united_kingdom" = "UK";
-"united_states" = "USA";
-"canada" = "Canada";
-"other_country" = "Other";
+"united_kingdom" = "Reino Unido";
+"united_states" = "Estados Unidos";
+"canada" = "Canadá";
+"other_country" = "Outros";
 
 //JudoPayViewController
-"secure_server" = "Secure server: ";
-"pay" = "Pay";
+"secure_server" = "Servidor seguro: ";
+"pay" = "Pagar";
 
 //JudoPaymentMethodsViewController
-"payment_method" = "Payment Method";
-"select_payment_method" = "Please select from one of the payment methods listed below:";
-"card_payment" = "Card Payment";
+"payment_method" = "Método de Pagamento";
+"select_payment_method" = "Por favor selecione um dos métodos de pagamento abaixo";
+"card_payment" = "Pagamento em cartão";
 
 //NSError+Judo
-"unable_to_process_request_error_desc" = "Sorry, we're currently unable to process this request.";
-"unable_to_process_request_error_title" = "Unable to process";
-"error_request_failed" = "The request responded without data";
-"error_payment_method_missing" = "The payment method (card details, token or PKPayment) has not been set for a transaction that requires it (custom UI)";
-"error_amount_missing" = "The amount has not been set for a transaction that requires it (custom UI)";
-"error_reference_missing" = "The reference has not been set for a transaction that requires it (custom UI)";
-"error_response_parse_error" = "An error with a response from the backend API";
-"error_user_did_cancel" = "Received when user cancels the payment journey";
-"error_parameter_error" = "A parameter entered into the dictionary (request body to Judo API) is not set";
-"error_failed_3DS_request" = "After receiving the 3DS payload, when the payload has faulty data, the WebView fails to load the 3DS Page or the resolution page";
-"error_jailbroken_device_disallowed" = "The device the code is currently running is jailbroken. Jailbroken devices are not allowed when instantiating a new Judo session";
-"error_3DS_request" = "Error when routing to 3DS";
-"error_underlying_error" = "An error in the iOS system with an enclosed underlying error";
-"error_transaction_declined" = "A transaction that was sent to the backend returned declined";
+"unable_to_process_request_error_desc" = "No momento, não podemos processar esta solicitação.";
+"unable_to_process_request_error_title" = "Incapaz de processar";
+"error_request_failed" = "A solicitação respondeu sem dados";
+"error_payment_method_missing" = "O método de pagamento (detalhes do cartão, token ou PKPayment) não foi definido para uma transação que exige isso (interface do usuário personalizada)";
+"error_amount_missing" = "O valor não foi definido para uma transação que exige isso (interface do usuário personalizada)";
+"error_reference_missing" = "A referência não foi definida para uma transação que exige (UI customizada)";
+"error_response_parse_error" = "Um erro com uma resposta da API de back-end";
+"error_user_did_cancel" = "Recebido quando o usuário cancela a jornada de pagamento";
+"error_parameter_error" = "Um parâmetro inserido no dicionário (corpo da solicitação para API do Judo) não está definido";
+"error_failed_3DS_request" = "Depois de receber a carga 3DS, quando a carga apresenta dados defeituosos, o WebView falha ao carregar a página 3DS ou a página de resolução";
+"error_jailbroken_device_disallowed" = "O dispositivo em que o código está sendo executado no momento é jailbroken. Dispositivos de jailbreak não são permitidos ao instanciar uma nova sessão de judô";
+"error_3DS_request" = "Erro ao rotear para o 3DS";
+"error_underlying_error" = "Um erro no sistema iOS com um erro subjacente incluído";
+"error_transaction_declined" = "Uma transação que foi enviada ao back-end retornada foi recusada";
+"error_card_not_supported" = "Não aceitamos %@";
 
 //NSString+Card
-"check_card_number" = "Check card number";
-"error_card_not_supported" = "We do not accept %@";
+"check_card_number" = "Confirmar número do cartão";
 
 //JPTheme
-"add_card" = "Add card";
-"add" = "Add";
-"back" = "Back";
-"payment" = "Payment";
-"refund" = "Refund";
-"authentication" = "Authentication";
-"adding_card" = "Adding card...";
-"processing_payment" = "Processing payment...";
-"redirecting" = "Redirecting...";
-"verifying_payment" = "Verifying payment";
-"verifying_card" = "Verifying card";
-"secure_server_transmission" = "Your card details are encrypted using SSL before transmission to our secure payment service provider. They will not be stored on this device or on our servers.";
+"add_card" = "Adicionar Cartão";
+"add" = "Adicionar";
+"back" = "Volte";
+"payment" = "Pagamento";
+"refund" = "Reembolso";
+"authentication" = "Autorizando";
+"adding_card" = "Adicionando cartão";
+"processing" = "Processando";
+"processing_payment" = "Processando Pagamento";
+"redirecting" = "Redirecionando";
+"verifying_payment" = "Verificação de pagamento";
+"verifying_card" = "Verificando cartão";
+"secure_server_transmission" = "Servidor Seguro: Seu cartão é encriptado usando SSL antes da transmissão ao nosso provedor de serviços de pagamento seguro. Ele não será salvo nesse dispositivo ou em nossos servidores";
 
