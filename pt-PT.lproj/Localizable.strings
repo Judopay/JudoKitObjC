@@ -55,7 +55,7 @@
 "other_country" = "Outros";
 
 //JudoPayViewController
-"secure_server" = "Servidor seguro: ";
+"secure_server" = "Servidor de Segurança";
 "pay" = "Pagar";
 
 //JudoPaymentMethodsViewController
@@ -64,21 +64,21 @@
 "card_payment" = "Pagamento em cartão";
 
 //NSError+Judo
-"unable_to_process_request_error_desc" = "No momento, não podemos processar esta solicitação.";
-"unable_to_process_request_error_title" = "Incapaz de processar";
+"unable_to_process_request_error_desc" = "Desculpe, nós não podemos processar essa solicitação.";
+"unable_to_process_request_error_title" = "Incapaz de Processar";
 "error_request_failed" = "A solicitação respondeu sem dados";
-"error_payment_method_missing" = "O método de pagamento (detalhes do cartão, token ou PKPayment) não foi definido para uma transação que exige isso (interface do usuário personalizada)";
-"error_amount_missing" = "O valor não foi definido para uma transação que exige isso (interface do usuário personalizada)";
-"error_reference_missing" = "A referência não foi definida para uma transação que exige (UI customizada)";
-"error_response_parse_error" = "Um erro com uma resposta da API de back-end";
-"error_user_did_cancel" = "Recebido quando o usuário cancela a jornada de pagamento";
-"error_parameter_error" = "Um parâmetro inserido no dicionário (corpo da solicitação para API do Judo) não está definido";
-"error_failed_3DS_request" = "Depois de receber a carga 3DS, quando a carga apresenta dados defeituosos, o WebView falha ao carregar a página 3DS ou a página de resolução";
-"error_jailbroken_device_disallowed" = "O dispositivo em que o código está sendo executado no momento é jailbroken. Dispositivos de jailbreak não são permitidos ao instanciar uma nova sessão de judô";
-"error_3DS_request" = "Erro ao rotear para o 3DS";
-"error_underlying_error" = "Um erro no sistema iOS com um erro subjacente incluído";
-"error_transaction_declined" = "Uma transação que foi enviada ao back-end retornada foi recusada";
-"error_card_not_supported" = "Não aceitamos %@";
+"error_payment_method_missing" = "O método de pagamento (detalhes do cartão, Token ou PKPagamento) não foi configurado para uma transação que requer (UI customizada)";
+"error_amount_missing" = "O valor não foi configurado para uma transação que requer (UI customizada)";
+"error_reference_missing" = "A referência não foi configurada para uma transação que requer (UI customizada)";
+"error_response_parse_error" = "Um erro com a resposta do API do servidor";
+"error_user_did_cancel" = "Recebido quando o usuário concela o pagamento";
+"error_parameter_error" = "Um parâmetro inserido no dicionário (pedido corpo ao API da Judo) não está configurado";
+"error_failed_3DS_request" = "Depois de receber a carga útil do 3DS, quando a carga útil tem dados defeituosos, a WebView falha em carregar a página 3DS ou a página de resolução";
+"error_jailbroken_device_disallowed" = "O dispositivo que o código está executando está Jailbroken, dispositivos jailbroken não são permitidos quando se cria uma instância de uma nova sessão da Judo";
+"error_3DS_request" = "Erro ao rotear para 3DS";
+"error_underlying_error" = "Um erro no sistema iOS com um erro subjacente ";
+"error_transaction_declined" = "A transação que foi enviada ao back-end retornou recusada";
+"error_card_not_supported" = "Nós não aceitamos %@";
 
 //NSString+Card
 "check_card_number" = "Confirmar número do cartão";
@@ -86,7 +86,7 @@
 //JPTheme
 "add_card" = "Adicionar Cartão";
 "add" = "Adicionar";
-"back" = "Volte";
+"back" = "Atrás";
 "payment" = "Pagamento";
 "refund" = "Reembolso";
 "authentication" = "Autorizando";
@@ -94,7 +94,7 @@
 "processing" = "Processando";
 "processing_payment" = "Processando Pagamento";
 "redirecting" = "Redirecionando";
-"verifying_payment" = "Verificação de pagamento";
+"verifying_payment" = "Verificando Pagamento";
 "verifying_card" = "Verificando cartão";
-"secure_server_transmission" = "Servidor Seguro: Seu cartão é encriptado usando SSL antes da transmissão ao nosso provedor de serviços de pagamento seguro. Ele não será salvo nesse dispositivo ou em nossos servidores";
+"secure_server_transmission" = " Seu cartão é encriptado usando SSL antes da transmissão ao nosso provedor de serviços de pagamento seguro. Ele não será salvo nesse dispositivo ou em nossos servidores";
 

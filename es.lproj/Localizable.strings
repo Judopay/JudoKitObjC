@@ -55,7 +55,7 @@
 "other_country" = "Otro";
 
 //JudoPayViewController
-"secure_server" = "Servidor seguro: ";
+"secure_server" = "Servidor seguro:";
 "pay" = "Pagar";
 
 //JudoPaymentMethodsViewController
@@ -67,18 +67,18 @@
 //NSError+Judo
 "unable_to_process_request_error_desc" = "Lo sentimos, actualmente no podemos procesar esta solicitud.";
 "unable_to_process_request_error_title" = "No se puede procesar";
-"error_request_failed" = "La solicitud respondió sin datos";
+"error_request_failed" = "La solicitud respondió sin datos.";
 "error_payment_method_missing" = "El método de pago (detalles de la tarjeta, token o PKPayment) no se ha configurado para una transacción que lo requiere (IU personalizada)";
 "error_amount_missing" = "El importe no se ha establecido para una transacción que lo requiere (IU personalizada)";
 "error_reference_missing" = "La referencia no se ha establecido para una transacción que lo requiere (IU personalizada)";
-"error_response_parse_error" = "Un error con una respuesta de la API de back-end";
-"error_user_did_cancel" = "Recibido cuando el usuario cancela el viaje de pago";
+"error_response_parse_error" = "Un error con una respuesta de la API de servidor";
+"error_user_did_cancel" = "Recibido cuando el usuario cancela la sesión de pago";
 "error_parameter_error" = "Un parámetro ingresado en el diccionario (cuerpo de solicitud a la API de Judo) no está configurado";
 "error_failed_3DS_request" = "Después de recibir la carga útil 3DS, cuando la carga útil tiene datos defectuosos, WebView no puede cargar la página 3DS o la página de resolución";
-"error_jailbroken_device_disallowed" = "El dispositivo que el código está ejecutando actualmente tiene jailbreak. Los dispositivos con jailbreak no están permitidos cuando se crea una instancia de una nueva sesión de Judo";
+"error_jailbroken_device_disallowed" = "El dispositivo que el código está ejecutando actualmente es jailbroken. Los dispositivos jailbroken no están permitidos cuando se crea una instancia de una nueva sesión de Judo";
 "error_3DS_request" = "Error al enrutar a 3DS";
 "error_underlying_error" = "Un error en el sistema iOS con un error subyacente adjunto";
-"error_transaction_declined" = "Una transacción que se envió al backend devuelto rechazó";
+"error_transaction_declined" = "Una transacción que se envió al servidor ha vuelto rechazada.";
 
 //NSString+Card
 "check_card_number" = "Comprobar número de tarjeta";
@@ -96,5 +96,5 @@
 "redirecting" = "Redirigiendo";
 "verifying_payment" = "Verificando pago";
 "verifying_card" = "Verificando tarjeta";
-"secure_server_transmission" = "Servidor seguro: los detalles de su tarjeta son encriptados usando SSL antes de su transmisión a nuestro procesador de pagos seguro. No se almacenarán en su dispositivo ni en nuestros servidores.";
+"secure_server_transmission" = " Los detalles de su tarjeta son encriptados usando SSL antes de su transmisión a nuestro procesador de pagos seguro. No se almacenarán en su dispositivo ni en nuestros servidores.";
 
