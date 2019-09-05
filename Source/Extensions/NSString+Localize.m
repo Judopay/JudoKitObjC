@@ -28,7 +28,7 @@
 @implementation NSString (Manipulation)
 
 - (nonnull NSString *)localized {
-    NSBundle *bundle = [NSBundle bundleForClass:[JPTheme class]];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.judopay.JudoKitObjC"];
     return NSLocalizedStringFromTableInBundle(self, nil, bundle, nil);
 }
 
