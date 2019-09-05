@@ -24,11 +24,12 @@
 
 #import "NSString+Localize.h"
 #import <Foundation/Foundation.h>
+#import "JudoKit.h"
 
 @implementation NSString (Manipulation)
 
 - (nonnull NSString *)localized {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.judopay.JudoKitObjC"];
+    NSBundle *bundle = [NSBundle bundleForClass:[JudoKit class]];
     return NSLocalizedStringFromTableInBundle(self, nil, bundle, nil);
 }
 
