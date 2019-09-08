@@ -60,7 +60,7 @@
 
 //JudoPaymentMethodsViewController
 "payment_method" = "Método de Pagamento";
-"select_payment_method" = "Por favor selecione um dos métodos de pagamento abaixo";
+"select_payment_method" = "Por favor selecione um dos métodos de pagamento abaixo:";
 "card_payment" = "Pagamento em cartão";
 
 //NSError+Judo
@@ -96,5 +96,5 @@
 "redirecting" = "Redirecionando";
 "verifying_payment" = "Verificando Pagamento";
 "verifying_card" = "Verificando cartão";
-"secure_server_transmission" = " Seu cartão é encriptado usando SSL antes da transmissão ao nosso provedor de serviços de pagamento seguro. Ele não será salvo nesse dispositivo ou em nossos servidores";
+"secure_server_transmission" = " Seu cartão é encriptado usando SSL antes da transmissão ao nosso provedor de serviços de pagamento seguro. Ele não será salvo nesse dispositivo ou em nossos servidores.";
 
