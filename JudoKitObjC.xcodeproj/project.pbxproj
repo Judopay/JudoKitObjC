@@ -724,7 +724,7 @@
 		3B678B4C1C6CE5190001DC2F = {
 			isa = PBXGroup;
 			children = (
-				829330FE230AF0F900689DC4 /* Localizable.strings */,
+				52FBFB6A2325A3770096064C /* Resources */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				701050B91E1E90D70001ED87 /* DeviceDNA */,
 				3B678B581C6CE5190001DC2F /* Source */,
@@ -952,6 +952,14 @@
 				447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		52FBFB6A2325A3770096064C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				829330FE230AF0F900689DC4 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		701050B91E1E90D70001ED87 /* DeviceDNA */ = {
