@@ -28,7 +28,16 @@
 @implementation NSString (Manipulation)
 
 - (nonnull NSString *)localized {
+    
     NSBundle *bundle = [NSBundle bundleForClass:[JPTheme class]];
+    
+    NSString *podPath = [bundle pathForResource:@"JudoKitObjC" ofType:@"bundle"];
+    NSBundle *podBundle = [NSBundle bundleWithPath:podPath];
+    
+    if (podPath != nil) {
+        return NSLocalizedStringFromTableInBundle(self, nil, podBundle, nil);
+    }
+    
     return NSLocalizedStringFromTableInBundle(self, nil, bundle, nil);
 }
 
