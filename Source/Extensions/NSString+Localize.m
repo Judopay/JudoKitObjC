@@ -23,22 +23,21 @@
 //  SOFTWARE.
 
 #import "NSString+Localize.h"
+#import "NSBundle+Additions.h"
 #import <Foundation/Foundation.h>
 
 @implementation NSString (Manipulation)
-
+    
+    static NSBundle *_podBundle;
+    static NSBundle *_frameworkBundle;
+    
 - (nonnull NSString *)localized {
     
-    NSBundle *bundle = [NSBundle bundleForClass:[JPTheme class]];
-    
-    NSString *podPath = [bundle pathForResource:@"JudoKitObjC" ofType:@"bundle"];
-    NSBundle *podBundle = [NSBundle bundleWithPath:podPath];
-    
-    if (podPath != nil) {
-        return NSLocalizedStringFromTableInBundle(self, nil, podBundle, nil);
+    if (NSBundle.stringsBundle != nil) {
+        return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.stringsBundle, nil);
     }
     
-    return NSLocalizedStringFromTableInBundle(self, nil, bundle, nil);
+    return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.frameworkBundle, nil);
 }
-
+    
 @end
