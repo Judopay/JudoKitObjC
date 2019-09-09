@@ -28,9 +28,6 @@
 
 @implementation NSString (Manipulation)
     
-    static NSBundle *_podBundle;
-    static NSBundle *_frameworkBundle;
-    
 - (nonnull NSString *)localized {
     
     if (NSBundle.stringsBundle != nil) {
