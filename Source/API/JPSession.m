@@ -82,7 +82,7 @@
     NSMutableURLRequest *request = [self judoRequest:[NSString stringWithFormat:@"%@%@", self.endpoint, path]];
 
     request.HTTPMethod = HTTPMethod;
-    NSLog(@"PATTTTTTT");
+
     if (parameters) {
         NSError *error = nil;
         request.HTTPBody = [NSJSONSerialization dataWithJSONObject:parameters
