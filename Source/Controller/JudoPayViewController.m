@@ -58,7 +58,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     return opt << 16;
 }
 
-@interface JudoPayViewController () <UIWebViewDelegate, JudoPayInputDelegate>
+@interface JudoPayViewController () <WKNavigationDelegate, JudoPayInputDelegate>
 
 @property (nonatomic, assign) BOOL paymentEnabled;
 @property (nonatomic, assign) BOOL isMakingTransaction;
@@ -241,7 +241,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     self.judoKitSession.apiSession.uiClientMode = YES;
     self.title = [self.theme titleForTransactionWithType:self.transactionType];
-    self.threeDSWebView.delegate = self;
+    self.threeDSWebView.navigationDelegate = self;
 
     // Button Actions
     BOOL isRegisterCard = self.transactionType == TransactionTypeRegisterCard || self.transactionType == TransactionTypeSaveCard;
@@ -854,21 +854,24 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [self paymentEnabled:allFieldsValid];
 }
 
-#pragma mark - UIWebView Delegate Methods
+#pragma mark - WKNavigation Delegate Methods
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSString *urlString = request.URL.absoluteString;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    NSString *urlString = navigationAction.request.URL.absoluteString;
 
     if ([urlString rangeOfString:@"Parse3DS"].location == NSNotFound) {
-        return YES;
+        decisionHandler(WKNavigationActionPolicyAllow);
+        return;
     }
 
-    NSString *bodyString = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+    NSString *bodyString = [[NSString alloc] initWithData:navigationAction.request.HTTPBody encoding:NSUTF8StringEncoding];
     if (!bodyString) {
         if (self.completionBlock) {
             self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:nil]);
         }
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
 
     NSDictionary *results = [bodyString extractURLComponentsQueryItems];
@@ -906,12 +909,16 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         completion:^(BOOL finished) {
             [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
         }];
-    return NO;
+    
+    decisionHandler(WKNavigationActionPolicyCancel);
+    return;
+    
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
     CGFloat alphaVal = 1.0f;
-    if ([webView.request.URL.absoluteString isEqualToString:@"about:blank"]) {
+    if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         alphaVal = 0.0f;
     }
     [UIView animateWithDuration:0.5
@@ -921,7 +928,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                      }];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [UIView animateWithDuration:0.5
                      animations:^{
                          self.threeDSWebView.alpha = 0.0f;

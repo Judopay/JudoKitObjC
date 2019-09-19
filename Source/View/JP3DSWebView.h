@@ -23,11 +23,12 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 /**
- *  A UIWebView subclass that is configured to detect the execution of a 3DS validation page.
+ *  A WKWebView subclass that is configured to detect the execution of a 3DS validation page.
  */
-@interface JP3DSWebView : UIWebView
+@interface JP3DSWebView : WKWebView
 
 /**
  *  This method initiates the webview to load the 3DS website.

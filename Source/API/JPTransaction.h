@@ -135,7 +135,7 @@
 /**
  *  threeDSecure call - this method will automatically trigger a Session Call to the judo REST API and execute the finalizing 3DS call on top of the information that had been sent in the previous methods
  *
- *  @param parameters the dictionary that contains all the information from the 3DS UIWebView Request
+ *  @param parameters the dictionary that contains all the information from the 3DS WKWebView Request
  *  @param receiptId  the receipt for the given Transaction
  *  @param completion a completion block that is called when the request finishes
  */
