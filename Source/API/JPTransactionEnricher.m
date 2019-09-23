@@ -42,6 +42,7 @@
 @property (nonatomic, strong) DeviceDNA *deviceDNA;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *lastKnownLocation;
+@property (nonatomic, assign) BOOL didFindLocation;
 
 @property (nonatomic, copy, nullable) void (^completionBlock)(void);
 @property (nonatomic, weak) JPTransaction *transaction;
@@ -55,7 +56,7 @@
     if (self = [super init]) {
         Credentials *credentials = [[Credentials alloc] initWithToken:token secret:secret];
         _deviceDNA = [[DeviceDNA alloc] initWithCredentials:credentials];
-
+        [self setDidFindLocation:NO];
         _locationManager = [CLLocationManager new];
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         _locationManager.delegate = self;
@@ -70,7 +71,7 @@
 
 - (void)enrichTransaction:(nonnull JPTransaction *)transaction
            withCompletion:(nonnull void (^)(void))completion {
-
+    [self setDidFindLocation:NO];
     if (![self.enricheablePaths containsObject:transaction.transactionPath]) {
         completion();
         return;
@@ -114,7 +115,10 @@
     if (locations.count > 0) {
         self.lastKnownLocation = locations.lastObject;
     }
+    if (self.didFindLocation == NO ) {
     [self enrichWithLocation:self.lastKnownLocation];
+        [self setDidFindLocation:YES];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
