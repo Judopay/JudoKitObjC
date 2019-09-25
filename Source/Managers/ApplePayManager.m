@@ -134,6 +134,9 @@
         PKShippingMethod *pkShippingMethod = [PKShippingMethod new];
         pkShippingMethod.identifier = shippingMethod.identifier;
         pkShippingMethod.detail = shippingMethod.detail;
+        pkShippingMethod.label = shippingMethod.label;
+        pkShippingMethod.amount = shippingMethod.amount;
+        pkShippingMethod.type = [self pkSummaryItemTypeFromType: shippingMethod.type];
         [pkShippingMethods addObject:pkShippingMethod];
     }
 
@@ -145,8 +148,12 @@
     NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
 
     for (PaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
+        
+        PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType: item.type];
+        
         [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
-                                                                             amount:item.amount]];
+                                                                             amount:item.amount
+                                                                               type:summaryItemType]];
     }
 
     return pkPaymentSummaryItems;
@@ -236,6 +243,14 @@
     }
 
     return pkContactFields;
+}
+
+- (PKPaymentSummaryItemType)pkSummaryItemTypeFromType:(PaymentSummaryItemType)type {
+    if (type == PaymentSummaryItemTypeFinal) {
+        return PKPaymentSummaryItemTypeFinal;
+    }
+    
+    return PKPaymentSummaryItemTypePending;
 }
 
 - (PKAddressField)pkAddressFieldsFromFields:(ContactField)contactFields {

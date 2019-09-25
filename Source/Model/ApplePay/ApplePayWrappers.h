@@ -126,8 +126,9 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
 
 /**
  * Defines a shipping method for delivering physical goods.
+ * Inherits from PaymentSummaryItem
  */
-@interface PaymentShippingMethod : NSObject
+@interface PaymentShippingMethod : PaymentSummaryItem
 
 /**
  * Identifier for the shipping method, used by the app.
@@ -144,9 +145,15 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  *
  * @param identifier - identifier for the shipping method, used by the app.
  * @param detail     - a user-readable description of the shipping method.
+ * @param label  - title of the item
+ * @param amount - amount to be payed for this item
+ * @param type   - payment type for this item (final / pending)
  */
 - (instancetype)initWithIdentifier:(NSString *)identifier
-                         andDetail:(NSString *)detail;
+                         detail:(NSString *)detail
+                             label:(NSString *)label
+                         amount:(NSDecimalNumber *)amount
+                           type:(PaymentSummaryItemType)type;
 
 @end
 

@@ -56,9 +56,12 @@
 @implementation PaymentShippingMethod
 
 - (instancetype)initWithIdentifier:(NSString *)identifier
-                         andDetail:(NSString *)detail {
+                         detail:(NSString *)detail
+                             label:(nonnull NSString *)label
+                            amount:(nonnull NSDecimalNumber *)amount
+                              type:(PaymentSummaryItemType)type {
 
-    if (self = [super init]) {
+    if (self = [super initWithLabel:label amount:amount type:type]) {
         self.identifier = identifier;
         self.detail = detail;
     }

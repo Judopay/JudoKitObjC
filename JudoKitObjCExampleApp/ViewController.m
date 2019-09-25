@@ -546,7 +546,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     
     
     configuration.transactionType = transactionType;
-    
     configuration.requiredShippingContactFields = ContactFieldAll;
     configuration.requiredBillingContactFields = ContactFieldAll;
     configuration.returnedContactInfo = ReturnedInfoAll;
