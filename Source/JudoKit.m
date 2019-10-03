@@ -279,6 +279,7 @@
                                                                                                  andCompletion:completion];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.activeViewController = viewController;
     [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
 }
 
