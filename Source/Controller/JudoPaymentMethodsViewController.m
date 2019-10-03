@@ -198,9 +198,7 @@
 }
 
 - (void)backButtonAction:(id)sender {
-    if (self.completionBlock) {
-        self.completionBlock(nil, [NSError judoUserDidCancelError]);
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

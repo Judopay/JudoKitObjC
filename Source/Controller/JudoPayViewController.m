@@ -566,9 +566,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 }
 
 - (void)doneButtonAction:(id)sender {
-    if (self.completionBlock) {
-        self.completionBlock(nil, [NSError judoUserDidCancelError]);
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)toggleStartDateVisibility:(BOOL)isVisible {
