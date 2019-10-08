@@ -155,34 +155,69 @@ typedef NS_ENUM(NSUInteger, CardNetwork) {
 };
 
 /**
- *  The CardDetails object stores information that is returned from a successful payment or pre-auth. This class also implements the `NSCoding` protocol to enable serialization for persistency
+ * The CardDetails object stores information that is returned from a successful payment or pre-auth. This class also implements the `NSCoding` protocol to enable serialization for persistency
  */
 @interface JPCardDetails : NSObject <NSCoding>
 
 /**
-*  The last four digits of the card used for this transaction
-*/
+ * The last four digits of the card used for this transaction
+ */
 @property (nonatomic, strong) NSString *_Nullable cardLastFour;
 
 /**
- *  Expiry date of the card used for this transaction formatted as a two digit month and year i.e. MM/YY
+ * Expiry date of the card used for this transaction formatted as a two digit month and year i.e. MM/YY
  */
 @property (nonatomic, strong) NSString *_Nullable endDate;
 
 /**
- *  Can be used to charge future payments against this card
+ * Can be used to charge future payments against this card
  */
 @property (nonatomic, strong) NSString *_Nullable cardToken;
 
 /**
- *  The card network
+ * The card network
  */
 @property (nonatomic, assign) CardNetwork cardNetwork;
 
 /**
- *  The card number if available
+ * The card number if available
  */
 @property (nonatomic, strong) NSString *_Nullable cardNumber;
+
+/**
+ * The bank the card was issued from.
+ *
+ * Possible values are Credit Industriel Et Commercial, Barclays, Bank of America
+ */
+@property (nonatomic, strong) NSString *_Nullable bank;
+
+/**
+ * The category of the card.
+ *
+ * Possible values are Corporate, Classic, Platinum
+ */
+@property (nonatomic, strong) NSString *_Nullable cardCategory;
+
+/**
+ * The country the card was issued from in ISO 3166-1 alpha-2 format (2 chararacters)
+ *
+ * Possible values are UK, FR, DE, etc
+ */
+@property (nonatomic, strong) NSString *_Nullable cardCountry;
+
+/**
+ * The funding type of the card.
+ *
+ * Possible values are Debit, Credit, etc
+ */
+@property (nonatomic, strong) NSString *_Nullable cardFunding;
+
+/**
+ * The scheme of the card.
+ *
+ * Possible values are Visa, Mastercard, etc
+ */
+@property (nonatomic, strong) NSString *_Nullable cardScheme;
 
 /**
  *  Designated initializer for Card Details

@@ -857,7 +857,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 #pragma mark - WKNavigation Delegate Methods
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
+
     NSString *urlString = navigationAction.request.URL.absoluteString;
 
     if ([urlString rangeOfString:@"Parse3DS"].location == NSNotFound) {
@@ -909,14 +909,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         completion:^(BOOL finished) {
             [self.threeDSWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
         }];
-    
+
     decisionHandler(WKNavigationActionPolicyCancel);
     return;
-    
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    
+
     CGFloat alphaVal = 1.0f;
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         alphaVal = 0.0f;

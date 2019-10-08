@@ -6,11 +6,11 @@
 //  Copyright © 2019 Judo Payments. All rights reserved.
 //
 
-#import "NSBundle+Additions.h"
 #import "JudoKit.h"
+#import "NSBundle+Additions.h"
 
 @implementation NSBundle (Additions)
-    
+
 + (instancetype)frameworkBundle {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;
@@ -19,15 +19,15 @@
     });
     return bundle;
 }
-    
+
 + (instancetype)stringsBundle {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-            NSString *podPath = [NSBundle.frameworkBundle pathForResource:@"JudoKitObjC"
-                                                                   ofType:@"bundle"];
-            bundle = [NSBundle bundleWithPath:podPath];
-        });
+        NSString *podPath = [NSBundle.frameworkBundle pathForResource:@"JudoKitObjC"
+                                                               ofType:@"bundle"];
+        bundle = [NSBundle bundleWithPath:podPath];
+    });
     return bundle;
 }
 @end

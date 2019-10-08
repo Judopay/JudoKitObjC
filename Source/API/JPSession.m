@@ -31,6 +31,22 @@
 #import "NSError+Judo.h"
 #import <TrustKit/TrustKit.h>
 
+static NSString *const JPAPIVersion = @"5.6.0";
+static NSString *const JPContentTypeJSON = @"application/json";
+static NSString *const JPJudoSDK = @"Judo-SDK";
+static NSString *const JPCustomUI = @"Custom-UI";
+
+static NSString *const HTTPHeaderFieldContentType = @"Content-Type";
+static NSString *const HTTPHeaderFieldAccept = @"Accept";
+static NSString *const HTTPHeaderFieldAPIVersion = @"API-Version";
+static NSString *const HTTPHeaderFieldUserAgent = @"User-Agent";
+static NSString *const HTTPHeaderFieldClientMode = @"UI-Client-Mode";
+static NSString *const HTTPHeaderFieldAuthorization = @"Authorization";
+
+static NSString *const HTTPMethodGET = @"GET";
+static NSString *const HTTPMethodPOST = @"POST";
+static NSString *const HTTPMethodPUT = @"PUT";
+
 @interface JPSession () <NSURLSessionDelegate>
 
 @property (nonatomic, strong, readwrite) NSString *endpoint;
@@ -102,39 +118,39 @@
 }
 
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:@"POST" path:path parameters:parameters completion:completion];
+    [self apiCall:HTTPMethodPOST path:path parameters:parameters completion:completion];
 }
 
 - (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:@"PUT" path:path parameters:parameters completion:completion];
+    [self apiCall:HTTPMethodPUT path:path parameters:parameters completion:completion];
 }
 
 - (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:@"GET" path:path parameters:parameters completion:completion];
+    [self apiCall:HTTPMethodGET path:path parameters:parameters completion:completion];
 }
 
 - (NSMutableURLRequest *)judoRequest:(NSString *)url {
     // create request and configure headers
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request addValue:@"5.0.0" forHTTPHeaderField:@"API-Version"];
+    [request addValue:JPContentTypeJSON forHTTPHeaderField:HTTPHeaderFieldContentType];
+    [request addValue:JPContentTypeJSON forHTTPHeaderField:HTTPHeaderFieldAccept];
+    [request addValue:JPAPIVersion forHTTPHeaderField:HTTPHeaderFieldAPIVersion];
 
     // Adds the version and lang of the SDK to the header
-    [request addValue:getUserAgent() forHTTPHeaderField:@"User-Agent"];
-    NSString *uiClientModeString = @"Judo-SDK";
+    [request addValue:getUserAgent() forHTTPHeaderField:HTTPHeaderFieldUserAgent];
+    NSString *uiClientModeString = JPJudoSDK;
 
     if (self.uiClientMode) {
-        uiClientModeString = @"Custom-UI";
+        uiClientModeString = JPCustomUI;
     }
 
-    [request addValue:uiClientModeString forHTTPHeaderField:@"UI-Client-Mode"];
+    [request addValue:uiClientModeString forHTTPHeaderField:HTTPHeaderFieldClientMode];
 
     // Check if token and secret have been set
     NSAssert(self.authorizationHeader, @"token and secret not set");
 
     // Set auth header
-    [request addValue:self.authorizationHeader forHTTPHeaderField:@"Authorization"];
+    [request addValue:self.authorizationHeader forHTTPHeaderField:HTTPHeaderFieldAuthorization];
     return request;
 }
 

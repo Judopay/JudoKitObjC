@@ -11,11 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSBundle (Additions)
-    
+
 + (instancetype)frameworkBundle;
 + (instancetype)stringsBundle;
-    
-@end
 
+@end
 
 NS_ASSUME_NONNULL_END

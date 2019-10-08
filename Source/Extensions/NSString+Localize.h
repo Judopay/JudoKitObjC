@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Localize)
-    
+
 - (nonnull NSString *)localized;
-    
+
 @end

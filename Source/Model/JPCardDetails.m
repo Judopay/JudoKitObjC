@@ -37,6 +37,11 @@
         self.endDate = dictionary[@"endDate"];
         self.cardToken = dictionary[@"cardToken"];
         self.cardNumber = dictionary[@"cardNumber"];
+        self.bank = dictionary[@"bank"];
+        self.cardCategory = dictionary[@"cardCategory"];
+        self.cardCountry = dictionary[@"cardCountry"];
+        self.cardFunding = dictionary[@"cardFunding"];
+        self.cardScheme = dictionary[@"cardScheme"];
         self.cardNetwork = ((NSNumber *)dictionary[@"cardType"]).integerValue;
     }
     return self;
@@ -64,6 +69,11 @@
         self.cardToken = [decoder decodeObjectForKey:@"cardToken"];
         self.cardNetwork = [decoder decodeIntegerForKey:@"cardNetwork"];
         self.cardNumber = nil;
+        self.bank = [decoder decodeObjectForKey:@"bank"];
+        self.cardCategory = [decoder decodeObjectForKey:@"cardCategory"];
+        self.cardCountry = [decoder decodeObjectForKey:@"cardCountry"];
+        self.cardFunding = [decoder decodeObjectForKey:@"cardFunding"];
+        self.cardScheme = [decoder decodeObjectForKey:@"cardScheme"];
     }
     return self;
 }
@@ -73,6 +83,11 @@
     [encoder encodeObject:self.endDate forKey:@"endDate"];
     [encoder encodeObject:self.cardToken forKey:@"cardToken"];
     [encoder encodeInt64:self.cardNetwork forKey:@"cardNetwork"];
+    [encoder encodeObject:self.bank forKey:@"bank"];
+    [encoder encodeObject:self.cardCategory forKey:@"cardCategory"];
+    [encoder encodeObject:self.cardCountry forKey:@"cardCountry"];
+    [encoder encodeObject:self.cardFunding forKey:@"cardFunding"];
+    [encoder encodeObject:self.cardScheme forKey:@"cardScheme"];
 }
 
 - (CardNetwork)cardNetwork {

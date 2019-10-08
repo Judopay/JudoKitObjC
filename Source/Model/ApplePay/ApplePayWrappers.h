@@ -150,10 +150,10 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  * @param type   - payment type for this item (final / pending)
  */
 - (instancetype)initWithIdentifier:(NSString *)identifier
-                         detail:(NSString *)detail
+                            detail:(NSString *)detail
                              label:(NSString *)label
-                         amount:(NSDecimalNumber *)amount
-                           type:(PaymentSummaryItemType)type;
+                            amount:(NSDecimalNumber *)amount
+                              type:(PaymentSummaryItemType)type;
 
 @end
 

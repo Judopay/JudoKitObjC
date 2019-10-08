@@ -60,7 +60,7 @@
         _locationManager = [CLLocationManager new];
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         _locationManager.delegate = self;
-        
+
         _enricheablePaths = @[ @"transactions/payments",
                                @"transactions/preauths",
                                @"transactions/registercard",
@@ -76,10 +76,10 @@
         completion();
         return;
     }
-    
+
     self.completionBlock = completion;
     self.transaction = transaction;
-    
+
     if (CLLocationManager.locationServicesEnabled && (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedAlways || CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse)) {
         [self.locationManager requestLocation];
     } else {
@@ -98,14 +98,14 @@
 
 - (JPEnhancedPaymentDetail *)buildEnhancedPaymentDetail:(NSDictionary<NSString *, NSString *> *)device
                                             andLocation:(CLLocation *)location {
-    
+
     JPThreeDSecure *threeDSecure = [JPThreeDSecure secureWithBrowser:[JPBrowser new]];
-    
+
     JPConsumerDevice *consumerDevice = [JPConsumerDevice deviceWithIpAddress:getIPAddress()
                                                                clientDetails:[JPClientDetails detailsWithDictionary:device]
                                                                  geoLocation:location
                                                                 threeDSecure:threeDSecure];
-    
+
     return [JPEnhancedPaymentDetail detailWithSdkInfo:[JPSDKInfo infoWithVersion:JudoKitVersion name:@"iOS-ObjC"]
                                        consumerDevice:consumerDevice];
 }
@@ -115,7 +115,7 @@
     if (locations.count > 0) {
         self.lastKnownLocation = locations.lastObject;
     }
-    if (self.didFindLocation == NO ) {
+    if (self.didFindLocation == NO) {
         [self enrichWithLocation:self.lastKnownLocation];
         [self setDidFindLocation:YES];
     }

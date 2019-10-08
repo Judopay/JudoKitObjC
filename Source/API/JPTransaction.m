@@ -80,7 +80,7 @@
     }
 
     self.currentTransactionReference = self.reference.paymentReference;
-    
+
     [self.enricher enrichTransaction:self
                       withCompletion:^{
                           [self.apiSession POST:self.transactionPath parameters:self.parameters completion:completion];

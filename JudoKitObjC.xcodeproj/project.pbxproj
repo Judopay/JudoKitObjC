@@ -190,6 +190,8 @@
 		447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */; };
 		447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */; };
 		447CBD6022DCAD0800C1C9E1 /* JudoKitPaymentMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */; };
+		44AA45002346819B00F3FE09 /* DetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AA44FF2346819B00F3FE09 /* DetailsTableViewController.m */; };
+		44AA450C23469F2800F3FE09 /* JudoKitCardDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */; };
 		44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */; };
 		44DA43DD22F82B9300C34231 /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 44DA43DC22F82B9300C34231 /* NSString+Validation.h */; };
@@ -511,6 +513,9 @@
 		447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JudoPaymentMethodsViewModel.h; path = ViewModel/JudoPaymentMethodsViewModel.h; sourceTree = "<group>"; };
 		447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewModel.m; path = ViewModel/JudoPaymentMethodsViewModel.m; sourceTree = "<group>"; };
 		447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitPaymentMethodTests.swift; sourceTree = "<group>"; };
+		44AA44FE2346819B00F3FE09 /* DetailsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewController.h; sourceTree = "<group>"; };
+		44AA44FF2346819B00F3FE09 /* DetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewController.m; sourceTree = "<group>"; };
+		44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitCardDetailsTests.swift; sourceTree = "<group>"; };
 		44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JudoPaymentMethodsViewController.h; path = Controller/JudoPaymentMethodsViewController.h; sourceTree = "<group>"; };
 		44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewController.m; path = Controller/JudoPaymentMethodsViewController.m; sourceTree = "<group>"; };
 		44DA43DC22F82B9300C34231 /* NSString+Validation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Validation.h"; path = "Extensions/NSString+Validation.h"; sourceTree = "<group>"; };
@@ -660,6 +665,8 @@
 				3B4EB39A1C981EA7006265A0 /* Supporting Files */,
 				8296A5E62302ED3E00E369C1 /* ApplePayButtonViewController.h */,
 				8296A5E72302ED3E00E369C1 /* ApplePayButtonViewController.m */,
+				44AA44FE2346819B00F3FE09 /* DetailsTableViewController.h */,
+				44AA44FF2346819B00F3FE09 /* DetailsTableViewController.m */,
 			);
 			path = JudoKitObjCExampleApp;
 			sourceTree = "<group>";
@@ -685,6 +692,7 @@
 				3B4EB3B91C981EA7006265A0 /* Info.plist */,
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
 				447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */,
+				44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */,
 			);
 			name = UITests;
 			path = JudoKitObjCExampleAppUITests;
@@ -1346,6 +1354,7 @@
 				3B4EB3A21C981EA7006265A0 /* ViewController.m in Sources */,
 				3B4EB39C1C981EA7006265A0 /* main.m in Sources */,
 				3B4EB3A51C981EA7006265A0 /* DetailViewController.m in Sources */,
+				44AA45002346819B00F3FE09 /* DetailsTableViewController.m in Sources */,
 				8296A5E82302ED3E00E369C1 /* ApplePayButtonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1358,6 +1367,7 @@
 				3B78361D1CA1638900A7DCDE /* JudoKitPaymentTests.swift in Sources */,
 				3B78361E1CA1638900A7DCDE /* JudoKitTokenPaymentTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
+				44AA450C23469F2800F3FE09 /* JudoKitCardDetailsTests.swift in Sources */,
 				3B78361B1CA1638900A7DCDE /* JudoKitMaestroTests.swift in Sources */,
 				3B78361A1CA1638900A7DCDE /* JudoKitAVSPaymentTests.swift in Sources */,
 				447CBD6022DCAD0800C1C9E1 /* JudoKitPaymentMethodTests.swift in Sources */,

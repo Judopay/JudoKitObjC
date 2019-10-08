@@ -24,6 +24,7 @@
 
 #import "DetailViewController.h"
 #import "ContactInformation.h"
+#import "DetailsTableViewController.h"
 
 @import JudoKitObjC;
 
@@ -70,7 +71,6 @@
         [self.shippingAddressStackView setHidden:NO];
         self.shippingAddressLabel.text = self.shippingInformation.toString;
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,13 +82,38 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)homeButtonHandler:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)presentCardDetailsData:(id)sender {
+    JPCardDetails *cardDetails = self.transactionData.cardDetails;
+    
+    if (!cardDetails) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:@"No card details data to display."
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+
+    NSArray<DetailsRow *> *rows = @[
+    [DetailsRow withTitle:@"Card last 4 digits" andValue: cardDetails.cardLastFour],
+    [DetailsRow withTitle:@"End date" andValue: cardDetails.endDate],
+    [DetailsRow withTitle:@"Card token" andValue: cardDetails.cardToken],
+    [DetailsRow withTitle:@"Card type" andValue: [NSString stringWithFormat:@"%lu", (unsigned long)cardDetails.cardNetwork]],
+    [DetailsRow withTitle:@"Bank" andValue: cardDetails.bank],
+    [DetailsRow withTitle:@"Card category" andValue: cardDetails.cardCategory],
+    [DetailsRow withTitle:@"Card country" andValue: cardDetails.cardCountry],
+    [DetailsRow withTitle:@"Card funding" andValue: cardDetails.cardFunding],
+    [DetailsRow withTitle:@"Card scheme" andValue: cardDetails.cardScheme]
+    ];
+    
+    NSArray<DetailsSection *> *sections = @[[[DetailsSection alloc] initWithTitle:@"Card Details" rows: rows]];
+    DetailsTableViewController *detailsViewController = [[DetailsTableViewController alloc] initWithData:sections andTitle:@"Details"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:detailsViewController];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Lazy Loading
@@ -118,6 +143,5 @@
     }
     return _numberFormatter;
 }
-
 
 @end

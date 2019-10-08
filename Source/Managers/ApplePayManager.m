@@ -136,7 +136,7 @@
         pkShippingMethod.detail = shippingMethod.detail;
         pkShippingMethod.label = shippingMethod.label;
         pkShippingMethod.amount = shippingMethod.amount;
-        pkShippingMethod.type = [self pkSummaryItemTypeFromType: shippingMethod.type];
+        pkShippingMethod.type = [self pkSummaryItemTypeFromType:shippingMethod.type];
         [pkShippingMethods addObject:pkShippingMethod];
     }
 
@@ -148,9 +148,9 @@
     NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
 
     for (PaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
-        
-        PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType: item.type];
-        
+
+        PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType:item.type];
+
         [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
                                                                              amount:item.amount
                                                                                type:summaryItemType]];
@@ -249,7 +249,7 @@
     if (type == PaymentSummaryItemTypeFinal) {
         return PKPaymentSummaryItemTypeFinal;
     }
-    
+
     return PKPaymentSummaryItemTypePending;
 }
 
