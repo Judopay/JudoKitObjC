@@ -162,6 +162,12 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoApplePayConfigurationError {
+     return [NSError errorWithDomain:JudoErrorDomain
+                                  code:JudoErrorInvalidApplePayConfiguration
+                              userInfo:@{NSLocalizedDescriptionKey : @"Invalid Apple Pay configuration"}];
+}
+
 + (NSError *)judoInvalidCardNumberError {
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorInvalidCardNumberError

@@ -465,6 +465,11 @@
 
     self.viewController = self.manager.pkPaymentAuthorizationViewController;
 
+    if (self.viewController == nil) {
+        completion(nil, NSError.judoApplePayConfigurationError);
+        return;
+    }
+    
     self.viewController.delegate = self;
 
     self.completionBlock = completion;
