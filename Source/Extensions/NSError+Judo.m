@@ -164,8 +164,8 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 
 + (NSError *)judoApplePayConfigurationError {
      return [NSError errorWithDomain:JudoErrorDomain
-                                  code:JudoErrorInvalidApplePayConfiguration
-                              userInfo:@{NSLocalizedDescriptionKey : @"Invalid Apple Pay configuration"}];
+                                code:JudoErrorInvalidApplePayConfiguration
+                            userInfo:@{NSLocalizedDescriptionKey : @"Invalid Apple Pay configuration"}];
 }
 
 + (NSError *)judoInvalidCardNumberError {
