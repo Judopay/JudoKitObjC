@@ -2,7 +2,7 @@
 //  IDEALBank.m
 //  JudoKitObjC
 //
-//  Copyright (c) 2017 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,7 @@
 @implementation IDEALBank
 
 - (instancetype)initWithType:(IDEALBankType)type {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         self.title = [self titleForType:type];
         self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
     }

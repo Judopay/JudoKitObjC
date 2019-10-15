@@ -816,9 +816,10 @@
 		3B678B701C6CE5F70001DC2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				306BCECE2355FC9E008540E7 /* IDEALBank.h */,
 				30DB50F823100E1C00B73D66 /* ApplePay */,
 				30DB511323100E5200B73D66 /* BillingCountry.h */,
+				306BCECE2355FC9E008540E7 /* IDEALBank.h */,
+				306BCECC2355F0F7008540E7 /* IDEALBank.m */,
 				3B9711981C761B9700E9A347 /* JPAddress.h */,
 				3B9711991C761B9700E9A347 /* JPAddress.m */,
 				3B678B891C6DF9D00001DC2F /* JPAmount.h */,
@@ -859,7 +860,6 @@
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
-				306BCECC2355F0F7008540E7 /* IDEALBank.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
