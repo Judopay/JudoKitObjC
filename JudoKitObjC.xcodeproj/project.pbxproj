@@ -626,13 +626,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		306BCEBF2355ECFC008540E7 /* iDEAL */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iDEAL;
-			sourceTree = "<group>";
-		};
 		30DB50F823100E1C00B73D66 /* ApplePay */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,7 +716,6 @@
 		3B5362921C7CBD2100CEBAE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				306BCEBF2355ECFC008540E7 /* iDEAL */,
 				3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */,
 				3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */,
 				44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */,
