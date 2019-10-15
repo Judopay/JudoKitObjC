@@ -35,6 +35,8 @@
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
 		302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */; };
 		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
+		306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCECC2355F0F7008540E7 /* IDEALBank.m */; };
+		306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCECE2355FC9E008540E7 /* IDEALBank.h */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -352,6 +354,8 @@
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
 		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
+		306BCECC2355F0F7008540E7 /* IDEALBank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IDEALBank.m; path = Model/IDEALBank.m; sourceTree = "<group>"; };
+		306BCECE2355FC9E008540E7 /* IDEALBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDEALBank.h; path = Model/IDEALBank.h; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -622,6 +626,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		306BCEBF2355ECFC008540E7 /* iDEAL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iDEAL;
+			sourceTree = "<group>";
+		};
 		30DB50F823100E1C00B73D66 /* ApplePay */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,6 +723,7 @@
 		3B5362921C7CBD2100CEBAE2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				306BCEBF2355ECFC008540E7 /* iDEAL */,
 				3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */,
 				3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */,
 				44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */,
@@ -804,6 +816,7 @@
 		3B678B701C6CE5F70001DC2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				306BCECE2355FC9E008540E7 /* IDEALBank.h */,
 				30DB50F823100E1C00B73D66 /* ApplePay */,
 				30DB511323100E5200B73D66 /* BillingCountry.h */,
 				3B9711981C761B9700E9A347 /* JPAddress.h */,
@@ -846,6 +859,7 @@
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
+				306BCECC2355F0F7008540E7 /* IDEALBank.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1068,6 +1082,7 @@
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
+				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
@@ -1441,6 +1456,7 @@
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
+				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
