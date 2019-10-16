@@ -33,6 +33,7 @@
 #import "DemoFeature.h"
 #import "Settings.h"
 #import "HalfHeightPresentationController.h"
+#import "IDEALFormViewController.h"
 
 #import "JudoKitObjC.h"
 
@@ -120,13 +121,18 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     return cell;
 }
 
+- (void)displayForm {
+    IDEALFormViewController *controller = [IDEALFormViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DemoFeature *feature = self.features[indexPath.row];
     switch (feature.type) {
         case DemoFeatureTypePayment:
-            [self paymentOperation];
+            [self displayForm];
             break;
 
         case DemoFeatureTypePreAuth:

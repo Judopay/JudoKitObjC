@@ -41,6 +41,8 @@
 		306BCF1A235704A9008540E7 /* IDEALBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCF18235704A9008540E7 /* IDEALBankTableViewCell.m */; };
 		306BCF1D23570F86008540E7 /* IDEALBankSelectionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCF1B23570F86008540E7 /* IDEALBankSelectionTableViewController.h */; };
 		306BCF1E23570F86008540E7 /* IDEALBankSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCF1C23570F86008540E7 /* IDEALBankSelectionTableViewController.m */; };
+		306BCF21235744D1008540E7 /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCF1F235744D1008540E7 /* IDEALFormViewController.h */; };
+		306BCF22235744D1008540E7 /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCF20235744D1008540E7 /* IDEALFormViewController.m */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -364,6 +366,8 @@
 		306BCF18235704A9008540E7 /* IDEALBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALBankTableViewCell.m; sourceTree = "<group>"; };
 		306BCF1B23570F86008540E7 /* IDEALBankSelectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALBankSelectionTableViewController.h; sourceTree = "<group>"; };
 		306BCF1C23570F86008540E7 /* IDEALBankSelectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALBankSelectionTableViewController.m; sourceTree = "<group>"; };
+		306BCF1F235744D1008540E7 /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
+		306BCF20235744D1008540E7 /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -640,6 +644,8 @@
 				306BCF1623570480008540E7 /* Cells */,
 				306BCF1B23570F86008540E7 /* IDEALBankSelectionTableViewController.h */,
 				306BCF1C23570F86008540E7 /* IDEALBankSelectionTableViewController.m */,
+				306BCF1F235744D1008540E7 /* IDEALFormViewController.h */,
+				306BCF20235744D1008540E7 /* IDEALFormViewController.m */,
 			);
 			path = iDEAL;
 			sourceTree = "<group>";
@@ -1104,6 +1110,7 @@
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				306BCF19235704A9008540E7 /* IDEALBankTableViewCell.h in Headers */,
+				306BCF21235744D1008540E7 /* IDEALFormViewController.h in Headers */,
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
@@ -1473,6 +1480,7 @@
 				306BCF1A235704A9008540E7 /* IDEALBankTableViewCell.m in Sources */,
 				82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */,
 				3BD353CC1C77803F0045658A /* JPCardDetails.m in Sources */,
+				306BCF22235744D1008540E7 /* IDEALFormViewController.m in Sources */,
 				3B678BA21C7326D30001DC2F /* JPPreAuth.m in Sources */,
 				3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */,
 				44290B0822F051B00088F827 /* JPTransactionEnricher.m in Sources */,
