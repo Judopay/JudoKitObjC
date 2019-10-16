@@ -1,5 +1,5 @@
 //
-//  IDEALBank.m
+//  IDEALBankSelectionTableViewController.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,41 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "IDEALBank.h"
+#import <UIKit/UIKit.h>
 
-@implementation IDEALBank
-
-+ (instancetype)bankWithType:(IDEALBankType)type {
-    return [[IDEALBank alloc] initWithType:type];
-}
-
-- (instancetype)initWithType:(IDEALBankType)type {
-    if (self = [super init]) {
-        self.title = [self titleForType:type];
-        self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
-    }
-    return self;
-}
-
-- (NSString *)titleForType:(IDEALBankType)type {
-    NSArray * bankNames = @[
-        @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
-        @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
-        @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
-    ];
-    
-    return bankNames[type];
-}
-
-- (NSString *)bankIdentifierCodeForType:(IDEALBankType)type {
-    NSArray * bankIdentifierCodes = @[
-        @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
-        @"INGBNL2A", @"SNSBNL2A",@"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
-        @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
-    ];
-    
-    return bankIdentifierCodes[type];
-}
+/**
+ * A custom implementation of the UITableViewController used for displaying the list of iDEAL banks
+ */
+@interface IDEALBankSelectionTableViewController : UITableViewController
 
 @end
+

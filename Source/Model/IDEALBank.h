@@ -64,6 +64,15 @@ typedef NS_ENUM(NSUInteger, IDEALBankType) {
  *
  *  @return an IDEALBank instance
  */
++ (nonnull instancetype)bankWithType:(IDEALBankType)type;
+
+/**
+ *  Create an IDEALBank instance based on a specified type
+ *
+ *  @param type - one of the predefined iDEALBank types
+ *
+ *  @return an IDEALBank instance
+ */
 - (nonnull instancetype)initWithType:(IDEALBankType)type;
 
 @end

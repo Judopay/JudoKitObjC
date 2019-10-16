@@ -1,5 +1,5 @@
 //
-//  IDEALBank.m
+//  IDEALBankTableViewCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,41 +22,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "IDEALBank.h"
+#import <UIKit/UIKit.h>
 
-@implementation IDEALBank
+@class IDEALBank;
 
-+ (instancetype)bankWithType:(IDEALBankType)type {
-    return [[IDEALBank alloc] initWithType:type];
-}
+/**
+ *  A custom UITableViewCell that is configured to display a specific bank logo based on the
+ *  iDEAL bank model provided
+ */
+@interface IDEALBankTableViewCell : UITableViewCell
 
-- (instancetype)initWithType:(IDEALBankType)type {
-    if (self = [super init]) {
-        self.title = [self titleForType:type];
-        self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
-    }
-    return self;
-}
+/**
+ *  Initializes an IDEALBankTableViewCell based on a specified IDEAL bank model;
+ *
+ *  @param bank -  An IDEALBank object containing the bank title and identifier code
+ *
+ *  @return a configured instance of the IDEALBankTableViewCell object
+ */
++ (instancetype)cellWithBank:(IDEALBank *)bank;
 
-- (NSString *)titleForType:(IDEALBankType)type {
-    NSArray * bankNames = @[
-        @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
-        @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
-        @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
-    ];
-    
-    return bankNames[type];
-}
-
-- (NSString *)bankIdentifierCodeForType:(IDEALBankType)type {
-    NSArray * bankIdentifierCodes = @[
-        @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
-        @"INGBNL2A", @"SNSBNL2A",@"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
-        @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
-    ];
-    
-    return bankIdentifierCodes[type];
-}
+/**
+ *  Initializes an IDEALBankTableViewCell based on a specified IDEAL bank model;
+ *
+ *  @param bank -  An IDEALBank object containing the bank title and identifier code
+ *
+ *  @return a configured instance of the IDEALBankTableViewCell object
+ */
+- (instancetype)initWithBank:(IDEALBank *)bank;
 
 @end
+
