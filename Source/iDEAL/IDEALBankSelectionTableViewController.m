@@ -30,6 +30,10 @@
 
 # pragma mark - Private properties
 
+- (NSString *)bankCellIdentifier {
+    return NSStringFromClass(IDEALBankTableViewCell.class);
+}
+
 - (NSArray*) bankList {
     return @[
         [IDEALBank bankWithType:IDEALBankRabobank],
@@ -52,8 +56,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:NSStringFromClass([IDEALBankTableViewCell class])];
+    NSBundle *bundle = [NSBundle bundleForClass:IDEALBank.class];
+    UINib* nib = [UINib nibWithNibName:self.bankCellIdentifier bundle: bundle];
+    [self.tableView registerNib:nib forCellReuseIdentifier:self.bankCellIdentifier];
 }
 
 # pragma mark - UITableViewDataSource methods
@@ -66,7 +71,14 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     IDEALBank *bank = self.bankList[indexPath.row];
-    IDEALBankTableViewCell *cell = [IDEALBankTableViewCell cellWithBank:bank];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.bankCellIdentifier
+                                                            forIndexPath:indexPath];
+    
+    if ([cell isKindOfClass:IDEALBankTableViewCell.class]) {
+        [((IDEALBankTableViewCell *)cell) configureWithBank:bank];
+    }
+    
     return cell;
 }
 

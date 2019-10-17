@@ -27,28 +27,15 @@
 @class IDEALBank;
 
 /**
- *  A custom UITableViewCell that is configured to display a specific bank logo based on the
- *  iDEAL bank model provided
+ * A custom UITableViewCell used for displaying the iDEAL bank logo
  */
 @interface IDEALBankTableViewCell : UITableViewCell
 
 /**
- *  Initializes an IDEALBankTableViewCell based on a specified IDEAL bank model;
+ *  A method for customizing the IDEALBankTableViewCell's logo image based on a bank model
  *
- *  @param bank -  An IDEALBank object containing the bank title and identifier code
- *
- *  @return a configured instance of the IDEALBankTableViewCell object
+ *  @param bank - an iDEAL bank model used for getting the bank identifier code
  */
-+ (instancetype)cellWithBank:(IDEALBank *)bank;
-
-/**
- *  Initializes an IDEALBankTableViewCell based on a specified IDEAL bank model;
- *
- *  @param bank -  An IDEALBank object containing the bank title and identifier code
- *
- *  @return a configured instance of the IDEALBankTableViewCell object
- */
-- (instancetype)initWithBank:(IDEALBank *)bank;
+- (void)configureWithBank:(IDEALBank *)bank;
 
 @end
-

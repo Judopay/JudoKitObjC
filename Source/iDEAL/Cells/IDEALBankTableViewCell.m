@@ -22,57 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALBankTableViewCell.h"
 #import "IDEALBank.h"
+#import "IDEALBankTableViewCell.h"
+
+@interface IDEALBankTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *bankLogoImageView;
+
+@end
 
 @implementation IDEALBankTableViewCell
 
-#pragma mark - Initializers
-
-- (instancetype)initWithBank:(IDEALBank *)bank {
-    
-    if (self = [super initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:[NSString string]]) {
-        
-        [self setupLogoImageViewForBank: bank];
-    }
-    return self;
-}
-
-+ (instancetype)cellWithBank:(IDEALBank *)bank {
-    return [[IDEALBankTableViewCell alloc] initWithBank:bank];
-}
-
-#pragma mark - Layout setup
-
-- (void)setupLogoImageViewForBank:(IDEALBank *)bank {
-    
+- (void)configureWithBank:(IDEALBank *)bank {
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    UIImage *logoImage = [UIImage imageNamed:iconName];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];
-    [imageView setTranslatesAutoresizingMaskIntoConstraints:false];
-    
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    [self.contentView addSubview:imageView];
-    [self setupConstraintsFor:imageView];
-}
-
-- (void)setupConstraintsFor:(UIView *)view {
-    
-    NSArray *hConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|"
-                                                                   options: 0
-                                                                   metrics:nil
-                                                                     views:@{@"view": view}];
-    
-    NSArray *vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[view]-15-|"
-                                                                   options: 0
-                                                                   metrics:nil
-                                                                     views:@{@"view": view}];
-    
-    [NSLayoutConstraint activateConstraints:hConstraint];
-    [NSLayoutConstraint activateConstraints:vConstraint];
+    self.bankLogoImageView.image =[UIImage imageNamed:iconName];
+    self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 @end
