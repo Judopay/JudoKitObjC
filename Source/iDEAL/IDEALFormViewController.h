@@ -1,5 +1,5 @@
 //
-//  JPTheme+Additions.m
+//  IDEALFormViewController.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme+Additions.h"
+#import <UIKit/UIKit.h>
+#import "JPSession.h"
 
-@implementation JPTheme (Additions)
+@class JPTheme;
 
-- (nonnull NSString *)titleForTransactionWithType:(TransactionType)transactionType {
-    switch (transactionType) {
-        case TransactionTypePayment:
-        case TransactionTypePreAuth:
-            return self.paymentTitle;
-        case TransactionTypeRegisterCard:
-        case TransactionTypeSaveCard:
-            return self.registerCardTitle;
-        case TransactionTypeRefund:
-            return self.refundTitle;
-        case TransactionTypeIDEAL:
-            return self.refundTitle;
-    }
-}
+/**
+ *  A custom UIViewController used for displaying the iDEAL transaction form
+ */
+@interface IDEALFormViewController : UIViewController
+
+/**
+ *  The theme of the current session
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
+ *  Initializer that displays the iDEAL transaction form
+ *
+ *  @param completion -  Completion block called when transaction has been finished
+ *
+ *  @return an initialized IDEALFormViewController object
+ */
+- (nonnull instancetype)initWithCompletion:(nonnull JudoCompletionBlock)completion;
 
 @end

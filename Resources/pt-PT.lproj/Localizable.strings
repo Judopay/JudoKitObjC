@@ -54,6 +54,12 @@
 "canada" = "Canadá";
 "other_country" = "Outros";
 
+//IDEALFormViewController
+"ideal_transaction" = "Transação iDEAL";
+"select_ideal_bank" = "Selecione o banco iDEAL";
+"enter_name" = "Insira o nome";
+"name" = "Nome";
+
 //JudoPayViewController
 "secure_server" = "Servidor de Segurança";
 "pay" = "Pagar";
