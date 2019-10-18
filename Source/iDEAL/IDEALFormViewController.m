@@ -99,7 +99,6 @@
     //TODO: Add payment request
 }
 
-
 # pragma mark - Layout setup
 
 - (void)setupView {

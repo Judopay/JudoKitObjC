@@ -37,7 +37,7 @@
         case TransactionTypeRefund:
             return self.refundTitle;
         case TransactionTypeIDEAL:
-            return self.refundTitle;
+            return self.iDEALTitle;
     }
 }
 
