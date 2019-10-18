@@ -88,4 +88,12 @@
     return 60.0;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IDEALBank *bank = self.bankList[indexPath.row];
+    if (self.delegate) {
+        [self.delegate didSelectBank:bank];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

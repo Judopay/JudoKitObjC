@@ -23,14 +23,16 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+
+#import "IDEALBankSelectionTableViewController.h"
 #import "JPSession.h"
 
 @class JPTheme;
 
 /**
- *  A custom UIViewController used for displaying the iDEAL transaction form
+ *  A custom UIViewController used for displaying the iDEAL transaction form.
  */
-@interface IDEALFormViewController : UIViewController
+@interface IDEALFormViewController : UIViewController <IDEALBankSelectionDelegate>
 
 /**
  *  The theme of the current session

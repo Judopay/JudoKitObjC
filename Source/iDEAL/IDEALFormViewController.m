@@ -42,7 +42,6 @@
 @property (nonatomic, strong) UIButton *paymentButton;
 @property (nonatomic, strong) JPInputField *nameInputField;
 @property (nonatomic, strong) UIButton *bankSelectionButton;
-@property (nonatomic, strong) IDEALBankTableViewCell *selectedBankCell;
 
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
@@ -92,11 +91,33 @@
 
 - (void)onSelectBankButtonTap:(id)sender {
     IDEALBankSelectionTableViewController *controller = [IDEALBankSelectionTableViewController new];
+    controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onPayButtonTap:(id)sender {
     //TODO: Add payment request
+}
+
+# pragma mark - IDEALBankSelectionDelegate methods
+
+- (void)didSelectBank:(IDEALBank *)bank {
+    [self shouldDisplayPaymentElements:YES];
+    self.selectedBank = bank;
+    
+    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
+    
+    [self.bankSelectionButton setTitle:nil forState:UIControlStateNormal];
+    [self.bankSelectionButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.bankSelectionButton setImage:[UIImage imageNamed:iconName] forState:UIControlStateNormal];
+}
+
+# pragma mark - Convenience methods
+
+- (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
+    self.safeAreaView.hidden = !shouldContinue;
+    self.paymentButton.hidden = !shouldContinue;
+    self.navigationItem.rightBarButtonItem.enabled = shouldContinue;
 }
 
 # pragma mark - Layout setup
@@ -128,7 +149,7 @@
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
     
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self shouldDisplayPaymentElements:NO];
 }
 
 - (void)setupPaymentButton {
@@ -170,15 +191,15 @@
     
     NSArray *subviewConstraints = @[
         [self.nameInputField.heightAnchor constraintEqualToConstant:self.theme.inputFieldHeight],
-        [self.bankSelectionButton.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:10.0f],
-        [self.bankSelectionButton.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-10.0f],
+        [self.bankSelectionButton.leftAnchor constraintEqualToAnchor:stackView.leftAnchor],
+        [self.bankSelectionButton.rightAnchor constraintEqualToAnchor:stackView.rightAnchor],
         [self.bankSelectionButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
     ];
     
     NSArray *stackViewConstraints = @[
         [stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:20.0f],
-        [stackView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-        [stackView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [stackView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor constant:-10.0f],
+        [stackView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor constant:10.0f],
     ];
     
     [NSLayoutConstraint activateConstraints:subviewConstraints];
