@@ -35,17 +35,14 @@
 @interface IDEALFormViewController : UIViewController <IDEALBankSelectionDelegate>
 
 /**
- *  The theme of the current session
- */
-@property (nonatomic, strong) JPTheme *_Nullable theme;
-
-/**
  *  Initializer that displays the iDEAL transaction form
  *
+ *  @param theme - An instance of a JPTheme object that defines the style of the form
  *  @param completion -  Completion block called when transaction has been finished
  *
  *  @return an initialized IDEALFormViewController object
  */
-- (nonnull instancetype)initWithCompletion:(nonnull JudoCompletionBlock)completion;
+- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme
+                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end
