@@ -161,7 +161,16 @@
                         action:@selector(onIDEALButtonTap:)
               forControlEvents:UIControlEventTouchUpInside];
         
-        [idealButton setImage:[UIImage imageNamed:@"logo-ideal"] forState:UIControlStateNormal];
+        NSBundle *bundle = [NSBundle bundleForClass:JudoKit.class];
+        
+        NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+        NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
+
+        NSString *iconFilePath = [iconBundle pathForResource:@"logo-ideal" ofType:@"png"];
+                
+        [idealButton setImage:[UIImage imageWithContentsOfFile:iconFilePath]
+                     forState:UIControlStateNormal];
+        
         idealButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         [idealButton setTitle:@"iDEAL" forState:UIControlStateNormal];
