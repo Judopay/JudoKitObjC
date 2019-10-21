@@ -454,8 +454,8 @@
 
 - (void)invokeIDEALPaymentWithCompletion:(JudoCompletionBlock)completion {
     
-    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithCompletion:completion];
-    controller.theme = self.theme;
+    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithTheme:self.theme
+                                                                              completion:completion];
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];

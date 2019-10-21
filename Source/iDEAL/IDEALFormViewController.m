@@ -53,33 +53,31 @@
 
 @end
 
+
 @implementation IDEALFormViewController
 
-# pragma mark - Initializers
-
-- (instancetype)initWithCompletion:(JudoCompletionBlock)completion {
+- (instancetype)initWithTheme:(JPTheme *)theme
+                   completion:(JudoCompletionBlock)completion {
     
     if (self = [super init]) {
+        self.theme = theme;
         self.completionBlock = completion;
     }
     
     return self;
 }
 
-# pragma mark - View lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
-    [self registerKeyboardEvents];
+    [self registerKeyboardObservers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.nameInputField endEditing:YES];
+    [self removeKeyboardObservers];
     [super viewWillDisappear:animated];
 }
-
-# pragma mark - User actions
 
 - (void)onViewTap:(id)sender {
     [self.nameInputField endEditing:YES];
@@ -100,18 +98,15 @@
     //TODO: Add payment request
 }
 
-# pragma mark - Layout setup
-
 - (void)setupView {
-    self.view.backgroundColor = UIColor.whiteColor;
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
-    
     [self.view addGestureRecognizer: tapGesture];
+    
     [self setupNavigationBar];
     [self setupPaymentButton];
     [self setupStackView];
+    
     [self applyTheme: self.theme];
 }
 
@@ -187,8 +182,6 @@
     [NSLayoutConstraint activateConstraints:stackViewConstraints];
 }
 
-# pragma mark - Lazily instantiated UI properties
-
 - (JPInputField *)nameInputField {
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
@@ -235,7 +228,7 @@
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                     action:@selector(onSelectBankButtonTap:)];
+                                                                                    action:@selector(onSelectBankButtonTap:)];
         
         [_bankSelectionCell addGestureRecognizer:tapGesture];
     }
@@ -266,7 +259,7 @@
 
 # pragma mark - Keyboard-related logic
 
-- (void)registerKeyboardEvents {
+- (void)registerKeyboardObservers {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [notificationCenter addObserver:self
@@ -278,6 +271,11 @@
                            selector:@selector(keyboardWillHide:)
                                name:UIKeyboardWillHideNotification
                              object:nil];
+}
+
+- (void)removeKeyboardObservers {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
