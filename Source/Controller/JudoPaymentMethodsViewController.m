@@ -165,9 +165,9 @@
         
         NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
         NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-
+        
         NSString *iconFilePath = [iconBundle pathForResource:@"logo-ideal" ofType:@"png"];
-                
+        
         [idealButton setImage:[UIImage imageWithContentsOfFile:iconFilePath]
                      forState:UIControlStateNormal];
         
@@ -182,7 +182,6 @@
         
         [idealButton setBackgroundColor:UIColor.idealPurple];
         idealButton.layer.cornerRadius = 5.0f;
-        
         
         [[idealButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight] setActive:YES];
         
@@ -246,7 +245,6 @@
     [self.judoKitSession invokeIDEALPaymentWithCompletion:^(JPResponse *response, NSError *error) {
         if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
-            return;
         }
         weakSelf.completionBlock(response, error);
     }];
