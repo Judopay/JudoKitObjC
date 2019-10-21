@@ -33,11 +33,6 @@
 @interface IDEALFormViewController : UIViewController
 
 /**
- *  The theme of the current session
- */
-@property (nonatomic, strong) JPTheme *_Nullable theme;
-
-/**
  *  Initializer that displays the iDEAL transaction form
  *
  *  @param theme - An instance of a JPTheme object that defines the style of the form

@@ -45,6 +45,7 @@
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) IDEALBankTableViewCell *selectedBankCell;
 
+@property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 
