@@ -28,11 +28,7 @@
 
 @implementation IDEALBankSelectionTableViewController
 
-# pragma mark - Private properties
-
-- (NSString *)bankCellIdentifier {
-    return NSStringFromClass(IDEALBankTableViewCell.class);
-}
+NSString * const bankCellIdentifier = @"IDEALBankTableViewCell";
 
 - (NSArray*) bankList {
     return @[
@@ -51,17 +47,13 @@
     ];
 }
 
-# pragma mark - Lifecycle methods
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSBundle *bundle = [NSBundle bundleForClass:IDEALBank.class];
-    UINib* nib = [UINib nibWithNibName:self.bankCellIdentifier bundle: bundle];
-    [self.tableView registerNib:nib forCellReuseIdentifier:self.bankCellIdentifier];
+    UINib* nib = [UINib nibWithNibName:bankCellIdentifier bundle: bundle];
+    [self.tableView registerNib:nib forCellReuseIdentifier:bankCellIdentifier];
 }
-
-# pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.bankList.count;
@@ -72,7 +64,7 @@
 
     IDEALBank *bank = self.bankList[indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.bankCellIdentifier
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:bankCellIdentifier
                                                             forIndexPath:indexPath];
     
     if ([cell isKindOfClass:IDEALBankTableViewCell.class]) {
@@ -81,8 +73,6 @@
     
     return cell;
 }
-
-# pragma mark - UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60.0;
