@@ -24,6 +24,7 @@
 
 #import "IDEALBank.h"
 #import "IDEALBankTableViewCell.h"
+#import "NSString+Localize.h"
 
 @interface IDEALBankTableViewCell()
 
@@ -37,6 +38,10 @@
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
     self.bankLogoImageView.image =[UIImage imageNamed:iconName];
     self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.bankLogoImageView.isAccessibilityElement = YES;
+    self.bankLogoImageView.accessibilityLabel = bank.title;
+    self.bankLogoImageView.accessibilityHint = [NSString stringWithFormat:@"select_bank".localized, bank.title];
 }
 
 @end

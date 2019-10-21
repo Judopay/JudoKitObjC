@@ -54,6 +54,9 @@
 "canada" = "Canadá";
 "other_country" = "Otro";
 
+//IDEALBankTableViewCell
+"select_bank" = "Seleccione %@ como su banco iDEAL";
+
 //JudoPayViewController
 "secure_server" = "Servidor seguro:";
 "pay" = "Pagar";
