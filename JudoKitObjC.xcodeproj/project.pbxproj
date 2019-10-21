@@ -42,6 +42,7 @@
 		30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 30C2215223588D6E000D6E3A /* IDEALBankTableViewCell.h */; };
 		30C2215623588D6E000D6E3A /* IDEALBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2215323588D6E000D6E3A /* IDEALBankTableViewCell.m */; };
 		30C2215723588D6E000D6E3A /* IDEALBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2215423588D6E000D6E3A /* IDEALBankTableViewCell.xib */; };
+		30C22178235DC518000D6E3A /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -366,6 +367,7 @@
 		30C2215223588D6E000D6E3A /* IDEALBankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALBankTableViewCell.h; sourceTree = "<group>"; };
 		30C2215323588D6E000D6E3A /* IDEALBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALBankTableViewCell.m; sourceTree = "<group>"; };
 		30C2215423588D6E000D6E3A /* IDEALBankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IDEALBankTableViewCell.xib; sourceTree = "<group>"; };
+		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -1053,6 +1055,7 @@
 		52FBFB6A2325A3770096064C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				30C22170235DC518000D6E3A /* icons.bundle */,
 				829330FE230AF0F900689DC4 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -1389,6 +1392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C22178235DC518000D6E3A /* icons.bundle in Resources */,
 				30C2215723588D6E000D6E3A /* IDEALBankTableViewCell.xib in Resources */,
 				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,

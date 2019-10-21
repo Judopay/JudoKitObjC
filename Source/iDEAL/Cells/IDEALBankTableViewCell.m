@@ -35,8 +35,16 @@
 @implementation IDEALBankTableViewCell
 
 - (void)configureWithBank:(IDEALBank *)bank {
+    
+    NSBundle *bundle = [NSBundle bundleForClass:IDEALBankTableViewCell.class];
+    
+    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
+    
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    self.bankLogoImageView.image =[UIImage imageNamed:iconName];
+    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
+    
+    self.bankLogoImageView.image =[UIImage imageWithContentsOfFile:iconFilePath];
     self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     self.bankLogoImageView.isAccessibilityElement = YES;
