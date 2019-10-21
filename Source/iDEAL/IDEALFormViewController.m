@@ -71,6 +71,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self registerKeyboardObservers];
 }
 
