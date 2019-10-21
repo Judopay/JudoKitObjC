@@ -56,6 +56,7 @@
 
 //IDEALFormViewController
 "ideal_transaction" = "Transação iDEAL";
+"selected_bank" = "Banco selecionado:";
 "select_ideal_bank" = "Selecione o banco iDEAL";
 "enter_name" = "Insira o nome";
 "name" = "Nome";

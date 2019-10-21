@@ -41,7 +41,8 @@
 @property (nonatomic, strong) UIView *safeAreaView;
 @property (nonatomic, strong) UIButton *paymentButton;
 @property (nonatomic, strong) JPInputField *nameInputField;
-@property (nonatomic, strong) UIButton *bankSelectionButton;
+@property (nonatomic, strong) UIView *selectedBankLabelView;
+@property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) IDEALBankTableViewCell *selectedBankCell;
 
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
@@ -164,21 +165,22 @@
     stackView.axis = UILayoutConstraintAxisVertical;
     
     [stackView addArrangedSubview:self.nameInputField];
-    [stackView addArrangedSubview:self.bankSelectionButton];
+    [stackView addArrangedSubview:self.selectedBankLabelView];
+    [stackView addArrangedSubview:self.bankSelectionCell];
     
     [self.view addSubview:stackView];
     
     NSArray *subviewConstraints = @[
         [self.nameInputField.heightAnchor constraintEqualToConstant:self.theme.inputFieldHeight],
-        [self.bankSelectionButton.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:10.0f],
-        [self.bankSelectionButton.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-10.0f],
-        [self.bankSelectionButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
+        [self.bankSelectionCell.leftAnchor constraintEqualToAnchor:stackView.leftAnchor],
+        [self.bankSelectionCell.rightAnchor constraintEqualToAnchor:stackView.rightAnchor],
+        [self.bankSelectionCell.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
     ];
     
     NSArray *stackViewConstraints = @[
         [stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:20.0f],
-        [stackView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-        [stackView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [stackView.rightAnchor constraintEqualToAnchor:self.safeAreaView.rightAnchor],
+        [stackView.leftAnchor constraintEqualToAnchor:self.safeAreaView.leftAnchor],
     ];
     
     [NSLayoutConstraint activateConstraints:subviewConstraints];
@@ -198,21 +200,47 @@
     return _nameInputField;
 }
 
-- (UIButton *)bankSelectionButton {
-    if (!_bankSelectionButton) {
-        _bankSelectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _bankSelectionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_bankSelectionButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
-        [_bankSelectionButton setTitle:@"select_ideal_bank".localized forState:UIControlStateNormal];
-        [_bankSelectionButton.titleLabel setFont:self.theme.buttonFont];
-        [_bankSelectionButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+- (UIView *)selectedBankLabelView {
+    if (!_selectedBankLabelView) {
         
-        [_bankSelectionButton addTarget:self
-                                 action:@selector(onSelectBankButtonTap:)
-                       forControlEvents:UIControlEventTouchUpInside];
+        UILabel *selectedBankLabel = [UILabel new];
+        selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        selectedBankLabel.text = @"selected_bank".localized;
+        selectedBankLabel.textColor = self.theme.judoInputFieldTextColor;
+        selectedBankLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightBold];
+        
+        _selectedBankLabelView = [UIView new];
+        _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_selectedBankLabelView addSubview:selectedBankLabel];
+        
+        NSArray *constraints = @[
+            [selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor constant:15.0f],
+            [selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
+            [selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
+            [selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
+        ];
+        
+        [NSLayoutConstraint activateConstraints:constraints];
     }
     
-    return _bankSelectionButton;
+    return _selectedBankLabelView;
+}
+
+- (UITableViewCell *)bankSelectionCell {
+    if (!_bankSelectionCell) {
+        _bankSelectionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
+        _bankSelectionCell.textLabel.text = @"select_ideal_bank".localized;
+        _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
+        _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(onSelectBankButtonTap:)];
+        
+        [_bankSelectionCell addGestureRecognizer:tapGesture];
+    }
+    
+    return _bankSelectionCell;
 }
 
 - (UIView *)safeAreaView {
