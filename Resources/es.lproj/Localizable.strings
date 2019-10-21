@@ -54,12 +54,17 @@
 "canada" = "Canadá";
 "other_country" = "Otro";
 
+<<<<<<< HEAD
 //IDEALFormViewController
 "ideal_transaction" = "Transacción iDEAL";
 "selected_bank" = "Banco seleccionado:";
 "select_ideal_bank" = "Seleccione el banco iDEAL";
 "enter_name" = "Ingrese su nombre";
 "name" = "Nombre";
+=======
+//IDEALBankTableViewCell
+"select_bank" = "Seleccione %@ como su banco iDEAL";
+>>>>>>> 2d36d75edbe5f477a39abcb190038f679517e4b7
 
 //JudoPayViewController
 "secure_server" = "Servidor seguro:";
