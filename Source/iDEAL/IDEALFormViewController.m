@@ -43,7 +43,6 @@
 @property (nonatomic, strong) JPInputField *nameInputField;
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
-@property (nonatomic, strong) IDEALBankTableViewCell *selectedBankCell;
 
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
@@ -233,7 +232,7 @@
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(onSelectBankButtonTap:)];
+                                                                                     action:@selector(onSelectBankButtonTap:)];
         
         [_bankSelectionCell addGestureRecognizer:tapGesture];
     }
@@ -261,8 +260,6 @@
     }
     return _paymentButton;
 }
-
-# pragma mark - Keyboard-related logic
 
 - (void)registerKeyboardObservers {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
