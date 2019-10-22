@@ -28,6 +28,7 @@
                     <constraint firstAttribute="bottom" secondItem="gcg-oo-R5r" secondAttribute="bottom" constant="15" id="z8I-HG-Iq2"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="IDEALBankCell"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bankLogoImageView" destination="gcg-oo-R5r" id="2eb-vY-Xx5"/>

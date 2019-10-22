@@ -278,6 +278,7 @@
     if (!_paymentButton) {
         _paymentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _paymentButton.accessibilityIdentifier = @"Pay Button";
         [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
