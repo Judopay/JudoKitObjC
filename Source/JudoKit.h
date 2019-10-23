@@ -67,6 +67,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
 @property (nonatomic, strong) JPTheme *_Nonnull theme;
 
 /**
+ * Optional primary account details, such as the name, account number, date of birth and post code
+ */
+@property (nonatomic, strong) PrimaryAccountDetails *_Nullable primaryAccountDetails;
+
+/**
  *  The currently active and visible viewController instance
  */
 @property (nonatomic, weak) UIViewController *_Nullable activeViewController;
@@ -111,14 +116,12 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId    The judoID of the merchant to receive the transaction
  *  @param amount    The amount and currency of the payment (default is GBP)
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *
  *  @return a JPPayment object
  */
 - (nonnull JPPayment *)paymentWithJudoId:(nonnull NSString *)judoId
                                   amount:(nonnull JPAmount *)amount
-                               reference:(nonnull JPReference *)reference
-                          accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails;
+                               reference:(nonnull JPReference *)reference;
 
 /**
  *  This method only creates a JPPreAuth object for usages in a custom UI. This means the developer needs to set the remaining mandatory fields like a payment method (card, token or PKPayment object for ApplePay) to then make the transaction
@@ -126,27 +129,23 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId    The judoID of the merchant to receive the transaction
  *  @param amount    The amount and currency of the pre-auth (default is GBP)
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *
  *  @return a JPPreAuth object
  */
 - (nonnull JPPreAuth *)preAuthWithJudoId:(nonnull NSString *)judoId
                                   amount:(nonnull JPAmount *)amount
-                               reference:(nonnull JPReference *)reference
-                          accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails;;
+                               reference:(nonnull JPReference *)reference;
 
 /**
  *  This method only creates a JPRegisterCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
  *
  *  @param judoId    The judoID of the merchant to receive the transaction
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *
  *  @return a JPRegisterCard object
  */
 - (nonnull JPRegisterCard *)registerCardWithJudoId:(nonnull NSString *)judoId
-                                         reference:(nonnull JPReference *)reference
-                                    accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails;;
+                                         reference:(nonnull JPReference *)reference;
 
 /**
  *  This method only creates a JPSaveCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
@@ -219,15 +218,13 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId    The judoID of the merchant
  *  @param amount    The amount and currency of the transaction (default is GBP)
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *
  *  @return a JPTransaction object
  */
 - (nonnull JPTransaction *)transactionForTypeClass:(nonnull Class)type
                                             judoId:(nonnull NSString *)judoId
                                             amount:(nullable JPAmount *)amount
-                                         reference:(nonnull JPReference *)reference
-                                    accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails;
+                                         reference:(nonnull JPReference *)reference;
 
 /**
  *  Helper method that creates a Transaction based on the TransactionType that is passed (Payment, PreAuth, RegisterCard or SaveCard)
@@ -236,15 +233,13 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId    The judoID of the merchant
  *  @param amount    The amount and currency of the transaction (default is GBP)
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *
  *  @return a JPTransaction object
  */
 - (nullable JPTransaction *)transactionForType:(TransactionType)type
                                         judoId:(nonnull NSString *)judoId
                                         amount:(nullable JPAmount *)amount
-                                     reference:(nonnull JPReference *)reference
-                                accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails;
+                                     reference:(nonnull JPReference *)reference;
 
 @end
 
@@ -258,7 +253,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
  *  @param cardDetails          The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
@@ -267,7 +261,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
-             accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -277,14 +270,12 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference            The consumer reference for this transaction
  *  @param cardDetails          The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
                amount:(nonnull JPAmount *)amount
     consumerReference:(nonnull NSString *)reference
           cardDetails:(nullable JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -294,14 +285,12 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param amount      The amount and currency of the payment (default is GBP)
  *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param cardDetails The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
                amount:(nonnull JPAmount *)amount
             reference:(nonnull JPReference *)reference
           cardDetails:(nullable JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -311,14 +300,12 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param amount               The amount and currency of the pre-auth (default is GBP)
  *  @param reference            The consumer reference for this transaction
  *  @param cardDetails          The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePreAuth:(nonnull NSString *)judoId
                amount:(nonnull JPAmount *)amount
     consumerReference:(nonnull NSString *)reference
           cardDetails:(nullable JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -328,14 +315,12 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param amount      The amount and currency of the pre-auth (default is GBP)
  *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param cardDetails The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePreAuth:(nonnull NSString *)judoId
                amount:(nonnull JPAmount *)amount
             reference:(nonnull JPReference *)reference
           cardDetails:(nullable JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -344,13 +329,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId               The judoID of the merchant
  *  @param reference            The consumer reference for this transaction
  *  @param cardDetails          The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeRegisterCard:(nonnull NSString *)judoId
          consumerReference:(nonnull NSString *)reference
                cardDetails:(nullable JPCardDetails *)cardDetails
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -359,13 +342,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId      The judoID of the merchant
  *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param cardDetails The card details to present in the input fields
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeRegisterCard:(nonnull NSString *)judoId
                  reference:(nonnull JPReference *)reference
                cardDetails:(nullable JPCardDetails *)cardDetails
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -402,7 +383,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference            The consumer reference for this transaction
  *  @param cardDetails          The card details to present in the input fields
  *  @param paymentToken         The consumer and card token to make a token payment with
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeTokenPayment:(nonnull NSString *)judoId
@@ -410,7 +390,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
          consumerReference:(nonnull NSString *)reference
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -421,7 +400,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param cardDetails  The card details to present in the input fields
  *  @param paymentToken The consumer and card token to make a token payment with
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeTokenPayment:(nonnull NSString *)judoId
@@ -429,7 +407,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
                  reference:(nonnull JPReference *)reference
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -440,7 +417,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference            The consumer reference for this transaction
  *  @param cardDetails          The card details to present in the input fields
  *  @param paymentToken         The consumer and card token to make a token payment with
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeTokenPreAuth:(nonnull NSString *)judoId
@@ -448,7 +424,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
          consumerReference:(nonnull NSString *)reference
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -459,7 +434,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param cardDetails  The card details to present in the input fields
  *  @param paymentToken The consumer and card token to make a token payment with
- *  @param primaryAccountDetails   Optional account details, such as the name, account number, date of birth and post code
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeTokenPreAuth:(nonnull NSString *)judoId
@@ -467,7 +441,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
                  reference:(nonnull JPReference *)reference
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end

@@ -186,8 +186,9 @@
                                           transaction:TransactionTypePayment
                                        currentSession:self.judoKitSession
                                           cardDetails:self.viewModel.cardDetails
-                                primaryAccountDetails:self.viewModel.primaryAccountDetails
                                            completion:completion];
+    
+    viewController.primaryAccountDetails = self.viewModel.primaryAccountDetails;
     viewController.theme = self.theme;
     [self.navigationController pushViewController:viewController animated:YES];
 }

@@ -119,7 +119,6 @@
                                    transaction:(TransactionType)type
                                    cardDetails:(JPCardDetails *)cardDetails
                                   paymentToken:(JPPaymentToken *)paymentToken
-                                accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                                     completion:(JudoCompletionBlock)completion {
 
     JudoPayViewController *viewController = [[JudoPayViewController alloc] initWithJudoId:judoId
@@ -128,8 +127,10 @@
                                                                               transaction:type
                                                                            currentSession:self
                                                                               cardDetails:cardDetails
-                                                                    primaryAccountDetails: primaryAccountDetails
                                                                                completion:completion];
+    
+    
+    viewController.primaryAccountDetails = self.primaryAccountDetails;
     viewController.paymentToken = paymentToken;
     viewController.theme = self.theme;
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -142,15 +143,14 @@
 - (JPTransaction *)transactionForTypeClass:(Class)type
                                     judoId:(NSString *)judoId
                                     amount:(nullable JPAmount *)amount
-                                 reference:(nonnull JPReference *)reference
-                            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails {
+                                 reference:(nonnull JPReference *)reference {
     
     JPTransaction *transaction = [type new];
     transaction.judoId = judoId;
     transaction.amount = amount;
     transaction.reference = reference;
     transaction.apiSession = self.apiSession;
-    transaction.primaryAccountDetails = primaryAccountDetails;
+    transaction.primaryAccountDetails = self.primaryAccountDetails;
     transaction.enricher = self.enricher;
 
     return transaction;
@@ -159,8 +159,7 @@
 - (JPTransaction *)transactionForType:(TransactionType)type
                                judoId:(NSString *)judoId
                                amount:(JPAmount *)amount
-                            reference:(JPReference *)reference
-                       accountDetails:(PrimaryAccountDetails *)primaryAccountDetails{
+                            reference:(JPReference *)reference {
     
     Class transactionTypeClass;
 
@@ -188,43 +187,36 @@
     return [self transactionForTypeClass:transactionTypeClass
                                   judoId:judoId
                                   amount:amount
-                               reference:reference
-                          accountDetails:primaryAccountDetails];
+                               reference:reference];
 }
 
 - (JPPayment *)paymentWithJudoId:(NSString *)judoId
                           amount:(JPAmount *)amount
-                       reference:(JPReference *)reference
-                  accountDetails:(PrimaryAccountDetails *)primaryAccountDetails {
+                       reference:(JPReference *)reference {
     
     return (JPPayment *)[self transactionForTypeClass:JPPayment.class
                                                judoId:judoId
                                                amount:amount
-                                            reference:reference
-                                       accountDetails:primaryAccountDetails];
+                                            reference:reference];
 }
 
 - (JPPreAuth *)preAuthWithJudoId:(NSString *)judoId
                           amount:(JPAmount *)amount
-                       reference:(JPReference *)reference
-                  accountDetails:(PrimaryAccountDetails *)primaryAccountDetails {
+                       reference:(JPReference *)reference {
     
     return (JPPreAuth *)[self transactionForTypeClass:JPPreAuth.class
                                                judoId:judoId
                                                amount:amount
-                                            reference:reference
-                                       accountDetails:primaryAccountDetails];
+                                            reference:reference];
 }
 
 - (JPRegisterCard *)registerCardWithJudoId:(NSString *)judoId
-                                 reference:(JPReference *)reference
-                            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails {
+                                 reference:(JPReference *)reference {
     
     return (JPRegisterCard *)[self transactionForTypeClass:JPRegisterCard.class
                                                     judoId:judoId
                                                     amount:nil
-                                                 reference:reference
-                                            accountDetails:primaryAccountDetails];
+                                                 reference:reference];
 }
 
 - (JPSaveCard *)saveCardWithJudoId:(NSString *)judoId
@@ -233,8 +225,7 @@
     return (JPSaveCard *)[self transactionForTypeClass:JPSaveCard.class
                                                 judoId:judoId
                                                 amount:nil
-                                             reference:reference
-                                        accountDetails:nil];
+                                             reference:reference];
 }
 
 - (JPTransactionProcess *)transactionProcessForType:(Class)type
@@ -327,14 +318,13 @@
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
-             accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
     JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
                                                                                           amount:amount
                                                                                consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
                                                                                   paymentMethods:methods
-                                                                           primaryAccountDetails: primaryAccountDetails
+                                                                           primaryAccountDetails: self.primaryAccountDetails
                                                                            applePayConfiguration:applePayConfigs
                                                                                      cardDetails:cardDetails];
 
@@ -352,7 +342,6 @@
                amount:(JPAmount *)amount
     consumerReference:(NSString *)reference
           cardDetails:(JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -361,7 +350,6 @@
                                      transaction:TransactionTypePayment
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -369,7 +357,6 @@
                amount:(JPAmount *)amount
             reference:(JPReference *)reference
           cardDetails:(JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -378,7 +365,6 @@
                                      transaction:TransactionTypePayment
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -386,7 +372,6 @@
                amount:(JPAmount *)amount
     consumerReference:(NSString *)reference
           cardDetails:(JPCardDetails *)cardDetails
-       accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -395,14 +380,12 @@
                                      transaction:TransactionTypePreAuth
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
 - (void)invokeRegisterCard:(NSString *)judoId
          consumerReference:(NSString *)reference
                cardDetails:(JPCardDetails *)cardDetails
-            accountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -411,7 +394,6 @@
                                      transaction:TransactionTypeRegisterCard
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -426,7 +408,6 @@
                                      transaction:TransactionTypeSaveCard
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:nil
                                       completion:completion];
 }
 
@@ -435,7 +416,6 @@
          consumerReference:(NSString *)reference
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
-            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -444,7 +424,6 @@
                                      transaction:TransactionTypePayment
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -453,7 +432,6 @@
          consumerReference:(NSString *)reference
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
-            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -462,7 +440,6 @@
                                      transaction:TransactionTypePreAuth
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -470,7 +447,6 @@
                amount:(JPAmount *)amount
             reference:(JPReference *)reference
           cardDetails:(JPCardDetails *)cardDetails
-       accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -479,14 +455,12 @@
                                      transaction:TransactionTypePreAuth
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
 - (void)invokeRegisterCard:(NSString *)judoId
                  reference:(JPReference *)reference
                cardDetails:(JPCardDetails *)cardDetails
-            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -495,7 +469,6 @@
                                      transaction:TransactionTypeRegisterCard
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -510,7 +483,6 @@
                                      transaction:TransactionTypeSaveCard
                                      cardDetails:cardDetails
                                     paymentToken:nil
-                                  accountDetails:nil
                                       completion:completion];
 }
 
@@ -519,7 +491,6 @@
                  reference:(JPReference *)reference
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
-            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -528,7 +499,6 @@
                                      transaction:TransactionTypePayment
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -537,7 +507,6 @@
                  reference:(JPReference *)reference
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
-            accountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
     
     [self presentPaymentViewControllerWithJudoId:judoId
@@ -546,7 +515,6 @@
                                      transaction:TransactionTypePreAuth
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
-                                  accountDetails:primaryAccountDetails
                                       completion:completion];
 }
 
@@ -586,13 +554,11 @@
     if (self.configuration.transactionType == TransactionTypePreAuth) {
         transaction = [self preAuthWithJudoId:self.configuration.judoId
                                        amount:self.manager.jpAmount
-                                    reference:self.manager.jpReference
-                               accountDetails:nil];
+                                    reference:self.manager.jpReference];
     } else {
         transaction = [self paymentWithJudoId:self.configuration.judoId
                                        amount:self.manager.jpAmount
-                                    reference:self.manager.jpReference
-                               accountDetails:nil];
+                                    reference:self.manager.jpReference];
     }
 
     NSError *error;

@@ -188,7 +188,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                         paymentMethods:PaymentMethodsAll
                applePayConfiguratation:configuration
                            cardDetails:nil
-                        accountDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
                                 if (error || response.items.count == 0) {
                                     if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -221,7 +220,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                 amount:amount
                      consumerReference:self.reference
                            cardDetails:nil
-                        accountDetails: nil
                             completion:^(JPResponse * response, NSError * error) {
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -254,7 +252,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                 amount:amount
                      consumerReference:self.reference
                            cardDetails:nil
-                        accountDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -284,7 +281,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
     [self.judoKitSession invokeRegisterCard:judoId
                           consumerReference:self.reference
                                 cardDetails:nil
-                             accountDetails:nil
                                  completion:^(JPResponse * response, NSError * error) {
         
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -334,7 +330,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                               consumerReference:self.reference
                                     cardDetails:self.cardDetails
                                    paymentToken:self.payToken
-                                 accountDetails:nil
                                      completion:^(JPResponse * response, NSError * error) {
             
             if (error || response.items.count == 0) {
@@ -375,7 +370,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                               consumerReference:self.reference
                                     cardDetails:self.cardDetails
                                    paymentToken:self.payToken
-                                 accountDetails:nil
                                      completion:^(JPResponse * response, NSError * error) {
             
             if (error || response.items.count == 0) {

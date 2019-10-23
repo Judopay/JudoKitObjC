@@ -75,7 +75,7 @@
 /**
  *  Optional property containing primary account details provided by the merchant
  */
-@property (nonatomic, strong, readonly) PrimaryAccountDetails *_Nullable primaryAccountDetails;
+@property (nonatomic, strong) PrimaryAccountDetails *_Nullable primaryAccountDetails;
 
 /**
  *  Initializer to start a payment journey
@@ -86,7 +86,6 @@
  *  @param type        The type of the transaction
  *  @param session     The current judo apiSession
  *  @param cardDetails An object containing all card information - default: nil
- *  @param primaryAccountDetails  optional property that contains information about the account details provided by the merchant
  *  @param completion  Completion block called when transaction has been finished
  *
  *  @return a JPayViewController object for presentation on a view stack
@@ -97,7 +96,6 @@
                            transaction:(TransactionType)type
                         currentSession:(nonnull JudoKit *)session
                            cardDetails:(nullable JPCardDetails *)cardDetails
-                 primaryAccountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                             completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end
