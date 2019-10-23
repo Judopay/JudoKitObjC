@@ -324,7 +324,7 @@
                                                                                           amount:amount
                                                                                consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
                                                                                   paymentMethods:methods
-                                                                           primaryAccountDetails: self.primaryAccountDetails
+                                                                           primaryAccountDetails:self.primaryAccountDetails
                                                                            applePayConfiguration:applePayConfigs
                                                                                      cardDetails:cardDetails];
 
