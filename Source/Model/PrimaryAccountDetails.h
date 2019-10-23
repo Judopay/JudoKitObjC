@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  PrimaryAccountDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,28 +22,46 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation JudoPaymentMethodsViewModel
+/*
+ *  Object that contains information about the account details provided by the merchant
+ */
+@interface PrimaryAccountDetails : NSObject
 
-- (instancetype)initWithJudoId:(nonnull NSString *)judoId
-                        amount:(nonnull JPAmount *)amount
-             consumerReference:(nonnull JPReference *)reference
-                paymentMethods:(PaymentMethods)methods
-         primaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails
-         applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
-                   cardDetails:(nullable JPCardDetails *)cardDetails {
-    
-    if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _primaryAccountDetails = primaryAccountDetails;
-        _applePayConfiguration = applePayConfiguration;
-        _cardDetails = cardDetails;
-    }
-    return self;
-}
+/*
+ *  The name provided by the merchant
+ */
+@property (nonatomic, strong) NSString *_Nullable name;
+
+/*
+ *  The account number provided by the merchant
+ */
+@property (nonatomic, strong) NSString *_Nullable accountNumber;
+
+/*
+ *  The date of birth provided by the merchant
+ */
+@property (nonatomic, strong) NSString *_Nullable dateOfBirth;
+
+/*
+ *  The postal code provided by the merchant
+ */
+@property (nonatomic, strong) NSString *_Nullable postCode;
+
+/*
+ *  Convenience initialized based on a provided NSDictionary object
+ */
++ (nonnull instancetype)detailsFromDictionary:(nonnull NSDictionary *)dictionary;
+
+/*
+*  Convenience initialized based on a provided NSDictionary object
+*/
+- (nonnull instancetype)initFromDictionary:(nonnull NSDictionary *)dictionary;
+
+/*
+ *  Convenience method for mapping properties into a NSDictionary object
+ */
+- (nonnull NSDictionary *)toDictionary;
 
 @end

@@ -37,6 +37,8 @@
 		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
 		306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCECC2355F0F7008540E7 /* IDEALBank.m */; };
 		306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCECE2355FC9E008540E7 /* IDEALBank.h */; };
+		30C221A52360834D000D6E3A /* PrimaryAccountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 30C221A32360834D000D6E3A /* PrimaryAccountDetails.h */; };
+		30C221AF236098F4000D6E3A /* PrimaryAccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C221AE236098F4000D6E3A /* PrimaryAccountDetails.m */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -356,6 +358,8 @@
 		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		306BCECC2355F0F7008540E7 /* IDEALBank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IDEALBank.m; path = Model/IDEALBank.m; sourceTree = "<group>"; };
 		306BCECE2355FC9E008540E7 /* IDEALBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDEALBank.h; path = Model/IDEALBank.h; sourceTree = "<group>"; };
+		30C221A32360834D000D6E3A /* PrimaryAccountDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrimaryAccountDetails.h; path = Model/PrimaryAccountDetails.h; sourceTree = "<group>"; };
+		30C221AE236098F4000D6E3A /* PrimaryAccountDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PrimaryAccountDetails.m; path = Model/PrimaryAccountDetails.m; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -852,6 +856,8 @@
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
+				30C221A32360834D000D6E3A /* PrimaryAccountDetails.h */,
+				30C221AE236098F4000D6E3A /* PrimaryAccountDetails.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1107,6 +1113,7 @@
 				3B6912D11C93179100367660 /* NSArray+Prefix.h in Headers */,
 				3B6991631C8F26FE006ED1FB /* NSTimer+Blocks.h in Headers */,
 				44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */,
+				30C221A52360834D000D6E3A /* PrimaryAccountDetails.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
 				44290B2122F051F60088F827 /* JPThreeDSecure.h in Headers */,
 				3B678B7B1C6DD8800001DC2F /* NSError+Judo.h in Headers */,
@@ -1452,6 +1459,7 @@
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
+				30C221AF236098F4000D6E3A /* PrimaryAccountDetails.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
 				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,

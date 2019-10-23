@@ -36,6 +36,7 @@
 #import "JPSession.h"
 #import "JPTransactionEnricher.h"
 #import "JPVCOResult.h"
+#import "PrimaryAccountDetails.h"
 
 #import "NSError+Judo.h"
 
@@ -208,6 +209,18 @@
     if (card.cardAddress) {
         self.parameters[@"cardAddress"] = card.cardAddress.dictionaryRepresentation;
     }
+}
+
+- (PrimaryAccountDetails *)primaryAccountDetails {
+    if (self.parameters[@"primaryAccountDetails"]) {
+        NSDictionary *dictionary = self.parameters[@"primaryAccountDetails"];
+        return [PrimaryAccountDetails detailsFromDictionary:dictionary];
+    }
+    return nil;
+}
+
+- (void)setPrimaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails {
+    self.parameters[@"primaryAccountDetails"] = primaryAccountDetails.toDictionary;
 }
 
 - (JPPaymentToken *)paymentToken {

@@ -187,6 +187,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                    transaction:(TransactionType)type
                 currentSession:(JudoKit *)session
                    cardDetails:(JPCardDetails *)cardDetails
+         primaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails
                     completion:(JudoCompletionBlock)completion {
 
     if (self = [super init]) {
@@ -196,12 +197,14 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         _type = type;
         _judoKitSession = session;
         _cardDetails = cardDetails;
+        _primaryAccountDetails = primaryAccountDetails;
         _completionBlock = completion;
         _transactionType = type;
         _transaction = [_judoKitSession transactionForType:type
                                                     judoId:judoId
                                                     amount:amount
-                                                 reference:reference];
+                                                 reference:reference
+                                            accountDetails:primaryAccountDetails];
     }
 
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];

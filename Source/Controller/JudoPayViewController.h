@@ -25,7 +25,7 @@
 #import "JPTransactionData.h"
 #import <UIKit/UIKit.h>
 
-@class JudoKit, JPTransaction, JPTheme, JPAmount, JPReference, JPPaymentToken, JudoPayView, JPResponse;
+@class JudoKit, JPTransaction, JPTheme, JPAmount, JPReference, JPPaymentToken, JudoPayView, JPResponse, PrimaryAccountDetails;
 
 /**
  *  the JudoPayViewController is the one solution build to guide a user through the journey of entering their card details.
@@ -73,6 +73,11 @@
 @property (nonatomic, strong) JPPaymentToken *_Nullable paymentToken;
 
 /**
+ *  Optional property containing primary account details provided by the merchant
+ */
+@property (nonatomic, strong, readonly) PrimaryAccountDetails *_Nullable primaryAccountDetails;
+
+/**
  *  Initializer to start a payment journey
  *
  *  @param judoId      The judoID of the recipient
@@ -81,6 +86,7 @@
  *  @param type        The type of the transaction
  *  @param session     The current judo apiSession
  *  @param cardDetails An object containing all card information - default: nil
+ *  @param primaryAccountDetails  optional property that contains information about the account details provided by the merchant
  *  @param completion  Completion block called when transaction has been finished
  *
  *  @return a JPayViewController object for presentation on a view stack
@@ -91,6 +97,7 @@
                            transaction:(TransactionType)type
                         currentSession:(nonnull JudoKit *)session
                            cardDetails:(nullable JPCardDetails *)cardDetails
+                 primaryAccountDetails:(nullable PrimaryAccountDetails *)primaryAccountDetails
                             completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 @end

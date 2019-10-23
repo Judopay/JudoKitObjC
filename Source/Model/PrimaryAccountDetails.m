@@ -1,5 +1,5 @@
 //
-//  JudoPaymentMethodsViewModel.m
+//  PrimaryAccountDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,28 +22,46 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JudoPaymentMethodsViewModel.h"
+#import "PrimaryAccountDetails.h"
 
-@implementation JudoPaymentMethodsViewModel
+@implementation PrimaryAccountDetails
 
-- (instancetype)initWithJudoId:(nonnull NSString *)judoId
-                        amount:(nonnull JPAmount *)amount
-             consumerReference:(nonnull JPReference *)reference
-                paymentMethods:(PaymentMethods)methods
-         primaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails
-         applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
-                   cardDetails:(nullable JPCardDetails *)cardDetails {
++ (instancetype)detailsFromDictionary:(NSDictionary *)dictionary {
+    return [[PrimaryAccountDetails alloc] initFromDictionary:dictionary];
+}
+
+- (instancetype)initFromDictionary:(NSDictionary *)dictionary {
     
     if (self = [super init]) {
-        _judoId = judoId;
-        _amount = amount;
-        _reference = reference;
-        _paymentMethods = methods;
-        _primaryAccountDetails = primaryAccountDetails;
-        _applePayConfiguration = applePayConfiguration;
-        _cardDetails = cardDetails;
+        _name = dictionary[@"name"];
+        _accountNumber = dictionary[@"accountNumber"];
+        _dateOfBirth = dictionary[@"dateOfBirth"];
+        _postCode = dictionary[@"postCode"];
     }
+    
     return self;
+}
+
+- (NSDictionary *)toDictionary {
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    
+    if (_name) {
+        dictionary[@"name"] = _name;
+    }
+    
+    if (_accountNumber) {
+        dictionary[@"accountNumber"] = _accountNumber;
+    }
+    
+    if (_dateOfBirth) {
+        dictionary[@"dateOfBirth"] = _dateOfBirth;
+    }
+    
+    if (_postCode) {
+        dictionary[@"postCode"] = _postCode;
+    }
+    
+    return dictionary;
 }
 
 @end
