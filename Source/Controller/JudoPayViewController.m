@@ -273,11 +273,10 @@
 
     [NSLayoutConstraint activateConstraints:constraints];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]-1-[button]"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:@{@"scrollView" : self.scrollView,
-                                                                                @"button" : self.paymentButton}]];
+                                                                        views:@{@"scrollView" : self.scrollView}]];
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[tdsecure]-|"
                                                                       options:0
