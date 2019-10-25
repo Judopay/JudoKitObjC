@@ -28,7 +28,7 @@
  *  Enumeration of all available iDEAL banks
  */
 typedef NS_ENUM(NSUInteger, IDEALBankType) {
-    IDEALBankNone
+    IDEALBankNone,
     IDEALBankRabobank,
     IDEALBankABN,
     IDEALBankVanLanschotBankiers,
