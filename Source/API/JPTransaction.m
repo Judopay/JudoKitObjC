@@ -26,6 +26,7 @@
 #import "JPAddress.h"
 #import "JPAmount.h"
 #import "JPCard.h"
+#import "JPCheckCard.h"
 #import "JPEnhancedPaymentDetail.h"
 #import "JPPagination.h"
 #import "JPPaymentToken.h"
@@ -100,7 +101,10 @@
         return [NSError judoReferenceMissingError];
     }
 
-    if (![self isKindOfClass:JPRegisterCard.class] && ![self isKindOfClass:JPSaveCard.class] && !self.amount) {
+    if (![self isKindOfClass:JPRegisterCard.class]
+        && ![self isKindOfClass:JPCheckCard.class]
+        && ![self isKindOfClass:JPSaveCard.class]
+        && !self.amount) {
         return [NSError judoAmountMissingError];
     }
 
