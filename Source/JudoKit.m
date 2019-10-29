@@ -194,7 +194,7 @@
 - (JPCheckCard *)checkCardWithJudoId:(NSString *)judoId currency:(NSString *)currency reference:(JPReference *)reference {
     return (JPCheckCard *)[self transactionForTypeClass:JPRegisterCard.class
                                                  judoId:judoId
-                                                 amount:currency ? [JPAmount amount:"0.0" currency:currency] : nil
+                                                 amount:currency ? [JPAmount amount:@"0.0" currency:currency] : nil
                                               reference:reference];
 }
 
