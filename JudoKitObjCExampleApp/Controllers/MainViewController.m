@@ -140,6 +140,10 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
         case DemoFeatureTypeSaveCard:
             [self saveCardOperation];
             break;
+            
+        case DemoFeatureTypeCheckCard:
+            [self checkCardOperation];
+            break;
 
         case DemoFeatureTypeRepeatPayment:
             [self tokenPaymentOperation];
@@ -305,6 +309,35 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
             self.cardDetails = tData.cardDetails;
             self.payToken = tData.paymentToken;
         }
+    }];
+}
+
+- (void)checkCardOperation {
+    [self.judoKitSession invokeCheckCard:judoId
+                               reference:[[JPReference alloc] initWithConsumerReference:self.reference]
+                             cardDetails:nil
+                              completion:^(JPResponse *response, NSError *error) {
+        if (error || response.items.count == 0) {
+            if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self presentErrorWithMessage: error.userInfo[NSLocalizedDescriptionKey]];
+            }];
+            return;
+        }
+        JPTransactionData *tData = response.items[0];
+        if (tData.cardDetails) {
+            self.cardDetails = tData.cardDetails;
+            self.payToken = tData.paymentToken;
+        }
+        DetailViewController *viewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+        viewController.transactionData = tData;
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController pushViewController:viewController animated:YES];
+        }];
     }];
 }
 

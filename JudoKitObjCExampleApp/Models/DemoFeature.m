@@ -16,6 +16,7 @@
         [DemoFeature featureWithType:DemoFeatureTypePayment title:@"Payment" details:@"with default settings"],
         [DemoFeature featureWithType:DemoFeatureTypePreAuth title:@"PreAuth" details: @"to reserve funds on a card"],
         [DemoFeature featureWithType:DemoFeatureTypeCreateCardToken title:@"Register card" details: @"to be stored for future transactions"],
+        [DemoFeature featureWithType:DemoFeatureTypeCheckCard title:@"Check card" details:@"to validate a card"],
         [DemoFeature featureWithType:DemoFeatureTypeSaveCard title:@"Save card" details: @"to be stored for future transactions"],
         [DemoFeature featureWithType:DemoFeatureTypeRepeatPayment title:@"Token payment" details: @"with a stored card token"],
         [DemoFeature featureWithType:DemoFeatureTypeTokenPreAuth title:@"Token preAuth" details: @"with a stored card token"],
