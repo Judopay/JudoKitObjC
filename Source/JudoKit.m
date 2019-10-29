@@ -32,6 +32,7 @@
 #import "DateInputField.h"
 #import "FloatingTextField.h"
 #import "JPCollection.h"
+#import "JPCheckCard.h"
 #import "JPInputField.h"
 #import "JPPayment.h"
 #import "JPPreAuth.h"
@@ -188,6 +189,10 @@
 
 - (JPRegisterCard *)registerCardWithJudoId:(NSString *)judoId reference:(JPReference *)reference {
     return (JPRegisterCard *)[self transactionForTypeClass:JPRegisterCard.class judoId:judoId amount:nil reference:reference];
+}
+
+- (JPCheckCard *)checkCardWithJudoId:(NSString *)judoId reference:(JPReference *)reference {
+    return (JPCheckCard *)[self transactionForTypeClass:JPRegisterCard.class judoId:judoId amount:nil reference:reference];
 }
 
 - (JPSaveCard *)saveCardWithJudoId:(NSString *)judoId reference:(JPReference *)reference {

@@ -35,7 +35,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
 @class JudoPayViewController;
 @class ApplePayConfiguration;
 
-@class JPPayment, JPPreAuth, JPRegisterCard, JPSaveCard, JPTransaction;
+@class JPPayment, JPPreAuth, JPRegisterCard, JPCheckCard, JPSaveCard, JPTransaction;
 @class JPCollection, JPVoid, JPRefund;
 @class JPReceipt;
 
@@ -139,6 +139,17 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  */
 - (nonnull JPRegisterCard *)registerCardWithJudoId:(nonnull NSString *)judoId
                                          reference:(nonnull JPReference *)reference;
+
+/**
+ *  This method only creates a JPCheckCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
+ *
+ *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *
+ *  @return a JPCheckCard object
+ */
+- (nonnull JPCheckCard *)checkCardWithJudoId:(nonnull NSString *)judoId
+                                   reference:(nonnull JPReference *)reference;
 
 /**
  *  This method only creates a JPSaveCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
