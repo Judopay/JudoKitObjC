@@ -174,6 +174,7 @@
             
         case TransactionTypeCheckCard:
             transactionTypeClass = JPCheckCard.class;
+            break;
 
         default:
             return nil;
