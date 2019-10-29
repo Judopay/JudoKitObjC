@@ -314,6 +314,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 
 - (void)checkCardOperation {
     [self.judoKitSession invokeCheckCard:judoId
+                                currency:nil
                                reference:[[JPReference alloc] initWithConsumerReference:self.reference]
                              cardDetails:nil
                               completion:^(JPResponse *response, NSError *error) {
