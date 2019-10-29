@@ -144,11 +144,13 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  This method only creates a JPCheckCard object for usages in a custom UI. The developer needs to set the remaining mandatory fields to then make the transaction
  *
  *  @param judoId    The judoID of the merchant to receive the transaction
+ *  @param currency Used to specify an optional currency code. If none is provided, defaults to GBP
  *  @param reference Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *
  *  @return a JPCheckCard object
  */
 - (nonnull JPCheckCard *)checkCardWithJudoId:(nonnull NSString *)judoId
+                                    currency:(nullable NSString *)currency
                                    reference:(nonnull JPReference *)reference;
 
 /**
