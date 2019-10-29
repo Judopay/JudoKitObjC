@@ -364,6 +364,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeCheckCard:(nonnull NSString *)judoId
+               currency:(nullable NSString *)amount
               reference:(nonnull JPReference *)reference
             cardDetails:(nullable JPCardDetails *)cardDetails
              completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
