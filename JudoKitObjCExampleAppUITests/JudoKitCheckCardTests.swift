@@ -58,4 +58,23 @@ class JudoKitCheckCardTests: XCTestCase {
         
         wait(for: [detailsExpectation], timeout: 20.0)
     }
+    
+    func test_OnCheckCardInvalidParameters_DisplayErrorAlert() {
+        let app = XCUIApplication()
+        app.tables.staticTexts["Check card"].tap()
+        
+        app.secureTextFields["Card number"].typeText("5500 0000 0000 0004")
+        app.textFields["Expiry date"].typeText("1228")
+        app.secureTextFields["CVC2"].typeText("999")
+
+        app.buttons["Pay"].firstMatch.tap()
+        
+        let errorAlert = app.alerts.firstMatch.staticTexts["Error"];
+        
+        let errorAlertExpectation = expectation(for: existsPredicate,
+                                                evaluatedWith: errorAlert,
+                                                handler: nil)
+        
+        wait(for: [errorAlertExpectation], timeout: 20.0)
+    }
 }
