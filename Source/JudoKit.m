@@ -171,6 +171,9 @@
         case TransactionTypeSaveCard:
             transactionTypeClass = JPSaveCard.class;
             break;
+            
+        case TransactionTypeCheckCard:
+            transactionTypeClass = JPCheckCard.class;
 
         default:
             return nil;
@@ -338,6 +341,18 @@
                                           amount:nil
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
                                      transaction:TransactionTypeRegisterCard
+                                     cardDetails:cardDetails
+                                    paymentToken:nil
+                                      completion:completion];
+}
+
+- (void)invokeCheckCard:(NSString *)judoId
+              reference:(JPReference *)reference
+            cardDetails:(JPCardDetails *)cardDetails
+             completion:(void (^)(JPResponse * _Nullable, NSError * _Nullable))completion {
+    [self presentPaymentViewControllerWithJudoId:judoId amount:nil
+                                       reference:reference
+                                     transaction:TransactionTypeCheckCard
                                      cardDetails:cardDetails
                                     paymentToken:nil
                                       completion:completion];

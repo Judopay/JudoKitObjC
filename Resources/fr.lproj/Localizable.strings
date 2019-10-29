@@ -88,6 +88,7 @@
 "back" = "Back";
 "payment" = "Payment";
 "refund" = "Refund";
+"check_card" = "Check card";
 "authentication" = "Authentication";
 "adding_card" = "Adding card...";
 "processing_payment" = "Processing payment...";

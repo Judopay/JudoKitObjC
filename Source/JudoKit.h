@@ -354,6 +354,19 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
+ *  This method will invoke the Judo UI on the top UIViewController instance of the Applications window. When the form has been successfully filled, the button will invoke a card registration with the judo API and respond in a completion block
+ *
+ *  @param judoId      The judoID of the merchant
+ *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param cardDetails The card details to present in the input fields
+ *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeCheckCard:(nonnull NSString *)judoId
+              reference:(nonnull JPReference *)reference
+            cardDetails:(nullable JPCardDetails *)cardDetails
+             completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+
+/**
  *  This method will save a card with the judo API and respond in a completion block
  *
  *  @param judoId               The judoID of the merchant

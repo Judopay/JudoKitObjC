@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPTransaction.h"
 
 /**
  *  A JPCheckCard object is returned from invoking the Judo SDK 'checkCard' method, and contains the necessary details of the transaction
