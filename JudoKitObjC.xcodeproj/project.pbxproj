@@ -37,9 +37,9 @@
 		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
 		305D7AAB23681BF200C49DEA /* JPCheckCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D7AA923681BF200C49DEA /* JPCheckCard.h */; };
 		305D7AAC23681BF200C49DEA /* JPCheckCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D7AAA23681BF200C49DEA /* JPCheckCard.m */; };
-		305D7ABF23683F6500C49DEA /* JudoKitCheckCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */; };
 		306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCECC2355F0F7008540E7 /* IDEALBank.m */; };
 		306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCECE2355FC9E008540E7 /* IDEALBank.h */; };
+		30B851A5236C55E5005DCA7C /* JudoKitCheckCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B851A4236C55E5005DCA7C /* JudoKitCheckCardTests.swift */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -171,6 +171,10 @@
 		3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B678BC81C735AB80001DC2F /* JudoKit.m */; };
 		3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */; };
 		3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */; };
+		4412DADC235DB5FF0077C3EA /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4412DADB235DB5FF0077C3EA /* TransactionDetailsTableViewController.swift */; };
+		4412DADE235DD1820077C3EA /* ExampleAppCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4412DADD235DD1820077C3EA /* ExampleAppCredentials.swift */; };
+		4412DAE0235DD45F0077C3EA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4412DADF235DD45F0077C3EA /* Currency.swift */; };
+		4412DAE2235DDB9D0077C3EA /* DemoFeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4412DAE1235DDB9D0077C3EA /* DemoFeatureType.swift */; };
 		442511D6234B8BFC00225FC4 /* UIApplication+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 442511D4234B8BFC00225FC4 /* UIApplication+Additions.h */; };
 		442511D7234B8BFC00225FC4 /* UIApplication+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 442511D5234B8BFC00225FC4 /* UIApplication+Additions.m */; };
 		44290B0722F051B00088F827 /* JPTransactionEnricher.h in Headers */ = {isa = PBXBuildFile; fileRef = 44290B0522F051B00088F827 /* JPTransactionEnricher.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -207,12 +211,28 @@
 		44DA43F022F82FE500C34231 /* NSString+Manipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DA43EE22F82FE500C34231 /* NSString+Manipulation.m */; };
 		44DA43F922F8D9F500C34231 /* JPTheme+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */; };
 		44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DA43F822F8D9F500C34231 /* JPTheme+Additions.m */; };
+		44E21CCE235602B600A7DC66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44E21CB0235602B500A7DC66 /* Assets.xcassets */; };
+		44E21CCF235602B600A7DC66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44E21CB2235602B500A7DC66 /* LaunchScreen.storyboard */; };
+		44E21CD0235602B600A7DC66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44E21CB4235602B500A7DC66 /* Main.storyboard */; };
+		44E21CD1235602B600A7DC66 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CB7235602B500A7DC66 /* NSError.swift */; };
+		44E21CD7235602B600A7DC66 /* HalfHeightPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CBD235602B500A7DC66 /* HalfHeightPresentationController.swift */; };
+		44E21CD8235602B600A7DC66 /* DetailsTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CBF235602B500A7DC66 /* DetailsTableViewSection.swift */; };
+		44E21CD9235602B600A7DC66 /* DemoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CC0235602B500A7DC66 /* DemoFeature.swift */; };
+		44E21CDA235602B600A7DC66 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CC1235602B500A7DC66 /* Settings.swift */; };
+		44E21CDB235602B600A7DC66 /* DetailsTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CC2235602B500A7DC66 /* DetailsTableViewRow.swift */; };
+		44E21CDC235602B600A7DC66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CC3235602B500A7DC66 /* AppDelegate.swift */; };
+		44E21CDF235602B600A7DC66 /* HalfSizePresentationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CC8235602B600A7DC66 /* HalfSizePresentationSegue.swift */; };
+		44E21CE0235602B600A7DC66 /* StandaloneApplePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CCA235602B600A7DC66 /* StandaloneApplePayViewController.swift */; };
+		44E21CE1235602B600A7DC66 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CCB235602B600A7DC66 /* SettingsTableViewController.swift */; };
+		44E21CE2235602B600A7DC66 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E21CCC235602B600A7DC66 /* MainViewController.swift */; };
+		44E21CE4235603EA00A7DC66 /* JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; };
 		44E3A0FD2349591C0042C9EC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A0FB2349591C0042C9EC /* SettingsViewController.m */; };
 		44E3A0FE2349591C0042C9EC /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E3A0FC2349591C0042C9EC /* SettingsViewController.xib */; };
 		44E3A10423498ADB0042C9EC /* DemoFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10323498ADB0042C9EC /* DemoFeature.m */; };
 		44E3A10723498B770042C9EC /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10623498B770042C9EC /* Settings.m */; };
 		44E3A10A23498D150042C9EC /* HalfHeightPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */; };
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
+		526B4C8E23678300002C5B79 /* PostCodeValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B4C8C236782E8002C5B79 /* PostCodeValidationTests.swift */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -359,9 +379,9 @@
 		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		305D7AA923681BF200C49DEA /* JPCheckCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPCheckCard.h; path = API/JPCheckCard.h; sourceTree = "<group>"; };
 		305D7AAA23681BF200C49DEA /* JPCheckCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPCheckCard.m; path = API/JPCheckCard.m; sourceTree = "<group>"; };
-		305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitCheckCardTests.swift; sourceTree = "<group>"; };
 		306BCECC2355F0F7008540E7 /* IDEALBank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IDEALBank.m; path = Model/IDEALBank.m; sourceTree = "<group>"; };
 		306BCECE2355FC9E008540E7 /* IDEALBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDEALBank.h; path = Model/IDEALBank.h; sourceTree = "<group>"; };
+		30B851A4236C55E5005DCA7C /* JudoKitCheckCardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoKitCheckCardTests.swift; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -506,6 +526,10 @@
 		3BD353CA1C77803F0045658A /* JPCardDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCardDetails.m; path = Model/JPCardDetails.m; sourceTree = "<group>"; };
 		3BFD9A961CD9FFDC00B8385D /* JudoKitUIDedupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoKitUIDedupTests.swift; sourceTree = "<group>"; };
 		3BFD9A981CDA008E00B8385D /* DedupTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DedupTestCase.swift; sourceTree = "<group>"; };
+		4412DADB235DB5FF0077C3EA /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
+		4412DADD235DD1820077C3EA /* ExampleAppCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAppCredentials.swift; sourceTree = "<group>"; };
+		4412DADF235DD45F0077C3EA /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4412DAE1235DDB9D0077C3EA /* DemoFeatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoFeatureType.swift; sourceTree = "<group>"; };
 		442511D4234B8BFC00225FC4 /* UIApplication+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIApplication+Additions.h"; path = "Extensions/UIApplication+Additions.h"; sourceTree = "<group>"; };
 		442511D5234B8BFC00225FC4 /* UIApplication+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+Additions.m"; path = "Extensions/UIApplication+Additions.m"; sourceTree = "<group>"; };
 		44290B0522F051B00088F827 /* JPTransactionEnricher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPTransactionEnricher.h; path = API/JPTransactionEnricher.h; sourceTree = "<group>"; };
@@ -543,6 +567,24 @@
 		44DA43EE22F82FE500C34231 /* NSString+Manipulation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Manipulation.m"; path = "Extensions/NSString+Manipulation.m"; sourceTree = "<group>"; };
 		44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JPTheme+Additions.h"; path = "Extensions/JPTheme+Additions.h"; sourceTree = "<group>"; };
 		44DA43F822F8D9F500C34231 /* JPTheme+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "JPTheme+Additions.m"; path = "Extensions/JPTheme+Additions.m"; sourceTree = "<group>"; };
+		44E21C812355F79000A7DC66 /* JudoKitSwiftExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitSwiftExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44E21C912355F79200A7DC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44E21CAF235602B500A7DC66 /* JudoKitSwiftExampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JudoKitSwiftExampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		44E21CB0235602B500A7DC66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44E21CB3235602B500A7DC66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44E21CB5235602B500A7DC66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		44E21CB7235602B500A7DC66 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		44E21CBD235602B500A7DC66 /* HalfHeightPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfHeightPresentationController.swift; sourceTree = "<group>"; };
+		44E21CBF235602B500A7DC66 /* DetailsTableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewSection.swift; sourceTree = "<group>"; };
+		44E21CC0235602B500A7DC66 /* DemoFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoFeature.swift; sourceTree = "<group>"; };
+		44E21CC1235602B500A7DC66 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		44E21CC2235602B500A7DC66 /* DetailsTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewRow.swift; sourceTree = "<group>"; };
+		44E21CC3235602B500A7DC66 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		44E21CC4235602B600A7DC66 /* JudoKitSwiftExample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = JudoKitSwiftExample.entitlements; sourceTree = "<group>"; };
+		44E21CC8235602B600A7DC66 /* HalfSizePresentationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationSegue.swift; sourceTree = "<group>"; };
+		44E21CCA235602B600A7DC66 /* StandaloneApplePayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandaloneApplePayViewController.swift; sourceTree = "<group>"; };
+		44E21CCB235602B600A7DC66 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		44E21CCC235602B600A7DC66 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		44E3A0FA2349591C0042C9EC /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		44E3A0FB2349591C0042C9EC /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		44E3A0FC2349591C0042C9EC /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -553,6 +595,7 @@
 		44E3A10823498D150042C9EC /* HalfHeightPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfHeightPresentationController.h; sourceTree = "<group>"; };
 		44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfHeightPresentationController.m; sourceTree = "<group>"; };
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
+		526B4C8C236782E8002C5B79 /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -604,6 +647,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B678B611C6CE5190001DC2F /* JudoKitObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44E21C7E2355F79000A7DC66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44E21CE4235603EA00A7DC66 /* JudoKitObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +754,7 @@
 		3B4EB3B61C981EA7006265A0 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
+				30B851A4236C55E5005DCA7C /* JudoKitCheckCardTests.swift */,
 				3B7836131CA1638900A7DCDE /* JudoKit3DSPaymentTests.swift */,
 				3B7836141CA1638900A7DCDE /* JudoKitAVSPaymentTests.swift */,
 				3B7836151CA1638900A7DCDE /* JudoKitMaestroTests.swift */,
@@ -714,7 +766,6 @@
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
 				447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */,
 				44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */,
-				305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */,
 			);
 			name = UITests;
 			path = JudoKitObjCExampleAppUITests;
@@ -764,6 +815,7 @@
 				3B678B581C6CE5190001DC2F /* Source */,
 				3B678B641C6CE5190001DC2F /* Tests */,
 				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
+				44E21C822355F79000A7DC66 /* JudoKitSwiftExampleApp */,
 				3B4EB3B61C981EA7006265A0 /* UITests */,
 				3B678B571C6CE5190001DC2F /* Products */,
 				15779454211085A9007BD3E1 /* Frameworks */,
@@ -777,6 +829,7 @@
 				3B678B601C6CE5190001DC2F /* JudoKitObjCTests.xctest */,
 				3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */,
 				3B4EB3B31C981EA7006265A0 /* JudoKitObjCExampleAppUITests.xctest */,
+				44E21C812355F79000A7DC66 /* JudoKitSwiftExampleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -983,6 +1036,7 @@
 				3B4EB3F21C982A25006265A0 /* TransactionTests.swift */,
 				15CFC9EC1FB74A4200430D31 /* VCOTests.swift */,
 				3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */,
+				526B4C8C236782E8002C5B79 /* PostCodeValidationTests.swift */,
 			);
 			path = APITests;
 			sourceTree = "<group>";
@@ -1015,6 +1069,74 @@
 				447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		44E21C822355F79000A7DC66 /* JudoKitSwiftExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				44E21CB0235602B500A7DC66 /* Assets.xcassets */,
+				44E21CB1235602B500A7DC66 /* Base.lproj */,
+				44E21CC9235602B600A7DC66 /* ViewControllers */,
+				44E21CBE235602B500A7DC66 /* Models */,
+				44E21CC7235602B600A7DC66 /* Segues */,
+				44E21CB6235602B500A7DC66 /* Extensions */,
+				44E21C912355F79200A7DC66 /* Info.plist */,
+				44E21CC4235602B600A7DC66 /* JudoKitSwiftExample.entitlements */,
+				44E21CC3235602B500A7DC66 /* AppDelegate.swift */,
+				44E21CBD235602B500A7DC66 /* HalfHeightPresentationController.swift */,
+				44E21CAF235602B500A7DC66 /* JudoKitSwiftExampleApp-Bridging-Header.h */,
+				4412DADD235DD1820077C3EA /* ExampleAppCredentials.swift */,
+			);
+			path = JudoKitSwiftExampleApp;
+			sourceTree = "<group>";
+		};
+		44E21CB1235602B500A7DC66 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				44E21CB2235602B500A7DC66 /* LaunchScreen.storyboard */,
+				44E21CB4235602B500A7DC66 /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		44E21CB6235602B500A7DC66 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				44E21CB7235602B500A7DC66 /* NSError.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		44E21CBE235602B500A7DC66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44E21CBF235602B500A7DC66 /* DetailsTableViewSection.swift */,
+				44E21CC0235602B500A7DC66 /* DemoFeature.swift */,
+				44E21CC1235602B500A7DC66 /* Settings.swift */,
+				44E21CC2235602B500A7DC66 /* DetailsTableViewRow.swift */,
+				4412DADF235DD45F0077C3EA /* Currency.swift */,
+				4412DAE1235DDB9D0077C3EA /* DemoFeatureType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		44E21CC7235602B600A7DC66 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				44E21CC8235602B600A7DC66 /* HalfSizePresentationSegue.swift */,
+			);
+			path = Segues;
+			sourceTree = "<group>";
+		};
+		44E21CC9235602B600A7DC66 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4412DADB235DB5FF0077C3EA /* TransactionDetailsTableViewController.swift */,
+				44E21CCA235602B600A7DC66 /* StandaloneApplePayViewController.swift */,
+				44E21CCB235602B600A7DC66 /* SettingsTableViewController.swift */,
+				44E21CCC235602B600A7DC66 /* MainViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		44E3A10123498ACE0042C9EC /* Models */ = {
@@ -1209,13 +1331,30 @@
 			productReference = 3B678B601C6CE5190001DC2F /* JudoKitObjCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		44E21C802355F79000A7DC66 /* JudoKitSwiftExampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44E21C9B2355F79200A7DC66 /* Build configuration list for PBXNativeTarget "JudoKitSwiftExampleApp" */;
+			buildPhases = (
+				44E21C7D2355F79000A7DC66 /* Sources */,
+				44E21C7E2355F79000A7DC66 /* Frameworks */,
+				44E21C7F2355F79000A7DC66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JudoKitSwiftExampleApp;
+			productName = JudoKitSwiftExampleApp;
+			productReference = 44E21C812355F79000A7DC66 /* JudoKitSwiftExampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3B678B4D1C6CE5190001DC2F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Judo Payments";
 				TargetAttributes = {
@@ -1244,6 +1383,12 @@
 						DevelopmentTeam = 2354U295GD;
 						LastSwiftMigration = 0910;
 						TestTargetID = 3B4EB3971C981EA7006265A0;
+					};
+					44E21C802355F79000A7DC66 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 95V535S6TQ;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
 					};
 					700523F31CC7882800CC916D = {
 						CreatedOnToolsVersion = 7.3;
@@ -1279,6 +1424,7 @@
 				3B4EB3971C981EA7006265A0 /* JudoKitObjCExampleApp */,
 				3B4EB3B21C981EA7006265A0 /* JudoKitObjCExampleAppUITests */,
 				700523F31CC7882800CC916D /* Documentation */,
+				44E21C802355F79000A7DC66 /* JudoKitSwiftExampleApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1378,6 +1524,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44E21C7F2355F79000A7DC66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44E21CD0235602B600A7DC66 /* Main.storyboard in Resources */,
+				44E21CCE235602B600A7DC66 /* Assets.xcassets in Resources */,
+				44E21CCF235602B600A7DC66 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1432,7 +1588,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B78361C1CA1638900A7DCDE /* JudoKitPaymentDeclinedTests.swift in Sources */,
-				305D7ABF23683F6500C49DEA /* JudoKitCheckCardTests.swift in Sources */,
 				3B78361D1CA1638900A7DCDE /* JudoKitPaymentTests.swift in Sources */,
 				3B78361E1CA1638900A7DCDE /* JudoKitTokenPaymentTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
@@ -1461,6 +1616,7 @@
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
+				30B851A5236C55E5005DCA7C /* JudoKitCheckCardTests.swift in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
@@ -1546,7 +1702,30 @@
 				3B4EB3F61C982A25006265A0 /* JudoTestCase.swift in Sources */,
 				3B4EB3F81C982A25006265A0 /* ListTests.swift in Sources */,
 				3B4EB3F91C982A25006265A0 /* PaymentTests.swift in Sources */,
+				526B4C8E23678300002C5B79 /* PostCodeValidationTests.swift in Sources */,
 				3B4EB4001C982A25006265A0 /* TokenPreAuthTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44E21C7D2355F79000A7DC66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44E21CDC235602B600A7DC66 /* AppDelegate.swift in Sources */,
+				4412DADC235DB5FF0077C3EA /* TransactionDetailsTableViewController.swift in Sources */,
+				44E21CD1235602B600A7DC66 /* NSError.swift in Sources */,
+				44E21CDF235602B600A7DC66 /* HalfSizePresentationSegue.swift in Sources */,
+				44E21CE0235602B600A7DC66 /* StandaloneApplePayViewController.swift in Sources */,
+				44E21CE1235602B600A7DC66 /* SettingsTableViewController.swift in Sources */,
+				44E21CDB235602B600A7DC66 /* DetailsTableViewRow.swift in Sources */,
+				44E21CDA235602B600A7DC66 /* Settings.swift in Sources */,
+				44E21CD8235602B600A7DC66 /* DetailsTableViewSection.swift in Sources */,
+				4412DAE2235DDB9D0077C3EA /* DemoFeatureType.swift in Sources */,
+				44E21CE2235602B600A7DC66 /* MainViewController.swift in Sources */,
+				4412DADE235DD1820077C3EA /* ExampleAppCredentials.swift in Sources */,
+				44E21CD9235602B600A7DC66 /* DemoFeature.swift in Sources */,
+				4412DAE0235DD45F0077C3EA /* Currency.swift in Sources */,
+				44E21CD7235602B600A7DC66 /* HalfHeightPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1776,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		44E21CB2235602B500A7DC66 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44E21CB3235602B500A7DC66 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		44E21CB4235602B500A7DC66 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44E21CB5235602B500A7DC66 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		829330FE230AF0F900689DC4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1616,6 +1811,7 @@
 		3B4EB3BB1C981EA7006265A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1638,6 +1834,7 @@
 		3B4EB3BC1C981EA7006265A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1864,6 +2061,7 @@
 		3B678B6E1C6CE5190001DC2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2354U295GD;
@@ -1881,6 +2079,7 @@
 		3B678B6F1C6CE5190001DC2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2354U295GD;
@@ -1891,6 +2090,61 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/JudoKitObjCTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JudoKitObjCExampleApp.app/JudoKitObjCExampleApp";
+			};
+			name = Release;
+		};
+		44E21C922355F79200A7DC66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = JudoKitSwiftExampleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.judokit.swift-integration.JudoKitSwiftExampleApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "JudoKitSwiftExampleApp/JudoKitSwiftExampleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		44E21C932355F79200A7DC66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = JudoKitSwiftExampleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.judokit.swift-integration.JudoKitSwiftExampleApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JudoKitSwiftExampleApp/JudoKitSwiftExampleApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1952,6 +2206,15 @@
 			buildConfigurations = (
 				3B678B6E1C6CE5190001DC2F /* Debug */,
 				3B678B6F1C6CE5190001DC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44E21C9B2355F79200A7DC66 /* Build configuration list for PBXNativeTarget "JudoKitSwiftExampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44E21C922355F79200A7DC66 /* Debug */,
+				44E21C932355F79200A7DC66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
