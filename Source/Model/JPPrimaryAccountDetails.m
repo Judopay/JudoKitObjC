@@ -1,5 +1,5 @@
 //
-//  PrimaryAccountDetails.h
+//  JPPrimaryAccountDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,12 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "PrimaryAccountDetails.h"
+#import "JPPrimaryAccountDetails.h"
 
-@implementation PrimaryAccountDetails
+@implementation JPPrimaryAccountDetails
 
 + (instancetype)detailsFromDictionary:(NSDictionary *)dictionary {
-    return [[PrimaryAccountDetails alloc] initFromDictionary:dictionary];
+    return [[JPPrimaryAccountDetails alloc] initFromDictionary:dictionary];
 }
 
 - (instancetype)initFromDictionary:(NSDictionary *)dictionary {

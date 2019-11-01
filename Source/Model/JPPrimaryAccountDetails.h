@@ -1,5 +1,5 @@
 //
-//  PrimaryAccountDetails.h
+//  JPPrimaryAccountDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -27,7 +27,7 @@
 /*
  *  Object that contains information about the account details provided by the merchant
  */
-@interface PrimaryAccountDetails : NSObject
+@interface JPPrimaryAccountDetails : NSObject
 
 /*
  *  The name provided by the merchant

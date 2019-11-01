@@ -29,6 +29,7 @@
 #import "JPEnhancedPaymentDetail.h"
 #import "JPPagination.h"
 #import "JPPaymentToken.h"
+#import "JPPrimaryAccountDetails.h"
 #import "JPReference.h"
 #import "JPRegisterCard.h"
 #import "JPResponse.h"
@@ -36,7 +37,6 @@
 #import "JPSession.h"
 #import "JPTransactionEnricher.h"
 #import "JPVCOResult.h"
-#import "PrimaryAccountDetails.h"
 
 #import "NSError+Judo.h"
 
@@ -211,15 +211,15 @@
     }
 }
 
-- (PrimaryAccountDetails *)primaryAccountDetails {
+- (JPPrimaryAccountDetails *)primaryAccountDetails {
     if (self.parameters[@"primaryAccountDetails"]) {
         NSDictionary *dictionary = self.parameters[@"primaryAccountDetails"];
-        return [PrimaryAccountDetails detailsFromDictionary:dictionary];
+        return [JPPrimaryAccountDetails detailsFromDictionary:dictionary];
     }
     return nil;
 }
 
-- (void)setPrimaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails {
+- (void)setPrimaryAccountDetails:(JPPrimaryAccountDetails *)primaryAccountDetails {
     self.parameters[@"primaryAccountDetails"] = primaryAccountDetails.toDictionary;
 }
 

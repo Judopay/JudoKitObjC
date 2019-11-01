@@ -35,6 +35,7 @@
 #import "JPInputField.h"
 #import "JPPayment.h"
 #import "JPPreAuth.h"
+#import "JPPrimaryAccountDetails.h"
 #import "JPReceipt.h"
 #import "JPReference.h"
 #import "JPRefund.h"
@@ -49,7 +50,6 @@
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
-#import "PrimaryAccountDetails.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;

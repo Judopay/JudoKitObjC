@@ -33,7 +33,7 @@
 #import "DemoFeature.h"
 #import "Settings.h"
 #import "HalfHeightPresentationController.h"
-#import "PrimaryAccountDetails.h"
+#import "JPPrimaryAccountDetails.h"
 
 #import "JudoKitObjC.h"
 
