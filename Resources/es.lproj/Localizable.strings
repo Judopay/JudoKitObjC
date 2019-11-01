@@ -90,6 +90,7 @@
 "back" = "Atrás";
 "payment" = "Pago";
 "refund" = "Reembolso";
+"check_card" = "Revisa la tarjeta";
 "authentication" = "Autenticación";
 "adding_card" = "Añadiendo tarjeta...";
 "processing_payment" = "Procesando pago";

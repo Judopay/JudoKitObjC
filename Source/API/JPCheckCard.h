@@ -1,5 +1,5 @@
 //
-//  JPTheme+Additions.m
+//  JPCheckCard.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme+Additions.h"
+#import <Foundation/Foundation.h>
+#import "JPTransaction.h"
 
-@implementation JPTheme (Additions)
-
-- (nonnull NSString *)titleForTransactionWithType:(TransactionType)transactionType {
-    switch (transactionType) {
-        case TransactionTypePayment:
-        case TransactionTypePreAuth:
-            return self.paymentTitle;
-        case TransactionTypeRegisterCard:
-        case TransactionTypeSaveCard:
-            return self.registerCardTitle;
-        case TransactionTypeRefund:
-            return self.refundTitle;
-        case TransactionTypeCheckCard:
-            return self.checkCardTitle;
-    }
-}
+/**
+ *  A JPCheckCard object is returned from invoking the Judo SDK 'checkCard' method, and contains the necessary details of the transaction
+ */
+@interface JPCheckCard : JPTransaction
 
 @end

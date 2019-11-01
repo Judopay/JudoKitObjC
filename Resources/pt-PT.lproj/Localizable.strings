@@ -89,6 +89,7 @@
 "back" = "Atrás";
 "payment" = "Pagamento";
 "refund" = "Reembolso";
+"check_card" = "Verifique o cartão";
 "authentication" = "Autorizando";
 "adding_card" = "Adicionando cartão";
 "processing" = "Processando";

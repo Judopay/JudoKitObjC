@@ -1,5 +1,5 @@
 //
-//  JPTheme+Additions.m
+//  JPCheckCard.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,23 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme+Additions.h"
+#import "JPCheckCard.h"
 
-@implementation JPTheme (Additions)
+static NSString *const kCheckCardPathKey = @"transactions/checkcard";
 
-- (nonnull NSString *)titleForTransactionWithType:(TransactionType)transactionType {
-    switch (transactionType) {
-        case TransactionTypePayment:
-        case TransactionTypePreAuth:
-            return self.paymentTitle;
-        case TransactionTypeRegisterCard:
-        case TransactionTypeSaveCard:
-            return self.registerCardTitle;
-        case TransactionTypeRefund:
-            return self.refundTitle;
-        case TransactionTypeCheckCard:
-            return self.checkCardTitle;
-    }
+@implementation JPCheckCard
+
+- (NSString *)transactionPath {
+    return kCheckCardPathKey;
 }
 
 @end

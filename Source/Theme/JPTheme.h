@@ -84,6 +84,11 @@
 @property (nonatomic, strong) NSString *_Nonnull registerCardTitle;
 
 /**
+ *  the title for a check card operation
+ */
+@property (nonatomic, strong) NSString *_Nonnull checkCardTitle;
+
+/**
  *  the title for a refund
  */
 @property (nonatomic, strong) NSString *_Nonnull refundTitle;

@@ -98,6 +98,13 @@
     return _refundTitle;
 }
 
+- (NSString *)checkCardTitle {
+    if (!_checkCardTitle) {
+        _checkCardTitle = @"check_card".localized;
+    }
+    return _checkCardTitle;
+}
+
 - (NSString *)authenticationTitle {
     if (!_authenticationTitle) {
         _authenticationTitle = @"authentication".localized;
