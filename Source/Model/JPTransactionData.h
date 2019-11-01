@@ -47,6 +47,10 @@ typedef NS_ENUM(NSUInteger, TransactionType) {
      */
     TransactionTypeRegisterCard,
     /**
+     *  Check a card
+     */
+    TransactionTypeCheckCard,
+    /**
      *  Save a card
      */
     TransactionTypeSaveCard
