@@ -37,6 +37,7 @@
 		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
 		305D7AAB23681BF200C49DEA /* JPCheckCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D7AA923681BF200C49DEA /* JPCheckCard.h */; };
 		305D7AAC23681BF200C49DEA /* JPCheckCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D7AAA23681BF200C49DEA /* JPCheckCard.m */; };
+		305D7ABF23683F6500C49DEA /* JudoKitCheckCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */; };
 		306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCECC2355F0F7008540E7 /* IDEALBank.m */; };
 		306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCECE2355FC9E008540E7 /* IDEALBank.h */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
@@ -358,6 +359,7 @@
 		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		305D7AA923681BF200C49DEA /* JPCheckCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPCheckCard.h; path = API/JPCheckCard.h; sourceTree = "<group>"; };
 		305D7AAA23681BF200C49DEA /* JPCheckCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPCheckCard.m; path = API/JPCheckCard.m; sourceTree = "<group>"; };
+		305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitCheckCardTests.swift; sourceTree = "<group>"; };
 		306BCECC2355F0F7008540E7 /* IDEALBank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IDEALBank.m; path = Model/IDEALBank.m; sourceTree = "<group>"; };
 		306BCECE2355FC9E008540E7 /* IDEALBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDEALBank.h; path = Model/IDEALBank.h; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
 				447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */,
 				44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */,
+				305D7AB623683F5F00C49DEA /* JudoKitCheckCardTests.swift */,
 			);
 			name = UITests;
 			path = JudoKitObjCExampleAppUITests;
@@ -1233,7 +1236,7 @@
 					3B678B551C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 2354U295GD;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
 					3B678B5F1C6CE5190001DC2F = {
@@ -1429,6 +1432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B78361C1CA1638900A7DCDE /* JudoKitPaymentDeclinedTests.swift in Sources */,
+				305D7ABF23683F6500C49DEA /* JudoKitCheckCardTests.swift in Sources */,
 				3B78361D1CA1638900A7DCDE /* JudoKitPaymentTests.swift in Sources */,
 				3B78361E1CA1638900A7DCDE /* JudoKitTokenPaymentTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
