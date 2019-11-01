@@ -30,7 +30,7 @@
                         amount:(nonnull JPAmount *)amount
              consumerReference:(nonnull JPReference *)reference
                 paymentMethods:(PaymentMethods)methods
-         primaryAccountDetails:(PrimaryAccountDetails *)primaryAccountDetails
+         primaryAccountDetails:(JPPrimaryAccountDetails *)primaryAccountDetails
          applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
                    cardDetails:(nullable JPCardDetails *)cardDetails {
     
