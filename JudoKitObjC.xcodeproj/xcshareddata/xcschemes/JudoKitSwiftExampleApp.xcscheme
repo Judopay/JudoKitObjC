@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B4EB3971C981EA7006265A0"
-               BuildableName = "JudoKitObjCExampleApp.app"
-               BlueprintName = "JudoKitObjCExampleApp"
+               BlueprintIdentifier = "44E21C802355F79000A7DC66"
+               BuildableName = "JudoKitSwiftExampleApp.app"
+               BlueprintName = "JudoKitSwiftExampleApp"
                ReferencedContainer = "container:JudoKitObjC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,41 +27,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B4EB3971C981EA7006265A0"
-            BuildableName = "JudoKitObjCExampleApp.app"
-            BlueprintName = "JudoKitObjCExampleApp"
-            ReferencedContainer = "container:JudoKitObjC.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B4EB3B21C981EA7006265A0"
-               BuildableName = "JudoKitObjCExampleAppUITests.xctest"
-               BlueprintName = "JudoKitObjCExampleAppUITests"
-               ReferencedContainer = "container:JudoKitObjC.xcodeproj">
-            </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "JudoKit3DSPaymentTests">
-               </Test>
-            </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B678B5F1C6CE5190001DC2F"
-               BuildableName = "JudoKitObjCTests.xctest"
-               BlueprintName = "JudoKitObjCTests"
-               ReferencedContainer = "container:JudoKitObjC.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -78,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B4EB3971C981EA7006265A0"
-            BuildableName = "JudoKitObjCExampleApp.app"
-            BlueprintName = "JudoKitObjCExampleApp"
+            BlueprintIdentifier = "44E21C802355F79000A7DC66"
+            BuildableName = "JudoKitSwiftExampleApp.app"
+            BlueprintName = "JudoKitSwiftExampleApp"
             ReferencedContainer = "container:JudoKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B4EB3971C981EA7006265A0"
-            BuildableName = "JudoKitObjCExampleApp.app"
-            BlueprintName = "JudoKitObjCExampleApp"
+            BlueprintIdentifier = "44E21C802355F79000A7DC66"
+            BuildableName = "JudoKitSwiftExampleApp.app"
+            BlueprintName = "JudoKitSwiftExampleApp"
             ReferencedContainer = "container:JudoKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
