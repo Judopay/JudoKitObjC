@@ -95,6 +95,11 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
 @property (nonatomic, assign) TransactionType type;
 
 /**
+ *  A redirect URL used for iDEAL bank transactions
+ */
+@property (nonatomic, assign) NSString *_Nullable redirectUrl;
+
+/**
  *  Date and time of the Transaction including time zone offset
  */
 @property (nonatomic, strong) NSString *_Nonnull createdAt;

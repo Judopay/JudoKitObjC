@@ -90,12 +90,12 @@ static NSString *const HTTPMethodPUT = @"PUT";
 
 #pragma mark - REST API
 
-- (void)apiCall:(NSString *)HTTPMethod
-           path:(NSString *)path
-     parameters:(NSDictionary *)parameters
-     completion:(JudoCompletionBlock)completion {
-
-    NSMutableURLRequest *request = [self judoRequest:[NSString stringWithFormat:@"%@%@", self.endpoint, path]];
+- (void)requestWithMethod:(NSString *)HTTPMethod
+                     path:(NSString *)path
+               parameters:(NSDictionary *)parameters
+               completion:(JudoCompletionBlock)completion {
+    
+    NSMutableURLRequest *request = [self judoRequest:path];
 
     request.HTTPMethod = HTTPMethod;
 
@@ -115,6 +115,15 @@ static NSString *const HTTPMethodPUT = @"PUT";
     NSURLSessionDataTask *task = [self task:request completion:completion];
 
     [task resume];
+}
+
+- (void)apiCall:(NSString *)HTTPMethod
+           path:(NSString *)path
+     parameters:(NSDictionary *)parameters
+     completion:(JudoCompletionBlock)completion {
+
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.endpoint, path];
+    [self requestWithMethod:HTTPMethod path:fullURL parameters:parameters completion:completion];
 }
 
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
@@ -222,7 +231,9 @@ static NSString *const HTTPMethodPUT = @"PUT";
                              }
 
                              dispatch_async(dispatch_get_main_queue(), ^{
-                                 if (result.items.count == 1 && result.items.firstObject.result != TransactionResultSuccess) {
+                                 if (result.items.count == 1
+                                     && responseJSON[@"result"] != nil
+                                     && result.items.firstObject.result != TransactionResultSuccess) {
                                      completion(nil, [NSError judoErrorFromTransactionData:result.items.firstObject]);
                                  } else {
                                      completion(result, nil);

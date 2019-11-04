@@ -1,5 +1,5 @@
 //
-//  IDEALFormViewController.h
+//  IDEALManager.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,29 +22,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "IDEALBankSelectionTableViewController.h"
-#import "JPSession.h"
+@class JPSession;
 
-@class JPTheme;
-
-/**
- *  A custom UIViewController used for displaying the iDEAL transaction form.
- */
-@interface IDEALFormViewController : UIViewController <IDEALBankSelectionDelegate>
+@interface IDEALManager : NSObject
 
 /**
- *  Initializer that displays the iDEAL transaction form
+ * Creates an instance of an IDEALManager object
  *
- *  @param theme - An instance of a JPTheme object that defines the style of the form
- *  @param session - An instance of a JPSession object that is used for making API requests
- *  @param completion -  Completion block called when transaction has been finished
- *
- *  @return an initialized IDEALFormViewController object
+ * @param session - an instance of JPSession that is used to make API requests
  */
-- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme
-                              session:(nonnull JPSession *)session
-                           completion:(nonnull JudoCompletionBlock)completion;
+- (nonnull instancetype)initWithSession:(nonnull JPSession *)session;
+
+/**
+ * Method used for returning a redirect URL based on the specified iDEAL bank
+ *
+ * @param completion - a completion block that either returns the redirect URL string or returns an error
+ */
+- (void)getRedirectURLWithCompletion:(nonnull void (^)(NSString *_Nullable, NSError *_Nullable))completion;
 
 @end

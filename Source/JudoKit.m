@@ -455,6 +455,7 @@
 - (void)invokeIDEALPaymentWithCompletion:(JudoCompletionBlock)completion {
     
     IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithTheme:self.theme
+                                                                                 session:self.apiSession
                                                                               completion:completion];
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 

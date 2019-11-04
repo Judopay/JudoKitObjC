@@ -34,6 +34,7 @@
 #import "NSString+Localize.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
+#import "IDEALManager.h"
 #import "UIViewController+JPTheme.h"
 
 @interface IDEALFormViewController ()
@@ -47,6 +48,7 @@
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) IDEALManager *idealManager;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -57,10 +59,12 @@
 @implementation IDEALFormViewController
 
 - (instancetype)initWithTheme:(JPTheme *)theme
+                      session:(JPSession *)session
                    completion:(JudoCompletionBlock)completion {
     
     if (self = [super init]) {
         self.theme = theme;
+        self.idealManager = [[IDEALManager alloc] initWithSession:session];
         self.completionBlock = completion;
     }
     
@@ -101,7 +105,9 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-    //TODO: Add payment request
+    [self.idealManager getRedirectURLWithCompletion:^(NSString *redirectURL, NSError *error) {
+        // Setup WebView and handle redirect
+    }];
 }
 
 - (void)didSelectBank:(IDEALBank *)bank {
@@ -298,6 +304,9 @@
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+        [_paymentButton addTarget:self
+                           action:@selector(onPayButtonTap:)
+                 forControlEvents:UIControlEventTouchUpInside];
     }
     return _paymentButton;
 }
