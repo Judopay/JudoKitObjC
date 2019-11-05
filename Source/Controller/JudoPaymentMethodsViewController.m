@@ -242,7 +242,11 @@
 
 - (void)onIDEALButtonTap:(id)sender {
     __weak JudoPaymentMethodsViewController *weakSelf = self;
-    [self.judoKitSession invokeIDEALPaymentWithCompletion:^(JPResponse *response, NSError *error) {
+    
+    [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
+                                               amount:self.viewModel.amount
+                                            reference:self.viewModel.reference
+                                           completion:^(JPResponse *response, NSError *error) {
         if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }

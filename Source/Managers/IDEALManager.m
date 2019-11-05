@@ -23,7 +23,10 @@
 //  SOFTWARE.
 
 #import "IDEALManager.h"
+#import "IDEALBank.h"
+#import "JPAmount.h"
 #import "JPSession.h"
+#import "JPReference.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 
@@ -44,20 +47,22 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
     return self;
 }
 
-- (void)getRedirectURLWithCompletion:(void (^)(NSString *redirectURL, NSError *error))completion {
+- (void)getRedirectURLWithJudoId:(NSString *)judoId
+                          amount:(JPAmount *)amount
+                       reference:(JPReference *)reference
+                       idealBank:(IDEALBank *)iDealBank
+                      completion:(void (^)(NSString *redirectURL, NSError *error))completion {
 
     NSDictionary *parameters = @{
         @"paymentMethod": @"IDEAL",
-        @"currency": @"EUR",
-        @"amount": @1000,
+        @"currency": amount.currency,
+        @"amount": amount.amount,
         @"country": @"NL",
         @"accountHolderName": @"A N Other",
-        @"merchantPaymentReference": @"A06000A",
-        @"bic": @"RABONL2U",
-        @"merchantConsumerReference": @"KFC test",
-        @"siteId": @"100012392",
-        @"mobileNumber": @"07500123456",
-        @"emailAddress": @"netherlands@kfc.com",
+        @"merchantPaymentReference": reference.paymentReference,
+        @"bic": iDealBank.bankIdentifierCode,
+        @"merchantConsumerReference": reference.consumerReference,
+        @"siteId": judoId
     };
     
     [self.session requestWithMethod:@"POST"

@@ -27,8 +27,10 @@
 #import "IDEALBank.h"
 #import "IDEALBankTableViewCell.h"
 #import "IDEALBankSelectionTableViewController.h"
+#import "JPAmount.h"
 #import "JPInputField.h"
 #import "JPTheme.h"
+#import "JPReference.h"
 #import "JPResponse.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
@@ -45,7 +47,10 @@
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 
+@property (nonatomic, strong) NSString *judoId;
+@property (nonatomic, strong) JPAmount *amount;
 @property (nonatomic, strong) JPTheme *theme;
+@property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) IDEALManager *idealManager;
@@ -58,11 +63,17 @@
 
 @implementation IDEALFormViewController
 
-- (instancetype)initWithTheme:(JPTheme *)theme
-                      session:(JPSession *)session
-                   completion:(JudoCompletionBlock)completion {
+- (instancetype)initWithJudoId:(NSString *)judoId
+                         theme:(JPTheme *)theme
+                        amount:(JPAmount *)amount
+                     reference:(JPReference *)reference
+                       session:(JPSession *)session
+                    completion:(JudoCompletionBlock)completion {
     
     if (self = [super init]) {
+        self.judoId = judoId;
+        self.amount = amount;
+        self.reference = reference;
         self.theme = theme;
         self.idealManager = [[IDEALManager alloc] initWithSession:session];
         self.completionBlock = completion;
@@ -105,8 +116,12 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-    [self.idealManager getRedirectURLWithCompletion:^(NSString *redirectURL, NSError *error) {
-        // Setup WebView and handle redirect
+    [self.idealManager getRedirectURLWithJudoId:self.judoId
+                                         amount:self.amount
+                                      reference:self.reference
+                                      idealBank:self.selectedBank
+                                     completion:^(NSString *redirectUrl, NSError *error) {
+        
     }];
 }
 

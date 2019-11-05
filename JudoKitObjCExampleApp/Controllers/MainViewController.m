@@ -348,7 +348,12 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 }
 
 - (void)idealTransactionOperation {
-    [self.judoKitSession invokeIDEALPaymentWithCompletion:^(JPResponse *response, NSError *error) {
+    
+    [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
+                                               amount:[[JPAmount alloc] initWithAmount:@"" currency:@""]
+                                            reference:[JPReference consumerReference:self.reference]
+                                           completion:^(JPResponse *response, NSError *error) {
+        
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -360,7 +365,6 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
             return;
         }
         
-        // TODO: Handle response / error
     }];
 }
 

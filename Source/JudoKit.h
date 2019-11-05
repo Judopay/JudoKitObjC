@@ -440,9 +440,15 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  This method will invoke the iDEAL transaction form on the top UIViewController instance of the Applications window. The iDEAL transaction form allows the
  *  merchant to set a name and select from one of the available iDEAL banks to complete the transaction.
  *
- *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
+ *  @param judoId           The judoID of the merchant to receive the token pre-auth
+ *  @param amount           The amount and currency of the pre-auth (default is GBP)
+ *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
-- (void)invokeIDEALPaymentWithCompletion:(nonnull JudoCompletionBlock)completion;
+- (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
+                              amount:(nonnull JPAmount *)amount
+                           reference:(nonnull JPReference *)reference
+                          completion:(nonnull JudoCompletionBlock)completion;
 
 @end
 

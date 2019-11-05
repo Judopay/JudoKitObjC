@@ -452,11 +452,18 @@
                                       completion:completion];
 }
 
-- (void)invokeIDEALPaymentWithCompletion:(JudoCompletionBlock)completion {
+- (void)invokeIDEALPaymentWithJudoId:(NSString *)judoId
+                              amount:(JPAmount *)amount
+                           reference:(JPReference *)reference
+                          completion:(JudoCompletionBlock)completion {
     
-    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithTheme:self.theme
-                                                                                 session:self.apiSession
-                                                                              completion:completion];
+    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
+                                                                                    theme:self.theme
+                                                                                   amount:amount
+                                                                                reference:reference
+                                                                                  session:self.apiSession
+                                                                               completion:completion];
+    
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];

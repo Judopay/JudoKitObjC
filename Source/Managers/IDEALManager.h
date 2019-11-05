@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPSession;
+@class JPAmount, JPReference, IDEALBank, JPSession;
 
 @interface IDEALManager : NSObject
 
@@ -38,8 +38,16 @@
 /**
  * Method used for returning a redirect URL based on the specified iDEAL bank
  *
- * @param completion - a completion block that either returns the redirect URL string or returns an error
+ * @param judoId           The judoID of the merchant to receive the token pre-auth
+ * @param amount           The amount and currency of the pre-auth (default is GBP)
+ * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ * @param idealBank    An instance of IDEALBank that holds the iDEAL's bank name and identifier code
+ * @param completion  A completion block that either returns the redirect URL string or returns an error
  */
-- (void)getRedirectURLWithCompletion:(nonnull void (^)(NSString *_Nullable, NSError *_Nullable))completion;
+- (void)getRedirectURLWithJudoId:(nonnull NSString *)judoId
+                          amount:(nonnull JPAmount *)amount
+                       reference:(nonnull JPReference *)reference
+                       idealBank:(nonnull IDEALBank *)iDealBank
+                      completion:(void (^_Nonnull)(NSString *_Nullable, NSError *_Nullable))completion;
 
 @end
