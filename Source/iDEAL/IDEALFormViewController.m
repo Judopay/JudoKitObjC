@@ -22,6 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import <WebKit/WebKit.h>
+
 #import "FloatingTextField.h"
 #import "IDEALFormViewController.h"
 #import "IDEALBank.h"
@@ -46,6 +48,7 @@
 @property (nonatomic, strong) JPInputField *nameInputField;
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
+@property (nonatomic, strong) WKWebView *webView;
 
 @property (nonatomic, strong) NSString *judoId;
 @property (nonatomic, strong) JPAmount *amount;
@@ -60,6 +63,8 @@
 
 @end
 
+@interface IDEALFormViewController (WebView) <WKNavigationDelegate>
+@end
 
 @implementation IDEALFormViewController
 
@@ -122,6 +127,10 @@
                                       idealBank:self.selectedBank
                                      completion:^(NSString *redirectUrl, NSError *error) {
         // TODO: Handle response / error
+        NSURL *url = [NSURL URLWithString:redirectUrl];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [self.view addSubview:self.webView];
+        [self.webView loadRequest:request];
     }];
 }
 
@@ -301,6 +310,16 @@
     return _bankSelectionCell;
 }
 
+- (WKWebView *)webView {
+    if (!_webView) {
+        WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+        _webView = [[WKWebView alloc] initWithFrame:UIScreen.mainScreen.bounds
+                                      configuration:configuration];
+        _webView.navigationDelegate = self;
+    }
+    return _webView;
+}
+
 - (UIView *)safeAreaView {
     if (!_safeAreaView) {
         _safeAreaView = [UIView new];
@@ -370,6 +389,16 @@
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
     }];
+}
+
+@end
+
+@implementation IDEALFormViewController (WebView)
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
+    NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
 }
 
 @end
