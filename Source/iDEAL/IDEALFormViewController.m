@@ -121,7 +121,7 @@
                                       reference:self.reference
                                       idealBank:self.selectedBank
                                      completion:^(NSString *redirectUrl, NSError *error) {
-        
+        // TODO: Handle response / error
     }];
 }
 

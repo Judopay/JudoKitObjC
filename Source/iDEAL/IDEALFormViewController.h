@@ -37,7 +37,7 @@
 /**
  *  Initializer that displays the iDEAL transaction form
  *
- * @param judoId       The judoID of the merchant to receive the token pre-auth
+ *  @param judoId       The judoID of the merchant to receive the token pre-auth
  *  @param theme - An instance of a JPTheme object that defines the style of the form
  *  @param amount       The amount and currency of the pre-auth (default is GBP)
  *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
