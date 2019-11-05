@@ -45,6 +45,7 @@
     self.result = [self transactionResultForString:dictionary[@"result"]];
     self.message = dictionary[@"message"];
     self.judoId = dictionary[@"judoId"];
+    self.orderId = dictionary[@"orderId"];
     self.redirectUrl = dictionary[@"redirectUrl"];
     self.merchantName = dictionary[@"merchantName"];
     self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];

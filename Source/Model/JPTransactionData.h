@@ -95,6 +95,11 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
 @property (nonatomic, assign) TransactionType type;
 
 /**
+ *  The order identifier string used for the iDEAL bank transaction
+ */
+@property (nonatomic, assign) NSString *_Nullable orderId;
+
+/**
  *  A redirect URL used for iDEAL bank transactions
  */
 @property (nonatomic, assign) NSString *_Nullable redirectUrl;

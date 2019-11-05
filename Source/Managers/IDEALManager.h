@@ -28,26 +28,44 @@
 
 @interface IDEALManager : NSObject
 
-/**
- * Creates an instance of an IDEALManager object
- *
- * @param session - an instance of JPSession that is used to make API requests
- */
-- (nonnull instancetype)initWithSession:(nonnull JPSession *)session;
+typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
+typedef void (^JudoPoolingCompletion)(NSString *_Nullable, NSError *_Nullable);
 
 /**
- * Method used for returning a redirect URL based on the specified iDEAL bank
+ * Creates an instance of an IDEALManager object
  *
  * @param judoId           The judoID of the merchant to receive the token pre-auth
  * @param amount           The amount and currency of the pre-auth (default is GBP)
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ * @param session         An instance of JPSession that is used to make API requests
+ * @param merchantPaymentMetadata     Optional merchant payment metadata details
+ * @param paymentMetadata                       Freeformat optional JSON metadata
+ */
+- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
+                                amount:(nonnull JPAmount *)amount
+                             reference:(nonnull JPReference *)reference
+                               session:(nonnull JPSession *)session
+               merchantPaymentMetadata:(nullable NSDictionary *)merchantPaymentMetadata
+                       paymentMetadata:(nullable NSDictionary *)paymentMetadata;
+
+/**
+ * Method used for returning a redirect URL based on the specified iDEAL bank
+ *
  * @param idealBank    An instance of IDEALBank that holds the iDEAL's bank name and identifier code
  * @param completion  A completion block that either returns the redirect URL string or returns an error
  */
-- (void)getRedirectURLWithJudoId:(nonnull NSString *)judoId
-                          amount:(nonnull JPAmount *)amount
-                       reference:(nonnull JPReference *)reference
-                       idealBank:(nonnull IDEALBank *)iDealBank
-                      completion:(void (^_Nonnull)(NSString *_Nullable, NSError *_Nullable))completion;
+- (void)getRedirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
+                        completion:(nonnull JudoRedirectCompletion)completion;
+
+/**
+ * Method used for returning a redirect URL based on the specified iDEAL bank
+ *
+ * @param orderId         A string property returned from the redirect URL used to identify the transaction
+ * @param checksum       A string property returned from the redirect URL used to validate the transaction
+ * @param completion  A completion block that either returns the transaction status or returns an error
+ */
+- (void)poolTransactionStatusForOrderId:(nonnull NSString *)orderId
+                               checksum:(nonnull NSString *)checksum
+                              completion:(nonnull JudoPoolingCompletion)completion;
 
 @end

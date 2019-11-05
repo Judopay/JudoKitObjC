@@ -221,6 +221,7 @@
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
+		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -569,6 +570,7 @@
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
+		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */,
 				15779455211085A9007BD3E1 /* TrustKit.framework in Frameworks */,
 				701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */,
 			);
@@ -644,6 +647,7 @@
 		15779454211085A9007BD3E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

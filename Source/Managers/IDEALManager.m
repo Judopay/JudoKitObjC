@@ -29,9 +29,17 @@
 #import "JPReference.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
+#import "NSError+Judo.h"
 
 @interface IDEALManager()
+
+@property (nonatomic, strong) NSString *judoId;
+@property (nonatomic, strong) JPAmount *amount;
+@property (nonatomic, strong) JPReference *reference;
+@property (nonatomic, strong) NSDictionary *merchantPaymentMetadata;
+@property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
+
 @end
 
 @implementation IDEALManager
@@ -39,40 +47,73 @@
 static NSString *redirectEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
 static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
 
-- (instancetype)initWithSession:(JPSession *)session {
+- (instancetype)initWithJudoId:(NSString *)judoId
+                        amount:(JPAmount *)amount
+                     reference:(JPReference *)reference
+                       session:(JPSession *)session
+       merchantPaymentMetadata:(NSDictionary *)merchantPaymentMetadata
+               paymentMetadata:(NSDictionary *)paymentMetadata {
+    
     if (self = [super init]) {
+        self.judoId = judoId;
+        self.amount = amount;
+        self.reference = reference;
         self.session = session;
+        self.merchantPaymentMetadata = merchantPaymentMetadata;
+        self.paymentMetadata = paymentMetadata;
     }
-
+    
     return self;
 }
 
-- (void)getRedirectURLWithJudoId:(NSString *)judoId
-                          amount:(JPAmount *)amount
-                       reference:(JPReference *)reference
-                       idealBank:(IDEALBank *)iDealBank
-                      completion:(void (^)(NSString *redirectURL, NSError *error))completion {
-
-    NSDictionary *parameters = @{
-        @"paymentMethod": @"IDEAL",
-        @"currency": amount.currency,
-        @"amount": amount.amount,
-        @"country": @"NL",
-        @"accountHolderName": @"A N Other",
-        @"merchantPaymentReference": reference.paymentReference,
-        @"bic": iDealBank.bankIdentifierCode,
-        @"merchantConsumerReference": reference.consumerReference,
-        @"siteId": judoId
-    };
+- (void)getRedirectURLForIDEALBank:(IDEALBank *)iDealBank
+                      completion:(JudoRedirectCompletion)completion {
     
     [self.session requestWithMethod:@"POST"
                                path:redirectEndpoint
-                         parameters:parameters
+                         parameters:[self parametersForIDEALBank:iDealBank]
                          completion:^(JPResponse *response, NSError *error) {
         
         JPTransactionData *data = response.items.firstObject;
-        completion(data.redirectUrl, error);
+        
+        if (data.orderId && data.redirectUrl) {
+            completion(data.redirectUrl, data.orderId, error);
+            return;
+        }
+        
+        completion(nil, nil, NSError.judoResponseParseError);
     }];
+}
+
+- (void)poolTransactionStatusForOrderId:(NSString *)orderId
+                               checksum:(NSString *)checksum
+                              completion:(JudoPoolingCompletion)completion {
+    
+}
+
+- (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"paymentMethod": @"IDEAL",
+        @"currency": self.amount.currency,
+        @"amount": self.amount.amount,
+        @"country": @"NL",
+        @"accountHolderName": @"A N Other",
+        @"merchantPaymentReference": self.reference.paymentReference,
+        @"bic": iDEALBank.bankIdentifierCode,
+        @"merchantConsumerReference": self.reference.consumerReference,
+        @"siteId": self.judoId
+    }];
+    
+    if (self.merchantPaymentMetadata) {
+        parameters[@"merchantPaymentMetadata"] = self.merchantPaymentMetadata;
+    }
+    
+    if (self.paymentMetadata) {
+        parameters[@"paymentMetadata"] = self.paymentMetadata;
+    }
+    
+    return parameters;
 }
 
 @end

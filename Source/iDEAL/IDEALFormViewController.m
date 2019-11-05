@@ -50,13 +50,11 @@
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) WKWebView *webView;
 
-@property (nonatomic, strong) NSString *judoId;
-@property (nonatomic, strong) JPAmount *amount;
 @property (nonatomic, strong) JPTheme *theme;
-@property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) IDEALManager *idealManager;
+@property (nonatomic, strong) NSString *orderId;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -68,24 +66,33 @@
 
 @implementation IDEALFormViewController
 
+# pragma mark - Initializers
+
 - (instancetype)initWithJudoId:(NSString *)judoId
                          theme:(JPTheme *)theme
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
+       merchantPaymentMetadata:(NSDictionary *)merchantPaymentMetadata
+               paymentMetadata:(NSDictionary *)paymentMetadata
                     completion:(JudoCompletionBlock)completion {
     
     if (self = [super init]) {
-        self.judoId = judoId;
-        self.amount = amount;
-        self.reference = reference;
         self.theme = theme;
-        self.idealManager = [[IDEALManager alloc] initWithSession:session];
         self.completionBlock = completion;
+        
+        self.idealManager = [[IDEALManager alloc] initWithJudoId:judoId
+                                                          amount:amount
+                                                       reference:reference
+                                                         session:session
+                                         merchantPaymentMetadata:merchantPaymentMetadata
+                                                 paymentMetadata:paymentMetadata];
     }
     
     return self;
 }
+
+# pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,6 +111,8 @@
     [super viewWillDisappear:animated];
 }
 
+# pragma mark - User actions
+
 - (void)onViewTap:(id)sender {
     [self.nameInputField endEditing:YES];
 }
@@ -121,18 +130,21 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-    [self.idealManager getRedirectURLWithJudoId:self.judoId
-                                         amount:self.amount
-                                      reference:self.reference
-                                      idealBank:self.selectedBank
-                                     completion:^(NSString *redirectUrl, NSError *error) {
-        // TODO: Handle response / error
-        NSURL *url = [NSURL URLWithString:redirectUrl];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [self.view addSubview:self.webView];
-        [self.webView loadRequest:request];
+    
+    [self.idealManager getRedirectURLForIDEALBank:self.selectedBank
+                                       completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
+        
+        if (error) {
+            self.completionBlock(nil, error);
+            return;
+        }
+        
+        self.orderId = orderId;
+        [self loadWebViewWithURLString:redirectUrl];
     }];
 }
+
+# pragma mark - Action handlers
 
 - (void)didSelectBank:(IDEALBank *)bank {
     [self shouldDisplayPaymentElements:YES];
@@ -159,6 +171,13 @@
     self.navigationItem.rightBarButtonItem.enabled = shouldContinue;
 }
 
+- (void)loadWebViewWithURLString:(NSString *)urlString {
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.view addSubview:self.webView];
+    [self.webView loadRequest:request];
+}
+
 - (void)displaySavedBankIfNeeded {
     NSInteger bankTypeValue = [NSUserDefaults.standardUserDefaults integerForKey:@"iDEALBankType"];
     IDEALBankType bankType = (IDEALBankType)bankTypeValue;
@@ -170,6 +189,8 @@
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
     [self didSelectBank:storedBank];
 }
+
+# pragma mark - Layout setup methods
 
 - (void)setupView {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -254,6 +275,8 @@
     [NSLayoutConstraint activateConstraints:subviewConstraints];
     [NSLayoutConstraint activateConstraints:stackViewConstraints];
 }
+
+# pragma mark - Lazy instantiated properties
 
 - (JPInputField *)nameInputField {
     if (!_nameInputField) {
@@ -345,6 +368,8 @@
     return _paymentButton;
 }
 
+# pragma mark - Keyboard handling logic
+
 - (void)registerKeyboardObservers {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
@@ -393,12 +418,26 @@
 
 @end
 
+#pragma mark - WKNavigation Delegate
+
 @implementation IDEALFormViewController (WebView)
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
     NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
+    
+    if (checksum) {
+        [self.idealManager poolTransactionStatusForOrderId:self.orderId
+                                                  checksum:checksum.value
+                                                completion:^(NSString *status, NSError *error) {
+            // TODO: Handle pooling status
+        }];
+        
+        return;
+    }
+    
+    self.completionBlock(nil, NSError.judoMissingChecksumError);
 }
 
 @end
