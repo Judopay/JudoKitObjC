@@ -350,7 +350,7 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
 - (void)idealTransactionOperation {
     
     [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
-                                               amount:[[JPAmount alloc] initWithAmount:@"" currency:@""]
+                                               amount:[[JPAmount alloc] initWithAmount:@"0.01" currency:@"GBP"]
                                             reference:[JPReference consumerReference:self.reference]
                                            completion:^(JPResponse *response, NSError *error) {
         
