@@ -88,7 +88,7 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
 - (void)poolTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
                               completion:(JudoPoolingCompletion)completion {
-    
+    // TODO: Handle pooling logic
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {

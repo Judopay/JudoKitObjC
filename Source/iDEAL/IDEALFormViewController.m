@@ -140,6 +140,7 @@
         }
         
         self.orderId = orderId;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
         [self loadWebViewWithURLString:redirectUrl];
     }];
 }
@@ -428,6 +429,8 @@
     NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
     
     if (checksum) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        [self.webView removeFromSuperview];
         [self.idealManager poolTransactionStatusForOrderId:self.orderId
                                                   checksum:checksum.value
                                                 completion:^(NSString *status, NSError *error) {
