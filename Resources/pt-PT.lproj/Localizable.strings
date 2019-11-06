@@ -87,6 +87,8 @@
 "error_underlying_error" = "Um erro no sistema iOS com um erro subjacente ";
 "error_transaction_declined" = "A transação que foi enviada ao back-end retornou recusada";
 "error_card_not_supported" = "Nós não aceitamos %@";
+"error_checksum_missing_title" = "Soma de verificação ausente";
+"error_checksum_missing_description" = "Nenhum parâmetro de soma de verificação presente no URL de redirecionamento do iDEAL";
 
 //NSString+Card
 "check_card_number" = "Confirmar número do cartão";

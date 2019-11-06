@@ -185,9 +185,9 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 + (NSError *)judoMissingChecksumError {
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorGeneral_Error
-    userInfo:[self userDataDictWithDescription:@"No checksum paramter present in iDEAL redirect URL"
-                                 failureReason:@"No checksum parameter present in iDEAL redirect URL"
-                                         title:@"Checksum missing"]];
+    userInfo:[self userDataDictWithDescription:@"error_checksum_missing_description".localized
+                                 failureReason:@"error_checksum_missing_description".localized
+                                         title:@"error_checksum_missing_title".localized]];
 }
 
 + (NSError *)judo3DSRequestWithPayload:(NSDictionary *)payload {

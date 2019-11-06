@@ -85,6 +85,8 @@
 "error_3DS_request" = "Error when routing to 3DS";
 "error_underlying_error" = "An error in the iOS system with an enclosed underlying error";
 "error_transaction_declined" = "A transaction that was sent to the backend returned declined";
+"error_checksum_missing_title" = "Checksum missing";
+"error_checksum_missing_description" = "No checksum parameter present in iDEAL redirect URL";
 
 //NSString+Card
 "check_card_number" = "Check card number";
