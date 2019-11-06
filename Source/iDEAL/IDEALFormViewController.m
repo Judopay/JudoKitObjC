@@ -431,7 +431,7 @@
         [self.webView removeFromSuperview];
         [self.idealManager poolTransactionStatusForOrderId:self.orderId
                                                   checksum:checksum.value
-                                                completion:^(NSString *status, NSError *error) {
+                                                completion:^(IDEALStatus status, NSError *error) {
             // TODO: Handle pooling status
         }];
         

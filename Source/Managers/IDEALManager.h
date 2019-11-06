@@ -26,10 +26,16 @@
 
 @class JPAmount, JPReference, IDEALBank, JPSession;
 
+typedef NS_ENUM(NSUInteger, IDEALStatus) {
+    IDEALStatusSuccess,
+    IDEALStatusPending,
+    IDEALStatusFailed
+};
+
 @interface IDEALManager : NSObject
 
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
-typedef void (^JudoPoolingCompletion)(NSString *_Nullable, NSError *_Nullable);
+typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
 
 /**
  * Creates an instance of an IDEALManager object

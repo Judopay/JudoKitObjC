@@ -25,6 +25,7 @@
 #import "IDEALManager.h"
 #import "IDEALBank.h"
 #import "JPAmount.h"
+#import "JPOrderDetails.h"
 #import "JPSession.h"
 #import "JPReference.h"
 #import "JPResponse.h"
@@ -44,7 +45,7 @@
 @implementation IDEALManager
 
 static NSString *redirectEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
-static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
+static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/statusrequest";
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                         amount:(JPAmount *)amount
@@ -85,7 +86,51 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
 - (void)poolTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
                               completion:(JudoPoolingCompletion)completion {
-    // TODO: Handle pooling logic
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:60.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        completion(IDEALStatusFailed, NSError.judoRequestTimeoutError);
+        return;
+    }];
+    
+    [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+    
+}
+
+- (void)getStatusForOrderId:(NSString *)orderId
+                   checksum:(NSString *)checksum
+                 completion:(JudoPoolingCompletion)completion {
+    
+    [self.session requestWithMethod:@"POST"
+                               path:statusEndpoint
+                         parameters:nil
+                         completion:^(JPResponse *response, NSError *error) {
+        
+        if (error) {
+            completion(IDEALStatusFailed, error);
+            return;
+        }
+        
+        //TODO: Handle reachability / timeout (might be better to do that for all requests)
+        
+        if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"SUCCESS"]) {
+            completion(IDEALStatusSuccess, nil);
+            return;
+        }
+        
+        if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"FAIL"]) {
+            completion(IDEALStatusFailed, nil);
+            return;
+        }
+        
+        if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
+            sleep(10);
+            [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+            return;
+        }
+        
+        completion(IDEALStatusFailed, NSError.judoRequestFailedError);
+    }];
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {

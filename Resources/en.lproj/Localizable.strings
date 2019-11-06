@@ -87,6 +87,8 @@
 "error_transaction_declined" = "A transaction that was sent to the backend returned declined";
 "error_checksum_missing_title" = "Checksum missing";
 "error_checksum_missing_description" = "No checksum parameter present in iDEAL redirect URL";
+"error_timeout_title" = "Request has timed out";
+"error_timeout_description" = "Request did not complete in the specified time";
 
 //NSString+Card
 "check_card_number" = "Check card number";

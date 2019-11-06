@@ -32,6 +32,8 @@
 		15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 15CFC9E81FB7371300430D31 /* JPVCOResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3006542D2370313000097955 /* IDEALManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3006542B2370313000097955 /* IDEALManager.h */; };
 		3006542E2370313000097955 /* IDEALManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006542C2370313000097955 /* IDEALManager.m */; };
+		3006543A2373053200097955 /* JPOrderDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654382373053200097955 /* JPOrderDetails.h */; };
+		3006543B2373053200097955 /* JPOrderDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654392373053200097955 /* JPOrderDetails.m */; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
@@ -364,6 +366,8 @@
 		15CFC9EC1FB74A4200430D31 /* VCOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCOTests.swift; sourceTree = "<group>"; };
 		3006542B2370313000097955 /* IDEALManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALManager.h; sourceTree = "<group>"; };
 		3006542C2370313000097955 /* IDEALManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALManager.m; sourceTree = "<group>"; };
+		300654382373053200097955 /* JPOrderDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPOrderDetails.h; path = Model/JPOrderDetails.h; sourceTree = "<group>"; };
+		300654392373053200097955 /* JPOrderDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPOrderDetails.m; path = Model/JPOrderDetails.m; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
@@ -904,6 +908,8 @@
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
+				300654382373053200097955 /* JPOrderDetails.h */,
+				300654392373053200097955 /* JPOrderDetails.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1125,6 +1131,7 @@
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
+				3006543A2373053200097955 /* JPOrderDetails.h in Headers */,
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
@@ -1560,6 +1567,7 @@
 				3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */,
 				1577945B2110C8B9007BD3E1 /* JPSaveCard.m in Sources */,
 				44290B1D22F051F60088F827 /* JPConsumerDevice.m in Sources */,
+				3006543B2373053200097955 /* JPOrderDetails.m in Sources */,
 				302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */,
 				447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,

@@ -89,6 +89,8 @@
 "error_transaction_declined" = "Una transacción que se envió al servidor ha vuelto rechazada.";
 "error_checksum_missing_title" = "Falta la suma de control";
 "error_checksum_missing_description" = "No hay parámetros de suma de comprobación presentes en la URL de redireccionamiento de iDEAL";
+"error_timeout_title" = "La solicitud ha expirado";
+"error_timeout_description" = "La solicitud no se completó en el tiempo especificado";
 
 //NSString+Card
 "check_card_number" = "Comprobar número de tarjeta";

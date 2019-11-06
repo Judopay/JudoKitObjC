@@ -89,6 +89,8 @@
 "error_card_not_supported" = "Nós não aceitamos %@";
 "error_checksum_missing_title" = "Soma de verificação ausente";
 "error_checksum_missing_description" = "Nenhum parâmetro de soma de verificação presente no URL de redirecionamento do iDEAL";
+"error_timeout_title" = "A solicitação expirou";
+"error_timeout_description" = "A solicitação não foi concluída no tempo especificado";
 
 //NSString+Card
 "check_card_number" = "Confirmar número do cartão";

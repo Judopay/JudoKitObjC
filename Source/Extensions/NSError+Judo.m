@@ -65,6 +65,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoRequestTimeoutError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorRequestFailed
+                           userInfo:[self userDataDictWithDescription:@"error_timeout_description".localized
+                                                        failureReason:@"error_timeout_description".localized
+                                                                title:@"error_timeout_title".localized]];
+}
+
 + (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error {
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorJSONSerializationFailed
