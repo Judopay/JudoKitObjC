@@ -42,7 +42,6 @@
  *  @param amount       The amount and currency of the pre-auth (default is GBP)
  *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param session - An instance of a JPSession object that is used for making API requests
- *  @param merchantPaymentMetadata - An optional parameter for additional merchant payment metadata
  *  @param paymentMetadata - An optional parameter for additional metadata
  *  @param completion -  Completion block called when transaction has been finished
  *
@@ -53,7 +52,6 @@
                                 amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
-               merchantPaymentMetadata:(nullable NSDictionary *)merchantPaymentMetadata
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata
                             completion:(nonnull JudoCompletionBlock)completion;
 

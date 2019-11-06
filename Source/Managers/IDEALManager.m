@@ -36,7 +36,6 @@
 @property (nonatomic, strong) NSString *judoId;
 @property (nonatomic, strong) JPAmount *amount;
 @property (nonatomic, strong) JPReference *reference;
-@property (nonatomic, strong) NSDictionary *merchantPaymentMetadata;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
 
@@ -51,7 +50,6 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
-       merchantPaymentMetadata:(NSDictionary *)merchantPaymentMetadata
                paymentMetadata:(NSDictionary *)paymentMetadata {
     
     if (self = [super init]) {
@@ -59,7 +57,6 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
         self.amount = amount;
         self.reference = reference;
         self.session = session;
-        self.merchantPaymentMetadata = merchantPaymentMetadata;
         self.paymentMetadata = paymentMetadata;
     }
     
@@ -104,10 +101,6 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
         @"merchantConsumerReference": self.reference.consumerReference,
         @"siteId": self.judoId
     }];
-    
-    if (self.merchantPaymentMetadata) {
-        parameters[@"merchantPaymentMetadata"] = self.merchantPaymentMetadata;
-    }
     
     if (self.paymentMetadata) {
         parameters[@"paymentMetadata"] = self.paymentMetadata;

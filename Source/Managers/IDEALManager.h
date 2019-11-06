@@ -38,14 +38,12 @@ typedef void (^JudoPoolingCompletion)(NSString *_Nullable, NSError *_Nullable);
  * @param amount           The amount and currency of the pre-auth (default is GBP)
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  * @param session         An instance of JPSession that is used to make API requests
- * @param merchantPaymentMetadata     Optional merchant payment metadata details
  * @param paymentMetadata                       Freeformat optional JSON metadata
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
                                 amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
-               merchantPaymentMetadata:(nullable NSDictionary *)merchantPaymentMetadata
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata;
 
 /**

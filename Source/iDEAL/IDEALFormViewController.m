@@ -73,7 +73,6 @@
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
-       merchantPaymentMetadata:(NSDictionary *)merchantPaymentMetadata
                paymentMetadata:(NSDictionary *)paymentMetadata
                     completion:(JudoCompletionBlock)completion {
     
@@ -85,7 +84,6 @@
                                                           amount:amount
                                                        reference:reference
                                                          session:session
-                                         merchantPaymentMetadata:merchantPaymentMetadata
                                                  paymentMetadata:paymentMetadata];
     }
     

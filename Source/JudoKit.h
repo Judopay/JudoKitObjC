@@ -65,6 +65,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
 @property (nonatomic, strong) JPTheme *_Nonnull theme;
 
 /**
+ *  An optional property for additional payment metadata a merchant can provide
+ */
+@property (nonatomic, strong) NSDictionary *_Nullable paymentMetadata;
+
+/**
  *  The currently active and visible viewController instance
  */
 @property (nonatomic, weak) UIViewController *_Nullable activeViewController;
@@ -443,15 +448,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId           The judoID of the merchant to receive the token pre-auth
  *  @param amount           The amount and currency of the pre-auth (default is GBP)
  *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param merchantPaymentMetadata  An optional parameter for additional merchant payment metadata
- *  @param paymentMetadata An optional parameter for additional payment metadata
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-             merchantPaymentMetadata:(nullable NSDictionary *)merchantPaymentMetadata
-                     paymentMetadata:(nullable NSDictionary *)paymentMetadata
                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end

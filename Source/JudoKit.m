@@ -455,8 +455,6 @@
 - (void)invokeIDEALPaymentWithJudoId:(NSString *)judoId
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
-             merchantPaymentMetadata:(NSDictionary *)merchantPaymentMetadata
-                     paymentMetadata:(NSDictionary *)paymentMetadata
                           completion:(JudoCompletionBlock)completion {
     
     IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
@@ -464,8 +462,7 @@
                                                                                    amount:amount
                                                                                 reference:reference
                                                                                   session:self.apiSession
-                                                                  merchantPaymentMetadata:merchantPaymentMetadata
-                                                                          paymentMetadata:paymentMetadata
+                                                                          paymentMetadata:self.paymentMetadata
                                                                                completion:completion];
     
     controller.modalPresentationStyle = UIModalPresentationFormSheet;

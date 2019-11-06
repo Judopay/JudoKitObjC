@@ -246,8 +246,6 @@
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
                                                amount:self.viewModel.amount
                                             reference:self.viewModel.reference
-                              merchantPaymentMetadata:nil
-                                      paymentMetadata:nil
                                            completion:^(JPResponse *response, NSError *error) {
         if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
