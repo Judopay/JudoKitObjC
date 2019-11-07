@@ -432,12 +432,17 @@
     NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
     
     if (checksum) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.webView removeFromSuperview];
         [self.idealManager poolTransactionStatusForOrderId:self.orderId
                                                   checksum:checksum.value
                                                 completion:^(IDEALStatus status, NSError *error) {
-            // TODO: Handle pooling status
+
+            if (error) {
+                self.completionBlock(nil, error);
+                return;
+            }
+
+            [self.transactionStatusView didChangeToStatus:status];
         }];
         
         return;

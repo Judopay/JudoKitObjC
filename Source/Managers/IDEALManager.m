@@ -39,6 +39,8 @@
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) BOOL didTimeout;
 
 @end
 
@@ -59,13 +61,14 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
         self.reference = reference;
         self.session = session;
         self.paymentMetadata = paymentMetadata;
+        self.didTimeout = false;
     }
     
     return self;
 }
 
 - (void)getRedirectURLForIDEALBank:(IDEALBank *)iDealBank
-                      completion:(JudoRedirectCompletion)completion {
+                        completion:(JudoRedirectCompletion)completion {
     
     [self.session requestWithMethod:@"POST"
                                path:redirectEndpoint
@@ -85,22 +88,24 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
 
 - (void)poolTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
-                              completion:(JudoPoolingCompletion)completion {
+                             completion:(JudoPoolingCompletion)completion {
     
     
-    [NSTimer scheduledTimerWithTimeInterval:60.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        completion(IDEALStatusFailed, NSError.judoRequestTimeoutError);
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                 repeats:NO
+                                                   block:^(NSTimer * _Nonnull timer) {
+        self.didTimeout = true;
+        completion(IDEALStatusFailed, nil);
         return;
     }];
-    
+
     [self getStatusForOrderId:orderId checksum:checksum completion:completion];
-    
 }
 
 - (void)getStatusForOrderId:(NSString *)orderId
                    checksum:(NSString *)checksum
                  completion:(JudoPoolingCompletion)completion {
-    
+        
     [self.session requestWithMethod:@"POST"
                                path:statusEndpoint
                          parameters:nil
@@ -108,28 +113,37 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
         
         if (error) {
             completion(IDEALStatusFailed, error);
+            [self.timer invalidate];
             return;
         }
         
-        //TODO: Handle reachability / timeout (might be better to do that for all requests)
-        
         if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"SUCCESS"]) {
             completion(IDEALStatusSuccess, nil);
+            [self.timer invalidate];
             return;
         }
         
         if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"FAIL"]) {
             completion(IDEALStatusFailed, nil);
+            [self.timer invalidate];
             return;
         }
         
         if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
-            sleep(10);
-            [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+            
+            if (self.didTimeout) {
+                return;
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+            });
             return;
         }
         
         completion(IDEALStatusFailed, NSError.judoRequestFailedError);
+        [self.timer invalidate];
     }];
 }
 
