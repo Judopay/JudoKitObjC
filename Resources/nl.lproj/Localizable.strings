@@ -61,6 +61,9 @@
 "enter_name" = "Enter name";
 "name" = "Name";
 "select_bank" = "Select %@ as your iDEAL bank";
+"transaction_success" = "Transaction success!";
+"transaction_pending" = "Transaction pending...";
+"transaction_failed" = "Transaction failed!";
 
 //JudoPayViewController
 "secure_server" = "Secure server: ";

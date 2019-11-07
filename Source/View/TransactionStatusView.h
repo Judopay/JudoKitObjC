@@ -1,5 +1,5 @@
 //
-//  UIColor+Judo.h
+//  TransactionStatusView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2016 Alternative Payments Ltd
@@ -23,33 +23,41 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "IDEALManager.h"
 
-@interface UIColor (Judo)
+@protocol TransactionStatusViewDelegate
+- (void)retryTransaction;
+@end
 
-- (nonnull UIColor *)inverseColor;
+/**
+ * A custom implementation of a UIView object that is used to display the iDEAL transaction status
+ */
+@interface TransactionStatusView : UIView
 
-- (nonnull UIImage *)asImage;
+/**
+ * The delegate property that will capture the transaction retry event
+ */
+@property (nonatomic, weak) id<TransactionStatusViewDelegate> delegate;
 
-- (CGFloat)greyScale;
+/**
+ * Designated initializer that uses an IDEALStatus enum to setup its views
+ *
+ * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ */
++ (instancetype)viewWithStatus:(IDEALStatus)status;
 
-- (BOOL)isDarkColor;
+/**
+ * Designated initializer that uses an IDEALStatus enum to setup its views
+ *
+ * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ */
+- (instancetype)initWithStatus:(IDEALStatus)status;
 
-+ (UIColor *_Nonnull)jellyBean;
-
-+ (UIColor *_Nonnull)thunder;
-
-+ (UIColor *_Nonnull)magnesium;
-
-+ (UIColor *_Nonnull)zircon;
-
-+ (UIColor *_Nonnull)lightGray;
-
-+ (UIColor *_Nonnull)cgRed;
-
-+ (UIColor *_Nonnull)errorRed;
-
-+ (UIColor *_Nonnull)idealPurple;
-
-+ (UIColor *_Nonnull)defaultTintColor;
+/**
+ * Method used to update the UI when a transaction status changes
+ *
+ * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+*/
+- (void)didChangeToStatus:(IDEALStatus)status;
 
 @end

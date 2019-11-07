@@ -34,6 +34,8 @@
 		3006542E2370313000097955 /* IDEALManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006542C2370313000097955 /* IDEALManager.m */; };
 		3006543A2373053200097955 /* JPOrderDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654382373053200097955 /* JPOrderDetails.h */; };
 		3006543B2373053200097955 /* JPOrderDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654392373053200097955 /* JPOrderDetails.m */; };
+		3006544E23741DE200097955 /* TransactionStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3006544C23741DE200097955 /* TransactionStatusView.h */; };
+		3006544F23741DE200097955 /* TransactionStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006544D23741DE200097955 /* TransactionStatusView.m */; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
@@ -368,6 +370,8 @@
 		3006542C2370313000097955 /* IDEALManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALManager.m; sourceTree = "<group>"; };
 		300654382373053200097955 /* JPOrderDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPOrderDetails.h; path = Model/JPOrderDetails.h; sourceTree = "<group>"; };
 		300654392373053200097955 /* JPOrderDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPOrderDetails.m; path = Model/JPOrderDetails.m; sourceTree = "<group>"; };
+		3006544C23741DE200097955 /* TransactionStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TransactionStatusView.h; path = View/TransactionStatusView.h; sourceTree = "<group>"; };
+		3006544D23741DE200097955 /* TransactionStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TransactionStatusView.m; path = View/TransactionStatusView.m; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
@@ -994,6 +998,8 @@
 				3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */,
 				3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */,
 				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
+				3006544C23741DE200097955 /* TransactionStatusView.h */,
+				3006544D23741DE200097955 /* TransactionStatusView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1103,6 +1109,7 @@
 			files = (
 				3B678BA91C7327040001DC2F /* JPCollection.h in Headers */,
 				3B678B7F1C6DE0FA0001DC2F /* JPPagination.h in Headers */,
+				3006544E23741DE200097955 /* TransactionStatusView.h in Headers */,
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
 				30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */,
 				30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */,
@@ -1521,6 +1528,7 @@
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
+				3006544F23741DE200097955 /* TransactionStatusView.m in Sources */,
 				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */,

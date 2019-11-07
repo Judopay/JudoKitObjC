@@ -22,8 +22,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <WebKit/WebKit.h>
-
 #import "FloatingTextField.h"
 #import "IDEALFormViewController.h"
 #import "IDEALBank.h"
@@ -39,6 +37,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "IDEALManager.h"
+#import "TransactionStatusView.h"
 #import "UIViewController+JPTheme.h"
 
 @interface IDEALFormViewController ()
@@ -49,6 +48,7 @@
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) TransactionStatusView *transactionStatusView;
 
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
@@ -59,9 +59,6 @@
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
 
-@end
-
-@interface IDEALFormViewController (WebView) <WKNavigationDelegate>
 @end
 
 @implementation IDEALFormViewController
@@ -145,24 +142,6 @@
 
 # pragma mark - Action handlers
 
-- (void)didSelectBank:(IDEALBank *)bank {
-    [self shouldDisplayPaymentElements:YES];
-    self.selectedBank = bank;
-    
-    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
-    
-    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-    
-    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
-    
-    self.bankSelectionCell.textLabel.text = nil;
-    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
-    
-    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
-}
-
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
     self.safeAreaView.hidden = !shouldContinue;
     self.paymentButton.hidden = !shouldContinue;
@@ -199,8 +178,23 @@
     [self setupNavigationBar];
     [self setupPaymentButton];
     [self setupStackView];
-    
+    [self setupTransactionStatusView];
     [self applyTheme: self.theme];
+    
+    self.transactionStatusView.hidden = YES;
+}
+
+- (void)setupTransactionStatusView {
+    [self.view addSubview:self.transactionStatusView];
+    
+    NSArray *constraints = @[
+        [self.transactionStatusView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.transactionStatusView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+        [self.transactionStatusView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+        [self.transactionStatusView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+    ];
+    
+    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 - (void)setupNavigationBar {
@@ -367,6 +361,16 @@
     return _paymentButton;
 }
 
+- (TransactionStatusView *)transactionStatusView {
+    if (!_transactionStatusView) {
+        _transactionStatusView = [TransactionStatusView viewWithStatus:IDEALStatusPending];
+        _transactionStatusView.translatesAutoresizingMaskIntoConstraints = NO;
+        _transactionStatusView.backgroundColor = UIColor.whiteColor;
+        _transactionStatusView.delegate = self;
+    }
+    return _transactionStatusView;
+}
+
 # pragma mark - Keyboard handling logic
 
 - (void)registerKeyboardObservers {
@@ -422,6 +426,7 @@
 @implementation IDEALFormViewController (WebView)
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    self.transactionStatusView.hidden = NO;
     NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
     NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
@@ -439,6 +444,36 @@
     }
     
     self.completionBlock(nil, NSError.judoMissingChecksumError);
+}
+
+@end
+
+@implementation IDEALFormViewController (BankSelectionDelegate)
+
+- (void)didSelectBank:(IDEALBank *)bank {
+    [self shouldDisplayPaymentElements:YES];
+    self.selectedBank = bank;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
+    
+    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
+    
+    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
+    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
+    
+    self.bankSelectionCell.textLabel.text = nil;
+    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
+    
+    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
+}
+
+@end
+
+@implementation IDEALFormViewController (TransactionViewDelegate)
+
+- (void)retryTransaction {
+    // TODO: Add retry transaction logic
 }
 
 @end

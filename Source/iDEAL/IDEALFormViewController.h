@@ -23,8 +23,10 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 #import "IDEALBankSelectionTableViewController.h"
+#import "TransactionStatusView.h"
 #import "JPSession.h"
 
 @class JPTheme, JPAmount, JPReference;
@@ -32,7 +34,7 @@
 /**
  *  A custom UIViewController used for displaying the iDEAL transaction form.
  */
-@interface IDEALFormViewController : UIViewController <IDEALBankSelectionDelegate>
+@interface IDEALFormViewController : UIViewController
 
 /**
  *  Initializer that displays the iDEAL transaction form
@@ -55,4 +57,13 @@
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata
                             completion:(nonnull JudoCompletionBlock)completion;
 
+@end
+
+@interface IDEALFormViewController (BankSelectionDelegate) <IDEALBankSelectionDelegate>
+@end
+
+@interface IDEALFormViewController (WebView) <WKNavigationDelegate>
+@end
+
+@interface IDEALFormViewController (TransactionViewDelegate) <TransactionStatusViewDelegate>
 @end
