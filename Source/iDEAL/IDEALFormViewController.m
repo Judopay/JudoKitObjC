@@ -55,6 +55,7 @@
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) IDEALManager *idealManager;
 @property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong) NSString *checksum;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -166,6 +167,23 @@
     
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
     [self didSelectBank:storedBank];
+}
+
+# pragma mark - Private methods
+
+- (void)startPoolingStatus {
+    
+    [self.idealManager poolTransactionStatusForOrderId:self.orderId
+                                              checksum:self.checksum
+                                            completion:^(IDEALStatus status, NSError *error) {
+
+        if (error) {
+            self.completionBlock(nil, error);
+            return;
+        }
+
+        [self.transactionStatusView didChangeToStatus:status];
+    }];
 }
 
 # pragma mark - Layout setup methods
@@ -433,18 +451,9 @@
     
     if (checksum) {
         [self.webView removeFromSuperview];
-        [self.idealManager poolTransactionStatusForOrderId:self.orderId
-                                                  checksum:checksum.value
-                                                completion:^(IDEALStatus status, NSError *error) {
-
-            if (error) {
-                self.completionBlock(nil, error);
-                return;
-            }
-
-            [self.transactionStatusView didChangeToStatus:status];
-        }];
+        self.checksum = checksum.value;
         
+        [self startPoolingStatus];
         return;
     }
     
@@ -478,7 +487,8 @@
 @implementation IDEALFormViewController (TransactionViewDelegate)
 
 - (void)retryTransaction {
-    // TODO: Add retry transaction logic
+    [self.transactionStatusView didChangeToStatus:IDEALStatusPending];
+    [self startPoolingStatus];
 }
 
 @end

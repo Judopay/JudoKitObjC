@@ -175,6 +175,9 @@
         [_retryButton setTitle:@"Retry" forState:UIControlStateNormal];
         [_retryButton setBackgroundColor:UIColor.errorRed];
         _retryButton.layer.cornerRadius = 5.0f;
+        [_retryButton addTarget:self
+                         action:@selector(didTapRetryButton:)
+               forControlEvents:UIControlEventTouchUpInside];
     }
     return _retryButton;
 }
