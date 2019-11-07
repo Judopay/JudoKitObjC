@@ -28,7 +28,9 @@
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 #import "JudoKit.h"
+#import "JPReachability.h"
 #import "NSError+Judo.h"
+
 #import <TrustKit/TrustKit.h>
 
 static NSString *const JPAPIVersion = @"5.6.0";
@@ -94,6 +96,32 @@ static NSString *const HTTPMethodPUT = @"PUT";
                      path:(NSString *)path
                parameters:(NSDictionary *)parameters
                completion:(JudoCompletionBlock)completion {
+    
+    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    JPReachability *reachability = [JPReachability reachabilityWithURL:requestURL];
+    
+    reachability.reachableBlock = ^(JPReachability *reach) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performRequestWithMethod:HTTPMethod
+                                      path:path
+                                parameters:parameters
+                                completion:completion];
+        });
+    };
+
+    reachability.unreachableBlock = ^(JPReachability *reach) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, NSError.judoInternetConnectionError);
+        });
+    };
+    
+    [reachability startNotifier];
+}
+
+- (void)performRequestWithMethod:(NSString *)HTTPMethod
+                            path:(NSString *)path
+                      parameters:(NSDictionary *)parameters
+                      completion:(JudoCompletionBlock)completion {
     
     NSMutableURLRequest *request = [self judoRequest:path];
 

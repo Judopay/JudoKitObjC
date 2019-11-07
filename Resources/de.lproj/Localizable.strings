@@ -93,6 +93,8 @@
 "error_checksum_missing_description" = "No checksum parameter present in iDEAL redirect URL";
 "error_timeout_title" = "Request has timed out";
 "error_timeout_description" = "Request did not complete in the specified time";
+"no_internet_error_description" = "Please check your internet connection and try again.";
+"no_internet_error_title" = "No internet connection!";
 
 //NSString+Card
 "check_card_number" = "Check card number";

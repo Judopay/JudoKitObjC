@@ -36,6 +36,8 @@
 		3006543B2373053200097955 /* JPOrderDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654392373053200097955 /* JPOrderDetails.m */; };
 		3006544E23741DE200097955 /* TransactionStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3006544C23741DE200097955 /* TransactionStatusView.h */; };
 		3006544F23741DE200097955 /* TransactionStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006544D23741DE200097955 /* TransactionStatusView.m */; };
+		300654542374604B00097955 /* JPReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654522374604B00097955 /* JPReachability.h */; };
+		300654552374604B00097955 /* JPReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654532374604B00097955 /* JPReachability.m */; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
@@ -372,6 +374,8 @@
 		300654392373053200097955 /* JPOrderDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPOrderDetails.m; path = Model/JPOrderDetails.m; sourceTree = "<group>"; };
 		3006544C23741DE200097955 /* TransactionStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TransactionStatusView.h; path = View/TransactionStatusView.h; sourceTree = "<group>"; };
 		3006544D23741DE200097955 /* TransactionStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TransactionStatusView.m; path = View/TransactionStatusView.m; sourceTree = "<group>"; };
+		300654522374604B00097955 /* JPReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPReachability.h; sourceTree = "<group>"; };
+		300654532374604B00097955 /* JPReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPReachability.m; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
@@ -945,6 +949,8 @@
 				3B678BB41C7327410001DC2F /* JPReceipt.m */,
 				1577945C2110C8CF007BD3E1 /* JPSaveCard.h */,
 				1577945A2110C8B9007BD3E1 /* JPSaveCard.m */,
+				300654522374604B00097955 /* JPReachability.h */,
+				300654532374604B00097955 /* JPReachability.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1129,6 +1135,7 @@
 				3B678B991C71D9D60001DC2F /* JPPaymentToken.h in Headers */,
 				3B97119B1C76353E00E9A347 /* JPAddress.h in Headers */,
 				3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */,
+				300654542374604B00097955 /* JPReachability.h in Headers */,
 				44DA43F922F8D9F500C34231 /* JPTheme+Additions.h in Headers */,
 				3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */,
 				3BD353C31C77557F0045658A /* JPTransactionData.h in Headers */,
@@ -1549,6 +1556,7 @@
 				3006542E2370313000097955 /* IDEALManager.m in Sources */,
 				30DB510423100E1C00B73D66 /* ApplePayConfiguration.m in Sources */,
 				3BD353C41C77557F0045658A /* JPTransactionData.m in Sources */,
+				300654552374604B00097955 /* JPReachability.m in Sources */,
 				44340F1822F4531200B36D65 /* JPCardNetwork.m in Sources */,
 				306BCF1E23570F86008540E7 /* IDEALBankSelectionTableViewController.m in Sources */,
 				447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */,

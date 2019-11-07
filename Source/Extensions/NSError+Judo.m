@@ -170,6 +170,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoInternetConnectionError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorGeneral_Error
+                           userInfo:[self userDataDictWithDescription:@"no_internet_error_description".localized
+                                                        failureReason:@"no_internet_error_description".localized
+                                                                title:@"no_internet_error_title".localized]];
+}
+
 + (NSError *)judoApplePayConfigurationError {
      return [NSError errorWithDomain:JudoErrorDomain
                                 code:JudoErrorInvalidApplePayConfiguration
