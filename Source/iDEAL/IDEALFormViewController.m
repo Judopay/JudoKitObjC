@@ -119,7 +119,7 @@
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
     
-    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
