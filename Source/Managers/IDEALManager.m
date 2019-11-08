@@ -86,10 +86,9 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
     }];
 }
 
-- (void)poolTransactionStatusForOrderId:(NSString *)orderId
+- (void)pollTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
-                             completion:(JudoPoolingCompletion)completion {
-    
+                             completion:(JudoPollingCompletion)completion {
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                  repeats:NO
@@ -104,7 +103,7 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
 
 - (void)getStatusForOrderId:(NSString *)orderId
                    checksum:(NSString *)checksum
-                 completion:(JudoPoolingCompletion)completion {
+                 completion:(JudoPollingCompletion)completion {
         
     [self.session requestWithMethod:@"POST"
                                path:statusEndpoint

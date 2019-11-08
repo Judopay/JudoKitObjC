@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
 @interface IDEALManager : NSObject
 
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
-typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
+typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
 
 /**
  * Creates an instance of an IDEALManager object
@@ -68,8 +68,8 @@ typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
  * @param checksum       A string property returned from the redirect URL used to validate the transaction
  * @param completion  A completion block that either returns the transaction status or returns an error
  */
-- (void)poolTransactionStatusForOrderId:(nonnull NSString *)orderId
+- (void)pollTransactionStatusForOrderId:(nonnull NSString *)orderId
                                checksum:(nonnull NSString *)checksum
-                              completion:(nonnull JudoPoolingCompletion)completion;
+                              completion:(nonnull JudoPollingCompletion)completion;
 
 @end

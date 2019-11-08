@@ -171,9 +171,9 @@
 
 # pragma mark - Private methods
 
-- (void)startPoolingStatus {
+- (void)startPollingStatus {
     
-    [self.idealManager poolTransactionStatusForOrderId:self.orderId
+    [self.idealManager pollTransactionStatusForOrderId:self.orderId
                                               checksum:self.checksum
                                             completion:^(IDEALStatus status, NSError *error) {
 
@@ -453,7 +453,7 @@
         [self.webView removeFromSuperview];
         self.checksum = checksum.value;
         
-        [self startPoolingStatus];
+        [self startPollingStatus];
         return;
     }
     
@@ -488,7 +488,7 @@
 
 - (void)retryTransaction {
     [self.transactionStatusView didChangeToStatus:IDEALStatusPending];
-    [self startPoolingStatus];
+    [self startPollingStatus];
 }
 
 @end
