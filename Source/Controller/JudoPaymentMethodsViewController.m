@@ -32,6 +32,7 @@
 #import "JudoKit.h"
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
+#import "NSBundle+Additions.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "UIApplication+Additions.h"
@@ -161,12 +162,8 @@
                         action:@selector(onIDEALButtonTap:)
               forControlEvents:UIControlEventTouchUpInside];
         
-        NSBundle *bundle = [NSBundle bundleForClass:JudoKit.class];
-        
-        NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-        NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-        
-        NSString *iconFilePath = [iconBundle pathForResource:@"logo-ideal" ofType:@"png"];
+        NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:@"logo-ideal"
+                                                                ofType:@"png"];
         
         [idealButton setImage:[UIImage imageWithContentsOfFile:iconFilePath]
                      forState:UIControlStateNormal];
@@ -175,7 +172,7 @@
         
         [idealButton setTitle:@"iDEAL" forState:UIControlStateNormal];
         [idealButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        idealButton.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
+        idealButton.titleLabel.font = self.theme.buttonFont;
         
         idealButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 0);
         idealButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
