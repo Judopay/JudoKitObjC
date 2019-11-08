@@ -70,6 +70,6 @@ typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
  */
 - (void)pollTransactionStatusForOrderId:(nonnull NSString *)orderId
                                checksum:(nonnull NSString *)checksum
-                              completion:(nonnull JudoPollingCompletion)completion;
+                             completion:(nonnull JudoPollingCompletion)completion;
 
 @end

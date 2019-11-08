@@ -25,10 +25,10 @@
 #import "JPSession.h"
 #import "Functions.h"
 #import "JPPagination.h"
+#import "JPReachability.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 #import "JudoKit.h"
-#import "JPReachability.h"
 #import "NSError+Judo.h"
 
 #import <TrustKit/TrustKit.h>
@@ -96,10 +96,10 @@ static NSString *const HTTPMethodPUT = @"PUT";
                      path:(NSString *)path
                parameters:(NSDictionary *)parameters
                completion:(JudoCompletionBlock)completion {
-    
+
     NSURL *requestURL = [NSURL URLWithString:self.endpoint];
     JPReachability *reachability = [JPReachability reachabilityWithURL:requestURL];
-    
+
     reachability.reachableBlock = ^(JPReachability *reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performRequestWithMethod:HTTPMethod
@@ -114,7 +114,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
             completion(nil, NSError.judoInternetConnectionError);
         });
     };
-    
+
     [reachability startNotifier];
 }
 
@@ -122,7 +122,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
                             path:(NSString *)path
                       parameters:(NSDictionary *)parameters
                       completion:(JudoCompletionBlock)completion {
-    
+
     NSMutableURLRequest *request = [self judoRequest:path];
 
     request.HTTPMethod = HTTPMethod;
@@ -259,9 +259,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
                              }
 
                              dispatch_async(dispatch_get_main_queue(), ^{
-                                 if (result.items.count == 1
-                                     && responseJSON[@"result"] != nil
-                                     && result.items.firstObject.result != TransactionResultSuccess) {
+                                 if (result.items.count == 1 && responseJSON[@"result"] != nil && result.items.firstObject.result != TransactionResultSuccess) {
                                      completion(nil, [NSError judoErrorFromTransactionData:result.items.firstObject]);
                                  } else {
                                      completion(result, nil);

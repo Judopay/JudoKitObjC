@@ -22,22 +22,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "FloatingTextField.h"
 #import "IDEALFormViewController.h"
+#import "FloatingTextField.h"
 #import "IDEALBank.h"
-#import "IDEALBankTableViewCell.h"
 #import "IDEALBankSelectionTableViewController.h"
+#import "IDEALBankTableViewCell.h"
+#import "IDEALManager.h"
 #import "JPAmount.h"
 #import "JPInputField.h"
-#import "JPTheme.h"
 #import "JPReference.h"
 #import "JPResponse.h"
+#import "JPTheme.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
+#import "TransactionStatusView.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
-#import "IDEALManager.h"
-#import "TransactionStatusView.h"
 #import "UIViewController+JPTheme.h"
 
 @interface IDEALFormViewController ()
@@ -64,7 +64,7 @@
 
 @implementation IDEALFormViewController
 
-# pragma mark - Initializers
+#pragma mark - Initializers
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                          theme:(JPTheme *)theme
@@ -73,22 +73,22 @@
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
                     completion:(JudoCompletionBlock)completion {
-    
+
     if (self = [super init]) {
         self.theme = theme;
         self.completionBlock = completion;
-        
+
         self.idealManager = [[IDEALManager alloc] initWithJudoId:judoId
                                                           amount:amount
                                                        reference:reference
                                                          session:session
                                                  paymentMetadata:paymentMetadata];
     }
-    
+
     return self;
 }
 
-# pragma mark - View lifecycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -107,7 +107,7 @@
     [super viewWillDisappear:animated];
 }
 
-# pragma mark - User actions
+#pragma mark - User actions
 
 - (void)onViewTap:(id)sender {
     [self.nameInputField endEditing:YES];
@@ -126,22 +126,21 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-    
+
     [self.idealManager getRedirectURLForIDEALBank:self.selectedBank
                                        completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
-        
-        if (error) {
-            self.completionBlock(nil, error);
-            return;
-        }
-        
-        self.orderId = orderId;
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-        [self loadWebViewWithURLString:redirectUrl];
-    }];
+                                           if (error) {
+                                               self.completionBlock(nil, error);
+                                               return;
+                                           }
+
+                                           self.orderId = orderId;
+                                           self.navigationItem.rightBarButtonItem.enabled = NO;
+                                           [self loadWebViewWithURLString:redirectUrl];
+                                       }];
 }
 
-# pragma mark - Action handlers
+#pragma mark - Action handlers
 
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
     self.safeAreaView.hidden = !shouldContinue;
@@ -160,101 +159,100 @@
 - (void)displaySavedBankIfNeeded {
     NSInteger bankTypeValue = [NSUserDefaults.standardUserDefaults integerForKey:@"iDEALBankType"];
     IDEALBankType bankType = (IDEALBankType)bankTypeValue;
-    
+
     if (bankType == IDEALBankNone) {
         return;
     }
-    
+
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
     [self didSelectBank:storedBank];
 }
 
-# pragma mark - Private methods
+#pragma mark - Private methods
 
 - (void)startPollingStatus {
-    
+
     [self.idealManager pollTransactionStatusForOrderId:self.orderId
                                               checksum:self.checksum
                                             completion:^(IDEALStatus status, NSError *error) {
+                                                if (error) {
+                                                    self.completionBlock(nil, error);
+                                                    return;
+                                                }
 
-        if (error) {
-            self.completionBlock(nil, error);
-            return;
-        }
-
-        [self.transactionStatusView didChangeToStatus:status];
-    }];
+                                                [self.transactionStatusView didChangeToStatus:status];
+                                            }];
 }
 
-# pragma mark - Layout setup methods
+#pragma mark - Layout setup methods
 
 - (void)setupView {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
-    [self.view addGestureRecognizer: tapGesture];
-    
+    [self.view addGestureRecognizer:tapGesture];
+
     [self setupNavigationBar];
     [self setupPaymentButton];
     [self setupStackView];
     [self setupTransactionStatusView];
-    [self applyTheme: self.theme];
-    
+    [self applyTheme:self.theme];
+
     self.transactionStatusView.hidden = YES;
 }
 
 - (void)setupTransactionStatusView {
     [self.view addSubview:self.transactionStatusView];
-    
+
     NSArray *constraints = @[
         [self.transactionStatusView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.transactionStatusView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
         [self.transactionStatusView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
         [self.transactionStatusView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
 - (void)setupNavigationBar {
-    
+
     self.navigationItem.title = self.theme.iDEALTitle;
-    
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.backButtonTitle
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(onBackButtonTap:)];
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.paymentButtonTitle
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
-    
+
     [self shouldDisplayPaymentElements:NO];
 }
 
 - (void)setupPaymentButton {
-    
+
     [self.view addSubview:self.safeAreaView];
     [self.view addSubview:self.paymentButton];
-    
+
     self.safeAreaViewConstraints = [self.safeAreaView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
-    
+
     NSArray *viewConstraints = @[
         [self.safeAreaView.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
         [self.safeAreaView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
         [self.safeAreaView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
         self.safeAreaViewConstraints
     ];
-    
+
     self.paymentButtonBottomConstraint = [self.paymentButton.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor];
-    
+
     NSArray *buttonConstraints = @[
         [self.paymentButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
         [self.paymentButton.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
         [self.paymentButton.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
         self.paymentButtonBottomConstraint
     ];
-    
+
     [NSLayoutConstraint activateConstraints:viewConstraints];
     [NSLayoutConstraint activateConstraints:buttonConstraints];
 }
@@ -263,66 +261,68 @@
     UIStackView *stackView = [UIStackView new];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.axis = UILayoutConstraintAxisVertical;
-    
+
     [stackView addArrangedSubview:self.nameInputField];
     [stackView addArrangedSubview:self.selectedBankLabelView];
     [stackView addArrangedSubview:self.bankSelectionCell];
-    
+
     [self.view addSubview:stackView];
-    
+
     NSArray *subviewConstraints = @[
         [self.nameInputField.heightAnchor constraintEqualToConstant:self.theme.inputFieldHeight],
         [self.bankSelectionCell.leftAnchor constraintEqualToAnchor:stackView.leftAnchor],
         [self.bankSelectionCell.rightAnchor constraintEqualToAnchor:stackView.rightAnchor],
         [self.bankSelectionCell.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
     ];
-    
+
     NSArray *stackViewConstraints = @[
-        [stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:20.0f],
+        [stackView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor
+                                            constant:20.0f],
         [stackView.rightAnchor constraintEqualToAnchor:self.safeAreaView.rightAnchor],
         [stackView.leftAnchor constraintEqualToAnchor:self.safeAreaView.leftAnchor],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:subviewConstraints];
     [NSLayoutConstraint activateConstraints:stackViewConstraints];
 }
 
-# pragma mark - Lazy instantiated properties
+#pragma mark - Lazy instantiated properties
 
 - (JPInputField *)nameInputField {
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
-        [_nameInputField.textField setPlaceholder: @"enter_name".localized
-                                    floatingTitle: @"name".localized];
+        [_nameInputField.textField setPlaceholder:@"enter_name".localized
+                                    floatingTitle:@"name".localized];
     }
-    
+
     return _nameInputField;
 }
 
 - (UIView *)selectedBankLabelView {
     if (!_selectedBankLabelView) {
-        
+
         UILabel *selectedBankLabel = [UILabel new];
         selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
         selectedBankLabel.text = @"selected_bank".localized;
         selectedBankLabel.textColor = self.theme.judoInputFieldTextColor;
         selectedBankLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightBold];
-        
+
         _selectedBankLabelView = [UIView new];
         _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
         [_selectedBankLabelView addSubview:selectedBankLabel];
-        
+
         NSArray *constraints = @[
-            [selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor constant:15.0f],
+            [selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor
+                                                            constant:15.0f],
             [selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
             [selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
             [selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
         ];
-        
+
         [NSLayoutConstraint activateConstraints:constraints];
     }
-    
+
     return _selectedBankLabelView;
 }
 
@@ -334,13 +334,13 @@
         _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
         _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(onSelectBankButtonTap:)];
-        
+
         [_bankSelectionCell addGestureRecognizer:tapGesture];
     }
-    
+
     return _bankSelectionCell;
 }
 
@@ -389,16 +389,16 @@
     return _transactionStatusView;
 }
 
-# pragma mark - Keyboard handling logic
+#pragma mark - Keyboard handling logic
 
 - (void)registerKeyboardObservers {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
+
     [notificationCenter addObserver:self
                            selector:@selector(keyboardWillShow:)
                                name:UIKeyboardWillShowNotification
                              object:nil];
-    
+
     [notificationCenter addObserver:self
                            selector:@selector(keyboardWillHide:)
                                name:UIKeyboardWillHideNotification
@@ -411,9 +411,9 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    
+
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
+
     if (@available(iOS 11.0, *)) {
         self.paymentButtonBottomConstraint.constant = -keyboardSize.height + self.view.safeAreaInsets.bottom;
         self.safeAreaViewConstraints.constant = -keyboardSize.height + self.view.safeAreaInsets.bottom;
@@ -421,20 +421,22 @@
         self.paymentButtonBottomConstraint.constant = -keyboardSize.height;
         self.safeAreaViewConstraints.constant = -keyboardSize.height;
     }
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view layoutIfNeeded];
-    }];
+
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    
+
     self.paymentButtonBottomConstraint.constant = 0;
     self.safeAreaViewConstraints.constant = 0;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view layoutIfNeeded];
-    }];
+
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 @end
@@ -448,15 +450,15 @@
     NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
     NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
-    
+
     if (checksum) {
         [self.webView removeFromSuperview];
         self.checksum = checksum.value;
-        
+
         [self startPollingStatus];
         return;
     }
-    
+
     self.completionBlock(nil, NSError.judoMissingChecksumError);
 }
 
@@ -467,19 +469,19 @@
 - (void)didSelectBank:(IDEALBank *)bank {
     [self shouldDisplayPaymentElements:YES];
     self.selectedBank = bank;
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
-    
+
     NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
     NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-    
+
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
     NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
-    
+
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
-    
-    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
+
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 @end
