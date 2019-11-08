@@ -29,7 +29,7 @@
 /**
  * A delegate protocol related to the bank selection logic
  */
-@protocol IDEALBankSelectionDelegate
+@protocol IDEALBankSelectionDelegate <NSObject>
 
 /**
  * A delegate method that is called when a bank from the iDEAL bank list is selected

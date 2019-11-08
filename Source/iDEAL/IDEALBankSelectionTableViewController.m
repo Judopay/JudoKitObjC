@@ -80,7 +80,7 @@ NSString * const bankCellIdentifier = @"IDEALBankTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     IDEALBank *bank = self.bankList[indexPath.row];
-    if (self.delegate) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectBank:)]) {
         [self.delegate didSelectBank:bank];
     }
     [self.navigationController popViewControllerAnimated:YES];
