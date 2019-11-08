@@ -38,6 +38,7 @@
 		3006544F23741DE200097955 /* TransactionStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006544D23741DE200097955 /* TransactionStatusView.m */; };
 		300654542374604B00097955 /* JPReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654522374604B00097955 /* JPReachability.h */; };
 		300654552374604B00097955 /* JPReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654532374604B00097955 /* JPReachability.m */; };
+		300654802375972400097955 /* IDEALManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006547F2375972400097955 /* IDEALManagerTests.swift */; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
@@ -376,6 +377,7 @@
 		3006544D23741DE200097955 /* TransactionStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TransactionStatusView.m; path = View/TransactionStatusView.m; sourceTree = "<group>"; };
 		300654522374604B00097955 /* JPReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPReachability.h; sourceTree = "<group>"; };
 		300654532374604B00097955 /* JPReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPReachability.m; sourceTree = "<group>"; };
+		3006547F2375972400097955 /* IDEALManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
@@ -1044,6 +1046,7 @@
 				3B4EB3F21C982A25006265A0 /* TransactionTests.swift */,
 				15CFC9EC1FB74A4200430D31 /* VCOTests.swift */,
 				3B4EB3F31C982A25006265A0 /* VoidTransactionTests.swift */,
+				3006547F2375972400097955 /* IDEALManagerTests.swift */,
 			);
 			path = APITests;
 			sourceTree = "<group>";
@@ -1608,6 +1611,7 @@
 				3B4EB3FB1C982A25006265A0 /* ReceiptTests.swift in Sources */,
 				15CFC9EE1FB74B0C00430D31 /* VCOTests.swift in Sources */,
 				702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */,
+				300654802375972400097955 /* IDEALManagerTests.swift in Sources */,
 				3B4EB4011C982A25006265A0 /* TransactionTests.swift in Sources */,
 				3B4EB3FA1C982A25006265A0 /* PreAuthTests.swift in Sources */,
 				30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */,

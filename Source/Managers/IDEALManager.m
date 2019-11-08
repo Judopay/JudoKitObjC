@@ -67,8 +67,8 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
     return self;
 }
 
-- (void)getRedirectURLForIDEALBank:(IDEALBank *)iDealBank
-                        completion:(JudoRedirectCompletion)completion {
+- (void)redirectURLForIDEALBank:(IDEALBank *)iDealBank
+                     completion:(JudoRedirectCompletion)completion {
 
     [self.session requestWithMethod:@"POST"
                                path:redirectEndpoint

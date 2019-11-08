@@ -127,8 +127,8 @@
 
 - (void)onPayButtonTap:(id)sender {
 
-    [self.idealManager getRedirectURLForIDEALBank:self.selectedBank
-                                       completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
+    [self.idealManager redirectURLForIDEALBank:self.selectedBank
+                                    completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
                                            if (error) {
                                                self.completionBlock(nil, error);
                                                return;
