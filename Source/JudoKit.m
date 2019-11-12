@@ -456,7 +456,7 @@
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
                           completion:(JudoCompletionBlock)completion {
-    
+
     IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
                                                                                     theme:self.theme
                                                                                    amount:amount
@@ -464,7 +464,7 @@
                                                                                   session:self.apiSession
                                                                           paymentMetadata:self.paymentMetadata
                                                                                completion:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -490,7 +490,7 @@
         completion(nil, NSError.judoApplePayConfigurationError);
         return;
     }
-    
+
     self.viewController.delegate = self;
 
     self.completionBlock = completion;

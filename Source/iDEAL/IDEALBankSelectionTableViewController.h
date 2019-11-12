@@ -51,4 +51,3 @@
 @property (nonatomic, weak) id<IDEALBankSelectionDelegate> _Nullable delegate;
 
 @end
-
