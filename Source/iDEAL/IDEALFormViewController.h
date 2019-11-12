@@ -26,8 +26,8 @@
 #import <WebKit/WebKit.h>
 
 #import "IDEALBankSelectionTableViewController.h"
-#import "TransactionStatusView.h"
 #import "JPSession.h"
+#import "TransactionStatusView.h"
 
 @class JPTheme, JPAmount, JPReference;
 
