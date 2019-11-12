@@ -58,8 +58,8 @@ typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
  * @param idealBank    An instance of IDEALBank that holds the iDEAL's bank name and identifier code
  * @param completion  A completion block that either returns the redirect URL string or returns an error
  */
-- (void)getRedirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
-                        completion:(nonnull JudoRedirectCompletion)completion;
+- (void)redirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
+                     completion:(nonnull JudoRedirectCompletion)completion;
 
 /**
  * Method used for returning a redirect URL based on the specified iDEAL bank
