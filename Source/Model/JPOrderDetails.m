@@ -33,7 +33,7 @@
         _orderFailureReason = dictionary[@"orderFailureReason"];
         _timestamp = dictionary[@"timestamp"];
     }
-    
+
     return self;
 }
 

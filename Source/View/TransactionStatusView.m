@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "TransactionStatusView.h"
-#import "UIColor+Judo.h"
 #import "NSString+Localize.h"
+#import "UIColor+Judo.h"
 
-@interface TransactionStatusView()
+@interface TransactionStatusView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
@@ -72,23 +72,23 @@
     [horizontalStackView addArrangedSubview:self.statusImageView];
     [horizontalStackView addArrangedSubview:self.activityIndicatorView];
     [horizontalStackView addArrangedSubview:self.titleLabel];
-    
+
     UIStackView *verticalStackView = [UIStackView new];
     verticalStackView.translatesAutoresizingMaskIntoConstraints = NO;
     verticalStackView.spacing = 10.0f;
     [verticalStackView setAxis:UILayoutConstraintAxisVertical];
     [verticalStackView addArrangedSubview:horizontalStackView];
     [verticalStackView addArrangedSubview:self.retryButton];
-    
+
     [self addSubview:verticalStackView];
-    
+
     NSArray *constraints = @[
         [verticalStackView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [verticalStackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
         [self.statusImageView.heightAnchor constraintEqualToConstant:30],
         [self.statusImageView.widthAnchor constraintEqualToConstant:30],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -96,7 +96,7 @@
     self.titleLabel.text = [self titleForStatus:status];
     self.statusImageView.image = [self imageForStatus:status];
     self.retryButton.hidden = (status != IDEALStatusFailed);
-    
+
     if (status == IDEALStatusPending) {
         [self.activityIndicatorView startAnimating];
     } else {
@@ -108,10 +108,10 @@
     switch (status) {
         case IDEALStatusFailed:
             return @"transaction_failed".localized;
-            
+
         case IDEALStatusPending:
             return @"transaction_pending".localized;
-            
+
         case IDEALStatusSuccess:
             return @"transaction_success".localized;
     }
@@ -121,9 +121,9 @@
     NSBundle *bundle = [NSBundle bundleForClass:TransactionStatusView.class];
     NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
     NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-    
+
     NSString *resourceName;
-    
+
     switch (status) {
         case IDEALStatusFailed:
             resourceName = @"error-icon";
@@ -134,7 +134,7 @@
         case IDEALStatusPending:
             return nil;
     }
-    
+
     NSString *iconFilePath = [iconBundle pathForResource:resourceName
                                                   ofType:@"png"];
     return [UIImage imageWithContentsOfFile:iconFilePath];
@@ -175,6 +175,9 @@
         [_retryButton setTitle:@"Retry" forState:UIControlStateNormal];
         [_retryButton setBackgroundColor:UIColor.errorRed];
         _retryButton.layer.cornerRadius = 5.0f;
+        [_retryButton addTarget:self
+                         action:@selector(didTapRetryButton:)
+               forControlEvents:UIControlEventTouchUpInside];
     }
     return _retryButton;
 }

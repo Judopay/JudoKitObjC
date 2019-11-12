@@ -40,7 +40,9 @@ FOUNDATION_EXPORT const unsigned char ReachabilityVersionString[];
  * @see http://nshipster.com/ns_enum-ns_options/
  **/
 #ifndef NS_ENUM
-#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#define NS_ENUM(_type, _name) \
+    enum _name : _type _name; \
+    enum _name : _type
 #endif
 
 extern NSString *const kReachabilityChangedNotification;
@@ -54,50 +56,48 @@ typedef NS_ENUM(NSInteger, NetworkStatus) {
 
 @class JPReachability;
 
-typedef void (^NetworkReachable)(JPReachability * reachability);
-typedef void (^NetworkUnreachable)(JPReachability * reachability);
-typedef void (^NetworkReachability)(JPReachability * reachability, SCNetworkConnectionFlags flags);
-
+typedef void (^NetworkReachable)(JPReachability *reachability);
+typedef void (^NetworkUnreachable)(JPReachability *reachability);
+typedef void (^NetworkReachability)(JPReachability *reachability, SCNetworkConnectionFlags flags);
 
 @interface JPReachability : NSObject
 
-@property (nonatomic, copy) NetworkReachable    reachableBlock;
-@property (nonatomic, copy) NetworkUnreachable  unreachableBlock;
+@property (nonatomic, copy) NetworkReachable reachableBlock;
+@property (nonatomic, copy) NetworkUnreachable unreachableBlock;
 @property (nonatomic, copy) NetworkReachability reachabilityBlock;
 
 @property (nonatomic, assign) BOOL reachableOnWWAN;
 
-
-+(instancetype)reachabilityWithHostname:(NSString*)hostname;
++ (instancetype)reachabilityWithHostname:(NSString *)hostname;
 // This is identical to the function above, but is here to maintain
 //compatibility with Apples original code. (see .m)
-+(instancetype)reachabilityWithHostName:(NSString*)hostname;
-+(instancetype)reachabilityForInternetConnection;
-+(instancetype)reachabilityWithAddress:(void *)hostAddress;
-+(instancetype)reachabilityForLocalWiFi;
-+(instancetype)reachabilityWithURL:(NSURL*)url;
++ (instancetype)reachabilityWithHostName:(NSString *)hostname;
++ (instancetype)reachabilityForInternetConnection;
++ (instancetype)reachabilityWithAddress:(void *)hostAddress;
++ (instancetype)reachabilityForLocalWiFi;
++ (instancetype)reachabilityWithURL:(NSURL *)url;
 
--(instancetype)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
+- (instancetype)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
 
--(BOOL)startNotifier;
--(void)stopNotifier;
+- (BOOL)startNotifier;
+- (void)stopNotifier;
 
--(BOOL)isReachable;
--(BOOL)isReachableViaWWAN;
--(BOOL)isReachableViaWiFi;
+- (BOOL)isReachable;
+- (BOOL)isReachableViaWWAN;
+- (BOOL)isReachableViaWiFi;
 
 // WWAN may be available, but not active until a connection has been established.
 // WiFi may require a connection for VPN on Demand.
--(BOOL)isConnectionRequired; // Identical DDG variant.
--(BOOL)connectionRequired; // Apple's routine.
+- (BOOL)isConnectionRequired; // Identical DDG variant.
+- (BOOL)connectionRequired;   // Apple's routine.
 // Dynamic, on demand connection?
--(BOOL)isConnectionOnDemand;
+- (BOOL)isConnectionOnDemand;
 // Is user intervention required?
--(BOOL)isInterventionRequired;
+- (BOOL)isInterventionRequired;
 
--(NetworkStatus)currentReachabilityStatus;
--(SCNetworkReachabilityFlags)reachabilityFlags;
--(NSString*)currentReachabilityString;
--(NSString*)currentReachabilityFlags;
+- (NetworkStatus)currentReachabilityStatus;
+- (SCNetworkReachabilityFlags)reachabilityFlags;
+- (NSString *)currentReachabilityString;
+- (NSString *)currentReachabilityFlags;
 
 @end
