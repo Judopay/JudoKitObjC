@@ -27,7 +27,7 @@
 #import <PassKit/PassKit.h>
 
 @class JPResponse, JPPagination, JPSession, JPPaymentToken, JPCard, JPAmount, JPReference, JPVCOResult, JPEnhancedPaymentDetail,
-    JPTransactionEnricher;
+    JPTransactionEnricher, JPPrimaryAccountDetails;
 
 /**
  *  Superclass Helper for Payment, Pre-auth, RegisterCard and SaveCard
@@ -63,6 +63,11 @@
  *  The payment token of the transaction
  */
 @property (nonatomic, strong) JPPaymentToken *_Nullable paymentToken;
+
+/**
+ *  Object that contains information about the account details provided by the merchant
+ */
+@property (nonatomic, strong) JPPrimaryAccountDetails *_Nullable primaryAccountDetails;
 
 /**
  *  the PKPayment object for ApplePay

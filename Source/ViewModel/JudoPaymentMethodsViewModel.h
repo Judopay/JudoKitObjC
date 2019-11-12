@@ -26,13 +26,14 @@
 #import "PaymentMethods.h"
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPCardDetails, JPReference;
+@class JPAmount, JPCardDetails, JPReference, JPPrimaryAccountDetails;
 
 @interface JudoPaymentMethodsViewModel : NSObject
 
 @property (nonatomic, strong, readonly) NSString *_Nonnull judoId;
 @property (nonatomic, strong, readonly) JPAmount *_Nonnull amount;
 @property (nonatomic, strong, readonly) JPReference *_Nonnull reference;
+@property (nonatomic, strong, readonly) JPPrimaryAccountDetails *_Nullable primaryAccountDetails;
 @property (nonatomic, strong, readonly) JPCardDetails *_Nullable cardDetails;
 @property (nonatomic, strong, readonly) ApplePayConfiguration *_Nullable applePayConfiguration;
 
@@ -42,6 +43,7 @@
                                  amount:(nonnull JPAmount *)amount
                       consumerReference:(nonnull JPReference *)reference
                          paymentMethods:(PaymentMethods)methods
+                  primaryAccountDetails:(nullable JPPrimaryAccountDetails *)primaryAccountDetails
                   applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
                             cardDetails:(nullable JPCardDetails *)cardDetails;
 @end

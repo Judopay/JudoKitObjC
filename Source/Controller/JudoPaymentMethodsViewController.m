@@ -214,13 +214,15 @@
     };
     
     JudoPayViewController *viewController =
-    [[JudoPayViewController alloc] initWithJudoId:self.viewModel.judoId
-                                           amount:self.viewModel.amount
-                                        reference:self.viewModel.reference
-                                      transaction:TransactionTypePayment
-                                   currentSession:self.judoKitSession
-                                      cardDetails:self.viewModel.cardDetails
-                                       completion:completion];
+        [[JudoPayViewController alloc] initWithJudoId:self.viewModel.judoId
+                                               amount:self.viewModel.amount
+                                            reference:self.viewModel.reference
+                                          transaction:TransactionTypePayment
+                                       currentSession:self.judoKitSession
+                                          cardDetails:self.viewModel.cardDetails
+                                           completion:completion];
+    
+    viewController.primaryAccountDetails = self.viewModel.primaryAccountDetails;
     viewController.theme = self.theme;
     [self.navigationController pushViewController:viewController animated:YES];
 }

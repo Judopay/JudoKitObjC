@@ -38,6 +38,8 @@
             return self.refundTitle;
         case TransactionTypeIDEAL:
             return self.iDEALTitle;
+        case TransactionTypeCheckCard:
+            return self.checkCardTitle;
     }
 }
 
