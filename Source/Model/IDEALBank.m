@@ -35,13 +35,14 @@
     if (self = [super init]) {
         self.title = [self titleForType:type];
         self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
+        self.type = type;
     }
     return self;
 }
 
 - (NSString *)titleForType:(IDEALBankType)type {
     NSArray * bankNames = @[
-        @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
+        @"None", @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
         @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
         @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
     ];
@@ -51,7 +52,7 @@
 
 - (NSString *)bankIdentifierCodeForType:(IDEALBankType)type {
     NSArray * bankIdentifierCodes = @[
-        @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
+        @"None", @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
         @"INGBNL2A", @"SNSBNL2A",@"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
         @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
     ];
