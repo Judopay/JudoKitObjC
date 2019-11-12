@@ -70,6 +70,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    [self displaySavedBankIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,11 +96,49 @@
 
 - (void)onSelectBankButtonTap:(id)sender {
     IDEALBankSelectionTableViewController *controller = [IDEALBankSelectionTableViewController new];
+    controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onPayButtonTap:(id)sender {
     //TODO: Add payment request
+}
+
+- (void)didSelectBank:(IDEALBank *)bank {
+    [self shouldDisplayPaymentElements:YES];
+    self.selectedBank = bank;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
+    
+    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
+    
+    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
+    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
+    
+    self.bankSelectionCell.textLabel.text = nil;
+    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
+    
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
+}
+
+- (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
+    self.safeAreaView.hidden = !shouldContinue;
+    self.paymentButton.hidden = !shouldContinue;
+    self.selectedBankLabelView.hidden = !shouldContinue;
+    self.navigationItem.rightBarButtonItem.enabled = shouldContinue;
+}
+
+- (void)displaySavedBankIfNeeded {
+    NSInteger bankTypeValue = [NSUserDefaults.standardUserDefaults integerForKey:@"iDEALBankType"];
+    IDEALBankType bankType = (IDEALBankType)bankTypeValue;
+    
+    if (bankType == IDEALBankNone) {
+        return;
+    }
+    
+    IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
+    [self didSelectBank:storedBank];
 }
 
 - (void)setupView {
@@ -128,7 +167,7 @@
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
     
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self shouldDisplayPaymentElements:NO];
 }
 
 - (void)setupPaymentButton {
@@ -229,6 +268,7 @@
         _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
         _bankSelectionCell.textLabel.text = @"select_ideal_bank".localized;
         _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
+        _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -253,6 +293,7 @@
     if (!_paymentButton) {
         _paymentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _paymentButton.accessibilityIdentifier = @"Pay Button";
         [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
