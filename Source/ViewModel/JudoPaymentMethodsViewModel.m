@@ -30,13 +30,16 @@
                         amount:(nonnull JPAmount *)amount
              consumerReference:(nonnull JPReference *)reference
                 paymentMethods:(PaymentMethods)methods
+         primaryAccountDetails:(JPPrimaryAccountDetails *)primaryAccountDetails
          applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
                    cardDetails:(nullable JPCardDetails *)cardDetails {
+    
     if (self = [super init]) {
         _judoId = judoId;
         _amount = amount;
         _reference = reference;
         _paymentMethods = methods;
+        _primaryAccountDetails = primaryAccountDetails;
         _applePayConfiguration = applePayConfiguration;
         _cardDetails = cardDetails;
     }

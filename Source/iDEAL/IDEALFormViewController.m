@@ -31,6 +31,8 @@
 #import "JPInputField.h"
 #import "JPTheme.h"
 #import "JPReference.h"
+#import "JPInputField.h"
+#import "JPTheme.h"
 #import "JPResponse.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
@@ -54,6 +56,7 @@
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) IDEALManager *idealManager;
+@property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -110,9 +113,9 @@
 }
 
 - (void)onSelectBankButtonTap:(id)sender {
-    IDEALBankSelectionTableViewController *controller = [IDEALBankSelectionTableViewController new];
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
+    self.bankSelectionController = [IDEALBankSelectionTableViewController new];
+    self.bankSelectionController.delegate = self;
+    [self.navigationController pushViewController:self.bankSelectionController animated:YES];
 }
 
 - (void)onPayButtonTap:(id)sender {
@@ -125,7 +128,9 @@
     }];
 }
 
-- (void)didSelectBank:(IDEALBank *)bank {
+- (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
+              didSelectBank:(IDEALBank *)bank {
+
     [self shouldDisplayPaymentElements:YES];
     self.selectedBank = bank;
     
@@ -140,7 +145,7 @@
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
     
-    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
@@ -159,7 +164,7 @@
     }
     
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
-    [self didSelectBank:storedBank];
+    [self tableViewController:self.bankSelectionController didSelectBank:storedBank];
 }
 
 - (void)setupView {
@@ -319,6 +324,7 @@
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+
         [_paymentButton addTarget:self
                            action:@selector(onPayButtonTap:)
                  forControlEvents:UIControlEventTouchUpInside];
