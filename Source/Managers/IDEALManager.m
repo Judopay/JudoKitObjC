@@ -110,9 +110,7 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
             completion(IDEALStatusFailed, error);
             return;
         }
-        
-        //TODO: Handle reachability / timeout (might be better to do that for all requests)
-        
+                
         if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"SUCCESS"]) {
             completion(IDEALStatusSuccess, nil);
             return;
