@@ -1,5 +1,5 @@
 //
-//  IDEALManager.m
+//  IDEALService.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALManager.h"
+#import "IDEALService.h"
 #import "IDEALBank.h"
 #import "JPAmount.h"
 #import "JPSession.h"
@@ -30,14 +30,14 @@
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 
-@interface IDEALManager()
+@interface IDEALService()
 @property (nonatomic, strong) JPSession *session;
 @end
 
-@implementation IDEALManager
+@implementation IDEALService
 
-static NSString *redirectEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
-static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
+static NSString *redirectEndpoint = @"/order/bank/sale";
+static NSString *statusEndpoint = @"/order/bank/getstatus";
 
 - (instancetype)initWithSession:(JPSession *)session {
     if (self = [super init]) {
@@ -65,10 +65,9 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
         @"siteId": judoId
     };
     
-    [self.session requestWithMethod:@"POST"
-                               path:redirectEndpoint
-                         parameters:parameters
-                         completion:^(JPResponse *response, NSError *error) {
+    [self.session POST:redirectEndpoint
+            parameters:parameters
+            completion:^(JPResponse *response, NSError *error) {
         
         JPTransactionData *data = response.items.firstObject;
         completion(data.redirectUrl, error);

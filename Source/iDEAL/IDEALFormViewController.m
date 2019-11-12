@@ -38,7 +38,7 @@
 #import "NSString+Localize.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
-#import "IDEALManager.h"
+#import "IDEALService.h"
 #import "UIViewController+JPTheme.h"
 
 @interface IDEALFormViewController ()
@@ -55,7 +55,7 @@
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
-@property (nonatomic, strong) IDEALManager *idealManager;
+@property (nonatomic, strong) IDEALService *idealService;
 @property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
@@ -78,7 +78,7 @@
         self.amount = amount;
         self.reference = reference;
         self.theme = theme;
-        self.idealManager = [[IDEALManager alloc] initWithSession:session];
+        self.idealService = [[IDEALService alloc] initWithSession:session];
         self.completionBlock = completion;
     }
     
@@ -119,7 +119,7 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-    [self.idealManager getRedirectURLWithJudoId:self.judoId
+    [self.idealService getRedirectURLWithJudoId:self.judoId
                                          amount:self.amount
                                       reference:self.reference
                                       idealBank:self.selectedBank

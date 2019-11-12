@@ -34,8 +34,8 @@
 		300654AF237AA91900097955 /* JPCheckCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654AD237AA91900097955 /* JPCheckCard.m */; };
 		300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */; };
 		300654B3237AA92A00097955 /* JPPrimaryAccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */; };
-		300654BF237AB7D000097955 /* IDEALManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B6237AB7D000097955 /* IDEALManager.m */; };
-		300654C0237AB7D000097955 /* IDEALManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALManager.h */; };
+		300654BF237AB7D000097955 /* IDEALService.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B6237AB7D000097955 /* IDEALService.m */; };
+		300654C0237AB7D000097955 /* IDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALService.h */; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
@@ -369,8 +369,8 @@
 		300654AD237AA91900097955 /* JPCheckCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCheckCard.m; path = API/JPCheckCard.m; sourceTree = "<group>"; };
 		300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPPrimaryAccountDetails.h; path = Source/Model/JPPrimaryAccountDetails.h; sourceTree = SOURCE_ROOT; };
 		300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPPrimaryAccountDetails.m; path = Source/Model/JPPrimaryAccountDetails.m; sourceTree = SOURCE_ROOT; };
-		300654B6237AB7D000097955 /* IDEALManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDEALManager.m; sourceTree = "<group>"; };
-		300654BE237AB7D000097955 /* IDEALManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEALManager.h; sourceTree = "<group>"; };
+		300654B6237AB7D000097955 /* IDEALService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDEALService.m; sourceTree = "<group>"; };
+		300654BE237AB7D000097955 /* IDEALService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEALService.h; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
@@ -716,8 +716,8 @@
 		30DB511E23100E6B00B73D66 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				300654BE237AB7D000097955 /* IDEALManager.h */,
-				300654B6237AB7D000097955 /* IDEALManager.m */,
+				300654BE237AB7D000097955 /* IDEALService.h */,
+				300654B6237AB7D000097955 /* IDEALService.m */,
 				30DB512023100E6B00B73D66 /* ApplePayManager.h */,
 				30DB511F23100E6B00B73D66 /* ApplePayManager.m */,
 			);
@@ -1117,7 +1117,7 @@
 				30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
 				3B678B951C6E282B0001DC2F /* JPCard.h in Headers */,
-				300654C0237AB7D000097955 /* IDEALManager.h in Headers */,
+				300654C0237AB7D000097955 /* IDEALService.h in Headers */,
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
 				30DB511723100E5200B73D66 /* BillingCountry.h in Headers */,
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
@@ -1576,7 +1576,7 @@
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
-				300654BF237AB7D000097955 /* IDEALManager.m in Sources */,
+				300654BF237AB7D000097955 /* IDEALService.m in Sources */,
 				3B6991571C8DD85B006ED1FB /* JPTheme.m in Sources */,
 				3B678B961C6E282B0001DC2F /* JPCard.m in Sources */,
 				300654B3237AA92A00097955 /* JPPrimaryAccountDetails.m in Sources */,

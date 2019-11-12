@@ -1,5 +1,5 @@
 //
-//  IDEALManager.h
+//  IDEALService.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -26,10 +26,10 @@
 
 @class JPAmount, JPReference, IDEALBank, JPSession;
 
-@interface IDEALManager : NSObject
+@interface IDEALService : NSObject
 
 /**
- * Creates an instance of an IDEALManager object
+ * Creates an instance of an IDEALService object
  *
  * @param session - an instance of JPSession that is used to make API requests
  */
