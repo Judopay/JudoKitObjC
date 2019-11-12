@@ -108,6 +108,7 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
                                path:statusEndpoint
                          parameters:nil
                          completion:^(JPResponse *response, NSError *error) {
+
                              if (error) {
                                  completion(IDEALStatusFailed, error);
                                  [self.timer invalidate];

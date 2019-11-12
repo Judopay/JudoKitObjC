@@ -54,6 +54,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
 @property (nonatomic, strong, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @property (nonatomic, strong, readwrite) TrustKit *trustKit;
+@property (nonatomic, strong, readwrite) JPReachability *reachability;
 
 @end
 
@@ -86,7 +87,10 @@ static NSString *const HTTPMethodPUT = @"PUT";
         };
 
     self.trustKit = [[TrustKit alloc] initWithConfiguration:trustKitConfig];
-
+    
+    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    self.reachability = [JPReachability reachabilityWithURL:requestURL];
+    
     return self;
 }
 
@@ -97,25 +101,14 @@ static NSString *const HTTPMethodPUT = @"PUT";
                parameters:(NSDictionary *)parameters
                completion:(JudoCompletionBlock)completion {
 
-    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
-    JPReachability *reachability = [JPReachability reachabilityWithURL:requestURL];
-
-    reachability.reachableBlock = ^(JPReachability *reach) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self performRequestWithMethod:HTTPMethod
-                                      path:path
-                                parameters:parameters
-                                completion:completion];
-        });
-    };
-
-    reachability.unreachableBlock = ^(JPReachability *reach) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, NSError.judoInternetConnectionError);
-        });
-    };
-
-    [reachability startNotifier];
+    if ([self.reachability isReachable]) {
+        [self performRequestWithMethod:HTTPMethod
+              path:path
+        parameters:parameters
+        completion:completion];
+    } else {
+        completion(nil, NSError.judoInternetConnectionError);
+    }
 }
 
 - (void)performRequestWithMethod:(NSString *)HTTPMethod
