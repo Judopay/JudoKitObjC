@@ -25,10 +25,12 @@
 #import "JPSession.h"
 #import "Functions.h"
 #import "JPPagination.h"
+#import "JPReachability.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 #import "JudoKit.h"
 #import "NSError+Judo.h"
+
 #import <TrustKit/TrustKit.h>
 
 static NSString *const JPAPIVersion = @"5.6.0";
@@ -52,6 +54,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
 @property (nonatomic, strong, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @property (nonatomic, strong, readwrite) TrustKit *trustKit;
+@property (nonatomic, strong, readwrite) JPReachability *reachability;
 
 @end
 
@@ -84,7 +87,10 @@ static NSString *const HTTPMethodPUT = @"PUT";
         };
 
     self.trustKit = [[TrustKit alloc] initWithConfiguration:trustKitConfig];
-
+    
+    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    self.reachability = [JPReachability reachabilityWithURL:requestURL];
+    
     return self;
 }
 
@@ -94,7 +100,22 @@ static NSString *const HTTPMethodPUT = @"PUT";
                      path:(NSString *)path
                parameters:(NSDictionary *)parameters
                completion:(JudoCompletionBlock)completion {
-    
+
+    if ([self.reachability isReachable]) {
+        [self performRequestWithMethod:HTTPMethod
+              path:path
+        parameters:parameters
+        completion:completion];
+    } else {
+        completion(nil, NSError.judoInternetConnectionError);
+    }
+}
+
+- (void)performRequestWithMethod:(NSString *)HTTPMethod
+                            path:(NSString *)path
+                      parameters:(NSDictionary *)parameters
+                      completion:(JudoCompletionBlock)completion {
+
     NSMutableURLRequest *request = [self judoRequest:path];
 
     request.HTTPMethod = HTTPMethod;
@@ -231,9 +252,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
                              }
 
                              dispatch_async(dispatch_get_main_queue(), ^{
-                                 if (result.items.count == 1
-                                     && responseJSON[@"result"] != nil
-                                     && result.items.firstObject.result != TransactionResultSuccess) {
+                                 if (result.items.count == 1 && responseJSON[@"result"] != nil && result.items.firstObject.result != TransactionResultSuccess) {
                                      completion(nil, [NSError judoErrorFromTransactionData:result.items.firstObject]);
                                  } else {
                                      completion(result, nil);

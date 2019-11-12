@@ -42,6 +42,7 @@ extern NSString *const JudoErrorDomain;
 + (NSError *)judo3DSRequestFailedErrorWithUnderlyingError:(nullable NSError *)underlyingError;
 + (NSError *)judoUserDidCancelError;
 + (NSError *)judoParameterError;
++ (NSError *)judoInternetConnectionError;
 + (NSError *)judoApplePayConfigurationError;
 + (NSError *)judoResponseParseError;
 + (NSError *)judoMissingChecksumError;

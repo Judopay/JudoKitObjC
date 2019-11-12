@@ -23,14 +23,14 @@
 //  SOFTWARE.
 
 #import "IDEALBankSelectionTableViewController.h"
-#import "IDEALBankTableViewCell.h"
 #import "IDEALBank.h"
+#import "IDEALBankTableViewCell.h"
 
 @implementation IDEALBankSelectionTableViewController
 
-NSString * const bankCellIdentifier = @"IDEALBankTableViewCell";
+NSString *const bankCellIdentifier = @"IDEALBankTableViewCell";
 
-- (NSArray*) bankList {
+- (NSArray *)bankList {
     return @[
         [IDEALBank bankWithType:IDEALBankRabobank],
         [IDEALBank bankWithType:IDEALBankABN],
@@ -49,9 +49,9 @@ NSString * const bankCellIdentifier = @"IDEALBankTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:IDEALBank.class];
-    UINib* nib = [UINib nibWithNibName:bankCellIdentifier bundle: bundle];
+    UINib *nib = [UINib nibWithNibName:bankCellIdentifier bundle:bundle];
     [self.tableView registerNib:nib forCellReuseIdentifier:bankCellIdentifier];
 }
 
@@ -63,14 +63,14 @@ NSString * const bankCellIdentifier = @"IDEALBankTableViewCell";
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     IDEALBank *bank = self.bankList[indexPath.row];
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:bankCellIdentifier
                                                             forIndexPath:indexPath];
-    
+
     if ([cell isKindOfClass:IDEALBankTableViewCell.class]) {
         [((IDEALBankTableViewCell *)cell) configureWithBank:bank];
     }
-    
+
     return cell;
 }
 

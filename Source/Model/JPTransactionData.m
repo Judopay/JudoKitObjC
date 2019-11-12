@@ -50,13 +50,13 @@
     self.redirectUrl = dictionary[@"redirectUrl"];
     self.merchantName = dictionary[@"merchantName"];
     self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];
-    
+
     NSDictionary *orderDetailsDict = dictionary[@"orderDetails"];
-    
+
     if (orderDetailsDict) {
         self.orderDetails = [[JPOrderDetails alloc] initWithDictionary:orderDetailsDict];
     }
-    
+
     NSString *currency = dictionary[@"currency"];
     if (dictionary[@"refunds"]) {
         self.refunds = [[JPAmount alloc] initWithAmount:dictionary[@"refunds"] currency:currency];
