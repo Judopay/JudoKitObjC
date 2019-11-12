@@ -40,7 +40,6 @@
 
 @end
 
-
 /**
  * A custom implementation of the UITableViewController used for displaying the list of iDEAL banks
  */

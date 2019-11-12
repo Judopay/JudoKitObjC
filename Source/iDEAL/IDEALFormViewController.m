@@ -70,6 +70,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    [self displaySavedBankIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,6 +118,8 @@
     
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
+    
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
@@ -124,6 +127,18 @@
     self.paymentButton.hidden = !shouldContinue;
     self.selectedBankLabelView.hidden = !shouldContinue;
     self.navigationItem.rightBarButtonItem.enabled = shouldContinue;
+}
+
+- (void)displaySavedBankIfNeeded {
+    NSInteger bankTypeValue = [NSUserDefaults.standardUserDefaults integerForKey:@"iDEALBankType"];
+    IDEALBankType bankType = (IDEALBankType)bankTypeValue;
+    
+    if (bankType == IDEALBankNone) {
+        return;
+    }
+    
+    IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
+    [self didSelectBank:storedBank];
 }
 
 - (void)setupView {
