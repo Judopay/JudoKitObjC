@@ -26,9 +26,11 @@
 #import "JPAddress.h"
 #import "JPAmount.h"
 #import "JPCard.h"
+#import "JPCheckCard.h"
 #import "JPEnhancedPaymentDetail.h"
 #import "JPPagination.h"
 #import "JPPaymentToken.h"
+#import "JPPrimaryAccountDetails.h"
 #import "JPReference.h"
 #import "JPRegisterCard.h"
 #import "JPResponse.h"
@@ -100,7 +102,10 @@
         return [NSError judoReferenceMissingError];
     }
 
-    if (![self isKindOfClass:JPRegisterCard.class] && ![self isKindOfClass:JPSaveCard.class] && !self.amount) {
+    if (![self isKindOfClass:JPRegisterCard.class]
+        && ![self isKindOfClass:JPCheckCard.class]
+        && ![self isKindOfClass:JPSaveCard.class]
+        && !self.amount) {
         return [NSError judoAmountMissingError];
     }
 
@@ -208,6 +213,18 @@
     if (card.cardAddress) {
         self.parameters[@"cardAddress"] = card.cardAddress.dictionaryRepresentation;
     }
+}
+
+- (JPPrimaryAccountDetails *)primaryAccountDetails {
+    if (self.parameters[@"primaryAccountDetails"]) {
+        NSDictionary *dictionary = self.parameters[@"primaryAccountDetails"];
+        return [JPPrimaryAccountDetails detailsFromDictionary:dictionary];
+    }
+    return nil;
+}
+
+- (void)setPrimaryAccountDetails:(JPPrimaryAccountDetails *)primaryAccountDetails {
+    self.parameters[@"primaryAccountDetails"] = primaryAccountDetails.toDictionary;
 }
 
 - (JPPaymentToken *)paymentToken {

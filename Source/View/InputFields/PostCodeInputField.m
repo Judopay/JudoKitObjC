@@ -103,9 +103,6 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
 }
 
 - (BOOL)isValid {
-    if (self.billingCountry == BillingCountryOther) {
-        return YES;
-    }
 
     NSString *newString = [self.textField.text uppercaseString];
 
@@ -142,7 +139,7 @@ static NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
         valid = NO;
     }
 
-    if (self.billingCountry == BillingCountryCanada && characterCount >= 6) {
+    if (self.billingCountry == BillingCountryCanada && characterCount >= 6 && !self.isValid) {
         valid = NO;
     }
 

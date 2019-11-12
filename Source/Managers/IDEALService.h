@@ -1,5 +1,5 @@
 //
-//  IDEALManager.h
+//  IDEALService.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -26,13 +26,13 @@
 
 @class JPAmount, JPReference, IDEALBank, JPSession;
 
-@interface IDEALManager : NSObject
+@interface IDEALService : NSObject
 
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
 typedef void (^JudoPoolingCompletion)(NSString *_Nullable, NSError *_Nullable);
 
 /**
- * Creates an instance of an IDEALManager object
+ * Creates an instance of an IDEALService object
  *
  * @param judoId           The judoID of the merchant to receive the token pre-auth
  * @param amount           The amount and currency of the pre-auth (default is GBP)
