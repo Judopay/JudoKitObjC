@@ -436,6 +436,14 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
               paymentToken:(nonnull JPPaymentToken *)paymentToken
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
+/**
+ *  This method will invoke the iDEAL transaction form on the top UIViewController instance of the Applications window. The iDEAL transaction form allows the
+ *  merchant to set a name and select from one of the available iDEAL banks to complete the transaction.
+ *
+ *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeIDEALPaymentWithCompletion:(nonnull JudoCompletionBlock)completion;
+
 @end
 
 @interface JudoKit (ApplePay) <PKPaymentAuthorizationViewControllerDelegate>

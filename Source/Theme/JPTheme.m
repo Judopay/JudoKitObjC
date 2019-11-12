@@ -98,6 +98,13 @@
     return _refundTitle;
 }
 
+- (NSString *)iDEALTitle {
+    if (!_iDEALTitle) {
+        _iDEALTitle = @"ideal_transaction".localized;
+    }
+    return _iDEALTitle;
+}
+
 - (NSString *)authenticationTitle {
     if (!_authenticationTitle) {
         _authenticationTitle = @"authentication".localized;

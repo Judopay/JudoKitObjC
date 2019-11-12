@@ -31,6 +31,7 @@
 #import "CardInputField.h"
 #import "DateInputField.h"
 #import "FloatingTextField.h"
+#import "IDEALFormViewController.h"
 #import "JPCollection.h"
 #import "JPInputField.h"
 #import "JPPayment.h"
@@ -449,6 +450,17 @@
                                      cardDetails:cardDetails
                                     paymentToken:paymentToken
                                       completion:completion];
+}
+
+- (void)invokeIDEALPaymentWithCompletion:(JudoCompletionBlock)completion {
+    
+    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithTheme:self.theme
+                                                                              completion:completion];
+    controller.modalPresentationStyle = UIModalPresentationFormSheet;
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    self.activeViewController = controller;
+    [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

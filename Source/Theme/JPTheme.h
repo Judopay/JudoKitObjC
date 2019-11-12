@@ -89,6 +89,11 @@
 @property (nonatomic, strong) NSString *_Nonnull refundTitle;
 
 /**
+ *  the title for the iDEAL transaction
+ */
+@property (nonatomic, strong) NSString *_Nonnull iDEALTitle;
+
+/**
  *  the title for an authentication
  */
 @property (nonatomic, strong) NSString *_Nonnull authenticationTitle;

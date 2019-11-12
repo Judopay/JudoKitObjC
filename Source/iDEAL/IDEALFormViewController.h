@@ -1,8 +1,8 @@
 //
-//  UIColor+Judo.h
+//  IDEALFormViewController.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,30 +24,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (Judo)
+#import "IDEALBankSelectionTableViewController.h"
+#import "JPSession.h"
 
-- (nonnull UIColor *)inverseColor;
+@class JPTheme;
 
-- (nonnull UIImage *)asImage;
+/**
+ *  A custom UIViewController used for displaying the iDEAL transaction form.
+ */
+@interface IDEALFormViewController : UIViewController <IDEALBankSelectionDelegate>
 
-- (CGFloat)greyScale;
-
-- (BOOL)isDarkColor;
-
-+ (UIColor *_Nonnull)jellyBean;
-
-+ (UIColor *_Nonnull)thunder;
-
-+ (UIColor *_Nonnull)magnesium;
-
-+ (UIColor *_Nonnull)zircon;
-
-+ (UIColor *_Nonnull)lightGray;
-
-+ (UIColor *_Nonnull)cgRed;
-
-+ (UIColor *_Nonnull)idealPurple;
-
-+ (UIColor *_Nonnull)defaultTintColor;
+/**
+ *  Initializer that displays the iDEAL transaction form
+ *
+ *  @param theme - An instance of a JPTheme object that defines the style of the form
+ *  @param completion -  Completion block called when transaction has been finished
+ *
+ *  @return an initialized IDEALFormViewController object
+ */
+- (nonnull instancetype)initWithTheme:(nonnull JPTheme *)theme
+                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end
