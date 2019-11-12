@@ -87,7 +87,6 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
                                checksum:(NSString *)checksum
                               completion:(JudoPoolingCompletion)completion {
     
-    
     [NSTimer scheduledTimerWithTimeInterval:60.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
         completion(IDEALStatusFailed, NSError.judoRequestTimeoutError);
         return;
