@@ -1,5 +1,5 @@
 //
-//  IDEALManager.m
+//  IDEALService.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALManager.h"
+#import "IDEALService.h"
 #import "IDEALBank.h"
 #import "JPAmount.h"
 #import "JPOrderDetails.h"
@@ -32,7 +32,8 @@
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
 
-@interface IDEALManager()
+
+@interface IDEALService()
 
 @property (nonatomic, strong) NSString *judoId;
 @property (nonatomic, strong) JPAmount *amount;
@@ -42,10 +43,10 @@
 
 @end
 
-@implementation IDEALManager
+@implementation IDEALService
 
-static NSString *redirectEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/bank/sale";
-static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com/order/statusrequest";
+static NSString *redirectEndpoint = @"/order/bank/sale";
+static NSString *statusEndpoint = @"/order/bank/getstatus";
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                         amount:(JPAmount *)amount
@@ -67,10 +68,9 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
 - (void)getRedirectURLForIDEALBank:(IDEALBank *)iDealBank
                       completion:(JudoRedirectCompletion)completion {
     
-    [self.session requestWithMethod:@"POST"
-                               path:redirectEndpoint
-                         parameters:[self parametersForIDEALBank:iDealBank]
-                         completion:^(JPResponse *response, NSError *error) {
+    [self.session POST:redirectEndpoint
+            parameters:[self parametersForIDEALBank:iDealBank]
+            completion:^(JPResponse *response, NSError *error) {
         
         JPTransactionData *data = response.items.firstObject;
         
@@ -100,10 +100,9 @@ static NSString *statusEndpoint = @"http://private-e715f-apiapi8.apiary-mock.com
                    checksum:(NSString *)checksum
                  completion:(JudoPoolingCompletion)completion {
     
-    [self.session requestWithMethod:@"POST"
-                               path:statusEndpoint
-                         parameters:nil
-                         completion:^(JPResponse *response, NSError *error) {
+    [self.session POST:statusEndpoint
+            parameters:nil
+            completion:^(JPResponse *response, NSError *error) {
         
         if (error) {
             completion(IDEALStatusFailed, error);

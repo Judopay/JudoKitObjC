@@ -33,12 +33,14 @@
 #import "JPInputField.h"
 #import "JPTheme.h"
 #import "JPReference.h"
+#import "JPInputField.h"
+#import "JPTheme.h"
 #import "JPResponse.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
-#import "IDEALManager.h"
+#import "IDEALService.h"
 #import "UIViewController+JPTheme.h"
 
 @interface IDEALFormViewController ()
@@ -53,8 +55,11 @@
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
-@property (nonatomic, strong) IDEALManager *idealManager;
+
 @property (nonatomic, strong) NSString *orderId;
+
+@property (nonatomic, strong) IDEALService *idealService;
+@property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -79,8 +84,7 @@
     if (self = [super init]) {
         self.theme = theme;
         self.completionBlock = completion;
-        
-        self.idealManager = [[IDEALManager alloc] initWithJudoId:judoId
+        self.idealService = [[IDEALService alloc] initWithJudoId:judoId
                                                           amount:amount
                                                        reference:reference
                                                          session:session
@@ -122,14 +126,14 @@
 }
 
 - (void)onSelectBankButtonTap:(id)sender {
-    IDEALBankSelectionTableViewController *controller = [IDEALBankSelectionTableViewController new];
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
+    self.bankSelectionController = [IDEALBankSelectionTableViewController new];
+    self.bankSelectionController.delegate = self;
+    [self.navigationController pushViewController:self.bankSelectionController animated:YES];
 }
 
 - (void)onPayButtonTap:(id)sender {
-    
-    [self.idealManager getRedirectURLForIDEALBank:self.selectedBank
+
+    [self.idealService getRedirectURLForIDEALBank:self.selectedBank
                                        completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
         
         if (error) {
@@ -143,9 +147,9 @@
     }];
 }
 
-# pragma mark - Action handlers
+- (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
+              didSelectBank:(IDEALBank *)bank {
 
-- (void)didSelectBank:(IDEALBank *)bank {
     [self shouldDisplayPaymentElements:YES];
     self.selectedBank = bank;
     
@@ -160,7 +164,7 @@
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
     
-    [NSUserDefaults.standardUserDefaults setInteger: bank.type forKey:@"iDEALBankType"];
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
@@ -186,7 +190,7 @@
     }
     
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
-    [self didSelectBank:storedBank];
+    [self tableViewController:self.bankSelectionController didSelectBank:storedBank];
 }
 
 # pragma mark - Layout setup methods
@@ -360,6 +364,7 @@
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+
         [_paymentButton addTarget:self
                            action:@selector(onPayButtonTap:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -429,7 +434,7 @@
     if (checksum) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.webView removeFromSuperview];
-        [self.idealManager poolTransactionStatusForOrderId:self.orderId
+        [self.idealService poolTransactionStatusForOrderId:self.orderId
                                                   checksum:checksum.value
                                                 completion:^(IDEALStatus status, NSError *error) {
             // TODO: Handle pooling status

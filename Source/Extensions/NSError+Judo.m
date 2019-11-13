@@ -191,11 +191,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 }
 
 + (NSError *)judoMissingChecksumError {
+    
+    NSDictionary *userInfo = [self userDataDictWithDescription:@"error_checksum_missing_description".localized
+                                                 failureReason:@"error_checksum_missing_description".localized
+                                                         title:@"error_checksum_missing_title".localized];
+    
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorGeneral_Error
-    userInfo:[self userDataDictWithDescription:@"error_checksum_missing_description".localized
-                                 failureReason:@"error_checksum_missing_description".localized
-                                         title:@"error_checksum_missing_title".localized]];
+                           userInfo:userInfo];
 }
 
 + (NSError *)judo3DSRequestWithPayload:(NSDictionary *)payload {

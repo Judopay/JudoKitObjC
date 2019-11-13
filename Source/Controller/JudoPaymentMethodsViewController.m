@@ -32,6 +32,7 @@
 #import "JudoKit.h"
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
+#import "NSBundle+Additions.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "UIApplication+Additions.h"
@@ -161,12 +162,9 @@
                         action:@selector(onIDEALButtonTap:)
               forControlEvents:UIControlEventTouchUpInside];
         
-        NSBundle *bundle = [NSBundle bundleForClass:JudoKit.class];
         
-        NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-        NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-        
-        NSString *iconFilePath = [iconBundle pathForResource:@"logo-ideal" ofType:@"png"];
+        NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:@"logo-ideal"
+                                                                ofType:@"png"];
         
         [idealButton setImage:[UIImage imageWithContentsOfFile:iconFilePath]
                      forState:UIControlStateNormal];
@@ -174,8 +172,8 @@
         idealButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         [idealButton setTitle:@"iDEAL" forState:UIControlStateNormal];
-        [idealButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        idealButton.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
+        [idealButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+        idealButton.titleLabel.font = self.theme.buttonFont;
         
         idealButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 0);
         idealButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
@@ -224,6 +222,8 @@
                                    currentSession:self.judoKitSession
                                       cardDetails:self.viewModel.cardDetails
                                        completion:completion];
+    
+    viewController.primaryAccountDetails = self.viewModel.primaryAccountDetails;
     viewController.theme = self.theme;
     [self.navigationController pushViewController:viewController animated:YES];
 }
@@ -242,22 +242,23 @@
 
 - (void)onIDEALButtonTap:(id)sender {
     __weak JudoPaymentMethodsViewController *weakSelf = self;
-    
+
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
                                                amount:self.viewModel.amount
                                             reference:self.viewModel.reference
                                            completion:^(JPResponse *response, NSError *error) {
-        if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
-        }
-        weakSelf.completionBlock(response, error);
-    }];
-}
 
-- (void)backButtonAction:(id)sender {
-    if (self.completionBlock) {
-        self.completionBlock(nil, [NSError judoUserDidCancelError]);
+            if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }
+            weakSelf.completionBlock(response, error);
+        }];
     }
-}
-
-@end
+     
+     - (void)backButtonAction:(id)sender {
+        if (self.completionBlock) {
+            self.completionBlock(nil, [NSError judoUserDidCancelError]);
+        }
+    }
+     
+     @end

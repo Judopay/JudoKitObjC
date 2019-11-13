@@ -80,17 +80,4 @@ typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
  */
 - (void)GET:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters completion:(nonnull JudoCompletionBlock)completion;
 
-/**
- *  A general method for making REST requests
- *
- *  @param HTTPMethod the HTTP request method
- *  @param path       the path
- *  @param parameters information that is set in the HTTP Body
- *  @param completion completion callblack block with the results
- */
-- (void)requestWithMethod:(nonnull NSString *)HTTPMethod
-                     path:(nonnull NSString *)path
-               parameters:(nullable NSDictionary *)parameters
-               completion:(nonnull JudoCompletionBlock)completion;
-
 @end

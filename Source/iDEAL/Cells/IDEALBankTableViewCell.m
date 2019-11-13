@@ -24,6 +24,7 @@
 
 #import "IDEALBank.h"
 #import "IDEALBankTableViewCell.h"
+#import "NSBundle+Additions.h"
 #import "NSString+Localize.h"
 
 @interface IDEALBankTableViewCell()
@@ -35,14 +36,9 @@
 @implementation IDEALBankTableViewCell
 
 - (void)configureWithBank:(IDEALBank *)bank {
-    
-    NSBundle *bundle = [NSBundle bundleForClass:IDEALBankTableViewCell.class];
-    
-    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-    
+
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
+    NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:iconName ofType:@"png"];
     
     self.bankLogoImageView.image =[UIImage imageWithContentsOfFile:iconFilePath];
     self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
