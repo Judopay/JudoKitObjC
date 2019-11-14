@@ -880,17 +880,21 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                      redirectURL:(NSString *)redirectURL
                  decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
-    NSMutableString *javascriptCode = [NSMutableString new];
-    [javascriptCode appendString:@"const form = document.getElementById('ACSForm');"];
-    [javascriptCode appendString:@"[form.elements[0].value, form.elements[1].value]"];
-    
-    [webView evaluateJavaScript:javascriptCode
-              completionHandler:^(NSArray *response, NSError *error) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        NSDictionary *responseDictionary = [self mapToDictionaryWithResponse:response];
-        [self setLoadingViewTitleForTransactionType:self.transactionType];
-        [self handleACSFormWithResponse:responseDictionary decisionHandler:decisionHandler];
-    }];
+        NSMutableString *javascriptCode = [NSMutableString new];
+        [javascriptCode appendString:@"const form = document.getElementsByTagName('form')[0];"];
+        [javascriptCode appendString:@"[form.elements[0].value, form.elements[1].value]"];
+        
+        [webView evaluateJavaScript:javascriptCode
+                  completionHandler:^(NSArray *response, NSError *error) {
+            
+            
+            NSDictionary *responseDictionary = [self mapToDictionaryWithResponse:response];
+            [self setLoadingViewTitleForTransactionType:self.transactionType];
+            [self handleACSFormWithResponse:responseDictionary decisionHandler:decisionHandler];
+        }];
+    });
 }
 
 -(void)handleACSFormWithResponse:(NSDictionary *)response
@@ -933,8 +937,8 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if (response.count != 2) return nil;
     
     return @{
-        @"paRes": response[0],
-        @"md": response[1]
+        @"PaRes": response[0],
+        @"MD": [response[1] stringByReplacingOccurrencesOfString:@" " withString:@"+"]
     };
 }
 
