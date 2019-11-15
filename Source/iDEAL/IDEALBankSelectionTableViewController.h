@@ -24,19 +24,22 @@
 
 #import <UIKit/UIKit.h>
 
-@class IDEALBank;
+@class IDEALBank, IDEALBankSelectionTableViewController;
 
 /**
  * A delegate protocol related to the bank selection logic
  */
-@protocol IDEALBankSelectionDelegate
+
+@protocol IDEALBankSelectionDelegate <NSObject>
 
 /**
  * A delegate method that is called when a bank from the iDEAL bank list is selected
  *
+ * @param controller - the instance of an IDEALBankSelectionTableViewController
  * @param bank - the iDEAL bank model containing the bank title and identifier code
  */
-- (void)didSelectBank:(nonnull IDEALBank *)bank;
+- (void)tableViewController:(nonnull IDEALBankSelectionTableViewController *)controller
+              didSelectBank:(nonnull IDEALBank *)bank;
 
 @end
 

@@ -27,7 +27,7 @@
 #import "IDEALBank.h"
 #import "IDEALBankSelectionTableViewController.h"
 #import "IDEALBankTableViewCell.h"
-#import "IDEALManager.h"
+#import "IDEALService.h"
 #import "JPAmount.h"
 #import "JPInputField.h"
 #import "JPReference.h"
@@ -53,9 +53,12 @@
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) IDEALBank *_Nullable selectedBank;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
-@property (nonatomic, strong) IDEALManager *idealManager;
+
 @property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, strong) NSString *checksum;
+
+@property (nonatomic, strong) IDEALService *idealService;
+@property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
 
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
@@ -77,8 +80,7 @@
     if (self = [super init]) {
         self.theme = theme;
         self.completionBlock = completion;
-
-        self.idealManager = [[IDEALManager alloc] initWithJudoId:judoId
+        self.idealService = [[IDEALService alloc] initWithJudoId:judoId
                                                           amount:amount
                                                        reference:reference
                                                          session:session
@@ -120,24 +122,44 @@
 }
 
 - (void)onSelectBankButtonTap:(id)sender {
-    IDEALBankSelectionTableViewController *controller = [IDEALBankSelectionTableViewController new];
-    controller.delegate = self;
-    [self.navigationController pushViewController:controller animated:YES];
+    self.bankSelectionController = [IDEALBankSelectionTableViewController new];
+    self.bankSelectionController.delegate = self;
+    [self.navigationController pushViewController:self.bankSelectionController animated:YES];
 }
 
 - (void)onPayButtonTap:(id)sender {
 
-    [self.idealManager redirectURLForIDEALBank:self.selectedBank
+    [self.idealService redirectURLForIDEALBank:self.selectedBank
                                     completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
-                                           if (error) {
-                                               self.completionBlock(nil, error);
-                                               return;
-                                           }
+                                        if (error) {
+                                            self.completionBlock(nil, error);
+                                            return;
+                                        }
 
-                                           self.orderId = orderId;
-                                           self.navigationItem.rightBarButtonItem.enabled = NO;
-                                           [self loadWebViewWithURLString:redirectUrl];
-                                       }];
+                                        self.orderId = orderId;
+                                        self.navigationItem.rightBarButtonItem.enabled = NO;
+                                        [self loadWebViewWithURLString:redirectUrl];
+                                    }];
+}
+
+- (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
+              didSelectBank:(IDEALBank *)bank {
+
+    [self shouldDisplayPaymentElements:YES];
+    self.selectedBank = bank;
+
+    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
+
+    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
+
+    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
+    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
+
+    self.bankSelectionCell.textLabel.text = nil;
+    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
+
+    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
 
 #pragma mark - Action handlers
@@ -165,14 +187,14 @@
     }
 
     IDEALBank *storedBank = [IDEALBank bankWithType:bankType];
-    [self didSelectBank:storedBank];
+    [self tableViewController:self.bankSelectionController didSelectBank:storedBank];
 }
 
 #pragma mark - Private methods
 
 - (void)startPollingStatus {
 
-    [self.idealManager pollTransactionStatusForOrderId:self.orderId
+    [self.idealService pollTransactionStatusForOrderId:self.orderId
                                               checksum:self.checksum
                                             completion:^(IDEALStatus status, NSError *error) {
                                                 if (error) {
@@ -372,6 +394,7 @@
         [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+
         [_paymentButton addTarget:self
                            action:@selector(onPayButtonTap:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -454,7 +477,6 @@
     if (checksum) {
         [self.webView removeFromSuperview];
         self.checksum = checksum.value;
-
         [self startPollingStatus];
         return;
     }
@@ -466,7 +488,9 @@
 
 @implementation IDEALFormViewController (BankSelectionDelegate)
 
-- (void)didSelectBank:(IDEALBank *)bank {
+- (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
+              didSelectBank:(IDEALBank *)bank {
+
     [self shouldDisplayPaymentElements:YES];
     self.selectedBank = bank;
 

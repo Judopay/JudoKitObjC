@@ -87,25 +87,25 @@ static NSString *const HTTPMethodPUT = @"PUT";
         };
 
     self.trustKit = [[TrustKit alloc] initWithConfiguration:trustKitConfig];
-    
+
     NSURL *requestURL = [NSURL URLWithString:self.endpoint];
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
-    
+
     return self;
 }
 
 #pragma mark - REST API
 
-- (void)requestWithMethod:(NSString *)HTTPMethod
-                     path:(NSString *)path
-               parameters:(NSDictionary *)parameters
-               completion:(JudoCompletionBlock)completion {
+- (void)apiCall:(NSString *)HTTPMethod
+           path:(NSString *)path
+     parameters:(NSDictionary *)parameters
+     completion:(JudoCompletionBlock)completion {
 
     if ([self.reachability isReachable]) {
         [self performRequestWithMethod:HTTPMethod
-              path:path
-        parameters:parameters
-        completion:completion];
+                                  path:path
+                            parameters:parameters
+                            completion:completion];
     } else {
         completion(nil, NSError.judoInternetConnectionError);
     }
@@ -116,7 +116,8 @@ static NSString *const HTTPMethodPUT = @"PUT";
                       parameters:(NSDictionary *)parameters
                       completion:(JudoCompletionBlock)completion {
 
-    NSMutableURLRequest *request = [self judoRequest:path];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.endpoint, path];
+    NSMutableURLRequest *request = [self judoRequest:fullURL];
 
     request.HTTPMethod = HTTPMethod;
 
@@ -136,15 +137,6 @@ static NSString *const HTTPMethodPUT = @"PUT";
     NSURLSessionDataTask *task = [self task:request completion:completion];
 
     [task resume];
-}
-
-- (void)apiCall:(NSString *)HTTPMethod
-           path:(NSString *)path
-     parameters:(NSDictionary *)parameters
-     completion:(JudoCompletionBlock)completion {
-
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.endpoint, path];
-    [self requestWithMethod:HTTPMethod path:fullURL parameters:parameters completion:completion];
 }
 
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {

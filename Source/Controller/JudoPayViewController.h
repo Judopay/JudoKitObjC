@@ -25,7 +25,7 @@
 #import "JPTransactionData.h"
 #import <UIKit/UIKit.h>
 
-@class JudoKit, JPTransaction, JPTheme, JPAmount, JPReference, JPPaymentToken, JudoPayView, JPResponse;
+@class JudoKit, JPTransaction, JPTheme, JPAmount, JPReference, JPPaymentToken, JudoPayView, JPResponse, JPPrimaryAccountDetails;
 
 /**
  *  the JudoPayViewController is the one solution build to guide a user through the journey of entering their card details.
@@ -71,6 +71,11 @@
  *  Card token and Consumer token
  */
 @property (nonatomic, strong) JPPaymentToken *_Nullable paymentToken;
+
+/**
+ *  Optional property containing primary account details provided by the merchant
+ */
+@property (nonatomic, strong) JPPrimaryAccountDetails *_Nullable primaryAccountDetails;
 
 /**
  *  Initializer to start a payment journey

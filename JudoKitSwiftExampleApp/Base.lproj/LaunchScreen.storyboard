@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bNc-CJ-UZW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Judopay SDK example" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSY-51-STK">
+                                <rect key="frame" x="109" y="318.5" width="196.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_judo_logo" translatesAutoresizingMaskIntoConstraints="NO" id="X0u-vP-HjQ">
+                                <rect key="frame" x="156" y="204" width="102" height="64.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Judopay © 2012-2019" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AW-UJ-Cfk">
+                                <rect key="frame" x="144" y="843.5" width="126.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7AW-UJ-Cfk" firstAttribute="centerX" secondItem="svF-tf-w8a" secondAttribute="centerX" id="8gk-ud-1xO"/>
+                            <constraint firstItem="X0u-vP-HjQ" firstAttribute="top" secondItem="svF-tf-w8a" secondAttribute="top" constant="160" id="RZ5-vB-HQj"/>
+                            <constraint firstItem="X0u-vP-HjQ" firstAttribute="centerX" secondItem="svF-tf-w8a" secondAttribute="centerX" id="UfP-Zz-azX"/>
+                            <constraint firstItem="dSY-51-STK" firstAttribute="centerX" secondItem="svF-tf-w8a" secondAttribute="centerX" id="aWr-HN-VWJ"/>
+                            <constraint firstItem="dSY-51-STK" firstAttribute="top" secondItem="X0u-vP-HjQ" secondAttribute="bottom" constant="50" id="dGT-4N-zkX"/>
+                            <constraint firstItem="svF-tf-w8a" firstAttribute="bottom" secondItem="7AW-UJ-Cfk" secondAttribute="bottom" constant="4" id="nc8-Cd-hIi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="svF-tf-w8a"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_judo_logo" width="102" height="64.5"/>
+    </resources>
+</document>
