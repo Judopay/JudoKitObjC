@@ -64,6 +64,7 @@
 "transaction_success" = "¡Transacción exitosa!";
 "transaction_pending" = "Transacción pendiente ...";
 "transaction_failed" = "¡Transacción fallida!";
+"retry" = "Procesar de nuevo";
 
 //JudoPayViewController
 "secure_server" = "Servidor seguro:";

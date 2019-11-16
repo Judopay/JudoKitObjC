@@ -53,14 +53,14 @@
 
 #pragma mark - Public methods
 
-- (void)didChangeToStatus:(IDEALStatus)status {
+- (void)changeStatusTo:(IDEALStatus)status {
     [self setupViewsForStatus:status];
 }
 
 #pragma mark - User actions
 
 - (void)didTapRetryButton:(id)sender {
-    [self.delegate retryTransaction];
+    [self.delegate statusViewRetryButtonDidTap:(self)];
 }
 
 #pragma mark - Layout setup methods
@@ -172,7 +172,7 @@
     if (!_retryButton) {
         _retryButton = [UIButton new];
         _retryButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_retryButton setTitle:@"Retry" forState:UIControlStateNormal];
+        [_retryButton setTitle:@"retry".localized forState:UIControlStateNormal];
         [_retryButton setBackgroundColor:UIColor.errorRed];
         _retryButton.layer.cornerRadius = 5.0f;
         [_retryButton addTarget:self

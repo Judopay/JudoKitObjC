@@ -202,7 +202,7 @@
                                                     return;
                                                 }
 
-                                                [self.transactionStatusView didChangeToStatus:status];
+                                                [self.transactionStatusView changeStatusTo:status];
                                             }];
 }
 
@@ -512,8 +512,8 @@
 
 @implementation IDEALFormViewController (TransactionViewDelegate)
 
-- (void)retryTransaction {
-    [self.transactionStatusView didChangeToStatus:IDEALStatusPending];
+- (void)statusViewRetryButtonDidTap:(TransactionStatusView *)statusView {
+    [self.transactionStatusView changeStatusTo:IDEALStatusPending];
     [self startPollingStatus];
 }
 

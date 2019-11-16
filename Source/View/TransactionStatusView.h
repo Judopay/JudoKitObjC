@@ -25,8 +25,10 @@
 #import "IDEALService.h"
 #import <UIKit/UIKit.h>
 
+@class TransactionStatusView;
+
 @protocol TransactionStatusViewDelegate
-- (void)retryTransaction;
+- (void)statusViewRetryButtonDidTap:(TransactionStatusView *)statusView;
 @end
 
 /**
@@ -58,6 +60,6 @@
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
 */
-- (void)didChangeToStatus:(IDEALStatus)status;
+- (void)changeStatusTo:(IDEALStatus)status;
 
 @end
