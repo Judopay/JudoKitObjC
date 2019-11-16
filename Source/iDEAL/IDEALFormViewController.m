@@ -30,9 +30,11 @@
 #import "IDEALService.h"
 #import "JPAmount.h"
 #import "JPInputField.h"
+#import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
 #import "JPTheme.h"
+#import "JPTransactionData.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "TransactionStatusView.h"
@@ -196,14 +198,25 @@
 
     [self.idealService pollTransactionStatusForOrderId:self.orderId
                                               checksum:self.checksum
-                                            completion:^(IDEALStatus status, NSError *error) {
+                                            completion:^(JPResponse *response, NSError *error) {
                                                 if (error) {
                                                     self.completionBlock(nil, error);
                                                     return;
                                                 }
 
-                                                [self.transactionStatusView changeStatusTo:status];
+                                                JPOrderDetails *orderDetails = response.items.firstObject.orderDetails;
+                                                IDEALStatus orderStatus = [self orderStatusFromStatusString:orderDetails.orderStatus];
+
+                                                [self.transactionStatusView changeStatusTo:orderStatus];
                                             }];
+}
+
+- (IDEALStatus)orderStatusFromStatusString:(NSString *)orderStatusString {
+    if ([orderStatusString isEqual:@"PENDING"])
+        return IDEALStatusPending;
+    if ([orderStatusString isEqual:@"SUCCESS"])
+        return IDEALStatusSuccess;
+    return IDEALStatusFailed;
 }
 
 #pragma mark - Layout setup methods
