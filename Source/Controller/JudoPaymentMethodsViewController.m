@@ -187,7 +187,7 @@
                                        currentSession:self.judoKitSession
                                           cardDetails:self.viewModel.cardDetails
                                            completion:completion];
-    
+
     viewController.primaryAccountDetails = self.viewModel.primaryAccountDetails;
     viewController.theme = self.theme;
     [self.navigationController pushViewController:viewController animated:YES];
