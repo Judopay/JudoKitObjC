@@ -161,6 +161,34 @@
     return _securityMessageString;
 }
 
+- (NSString *)idealTransactionSuccessTitle {
+    if (!_idealTransactionSuccessTitle) {
+        _idealTransactionSuccessTitle = @"ideal_status_success".localized;
+    }
+    return _idealTransactionSuccessTitle;
+}
+
+- (NSString *)idealTransactionPendingTitle {
+    if (!_idealTransactionPendingTitle) {
+        _idealTransactionPendingTitle = @"ideal_status_pending".localized;
+    }
+    return _idealTransactionPendingTitle;
+}
+
+- (NSString *)idealTransactionFailedTitle {
+    if (!_idealTransactionFailedTitle) {
+        _idealTransactionFailedTitle = @"ideal_status_failed".localized;
+    }
+    return _idealTransactionFailedTitle;
+}
+
+- (NSString *)judoIDEALRetryButtonTitle {
+    if (!_judoIDEALRetryButtonTitle) {
+        _judoIDEALRetryButtonTitle = @"retry".localized;
+    }
+    return _judoIDEALRetryButtonTitle;
+}
+
 #pragma mark - Sizes
 
 - (CGFloat)inputFieldHeight {
@@ -285,7 +313,14 @@
     return _judoInputFieldBackgroundColor ? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
-#pragma marks - Payment Methods
+- (UIColor *)judoActivityIndicatorColor {
+    if (_judoButtonTitleColor) {
+        return _judoButtonTitleColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
+}
+
+#pragma mark - Payment Methods
 
 - (CGFloat)buttonHeight {
     if (_buttonHeight <= 0) {
@@ -306,6 +341,13 @@
         _buttonFont = [UIFont boldSystemFontOfSize:22.0];
     }
     return _buttonFont;
+}
+
+- (UIFont *)judoTextFont {
+    if (!_judoTextFont) {
+        _judoTextFont = [UIFont systemFontOfSize:16.0];
+    }
+    return _judoTextFont;
 }
 
 @end

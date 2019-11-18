@@ -222,6 +222,7 @@
 #pragma mark - Layout setup methods
 
 - (void)setupView {
+    self.view.backgroundColor = self.theme.judoContentViewBackgroundColor;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -327,6 +328,9 @@
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
+        _nameInputField.textField.textColor = self.theme.judoInputFieldTextColor;
+        _nameInputField.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
+        _nameInputField.backgroundColor = self.theme.judoInputFieldBackgroundColor;
         [_nameInputField.textField setPlaceholder:@"enter_name".localized
                                     floatingTitle:@"name".localized];
     }
@@ -340,8 +344,9 @@
         UILabel *selectedBankLabel = [UILabel new];
         selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
         selectedBankLabel.text = @"selected_bank".localized;
-        selectedBankLabel.textColor = self.theme.judoInputFieldTextColor;
-        selectedBankLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightBold];
+
+        selectedBankLabel.textColor = self.theme.judoTextColor;
+        selectedBankLabel.font = self.theme.judoTextFont;
 
         _selectedBankLabelView = [UIView new];
         _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -404,7 +409,7 @@
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
         _paymentButton.accessibilityIdentifier = @"Pay Button";
         [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
-        [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
+        [_paymentButton setTitle:self.theme.paymentButtonTitle forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
 
@@ -417,9 +422,9 @@
 
 - (TransactionStatusView *)transactionStatusView {
     if (!_transactionStatusView) {
-        _transactionStatusView = [TransactionStatusView viewWithStatus:IDEALStatusPending];
+        _transactionStatusView = [TransactionStatusView viewWithStatus:IDEALStatusPending andTheme:self.theme];
         _transactionStatusView.translatesAutoresizingMaskIntoConstraints = NO;
-        _transactionStatusView.backgroundColor = UIColor.whiteColor;
+        _transactionStatusView.backgroundColor = self.theme.judoLoadingBlockViewColor;
         _transactionStatusView.delegate = self;
     }
     return _transactionStatusView;
