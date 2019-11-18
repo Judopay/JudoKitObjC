@@ -189,6 +189,34 @@
     return _judoIDEALRetryButtonTitle;
 }
 
+- (NSString *)judoSelectBankTitle {
+    if (!_judoSelectBankTitle) {
+        _judoSelectBankTitle = @"select_ideal_bank".localized;
+    }
+    return _judoSelectBankTitle;
+}
+
+- (NSString *)judoSelectedBankTitle {
+    if (!_judoSelectedBankTitle) {
+        _judoSelectedBankTitle = @"selected_bank".localized;
+    }
+    return _judoSelectedBankTitle;
+}
+
+- (NSString *)judoIDEALNameInputFloatingTitle {
+    if (!_judoIDEALNameInputFloatingTitle) {
+        _judoIDEALNameInputFloatingTitle = @"name".localized;
+    }
+    return _judoIDEALNameInputFloatingTitle;
+}
+
+- (NSString *)judoIDEALNameInputPlaceholder {
+    if (!_judoIDEALNameInputPlaceholder) {
+        _judoIDEALNameInputPlaceholder = @"enter_name".localized;
+    }
+    return _judoIDEALNameInputPlaceholder;
+}
+
 #pragma mark - Sizes
 
 - (CGFloat)inputFieldHeight {
@@ -348,6 +376,13 @@
         _judoTextFont = [UIFont systemFontOfSize:16.0];
     }
     return _judoTextFont;
+}
+
+- (CGFloat)judoInputFieldBorderWidth {
+    if (!_judoInputFieldBorderWidth) {
+        _judoInputFieldBorderWidth = 0.0;
+    }
+    return _judoInputFieldBorderWidth;
 }
 
 @end

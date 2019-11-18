@@ -314,14 +314,15 @@
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
         _nameInputField.textField.textColor = self.theme.judoInputFieldTextColor;
         _nameInputField.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
+        _nameInputField.layer.borderWidth = self.theme.judoInputFieldBorderWidth;
         _nameInputField.backgroundColor = self.theme.judoInputFieldBackgroundColor;
 
         [_nameInputField.textField addTarget:self
                                       action:@selector(displayPaymentElementsIfNeeded)
                             forControlEvents:UIControlEventEditingChanged];
 
-        [_nameInputField.textField setPlaceholder:@"enter_name".localized
-                                    floatingTitle:@"name".localized];
+        [_nameInputField.textField setPlaceholder:self.theme.judoIDEALNameInputPlaceholder
+                                    floatingTitle:self.theme.judoIDEALNameInputFloatingTitle];
     }
 
     return _nameInputField;
@@ -332,7 +333,7 @@
 
         UILabel *selectedBankLabel = [UILabel new];
         selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        selectedBankLabel.text = @"selected_bank".localized;
+        selectedBankLabel.text = self.theme.judoSelectedBankTitle;
 
         selectedBankLabel.textColor = self.theme.judoTextColor;
         selectedBankLabel.font = self.theme.judoTextFont;
@@ -359,7 +360,7 @@
     if (!_bankSelectionCell) {
         _bankSelectionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
-        _bankSelectionCell.textLabel.text = @"select_ideal_bank".localized;
+        _bankSelectionCell.textLabel.text = self.theme.judoSelectBankTitle;
         _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
         _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

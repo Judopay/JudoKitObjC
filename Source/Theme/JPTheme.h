@@ -150,6 +150,26 @@
  */
 @property (nonatomic, strong) NSString *_Nonnull judoIDEALRetryButtonTitle;
 
+/**
+ *  the title of the Select Bank cell present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoSelectBankTitle;
+
+/**
+ *  the title of the Selected Bank label present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoSelectedBankTitle;
+
+/**
+ *  the title of the floating title of the name input field present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALNameInputFloatingTitle;
+
+/**
+ *  the placeholder of the name input field
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALNameInputPlaceholder;
+
 #pragma mark - Input fields
 
 /**
@@ -267,5 +287,10 @@
  * The font to be used by text elements
  */
 @property (nonatomic, strong) UIFont *_Nonnull judoTextFont;
+
+/**
+ * The border width of input fields
+ */
+@property (nonatomic, assign) CGFloat judoInputFieldBorderWidth;
 
 @end
