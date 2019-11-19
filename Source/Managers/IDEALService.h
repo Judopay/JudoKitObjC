@@ -42,19 +42,27 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
 typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
 
+/**
+ * A string describing the account holder name
+ */
+@property (nonatomic, strong) NSString *_Nullable accountHolderName;
+
+/**
+ * An reference to the IDEALServiceDelegate adopting object
+ */
 @property (nonatomic, weak) id<IDEALServiceDelegate> _Nullable delegate;
 
 /**
  * Creates an instance of an IDEALService object
  *
- * @param judoId           The judoID of the merchant to receive the token pre-auth
- * @param amount           The amount and currency of the pre-auth (default is GBP)
+ * @param judoId           The Judo ID of the merchant to receive the iDeal transaction
+ * @param amount           The amount expressed as a double value (currency is always EUR)
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  * @param session         An instance of JPSession that is used to make API requests
  * @param paymentMetadata                       Freeformat optional JSON metadata
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
-                                amount:(nonnull JPAmount *)amount
+                                amount:(double)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata;
@@ -78,5 +86,10 @@ typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
 - (void)pollTransactionStatusForOrderId:(nonnull NSString *)orderId
                                checksum:(nonnull NSString *)checksum
                              completion:(nonnull JudoCompletionBlock)completion;
+
+/**
+ * Method used to invalidate the timer and stop the polling process
+*/
+- (void)stopPollingTransactionStatus;
 
 @end

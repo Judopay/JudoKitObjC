@@ -73,7 +73,7 @@
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                          theme:(JPTheme *)theme
-                        amount:(JPAmount *)amount
+                        amount:(double)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
@@ -108,6 +108,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self.idealService stopPollingTransactionStatus];
     [self.nameInputField endEditing:YES];
     [self removeKeyboardObservers];
     [super viewWillDisappear:animated];
@@ -133,6 +134,7 @@
 
 - (void)onPayButtonTap:(id)sender {
 
+    self.idealService.accountHolderName = self.nameInputField.textField.text;
     [self.idealService redirectURLForIDEALBank:self.selectedBank
                                     completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
                                         if (error) {
