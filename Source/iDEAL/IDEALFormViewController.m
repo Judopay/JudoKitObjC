@@ -96,7 +96,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupView];
+    [self setupViews];
     [self displaySavedBankIfNeeded];
 }
 
@@ -144,24 +144,9 @@
                                     }];
 }
 
-- (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
-              didSelectBank:(IDEALBank *)bank {
-
-    [self shouldDisplayPaymentElements:YES];
-    self.selectedBank = bank;
-
-    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
-
-    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-
-    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
-
-    self.bankSelectionCell.textLabel.text = nil;
-    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
-
-    [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
+- (void)displayPaymentElementsIfNeeded {
+    BOOL shouldDisplay = (self.selectedBank != nil && self.nameInputField.textField.text.length > 0);
+    [self shouldDisplayPaymentElements:shouldDisplay];
 }
 
 #pragma mark - Action handlers
@@ -169,7 +154,6 @@
 - (void)shouldDisplayPaymentElements:(BOOL)shouldContinue {
     self.safeAreaView.hidden = !shouldContinue;
     self.paymentButton.hidden = !shouldContinue;
-    self.selectedBankLabelView.hidden = !shouldContinue;
     self.navigationItem.rightBarButtonItem.enabled = shouldContinue;
 }
 
@@ -221,17 +205,18 @@
 
 #pragma mark - Layout setup methods
 
-- (void)setupView {
+- (void)setupViews {
+    self.view.backgroundColor = self.theme.judoContentViewBackgroundColor;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
     [self.view addGestureRecognizer:tapGesture];
-
     [self setupNavigationBar];
     [self setupPaymentButton];
     [self setupStackView];
     [self setupTransactionStatusView];
     [self applyTheme:self.theme];
 
+    self.selectedBankLabelView.hidden = YES;
     self.transactionStatusView.hidden = YES;
 }
 
@@ -327,8 +312,17 @@
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
-        [_nameInputField.textField setPlaceholder:@"enter_name".localized
-                                    floatingTitle:@"name".localized];
+        _nameInputField.textField.textColor = self.theme.judoInputFieldTextColor;
+        _nameInputField.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
+        _nameInputField.layer.borderWidth = self.theme.judoInputFieldBorderWidth;
+        _nameInputField.backgroundColor = self.theme.judoInputFieldBackgroundColor;
+
+        [_nameInputField.textField addTarget:self
+                                      action:@selector(displayPaymentElementsIfNeeded)
+                            forControlEvents:UIControlEventEditingChanged];
+
+        [_nameInputField.textField setPlaceholder:self.theme.judoIDEALNameInputPlaceholder
+                                    floatingTitle:self.theme.judoIDEALNameInputFloatingTitle];
     }
 
     return _nameInputField;
@@ -339,9 +333,10 @@
 
         UILabel *selectedBankLabel = [UILabel new];
         selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        selectedBankLabel.text = @"selected_bank".localized;
-        selectedBankLabel.textColor = self.theme.judoInputFieldTextColor;
-        selectedBankLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightBold];
+        selectedBankLabel.text = self.theme.judoSelectedBankTitle;
+
+        selectedBankLabel.textColor = self.theme.judoTextColor;
+        selectedBankLabel.font = self.theme.judoTextFont;
 
         _selectedBankLabelView = [UIView new];
         _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -365,7 +360,7 @@
     if (!_bankSelectionCell) {
         _bankSelectionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
-        _bankSelectionCell.textLabel.text = @"select_ideal_bank".localized;
+        _bankSelectionCell.textLabel.text = self.theme.judoSelectBankTitle;
         _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
         _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -404,7 +399,7 @@
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
         _paymentButton.accessibilityIdentifier = @"Pay Button";
         [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
-        [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
+        [_paymentButton setTitle:self.theme.paymentButtonTitle forState:UIControlStateNormal];
         [_paymentButton.titleLabel setFont:self.theme.buttonFont];
         [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
 
@@ -417,9 +412,9 @@
 
 - (TransactionStatusView *)transactionStatusView {
     if (!_transactionStatusView) {
-        _transactionStatusView = [TransactionStatusView viewWithStatus:IDEALStatusPending];
+        _transactionStatusView = [TransactionStatusView viewWithStatus:IDEALStatusPending andTheme:self.theme];
         _transactionStatusView.translatesAutoresizingMaskIntoConstraints = NO;
-        _transactionStatusView.backgroundColor = UIColor.whiteColor;
+        _transactionStatusView.backgroundColor = self.theme.judoLoadingBlockViewColor;
         _transactionStatusView.delegate = self;
     }
     return _transactionStatusView;
@@ -504,9 +499,9 @@
 - (void)tableViewController:(IDEALBankSelectionTableViewController *)controller
               didSelectBank:(IDEALBank *)bank {
 
-    [self shouldDisplayPaymentElements:YES];
     self.selectedBank = bank;
-
+    [self displayPaymentElementsIfNeeded];
+    self.selectedBankLabelView.hidden = NO;
     NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
 
     NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];

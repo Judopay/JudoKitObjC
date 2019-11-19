@@ -61,9 +61,9 @@
 "enter_name" = "Insira o nome";
 "name" = "Nome";
 "select_bank" = "Selecione %@ como seu banco iDEAL";
-"transaction_success" = "Sucesso na transação!";
-"transaction_pending" = "Transação pendente ...";
-"transaction_failed" = "Falha na transação!";
+"ideal_transaction_success" = "Sucesso na transação!";
+"ideal_transaction_pending" = "Transação pendente ...";
+"ideal_transaction_failed" = "Falha na transação!";
 "retry" = "Repetir";
 
 //JudoPayViewController

@@ -28,6 +28,7 @@
 
 @interface TransactionStatusView ()
 
+@property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) UIImageView *statusImageView;
@@ -39,12 +40,13 @@
 
 #pragma mark - Initializers
 
-+ (instancetype)viewWithStatus:(IDEALStatus)status {
-    return [[TransactionStatusView alloc] initWithStatus:status];
++ (instancetype)viewWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme {
+    return [[TransactionStatusView alloc] initWithStatus:status andTheme:theme];
 }
 
-- (instancetype)initWithStatus:(IDEALStatus)status {
+- (instancetype)initWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme {
     if (self = [super init]) {
+        self.theme = theme;
         [self setupLayout];
         [self setupViewsForStatus:status];
     }
@@ -66,6 +68,8 @@
 #pragma mark - Layout setup methods
 
 - (void)setupLayout {
+    self.backgroundColor = self.theme.judoLoadingBackgroundColor;
+
     UIStackView *horizontalStackView = [UIStackView new];
     [horizontalStackView setAxis:UILayoutConstraintAxisHorizontal];
     horizontalStackView.spacing = 10.0f;
@@ -107,13 +111,13 @@
 - (NSString *)titleForStatus:(IDEALStatus)status {
     switch (status) {
         case IDEALStatusFailed:
-            return @"transaction_failed".localized;
+            return self.theme.idealTransactionFailedTitle;
 
         case IDEALStatusPending:
-            return @"transaction_pending".localized;
+            return self.theme.idealTransactionPendingTitle;
 
         case IDEALStatusSuccess:
-            return @"transaction_success".localized;
+            return self.theme.idealTransactionSuccessTitle;
     }
 }
 
@@ -146,13 +150,16 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.textColor = self.theme.judoTextColor;
+        _titleLabel.font = self.theme.judoTextFont;
     }
     return _titleLabel;
 }
 
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.theme.judoActivityIndicatorType];
+        _activityIndicatorView.color = self.theme.judoActivityIndicatorColor;
         _activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
         _activityIndicatorView.hidesWhenStopped = YES;
     }
@@ -172,8 +179,9 @@
     if (!_retryButton) {
         _retryButton = [UIButton new];
         _retryButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_retryButton setTitle:@"retry".localized forState:UIControlStateNormal];
-        [_retryButton setBackgroundColor:UIColor.errorRed];
+        [_retryButton setTitle:self.theme.judoIDEALRetryButtonTitle forState:UIControlStateNormal];
+        [_retryButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+        [_retryButton setBackgroundColor:self.theme.judoButtonColor];
         _retryButton.layer.cornerRadius = 5.0f;
         [_retryButton addTarget:self
                          action:@selector(didTapRetryButton:)

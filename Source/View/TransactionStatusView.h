@@ -25,7 +25,7 @@
 #import "IDEALService.h"
 #import <UIKit/UIKit.h>
 
-@class TransactionStatusView;
+@class TransactionStatusView, JPTheme;
 
 @protocol TransactionStatusViewDelegate
 - (void)statusViewRetryButtonDidTap:(TransactionStatusView *)statusView;
@@ -45,15 +45,17 @@
  * Designated initializer that uses an IDEALStatus enum to setup its views
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ * @param theme - An instance of a JPTheme object used for customizing the appearance
  */
-+ (instancetype)viewWithStatus:(IDEALStatus)status;
++ (instancetype)viewWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme;
 
 /**
  * Designated initializer that uses an IDEALStatus enum to setup its views
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ * @param theme - An instance of a JPTheme object used for customizing the appearance
  */
-- (instancetype)initWithStatus:(IDEALStatus)status;
+- (instancetype)initWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme;
 
 /**
  * Method used to update the UI when a transaction status changes
