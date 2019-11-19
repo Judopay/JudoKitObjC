@@ -75,8 +75,8 @@ static NSString *statusEndpoint = @"order/bank/getstatus";
             completion:^(JPResponse *response, NSError *error) {
                 JPTransactionData *data = response.items.firstObject;
 
-                if (data.orderId && data.redirectUrl) {
-                    completion(data.redirectUrl, data.orderId, error);
+                if (data.orderDetails.orderId && data.redirectUrl) {
+                    completion(data.redirectUrl, data.orderDetails.orderId, error);
                     return;
                 }
 
@@ -86,13 +86,13 @@ static NSString *statusEndpoint = @"order/bank/getstatus";
 
 - (void)pollTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
-                             completion:(JudoPollingCompletion)completion {
+                             completion:(JudoCompletionBlock)completion {
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
                                                        self.didTimeout = true;
-                                                       completion(IDEALStatusFailed, nil);
+                                                       completion(nil, NSError.judoRequestTimeoutError);
                                                        return;
                                                    }];
 
@@ -101,25 +101,13 @@ static NSString *statusEndpoint = @"order/bank/getstatus";
 
 - (void)getStatusForOrderId:(NSString *)orderId
                    checksum:(NSString *)checksum
-                 completion:(JudoPollingCompletion)completion {
+                 completion:(JudoCompletionBlock)completion {
 
     [self.session POST:statusEndpoint
             parameters:nil
             completion:^(JPResponse *response, NSError *error) {
                 if (error) {
-                    completion(IDEALStatusFailed, error);
-                    [self.timer invalidate];
-                    return;
-                }
-
-                if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"SUCCESS"]) {
-                    completion(IDEALStatusSuccess, nil);
-                    [self.timer invalidate];
-                    return;
-                }
-
-                if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"FAIL"]) {
-                    completion(IDEALStatusFailed, nil);
+                    completion(nil, error);
                     [self.timer invalidate];
                     return;
                 }
@@ -137,7 +125,7 @@ static NSString *statusEndpoint = @"order/bank/getstatus";
                     return;
                 }
 
-                completion(IDEALStatusFailed, NSError.judoRequestFailedError);
+                completion(response, error);
                 [self.timer invalidate];
             }];
 }

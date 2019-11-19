@@ -22,9 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPSession.h"
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPReference, IDEALBank, JPSession;
+@class JPAmount, JPReference, IDEALBank;
 
 typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusSuccess,
@@ -70,6 +71,6 @@ typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
  */
 - (void)pollTransactionStatusForOrderId:(nonnull NSString *)orderId
                                checksum:(nonnull NSString *)checksum
-                             completion:(nonnull JudoPollingCompletion)completion;
+                             completion:(nonnull JudoCompletionBlock)completion;
 
 @end

@@ -40,22 +40,19 @@
 
 - (void)populateWith:(NSDictionary *)dictionary {
     self.receiptId = dictionary[@"receiptId"];
-    self.paymentReference = dictionary[@"yourPaymentReference"];
     self.type = [self transactionTypeForString:dictionary[@"type"]];
     self.createdAt = dictionary[@"createdAt"];
     self.result = [self transactionResultForString:dictionary[@"result"]];
     self.message = dictionary[@"message"];
-    self.judoId = dictionary[@"judoId"];
-    self.orderId = dictionary[@"orderId"];
     self.redirectUrl = dictionary[@"redirectUrl"];
     self.merchantName = dictionary[@"merchantName"];
     self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];
+    self.paymentMethod = dictionary[@"paymentMethod"];
 
-    NSDictionary *orderDetailsDict = dictionary[@"orderDetails"];
-
-    if (orderDetailsDict) {
-        self.orderDetails = [[JPOrderDetails alloc] initWithDictionary:orderDetailsDict];
-    }
+    [self setupJudoIDFromDictionary:dictionary];
+    [self setupPaymentReferenceFromDictionary:dictionary];
+    [self setupConsumerFromDictionary:dictionary];
+    [self setupIDEALFromDictionary:dictionary];
 
     NSString *currency = dictionary[@"currency"];
     if (dictionary[@"refunds"]) {
@@ -72,8 +69,50 @@
     if (cardDetailsDictionary) {
         self.cardDetails = [[JPCardDetails alloc] initWithDictionary:cardDetailsDictionary];
     }
-    self.consumer = [[JPConsumer alloc] initWithDictionary:dictionary[@"consumer"]];
+
     self.rawData = dictionary;
+}
+
+- (void)setupJudoIDFromDictionary:(NSDictionary *)dictionary {
+    if (dictionary[@"siteId"]) {
+        self.judoId = dictionary[@"siteId"];
+    } else {
+        self.judoId = dictionary[@"judoId"];
+    }
+}
+
+- (void)setupPaymentReferenceFromDictionary:(NSDictionary *)dictionary {
+    if (dictionary[@"merchantPaymentReference"]) {
+        self.paymentReference = dictionary[@"merchantPaymentReference"];
+    } else {
+        self.paymentReference = dictionary[@"yourPaymentReference"];
+    }
+}
+
+- (void)setupConsumerFromDictionary:(NSDictionary *)dictionary {
+    if (dictionary[@"merchantConsumerReference"]) {
+        NSDictionary *consumerDictionary = @{
+            @"yourConsumerReference" : dictionary[@"merchantConsumerReference"]
+        };
+        self.consumer = [[JPConsumer alloc] initWithDictionary:consumerDictionary];
+    } else {
+        self.consumer = [[JPConsumer alloc] initWithDictionary:dictionary[@"consumer"]];
+    }
+}
+
+- (void)setupIDEALFromDictionary:(NSDictionary *)dictionary {
+
+    NSDictionary *orderDetailsDict = dictionary[@"orderDetails"];
+    NSString *orderId = dictionary[@"orderId"];
+
+    if (orderDetailsDict) {
+        self.orderDetails = [[JPOrderDetails alloc] initWithDictionary:orderDetailsDict];
+    }
+
+    if (orderId) {
+        self.orderDetails = [JPOrderDetails new];
+        self.orderDetails.orderId = orderId;
+    }
 }
 
 - (TransactionResult)transactionResultForString:(NSString *)resultString {

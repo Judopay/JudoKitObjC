@@ -32,7 +32,7 @@
 /**
  *  The order identifier for the transaction
  */
-@property (nonatomic, strong, readonly) NSString *_Nullable orderId;
+@property (nonatomic, strong) NSString *_Nullable orderId;
 
 /**
  *  The status of the transaction
