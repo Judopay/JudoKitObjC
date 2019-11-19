@@ -76,6 +76,7 @@ static NSString *statusEndpoint = @"order/bank/getstatus";
                 JPTransactionData *data = response.items.firstObject;
 
                 if (data.orderDetails.orderId && data.redirectUrl) {
+                    [self.delegate idealService:self didFetchRedirectResponse:response];
                     completion(data.redirectUrl, data.orderDetails.orderId, error);
                     return;
                 }

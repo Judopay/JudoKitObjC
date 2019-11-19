@@ -39,13 +39,14 @@
 /**
  *  Initializer that displays the iDEAL transaction form
  *
- *  @param judoId       The judoID of the merchant to receive the token pre-auth
- *  @param theme - An instance of a JPTheme object that defines the style of the form
- *  @param amount       The amount and currency of the pre-auth (default is GBP)
- *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param session - An instance of a JPSession object that is used for making API requests
- *  @param paymentMetadata - An optional parameter for additional metadata
- *  @param completion -  Completion block called when transaction has been finished
+ *  @param judoId                            The judoID of the merchant to receive the token pre-auth
+ *  @param theme                              An instance of a JPTheme object that defines the style of the form
+ *  @param amount                            The amount and currency of the pre-auth (default is GBP)
+ *  @param reference                     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param session                          An instance of a JPSession object that is used for making API requests
+ *  @param paymentMetadata        An optional parameter for additional metadata
+ *  @param delegate                        An optional delegate parameter that, once implemented, will allow you to capture the IDEAL redirect response data
+ *  @param completion                   Completion block called when transaction has been finished
  *
  *  @return an initialized IDEALFormViewController object
  */
@@ -55,6 +56,7 @@
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata
+                              delegate:(nullable id<IDEALServiceDelegate>)delegate
                             completion:(nonnull JudoCompletionBlock)completion;
 
 @end

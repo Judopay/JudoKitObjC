@@ -25,7 +25,7 @@
 #import "JPSession.h"
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPReference, IDEALBank;
+@class JPAmount, JPReference, IDEALBank, IDEALService, JPResponse;
 
 typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusSuccess,
@@ -33,10 +33,16 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusFailed
 };
 
+@protocol IDEALServiceDelegate
+- (void)idealService:(nonnull IDEALService *)idealService didFetchRedirectResponse:(nonnull JPResponse *)response;
+@end
+
 @interface IDEALService : NSObject
 
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
 typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
+
+@property (nonatomic, weak) id<IDEALServiceDelegate> _Nullable delegate;
 
 /**
  * Creates an instance of an IDEALService object

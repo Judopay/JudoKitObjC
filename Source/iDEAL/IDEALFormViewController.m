@@ -77,6 +77,7 @@
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
+                      delegate:(id<IDEALServiceDelegate>)delegate
                     completion:(JudoCompletionBlock)completion {
 
     if (self = [super init]) {
@@ -87,6 +88,7 @@
                                                        reference:reference
                                                          session:session
                                                  paymentMetadata:paymentMetadata];
+        self.idealService.delegate = delegate;
     }
 
     return self;

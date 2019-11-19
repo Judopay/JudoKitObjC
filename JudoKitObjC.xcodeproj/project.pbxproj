@@ -35,7 +35,7 @@
 		300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */; };
 		300654B3237AA92A00097955 /* JPPrimaryAccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */; };
 		300654BF237AB7D000097955 /* IDEALService.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B6237AB7D000097955 /* IDEALService.m */; };
-		300654C0237AB7D000097955 /* IDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALService.h */; };
+		300654C0237AB7D000097955 /* IDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30225D09237E8E6D005EB28C /* TransactionStatusView.h */; };
