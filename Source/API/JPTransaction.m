@@ -82,9 +82,9 @@
     }
 
     self.currentTransactionReference = self.reference.paymentReference;
-    
+
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, self.transactionPath];
-    
+
     [self.enricher enrichTransaction:self
                       withCompletion:^{
                           [self.apiSession POST:fullURL parameters:self.parameters completion:completion];
@@ -116,9 +116,9 @@
 }
 
 - (void)threeDSecureWithParameters:(NSDictionary *)parameters receiptId:(NSString *)receiptId completion:(JudoCompletionBlock)completion {
-    
+
     NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.endpoint, receiptId];
-    
+
     [self.apiSession PUT:fullURL
               parameters:parameters
               completion:completion];

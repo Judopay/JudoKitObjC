@@ -92,7 +92,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
 
     _iDealEndpoint = @"https://api.judopay.com/";
-    
+
     return self;
 }
 

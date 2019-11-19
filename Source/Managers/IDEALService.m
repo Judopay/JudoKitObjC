@@ -70,7 +70,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
                      completion:(JudoRedirectCompletion)completion {
 
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, redirectEndpoint];
-    
+
     [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
             completion:^(JPResponse *response, NSError *error) {
@@ -105,10 +105,11 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
                    checksum:(NSString *)checksum
                  completion:(JudoCompletionBlock)completion {
 
-    if (self.didTimeout) return;
-     
+    if (self.didTimeout)
+        return;
+
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, statusEndpoint];
-    
+
     [self.session POST:fullURL
             parameters:[self pollingParametersForOrderID:orderId checksum:checksum]
             completion:^(JPResponse *response, NSError *error) {
@@ -141,7 +142,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
 
     NSNumber *amount = [NSNumber numberWithDouble:self.amount];
     NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
-    
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
         @"paymentMethod" : @"IDEAL",
         @"currency" : @"EUR",
@@ -163,22 +164,22 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
 
 - (NSDictionary *)pollingParametersForOrderID:(NSString *)orderId
                                      checksum:(NSString *)checksum {
-    
+
     NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary: @{
-         @"paymentMethod": @"IDEAL",
-         @"orderId": orderId,
-         @"siteId": self.judoId,
-         @"merchantPaymentReference": trimmedPaymentReference,
-         @"merchantConsumerReference": self.reference.consumerReference,
-         @"checksum": checksum
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"paymentMethod" : @"IDEAL",
+        @"orderId" : orderId,
+        @"siteId" : self.judoId,
+        @"merchantPaymentReference" : trimmedPaymentReference,
+        @"merchantConsumerReference" : self.reference.consumerReference,
+        @"checksum" : checksum
     }];
-    
+
     if (self.paymentMetadata) {
         parameters[@"paymentMetadata"] = self.paymentMetadata;
     }
-    
+
     return parameters;
 }
 
