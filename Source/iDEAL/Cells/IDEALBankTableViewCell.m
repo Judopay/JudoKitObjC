@@ -22,12 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALBank.h"
 #import "IDEALBankTableViewCell.h"
+#import "IDEALBank.h"
 #import "NSBundle+Additions.h"
 #import "NSString+Localize.h"
 
-@interface IDEALBankTableViewCell()
+@interface IDEALBankTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bankLogoImageView;
 
@@ -39,10 +39,10 @@
 
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
     NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:iconName ofType:@"png"];
-    
-    self.bankLogoImageView.image =[UIImage imageWithContentsOfFile:iconFilePath];
+
+    self.bankLogoImageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
     self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
+
     self.bankLogoImageView.isAccessibilityElement = YES;
     self.bankLogoImageView.accessibilityLabel = bank.title;
     self.bankLogoImageView.accessibilityHint = [NSString stringWithFormat:@"select_bank".localized, bank.title];

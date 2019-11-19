@@ -32,8 +32,8 @@
 #import "DateInputField.h"
 #import "FloatingTextField.h"
 #import "IDEALFormViewController.h"
-#import "JPCollection.h"
 #import "JPCheckCard.h"
+#import "JPCollection.h"
 #import "JPInputField.h"
 #import "JPPayment.h"
 #import "JPPreAuth.h"
@@ -85,7 +85,7 @@
 - (instancetype)initWithToken:(NSString *)token
                        secret:(NSString *)secret
        allowJailbrokenDevices:(BOOL)jailbrokenDevicesAllowed {
-    
+
     self = [super init];
 
     if (!self)
@@ -111,7 +111,7 @@
 
 - (void)sendWithCompletion:(nonnull JPTransaction *)transaction
                 completion:(nonnull JudoCompletionBlock)completion {
-    
+
     [transaction sendWithCompletion:completion];
 }
 
@@ -130,8 +130,7 @@
                                                                            currentSession:self
                                                                               cardDetails:cardDetails
                                                                                completion:completion];
-    
-    
+
     viewController.primaryAccountDetails = self.primaryAccountDetails;
     viewController.paymentToken = paymentToken;
     viewController.theme = self.theme;
@@ -146,7 +145,7 @@
                                     judoId:(NSString *)judoId
                                     amount:(nullable JPAmount *)amount
                                  reference:(nonnull JPReference *)reference {
-    
+
     JPTransaction *transaction = [type new];
     transaction.judoId = judoId;
     transaction.amount = amount;
@@ -162,7 +161,7 @@
                                judoId:(NSString *)judoId
                                amount:(JPAmount *)amount
                             reference:(JPReference *)reference {
-    
+
     Class transactionTypeClass;
 
     switch (type) {
@@ -181,7 +180,7 @@
         case TransactionTypeSaveCard:
             transactionTypeClass = JPSaveCard.class;
             break;
-            
+
         case TransactionTypeCheckCard:
             transactionTypeClass = JPCheckCard.class;
             break;
@@ -199,7 +198,7 @@
 - (JPPayment *)paymentWithJudoId:(NSString *)judoId
                           amount:(JPAmount *)amount
                        reference:(JPReference *)reference {
-    
+
     return (JPPayment *)[self transactionForTypeClass:JPPayment.class
                                                judoId:judoId
                                                amount:amount
@@ -209,7 +208,7 @@
 - (JPPreAuth *)preAuthWithJudoId:(NSString *)judoId
                           amount:(JPAmount *)amount
                        reference:(JPReference *)reference {
-    
+
     return (JPPreAuth *)[self transactionForTypeClass:JPPreAuth.class
                                                judoId:judoId
                                                amount:amount
@@ -218,7 +217,7 @@
 
 - (JPRegisterCard *)registerCardWithJudoId:(NSString *)judoId
                                  reference:(JPReference *)reference {
-    
+
     return (JPRegisterCard *)[self transactionForTypeClass:JPRegisterCard.class
                                                     judoId:judoId
                                                     amount:nil
@@ -228,7 +227,7 @@
 - (JPCheckCard *)checkCardWithJudoId:(NSString *)judoId
                             currency:(NSString *)currency
                            reference:(JPReference *)reference {
-    
+
     return (JPCheckCard *)[self transactionForTypeClass:JPRegisterCard.class
                                                  judoId:judoId
                                                  amount:currency ? [JPAmount amount:@"0.0" currency:currency] : nil
@@ -246,17 +245,17 @@
 - (JPTransactionProcess *)transactionProcessForType:(Class)type
                                           receiptId:(NSString *)receiptId
                                              amount:(JPAmount *)amount {
-    
+
     JPTransactionProcess *transactionProc = [[type alloc] initWithReceiptId:receiptId
                                                                      amount:amount];
-    
+
     transactionProc.apiSession = self.apiSession;
     return transactionProc;
 }
 
 - (JPCollection *)collectionWithReceiptId:(NSString *)receiptId
                                    amount:(JPAmount *)amount {
-    
+
     return (JPCollection *)[self transactionProcessForType:JPCollection.class
                                                  receiptId:receiptId
                                                     amount:amount];
@@ -264,7 +263,7 @@
 
 - (JPVoid *)voidWithReceiptId:(NSString *)receiptId
                        amount:(JPAmount *)amount {
-    
+
     return (JPVoid *)[self transactionProcessForType:JPVoid.class
                                            receiptId:receiptId
                                               amount:amount];
@@ -272,7 +271,7 @@
 
 - (JPRefund *)refundWithReceiptId:(NSString *)receiptId
                            amount:(JPAmount *)amount {
-    
+
     return (JPRefund *)[self transactionProcessForType:JPRefund.class
                                              receiptId:receiptId
                                                 amount:amount];
@@ -285,9 +284,9 @@
 }
 
 - (void)list:(Class)type
-   paginated:(JPPagination *)pagination
-  completion:(JudoCompletionBlock)completion {
-    
+     paginated:(JPPagination *)pagination
+    completion:(JudoCompletionBlock)completion {
+
     JPTransaction *transaction = [type new];
     transaction.apiSession = self.apiSession;
     [transaction listWithPagination:pagination completion:completion];
@@ -358,7 +357,7 @@
     consumerReference:(NSString *)reference
           cardDetails:(JPCardDetails *)cardDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -373,7 +372,7 @@
             reference:(JPReference *)reference
           cardDetails:(JPCardDetails *)cardDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:reference
@@ -388,7 +387,7 @@
     consumerReference:(NSString *)reference
           cardDetails:(JPCardDetails *)cardDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -402,7 +401,7 @@
          consumerReference:(NSString *)reference
                cardDetails:(JPCardDetails *)cardDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:nil
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -416,7 +415,7 @@
                currency:(NSString *)currency
               reference:(JPReference *)reference
             cardDetails:(JPCardDetails *)cardDetails
-             completion:(void (^)(JPResponse * _Nullable, NSError * _Nullable))completion {
+             completion:(void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:currency ? [JPAmount amount:@"0.0" currency:currency] : nil
                                        reference:reference
@@ -430,7 +429,7 @@
      consumerReference:(NSString *)reference
            cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:nil
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -446,7 +445,7 @@
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -462,7 +461,7 @@
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:[[JPReference alloc] initWithConsumerReference:reference]
@@ -477,7 +476,7 @@
             reference:(JPReference *)reference
           cardDetails:(JPCardDetails *)cardDetails
            completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:reference
@@ -491,7 +490,7 @@
                  reference:(JPReference *)reference
                cardDetails:(JPCardDetails *)cardDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:nil
                                        reference:reference
@@ -505,7 +504,7 @@
              reference:(JPReference *)reference
            cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:nil
                                        reference:reference
@@ -521,7 +520,7 @@
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:reference
@@ -537,7 +536,7 @@
                cardDetails:(JPCardDetails *)cardDetails
               paymentToken:(JPPaymentToken *)paymentToken
                 completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     [self presentPaymentViewControllerWithJudoId:judoId
                                           amount:amount
                                        reference:reference
@@ -551,7 +550,7 @@
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
                           completion:(JudoCompletionBlock)completion {
-    
+
     IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
                                                                                     theme:self.theme
                                                                                    amount:amount
@@ -559,6 +558,7 @@
                                                                                   session:self.apiSession
                                                                           paymentMetadata:self.paymentMetadata
                                                                                completion:completion];
+
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -584,7 +584,7 @@
         completion(nil, NSError.judoApplePayConfigurationError);
         return;
     }
-    
+
     self.viewController.delegate = self;
 
     self.completionBlock = completion;

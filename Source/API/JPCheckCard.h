@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPTransaction.h"
+#import <Foundation/Foundation.h>
 
 /**
  *  A JPCheckCard object is returned from invoking the Judo SDK 'checkCard' method, and contains the necessary details of the transaction

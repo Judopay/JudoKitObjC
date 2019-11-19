@@ -33,7 +33,7 @@
          primaryAccountDetails:(JPPrimaryAccountDetails *)primaryAccountDetails
          applePayConfiguration:(nullable ApplePayConfiguration *)applePayConfiguration
                    cardDetails:(nullable JPCardDetails *)cardDetails {
-    
+
     if (self = [super init]) {
         _judoId = judoId;
         _amount = amount;

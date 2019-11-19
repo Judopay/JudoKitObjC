@@ -102,10 +102,7 @@
         return [NSError judoReferenceMissingError];
     }
 
-    if (![self isKindOfClass:JPRegisterCard.class]
-        && ![self isKindOfClass:JPCheckCard.class]
-        && ![self isKindOfClass:JPSaveCard.class]
-        && !self.amount) {
+    if (![self isKindOfClass:JPRegisterCard.class] && ![self isKindOfClass:JPCheckCard.class] && ![self isKindOfClass:JPSaveCard.class] && !self.amount) {
         return [NSError judoAmountMissingError];
     }
 

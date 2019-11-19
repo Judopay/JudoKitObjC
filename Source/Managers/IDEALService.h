@@ -22,9 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPSession.h"
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPReference, IDEALBank, JPSession;
+@class JPAmount, JPReference, IDEALBank;
 
 typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusSuccess,
@@ -35,7 +36,7 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
 @interface IDEALService : NSObject
 
 typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
-typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
+typedef void (^JudoPollingCompletion)(IDEALStatus, NSError *_Nullable);
 
 /**
  * Creates an instance of an IDEALService object
@@ -58,8 +59,8 @@ typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
  * @param idealBank    An instance of IDEALBank that holds the iDEAL's bank name and identifier code
  * @param completion  A completion block that either returns the redirect URL string or returns an error
  */
-- (void)getRedirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
-                        completion:(nonnull JudoRedirectCompletion)completion;
+- (void)redirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
+                     completion:(nonnull JudoRedirectCompletion)completion;
 
 /**
  * Method used for returning a redirect URL based on the specified iDEAL bank
@@ -68,8 +69,8 @@ typedef void (^JudoPoolingCompletion)(IDEALStatus, NSError *_Nullable);
  * @param checksum       A string property returned from the redirect URL used to validate the transaction
  * @param completion  A completion block that either returns the transaction status or returns an error
  */
-- (void)poolTransactionStatusForOrderId:(nonnull NSString *)orderId
+- (void)pollTransactionStatusForOrderId:(nonnull NSString *)orderId
                                checksum:(nonnull NSString *)checksum
-                              completion:(nonnull JudoPoolingCompletion)completion;
+                             completion:(nonnull JudoCompletionBlock)completion;
 
 @end
