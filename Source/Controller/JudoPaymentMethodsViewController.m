@@ -67,7 +67,7 @@
         _viewModel = viewModel;
         _judoKitSession = session;
         _completionBlock = completion;
-        
+
         self.idealDelegate = idealDelegate;
     }
     return self;
