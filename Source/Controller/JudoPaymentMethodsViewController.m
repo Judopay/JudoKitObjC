@@ -24,6 +24,7 @@
 
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
+#import <ZappMerchantLib/ZappMerchantLib.h>
 
 #import "JPAmount.h"
 #import "JPResponse.h"
@@ -40,8 +41,9 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+#import "PBBAService.h"
 
-@interface JudoPaymentMethodsViewController ()
+@interface JudoPaymentMethodsViewController () <PBBAButtonDelegate>
 
 @property (nonatomic, strong) UIStackView *stackView;
 @property (nonatomic, strong) JPTheme *theme;
@@ -51,6 +53,8 @@
 
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) JudoKit *judoKitSession;
+
+@property (nonatomic, strong) PBBAService *pbbaService;
 
 @property PaymentMethods methods;
 
@@ -70,6 +74,12 @@
         _completionBlock = completion;
 
         self.idealDelegate = idealDelegate;
+        
+        self.pbbaService = [[PBBAService alloc] initWithJudoId:self.viewModel.judoId
+                                                        amount:self.viewModel.amount
+                                                     reference:self.viewModel.reference
+                                                       session:self.judoKitSession.apiSession
+                                               paymentMetadata:nil];
     }
     return self;
 }
@@ -189,6 +199,14 @@
 
         [self.stackView addArrangedSubview:idealButton];
     }
+    
+    //TODO: ADD PBBA VIEW MODEL
+    PBBAButton *pbbaButton = [[PBBAButton alloc] initWithFrame: CGRectZero];
+    pbbaButton.delegate = self;
+    pbbaButton.cornerRadius = self.theme.buttonCornerRadius;
+
+    [[pbbaButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight] setActive:YES];
+    [self.stackView addArrangedSubview:pbbaButton];
 }
 
 - (void)paymentMethodButtonDidTap:(UIView *)button {
@@ -263,6 +281,13 @@
     if (self.completionBlock) {
         self.completionBlock(nil, [NSError judoUserDidCancelError]);
     }
+}
+
+- (BOOL)pbbaButtonDidPress:(PBBAButton *)pbbaButton {
+    [self.pbbaService redirectURLWithCompletion:^(JPResponse *response, NSError *error) {
+        //TODO: Handle response / error
+    }];
+    return YES;
 }
 
 @end
