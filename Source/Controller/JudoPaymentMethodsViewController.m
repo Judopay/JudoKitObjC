@@ -25,6 +25,7 @@
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
 
+#import "JPAmount.h"
 #import "JPResponse.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -247,7 +248,7 @@
     __weak JudoPaymentMethodsViewController *weakSelf = self;
 
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
-                                               amount:self.viewModel.amount
+                                               amount:self.viewModel.amount.amount.doubleValue
                                             reference:self.viewModel.reference
                                              delegate:self.idealDelegate
                                            completion:^(JPResponse *response, NSError *error) {

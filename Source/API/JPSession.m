@@ -91,6 +91,8 @@ static NSString *const HTTPMethodPUT = @"PUT";
     NSURL *requestURL = [NSURL URLWithString:self.endpoint];
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
 
+    _iDealEndpoint = @"https://api.judopay.com/";
+
     return self;
 }
 
@@ -116,8 +118,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
                       parameters:(NSDictionary *)parameters
                       completion:(JudoCompletionBlock)completion {
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.endpoint, path];
-    NSMutableURLRequest *request = [self judoRequest:fullURL];
+    NSMutableURLRequest *request = [self judoRequest:path];
 
     request.HTTPMethod = HTTPMethod;
 

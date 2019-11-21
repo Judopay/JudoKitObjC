@@ -58,6 +58,7 @@
 
 @property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, strong) NSString *checksum;
+@property (nonatomic, strong) NSString *redirectUrl;
 
 @property (nonatomic, strong) IDEALService *idealService;
 @property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
@@ -73,7 +74,7 @@
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                          theme:(JPTheme *)theme
-                        amount:(JPAmount *)amount
+                        amount:(double)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
@@ -108,6 +109,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self.idealService stopPollingTransactionStatus];
     [self.nameInputField endEditing:YES];
     [self removeKeyboardObservers];
     [super viewWillDisappear:animated];
@@ -133,6 +135,7 @@
 
 - (void)onPayButtonTap:(id)sender {
 
+    self.idealService.accountHolderName = self.nameInputField.textField.text;
     [self.idealService redirectURLForIDEALBank:self.selectedBank
                                     completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
                                         if (error) {
@@ -141,6 +144,8 @@
                                         }
 
                                         self.orderId = orderId;
+                                        self.redirectUrl = redirectUrl;
+
                                         self.navigationItem.rightBarButtonItem.enabled = NO;
                                         [self loadWebViewWithURLString:redirectUrl];
                                     }];
@@ -480,15 +485,22 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     self.transactionStatusView.hidden = NO;
-    NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
-    NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
 
-    if (checksum) {
-        [self.webView removeFromSuperview];
-        self.checksum = checksum.value;
-        [self startPollingStatus];
-        return;
+    NSRange fragmanetsRange = [webView.URL.absoluteString rangeOfString:@"#" options:NSBackwardsSearch];
+    NSString *returnedURL = [webView.URL.absoluteString substringToIndex:fragmanetsRange.location];
+
+    if ([self.redirectUrl isEqualToString:returnedURL]) {
+
+        NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
+        NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
+
+        if (checksum) {
+            [self.webView removeFromSuperview];
+            self.checksum = checksum.value;
+            [self startPollingStatus];
+            return;
+        }
     }
 
     self.completionBlock(nil, NSError.judoMissingChecksumError);

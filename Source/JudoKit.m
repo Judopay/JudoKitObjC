@@ -549,7 +549,7 @@
 }
 
 - (void)invokeIDEALPaymentWithJudoId:(NSString *)judoId
-                              amount:(JPAmount *)amount
+                              amount:(double)amount
                            reference:(JPReference *)reference
                             delegate:(id<IDEALServiceDelegate>)delegate
                           completion:(JudoCompletionBlock)completion {

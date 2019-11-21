@@ -39,6 +39,11 @@ typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
 @property (nonatomic, strong, readonly) NSString *_Nonnull endpoint;
 
 /**
+ *  The endpoint for REST API calls to the judo API related to iDEAL transactions
+ */
+@property (nonatomic, strong, readonly) NSString *_Nonnull iDealEndpoint;
+
+/**
  *  Token and secret are saved in the authorizationHeader for authentication of REST API calls
  */
 @property (nonatomic, strong, readonly) NSString *_Nullable authorizationHeader;
