@@ -40,6 +40,7 @@
 @property (nonatomic, strong) JPSession *session;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) BOOL didTimeout;
+@property (nonatomic, strong) IDEALRedirectCompletion redirectCompletion;
 
 @end
 
@@ -52,7 +53,8 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
                         amount:(double)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
-               paymentMetadata:(NSDictionary *)paymentMetadata {
+               paymentMetadata:(NSDictionary *)paymentMetadata
+            redirectCompletion:(IDEALRedirectCompletion)redirectCompletion {
 
     if (self = [super init]) {
         self.judoId = judoId;
@@ -61,6 +63,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
         self.session = session;
         self.paymentMetadata = paymentMetadata;
         self.didTimeout = false;
+        self.redirectCompletion = redirectCompletion;
     }
 
     return self;
@@ -77,7 +80,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
                 JPTransactionData *data = response.items.firstObject;
 
                 if (data.orderDetails.orderId && data.redirectUrl) {
-                    [self.delegate idealService:self didFetchRedirectResponse:response];
+                    self.redirectCompletion(response);
                     completion(data.redirectUrl, data.orderDetails.orderId, error);
                     return;
                 }

@@ -332,7 +332,7 @@
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
-                   delegate:(nullable id<IDEALServiceDelegate>)delegate
+         redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
     JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
@@ -346,7 +346,7 @@
     JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
                                                                                                      viewModel:viewModel
                                                                                                 currentSession:self
-                                                                                                      delegate:delegate
+                                                                                            redirectCompletion:redirectCompletion
                                                                                                  andCompletion:completion];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -551,7 +551,7 @@
 - (void)invokeIDEALPaymentWithJudoId:(NSString *)judoId
                               amount:(double)amount
                            reference:(JPReference *)reference
-                            delegate:(id<IDEALServiceDelegate>)delegate
+                  redirectCompletion:(IDEALRedirectCompletion)redirectCompletion
                           completion:(JudoCompletionBlock)completion {
 
     IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
@@ -560,8 +560,9 @@
                                                                                 reference:reference
                                                                                   session:self.apiSession
                                                                           paymentMetadata:self.paymentMetadata
-                                                                                 delegate:delegate
+                                                                       redirectCompletion:redirectCompletion
                                                                                completion:completion];
+
     controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];

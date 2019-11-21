@@ -269,7 +269,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
-                   delegate:(nullable id<IDEALServiceDelegate>)delegate
+         redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -473,13 +473,13 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param judoId           The judoID of the merchant to receive the token pre-auth
  *  @param amount           The amount expressed as a double (currency is limited to EUR)
  *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param delegate       An optional delegate parameter that, once implemented, will allow you to capture the IDEAL redirect response data
+ *  @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
                               amount:(double)amount
                            reference:(nonnull JPReference *)reference
-                            delegate:(nullable id<IDEALServiceDelegate>)delegate
+                  redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end

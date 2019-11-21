@@ -43,6 +43,6 @@
 - (instancetype _Nonnull)initWithTheme:(nonnull JPTheme *)theme
                              viewModel:(nonnull JudoPaymentMethodsViewModel *)viewModel
                         currentSession:(nonnull JudoKit *)session
-                              delegate:(nullable id<IDEALServiceDelegate>)idealDelegate
+                    redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                          andCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 @end

@@ -39,7 +39,7 @@
 
 static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcellidentifier";
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, SettingsViewControllerDelegate, UIViewControllerTransitioningDelegate, IDEALServiceDelegate> {
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, SettingsViewControllerDelegate, UIViewControllerTransitioningDelegate> {
     UIAlertController *_alertController;
 }
 
@@ -178,11 +178,6 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
     }
 }
 
-#pragma mark - IDEAL Service Delegate
-- (void)idealService:(IDEALService *)idealService didFetchRedirectResponse:(JPResponse *)response {
-    // Handle response from iDEAL redirect
-}
-
 #pragma mark - Operations
 
 - (void)standaloneApplePayButton {
@@ -201,7 +196,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
                         paymentMethods:PaymentMethodsAll
                applePayConfiguratation:configuration
                            cardDetails:nil
-                              delegate:self
+                    redirectCompletion:nil
                             completion:^(JPResponse * response, NSError * error) {
                                 if (error || response.items.count == 0) {
                                     if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -410,7 +405,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
     [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
                                                amount:0.01
                                             reference:[JPReference consumerReference:self.reference]
-                                             delegate:self
+                                   redirectCompletion:nil
                                            completion:^(JPResponse *response, NSError *error) {
 
         if (error || response.items.count == 0) {

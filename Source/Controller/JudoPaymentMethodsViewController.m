@@ -47,9 +47,8 @@
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JudoPaymentMethodsViewModel *viewModel;
 
-@property (nonatomic, weak) id<IDEALServiceDelegate> idealDelegate;
-
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) IDEALRedirectCompletion redirectCompletionBlock;
 @property (nonatomic, strong) JudoKit *judoKitSession;
 
 @property PaymentMethods methods;
@@ -61,15 +60,14 @@
 - (instancetype)initWithTheme:(JPTheme *)theme
                     viewModel:(JudoPaymentMethodsViewModel *)viewModel
                currentSession:(JudoKit *)session
-                     delegate:(id<IDEALServiceDelegate>)idealDelegate
+           redirectCompletion:(IDEALRedirectCompletion)redirectCompletion
                 andCompletion:(JudoCompletionBlock)completion {
     if (self = [super init]) {
         _theme = theme;
         _viewModel = viewModel;
         _judoKitSession = session;
         _completionBlock = completion;
-
-        self.idealDelegate = idealDelegate;
+        _redirectCompletionBlock = redirectCompletion;
     }
     return self;
 }
@@ -250,7 +248,7 @@
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
                                                amount:self.viewModel.amount.amount.doubleValue
                                             reference:self.viewModel.reference
-                                             delegate:self.idealDelegate
+                                   redirectCompletion:self.redirectCompletionBlock
                                            completion:^(JPResponse *response, NSError *error) {
                                                if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                                                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
