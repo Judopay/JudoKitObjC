@@ -1,5 +1,5 @@
 //
-//  IDEALBankTableViewCell.m
+//  JPOrderDetails.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,30 +22,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALBankTableViewCell.h"
-#import "IDEALBank.h"
-#import "NSBundle+Additions.h"
-#import "NSString+Localize.h"
+#import "JPOrderDetails.h"
 
-@interface IDEALBankTableViewCell ()
+@implementation JPOrderDetails
 
-@property (weak, nonatomic) IBOutlet UIImageView *bankLogoImageView;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
+        _orderId = dictionary[@"orderId"];
+        _orderStatus = dictionary[@"orderStatus"];
+        _orderFailureReason = dictionary[@"orderFailureReason"];
+        _timestamp = dictionary[@"timestamp"];
+    }
 
-@end
-
-@implementation IDEALBankTableViewCell
-
-- (void)configureWithBank:(IDEALBank *)bank {
-
-    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:iconName ofType:@"png"];
-
-    self.bankLogoImageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
-    self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
-
-    self.bankLogoImageView.isAccessibilityElement = YES;
-    self.bankLogoImageView.accessibilityLabel = bank.title;
-    self.bankLogoImageView.accessibilityHint = [NSString stringWithFormat:@"select_bank".localized, bank.title];
+    return self;
 }
 
 @end

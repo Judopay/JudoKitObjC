@@ -61,6 +61,10 @@
 "enter_name" = "Ingrese su nombre";
 "name" = "Nombre";
 "select_bank" = "Seleccione %@ como su banco iDEAL";
+"ideal_transaction_success" = "¡Transacción exitosa!";
+"ideal_transaction_pending" = "Transacción pendiente ...";
+"ideal_transaction_failed" = "¡Transacción fallida!";
+"retry" = "Procesar de nuevo";
 
 //JudoPayViewController
 "secure_server" = "Servidor seguro:";
@@ -87,6 +91,12 @@
 "error_3DS_request" = "Error al enrutar a 3DS";
 "error_underlying_error" = "Un error en el sistema iOS con un error subyacente adjunto";
 "error_transaction_declined" = "Una transacción que se envió al servidor ha vuelto rechazada.";
+"error_checksum_missing_title" = "Falta la suma de control";
+"error_checksum_missing_description" = "No hay parámetros de suma de comprobación presentes en la URL de redireccionamiento de iDEAL";
+"error_timeout_title" = "La solicitud ha expirado";
+"error_timeout_description" = "La solicitud no se completó en el tiempo especificado";
+"no_internet_error_description" = "Verifique su conexión a Internet e intente nuevamente.";
+"no_internet_error_title" = "¡Sin conexión a Internet!";
 
 //NSString+Card
 "check_card_number" = "Comprobar número de tarjeta";

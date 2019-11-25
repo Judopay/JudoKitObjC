@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "IDEALService.h"
 #import <UIKit/UIKit.h>
 
 @class JPTheme, JudoKit, JPResponse, JudoPaymentMethodsViewModel;
@@ -34,6 +35,7 @@
  *  @param theme            The current theme
  *  @param viewModel        The view configuration model
  *  @param session          The current judo apiSession
+ *  @param delegate         An optional delegate property that, if set, returns the IDEAL redirect response data
  *  @param completion       Completion block called when transaction has been finished
  *
  *  @return a JudoPaymentMethodsViewController instance
@@ -41,5 +43,6 @@
 - (instancetype _Nonnull)initWithTheme:(nonnull JPTheme *)theme
                              viewModel:(nonnull JudoPaymentMethodsViewModel *)viewModel
                         currentSession:(nonnull JudoKit *)session
+                    redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                          andCompletion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 @end

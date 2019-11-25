@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPCardDetails, JPConsumer, JPPaymentToken;
+@class JPAmount, JPCardDetails, JPConsumer, JPPaymentToken, JPOrderDetails;
 
 /**
  *  Type of Transaction
@@ -101,7 +101,17 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
 /**
  *  A redirect URL used for iDEAL bank transactions
  */
-@property (nonatomic, assign) NSString *_Nullable redirectUrl;
+@property (nonatomic, strong) NSString *_Nullable redirectUrl;
+
+/**
+*  An object describing the current payment method
+*/
+@property (nonatomic, strong) NSString *_Nullable paymentMethod;
+
+/**
+ *  An object containing information regarding the iDEAL transaction result
+ */
+@property (nonatomic, strong) JPOrderDetails *_Nullable orderDetails;
 
 /**
  *  Date and time of the Transaction including time zone offset

@@ -25,6 +25,7 @@
 #import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
 
+#import "IDEALService.h"
 #import "JPSession.h"
 #import "JPTransactionData.h"
 #import "JudoPaymentMethodsViewController.h"
@@ -36,20 +37,8 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
 @class ApplePayConfiguration;
 
 @class JPPayment, JPPreAuth, JPRegisterCard, JPCheckCard, JPSaveCard, JPTransaction;
-@class JPCollection, JPVoid, JPRefund;
-@class JPReceipt;
-
-@class JPCardDetails;
-@class JPPaymentToken;
-
-@class JPTheme;
-
-@class JPAmount;
-@class JPReference;
-@class JPPagination;
-@class JPResponse;
-
-@class JPPrimaryAccountDetails;
+@class JPCollection, JPVoid, JPRefund, JPAmount, JPReference, JPPagination, JPResponse;
+@class JPCardDetails, JPReceipt, JPPrimaryAccountDetails, JPPaymentToken, JPTheme;
 
 /**
  *  Entry point for interacting with judoKit
@@ -65,6 +54,11 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  The theme of any judoSession
  */
 @property (nonatomic, strong) JPTheme *_Nonnull theme;
+
+/**
+ *  An optional property for additional payment metadata a merchant can provide
+ */
+@property (nonatomic, strong) NSDictionary *_Nullable paymentMetadata;
 
 /**
  * Optional primary account details, such as the name, account number, date of birth and post code
@@ -266,6 +260,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
  *  @param cardDetails          The card details to present in the input fields
+ *  @param delegate             An optional delegate parameter that, once implemented, will allow you to capture the IDEAL redirect response data
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
@@ -274,6 +269,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
+         redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -475,13 +471,15 @@ static NSString *__nonnull const JudoKitVersion = @"8.0.1";
  *  merchant to set a name and select from one of the available iDEAL banks to complete the transaction.
  *
  *  @param judoId           The judoID of the merchant to receive the token pre-auth
- *  @param amount           The amount and currency of the pre-auth (default is GBP)
+ *  @param amount           The amount expressed as a double (currency is limited to EUR)
  *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
-                              amount:(nonnull JPAmount *)amount
+                              amount:(double)amount
                            reference:(nonnull JPReference *)reference
+                  redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end

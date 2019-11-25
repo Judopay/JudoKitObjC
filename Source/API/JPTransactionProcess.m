@@ -50,7 +50,8 @@
 }
 
 - (void)sendWithCompletion:(void (^)(JPResponse *, NSError *))completion {
-    [self.apiSession POST:self.transactionProcessingPath parameters:self.parameters completion:completion];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, self.transactionProcessingPath];
+    [self.apiSession POST:fullURL parameters:self.parameters completion:completion];
 }
 
 #pragma mark - getters

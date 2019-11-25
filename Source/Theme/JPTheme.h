@@ -130,6 +130,46 @@
  */
 @property (nonatomic, strong) NSString *_Nonnull verifying3DSRegisterCardTitle;
 
+/**
+ *  the title displayed on the transaction status view indicating a successful iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionSuccessTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a pending iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a failed iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionFailedTitle;
+
+/**
+ *  the title of the Retry button present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALRetryButtonTitle;
+
+/**
+ *  the title of the Select Bank cell present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoSelectBankTitle;
+
+/**
+ *  the title of the Selected Bank label present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoSelectedBankTitle;
+
+/**
+ *  the title of the floating title of the name input field present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALNameInputFloatingTitle;
+
+/**
+ *  the placeholder of the name input field
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALNameInputPlaceholder;
+
 #pragma mark - Input fields
 
 /**
@@ -211,6 +251,16 @@
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoInputFieldBackgroundColor;
 
+/**
+ *  The color of the activity indicator spinner
+ */
+@property (nonatomic, strong) UIColor *_Nonnull judoActivityIndicatorColor;
+
+/**
+ *  The type of the activity indicator spinner
+ */
+@property (nonatomic, assign) UIActivityIndicatorViewStyle judoActivityIndicatorType;
+
 #pragma marks - Payment Methods
 
 /**
@@ -232,5 +282,15 @@
  * The font to be used by buttons
  */
 @property (nonatomic, strong) UIFont *_Nonnull buttonFont;
+
+/**
+ * The font to be used by text elements
+ */
+@property (nonatomic, strong) UIFont *_Nonnull judoTextFont;
+
+/**
+ * The border width of input fields
+ */
+@property (nonatomic, assign) CGFloat judoInputFieldBorderWidth;
 
 @end

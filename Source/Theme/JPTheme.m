@@ -161,6 +161,62 @@
     return _securityMessageString;
 }
 
+- (NSString *)idealTransactionSuccessTitle {
+    if (!_idealTransactionSuccessTitle) {
+        _idealTransactionSuccessTitle = @"ideal_transaction_success".localized;
+    }
+    return _idealTransactionSuccessTitle;
+}
+
+- (NSString *)idealTransactionPendingTitle {
+    if (!_idealTransactionPendingTitle) {
+        _idealTransactionPendingTitle = @"ideal_transaction_pending".localized;
+    }
+    return _idealTransactionPendingTitle;
+}
+
+- (NSString *)idealTransactionFailedTitle {
+    if (!_idealTransactionFailedTitle) {
+        _idealTransactionFailedTitle = @"ideal_transaction_failed".localized;
+    }
+    return _idealTransactionFailedTitle;
+}
+
+- (NSString *)judoIDEALRetryButtonTitle {
+    if (!_judoIDEALRetryButtonTitle) {
+        _judoIDEALRetryButtonTitle = @"retry".localized;
+    }
+    return _judoIDEALRetryButtonTitle;
+}
+
+- (NSString *)judoSelectBankTitle {
+    if (!_judoSelectBankTitle) {
+        _judoSelectBankTitle = @"select_ideal_bank".localized;
+    }
+    return _judoSelectBankTitle;
+}
+
+- (NSString *)judoSelectedBankTitle {
+    if (!_judoSelectedBankTitle) {
+        _judoSelectedBankTitle = @"selected_bank".localized;
+    }
+    return _judoSelectedBankTitle;
+}
+
+- (NSString *)judoIDEALNameInputFloatingTitle {
+    if (!_judoIDEALNameInputFloatingTitle) {
+        _judoIDEALNameInputFloatingTitle = @"name".localized;
+    }
+    return _judoIDEALNameInputFloatingTitle;
+}
+
+- (NSString *)judoIDEALNameInputPlaceholder {
+    if (!_judoIDEALNameInputPlaceholder) {
+        _judoIDEALNameInputPlaceholder = @"enter_name".localized;
+    }
+    return _judoIDEALNameInputPlaceholder;
+}
+
 #pragma mark - Sizes
 
 - (CGFloat)inputFieldHeight {
@@ -285,7 +341,14 @@
     return _judoInputFieldBackgroundColor ? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
-#pragma marks - Payment Methods
+- (UIColor *)judoActivityIndicatorColor {
+    if (_judoButtonTitleColor) {
+        return _judoButtonTitleColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
+}
+
+#pragma mark - Payment Methods
 
 - (CGFloat)buttonHeight {
     if (_buttonHeight <= 0) {
@@ -306,6 +369,20 @@
         _buttonFont = [UIFont boldSystemFontOfSize:22.0];
     }
     return _buttonFont;
+}
+
+- (UIFont *)judoTextFont {
+    if (!_judoTextFont) {
+        _judoTextFont = [UIFont systemFontOfSize:16.0];
+    }
+    return _judoTextFont;
+}
+
+- (CGFloat)judoInputFieldBorderWidth {
+    if (!_judoInputFieldBorderWidth) {
+        _judoInputFieldBorderWidth = 0.0;
+    }
+    return _judoInputFieldBorderWidth;
 }
 
 @end

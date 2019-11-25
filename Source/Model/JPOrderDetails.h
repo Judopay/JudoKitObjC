@@ -1,5 +1,5 @@
 //
-//  IDEALBankTableViewCell.m
+//  JPOrderDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,30 +22,40 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "IDEALBankTableViewCell.h"
-#import "IDEALBank.h"
-#import "NSBundle+Additions.h"
-#import "NSString+Localize.h"
+#import <Foundation/Foundation.h>
 
-@interface IDEALBankTableViewCell ()
+/**
+ *  An object containing the order details returned from an iDEAL transaction
+ */
+@interface JPOrderDetails : NSObject
 
-@property (weak, nonatomic) IBOutlet UIImageView *bankLogoImageView;
+/**
+ *  The order identifier for the transaction
+ */
+@property (nonatomic, strong) NSString *_Nullable orderId;
 
-@end
+/**
+ *  The status of the transaction
+ */
+@property (nonatomic, strong, readonly) NSString *_Nullable orderStatus;
 
-@implementation IDEALBankTableViewCell
+/**
+ *  The optional failure reason if the transaction failed
+ */
+@property (nonatomic, strong, readonly) NSString *_Nullable orderFailureReason;
 
-- (void)configureWithBank:(IDEALBank *)bank {
+/**
+ *  The timestamp of the response
+ */
+@property (nonatomic, strong, readonly) NSString *_Nullable timestamp;
 
-    NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:iconName ofType:@"png"];
-
-    self.bankLogoImageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
-    self.bankLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
-
-    self.bankLogoImageView.isAccessibilityElement = YES;
-    self.bankLogoImageView.accessibilityLabel = bank.title;
-    self.bankLogoImageView.accessibilityHint = [NSString stringWithFormat:@"select_bank".localized, bank.title];
-}
+/**
+ *  Designated initializer
+ *
+ *  @param dictionary The JSON dictionary returned from the server
+ *
+ *  @return an instance of a JPOrderDetails object
+ */
+- (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
 @end

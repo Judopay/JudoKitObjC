@@ -61,6 +61,10 @@
 "enter_name" = "Enter name";
 "name" = "Name";
 "select_bank" = "Select %@ as your iDEAL bank";
+"ideal_transaction_success" = "Transaction success!";
+"ideal_transaction_pending" = "Transaction pending...";
+"ideal_transaction_failed" = "Transaction failed!";
+"retry" = "Retry";
 
 //JudoPayViewController
 "secure_server" = "Secure server: ";
@@ -86,6 +90,12 @@
 "error_3DS_request" = "Error when routing to 3DS";
 "error_underlying_error" = "An error in the iOS system with an enclosed underlying error";
 "error_transaction_declined" = "A transaction that was sent to the backend returned declined";
+"error_checksum_missing_title" = "Checksum missing";
+"error_checksum_missing_description" = "No checksum parameter present in iDEAL redirect URL";
+"error_timeout_title" = "Request has timed out";
+"error_timeout_description" = "Request did not complete in the specified time";
+"no_internet_error_description" = "Please check your internet connection and try again.";
+"no_internet_error_title" = "No internet connection!";
 
 //NSString+Card
 "check_card_number" = "Check card number";

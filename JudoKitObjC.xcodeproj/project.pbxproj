@@ -35,9 +35,13 @@
 		300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */; };
 		300654B3237AA92A00097955 /* JPPrimaryAccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */; };
 		300654BF237AB7D000097955 /* IDEALService.m in Sources */ = {isa = PBXBuildFile; fileRef = 300654B6237AB7D000097955 /* IDEALService.m */; };
-		300654C0237AB7D000097955 /* IDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALService.h */; };
+		300654C0237AB7D000097955 /* IDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 300654BE237AB7D000097955 /* IDEALService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 302181C823264C5300F6BE77 /* NSBundle+Additions.h */; };
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
+		30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30225D09237E8E6D005EB28C /* TransactionStatusView.h */; };
+		30225D13237E8E6D005EB28C /* TransactionStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30225D11237E8E6D005EB28C /* TransactionStatusView.m */; };
+		30225D16237E8F2F005EB28C /* JPReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 30225D14237E8F2F005EB28C /* JPReachability.h */; };
+		30225D17237E8F2F005EB28C /* JPReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 30225D15237E8F2F005EB28C /* JPReachability.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
 		302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */; };
 		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
@@ -69,6 +73,8 @@
 		30DB512523100E6B00B73D66 /* ApplePayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512023100E6B00B73D66 /* ApplePayManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB512923100EED00B73D66 /* CardLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB512723100EED00B73D66 /* CardLogoView.m */; };
 		30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB512823100EED00B73D66 /* CardLogoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30F1B4A6237C3C5A00CE676A /* JPOrderDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F1B49D237C3C5A00CE676A /* JPOrderDetails.h */; };
+		30F1B4A7237C3C5A00CE676A /* JPOrderDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F1B4A5237C3C5A00CE676A /* JPOrderDetails.m */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB3911C981511006265A0 /* UIColor+Judo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B4EB38F1C981511006265A0 /* UIColor+Judo.h */; };
 		3B4EB3921C981511006265A0 /* UIColor+Judo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB3901C981511006265A0 /* UIColor+Judo.m */; };
@@ -225,6 +231,7 @@
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
+		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
 		701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -373,6 +380,10 @@
 		300654BE237AB7D000097955 /* IDEALService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEALService.h; sourceTree = "<group>"; };
 		302181C823264C5300F6BE77 /* NSBundle+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Additions.h"; path = "Extensions/NSBundle+Additions.h"; sourceTree = "<group>"; };
 		302181C923264C5300F6BE77 /* NSBundle+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Additions.m"; path = "Extensions/NSBundle+Additions.m"; sourceTree = "<group>"; };
+		30225D09237E8E6D005EB28C /* TransactionStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransactionStatusView.h; path = View/TransactionStatusView.h; sourceTree = "<group>"; };
+		30225D11237E8E6D005EB28C /* TransactionStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionStatusView.m; path = View/TransactionStatusView.m; sourceTree = "<group>"; };
+		30225D14237E8F2F005EB28C /* JPReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPReachability.h; path = API/JPReachability.h; sourceTree = "<group>"; };
+		30225D15237E8F2F005EB28C /* JPReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPReachability.m; path = API/JPReachability.m; sourceTree = "<group>"; };
 		302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SafeAnchors.m"; path = "Extensions/UIView+SafeAnchors.m"; sourceTree = "<group>"; };
 		302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SafeAnchors.h"; path = "Extensions/UIView+SafeAnchors.h"; sourceTree = "<group>"; };
 		306BCECC2355F0F7008540E7 /* IDEALBank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IDEALBank.m; path = Model/IDEALBank.m; sourceTree = "<group>"; };
@@ -404,6 +415,8 @@
 		30DB512023100E6B00B73D66 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
 		30DB512723100EED00B73D66 /* CardLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardLogoView.m; path = View/CardLogoView.m; sourceTree = "<group>"; };
 		30DB512823100EED00B73D66 /* CardLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardLogoView.h; path = View/CardLogoView.h; sourceTree = "<group>"; };
+		30F1B49D237C3C5A00CE676A /* JPOrderDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPOrderDetails.h; path = Model/JPOrderDetails.h; sourceTree = "<group>"; };
+		30F1B4A5237C3C5A00CE676A /* JPOrderDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPOrderDetails.m; path = Model/JPOrderDetails.m; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB38F1C981511006265A0 /* UIColor+Judo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Judo.h"; path = "Extensions/UIColor+Judo.h"; sourceTree = "<group>"; };
 		3B4EB3901C981511006265A0 /* UIColor+Judo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Judo.m"; path = "Extensions/UIColor+Judo.m"; sourceTree = "<group>"; };
@@ -577,6 +590,7 @@
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
+		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceDNA.framework; path = DeviceDNA/Framework/DeviceDNA.framework; sourceTree = "<group>"; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
@@ -618,6 +632,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */,
 				15779455211085A9007BD3E1 /* TrustKit.framework in Frameworks */,
 				701050BB1E1E90FB0001ED87 /* DeviceDNA.framework in Frameworks */,
 			);
@@ -652,6 +667,7 @@
 		15779454211085A9007BD3E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -866,6 +882,8 @@
 		3B678B701C6CE5F70001DC2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				30F1B49D237C3C5A00CE676A /* JPOrderDetails.h */,
+				30F1B4A5237C3C5A00CE676A /* JPOrderDetails.m */,
 				30DB50F823100E1C00B73D66 /* ApplePay */,
 				30DB511323100E5200B73D66 /* BillingCountry.h */,
 				306BCECE2355FC9E008540E7 /* IDEALBank.h */,
@@ -917,6 +935,8 @@
 		3B678B711C6CE6190001DC2F /* API */ = {
 			isa = PBXGroup;
 			children = (
+				30225D14237E8F2F005EB28C /* JPReachability.h */,
+				30225D15237E8F2F005EB28C /* JPReachability.m */,
 				300654A5237AA91900097955 /* JPCheckCard.h */,
 				300654AD237AA91900097955 /* JPCheckCard.m */,
 				44290B0522F051B00088F827 /* JPTransactionEnricher.h */,
@@ -989,6 +1009,8 @@
 		3B678B741C6CE68D0001DC2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30225D09237E8E6D005EB28C /* TransactionStatusView.h */,
+				30225D11237E8E6D005EB28C /* TransactionStatusView.m */,
 				30DB512823100EED00B73D66 /* CardLogoView.h */,
 				30DB512723100EED00B73D66 /* CardLogoView.m */,
 				3B5362A41C7CBE4A00CEBAE2 /* JP3DSWebView.h */,
@@ -1137,6 +1159,7 @@
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
+				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */,
@@ -1145,6 +1168,7 @@
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
 				44DA43EF22F82FE500C34231 /* NSString+Manipulation.h in Headers */,
 				300654AE237AA91900097955 /* JPCheckCard.h in Headers */,
+				30225D16237E8F2F005EB28C /* JPReachability.h in Headers */,
 				3B678BA51C7326F10001DC2F /* JPRegisterCard.h in Headers */,
 				302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */,
 				3B678B871C6DF6130001DC2F /* JPTransaction.h in Headers */,
@@ -1168,6 +1192,7 @@
 				3B6912DE1C96BFED00367660 /* NSString+Card.h in Headers */,
 				3B704A9A1C89F1C700376773 /* SecurityCodeInputField.h in Headers */,
 				44DA43DD22F82B9300C34231 /* NSString+Validation.h in Headers */,
+				30F1B4A6237C3C5A00CE676A /* JPOrderDetails.h in Headers */,
 				3BD353C71C7774780045658A /* JPConsumer.h in Headers */,
 				3B704A961C89F1B700376773 /* DateInputField.h in Headers */,
 				3B678BA11C7326D30001DC2F /* JPPreAuth.h in Headers */,
@@ -1522,6 +1547,7 @@
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
+				30F1B4A7237C3C5A00CE676A /* JPOrderDetails.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
 				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,
@@ -1550,6 +1576,7 @@
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
 				300654AF237AA91900097955 /* JPCheckCard.m in Sources */,
+				30225D17237E8F2F005EB28C /* JPReachability.m in Sources */,
 				3B678B881C6DF6130001DC2F /* JPTransaction.m in Sources */,
 				44290B0C22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m in Sources */,
 				15CFC9EB1FB738E600430D31 /* JPVCOResult.m in Sources */,
@@ -1573,6 +1600,7 @@
 				302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */,
 				447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
+				30225D13237E8E6D005EB28C /* TransactionStatusView.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
