@@ -103,6 +103,28 @@
  */
 @property (nonatomic, strong) NSString *_Nonnull authenticationTitle;
 
+#pragma mark - Navigation Bar
+
+/**
+ * Title of the left navigation bar button
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoLeftBarButtonTitle;
+
+/**
+ * Title of the right navigation bar button
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoRightBarButtonTitle;
+
+/**
+ * Color of the left navigation bar button
+ */
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationButtonColor;
+
+/**
+ * Color of the right navigation bar button
+ */
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationTitleColor;
+
 #pragma mark - Loading
 
 /**
@@ -255,6 +277,11 @@
  *  The color of the activity indicator spinner
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoActivityIndicatorColor;
+
+/**
+ *  The navigation bar color
+ */
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationBarColor;
 
 /**
  *  The type of the activity indicator spinner

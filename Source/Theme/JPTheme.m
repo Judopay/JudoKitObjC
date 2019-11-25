@@ -337,15 +337,23 @@
     return [UIColor blackColor];
 }
 
+- (UIColor *)judoNavigationBarColor {
+    if (_judoNavigationBarColor) {
+        return _judoNavigationBarColor;
+    }
+
+    return self.judoContentViewBackgroundColor;
+}
+
 - (UIColor *)judoInputFieldBackgroundColor {
     return _judoInputFieldBackgroundColor ? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
 - (UIColor *)judoActivityIndicatorColor {
-    if (_judoButtonTitleColor) {
-        return _judoButtonTitleColor;
+    if (_judoActivityIndicatorColor) {
+        return _judoActivityIndicatorColor;
     }
-    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
+    return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor grayColor];
 }
 
 #pragma mark - Payment Methods
@@ -383,6 +391,33 @@
         _judoInputFieldBorderWidth = 0.0;
     }
     return _judoInputFieldBorderWidth;
+}
+
+- (NSString *)judoLeftBarButtonTitle {
+    if (!_judoLeftBarButtonTitle) {
+        _judoLeftBarButtonTitle = @"back".localized;
+    }
+    return _judoLeftBarButtonTitle;
+}
+
+- (NSString *)judoRightBarButtonTitle {
+    if (!_judoRightBarButtonTitle) {
+        _judoRightBarButtonTitle = @"pay".localized;
+    }
+    return _judoRightBarButtonTitle;
+}
+- (UIColor *)judoNavigationButtonColor {
+    if (_judoNavigationButtonColor) {
+        return _judoNavigationButtonColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
+}
+
+- (UIColor *)judoNavigationTitleColor {
+    if (_judoNavigationTitleColor) {
+        return _judoNavigationTitleColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 @end

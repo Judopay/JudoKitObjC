@@ -127,6 +127,7 @@
     NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
 
     NSString *resourceName;
+    self.statusImageView.hidden = NO;
 
     switch (status) {
         case IDEALStatusFailed:
@@ -136,6 +137,7 @@
             resourceName = @"checkmark-icon";
             break;
         case IDEALStatusPending:
+            self.statusImageView.hidden = YES;
             return nil;
     }
 
@@ -151,6 +153,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textColor = self.theme.judoTextColor;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.font = self.theme.judoTextFont;
     }
     return _titleLabel;

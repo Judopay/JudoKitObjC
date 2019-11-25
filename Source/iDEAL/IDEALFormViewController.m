@@ -78,7 +78,7 @@
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
-            redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
+            redirectCompletion:(IDEALRedirectCompletion)redirectCompletion
                     completion:(JudoCompletionBlock)completion {
 
     if (self = [super init]) {
@@ -213,6 +213,7 @@
 #pragma mark - Layout setup methods
 
 - (void)setupViews {
+
     self.view.backgroundColor = self.theme.judoContentViewBackgroundColor;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
@@ -221,7 +222,6 @@
     [self setupPaymentButton];
     [self setupStackView];
     [self setupTransactionStatusView];
-    [self applyTheme:self.theme];
 
     self.selectedBankLabelView.hidden = YES;
     self.transactionStatusView.hidden = YES;
@@ -244,17 +244,26 @@
 
     self.navigationItem.title = self.theme.iDEALTitle;
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.backButtonTitle
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.judoLeftBarButtonTitle
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(onBackButtonTap:)];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.paymentButtonTitle
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.judoRightBarButtonTitle
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
 
     [self shouldDisplayPaymentElements:NO];
+
+    self.navigationController.navigationBar.barTintColor = self.theme.judoNavigationBarColor;
+    self.navigationController.navigationBar.tintColor = self.theme.judoNavigationButtonColor;
+
+    NSDictionary *textAttributes = @{
+        NSForegroundColorAttributeName : self.theme.judoNavigationTitleColor,
+    };
+
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 }
 
 - (void)setupPaymentButton {
@@ -330,6 +339,8 @@
 
         [_nameInputField.textField setPlaceholder:self.theme.judoIDEALNameInputPlaceholder
                                     floatingTitle:self.theme.judoIDEALNameInputFloatingTitle];
+        self.nameInputField.textField.floatingLabelTextColor = self.theme.judoPlaceholderTextColor;
+        self.nameInputField.textField.floatingLabelActiveTextColor = self.theme.judoPlaceholderTextColor;
     }
 
     return _nameInputField;
@@ -369,6 +380,7 @@
         _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
         _bankSelectionCell.textLabel.text = self.theme.judoSelectBankTitle;
         _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
+        _bankSelectionCell.textLabel.font = self.theme.judoTextFont;
         _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
