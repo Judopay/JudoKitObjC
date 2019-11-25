@@ -163,21 +163,21 @@
 
 - (NSString *)idealTransactionSuccessTitle {
     if (!_idealTransactionSuccessTitle) {
-        _idealTransactionSuccessTitle = @"ideal_status_success".localized;
+        _idealTransactionSuccessTitle = @"ideal_transaction_success".localized;
     }
     return _idealTransactionSuccessTitle;
 }
 
 - (NSString *)idealTransactionPendingTitle {
     if (!_idealTransactionPendingTitle) {
-        _idealTransactionPendingTitle = @"ideal_status_pending".localized;
+        _idealTransactionPendingTitle = @"ideal_transaction_pending".localized;
     }
     return _idealTransactionPendingTitle;
 }
 
 - (NSString *)idealTransactionFailedTitle {
     if (!_idealTransactionFailedTitle) {
-        _idealTransactionFailedTitle = @"ideal_status_failed".localized;
+        _idealTransactionFailedTitle = @"ideal_transaction_failed".localized;
     }
     return _idealTransactionFailedTitle;
 }
@@ -345,7 +345,7 @@
     if (_judoButtonTitleColor) {
         return _judoButtonTitleColor;
     }
-    return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
+    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
 }
 
 #pragma mark - Payment Methods

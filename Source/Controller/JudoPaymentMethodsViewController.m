@@ -25,6 +25,7 @@
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
 
+#import "JPAmount.h"
 #import "JPResponse.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -47,6 +48,7 @@
 @property (nonatomic, strong) JudoPaymentMethodsViewModel *viewModel;
 
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) IDEALRedirectCompletion redirectCompletionBlock;
 @property (nonatomic, strong) JudoKit *judoKitSession;
 
 @property PaymentMethods methods;
@@ -58,12 +60,14 @@
 - (instancetype)initWithTheme:(JPTheme *)theme
                     viewModel:(JudoPaymentMethodsViewModel *)viewModel
                currentSession:(JudoKit *)session
+           redirectCompletion:(IDEALRedirectCompletion)redirectCompletion
                 andCompletion:(JudoCompletionBlock)completion {
     if (self = [super init]) {
         _theme = theme;
         _viewModel = viewModel;
         _judoKitSession = session;
         _completionBlock = completion;
+        _redirectCompletionBlock = redirectCompletion;
     }
     return self;
 }
@@ -242,8 +246,9 @@
     __weak JudoPaymentMethodsViewController *weakSelf = self;
 
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
-                                               amount:self.viewModel.amount
+                                               amount:self.viewModel.amount.amount.doubleValue
                                             reference:self.viewModel.reference
+                                   redirectCompletion:self.redirectCompletionBlock
                                            completion:^(JPResponse *response, NSError *error) {
                                                if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
                                                    [weakSelf dismissViewControllerAnimated:YES completion:nil];

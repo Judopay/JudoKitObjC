@@ -39,22 +39,24 @@
 /**
  *  Initializer that displays the iDEAL transaction form
  *
- *  @param judoId       The judoID of the merchant to receive the token pre-auth
- *  @param theme - An instance of a JPTheme object that defines the style of the form
- *  @param amount       The amount and currency of the pre-auth (default is GBP)
- *  @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param session - An instance of a JPSession object that is used for making API requests
- *  @param paymentMetadata - An optional parameter for additional metadata
- *  @param completion -  Completion block called when transaction has been finished
+ *  @param judoId                            The judoID of the merchant to receive the iDeal transaction
+ *  @param theme                              An instance of a JPTheme object that defines the style of the form
+ *  @param amount                            The amount expressed as a double value (currency is limited to EUR)
+ *  @param reference                     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param session                          An instance of a JPSession object that is used for making API requests
+ *  @param paymentMetadata        An optional parameter for additional metadata
+ *  @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
+ *  @param completion                   Completion block called when transaction has been finished
  *
  *  @return an initialized IDEALFormViewController object
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
                                  theme:(nonnull JPTheme *)theme
-                                amount:(nonnull JPAmount *)amount
+                                amount:(double)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata
+                    redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                             completion:(nonnull JudoCompletionBlock)completion;
 
 @end
