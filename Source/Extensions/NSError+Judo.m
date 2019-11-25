@@ -65,6 +65,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoRequestTimeoutError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorRequestFailed
+                           userInfo:[self userDataDictWithDescription:@"error_timeout_description".localized
+                                                        failureReason:@"error_timeout_description".localized
+                                                                title:@"error_timeout_title".localized]];
+}
+
 + (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error {
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorJSONSerializationFailed
@@ -162,10 +170,18 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoInternetConnectionError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorGeneral_Error
+                           userInfo:[self userDataDictWithDescription:@"no_internet_error_description".localized
+                                                        failureReason:@"no_internet_error_description".localized
+                                                                title:@"no_internet_error_title".localized]];
+}
+
 + (NSError *)judoApplePayConfigurationError {
-     return [NSError errorWithDomain:JudoErrorDomain
-                                code:JudoErrorInvalidApplePayConfiguration
-                            userInfo:@{NSLocalizedDescriptionKey : @"Invalid Apple Pay configuration"}];
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorInvalidApplePayConfiguration
+                           userInfo:@{NSLocalizedDescriptionKey : @"Invalid Apple Pay configuration"}];
 }
 
 + (NSError *)judoInvalidCardNumberError {
@@ -183,11 +199,11 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 }
 
 + (NSError *)judoMissingChecksumError {
-    
+
     NSDictionary *userInfo = [self userDataDictWithDescription:@"error_checksum_missing_description".localized
                                                  failureReason:@"error_checksum_missing_description".localized
                                                          title:@"error_checksum_missing_title".localized];
-    
+
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorGeneral_Error
                            userInfo:userInfo];

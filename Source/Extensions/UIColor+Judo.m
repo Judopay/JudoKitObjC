@@ -88,6 +88,10 @@
     return [UIColor colorWithRed:235 / 255.0f green:55 / 255.0f blue:45 / 255.0f alpha:1.0];
 }
 
++ (UIColor *)errorRed {
+    return [UIColor colorWithRed:206 / 255.0f green:80 / 255.0f blue:65 / 255.0f alpha:1.0];
+}
+
 + (UIColor *)idealPurple {
     return [UIColor colorWithRed:188 / 255.0f green:41 / 255.0f blue:101 / 255.0f alpha:1.0];
 }

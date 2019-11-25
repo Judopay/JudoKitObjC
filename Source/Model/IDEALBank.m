@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "IDEALBank.h"
+#import <Foundation/Foundation.h>
 
 @implementation IDEALBank
 
@@ -41,22 +41,22 @@
 }
 
 - (NSString *)titleForType:(IDEALBankType)type {
-    NSArray * bankNames = @[
+    NSArray *bankNames = @[
         @"None", @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
         @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
         @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
     ];
-    
+
     return bankNames[type];
 }
 
 - (NSString *)bankIdentifierCodeForType:(IDEALBankType)type {
-    NSArray * bankIdentifierCodes = @[
+    NSArray *bankIdentifierCodes = @[
         @"None", @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
-        @"INGBNL2A", @"SNSBNL2A",@"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
+        @"INGBNL2A", @"SNSBNL2A", @"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
         @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
     ];
-    
+
     return bankIdentifierCodes[type];
 }
 

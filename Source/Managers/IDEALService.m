@@ -24,88 +24,165 @@
 
 #import "IDEALService.h"
 #import "IDEALBank.h"
-#import "JPAmount.h"
-#import "JPSession.h"
+#import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
+#import "JPSession.h"
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
 
-
-@interface IDEALService()
+@interface IDEALService ()
 
 @property (nonatomic, strong) NSString *judoId;
-@property (nonatomic, strong) JPAmount *amount;
+@property (nonatomic, assign) double amount;
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) BOOL didTimeout;
+@property (nonatomic, strong) IDEALRedirectCompletion redirectCompletion;
 
 @end
 
 @implementation IDEALService
 
-static NSString *redirectEndpoint = @"/order/bank/sale";
-static NSString *statusEndpoint = @"/order/bank/getstatus";
+static NSString *redirectEndpoint = @"order/bank/sale";
+static NSString *statusEndpoint = @"order/bank/statusrequest";
 
 - (instancetype)initWithJudoId:(NSString *)judoId
-                        amount:(JPAmount *)amount
+                        amount:(double)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
-               paymentMetadata:(NSDictionary *)paymentMetadata {
-    
+               paymentMetadata:(NSDictionary *)paymentMetadata
+            redirectCompletion:(IDEALRedirectCompletion)redirectCompletion {
+
     if (self = [super init]) {
         self.judoId = judoId;
         self.amount = amount;
         self.reference = reference;
         self.session = session;
         self.paymentMetadata = paymentMetadata;
+        self.didTimeout = false;
+        self.redirectCompletion = redirectCompletion;
     }
-    
+
     return self;
 }
 
-- (void)getRedirectURLForIDEALBank:(IDEALBank *)iDealBank
-                      completion:(JudoRedirectCompletion)completion {
-    
-    [self.session POST:redirectEndpoint
+- (void)redirectURLForIDEALBank:(IDEALBank *)iDealBank
+                     completion:(JudoRedirectCompletion)completion {
+
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, redirectEndpoint];
+
+    [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
             completion:^(JPResponse *response, NSError *error) {
-        
-        JPTransactionData *data = response.items.firstObject;
-        
-        if (data.orderId && data.redirectUrl) {
-            completion(data.redirectUrl, data.orderId, error);
-            return;
-        }
-        
-        completion(nil, nil, NSError.judoResponseParseError);
-    }];
+                JPTransactionData *data = response.items.firstObject;
+
+                if (data.orderDetails.orderId && data.redirectUrl) {
+                    self.redirectCompletion(response);
+                    completion(data.redirectUrl, data.orderDetails.orderId, error);
+                    return;
+                }
+
+                completion(nil, nil, NSError.judoResponseParseError);
+            }];
 }
 
-- (void)poolTransactionStatusForOrderId:(NSString *)orderId
+- (void)pollTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
-                              completion:(JudoPoolingCompletion)completion {
-    // TODO: Handle pooling logic
+                             completion:(JudoCompletionBlock)completion {
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                 repeats:NO
+                                                   block:^(NSTimer *_Nonnull timer) {
+                                                       self.didTimeout = true;
+                                                       completion(nil, NSError.judoRequestTimeoutError);
+                                                       return;
+                                                   }];
+
+    [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+}
+
+- (void)getStatusForOrderId:(NSString *)orderId
+                   checksum:(NSString *)checksum
+                 completion:(JudoCompletionBlock)completion {
+
+    if (self.didTimeout)
+        return;
+
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, statusEndpoint];
+
+    [self.session POST:fullURL
+            parameters:[self pollingParametersForOrderID:orderId checksum:checksum]
+            completion:^(JPResponse *response, NSError *error) {
+                if (error) {
+                    completion(nil, error);
+                    [self.timer invalidate];
+                    return;
+                }
+
+                if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
+
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
+                                   dispatch_get_main_queue(), ^{
+                                       [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+                                   });
+                    return;
+                }
+
+                completion(response, error);
+                [self.timer invalidate];
+            }];
+}
+
+- (void)stopPollingTransactionStatus {
+    self.didTimeout = YES;
+    [self.timer invalidate];
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
-    
+
+    NSNumber *amount = [NSNumber numberWithDouble:self.amount];
+    NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
-        @"paymentMethod": @"IDEAL",
-        @"currency": self.amount.currency,
-        @"amount": self.amount.amount,
-        @"country": @"NL",
-        @"accountHolderName": @"A N Other",
-        @"merchantPaymentReference": self.reference.paymentReference,
-        @"bic": iDEALBank.bankIdentifierCode,
-        @"merchantConsumerReference": self.reference.consumerReference,
-        @"siteId": self.judoId
+        @"paymentMethod" : @"IDEAL",
+        @"currency" : @"EUR",
+        @"amount" : amount,
+        @"country" : @"NL",
+        @"accountHolderName" : self.accountHolderName,
+        @"merchantPaymentReference" : trimmedPaymentReference,
+        @"bic" : iDEALBank.bankIdentifierCode,
+        @"merchantConsumerReference" : self.reference.consumerReference,
+        @"siteId" : self.judoId
     }];
-    
+
     if (self.paymentMetadata) {
         parameters[@"paymentMetadata"] = self.paymentMetadata;
     }
-    
+
+    return parameters;
+}
+
+- (NSDictionary *)pollingParametersForOrderID:(NSString *)orderId
+                                     checksum:(NSString *)checksum {
+
+    NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"paymentMethod" : @"IDEAL",
+        @"orderId" : orderId,
+        @"siteId" : self.judoId,
+        @"merchantPaymentReference" : trimmedPaymentReference,
+        @"merchantConsumerReference" : self.reference.consumerReference,
+        @"checksum" : checksum
+    }];
+
+    if (self.paymentMetadata) {
+        parameters[@"paymentMetadata"] = self.paymentMetadata;
+    }
+
     return parameters;
 }
 

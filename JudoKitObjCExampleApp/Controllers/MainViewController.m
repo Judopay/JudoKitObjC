@@ -196,6 +196,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
                         paymentMethods:PaymentMethodsAll
                applePayConfiguratation:configuration
                            cardDetails:nil
+                    redirectCompletion:nil
                             completion:^(JPResponse * response, NSError * error) {
                                 if (error || response.items.count == 0) {
                                     if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -402,8 +403,9 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 - (void)idealTransactionOperation {
     
     [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
-                                               amount:[[JPAmount alloc] initWithAmount:@"0.01" currency:@"GBP"]
+                                               amount:0.01
                                             reference:[JPReference consumerReference:self.reference]
+                                   redirectCompletion:nil
                                            completion:^(JPResponse *response, NSError *error) {
 
         if (error || response.items.count == 0) {

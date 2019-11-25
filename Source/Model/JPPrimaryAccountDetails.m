@@ -31,36 +31,36 @@
 }
 
 - (instancetype)initFromDictionary:(NSDictionary *)dictionary {
-    
+
     if (self = [super init]) {
         _name = dictionary[@"name"];
         _accountNumber = dictionary[@"accountNumber"];
         _dateOfBirth = dictionary[@"dateOfBirth"];
         _postCode = dictionary[@"postCode"];
     }
-    
+
     return self;
 }
 
 - (NSDictionary *)toDictionary {
     NSMutableDictionary *dictionary = [NSMutableDictionary new];
-    
+
     if (_name) {
         dictionary[@"name"] = _name;
     }
-    
+
     if (_accountNumber) {
         dictionary[@"accountNumber"] = _accountNumber;
     }
-    
+
     if (_dateOfBirth) {
         dictionary[@"dateOfBirth"] = _dateOfBirth;
     }
-    
+
     if (_postCode) {
         dictionary[@"postCode"] = _postCode;
     }
-    
+
     return dictionary;
 }
 
