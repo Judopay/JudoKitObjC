@@ -176,10 +176,10 @@
 }
 
 - (NSString *)idealTransactionPendingDelayTitle {
-    if (!_idealTransactionPendingTitle) {
-        _idealTransactionPendingTitle = @"ideal_transaction_pending_delay".localized;
+    if (!_idealTransactionPendingDelayTitle) {
+        _idealTransactionPendingDelayTitle = @"ideal_transaction_pending_delay".localized;
     }
-    return _idealTransactionPendingTitle;
+    return _idealTransactionPendingDelayTitle;
 }
 
 - (NSString *)idealTransactionTimeoutTitle {

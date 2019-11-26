@@ -60,6 +60,7 @@
 @property (nonatomic, strong) NSString *checksum;
 @property (nonatomic, strong) NSString *redirectUrl;
 
+@property (nonatomic, strong) NSTimer *delayTimer;
 @property (nonatomic, strong) IDEALService *idealService;
 @property (nonatomic, strong) IDEALBankSelectionTableViewController *bankSelectionController;
 
@@ -134,7 +135,7 @@
 }
 
 - (void)onPayButtonTap:(id)sender {
-
+    [self.view endEditing:YES];
     self.idealService.accountHolderName = self.nameInputField.textField.text;
     [self.idealService redirectURLForIDEALBank:self.selectedBank
                                     completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
@@ -186,10 +187,16 @@
 #pragma mark - Private methods
 
 - (void)startPollingStatus {
+    self.delayTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
+                                                      repeats:NO
+                                                        block:^(NSTimer *_Nonnull timer) {
+                                                            [self.transactionStatusView changeStatusTo:IDEALStatusPendingDelay andSubtitle:nil];
+                                                        }];
 
     [self.idealService pollTransactionStatusForOrderId:self.orderId
                                               checksum:self.checksum
                                             completion:^(JPResponse *response, NSError *error) {
+                                                [self.delayTimer invalidate];
                                                 if (error && error.localizedDescription == NSError.judoRequestTimeoutError.localizedDescription) {
                                                     [self.transactionStatusView changeStatusTo:IDEALStatusTimeout andSubtitle:nil];
                                                     self.completionBlock(nil, NSError.judoRequestTimeoutError);
