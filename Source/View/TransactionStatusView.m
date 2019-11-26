@@ -188,6 +188,7 @@
     NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
 
     NSString *resourceName;
+    self.statusImageView.hidden = NO;
 
     switch (status) {
         case IDEALStatusFailed:
@@ -199,6 +200,7 @@
             resourceName = @"checkmark-icon";
             break;
         default:
+            self.statusImageView.hidden = YES;
             return nil;
     }
 
