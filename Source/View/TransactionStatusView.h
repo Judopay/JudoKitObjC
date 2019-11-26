@@ -28,7 +28,7 @@
 @class TransactionStatusView, JPTheme;
 
 @protocol TransactionStatusViewDelegate
-- (void)statusViewRetryButtonDidTap:(TransactionStatusView *)statusView;
+- (void)statusView:(TransactionStatusView *)statusView buttonDidTapWithRetry:(BOOL)shouldRetry;
 @end
 
 /**
@@ -45,23 +45,30 @@
  * Designated initializer that uses an IDEALStatus enum to setup its views
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ * @param subtitle - An optional subtitle that is usually reserved for error descriptions
  * @param theme - An instance of a JPTheme object used for customizing the appearance
  */
-+ (instancetype)viewWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme;
++ (instancetype)viewWithStatus:(IDEALStatus)status
+                      subtitle:(NSString *)subtitle
+                      andTheme:(JPTheme *)theme;
 
 /**
  * Designated initializer that uses an IDEALStatus enum to setup its views
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ * @param subtitle - An optional subtitle that is usually reserved for error descriptions
  * @param theme - An instance of a JPTheme object used for customizing the appearance
  */
-- (instancetype)initWithStatus:(IDEALStatus)status andTheme:(JPTheme *)theme;
+- (instancetype)initWithStatus:(IDEALStatus)status
+                      subtitle:(NSString *)subtitle
+                      andTheme:(JPTheme *)theme;
 
 /**
  * Method used to update the UI when a transaction status changes
  *
  * @param status - An IDEALStatus enum that defines the iDEAL transaction status
+ * @param subtitle - An optional subtitle that is usually reserved for error descriptions
 */
-- (void)changeStatusTo:(IDEALStatus)status;
+- (void)changeStatusTo:(IDEALStatus)status andSubtitle:(NSString *)subtitle;
 
 @end

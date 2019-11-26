@@ -175,18 +175,32 @@
     return _idealTransactionPendingTitle;
 }
 
+- (NSString *)idealTransactionPendingDelayTitle {
+    if (!_idealTransactionPendingTitle) {
+        _idealTransactionPendingTitle = @"ideal_transaction_pending_delay".localized;
+    }
+    return _idealTransactionPendingTitle;
+}
+
+- (NSString *)idealTransactionTimeoutTitle {
+    if (!_idealTransactionTimeoutTitle) {
+        _idealTransactionTimeoutTitle = @"ideal_transaction_timeout".localized;
+    }
+    return _idealTransactionTimeoutTitle;
+}
+
+- (NSString *)idealTransactionErrorTitle {
+    if (!_idealTransactionErrorTitle) {
+        _idealTransactionErrorTitle = @"ideal_transaction_error".localized;
+    }
+    return _idealTransactionErrorTitle;
+}
+
 - (NSString *)idealTransactionFailedTitle {
     if (!_idealTransactionFailedTitle) {
         _idealTransactionFailedTitle = @"ideal_transaction_failed".localized;
     }
     return _idealTransactionFailedTitle;
-}
-
-- (NSString *)judoIDEALRetryButtonTitle {
-    if (!_judoIDEALRetryButtonTitle) {
-        _judoIDEALRetryButtonTitle = @"retry".localized;
-    }
-    return _judoIDEALRetryButtonTitle;
 }
 
 - (NSString *)judoSelectBankTitle {
@@ -383,6 +397,50 @@
         _judoInputFieldBorderWidth = 0.0;
     }
     return _judoInputFieldBorderWidth;
+}
+
+#pragma mark - iDEAL Status View
+
+- (UIColor *)iDEALStatusTitleColor {
+    if (_iDEALStatusTitleColor) {
+        return _iDEALStatusTitleColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor blackColor] : [UIColor whiteColor];
+}
+
+- (UIFont *)iDEALStatusTitleFont {
+    if (!_iDEALStatusTitleFont) {
+        _iDEALStatusTitleFont = [UIFont boldSystemFontOfSize:20.0];
+    }
+    return _iDEALStatusTitleFont;
+}
+
+- (UIColor *)iDEALStatusSubtitleColor {
+    if (_iDEALStatusSubtitleColor) {
+        return _iDEALStatusSubtitleColor;
+    }
+    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
+}
+
+- (UIFont *)iDEALStatusSubtitleFont {
+    if (!_iDEALStatusSubtitleFont) {
+        _iDEALStatusSubtitleFont = [UIFont boldSystemFontOfSize:18.0];
+    }
+    return _iDEALStatusSubtitleFont;
+}
+
+- (NSString *)judoIDEALRetryButtonTitle {
+    if (!_judoIDEALRetryButtonTitle) {
+        _judoIDEALRetryButtonTitle = @"retry".localized;
+    }
+    return _judoIDEALRetryButtonTitle;
+}
+
+- (NSString *)judoIDEALCloseButtonTitle {
+    if (!_judoIDEALCloseButtonTitle) {
+        _judoIDEALCloseButtonTitle = @"close".localized;
+    }
+    return _judoIDEALCloseButtonTitle;
 }
 
 @end

@@ -131,26 +131,6 @@
 @property (nonatomic, strong) NSString *_Nonnull verifying3DSRegisterCardTitle;
 
 /**
- *  the title displayed on the transaction status view indicating a successful iDEAL transaction;
- */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionSuccessTitle;
-
-/**
- *  the title displayed on the transaction status view indicating a pending iDEAL transaction;
- */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingTitle;
-
-/**
- *  the title displayed on the transaction status view indicating a failed iDEAL transaction;
- */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionFailedTitle;
-
-/**
- *  the title of the Retry button present in the iDEAL flow
- */
-@property (nonatomic, strong) NSString *_Nonnull judoIDEALRetryButtonTitle;
-
-/**
  *  the title of the Select Bank cell present in the iDEAL flow
  */
 @property (nonatomic, strong) NSString *_Nonnull judoSelectBankTitle;
@@ -292,5 +272,67 @@
  * The border width of input fields
  */
 @property (nonatomic, assign) CGFloat judoInputFieldBorderWidth;
+
+#pragma mark - iDEAL Status view
+
+/**
+ *  the title displayed on the transaction status view indicating a successful iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionSuccessTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a pending iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a delayed pending iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingDelayTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a timed out iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionTimeoutTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a iDEAL transaction error;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionErrorTitle;
+
+/**
+ *  the title displayed on the transaction status view indicating a failed iDEAL transaction;
+ */
+@property (nonatomic, strong) NSString *_Nonnull idealTransactionFailedTitle;
+
+/**
+ *  the title of the Retry button present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALRetryButtonTitle;
+
+/**
+ *  the title of the Close button present in the iDEAL flow
+ */
+@property (nonatomic, strong) NSString *_Nonnull judoIDEALCloseButtonTitle;
+
+/**
+ *  The color of the iDEAL Transaction Status view title
+ */
+@property (nonatomic, strong) UIColor *_Nullable iDEALStatusTitleColor;
+
+/**
+ *  The font of the iDEAL Transaction Status view title
+ */
+@property (nonatomic, strong) UIFont *_Nullable iDEALStatusTitleFont;
+
+/**
+ *  The color of the iDEAL Transaction Status view subtitle
+ */
+@property (nonatomic, strong) UIColor *_Nullable iDEALStatusSubtitleColor;
+
+/**
+ *  The font of the iDEAL Transaction Status view subtitle
+ */
+@property (nonatomic, strong) UIFont *_Nullable iDEALStatusSubtitleFont;
 
 @end

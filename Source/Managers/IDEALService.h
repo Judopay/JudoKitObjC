@@ -30,7 +30,10 @@
 typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusSuccess,
     IDEALStatusPending,
-    IDEALStatusFailed
+    IDEALStatusPendingDelay,
+    IDEALStatusTimeout,
+    IDEALStatusFailed,
+    IDEALStatusError
 };
 
 @interface IDEALService : NSObject

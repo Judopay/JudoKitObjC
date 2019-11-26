@@ -63,8 +63,12 @@
 "select_bank" = "Seleccione %@ como su banco iDEAL";
 "ideal_transaction_success" = "¡Transacción exitosa!";
 "ideal_transaction_pending" = "Transacción pendiente ...";
+"ideal_transaction_pending_delay" = "Esto lleva más tiempo de lo esperado. Por favor espera...";
+"ideal_transaction_timeout" = "¡La transacción ha expirado!";
+"ideal_transaction_error" = "¡Uy! Algo salió mal.";
 "ideal_transaction_failed" = "¡Transacción fallida!";
 "retry" = "Procesar de nuevo";
+"close" = "Cerca";
 
 //JudoPayViewController
 "secure_server" = "Servidor seguro:";

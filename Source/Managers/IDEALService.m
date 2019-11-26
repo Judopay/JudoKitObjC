@@ -80,7 +80,11 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
                 JPTransactionData *data = response.items.firstObject;
 
                 if (data.orderDetails.orderId && data.redirectUrl) {
-                    self.redirectCompletion(response);
+
+                    if (self.redirectCompletion) {
+                        self.redirectCompletion(response);
+                    }
+
                     completion(data.redirectUrl, data.orderDetails.orderId, error);
                     return;
                 }
