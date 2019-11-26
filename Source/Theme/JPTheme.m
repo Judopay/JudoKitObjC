@@ -356,8 +356,8 @@
 }
 
 - (UIColor *)judoActivityIndicatorColor {
-    if (_judoButtonTitleColor) {
-        return _judoButtonTitleColor;
+    if (_judoActivityIndicatorColor) {
+        return _judoActivityIndicatorColor;
     }
     return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
 }
