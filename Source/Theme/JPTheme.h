@@ -116,14 +116,9 @@
 @property (nonatomic, strong) NSString *_Nonnull judoRightBarButtonTitle;
 
 /**
- * Color of the left navigation bar button
+ * Color of the navigation bar button
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoNavigationButtonColor;
-
-/**
- * Color of the right navigation bar button
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoNavigationTitleColor;
 
 #pragma mark - Loading
 

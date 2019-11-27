@@ -276,7 +276,7 @@
     self.navigationController.navigationBar.tintColor = self.theme.judoNavigationButtonColor;
 
     NSDictionary *textAttributes = @{
-        NSForegroundColorAttributeName : self.theme.judoNavigationTitleColor,
+        NSForegroundColorAttributeName : self.theme.judoNavigationBarTitleColor,
     };
 
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
