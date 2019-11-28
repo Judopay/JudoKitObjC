@@ -55,6 +55,23 @@
 		30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */; };
 		30D088F7238D73A900480C9E /* PostCodeValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */; };
 		30D088F8238D73AF00480C9E /* IDEALManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F2238D735A00480C9E /* IDEALManagerTests.swift */; };
+		30D08920238FB53000480C9E /* JPAddCardRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0891E238FB53000480C9E /* JPAddCardRouter.h */; };
+		30D08921238FB53000480C9E /* JPAddCardRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0891F238FB53000480C9E /* JPAddCardRouter.m */; };
+		30D08924238FB59C00480C9E /* JPAddCardInteractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08922238FB59C00480C9E /* JPAddCardInteractor.h */; };
+		30D08925238FB59C00480C9E /* JPAddCardInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08923238FB59C00480C9E /* JPAddCardInteractor.m */; };
+		30D08928238FB95700480C9E /* JPAddCardPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08926238FB95700480C9E /* JPAddCardPresenter.h */; };
+		30D08929238FB95700480C9E /* JPAddCardPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08927238FB95700480C9E /* JPAddCardPresenter.m */; };
+		30D0892C238FB9B400480C9E /* JPAddCardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0892A238FB9B400480C9E /* JPAddCardViewController.h */; };
+		30D0892D238FB9B400480C9E /* JPAddCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0892B238FB9B400480C9E /* JPAddCardViewController.m */; };
+		30D08930238FBA1200480C9E /* JPAddCardBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0892E238FBA1200480C9E /* JPAddCardBuilder.h */; };
+		30D08931238FBA1200480C9E /* JPAddCardBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0892F238FBA1200480C9E /* JPAddCardBuilder.m */; };
+		30D08934238FCC5200480C9E /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08932238FCC5200480C9E /* UIView+Layout.h */; };
+		30D08935238FCC5200480C9E /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08933238FCC5200480C9E /* UIView+Layout.m */; };
+		30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08936238FD00800480C9E /* RoundedCornerView.h */; };
+		30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08937238FD00800480C9E /* RoundedCornerView.m */; };
+		30D0893B238FEB1700480C9E /* fonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30D0893A238FEB1700480C9E /* fonts.bundle */; };
+		30D0893E238FEC7200480C9E /* UIFont+SFProDisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */; };
+		30D0893F238FEC7200480C9E /* UIFont+SFProDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -397,6 +414,23 @@
 		30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitIDEALTransactionTests.swift; sourceTree = "<group>"; };
 		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
+		30D0891E238FB53000480C9E /* JPAddCardRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardRouter.h; path = Modules/AddCard/Router/JPAddCardRouter.h; sourceTree = "<group>"; };
+		30D0891F238FB53000480C9E /* JPAddCardRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardRouter.m; path = Modules/AddCard/Router/JPAddCardRouter.m; sourceTree = "<group>"; };
+		30D08922238FB59C00480C9E /* JPAddCardInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardInteractor.h; path = Modules/AddCard/Interactor/JPAddCardInteractor.h; sourceTree = "<group>"; };
+		30D08923238FB59C00480C9E /* JPAddCardInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardInteractor.m; path = Modules/AddCard/Interactor/JPAddCardInteractor.m; sourceTree = "<group>"; };
+		30D08926238FB95700480C9E /* JPAddCardPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardPresenter.h; path = Modules/AddCard/Presenter/JPAddCardPresenter.h; sourceTree = "<group>"; };
+		30D08927238FB95700480C9E /* JPAddCardPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardPresenter.m; path = Modules/AddCard/Presenter/JPAddCardPresenter.m; sourceTree = "<group>"; };
+		30D0892A238FB9B400480C9E /* JPAddCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardViewController.h; path = Modules/AddCard/View/JPAddCardViewController.h; sourceTree = "<group>"; };
+		30D0892B238FB9B400480C9E /* JPAddCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardViewController.m; path = Modules/AddCard/View/JPAddCardViewController.m; sourceTree = "<group>"; };
+		30D0892E238FBA1200480C9E /* JPAddCardBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardBuilder.h; path = Modules/AddCard/Builder/JPAddCardBuilder.h; sourceTree = "<group>"; };
+		30D0892F238FBA1200480C9E /* JPAddCardBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardBuilder.m; path = Modules/AddCard/Builder/JPAddCardBuilder.m; sourceTree = "<group>"; };
+		30D08932238FCC5200480C9E /* UIView+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "Extensions/UIView+Layout.h"; sourceTree = "<group>"; };
+		30D08933238FCC5200480C9E /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "Extensions/UIView+Layout.m"; sourceTree = "<group>"; };
+		30D08936238FD00800480C9E /* RoundedCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RoundedCornerView.h; path = View/RoundedCornerView.h; sourceTree = "<group>"; };
+		30D08937238FD00800480C9E /* RoundedCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RoundedCornerView.m; path = View/RoundedCornerView.m; sourceTree = "<group>"; };
+		30D0893A238FEB1700480C9E /* fonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fonts.bundle; sourceTree = "<group>"; };
+		30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIFont+SFProDisplay.h"; path = "Extensions/UIFont+SFProDisplay.h"; sourceTree = "<group>"; };
+		30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIFont+SFProDisplay.m"; path = "Extensions/UIFont+SFProDisplay.m"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
@@ -695,6 +729,71 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		30D08910238FB4CD00480C9E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				30D08918238FB4D600480C9E /* AddCard */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		30D08918238FB4D600480C9E /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				30D0891D238FB4F900480C9E /* Router */,
+				30D0891C238FB4F200480C9E /* Interactor */,
+				30D0891B238FB4EC00480C9E /* Presenter */,
+				30D0891A238FB4E100480C9E /* View */,
+				30D08919238FB4DB00480C9E /* Builder */,
+			);
+			name = AddCard;
+			sourceTree = "<group>";
+		};
+		30D08919238FB4DB00480C9E /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				30D0892E238FBA1200480C9E /* JPAddCardBuilder.h */,
+				30D0892F238FBA1200480C9E /* JPAddCardBuilder.m */,
+			);
+			name = Builder;
+			sourceTree = "<group>";
+		};
+		30D0891A238FB4E100480C9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30D0892A238FB9B400480C9E /* JPAddCardViewController.h */,
+				30D0892B238FB9B400480C9E /* JPAddCardViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		30D0891B238FB4EC00480C9E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				30D08926238FB95700480C9E /* JPAddCardPresenter.h */,
+				30D08927238FB95700480C9E /* JPAddCardPresenter.m */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		30D0891C238FB4F200480C9E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				30D08922238FB59C00480C9E /* JPAddCardInteractor.h */,
+				30D08923238FB59C00480C9E /* JPAddCardInteractor.m */,
+			);
+			name = Interactor;
+			sourceTree = "<group>";
+		};
+		30D0891D238FB4F900480C9E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				30D0891E238FB53000480C9E /* JPAddCardRouter.h */,
+				30D0891F238FB53000480C9E /* JPAddCardRouter.m */,
+			);
+			name = Router;
+			sourceTree = "<group>";
+		};
 		30DB50F823100E1C00B73D66 /* ApplePay */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +951,7 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				30D08910238FB4CD00480C9E /* Modules */,
 				3B678BC71C735AB80001DC2F /* JudoKit.h */,
 				3B678BC81C735AB80001DC2F /* JudoKit.m */,
 				3B678B5B1C6CE5190001DC2F /* Info.plist */,
@@ -1003,6 +1103,10 @@
 				302181C923264C5300F6BE77 /* NSBundle+Additions.m */,
 				442511D4234B8BFC00225FC4 /* UIApplication+Additions.h */,
 				442511D5234B8BFC00225FC4 /* UIApplication+Additions.m */,
+				30D08932238FCC5200480C9E /* UIView+Layout.h */,
+				30D08933238FCC5200480C9E /* UIView+Layout.m */,
+				30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */,
+				30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1019,6 +1123,8 @@
 				3B5362A01C7CBD9000CEBAE2 /* LoadingView.h */,
 				3B5362A11C7CBD9000CEBAE2 /* LoadingView.m */,
 				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
+				30D08936238FD00800480C9E /* RoundedCornerView.h */,
+				30D08937238FD00800480C9E /* RoundedCornerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1107,6 +1213,7 @@
 		52FBFB6A2325A3770096064C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				30D0893A238FEB1700480C9E /* fonts.bundle */,
 				30C22170235DC518000D6E3A /* icons.bundle */,
 				829330FE230AF0F900689DC4 /* Localizable.strings */,
 			);
@@ -1148,6 +1255,7 @@
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
 				447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */,
+				30D0893E238FEC7200480C9E /* UIFont+SFProDisplay.h in Headers */,
 				3B678B991C71D9D60001DC2F /* JPPaymentToken.h in Headers */,
 				3B97119B1C76353E00E9A347 /* JPAddress.h in Headers */,
 				3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */,
@@ -1164,7 +1272,11 @@
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
+				30D08930238FBA1200480C9E /* JPAddCardBuilder.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
+				30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */,
+				30D0892C238FB9B400480C9E /* JPAddCardViewController.h in Headers */,
+				30D08928238FB95700480C9E /* JPAddCardPresenter.h in Headers */,
 				52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */,
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
@@ -1177,6 +1289,7 @@
 				3B678B871C6DF6130001DC2F /* JPTransaction.h in Headers */,
 				302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */,
 				44290B1A22F051F60088F827 /* JPDictionaryConvertible.h in Headers */,
+				30D08924238FB59C00480C9E /* JPAddCardInteractor.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
 				30DB512223100E6B00B73D66 /* Functions.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
@@ -1194,6 +1307,7 @@
 				3B678BAD1C7327160001DC2F /* JPRefund.h in Headers */,
 				3B6912DE1C96BFED00367660 /* NSString+Card.h in Headers */,
 				3B704A9A1C89F1C700376773 /* SecurityCodeInputField.h in Headers */,
+				30D08934238FCC5200480C9E /* UIView+Layout.h in Headers */,
 				44DA43DD22F82B9300C34231 /* NSString+Validation.h in Headers */,
 				30F1B4A6237C3C5A00CE676A /* JPOrderDetails.h in Headers */,
 				3BD353C71C7774780045658A /* JPConsumer.h in Headers */,
@@ -1201,6 +1315,7 @@
 				3B678BA11C7326D30001DC2F /* JPPreAuth.h in Headers */,
 				3B6912D11C93179100367660 /* NSArray+Prefix.h in Headers */,
 				3B6991631C8F26FE006ED1FB /* NSTimer+Blocks.h in Headers */,
+				30D08920238FB53000480C9E /* JPAddCardRouter.h in Headers */,
 				44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
 				44290B2122F051F60088F827 /* JPThreeDSecure.h in Headers */,
@@ -1453,6 +1568,7 @@
 			files = (
 				30C22178235DC518000D6E3A /* icons.bundle in Resources */,
 				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
+				30D0893B238FEB1700480C9E /* fonts.bundle in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1547,6 +1663,7 @@
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
+				30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				30F1B4A7237C3C5A00CE676A /* JPOrderDetails.m in Sources */,
@@ -1558,15 +1675,19 @@
 				44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */,
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				44290B1E22F051F60088F827 /* JPThreeDSecure.m in Sources */,
+				30D08925238FB59C00480C9E /* JPAddCardInteractor.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
 				44290B2622F051F60088F827 /* JPBrowser.m in Sources */,
+				30D0893F238FEC7200480C9E /* UIFont+SFProDisplay.m in Sources */,
 				44DA43EC22F82BD700C34231 /* NSString+Validation.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
 				3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */,
+				30D08935238FCC5200480C9E /* UIView+Layout.m in Sources */,
 				30DB512423100E6B00B73D66 /* ApplePayManager.m in Sources */,
 				30DB510523100E1C00B73D66 /* PostalAddress.m in Sources */,
+				30D08931238FBA1200480C9E /* JPAddCardBuilder.m in Sources */,
 				3B678B801C6DE0FA0001DC2F /* JPPagination.m in Sources */,
 				3B704A8B1C89F18000376773 /* JPInputField.m in Sources */,
 				30DB510423100E1C00B73D66 /* ApplePayConfiguration.m in Sources */,
@@ -1587,6 +1708,8 @@
 				3B678B781C6CE7770001DC2F /* JPSession.m in Sources */,
 				3B704A931C89F1A800376773 /* CardInputField.m in Sources */,
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
+				30D0892D238FB9B400480C9E /* JPAddCardViewController.m in Sources */,
+				30D08929238FB95700480C9E /* JPAddCardPresenter.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
 				3B704A8F1C89F19800376773 /* IssueNumberInputField.m in Sources */,
 				30C2215623588D6E000D6E3A /* IDEALBankTableViewCell.m in Sources */,
@@ -1604,6 +1727,7 @@
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
 				30225D13237E8E6D005EB28C /* TransactionStatusView.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
+				30D08921238FB53000480C9E /* JPAddCardRouter.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
 				300654BF237AB7D000097955 /* IDEALService.m in Sources */,
