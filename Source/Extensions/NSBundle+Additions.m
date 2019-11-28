@@ -48,6 +48,18 @@
     return iconsBundle;
 }
 
++ (instancetype)fontsBundle {
+    static NSBundle *bundle;
+    static NSBundle *fontsBundle;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bundle = [NSBundle bundleForClass:[JudoKit class]];
+        NSString *fontsBundlePath = [bundle pathForResource:@"fonts" ofType:@"bundle"];
+        fontsBundle = [NSBundle bundleWithPath:fontsBundlePath];
+    });
+    return fontsBundle;
+}
+
 + (instancetype)stringsBundle {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;

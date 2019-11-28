@@ -24,9 +24,10 @@
 
 #import "JPAddCardViewController.h"
 #import "RoundedCornerView.h"
-#import "UIFont+SFProDisplay.h"
+#import "UIFont+Custom.h"
 #import "NSBundle+Additions.h"
 #import "UIColor+Hex.h"
+#import "NSString+Localize.h"
 
 @interface JPAddCardViewController()
 
@@ -87,19 +88,13 @@
     [self.mainStackView addArrangedSubview:self.addCardButton];
     
     UIStackView *securityMessageStackView = [UIStackView new];
+    securityMessageStackView.spacing = 8.0f;
     [securityMessageStackView addArrangedSubview:self.lockImageView];
     [securityMessageStackView addArrangedSubview:self.securityMessageLabel];
     
     [self.mainStackView addArrangedSubview:securityMessageStackView];
     
     [self.bottomSlider addSubview:self.mainStackView];
-    
-    NSArray *lockConstraints = @[
-        [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
-//        [self.lockImageView.heightAnchor constraintEqualToConstant:20.0],
-    ];
-    
-    [NSLayoutConstraint activateConstraints:lockConstraints];
 }
 
 #pragma mark - Constraint Setup
@@ -107,11 +102,12 @@
 - (void)setupConstraints {
     [self setupBottomSliderConstraints];
     [self setupMainStackViewConstraints];
+    [self setupContentsConstraints];
 }
 
 - (void)setupBottomSliderConstraints {
     NSArray *constraints = @[
-        [_bottomSlider.topAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [_bottomSlider.heightAnchor constraintEqualToConstant:375.0f],
         [_bottomSlider.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [_bottomSlider.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [_bottomSlider.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
@@ -125,14 +121,27 @@
                                                  constant:20.0],
         
         [_mainStackView.leadingAnchor constraintEqualToAnchor:_bottomSlider.leadingAnchor
-                                                     constant:20.0],
+                                                     constant:24.0],
         
         [_mainStackView.trailingAnchor constraintEqualToAnchor:_bottomSlider.trailingAnchor
-                                                      constant:-20.0],
+                                                      constant:-24.0],
         
         [_mainStackView.bottomAnchor constraintEqualToAnchor:_bottomSlider.bottomAnchor
-                                                    constant:-20.0],
+                                                    constant:-32.0],
     ];
+    [NSLayoutConstraint activateConstraints:constraints];
+}
+
+- (void)setupContentsConstraints {
+    NSArray *constraints = @[
+        [self.cardInputTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.cardholderNameTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.expirationDateTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.lastDigitsTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
+        [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
+    ];
+    
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -151,7 +160,6 @@
 - (UIButton *)cancelButton {
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
-        _cancelButton.backgroundColor = UIColor.yellowColor;
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
         _cancelButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:14.0];
         [_cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
@@ -163,8 +171,11 @@
 - (UIButton *)scanCardButton {
     if (!_scanCardButton) {
         _scanCardButton = [UIButton new];
-        _scanCardButton.backgroundColor = UIColor.greenColor;
         _scanCardButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _scanCardButton.layer.borderWidth = 1.0f;
+        _scanCardButton.layer.borderColor = UIColor.blackColor.CGColor;
+        _scanCardButton.layer.cornerRadius = 4.0f;
+        _scanCardButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _scanCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:14.0];
         [_scanCardButton setTitle:@"SCAN CARD" forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
@@ -176,6 +187,7 @@
     if (!_cardInputTextField) {
         _cardInputTextField = [UITextField new];
         _cardInputTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _cardInputTextField.layer.cornerRadius = 6.0f;
         _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
         _cardInputTextField.placeholder = @"Card Number";
     }
@@ -186,6 +198,7 @@
     if (!_cardholderNameTextField) {
         _cardholderNameTextField = [UITextField new];
         _cardholderNameTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _cardholderNameTextField.layer.cornerRadius = 6.0f;
         _cardholderNameTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
         _cardholderNameTextField.placeholder = @"Cardholder Name";
     }
@@ -196,6 +209,7 @@
     if (!_expirationDateTextField) {
         _expirationDateTextField = [UITextField new];
         _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _expirationDateTextField.layer.cornerRadius = 6.0f;
         _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
         _expirationDateTextField.placeholder = @"MM/YY";
     }
@@ -206,6 +220,7 @@
     if (!_lastDigitsTextField) {
         _lastDigitsTextField = [UITextField new];
         _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _lastDigitsTextField.layer.cornerRadius = 6.0f;
         _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
         _lastDigitsTextField.placeholder = @"CVV";
     }
@@ -216,6 +231,8 @@
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _addCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:16.0f];
+        _addCardButton.layer.cornerRadius = 4.0f;
         [_addCardButton setTitle:@"ADD CARD" forState:UIControlStateNormal];
         _addCardButton.backgroundColor = [UIColor colorFromHex:0x999999];
     }
@@ -238,9 +255,9 @@
     if (!_securityMessageLabel) {
         _securityMessageLabel = [UILabel new];
         _securityMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _securityMessageLabel.text = @"Your card details are encrypted using SSL before transmission to our secure payment service provider.";
+        _securityMessageLabel.text = @"secure_server_transmission".localized;
         _securityMessageLabel.numberOfLines = 0;
-        _securityMessageLabel.font = [UIFont SFProDisplayRegularWithSize:10.0];
+        _securityMessageLabel.font = [UIFont SFProTextRegularWithSize:10.0];
         _securityMessageLabel.textColor = [UIColor colorFromHex:0x999999];
     }
     return _securityMessageLabel;

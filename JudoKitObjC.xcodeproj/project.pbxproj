@@ -69,8 +69,8 @@
 		30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08936238FD00800480C9E /* RoundedCornerView.h */; };
 		30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08937238FD00800480C9E /* RoundedCornerView.m */; };
 		30D0893B238FEB1700480C9E /* fonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30D0893A238FEB1700480C9E /* fonts.bundle */; };
-		30D0893E238FEC7200480C9E /* UIFont+SFProDisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */; };
-		30D0893F238FEC7200480C9E /* UIFont+SFProDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */; };
+		30D0893E238FEC7200480C9E /* UIFont+Custom.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0893C238FEC7200480C9E /* UIFont+Custom.h */; };
+		30D0893F238FEC7200480C9E /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0893D238FEC7200480C9E /* UIFont+Custom.m */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D0894523902AC700480C9E /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0894323902AC700480C9E /* UIColor+Hex.h */; };
 		30D0894623902AC700480C9E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0894423902AC700480C9E /* UIColor+Hex.m */; };
@@ -431,8 +431,8 @@
 		30D08936238FD00800480C9E /* RoundedCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RoundedCornerView.h; path = View/RoundedCornerView.h; sourceTree = "<group>"; };
 		30D08937238FD00800480C9E /* RoundedCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RoundedCornerView.m; path = View/RoundedCornerView.m; sourceTree = "<group>"; };
 		30D0893A238FEB1700480C9E /* fonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fonts.bundle; sourceTree = "<group>"; };
-		30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIFont+SFProDisplay.h"; path = "Extensions/UIFont+SFProDisplay.h"; sourceTree = "<group>"; };
-		30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIFont+SFProDisplay.m"; path = "Extensions/UIFont+SFProDisplay.m"; sourceTree = "<group>"; };
+		30D0893C238FEC7200480C9E /* UIFont+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIFont+Custom.h"; path = "Extensions/UIFont+Custom.h"; sourceTree = "<group>"; };
+		30D0893D238FEC7200480C9E /* UIFont+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Custom.m"; path = "Extensions/UIFont+Custom.m"; sourceTree = "<group>"; };
 		30D0894323902AC700480C9E /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Extensions/UIColor+Hex.h"; sourceTree = "<group>"; };
 		30D0894423902AC700480C9E /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Hex.m"; path = "Extensions/UIColor+Hex.m"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -1109,8 +1109,8 @@
 				442511D5234B8BFC00225FC4 /* UIApplication+Additions.m */,
 				30D08932238FCC5200480C9E /* UIView+Layout.h */,
 				30D08933238FCC5200480C9E /* UIView+Layout.m */,
-				30D0893C238FEC7200480C9E /* UIFont+SFProDisplay.h */,
-				30D0893D238FEC7200480C9E /* UIFont+SFProDisplay.m */,
+				30D0893C238FEC7200480C9E /* UIFont+Custom.h */,
+				30D0893D238FEC7200480C9E /* UIFont+Custom.m */,
 				30D0894323902AC700480C9E /* UIColor+Hex.h */,
 				30D0894423902AC700480C9E /* UIColor+Hex.m */,
 			);
@@ -1261,7 +1261,7 @@
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
 				447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */,
-				30D0893E238FEC7200480C9E /* UIFont+SFProDisplay.h in Headers */,
+				30D0893E238FEC7200480C9E /* UIFont+Custom.h in Headers */,
 				3B678B991C71D9D60001DC2F /* JPPaymentToken.h in Headers */,
 				3B97119B1C76353E00E9A347 /* JPAddress.h in Headers */,
 				3B5362A61C7CBE4A00CEBAE2 /* JP3DSWebView.h in Headers */,
@@ -1688,7 +1688,7 @@
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
 				44290B2622F051F60088F827 /* JPBrowser.m in Sources */,
-				30D0893F238FEC7200480C9E /* UIFont+SFProDisplay.m in Sources */,
+				30D0893F238FEC7200480C9E /* UIFont+Custom.m in Sources */,
 				44DA43EC22F82BD700C34231 /* NSString+Validation.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
 				3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */,

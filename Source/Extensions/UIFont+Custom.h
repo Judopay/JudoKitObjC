@@ -1,5 +1,5 @@
 //
-//  UIFont+SFProDisplay.h
+//  UIFont+Custom.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,7 +24,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIFont (SFProDisplay)
+@interface UIFont (Custom)
+
++ (void)loadCustomFonts;
+
+# pragma mark - SF Pro Display Font Family
 
 + (UIFont *)SFProDisplayBlackWithSize:(CGFloat)size;
 + (UIFont *)SFProDisplayBlackItalicWithSize:(CGFloat)size;
@@ -52,5 +56,25 @@
 
 + (UIFont *)SFProDisplayUltralightWithSize:(CGFloat)size;
 + (UIFont *)SFProDisplayUltralightItalicWithSize:(CGFloat)size;
+
+# pragma mark - SF Pro Text Font Family
+
++ (UIFont *)SFProTextBoldWithSize:(CGFloat)size;
++ (UIFont *)SFProTextBoldItalicWithSize:(CGFloat)size;
+
++ (UIFont *)SFProTextHeavyWithSize:(CGFloat)size;
++ (UIFont *)SFProTextHeavyItalicWithSize:(CGFloat)size;
+
++ (UIFont *)SFProTextLightWithSize:(CGFloat)size;
++ (UIFont *)SFProTextLightItalicWithSize:(CGFloat)size;
+
++ (UIFont *)SFProTextMediumWithSize:(CGFloat)size;
++ (UIFont *)SFProTextMediumItalicWithSize:(CGFloat)size;
+
++ (UIFont *)SFProTextRegularWithSize:(CGFloat)size;
++ (UIFont *)SFProTextRegularItalicWithSize:(CGFloat)size;
+
++ (UIFont *)SFProTextSemiboldWithSize:(CGFloat)size;
++ (UIFont *)SFProTextSemiboldItalicWithSize:(CGFloat)size;
 
 @end

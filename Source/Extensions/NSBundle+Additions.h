@@ -42,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)iconsBundle;
 
 /**
+ * An initializer that points to the fonts bundle inside the JudoKit framework
+ */
++ (instancetype)fontsBundle;
+
+/**
  * An initializer that points to the strings bundle inside the JudoKit framework
  */
 + (instancetype)stringsBundle;
