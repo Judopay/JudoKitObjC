@@ -53,6 +53,9 @@
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
 
+#import "JPAddCardBuilder.h"
+#import "JPAddCardViewController.h"
+
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @end
@@ -432,13 +435,9 @@
            cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
 
-    [self presentPaymentViewControllerWithJudoId:judoId
-                                          amount:nil
-                                       reference:[[JPReference alloc] initWithConsumerReference:reference]
-                                     transaction:TransactionTypeSaveCard
-                                     cardDetails:cardDetails
-                                    paymentToken:nil
-                                      completion:completion];
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModule];
+    controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)invokeTokenPayment:(NSString *)judoId
