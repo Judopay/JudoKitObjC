@@ -1,5 +1,5 @@
 //
-//  UIView+Layout.m
+//  UIColor+Constraints.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,8 +24,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (Layout)
-- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width;
-- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width andCornerRadius:(CGFloat)cornerRadius;
-- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
+typedef NS_OPTIONS(NSInteger, AnchorType) {
+    AnchorTypeNone = 0,
+    AnchorTypeTop = 1 << 0,
+    AnchorTypeBottom = 1 << 1,
+    AnchorTypeLeading = 1 << 2,
+    AnchorTypeTrailing = 1 << 3,
+    AnchorTypeAll = (AnchorTypeTop | AnchorTypeBottom | AnchorTypeLeading | AnchorTypeTrailing)
+};
+
+@interface UIView (Constraints)
+
+- (void)pinToView:(UIView *)view withPadding:(CGFloat)padding;
+- (void)pinToAnchors:(AnchorType)anchors forView:(UIView *)view;
+- (void)pinToAnchors:(AnchorType)anchors forView:(UIView *)view withPadding:(CGFloat)padding;
+
 @end

@@ -1,5 +1,5 @@
 //
-//  UIView+Layout.m
+//  JPAddCardView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,8 +24,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (Layout)
-- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width;
-- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width andCornerRadius:(CGFloat)cornerRadius;
-- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
+@interface JPAddCardView : UIView
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIButton *scanCardButton;
+@property (nonatomic, strong) UIButton *addCardButton;
 @end

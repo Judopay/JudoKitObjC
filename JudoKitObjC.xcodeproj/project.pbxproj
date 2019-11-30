@@ -249,6 +249,14 @@
 		44E3A10723498B770042C9EC /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10623498B770042C9EC /* Settings.m */; };
 		44E3A10A23498D150042C9EC /* HalfHeightPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */; };
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
+		528017072392943900D2AFDB /* UIView+Constraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017052392943900D2AFDB /* UIView+Constraints.h */; };
+		528017082392943900D2AFDB /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017062392943900D2AFDB /* UIView+Constraints.m */; };
+		5280171223929BB500D2AFDB /* UIImage+Icons.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171023929BB500D2AFDB /* UIImage+Icons.h */; };
+		5280171323929BB500D2AFDB /* UIImage+Icons.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171123929BB500D2AFDB /* UIImage+Icons.m */; };
+		5280171623929E8E00D2AFDB /* UIStackView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171423929E8E00D2AFDB /* UIStackView+Additions.h */; };
+		5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171523929E8E00D2AFDB /* UIStackView+Additions.m */; };
+		5280171A2392A6E000D2AFDB /* JPAddCardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017182392A6E000D2AFDB /* JPAddCardView.h */; };
+		5280171B2392A6E000D2AFDB /* JPAddCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017192392A6E000D2AFDB /* JPAddCardView.m */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
 		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
@@ -628,6 +636,14 @@
 		44E3A10823498D150042C9EC /* HalfHeightPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfHeightPresentationController.h; sourceTree = "<group>"; };
 		44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfHeightPresentationController.m; sourceTree = "<group>"; };
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
+		528017052392943900D2AFDB /* UIView+Constraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Constraints.h"; path = "Extensions/UIView+Constraints.h"; sourceTree = "<group>"; };
+		528017062392943900D2AFDB /* UIView+Constraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Constraints.m"; path = "Extensions/UIView+Constraints.m"; sourceTree = "<group>"; };
+		5280171023929BB500D2AFDB /* UIImage+Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+Icons.h"; path = "Extensions/UIImage+Icons.h"; sourceTree = "<group>"; };
+		5280171123929BB500D2AFDB /* UIImage+Icons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Icons.m"; path = "Extensions/UIImage+Icons.m"; sourceTree = "<group>"; };
+		5280171423929E8E00D2AFDB /* UIStackView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIStackView+Additions.h"; path = "Extensions/UIStackView+Additions.h"; sourceTree = "<group>"; };
+		5280171523929E8E00D2AFDB /* UIStackView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIStackView+Additions.m"; path = "Extensions/UIStackView+Additions.m"; sourceTree = "<group>"; };
+		528017182392A6E000D2AFDB /* JPAddCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardView.h; path = Controller/JPAddCardView.h; sourceTree = "<group>"; };
+		528017192392A6E000D2AFDB /* JPAddCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardView.m; path = Controller/JPAddCardView.m; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
 		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -767,6 +783,8 @@
 			children = (
 				30D0892A238FB9B400480C9E /* JPAddCardViewController.h */,
 				30D0892B238FB9B400480C9E /* JPAddCardViewController.m */,
+				528017182392A6E000D2AFDB /* JPAddCardView.h */,
+				528017192392A6E000D2AFDB /* JPAddCardView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1113,6 +1131,12 @@
 				30D0893D238FEC7200480C9E /* UIFont+Custom.m */,
 				30D0894323902AC700480C9E /* UIColor+Hex.h */,
 				30D0894423902AC700480C9E /* UIColor+Hex.m */,
+				528017052392943900D2AFDB /* UIView+Constraints.h */,
+				528017062392943900D2AFDB /* UIView+Constraints.m */,
+				5280171023929BB500D2AFDB /* UIImage+Icons.h */,
+				5280171123929BB500D2AFDB /* UIImage+Icons.m */,
+				5280171423929E8E00D2AFDB /* UIStackView+Additions.h */,
+				5280171523929E8E00D2AFDB /* UIStackView+Additions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1246,13 +1270,16 @@
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
 				30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */,
 				30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */,
+				528017072392943900D2AFDB /* UIView+Constraints.h in Headers */,
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
 				447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */,
+				5280171223929BB500D2AFDB /* UIImage+Icons.h in Headers */,
 				30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */,
 				30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */,
+				5280171623929E8E00D2AFDB /* UIStackView+Additions.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
 				3B678B951C6E282B0001DC2F /* JPCard.h in Headers */,
 				300654C0237AB7D000097955 /* IDEALService.h in Headers */,
@@ -1331,6 +1358,7 @@
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
 				30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */,
 				3B678B771C6CE7770001DC2F /* JPSession.h in Headers */,
+				5280171A2392A6E000D2AFDB /* JPAddCardView.h in Headers */,
 				30DB511823100E5200B73D66 /* PaymentMethods.h in Headers */,
 				3BF476F21C748B5B008AE0D3 /* JudoKit.h in Headers */,
 			);
@@ -1668,6 +1696,7 @@
 				44290B0822F051B00088F827 /* JPTransactionEnricher.m in Sources */,
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
+				528017082392943900D2AFDB /* UIView+Constraints.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */,
@@ -1725,11 +1754,13 @@
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
 				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
 				44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */,
+				5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */,
 				3B678BAA1C7327040001DC2F /* JPCollection.m in Sources */,
 				44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */,
 				3B5362961C7CBD3F00CEBAE2 /* JudoPayViewController.m in Sources */,
 				1577945B2110C8B9007BD3E1 /* JPSaveCard.m in Sources */,
 				44290B1D22F051F60088F827 /* JPConsumerDevice.m in Sources */,
+				5280171323929BB500D2AFDB /* UIImage+Icons.m in Sources */,
 				302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */,
 				447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
@@ -1738,6 +1769,7 @@
 				30D08921238FB53000480C9E /* JPAddCardRouter.m in Sources */,
 				3B678B8C1C6DF9D00001DC2F /* JPAmount.m in Sources */,
 				3B5362A71C7CBE4A00CEBAE2 /* JP3DSWebView.m in Sources */,
+				5280171B2392A6E000D2AFDB /* JPAddCardView.m in Sources */,
 				300654BF237AB7D000097955 /* IDEALService.m in Sources */,
 				3B6991571C8DD85B006ED1FB /* JPTheme.m in Sources */,
 				3B678B961C6E282B0001DC2F /* JPCard.m in Sources */,

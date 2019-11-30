@@ -35,4 +35,16 @@
     self.layer.mask = mask;
 }
 
+- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width {
+    [self setBorderWithColor:color width:width andCornerRadius:0.0];
+}
+
+- (void)setBorderWithColor:(UIColor *)color
+                     width:(CGFloat)width
+           andCornerRadius:(CGFloat)cornerRadius {
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = width;
+    self.layer.cornerRadius = cornerRadius;
+}
+
 @end

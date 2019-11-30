@@ -1,5 +1,5 @@
 //
-//  UIView+Layout.m
+//  UIImage+Icons.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -21,11 +21,15 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+//
 
-#import <UIKit/UIKit.h>
+#import "UIImage+Icons.h"
+#import "NSBundle+Additions.h"
 
-@interface UIView (Layout)
-- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width;
-- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width andCornerRadius:(CGFloat)cornerRadius;
-- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
+@implementation UIImage (Icons)
+
++ (UIImage *)imageWithIconName:(NSString *)iconName {
+    return [UIImage imageNamed:iconName inBundle:NSBundle.iconsBundle compatibleWithTraitCollection:nil];
+}
+
 @end

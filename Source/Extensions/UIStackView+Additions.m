@@ -1,5 +1,5 @@
 //
-//  UIView+Layout.m
+//  UIStackView+Additions.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -21,11 +21,26 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+//
 
-#import <UIKit/UIKit.h>
+#import "UIStackView+Additions.h"
 
-@interface UIView (Layout)
-- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width;
-- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width andCornerRadius:(CGFloat)cornerRadius;
-- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
+@implementation UIStackView (Additions)
+
++ (UIStackView *)verticalStackViewWithSpacing:(CGFloat)spacing {
+    UIStackView *stackView = [UIStackView new];
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.spacing = spacing;
+    return stackView;
+}
+
++ (UIStackView *)horizontalStackViewWithSpacing:(CGFloat)spacing {
+    UIStackView *stackView = [UIStackView new];
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    stackView.axis = UILayoutConstraintAxisHorizontal;
+    stackView.spacing = spacing;
+    return stackView;
+}
+
 @end
