@@ -1,5 +1,5 @@
 //
-//  JPAddCardView.h
+//  UIViewController+KeyboardObservers.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -21,14 +21,35 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+//
 
-#import <UIKit/UIKit.h>
+#import "UIViewController+KeyboardObservers.h"
 
-@interface JPAddCardView : UIView
-@property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, strong) UIButton *cancelButton;
-@property (nonatomic, strong) UIButton *scanCardButton;
-@property (nonatomic, strong) UITextField *cardInputTextField;
-@property (nonatomic, strong) UIButton *addCardButton;
-@property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
+@implementation UIViewController (KeyboardObservers)
+
+- (void)registerKeyboardObservers {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+
+    [notificationCenter addObserver:self
+                           selector:@selector(keyboardWillShow:)
+                               name:UIKeyboardWillShowNotification
+                             object:nil];
+
+    [notificationCenter addObserver:self
+                           selector:@selector(keyboardWillHide:)
+                               name:UIKeyboardWillHideNotification
+                             object:nil];
+}
+
+- (void)removeKeyboardObservers {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+}
+
 @end

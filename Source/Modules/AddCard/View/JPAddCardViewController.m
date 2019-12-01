@@ -24,6 +24,8 @@
 
 #import "JPAddCardViewController.h"
 #import "JPAddCardView.h"
+#import "UIViewController+KeyboardObservers.h"
+#import "UIViewController+Additions.h"
 
 @interface JPAddCardViewController()
 @property (nonatomic, strong) JPAddCardView* addCardView;
@@ -39,27 +41,26 @@
     [self addTargets];
 }
 
-- (void)addTargets {
-    
-    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self action:@selector(onCancelButtonTap)];
-    [self.addCardView.backgroundView addGestureRecognizer:tapGesture];
-    
-    [self.addCardView.cancelButton addTarget:self
-                                      action:@selector(onCancelButtonTap)
-                            forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.addCardView.scanCardButton addTarget:self
-                                        action:@selector(onScanCardButtonTap)
-                              forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.addCardView.addCardButton addTarget:self
-                                       action:@selector(onAddCardButtonTap)
-                             forControlEvents:UIControlEventTouchUpInside];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self registerKeyboardObservers];
+    [self.addCardView.cardInputTextField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self removeKeyboardObservers];
+    [self.addCardView endEditing:YES];
+    [super viewWillDisappear:animated];
+}
+
+# pragma mark - User actions
+
+- (void)onBackgroundViewTap {
+    [self.addCardView endEditing:YES];
 }
 
 - (void)onCancelButtonTap {
-    //TODO: Implement cancel functionality
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)onScanCardButtonTap {
@@ -68,6 +69,36 @@
 
 - (void)onAddCardButtonTap {
     //TODO: Implement add card functionality
+}
+
+# pragma mark - Setup
+
+- (void)addTargets {
+    [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
+    [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
+    [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
+    [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
+}
+
+#pragma mark - Keyboard handling logic
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+
+    CGSize keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.addCardView.bottomSliderConstraint.constant = -keyboardSize.height;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+
+    self.addCardView.bottomSliderConstraint.constant = 0;
+
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 @end

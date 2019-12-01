@@ -35,7 +35,6 @@
 @interface JPAddCardView ()
 
 @property (nonatomic, strong) RoundedCornerView *bottomSlider;
-@property (nonatomic, strong) UITextField *cardInputTextField;
 @property (nonatomic, strong) UITextField *cardholderNameTextField;
 @property (nonatomic, strong) UITextField *expirationDateTextField;
 @property (nonatomic, strong) UITextField *lastDigitsTextField;
@@ -84,8 +83,10 @@
 }
 
 - (void)setupBottomSliderConstraints {
-    AnchorType anchors = AnchorTypeLeading | AnchorTypeTrailing | AnchorTypeBottom;
-    [_bottomSlider pinToAnchors:anchors forView:self];
+    [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing
+                            forView:self];
+    self.bottomSliderConstraint = [self.bottomSlider.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
+    self.bottomSliderConstraint.active = YES;
 }
 
 - (void)setupMainStackViewConstraints {
@@ -176,6 +177,7 @@
     if (!_cardInputTextField) {
         _cardInputTextField = [UITextField new];
         _cardInputTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _cardInputTextField.keyboardType = UIKeyboardTypeNumberPad;
         _cardInputTextField.layer.cornerRadius = 6.0f;
         _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
         _cardInputTextField.placeholder = @"Card Number";
@@ -223,7 +225,7 @@
         _addCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:16.0f];
         _addCardButton.layer.cornerRadius = 4.0f;
         [_addCardButton setTitle:@"ADD CARD" forState:UIControlStateNormal];
-        _addCardButton.backgroundColor = [UIColor colorFromHex:0x999999];
+        _addCardButton.backgroundColor = [UIColor colorFromHex:0x262626];
     }
     return _addCardButton;
 }

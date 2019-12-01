@@ -257,6 +257,10 @@
 		5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171523929E8E00D2AFDB /* UIStackView+Additions.m */; };
 		5280171A2392A6E000D2AFDB /* JPAddCardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017182392A6E000D2AFDB /* JPAddCardView.h */; };
 		5280171B2392A6E000D2AFDB /* JPAddCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017192392A6E000D2AFDB /* JPAddCardView.m */; };
+		5280171E2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */; };
+		5280171F2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */; };
+		528017222392F0F500D2AFDB /* UIViewController+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017202392F0F500D2AFDB /* UIViewController+Additions.h */; };
+		528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017212392F0F500D2AFDB /* UIViewController+Additions.m */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
 		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
@@ -644,6 +648,10 @@
 		5280171523929E8E00D2AFDB /* UIStackView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIStackView+Additions.m"; path = "Extensions/UIStackView+Additions.m"; sourceTree = "<group>"; };
 		528017182392A6E000D2AFDB /* JPAddCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardView.h; path = Controller/JPAddCardView.h; sourceTree = "<group>"; };
 		528017192392A6E000D2AFDB /* JPAddCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardView.m; path = Controller/JPAddCardView.m; sourceTree = "<group>"; };
+		5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KeyboardObservers.h"; path = "Extensions/UIViewController+KeyboardObservers.h"; sourceTree = "<group>"; };
+		5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KeyboardObservers.m"; path = "Extensions/UIViewController+KeyboardObservers.m"; sourceTree = "<group>"; };
+		528017202392F0F500D2AFDB /* UIViewController+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Additions.h"; path = "Extensions/UIViewController+Additions.h"; sourceTree = "<group>"; };
+		528017212392F0F500D2AFDB /* UIViewController+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Additions.m"; path = "Extensions/UIViewController+Additions.m"; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
 		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1137,6 +1145,10 @@
 				5280171123929BB500D2AFDB /* UIImage+Icons.m */,
 				5280171423929E8E00D2AFDB /* UIStackView+Additions.h */,
 				5280171523929E8E00D2AFDB /* UIStackView+Additions.m */,
+				5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */,
+				5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */,
+				528017202392F0F500D2AFDB /* UIViewController+Additions.h */,
+				528017212392F0F500D2AFDB /* UIViewController+Additions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1274,6 +1286,7 @@
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
 				447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */,
+				528017222392F0F500D2AFDB /* UIViewController+Additions.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */,
 				5280171223929BB500D2AFDB /* UIImage+Icons.h in Headers */,
@@ -1306,6 +1319,7 @@
 				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				30D08930238FBA1200480C9E /* JPAddCardBuilder.h in Headers */,
+				5280171E2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */,
 				30D0892C238FB9B400480C9E /* JPAddCardViewController.h in Headers */,
@@ -1697,6 +1711,7 @@
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				528017082392943900D2AFDB /* UIView+Constraints.m in Sources */,
+				528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */,
@@ -1713,6 +1728,7 @@
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				44290B1E22F051F60088F827 /* JPThreeDSecure.m in Sources */,
 				30D08925238FB59C00480C9E /* JPAddCardInteractor.m in Sources */,
+				5280171F2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,

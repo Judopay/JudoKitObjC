@@ -41,6 +41,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+#import "UIViewController+KeyboardObservers.h"
 
 @interface IDEALFormViewController ()
 
@@ -459,25 +460,6 @@
 }
 
 #pragma mark - Keyboard handling logic
-
-- (void)registerKeyboardObservers {
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-
-    [notificationCenter addObserver:self
-                           selector:@selector(keyboardWillShow:)
-                               name:UIKeyboardWillShowNotification
-                             object:nil];
-
-    [notificationCenter addObserver:self
-                           selector:@selector(keyboardWillHide:)
-                               name:UIKeyboardWillHideNotification
-                             object:nil];
-}
-
-- (void)removeKeyboardObservers {
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self];
-}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 

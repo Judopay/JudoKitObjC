@@ -1,5 +1,5 @@
 //
-//  JPAddCardView.h
+//  UIViewController+KeyboardObservers.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -21,14 +21,20 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+//
 
-#import <UIKit/UIKit.h>
+#import "UIViewController+Additions.h"
 
-@interface JPAddCardView : UIView
-@property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, strong) UIButton *cancelButton;
-@property (nonatomic, strong) UIButton *scanCardButton;
-@property (nonatomic, strong) UITextField *cardInputTextField;
-@property (nonatomic, strong) UIButton *addCardButton;
-@property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
+@implementation UIViewController (Additions)
+
+- (void)connectButton:(UIButton *)button withSelector:(SEL)selector {
+    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addTapGestureForView:(UIView *)view withSelector:(SEL)selector {
+    UIGestureRecognizer *tapGesture;
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
+    [view addGestureRecognizer:tapGesture];
+}
+
 @end
