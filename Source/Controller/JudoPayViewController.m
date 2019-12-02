@@ -364,7 +364,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                                                         views:@{@"scrollView" : self.scrollView,
                                                                                 @"button" : self.paymentButton}]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[tdsecure]-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[tdsecure]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:@{@"tdsecure" : self.threeDSWebView}]];
@@ -970,8 +970,19 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [scriptContent appendString:@"head.appendChild(meta);"];
     [scriptContent appendString:@"meta.name"];
 
-    [_threeDSWebView evaluateJavaScript:scriptContent completionHandler:nil];
+    [_threeDSWebView evaluateJavaScript:scriptContent completionHandler:^(id response, NSError * error) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSString *stuff = @"meta.content = 'width=' + document.documentElement.scrollWidth";
+            [self->_threeDSWebView evaluateJavaScript:stuff completionHandler:nil];
+        });
+    }];
+    
+    NSMutableString *removePaResFieldScript = [NSMutableString stringWithString:@"const paResField = document.getElementById('pnPaRESPanel');"];
+    [removePaResFieldScript appendString:@"paResField.parentElement.removeChild(paResField);"];
+    [removePaResFieldScript appendString:@"paResField.name"];
 
+    [_threeDSWebView evaluateJavaScript:removePaResFieldScript completionHandler:nil];
+    
     CGFloat alphaVal = 1.0f;
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         alphaVal = 0.0f;
