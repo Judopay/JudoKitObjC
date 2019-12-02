@@ -23,11 +23,13 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPAddCardViewModel.h"
 
 @protocol JPAddCardInteractor
-
+- (BOOL)isAVSEnabled;
+- (BOOL)isCardValidForViewModel:(JPAddCardViewModel *)viewModel;
 @end
 
 @interface JPAddCardInteractorImpl : NSObject <JPAddCardInteractor>
-
+- (instancetype)initWithAVSEnabled:(BOOL)isAVSEnabled;
 @end

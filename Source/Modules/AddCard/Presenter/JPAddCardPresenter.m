@@ -23,7 +23,82 @@
 //  SOFTWARE.
 
 #import "JPAddCardPresenter.h"
+#import "JPAddCardInteractor.h"
+#import "JPAddCardViewController.h"
+
+@interface JPAddCardPresenterImpl()
+@property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
+@end
 
 @implementation JPAddCardPresenterImpl
+
+- (void)loadInitialView {
+    [self updateViewWithViewModel:self.addCardViewModel];
+}
+
+- (void)didChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value {
+    [self updateInputViewModelForType:type withText:value andErrorText:nil];
+    [self updateViewWithViewModel:self.addCardViewModel];
+}
+
+- (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
+    BOOL isCardValid = [self.interactor isCardValidForViewModel: self.addCardViewModel];
+    self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
+    [self.view updateViewWithViewModel:self.addCardViewModel];
+}
+
+- (void)updateInputViewModelForType:(JPCardInputType)type
+                      withText:(NSString *)text
+                  andErrorText:(NSString *)errorText {
+    switch (type) {
+        case JPCardInputTypeCardNumber:
+            self.addCardViewModel.cardNumberViewModel.text = text;
+            break;
+        case JPCardInputTypeCardholderName:
+            self.addCardViewModel.cardholderNameViewModel.text = text;
+            break;
+        case JPCardInputTypeExpiryDate:
+            self.addCardViewModel.expiryDateViewModel.text = text;
+            break;
+        case JPCardInputTypeLastDigits:
+            self.addCardViewModel.lastFourViewModel.text = text;
+            break;
+        case JPCardInputTypeCountry:
+            self.addCardViewModel.countryInputViewModel.text = text;
+            break;
+        case JPCardInputTypePostalCode:
+            self.addCardViewModel.postalCodeInputViewModel.text = text;
+            break;
+    }
+}
+
+- (JPAddCardViewModel *)addCardViewModel {
+    if (!_addCardViewModel) {
+        _addCardViewModel = [JPAddCardViewModel new];
+        _addCardViewModel.cardNumberViewModel = [self inputFieldViewModelWithPlaceholder:@"Card Number"];
+        _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"Cardholder Name"];
+        _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"Expiry Date"];
+        _addCardViewModel.lastFourViewModel = [self inputFieldViewModelWithPlaceholder:@"CVV"];
+        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];;
+        
+        if ([self.interactor isAVSEnabled]) {
+            _addCardViewModel.countryInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Country"];;
+            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Postcode"];;
+        }
+    }
+    return _addCardViewModel;
+}
+
+- (JPAddCardInputFieldViewModel *)inputFieldViewModelWithPlaceholder:(NSString *)placeholder {
+    JPAddCardInputFieldViewModel *viewModel = [JPAddCardInputFieldViewModel new];
+    viewModel.placeholder = placeholder;
+    return viewModel;
+}
+
+- (JPAddCardButtonViewModel *)buttonViewModelWithTitle:(NSString *)title {
+    JPAddCardButtonViewModel *viewModel = [JPAddCardButtonViewModel new];
+    viewModel.title = title;
+    return viewModel;
+}
 
 @end

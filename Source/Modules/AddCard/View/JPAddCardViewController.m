@@ -26,6 +26,7 @@
 #import "JPAddCardView.h"
 #import "UIViewController+KeyboardObservers.h"
 #import "UIViewController+Additions.h"
+#import "JPAddCardPresenter.h"
 
 @interface JPAddCardViewController()
 @property (nonatomic, strong) JPAddCardView* addCardView;
@@ -37,8 +38,10 @@
 
 - (void)loadView {
     self.addCardView = [JPAddCardView new];
+    [self.presenter loadInitialView];
     self.view = self.addCardView;
     [self addTargets];
+    [self addGestureRecognizers];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -71,16 +74,79 @@
     //TODO: Implement add card functionality
 }
 
+- (void)onCardNumberValueDidChange {
+    [self.presenter didChangeInputOfType:JPCardInputTypeCardNumber
+                               withValue:self.addCardView.cardInputTextField.text];
+}
+
+- (void)onCardholderNameValueDidChange {
+    [self.presenter didChangeInputOfType:JPCardInputTypeCardholderName
+                               withValue:self.addCardView.cardholderNameTextField.text];
+}
+
+- (void)onExpiryDateValueDidChange {
+    [self.presenter didChangeInputOfType:JPCardInputTypeExpiryDate
+                               withValue:self.addCardView.expirationDateTextField.text];
+}
+
+- (void)onLastDigitsValueDidChange {
+    [self.presenter didChangeInputOfType:JPCardInputTypeLastDigits
+                               withValue:self.addCardView.lastDigitsTextField.text];
+}
+
+- (void)onCountryValueDidChangee {
+    [self.presenter didChangeInputOfType:JPCardInputTypeCountry
+                               withValue:self.addCardView.countryTextField.text];
+}
+
+- (void)onPostalCodeValueDidChange {
+    [self.presenter didChangeInputOfType:JPCardInputTypePostalCode
+                               withValue:self.addCardView.postcodeTextField.text];
+}
+
+# pragma mark - Delegates
+
+- (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
+    [self.addCardView configureWithViewModel:viewModel];
+}
+
 # pragma mark - Setup
 
 - (void)addTargets {
-    [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
+    
+    [self.addCardView.cardInputTextField addTarget:self
+                                            action:@selector(onCardNumberValueDidChange)
+                                  forControlEvents:UIControlEventEditingChanged];
+    
+    [self.addCardView.cardholderNameTextField addTarget:self
+                                                 action:@selector(onCardholderNameValueDidChange)
+                                       forControlEvents:UIControlEventEditingChanged];
+    
+    [self.addCardView.expirationDateTextField addTarget:self
+                                                 action:@selector(onExpiryDateValueDidChange)
+                                       forControlEvents:UIControlEventEditingChanged];
+    
+    [self.addCardView.lastDigitsTextField addTarget:self
+                                             action:@selector(onLastDigitsValueDidChange)
+                                   forControlEvents:UIControlEventEditingChanged];
+    
+    [self.addCardView.countryTextField addTarget:self
+                                          action:@selector(onCountryValueDidChangee)
+                                forControlEvents:UIControlEventEditingChanged];
+    
+    [self.addCardView.postcodeTextField addTarget:self
+                                           action:@selector(onPostalCodeValueDidChange)
+                                 forControlEvents:UIControlEventEditingChanged];
 }
 
-#pragma mark - Keyboard handling logic
+- (void)addGestureRecognizers {
+    [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
+}
+
+# pragma mark - Keyboard handling logic
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 

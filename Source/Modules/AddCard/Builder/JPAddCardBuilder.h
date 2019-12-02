@@ -27,7 +27,7 @@
 @class JPAddCardViewController, JPAddCardPresenterImpl, JPAddCardInteractorImpl, JPAddCardRouterImpl;
 
 @protocol JPAddCardBuilder
-- (JPAddCardViewController *)buildModule;
+- (JPAddCardViewController *)buildModuleWithAVSEnabled:(BOOL)isAVSEnabled;
 @end
 
 @interface JPAddCardBuilderImpl : NSObject <JPAddCardBuilder>

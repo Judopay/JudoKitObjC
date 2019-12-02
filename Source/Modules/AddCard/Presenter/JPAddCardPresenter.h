@@ -23,11 +23,13 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPAddCardViewModel.h"
 
 @protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
-
+- (void)loadInitialView;
+- (void)didChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value;
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>

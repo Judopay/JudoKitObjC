@@ -30,11 +30,11 @@
 
 @implementation JPAddCardBuilderImpl
 
-- (JPAddCardViewController *)buildModule {
+- (JPAddCardViewController *)buildModuleWithAVSEnabled:(BOOL)isAVSEnabled {
     
     JPAddCardViewController *viewController = [JPAddCardViewController new];
     JPAddCardPresenterImpl *presenter = [JPAddCardPresenterImpl new];
-    JPAddCardInteractorImpl *interactor = [JPAddCardInteractorImpl new];
+    JPAddCardInteractorImpl *interactor = [[JPAddCardInteractorImpl alloc] initWithAVSEnabled:isAVSEnabled];
     JPAddCardRouterImpl *router = [JPAddCardRouterImpl new];
     
     presenter.view = viewController;

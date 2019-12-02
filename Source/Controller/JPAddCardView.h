@@ -24,11 +24,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class JPAddCardViewModel;
+@class LoadingButton;
+
 @interface JPAddCardView : UIView
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *scanCardButton;
 @property (nonatomic, strong) UITextField *cardInputTextField;
-@property (nonatomic, strong) UIButton *addCardButton;
+@property (nonatomic, strong) UITextField *cardholderNameTextField;
+@property (nonatomic, strong) UITextField *expirationDateTextField;
+@property (nonatomic, strong) UITextField *lastDigitsTextField;
+@property (nonatomic, strong) UITextField *countryTextField;
+@property (nonatomic, strong) UITextField *postcodeTextField;
+@property (nonatomic, strong) LoadingButton *addCardButton;
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
+
+- (void)configureWithViewModel:(JPAddCardViewModel *)viewModel;
 @end

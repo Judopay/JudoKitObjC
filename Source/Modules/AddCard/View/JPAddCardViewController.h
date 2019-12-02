@@ -23,11 +23,12 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPAddCardViewModel.h"
 
 @protocol JPAddCardPresenter;
 
 @protocol JPAddCardView
-
+- (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel;
 @end
 
 @interface JPAddCardViewController : UIViewController  <JPAddCardView>

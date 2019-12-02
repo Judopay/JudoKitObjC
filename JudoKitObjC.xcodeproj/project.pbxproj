@@ -75,6 +75,12 @@
 		30D0894523902AC700480C9E /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0894323902AC700480C9E /* UIColor+Hex.h */; };
 		30D0894623902AC700480C9E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0894423902AC700480C9E /* UIColor+Hex.m */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
+		30D6C5BC23950FEC00172303 /* JPAddCardViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */; };
+		30D6C5BD23950FEC00172303 /* JPAddCardViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */; };
+		30D6C5C02395485500172303 /* UITextField+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5BE2395485500172303 /* UITextField+Additions.h */; };
+		30D6C5C12395485500172303 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D6C5BF2395485500172303 /* UITextField+Additions.m */; };
+		30D6C5C423956BD700172303 /* LoadingButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5C223956BD700172303 /* LoadingButton.h */; };
+		30D6C5C523956BD700172303 /* LoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D6C5C323956BD700172303 /* LoadingButton.m */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB50FB23100E1C00B73D66 /* ApplePayWrappers.m */; };
@@ -448,6 +454,12 @@
 		30D0894323902AC700480C9E /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Extensions/UIColor+Hex.h"; sourceTree = "<group>"; };
 		30D0894423902AC700480C9E /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Hex.m"; path = "Extensions/UIColor+Hex.m"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
+		30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardViewModel.h; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.h; sourceTree = SOURCE_ROOT; };
+		30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardViewModel.m; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.m; sourceTree = SOURCE_ROOT; };
+		30D6C5BE2395485500172303 /* UITextField+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UITextField+Additions.h"; path = "Extensions/UITextField+Additions.h"; sourceTree = "<group>"; };
+		30D6C5BF2395485500172303 /* UITextField+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Additions.m"; path = "Extensions/UITextField+Additions.m"; sourceTree = "<group>"; };
+		30D6C5C223956BD700172303 /* LoadingButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoadingButton.h; path = View/LoadingButton.h; sourceTree = "<group>"; };
+		30D6C5C323956BD700172303 /* LoadingButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LoadingButton.m; path = View/LoadingButton.m; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
 		30DB50FA23100E1C00B73D66 /* PostalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostalAddress.h; sourceTree = "<group>"; };
 		30DB50FB23100E1C00B73D66 /* ApplePayWrappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayWrappers.m; sourceTree = "<group>"; };
@@ -800,6 +812,7 @@
 		30D0891B238FB4EC00480C9E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				30D6C5B9239509F200172303 /* ViewModels */,
 				30D08926238FB95700480C9E /* JPAddCardPresenter.h */,
 				30D08927238FB95700480C9E /* JPAddCardPresenter.m */,
 			);
@@ -822,6 +835,15 @@
 				30D0891F238FB53000480C9E /* JPAddCardRouter.m */,
 			);
 			name = Router;
+			sourceTree = "<group>";
+		};
+		30D6C5B9239509F200172303 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */,
+				30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		30DB50F823100E1C00B73D66 /* ApplePay */ = {
@@ -1149,6 +1171,8 @@
 				5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */,
 				528017202392F0F500D2AFDB /* UIViewController+Additions.h */,
 				528017212392F0F500D2AFDB /* UIViewController+Additions.m */,
+				30D6C5BE2395485500172303 /* UITextField+Additions.h */,
+				30D6C5BF2395485500172303 /* UITextField+Additions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1167,6 +1191,8 @@
 				3B5362B01C7CBE9B00CEBAE2 /* InputFields */,
 				30D08936238FD00800480C9E /* RoundedCornerView.h */,
 				30D08937238FD00800480C9E /* RoundedCornerView.m */,
+				30D6C5C223956BD700172303 /* LoadingButton.h */,
+				30D6C5C323956BD700172303 /* LoadingButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1279,6 +1305,7 @@
 			files = (
 				3B678BA91C7327040001DC2F /* JPCollection.h in Headers */,
 				3B678B7F1C6DE0FA0001DC2F /* JPPagination.h in Headers */,
+				30D6C5C423956BD700172303 /* LoadingButton.h in Headers */,
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
 				30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */,
 				30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */,
@@ -1299,6 +1326,7 @@
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
 				30DB511723100E5200B73D66 /* BillingCountry.h in Headers */,
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
+				30D6C5C02395485500172303 /* UITextField+Additions.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
 				447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */,
 				30D0893E238FEC7200480C9E /* UIFont+Custom.h in Headers */,
@@ -1371,6 +1399,7 @@
 				44290B1F22F051F60088F827 /* JPEnhancedPaymentDetail.h in Headers */,
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
 				30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */,
+				30D6C5BC23950FEC00172303 /* JPAddCardViewModel.h in Headers */,
 				3B678B771C6CE7770001DC2F /* JPSession.h in Headers */,
 				5280171A2392A6E000D2AFDB /* JPAddCardView.h in Headers */,
 				30DB511823100E5200B73D66 /* PaymentMethods.h in Headers */,
@@ -1470,7 +1499,7 @@
 				TargetAttributes = {
 					3B4EB3971C981EA7006265A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = U3J2V3C9B5;
+						DevelopmentTeam = ZPX8K2P3Z7;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
 								enabled = 0;
@@ -1725,6 +1754,7 @@
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */,
 				44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */,
+				30D6C5BD23950FEC00172303 /* JPAddCardViewModel.m in Sources */,
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				44290B1E22F051F60088F827 /* JPThreeDSecure.m in Sources */,
 				30D08925238FB59C00480C9E /* JPAddCardInteractor.m in Sources */,
@@ -1766,6 +1796,7 @@
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
 				3B704A8F1C89F19800376773 /* IssueNumberInputField.m in Sources */,
 				30C2215623588D6E000D6E3A /* IDEALBankTableViewCell.m in Sources */,
+				30D6C5C523956BD700172303 /* LoadingButton.m in Sources */,
 				3B6912DF1C96BFED00367660 /* NSString+Card.m in Sources */,
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
 				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
@@ -1790,6 +1821,7 @@
 				3B6991571C8DD85B006ED1FB /* JPTheme.m in Sources */,
 				3B678B961C6E282B0001DC2F /* JPCard.m in Sources */,
 				300654B3237AA92A00097955 /* JPPrimaryAccountDetails.m in Sources */,
+				30D6C5C12395485500172303 /* UITextField+Additions.m in Sources */,
 				44DA43F022F82FE500C34231 /* NSString+Manipulation.m in Sources */,
 				3B704A871C89F16500376773 /* FloatingTextField.m in Sources */,
 			);
@@ -1896,7 +1928,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = U3J2V3C9B5;
+				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
@@ -1904,7 +1936,7 @@
 				INFOPLIST_FILE = JudoKitObjCExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1918,7 +1950,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = U3J2V3C9B5;
+				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
@@ -1926,7 +1958,7 @@
 				INFOPLIST_FILE = JudoKitObjCExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

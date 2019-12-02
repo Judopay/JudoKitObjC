@@ -31,19 +31,23 @@
 #import "UIView+Layout.h"
 #import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
+#import "JPAddCardViewModel.h"
+#import "UITextField+Additions.h"
+#import "LoadingButton.h"
 
 @interface JPAddCardView ()
 
 @property (nonatomic, strong) RoundedCornerView *bottomSlider;
-@property (nonatomic, strong) UITextField *cardholderNameTextField;
-@property (nonatomic, strong) UITextField *expirationDateTextField;
-@property (nonatomic, strong) UITextField *lastDigitsTextField;
 @property (nonatomic, strong) UIStackView *mainStackView;
 @property (nonatomic, strong) UIImageView *lockImageView;
+@property (nonatomic, strong) UILabel *securityMessageLabel;
+@property (nonatomic, strong) NSLayoutConstraint *sliderHeightConstraint;
 
 @end
 
 @implementation JPAddCardView
+
+#pragma mark - Instantiation
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -69,6 +73,57 @@
     return self;
 }
 
+#pragma mark - View model configuration
+
+- (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
+    [self.cardInputTextField placeholderWithText:viewModel.cardNumberViewModel.placeholder
+                                           color:[UIColor colorFromHex:0x999999]
+                                         andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+    
+    [self.cardholderNameTextField placeholderWithText:viewModel.cardholderNameViewModel.placeholder
+                                                color:[UIColor colorFromHex:0x999999]
+                                              andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+    
+    [self.expirationDateTextField placeholderWithText:viewModel.expiryDateViewModel.placeholder
+                                                color:[UIColor colorFromHex:0x999999]
+                                              andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+    
+    [self.lastDigitsTextField placeholderWithText:viewModel.lastFourViewModel.placeholder
+                                            color:[UIColor colorFromHex:0x999999]
+                                          andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+    
+    self.sliderHeightConstraint.constant = 365.0f;
+    
+    self.addCardButton.enabled = viewModel.addCardButtonViewModel.isEnabled;
+    self.addCardButton.alpha = 0.5;
+    [self.addCardButton setTitle:viewModel.addCardButtonViewModel.title
+                        forState:UIControlStateNormal];
+    
+    if (viewModel.addCardButtonViewModel.isEnabled) {
+        self.addCardButton.enabled = YES;
+        self.addCardButton.alpha = 1.0;
+    }
+    
+    self.countryTextField.hidden = YES;
+    self.postcodeTextField.hidden = YES;
+    
+    if (viewModel.countryInputViewModel && viewModel.postalCodeInputViewModel) {
+        self.countryTextField.hidden = NO;
+        self.postcodeTextField.hidden = NO;
+        self.sliderHeightConstraint.constant = 410.0f;
+        
+        [self.countryTextField placeholderWithText:viewModel.countryInputViewModel.placeholder
+                                             color:[UIColor colorFromHex:0x999999]
+                                           andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+        
+        [self.postcodeTextField placeholderWithText:viewModel.postalCodeInputViewModel.placeholder
+                                              color:[UIColor colorFromHex:0x999999]
+                                            andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+    }
+}
+
+#pragma mark - Setup layout
+
 - (void)setupSubviews {
     [self addSubview:self.backgroundView];
     [self addSubview:self.bottomSlider];
@@ -83,10 +138,13 @@
 }
 
 - (void)setupBottomSliderConstraints {
-    [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing
-                            forView:self];
+    [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing forView:self];
+
     self.bottomSliderConstraint = [self.bottomSlider.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
+    self.sliderHeightConstraint = [self.bottomSlider.heightAnchor constraintEqualToConstant:365.0];
+    
     self.bottomSliderConstraint.active = YES;
+    self.sliderHeightConstraint.active = YES;
 }
 
 - (void)setupMainStackViewConstraints {
@@ -106,12 +164,13 @@
 
 - (void)setupContentsConstraints {
     NSArray *constraints = @[
-        [self.bottomSlider.heightAnchor constraintEqualToConstant:354.0],
         [self.scanCardButton.heightAnchor constraintEqualToConstant:36.0],
         [self.cardInputTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.cardholderNameTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.expirationDateTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.lastDigitsTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.countryTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.postcodeTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
         [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
     ];
@@ -179,8 +238,7 @@
         _cardInputTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _cardInputTextField.keyboardType = UIKeyboardTypeNumberPad;
         _cardInputTextField.layer.cornerRadius = 6.0f;
-        _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
-        _cardInputTextField.placeholder = @"Card Number";
+        _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _cardInputTextField;
 }
@@ -190,8 +248,7 @@
         _cardholderNameTextField = [UITextField new];
         _cardholderNameTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _cardholderNameTextField.layer.cornerRadius = 6.0f;
-        _cardholderNameTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
-        _cardholderNameTextField.placeholder = @"Cardholder Name";
+        _cardholderNameTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _cardholderNameTextField;
 }
@@ -201,8 +258,7 @@
         _expirationDateTextField = [UITextField new];
         _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _expirationDateTextField.layer.cornerRadius = 6.0f;
-        _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
-        _expirationDateTextField.placeholder = @"MM/YY";
+        _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _expirationDateTextField;
 }
@@ -212,19 +268,37 @@
         _lastDigitsTextField = [UITextField new];
         _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _lastDigitsTextField.layer.cornerRadius = 6.0f;
-        _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xE5E5E5];
-        _lastDigitsTextField.placeholder = @"CVV";
+        _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _lastDigitsTextField;
 }
 
-- (UIButton *)addCardButton {
+- (UITextField *)countryTextField {
+    if (!_countryTextField) {
+        _countryTextField = [UITextField new];
+        _countryTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _countryTextField.layer.cornerRadius = 6.0f;
+        _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+    }
+    return _countryTextField;
+}
+
+- (UITextField *)postcodeTextField {
+    if (!_postcodeTextField) {
+        _postcodeTextField = [UITextField new];
+        _postcodeTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _postcodeTextField.layer.cornerRadius = 6.0f;
+        _postcodeTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+    }
+    return _postcodeTextField;
+}
+
+- (LoadingButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         _addCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:16.0f];
         _addCardButton.layer.cornerRadius = 4.0f;
-        [_addCardButton setTitle:@"ADD CARD" forState:UIControlStateNormal];
         _addCardButton.backgroundColor = [UIColor colorFromHex:0x262626];
     }
     return _addCardButton;
@@ -288,6 +362,17 @@
     [stackView addArrangedSubview:self.cardInputTextField];
     [stackView addArrangedSubview:self.cardholderNameTextField];
     [stackView addArrangedSubview:self.additionalInputFieldsStackView];
+    [stackView addArrangedSubview:self.avsStackView];
+    
+    return stackView;
+}
+
+- (UIStackView *)avsStackView {
+    UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
+    stackView.distribution = UIStackViewDistributionFillEqually;
+
+    [stackView addArrangedSubview:self.countryTextField];
+    [stackView addArrangedSubview:self.postcodeTextField];
     
     return stackView;
 }

@@ -435,7 +435,7 @@
            cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
 
-    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModule];
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithAVSEnabled:NO];
     controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }

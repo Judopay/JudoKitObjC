@@ -5,7 +5,7 @@
 + (instancetype)defaultSettings {
     Settings *settings = [Settings new];
     settings.currency = @"GBP";
-    settings.isAVSEnabled = NO;
+    settings.isAVSEnabled = YES;
     return settings;
 }
 
