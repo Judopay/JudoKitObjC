@@ -41,4 +41,5 @@
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel;
+- (void)enableUserInterface:(BOOL)shouldEnable;
 @end

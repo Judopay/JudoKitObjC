@@ -29,6 +29,7 @@
 
 @protocol JPAddCardView
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel;
+- (void)displayAlertWithError:(NSError *)error;
 @end
 
 @interface JPAddCardViewController : UIViewController  <JPAddCardView>

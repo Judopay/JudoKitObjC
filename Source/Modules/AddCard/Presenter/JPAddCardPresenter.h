@@ -29,13 +29,14 @@
 
 @protocol JPAddCardPresenter
 - (void)loadInitialView;
-- (void)didChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value;
+- (void)handleChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value;
+- (void)handleAddCardButtonTap;
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>
 
 @property (nonatomic, weak) id<JPAddCardView>view;
-@property (nonatomic, weak) id<JPAddCardRouter>router;
+@property (nonatomic, strong) id<JPAddCardRouter>router;
 @property (nonatomic, strong) id<JPAddCardInteractor>interactor;
 
 @end

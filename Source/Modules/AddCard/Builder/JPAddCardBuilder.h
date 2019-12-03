@@ -23,11 +23,18 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPSession.h"
 
 @class JPAddCardViewController, JPAddCardPresenterImpl, JPAddCardInteractorImpl, JPAddCardRouterImpl;
+@class JPTheme, JPReference, JPCardDetails, JPTransaction;
 
 @protocol JPAddCardBuilder
-- (JPAddCardViewController *)buildModuleWithAVSEnabled:(BOOL)isAVSEnabled;
+- (JPAddCardViewController *)buildModuleWithJudoID:(NSString *)judoID
+                                       transaction:(JPTransaction *)transaction
+                                             theme:(JPTheme *)theme
+                                         reference:(JPReference *)reference
+                                       cardDetails:(JPCardDetails *)cardDetails
+                                        completion:(JudoCompletionBlock)completion;
 @end
 
 @interface JPAddCardBuilderImpl : NSObject <JPAddCardBuilder>

@@ -27,6 +27,7 @@
 #import "UIViewController+KeyboardObservers.h"
 #import "UIViewController+Additions.h"
 #import "JPAddCardPresenter.h"
+#import "LoadingButton.h"
 
 @interface JPAddCardViewController()
 @property (nonatomic, strong) JPAddCardView* addCardView;
@@ -71,43 +72,59 @@
 }
 
 - (void)onAddCardButtonTap {
-    //TODO: Implement add card functionality
+    [self.addCardView.addCardButton startLoading];
+    [self.addCardView enableUserInterface:NO];
+    [self.presenter handleAddCardButtonTap];
 }
 
 - (void)onCardNumberValueDidChange {
-    [self.presenter didChangeInputOfType:JPCardInputTypeCardNumber
-                               withValue:self.addCardView.cardInputTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypeCardNumber
+                                  withValue:self.addCardView.cardInputTextField.text];
 }
 
 - (void)onCardholderNameValueDidChange {
-    [self.presenter didChangeInputOfType:JPCardInputTypeCardholderName
-                               withValue:self.addCardView.cardholderNameTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypeCardholderName
+                                  withValue:self.addCardView.cardholderNameTextField.text];
 }
 
 - (void)onExpiryDateValueDidChange {
-    [self.presenter didChangeInputOfType:JPCardInputTypeExpiryDate
-                               withValue:self.addCardView.expirationDateTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypeExpiryDate
+                                  withValue:self.addCardView.expirationDateTextField.text];
 }
 
 - (void)onLastDigitsValueDidChange {
-    [self.presenter didChangeInputOfType:JPCardInputTypeLastDigits
-                               withValue:self.addCardView.lastDigitsTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypeLastDigits
+                                  withValue:self.addCardView.lastDigitsTextField.text];
 }
 
 - (void)onCountryValueDidChangee {
-    [self.presenter didChangeInputOfType:JPCardInputTypeCountry
-                               withValue:self.addCardView.countryTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypeCountry
+                                  withValue:self.addCardView.countryTextField.text];
 }
 
 - (void)onPostalCodeValueDidChange {
-    [self.presenter didChangeInputOfType:JPCardInputTypePostalCode
-                               withValue:self.addCardView.postcodeTextField.text];
+    [self.presenter handleChangeInputOfType:JPCardInputTypePostalCode
+                                  withValue:self.addCardView.postcodeTextField.text];
 }
 
 # pragma mark - Delegates
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     [self.addCardView configureWithViewModel:viewModel];
+}
+
+- (void)displayAlertWithError:(NSError *)error {
+    [self.addCardView enableUserInterface:YES];
+    [self.addCardView.addCardButton stopLoading];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:error.localizedDescription
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [controller addAction:okAction];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 # pragma mark - Setup

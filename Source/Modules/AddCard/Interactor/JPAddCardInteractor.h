@@ -24,12 +24,22 @@
 
 #import <Foundation/Foundation.h>
 #import "JPAddCardViewModel.h"
+#import "JPSession.h"
+
+@class JPReference, JPCardDetails, JPTheme, JPTransaction;
 
 @protocol JPAddCardInteractor
 - (BOOL)isAVSEnabled;
 - (BOOL)isCardValidForViewModel:(JPAddCardViewModel *)viewModel;
+- (void)addCardForViewModel:(JPAddCardViewModel *)viewModel
+          completionHandler:(JudoCompletionBlock)completionHandler;
 @end
 
 @interface JPAddCardInteractorImpl : NSObject <JPAddCardInteractor>
-- (instancetype)initWithAVSEnabled:(BOOL)isAVSEnabled;
+- (instancetype)initWithWithJudoID:(NSString *)judoId
+                       transaction:(JPTransaction *)transaction
+                              theme:(JPTheme *)theme
+                          reference:(JPReference *)reference
+                        cardDetails:(JPCardDetails *)cardDetails
+                         completion:(JudoCompletionBlock)completion;
 @end

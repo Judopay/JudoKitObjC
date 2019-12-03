@@ -122,6 +122,18 @@
     }
 }
 
+- (void)enableUserInterface:(BOOL)shouldEnable {
+    self.cancelButton.enabled = shouldEnable;
+    self.scanCardButton.enabled = shouldEnable;
+    self.cardInputTextField.enabled = shouldEnable;
+    self.cardholderNameTextField.enabled = shouldEnable;
+    self.expirationDateTextField.enabled = shouldEnable;
+    self.lastDigitsTextField.enabled = shouldEnable;
+    self.countryTextField.enabled = shouldEnable;
+    self.postcodeTextField.enabled = shouldEnable;
+    self.addCardButton.enabled = shouldEnable;
+}
+
 #pragma mark - Setup layout
 
 - (void)setupSubviews {
@@ -236,6 +248,7 @@
     if (!_cardInputTextField) {
         _cardInputTextField = [UITextField new];
         _cardInputTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _cardInputTextField.textColor = [UIColor colorFromHex:0x262626];
         _cardInputTextField.keyboardType = UIKeyboardTypeNumberPad;
         _cardInputTextField.layer.cornerRadius = 6.0f;
         _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
@@ -247,6 +260,7 @@
     if (!_cardholderNameTextField) {
         _cardholderNameTextField = [UITextField new];
         _cardholderNameTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _cardholderNameTextField.textColor = [UIColor colorFromHex:0x262626];
         _cardholderNameTextField.layer.cornerRadius = 6.0f;
         _cardholderNameTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -257,6 +271,7 @@
     if (!_expirationDateTextField) {
         _expirationDateTextField = [UITextField new];
         _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _expirationDateTextField.textColor = [UIColor colorFromHex:0x262626];
         _expirationDateTextField.layer.cornerRadius = 6.0f;
         _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -267,6 +282,7 @@
     if (!_lastDigitsTextField) {
         _lastDigitsTextField = [UITextField new];
         _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _lastDigitsTextField.textColor = [UIColor colorFromHex:0x262626];
         _lastDigitsTextField.layer.cornerRadius = 6.0f;
         _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -277,6 +293,7 @@
     if (!_countryTextField) {
         _countryTextField = [UITextField new];
         _countryTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _countryTextField.textColor = [UIColor colorFromHex:0x262626];
         _countryTextField.layer.cornerRadius = 6.0f;
         _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -287,6 +304,7 @@
     if (!_postcodeTextField) {
         _postcodeTextField = [UITextField new];
         _postcodeTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        _postcodeTextField.textColor = [UIColor colorFromHex:0x262626];
         _postcodeTextField.layer.cornerRadius = 6.0f;
         _postcodeTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -295,7 +313,7 @@
 
 - (LoadingButton *)addCardButton {
     if (!_addCardButton) {
-        _addCardButton = [UIButton new];
+        _addCardButton = [LoadingButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         _addCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:16.0f];
         _addCardButton.layer.cornerRadius = 4.0f;

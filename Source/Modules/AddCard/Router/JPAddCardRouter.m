@@ -23,7 +23,12 @@
 //  SOFTWARE.
 
 #import "JPAddCardRouter.h"
+#import "JPAddCardViewController.h"
 
 @implementation JPAddCardRouterImpl
+
+- (void)dismissViewController {
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

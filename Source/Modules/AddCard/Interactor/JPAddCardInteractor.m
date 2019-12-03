@@ -24,21 +24,49 @@
 
 #import "JPAddCardInteractor.h"
 
+#import "JPSession.h"
+#import "JPTheme.h"
+#import "JPReference.h"
+#import "JPCardDetails.h"
+#import "NSError+Judo.h"
+#import "JPAddress.h"
+#import "JPCard.h"
+#import "JPTransaction.h"
+#import "JPTransactionData.h"
+#import "JPAmount.h"
+
 @interface JPAddCardInteractorImpl ()
-@property (nonatomic, assign) BOOL avsEnabled;
+@property (nonatomic, strong) NSString *judoId;
+@property (nonatomic, strong) JPTransaction *transaction;
+@property (nonatomic, strong) JPTheme *theme;
+@property (nonatomic, strong) JPReference *reference;
+@property (nonatomic, strong) JPCardDetails *cardDetails;
+@property (nonatomic, strong) JudoCompletionBlock completionHandler;
 @end
 
 @implementation JPAddCardInteractorImpl
 
-- (instancetype)initWithAVSEnabled:(BOOL)isAVSEnabled {
+# pragma mark - Protocol methods
+
+- (instancetype)initWithWithJudoID:(NSString *)judoId
+                       transaction:(JPTransaction *)transaction
+                             theme:(JPTheme *)theme
+                         reference:(JPReference *)reference
+                       cardDetails:(JPCardDetails *)cardDetails
+                        completion:(JudoCompletionBlock)completion {
     if (self = [super init]) {
-        self.avsEnabled = isAVSEnabled;
+        self.judoId = judoId;
+        self.transaction = transaction;
+        self.theme = theme;
+        self.reference = reference;
+        self.cardDetails = cardDetails;
+        self.completionHandler = completion;
     }
     return self;
 }
 
 - (BOOL)isAVSEnabled {
-    return self.avsEnabled;
+    return self.theme.avsEnabled;
 }
 
 - (BOOL)isCardValidForViewModel:(JPAddCardViewModel *)viewModel {
@@ -49,7 +77,7 @@
     
     BOOL isCardValid = isCardNumberValid && isCardholderNameValid && isExpiryDateValid && isLastDigitsValid;
     
-    if (self.avsEnabled) {
+    if (self.theme.avsEnabled) {
         BOOL isCountryValid = [self isCountryValid:viewModel.countryInputViewModel.text];
         BOOL isPostalCodeValid = [self isPostalCodeValid:viewModel.postalCodeInputViewModel.text];
         return isCardValid && isCountryValid && isPostalCodeValid;
@@ -58,9 +86,45 @@
     return isCardValid;
 }
 
+- (void)addCardForViewModel:(JPAddCardViewModel *)viewModel
+          completionHandler:(JudoCompletionBlock)completionHandler {
+    
+    if (!self.reference || !self.transaction.apiSession) {
+        if (self.completionHandler) {
+            self.completionHandler(nil, NSError.judoParameterError);
+        }
+        return;
+    }
+    
+    JPAddress *address = nil;
+    if (self.theme.avsEnabled && viewModel.postalCodeInputViewModel.text) {
+        address = [JPAddress new];
+        address.postCode = viewModel.postalCodeInputViewModel.text;
+        address.billingCountry = viewModel.countryInputViewModel.text;
+    }
+    
+    NSString *cardNumberString = viewModel.cardNumberViewModel.text;
+    NSString *formattedCardNumberString = [cardNumberString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *expirationDate = viewModel.expiryDateViewModel.text;
+    NSString *secureCode = viewModel.lastFourViewModel.text;
+    JPCard *card = [[JPCard alloc] initWithCardNumber:formattedCardNumberString
+                                           expiryDate:expirationDate
+                                           secureCode:secureCode];
+    card.cardAddress = address;
+    
+    //TODO: Handle Maestro-specific logic
+    // card.startDate = viewModel.startDateViewModel.text;
+    // card.issueNumber = viewModel.issueNumberViewModel.text;
+    
+    [self.transaction setCard:card];
+    [self.transaction sendWithCompletion:completionHandler];
+}
+
+# pragma mark - Internal functionality
+
 - (BOOL)isCardNumberValid:(NSString *)cardNumber {
     //TODO: Handle card number validation
-    return cardNumber.length == 16;
+    return [cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length == 16;
 }
 
 - (BOOL)isCardholderNameValid:(NSString *)cardholderName {

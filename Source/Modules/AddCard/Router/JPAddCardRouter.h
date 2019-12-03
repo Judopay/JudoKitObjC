@@ -24,10 +24,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JPAddCardRouter
+@class JPAddCardViewController;
 
+@protocol JPAddCardRouter
+- (void)dismissViewController;
 @end
 
 @interface JPAddCardRouterImpl : NSObject <JPAddCardRouter>
-
+@property (nonatomic, weak) JPAddCardViewController *viewController;
 @end

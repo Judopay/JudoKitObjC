@@ -25,6 +25,7 @@
 #import "JPAddCardPresenter.h"
 #import "JPAddCardInteractor.h"
 #import "JPAddCardViewController.h"
+#import "JPAddCardRouter.h"
 
 @interface JPAddCardPresenterImpl()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
@@ -32,14 +33,31 @@
 
 @implementation JPAddCardPresenterImpl
 
+# pragma mark - Delegate methods
+
 - (void)loadInitialView {
     [self updateViewWithViewModel:self.addCardViewModel];
 }
 
-- (void)didChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value {
+- (void)handleChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value {
     [self updateInputViewModelForType:type withText:value andErrorText:nil];
     [self updateViewWithViewModel:self.addCardViewModel];
 }
+
+- (void)handleAddCardButtonTap {
+    __weak typeof(self) weakSelf = self;
+    [self.interactor addCardForViewModel:self.addCardViewModel
+                       completionHandler:^(JPResponse *response, NSError *error) {
+        if (error) {
+            [weakSelf.view displayAlertWithError:error];
+            return;
+        }
+        
+        [weakSelf.router dismissViewController];
+    }];
+}
+
+#pragma mark - Internal functionality
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     BOOL isCardValid = [self.interactor isCardValidForViewModel: self.addCardViewModel];

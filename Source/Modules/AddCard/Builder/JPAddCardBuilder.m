@@ -28,18 +28,32 @@
 #import "JPAddCardInteractor.h"
 #import "JPAddCardRouter.h"
 
+#import "JPTheme.h"
+#import "JPReference.h"
+#import "JPCardDetails.h"
+
 @implementation JPAddCardBuilderImpl
 
-- (JPAddCardViewController *)buildModuleWithAVSEnabled:(BOOL)isAVSEnabled {
+- (JPAddCardViewController *)buildModuleWithJudoID:(NSString *)judoID
+                                       transaction:(JPTransaction *)transaction
+                                              theme:(JPTheme *)theme
+                                          reference:(JPReference *)reference
+                                        cardDetails:(JPCardDetails *)cardDetails
+                                         completion:(JudoCompletionBlock)completion {
     
     JPAddCardViewController *viewController = [JPAddCardViewController new];
     JPAddCardPresenterImpl *presenter = [JPAddCardPresenterImpl new];
-    JPAddCardInteractorImpl *interactor = [[JPAddCardInteractorImpl alloc] initWithAVSEnabled:isAVSEnabled];
     JPAddCardRouterImpl *router = [JPAddCardRouterImpl new];
-    
+    JPAddCardInteractorImpl *interactor = [[JPAddCardInteractorImpl alloc] initWithWithJudoID:judoID
+                                                                                  transaction:transaction
+                                                                                         theme:theme
+                                                                                     reference:reference
+                                                                                   cardDetails:cardDetails
+                                                                                    completion:completion];
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
+    router.viewController = viewController;
     
     viewController.presenter = presenter;
     
