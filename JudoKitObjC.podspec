@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license               = 'MIT'
   s.author                = { "Judopay" => 'developersupport@judopayments.com' }
   s.source                = { :git => 'https://github.com/Judopay/JudoKitObjC.git', :tag => s.version.to_s }
-  
+
   s.documentation_url     = 'https://judopay.github.io/JudoKitObjC/'
 
   s.ios.deployment_target = '10.3'
@@ -18,5 +18,6 @@ Pod::Spec.new do |s|
 
   s.frameworks            = 'CoreLocation', 'Security', 'CoreTelephony'
   s.pod_target_xcconfig   = { 'FRAMEWORK_SEARCH_PATHS'   => '$(inherited) ${PODS_ROOT}/DeviceDNA/Source' }
-  s.resource_bundle = { "JudoKitObjC" => ["Resources/*.lproj/*.strings"] }
+  s.resource_bundles = { "JudoKitObjC" => ["Resources/*.lproj/*.strings"] }
+  s.resources = ['Resources/icons.bundle']
 end

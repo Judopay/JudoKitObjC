@@ -24,7 +24,6 @@
 
 #import "JPAddCardView.h"
 #import "RoundedCornerView.h"
-#import "UIFont+Custom.h"
 #import "UIColor+Hex.h"
 #import "NSString+Localize.h"
 #import "UIView+Constraints.h"
@@ -34,6 +33,7 @@
 #import "JPAddCardViewModel.h"
 #import "UITextField+Additions.h"
 #import "LoadingButton.h"
+
 
 @interface JPAddCardView ()
 
@@ -78,19 +78,19 @@
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
     [self.cardInputTextField placeholderWithText:viewModel.cardNumberViewModel.placeholder
                                            color:[UIColor colorFromHex:0x999999]
-                                         andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                         andFont:[UIFont systemFontOfSize:16.0]];
     
     [self.cardholderNameTextField placeholderWithText:viewModel.cardholderNameViewModel.placeholder
                                                 color:[UIColor colorFromHex:0x999999]
-                                              andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                              andFont:[UIFont systemFontOfSize:16.0]];
     
     [self.expirationDateTextField placeholderWithText:viewModel.expiryDateViewModel.placeholder
                                                 color:[UIColor colorFromHex:0x999999]
-                                              andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                              andFont:[UIFont systemFontOfSize:16.0]];
     
     [self.lastDigitsTextField placeholderWithText:viewModel.lastFourViewModel.placeholder
                                             color:[UIColor colorFromHex:0x999999]
-                                          andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                          andFont:[UIFont systemFontOfSize:16.0]];
     
     self.sliderHeightConstraint.constant = 365.0f;
     
@@ -114,11 +114,11 @@
         
         [self.countryTextField placeholderWithText:viewModel.countryInputViewModel.placeholder
                                              color:[UIColor colorFromHex:0x999999]
-                                           andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                           andFont:[UIFont systemFontOfSize:16.0]];
         
         [self.postcodeTextField placeholderWithText:viewModel.postalCodeInputViewModel.placeholder
                                               color:[UIColor colorFromHex:0x999999]
-                                            andFont:[UIFont SFProDisplayRegularWithSize:16.0]];
+                                            andFont:[UIFont systemFontOfSize:16.0]];
     }
 }
 
@@ -215,7 +215,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _cancelButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:14.0];
+        _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         [_cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
@@ -229,7 +229,7 @@
         
         [_scanCardButton setTitle:@"SCAN CARD" forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _scanCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:14.0];
+        _scanCardButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         
         [_scanCardButton setImage:[UIImage imageWithIconName:@"scan-card"]
                          forState:UIControlStateNormal];
@@ -315,7 +315,7 @@
     if (!_addCardButton) {
         _addCardButton = [LoadingButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _addCardButton.titleLabel.font = [UIFont SFProDisplaySemiboldWithSize:16.0f];
+        _addCardButton.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
         _addCardButton.layer.cornerRadius = 4.0f;
         _addCardButton.backgroundColor = [UIColor colorFromHex:0x262626];
     }
@@ -337,7 +337,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
-    label.font = [UIFont SFProTextRegularWithSize:10.0];
+    label.font = [UIFont systemFontOfSize:11.3];
     label.textColor = [UIColor colorFromHex:0x999999];
     return label;
 }

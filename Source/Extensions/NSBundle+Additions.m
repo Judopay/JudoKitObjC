@@ -27,37 +27,18 @@
 
 @implementation NSBundle (Additions)
 
-+ (instancetype)frameworkBundle {
-    static NSBundle *bundle;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleForClass:[JudoKit class]];
-    });
-    return bundle;
++ (NSBundle *)frameworkBundle {
+    return [NSBundle bundleForClass:[JudoKit class]];
 }
 
-+ (instancetype)iconsBundle {
-    static NSBundle *bundle;
++ (NSBundle *)iconsBundle {
     static NSBundle *iconsBundle;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleForClass:[JudoKit class]];
-        NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
+        NSString *iconBundlePath = [NSBundle pathForResourceBundle:@"icons"];
         iconsBundle = [NSBundle bundleWithPath:iconBundlePath];
     });
     return iconsBundle;
-}
-
-+ (instancetype)fontsBundle {
-    static NSBundle *bundle;
-    static NSBundle *fontsBundle;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleForClass:[JudoKit class]];
-        NSString *fontsBundlePath = [bundle pathForResource:@"fonts" ofType:@"bundle"];
-        fontsBundle = [NSBundle bundleWithPath:fontsBundlePath];
-    });
-    return fontsBundle;
 }
 
 + (instancetype)stringsBundle {
@@ -69,5 +50,18 @@
         bundle = [NSBundle bundleWithPath:podPath];
     });
     return bundle;
+}
+
++ (NSString *)pathForResourceBundle:(NSString *)resourceBundle {
+    for (NSBundle* bundle in [NSBundle allBundles]) {
+        NSString* bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
+        if (bundlePath) { return bundlePath; }
+    }
+
+    for (NSBundle* bundle in [NSBundle allFrameworks]) {
+        NSString* bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
+        if (bundlePath) { return bundlePath; }
+    }
+    return nil;
 }
 @end

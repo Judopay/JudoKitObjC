@@ -42,6 +42,7 @@
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
 #import "UIViewController+KeyboardObservers.h"
+#import "UIImage+Icons.h"
 
 @interface IDEALFormViewController ()
 
@@ -529,16 +530,10 @@
     self.selectedBank = bank;
     [self displayPaymentElementsIfNeeded];
     self.selectedBankLabelView.hidden = NO;
-    NSBundle *bundle = [NSBundle bundleForClass:IDEALFormViewController.class];
-
-    NSString *iconBundlePath = [bundle pathForResource:@"icons" ofType:@"bundle"];
-    NSBundle *iconBundle = [NSBundle bundleWithPath:iconBundlePath];
-
+    
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
-    NSString *iconFilePath = [iconBundle pathForResource:iconName ofType:@"png"];
-
     self.bankSelectionCell.textLabel.text = nil;
-    self.bankSelectionCell.imageView.image = [UIImage imageWithContentsOfFile:iconFilePath];
+    self.bankSelectionCell.imageView.image = [UIImage imageWithIconName:iconName];
 
     [NSUserDefaults.standardUserDefaults setInteger:bank.type forKey:@"iDEALBankType"];
 }
