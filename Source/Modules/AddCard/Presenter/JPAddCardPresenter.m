@@ -27,6 +27,9 @@
 #import "JPAddCardViewController.h"
 #import "JPAddCardRouter.h"
 
+#import "JPCard.h"
+#import "JPAddress.h"
+
 @interface JPAddCardPresenterImpl()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
 @end
@@ -45,11 +48,15 @@
 }
 
 - (void)handleAddCardButtonTap {
+
+    JPCard *card = [self cardFromViewModel:self.addCardViewModel];
+    
     __weak typeof(self) weakSelf = self;
-    [self.interactor addCardForViewModel:self.addCardViewModel
-                       completionHandler:^(JPResponse *response, NSError *error) {
+    [self.interactor addCard:card
+           completionHandler:^(JPResponse *response, NSError *error) {
+        
         if (error) {
-            [weakSelf.view displayAlertWithError:error];
+            [weakSelf.view updateViewWithError:error];
             return;
         }
         
@@ -60,14 +67,17 @@
 #pragma mark - Internal functionality
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
-    BOOL isCardValid = [self.interactor isCardValidForViewModel: self.addCardViewModel];
+    
+    JPCard *card = [self cardFromViewModel:viewModel];
+    BOOL isCardValid = [self.interactor isCardValid:card];
+    
     self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
     [self.view updateViewWithViewModel:self.addCardViewModel];
 }
 
 - (void)updateInputViewModelForType:(JPCardInputType)type
-                      withText:(NSString *)text
-                  andErrorText:(NSString *)errorText {
+                           withText:(NSString *)text
+                       andErrorText:(NSString *)errorText {
     switch (type) {
         case JPCardInputTypeCardNumber:
             self.addCardViewModel.cardNumberViewModel.text = text;
@@ -88,6 +98,27 @@
             self.addCardViewModel.postalCodeInputViewModel.text = text;
             break;
     }
+}
+
+# pragma mark - Lazily instantiated properties
+
+- (JPCard *)cardFromViewModel:(JPAddCardViewModel *)viewModel {
+    JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
+                                       cardholderName:viewModel.cardholderNameViewModel.text
+                                           expiryDate:viewModel.expiryDateViewModel.text
+                                           secureCode:viewModel.cardNumberViewModel.text];
+    
+    if ([self.interactor isAVSEnabled]) {
+        card.cardAddress = [JPAddress new];
+        card.cardAddress.billingCountry = viewModel.countryInputViewModel.text;
+        card.cardAddress.postCode = viewModel.postalCodeInputViewModel.text;
+    }
+        
+    //TODO: Handle Maestro-specific logic
+    // card.startDate = viewModel.startDateViewModel.text;
+    // card.issueNumber = viewModel.issueNumberViewModel.text;
+    
+    return card;
 }
 
 - (JPAddCardViewModel *)addCardViewModel {

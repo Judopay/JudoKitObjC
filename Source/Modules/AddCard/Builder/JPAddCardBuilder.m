@@ -31,28 +31,34 @@
 #import "JPTheme.h"
 #import "JPReference.h"
 #import "JPCardDetails.h"
+#import "JPCardValidationService.h"
+#import "JPTransactionService.h"
 
 @implementation JPAddCardBuilderImpl
 
-- (JPAddCardViewController *)buildModuleWithJudoID:(NSString *)judoID
-                                       transaction:(JPTransaction *)transaction
-                                              theme:(JPTheme *)theme
-                                          reference:(JPReference *)reference
-                                        cardDetails:(JPCardDetails *)cardDetails
-                                         completion:(JudoCompletionBlock)completion {
+- (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
+                                                  theme:(JPTheme *)theme
+                                             completion:(JudoCompletionBlock)completion {
+    
+    JPTransactionService *transactionService;
+    transactionService = [[JPTransactionService alloc] initWithAVSEnabled:theme.avsEnabled
+                                                              transaction:transaction];
+    
+    JPCardValidationService *cardValidationService = [JPCardValidationService new];
+    
+    JPAddCardInteractorImpl *interactor;
+    interactor = [[JPAddCardInteractorImpl alloc] initWithCardValidationService:cardValidationService
+                                                             transactionService:transactionService
+                                                                     completion:completion];
     
     JPAddCardViewController *viewController = [JPAddCardViewController new];
     JPAddCardPresenterImpl *presenter = [JPAddCardPresenterImpl new];
     JPAddCardRouterImpl *router = [JPAddCardRouterImpl new];
-    JPAddCardInteractorImpl *interactor = [[JPAddCardInteractorImpl alloc] initWithWithJudoID:judoID
-                                                                                  transaction:transaction
-                                                                                         theme:theme
-                                                                                     reference:reference
-                                                                                   cardDetails:cardDetails
-                                                                                    completion:completion];
+    
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
+    
     router.viewController = viewController;
     
     viewController.presenter = presenter;

@@ -1,8 +1,8 @@
 //
-//  JPCard.m
+//  JPTransactionService.m
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,37 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTransactionService.h"
+#import "JPTransaction.h"
 #import "JPCard.h"
-#import "NSArray+Prefix.h"
+#import "NSError+Judo.h"
 
-@interface JPCard ()
-
+@interface JPTransactionService()
+@property (nonatomic, strong) JPTransaction *transaction;
 @end
 
-@implementation JPCard
+@implementation JPTransactionService
 
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                    cardholderName:(NSString *)cardholderName
-                        expiryDate:(NSString *)expiryDate
-                        secureCode:(NSString *)secureCode {
-    
-    self = [super init];
-    if (self) {
-        self.cardNumber = cardNumber;
-        self.cardholderName = cardholderName;
-        self.expiryDate = expiryDate;
-        self.secureCode = secureCode;
+- (instancetype)initWithAVSEnabled:(BOOL)avsEnabled
+                       transaction:(JPTransaction *)transaction {
+
+    if (self = [super init]) {
+        self.avsEnabled = avsEnabled;
+        self.transaction = transaction;
     }
     return self;
 }
+                        
+- (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler {
+        
+    if (!self.transaction.apiSession) {
+        completionHandler(nil, NSError.judoParameterError);
+        return;
+    }
+    
+    [self.transaction setCard:card];
+    [self.transaction sendWithCompletion:completionHandler];
+}
+
 
 @end

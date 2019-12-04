@@ -1,8 +1,8 @@
 //
-//  JPCard.m
+//  JPCardValidationService.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCard.h"
-#import "NSArray+Prefix.h"
+#import <Foundation/Foundation.h>
 
-@interface JPCard ()
+@class JPCard;
 
-@end
+@interface JPCardValidationService : NSObject
 
-@implementation JPCard
-
-- (instancetype)initWithCardNumber:(NSString *)cardNumber
-                    cardholderName:(NSString *)cardholderName
-                        expiryDate:(NSString *)expiryDate
-                        secureCode:(NSString *)secureCode {
-    
-    self = [super init];
-    if (self) {
-        self.cardNumber = cardNumber;
-        self.cardholderName = cardholderName;
-        self.expiryDate = expiryDate;
-        self.secureCode = secureCode;
-    }
-    return self;
-}
+- (BOOL)isCardValid:(JPCard *)card withAVSEnabled:(BOOL)isAVSEnabled;
+- (BOOL)isCardNumberValid:(NSString *)cardNumber;
+- (BOOL)isCardholderNameValid:(NSString *)cardholderName;
+- (BOOL)isExpiryDateValid:(NSString *)expiryDate;
+- (BOOL)isLastDigitsValid:(NSString *)lastDigits;
+- (BOOL)isValidMonth:(NSString *)month;
+- (BOOL)isValidYear:(NSString *)year;
+- (BOOL)isCountryValid:(NSString *)country;
+- (BOOL)isPostalCodeValid:(NSString *)postalCode;
 
 @end

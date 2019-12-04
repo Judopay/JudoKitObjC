@@ -24,10 +24,10 @@
 
 #import "JPAddCardViewController.h"
 #import "JPAddCardView.h"
-#import "UIViewController+KeyboardObservers.h"
-#import "UIViewController+Additions.h"
 #import "JPAddCardPresenter.h"
 #import "LoadingButton.h"
+#import "UIViewController+KeyboardObservers.h"
+#import "UIViewController+Additions.h"
 
 @interface JPAddCardViewController()
 @property (nonatomic, strong) JPAddCardView* addCardView;
@@ -107,24 +107,16 @@
                                   withValue:self.addCardView.postcodeTextField.text];
 }
 
-# pragma mark - Delegates
+# pragma mark - Protocol methods
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     [self.addCardView configureWithViewModel:viewModel];
 }
 
-- (void)displayAlertWithError:(NSError *)error {
+- (void)updateViewWithError:(NSError *)error {
     [self.addCardView enableUserInterface:YES];
     [self.addCardView.addCardButton stopLoading];
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:error.localizedDescription
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    [controller addAction:okAction];
-    [self presentViewController:controller animated:YES completion:nil];
+    [self displayAlertWithError:error];
 }
 
 # pragma mark - Setup

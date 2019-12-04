@@ -432,7 +432,6 @@
 
 - (void)invokeSaveCard:(NSString *)judoId
      consumerReference:(NSString *)reference
-           cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
     
     JPTransaction *transaction = [self transactionForTypeClass:JPSaveCard.class
@@ -440,12 +439,9 @@
                                                         amount:nil
                                                     reference:[JPReference consumerReference:reference]];
     
-    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithJudoID:judoId
-                                                                                transaction:transaction
-                                                                                      theme:self.theme
-                                                                                  reference:[JPReference consumerReference:reference]
-                                                                                cardDetails:cardDetails
-                                                                                 completion:completion];
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
+                                                                                           theme:self.theme
+                                                                                      completion:completion];
     controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }

@@ -28,4 +28,5 @@
 @interface UIViewController (Additions)
 - (void)connectButton:(UIButton *)button withSelector:(SEL)selector;
 - (void)addTapGestureForView:(UIView *)view withSelector:(SEL)selector;
+- (void)displayAlertWithError:(NSError *)error;
 @end

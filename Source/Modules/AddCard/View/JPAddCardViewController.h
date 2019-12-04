@@ -29,11 +29,9 @@
 
 @protocol JPAddCardView
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel;
-- (void)displayAlertWithError:(NSError *)error;
+- (void)updateViewWithError:(NSError *)error;
 @end
 
 @interface JPAddCardViewController : UIViewController  <JPAddCardView>
-
 @property (nonatomic, strong) id<JPAddCardPresenter> presenter;
-
 @end

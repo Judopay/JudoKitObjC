@@ -537,6 +537,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         }
 
         JPCard *card = [[JPCard alloc] initWithCardNumber:cardNumberString
+                                           cardholderName:nil
                                                expiryDate:self.expiryDateInputField.textField.text
                                                secureCode:self.securityCodeInputField.textField.text];
 

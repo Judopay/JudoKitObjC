@@ -23,7 +23,6 @@
 //  SOFTWARE.
 
 #import "AppDelegate.h"
-#import "UIFont+Custom.h"
 
 @import JudoKitObjC;
 
@@ -34,7 +33,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [UIFont loadCustomFonts];
     return YES;
 }
 

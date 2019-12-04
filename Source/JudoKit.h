@@ -382,7 +382,6 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  */
 - (void)invokeSaveCard:(nonnull NSString *)judoId
      consumerReference:(nonnull NSString *)reference
-           cardDetails:(nullable JPCardDetails *)cardDetails
             completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**

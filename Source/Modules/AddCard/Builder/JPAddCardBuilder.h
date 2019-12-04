@@ -25,16 +25,13 @@
 #import <Foundation/Foundation.h>
 #import "JPSession.h"
 
-@class JPAddCardViewController, JPAddCardPresenterImpl, JPAddCardInteractorImpl, JPAddCardRouterImpl;
-@class JPTheme, JPReference, JPCardDetails, JPTransaction;
+@class JPAddCardViewController;
+@class JPTheme, JPTransaction;
 
 @protocol JPAddCardBuilder
-- (JPAddCardViewController *)buildModuleWithJudoID:(NSString *)judoID
-                                       transaction:(JPTransaction *)transaction
-                                             theme:(JPTheme *)theme
-                                         reference:(JPReference *)reference
-                                       cardDetails:(JPCardDetails *)cardDetails
-                                        completion:(JudoCompletionBlock)completion;
+- (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
+                                                  theme:(JPTheme *)theme
+                                             completion:(JudoCompletionBlock)completion;
 @end
 
 @interface JPAddCardBuilderImpl : NSObject <JPAddCardBuilder>

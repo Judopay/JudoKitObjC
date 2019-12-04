@@ -39,6 +39,11 @@
 /**
  *  <#Description#>
  */
+@property (nonatomic, strong) NSString *_Nullable cardholderName;
+
+/**
+ *  <#Description#>
+ */
 @property (nonatomic, strong) NSString *_Nullable expiryDate;
 
 /**
@@ -70,6 +75,9 @@
  *
  *  @return <#return value description#>
  */
-- (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber expiryDate:(nonnull NSString *)expiryDate secureCode:(nonnull NSString *)secureCode;
+- (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber
+                            cardholderName:(nullable NSString *)cardholderName
+                                expiryDate:(nonnull NSString *)expiryDate
+                                secureCode:(nonnull NSString *)secureCode;
 
 @end

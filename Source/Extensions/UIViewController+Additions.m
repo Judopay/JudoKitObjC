@@ -37,4 +37,16 @@
     [view addGestureRecognizer:tapGesture];
 }
 
+- (void)displayAlertWithError:(NSError *)error {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                        message:error.localizedDescription
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [controller addAction:okAction];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
 @end
