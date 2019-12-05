@@ -119,6 +119,7 @@
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
         _activityIndicatorView = [UIActivityIndicatorView new];
+        _activityIndicatorView.color = [UIColor grayColor];
     }
     return _activityIndicatorView;
 }

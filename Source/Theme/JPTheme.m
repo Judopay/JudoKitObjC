@@ -34,7 +34,7 @@
         // defaults
         _buttonCornerRadius = 4;
     }
-
+    
     return self;
 }
 
@@ -77,9 +77,23 @@
     return _backButtonTitle;
 }
 
+- (NSString *)judoLeftBarButtonTitle {
+    if (!_judoLeftBarButtonTitle) {
+        _judoLeftBarButtonTitle = @"back".localized;
+    }
+    return _judoLeftBarButtonTitle;
+}
+
+- (NSString *)judoRightBarButtonTitle {
+    if (!_judoRightBarButtonTitle) {
+        _judoRightBarButtonTitle = @"pay".localized;
+    }
+    return _judoRightBarButtonTitle;
+}
+
 - (NSString *)paymentTitle {
     if (!_paymentTitle) {
-        _paymentTitle = @"payment".localized;
+        _paymentTitle = @"pay".localized;
     }
     return _paymentTitle;
 }
@@ -307,7 +321,7 @@
     if (_judoContentViewBackgroundColor) {
         return _judoContentViewBackgroundColor;
     }
-
+    
     UIColor *backgroundColor = [UIColor zircon];
     if ([self.tintColor isDarkColor]) {
         return backgroundColor;
