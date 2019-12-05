@@ -42,6 +42,7 @@
 @property (nonatomic, strong) UIImageView *lockImageView;
 @property (nonatomic, strong) UILabel *securityMessageLabel;
 @property (nonatomic, strong) NSLayoutConstraint *sliderHeightConstraint;
+@property (nonatomic, strong) NSArray *countries;
 
 @end
 
@@ -69,6 +70,7 @@
     if (self = [super initWithFrame:CGRectZero]) {
         [self setupSubviews];
         [self setupConstraints];
+        self.countries = @[@"united_states".localized, @"united_kingdom".localized, @"canada".localized, @"other_country".localized];
     }
     return self;
 }
@@ -151,7 +153,7 @@
 
 - (void)setupBottomSliderConstraints {
     [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing forView:self];
-
+    
     self.bottomSliderConstraint = [self.bottomSlider.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
     self.sliderHeightConstraint = [self.bottomSlider.heightAnchor constraintEqualToConstant:365.0];
     
@@ -186,7 +188,7 @@
         [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
         [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
     ];
-
+    
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -291,11 +293,17 @@
 
 - (UITextField *)countryTextField {
     if (!_countryTextField) {
+        UIPickerView *countryPicker = [UIPickerView new];
         _countryTextField = [UITextField new];
         _countryTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _countryTextField.textColor = [UIColor colorFromHex:0x262626];
         _countryTextField.layer.cornerRadius = 6.0f;
         _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+        _countryTextField.inputView = countryPicker;
+        countryPicker.backgroundColor = [UIColor whiteColor];
+        countryPicker.tintColor = UIColor.blueColor;
+        countryPicker.delegate = self;
+        countryPicker.dataSource = self;
     }
     return _countryTextField;
 }
@@ -367,7 +375,7 @@
 - (UIStackView *)additionalInputFieldsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-
+    
     [stackView addArrangedSubview:self.expirationDateTextField];
     [stackView addArrangedSubview:self.lastDigitsTextField];
     
@@ -388,7 +396,7 @@
 - (UIStackView *)avsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-
+    
     [stackView addArrangedSubview:self.countryTextField];
     [stackView addArrangedSubview:self.postcodeTextField];
     
@@ -408,5 +416,26 @@
     [stackView addArrangedSubview:self.securityMessageStackView];
     return stackView;
 }
+
+- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
+    return  1;
+}
+
+- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.countries.count;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.countryTextField.text = self.countries[row];
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString *title = self.countries[row];
+    NSAttributedString *attString =
+        [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+
+    return attString;
+}
+
 
 @end

@@ -27,7 +27,7 @@
 @class JPAddCardViewModel;
 @class LoadingButton;
 
-@interface JPAddCardView : UIView
+@interface JPAddCardView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *scanCardButton;
