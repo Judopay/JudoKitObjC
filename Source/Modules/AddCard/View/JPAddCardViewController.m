@@ -31,6 +31,7 @@
 
 @interface JPAddCardViewController()
 @property (nonatomic, strong) JPAddCardView* addCardView;
+@property (nonatomic, strong) NSArray *countryNames;
 @end
 
 @implementation JPAddCardViewController
@@ -110,6 +111,11 @@
 # pragma mark - Protocol methods
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
+    if (viewModel.countryPickerViewModel) {
+        self.addCardView.countryPickerView.delegate = self;
+        self.addCardView.countryPickerView.dataSource = self;
+        self.countryNames = viewModel.countryPickerViewModel.pickerTitles;
+    }
     [self.addCardView configureWithViewModel:viewModel];
 }
 
@@ -158,22 +164,57 @@
 # pragma mark - Keyboard handling logic
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-
+    
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
     CGSize keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     self.addCardView.bottomSliderConstraint.constant = -keyboardSize.height;
 
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:curve
+                     animations:^{
         [self.view layoutIfNeeded];
-    }];
+    } completion:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
     self.addCardView.bottomSliderConstraint.constant = 0;
 
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:curve
+                     animations:^{
         [self.view layoutIfNeeded];
-    }];
+    } completion:nil];
+}
+
+@end
+
+@implementation JPAddCardViewController (CountryPickerDelegate)
+
+- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
+    return  1;
+}
+
+- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.countryNames.count;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
+    [self.presenter didChangeCountryWithName:self.countryNames[row]];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component {
+    return self.countryNames[row];
 }
 
 @end

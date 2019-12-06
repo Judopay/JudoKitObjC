@@ -49,10 +49,10 @@
 "billing_postal_code" = "Código postal";
 
 //BillingCountryInputField
-"united_kingdom" = "Reino Unido";
-"united_states" = "Estados Unidos";
-"canada" = "Canadá";
-"other_country" = "Otro";
+"country_uk" = "Reino Unido";
+"country_usa" = "Estados Unidos";
+"country_canada" = "Canadá";
+"country_other" = "Otro";
 
 //IDEALFormViewController
 "ideal_transaction" = "Transacción iDEAL";

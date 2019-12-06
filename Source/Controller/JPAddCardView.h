@@ -27,7 +27,7 @@
 @class JPAddCardViewModel;
 @class LoadingButton;
 
-@interface JPAddCardView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface JPAddCardView : UIView
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *scanCardButton;
@@ -36,6 +36,7 @@
 @property (nonatomic, strong) UITextField *expirationDateTextField;
 @property (nonatomic, strong) UITextField *lastDigitsTextField;
 @property (nonatomic, strong) UITextField *countryTextField;
+@property (nonatomic, strong) UIPickerView *countryPickerView;
 @property (nonatomic, strong) UITextField *postcodeTextField;
 @property (nonatomic, strong) LoadingButton *addCardButton;
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;

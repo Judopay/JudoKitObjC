@@ -34,7 +34,6 @@
 #import "UITextField+Additions.h"
 #import "LoadingButton.h"
 
-
 @interface JPAddCardView ()
 
 @property (nonatomic, strong) RoundedCornerView *bottomSlider;
@@ -42,7 +41,6 @@
 @property (nonatomic, strong) UIImageView *lockImageView;
 @property (nonatomic, strong) UILabel *securityMessageLabel;
 @property (nonatomic, strong) NSLayoutConstraint *sliderHeightConstraint;
-@property (nonatomic, strong) NSArray *countries;
 
 @end
 
@@ -70,7 +68,6 @@
     if (self = [super initWithFrame:CGRectZero]) {
         [self setupSubviews];
         [self setupConstraints];
-        self.countries = @[@"united_states".localized, @"united_kingdom".localized, @"canada".localized, @"other_country".localized];
     }
     return self;
 }
@@ -109,12 +106,13 @@
     self.countryTextField.hidden = YES;
     self.postcodeTextField.hidden = YES;
     
-    if (viewModel.countryInputViewModel && viewModel.postalCodeInputViewModel) {
+    if (viewModel.countryPickerViewModel && viewModel.postalCodeInputViewModel) {
         self.countryTextField.hidden = NO;
         self.postcodeTextField.hidden = NO;
+        self.countryTextField.text = viewModel.countryPickerViewModel.text;
         self.sliderHeightConstraint.constant = 410.0f;
         
-        [self.countryTextField placeholderWithText:viewModel.countryInputViewModel.placeholder
+        [self.countryTextField placeholderWithText:viewModel.countryPickerViewModel.placeholder
                                              color:[UIColor colorFromHex:0x999999]
                                            andFont:[UIFont systemFontOfSize:16.0]];
         
@@ -274,6 +272,7 @@
         _expirationDateTextField = [UITextField new];
         _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _expirationDateTextField.textColor = [UIColor colorFromHex:0x262626];
+        _expirationDateTextField.keyboardType = UIKeyboardTypeNumberPad;
         _expirationDateTextField.layer.cornerRadius = 6.0f;
         _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -285,6 +284,7 @@
         _lastDigitsTextField = [UITextField new];
         _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _lastDigitsTextField.textColor = [UIColor colorFromHex:0x262626];
+        _lastDigitsTextField.keyboardType = UIKeyboardTypeNumberPad;
         _lastDigitsTextField.layer.cornerRadius = 6.0f;
         _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -293,19 +293,21 @@
 
 - (UITextField *)countryTextField {
     if (!_countryTextField) {
-        UIPickerView *countryPicker = [UIPickerView new];
         _countryTextField = [UITextField new];
         _countryTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _countryTextField.textColor = [UIColor colorFromHex:0x262626];
         _countryTextField.layer.cornerRadius = 6.0f;
         _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
-        _countryTextField.inputView = countryPicker;
-        countryPicker.backgroundColor = [UIColor whiteColor];
-        countryPicker.tintColor = UIColor.blueColor;
-        countryPicker.delegate = self;
-        countryPicker.dataSource = self;
+        _countryTextField.inputView = self.countryPickerView;
     }
     return _countryTextField;
+}
+
+- (UIPickerView *)countryPickerView {
+    if (!_countryPickerView) {
+        _countryPickerView = [UIPickerView new];
+    }
+    return _countryPickerView;
 }
 
 - (UITextField *)postcodeTextField {
@@ -357,7 +359,6 @@
         [_mainStackView addArrangedSubview:self.topButtonStackView];
         [_mainStackView addArrangedSubview:self.inputFieldsStackView];
         [_mainStackView addArrangedSubview:self.buttonStackView];
-        
     }
     return _mainStackView;
 }
@@ -416,26 +417,5 @@
     [stackView addArrangedSubview:self.securityMessageStackView];
     return stackView;
 }
-
-- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
-    return  1;
-}
-
-- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.countries.count;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.countryTextField.text = self.countries[row];
-}
-
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSString *title = self.countries[row];
-    NSAttributedString *attString =
-        [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
-
-    return attString;
-}
-
 
 @end

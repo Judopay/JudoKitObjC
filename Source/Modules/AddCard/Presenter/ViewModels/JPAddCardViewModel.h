@@ -29,12 +29,16 @@ typedef NS_ENUM(NSInteger, JPCardInputType) {
 @property (nonatomic, assign) BOOL isEnabled;
 @end
 
+@interface JPAddCardPickerViewModel : JPAddCardInputFieldViewModel
+@property (nonatomic, strong) NSArray *pickerTitles;
+@end
+
 @interface JPAddCardViewModel : NSObject
 @property (nonatomic, strong) JPAddCardInputFieldViewModel *cardNumberViewModel;
 @property (nonatomic, strong) JPAddCardInputFieldViewModel *cardholderNameViewModel;
 @property (nonatomic, strong) JPAddCardInputFieldViewModel *expiryDateViewModel;
 @property (nonatomic, strong) JPAddCardInputFieldViewModel *lastFourViewModel;
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *countryInputViewModel;
+@property (nonatomic, strong) JPAddCardPickerViewModel *countryPickerViewModel;
 @property (nonatomic, strong) JPAddCardInputFieldViewModel *postalCodeInputViewModel;
 @property (nonatomic, strong) JPAddCardButtonViewModel *addCardButtonViewModel;
 @end

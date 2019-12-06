@@ -28,6 +28,7 @@
 #import "JPAddCardRouter.h"
 
 #import "JPCard.h"
+#import "JPCountry.h"
 #import "JPAddress.h"
 
 @interface JPAddCardPresenterImpl()
@@ -64,6 +65,11 @@
     }];
 }
 
+- (void)didChangeCountryWithName:(NSString *)name {
+    self.addCardViewModel.countryPickerViewModel.text = name;
+    [self updateViewWithViewModel:self.addCardViewModel];
+}
+
 #pragma mark - Internal functionality
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
@@ -92,7 +98,7 @@
             self.addCardViewModel.lastFourViewModel.text = text;
             break;
         case JPCardInputTypeCountry:
-            self.addCardViewModel.countryInputViewModel.text = text;
+            self.addCardViewModel.countryPickerViewModel.text = text;
             break;
         case JPCardInputTypePostalCode:
             self.addCardViewModel.postalCodeInputViewModel.text = text;
@@ -106,11 +112,11 @@
     JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
                                        cardholderName:viewModel.cardholderNameViewModel.text
                                            expiryDate:viewModel.expiryDateViewModel.text
-                                           secureCode:viewModel.cardNumberViewModel.text];
+                                           secureCode:viewModel.lastFourViewModel.text];
     
     if ([self.interactor isAVSEnabled]) {
         card.cardAddress = [JPAddress new];
-        card.cardAddress.billingCountry = viewModel.countryInputViewModel.text;
+        card.cardAddress.billingCountry = viewModel.countryPickerViewModel.text;
         card.cardAddress.postCode = viewModel.postalCodeInputViewModel.text;
     }
         
@@ -131,7 +137,9 @@
         _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];;
         
         if ([self.interactor isAVSEnabled]) {
-            _addCardViewModel.countryInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Country"];;
+            NSArray *countries = [self.interactor getSelectableCounties];
+            NSArray *countryNames = [self countryNamesForCountries:countries];
+            _addCardViewModel.countryPickerViewModel = [self pickerViewModelWithPlaceholder:@"Country" pickerTitles:countryNames];
             _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Postcode"];;
         }
     }
@@ -148,6 +156,22 @@
     JPAddCardButtonViewModel *viewModel = [JPAddCardButtonViewModel new];
     viewModel.title = title;
     return viewModel;
+}
+
+- (JPAddCardPickerViewModel *)pickerViewModelWithPlaceholder:(NSString *)placeholder
+                                                pickerTitles:(NSArray *)pickerTitles {
+    JPAddCardPickerViewModel *viewModel = [JPAddCardPickerViewModel new];
+    viewModel.placeholder = placeholder;
+    viewModel.pickerTitles = pickerTitles;
+    return viewModel;
+}
+
+- (NSArray *)countryNamesForCountries:(NSArray<JPCountry *> *)countries {
+    NSMutableArray *countryNames = [NSMutableArray new];
+    for (JPCountry *country in countries) {
+        [countryNames addObject:country.name];
+    }
+    return countryNames;
 }
 
 @end

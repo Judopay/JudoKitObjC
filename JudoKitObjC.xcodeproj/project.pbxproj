@@ -56,6 +56,8 @@
 		30CFA5A72397D45400329B04 /* JPTransactionService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A32397D45400329B04 /* JPTransactionService.h */; };
 		30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A42397D45400329B04 /* JPCardValidationService.h */; };
 		30CFA5A92397D45400329B04 /* JPCardValidationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CFA5A52397D45400329B04 /* JPCardValidationService.m */; };
+		30CFA5E3239A55EF00329B04 /* JPCountry.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5E1239A55EF00329B04 /* JPCountry.h */; };
+		30CFA5E4239A55EF00329B04 /* JPCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CFA5E2239A55EF00329B04 /* JPCountry.m */; };
 		30D088F7238D73A900480C9E /* PostCodeValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */; };
 		30D088F8238D73AF00480C9E /* IDEALManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F2238D735A00480C9E /* IDEALManagerTests.swift */; };
 		30D08920238FB53000480C9E /* JPAddCardRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0891E238FB53000480C9E /* JPAddCardRouter.h */; };
@@ -442,6 +444,8 @@
 		30CFA5A32397D45400329B04 /* JPTransactionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionService.h; sourceTree = "<group>"; };
 		30CFA5A42397D45400329B04 /* JPCardValidationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardValidationService.h; sourceTree = "<group>"; };
 		30CFA5A52397D45400329B04 /* JPCardValidationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCardValidationService.m; sourceTree = "<group>"; };
+		30CFA5E1239A55EF00329B04 /* JPCountry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPCountry.h; path = Model/JPCountry.h; sourceTree = "<group>"; };
+		30CFA5E2239A55EF00329B04 /* JPCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPCountry.m; path = Model/JPCountry.m; sourceTree = "<group>"; };
 		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
 		30D0891E238FB53000480C9E /* JPAddCardRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardRouter.h; path = Modules/AddCard/Router/JPAddCardRouter.h; sourceTree = "<group>"; };
@@ -1098,6 +1102,8 @@
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
+				30CFA5E1239A55EF00329B04 /* JPCountry.h */,
+				30CFA5E2239A55EF00329B04 /* JPCountry.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1384,6 +1390,7 @@
 				30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
+				30CFA5E3239A55EF00329B04 /* JPCountry.h in Headers */,
 				44DA43EF22F82FE500C34231 /* NSString+Manipulation.h in Headers */,
 				300654AE237AA91900097955 /* JPCheckCard.h in Headers */,
 				30225D16237E8F2F005EB28C /* JPReachability.h in Headers */,
@@ -1777,6 +1784,7 @@
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				30F1B4A7237C3C5A00CE676A /* JPOrderDetails.m in Sources */,
+				30CFA5E4239A55EF00329B04 /* JPCountry.m in Sources */,
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
 				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,

@@ -28,6 +28,7 @@
 #import "JPSession.h"
 #import "NSError+Judo.h"
 #import "JPCard.h"
+#import "JPCountry.h"
 
 @interface JPAddCardInteractorImpl ()
 @property (nonatomic, strong) JudoCompletionBlock completionHandler;
@@ -65,6 +66,19 @@
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler {
     self.completionHandler = completionHandler;
     [self.transactionService addCard:card completionHandler:completionHandler];
+}
+
+- (NSArray<JPCountry *> *)getSelectableCounties {
+    return self.defaultCountries;
+}
+
+- (NSArray<JPCountry *> *)defaultCountries {
+    return @[
+        [JPCountry countryWithType:JPCountryTypeUK],
+        [JPCountry countryWithType:JPCountryTypeUSA],
+        [JPCountry countryWithType:JPCountryTypeCanada],
+        [JPCountry countryWithType:JPCountryTypeOther],
+    ];
 }
 
 @end

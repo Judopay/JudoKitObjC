@@ -35,3 +35,6 @@
 @interface JPAddCardViewController : UIViewController  <JPAddCardView>
 @property (nonatomic, strong) id<JPAddCardPresenter> presenter;
 @end
+
+@interface JPAddCardViewController (CountryPickerDelegate) <UIPickerViewDelegate, UIPickerViewDataSource>
+@end
