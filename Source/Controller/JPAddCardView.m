@@ -34,7 +34,6 @@
 #import "UITextField+Additions.h"
 #import "LoadingButton.h"
 
-
 @interface JPAddCardView ()
 
 @property (nonatomic, strong) RoundedCornerView *bottomSlider;
@@ -107,12 +106,13 @@
     self.countryTextField.hidden = YES;
     self.postcodeTextField.hidden = YES;
     
-    if (viewModel.countryInputViewModel && viewModel.postalCodeInputViewModel) {
+    if (viewModel.countryPickerViewModel && viewModel.postalCodeInputViewModel) {
         self.countryTextField.hidden = NO;
         self.postcodeTextField.hidden = NO;
+        self.countryTextField.text = viewModel.countryPickerViewModel.text;
         self.sliderHeightConstraint.constant = 410.0f;
         
-        [self.countryTextField placeholderWithText:viewModel.countryInputViewModel.placeholder
+        [self.countryTextField placeholderWithText:viewModel.countryPickerViewModel.placeholder
                                              color:[UIColor colorFromHex:0x999999]
                                            andFont:[UIFont systemFontOfSize:16.0]];
         
@@ -151,7 +151,7 @@
 
 - (void)setupBottomSliderConstraints {
     [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing forView:self];
-
+    
     self.bottomSliderConstraint = [self.bottomSlider.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
     self.sliderHeightConstraint = [self.bottomSlider.heightAnchor constraintEqualToConstant:365.0];
     
@@ -186,7 +186,7 @@
         [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
         [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
     ];
-
+    
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -272,6 +272,7 @@
         _expirationDateTextField = [UITextField new];
         _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _expirationDateTextField.textColor = [UIColor colorFromHex:0x262626];
+        _expirationDateTextField.keyboardType = UIKeyboardTypeNumberPad;
         _expirationDateTextField.layer.cornerRadius = 6.0f;
         _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -283,6 +284,7 @@
         _lastDigitsTextField = [UITextField new];
         _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _lastDigitsTextField.textColor = [UIColor colorFromHex:0x262626];
+        _lastDigitsTextField.keyboardType = UIKeyboardTypeNumberPad;
         _lastDigitsTextField.layer.cornerRadius = 6.0f;
         _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
@@ -296,8 +298,16 @@
         _countryTextField.textColor = [UIColor colorFromHex:0x262626];
         _countryTextField.layer.cornerRadius = 6.0f;
         _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+        _countryTextField.inputView = self.countryPickerView;
     }
     return _countryTextField;
+}
+
+- (UIPickerView *)countryPickerView {
+    if (!_countryPickerView) {
+        _countryPickerView = [UIPickerView new];
+    }
+    return _countryPickerView;
 }
 
 - (UITextField *)postcodeTextField {
@@ -349,7 +359,6 @@
         [_mainStackView addArrangedSubview:self.topButtonStackView];
         [_mainStackView addArrangedSubview:self.inputFieldsStackView];
         [_mainStackView addArrangedSubview:self.buttonStackView];
-        
     }
     return _mainStackView;
 }
@@ -367,7 +376,7 @@
 - (UIStackView *)additionalInputFieldsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-
+    
     [stackView addArrangedSubview:self.expirationDateTextField];
     [stackView addArrangedSubview:self.lastDigitsTextField];
     
@@ -388,7 +397,7 @@
 - (UIStackView *)avsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-
+    
     [stackView addArrangedSubview:self.countryTextField];
     [stackView addArrangedSubview:self.postcodeTextField];
     

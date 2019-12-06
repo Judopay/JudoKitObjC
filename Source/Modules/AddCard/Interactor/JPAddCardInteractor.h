@@ -25,12 +25,13 @@
 #import <Foundation/Foundation.h>
 #import "JPSession.h"
 
-@class JPCard, JPCardValidationService, JPTransactionService;
+@class JPCard, JPCardValidationService, JPTransactionService, JPCountry;
 
 @protocol JPAddCardInteractor
 - (BOOL)isAVSEnabled;
 - (BOOL)isCardValid:(JPCard *)card;
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler;
+- (NSArray<JPCountry *> *)getSelectableCounties;
 @end
 
 @interface JPAddCardInteractorImpl : NSObject <JPAddCardInteractor>

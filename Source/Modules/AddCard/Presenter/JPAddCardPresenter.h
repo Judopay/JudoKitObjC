@@ -31,6 +31,7 @@
 - (void)loadInitialView;
 - (void)handleChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value;
 - (void)handleAddCardButtonTap;
+- (void)didChangeCountryWithName:(NSString *)name;
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>

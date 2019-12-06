@@ -36,6 +36,7 @@
 @property (nonatomic, strong) UITextField *expirationDateTextField;
 @property (nonatomic, strong) UITextField *lastDigitsTextField;
 @property (nonatomic, strong) UITextField *countryTextField;
+@property (nonatomic, strong) UIPickerView *countryPickerView;
 @property (nonatomic, strong) UITextField *postcodeTextField;
 @property (nonatomic, strong) LoadingButton *addCardButton;
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;

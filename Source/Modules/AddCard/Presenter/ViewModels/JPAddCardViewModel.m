@@ -16,6 +16,10 @@
 
 @end
 
+@implementation JPAddCardPickerViewModel
+
+@end
+
 @implementation JPAddCardViewModel
 
 @end
