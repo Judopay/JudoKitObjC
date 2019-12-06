@@ -197,7 +197,7 @@
 - (UIView *)backgroundView {
     if (!_backgroundView) {
         _backgroundView = [UIView new];
-        _backgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        _backgroundView.backgroundColor = UIColor.clearColor;
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _backgroundView;

@@ -55,6 +55,7 @@
 
 #import "JPAddCardBuilder.h"
 #import "JPAddCardViewController.h"
+#import "SliderTransitioningDelegate.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -68,6 +69,7 @@
 @property (nonatomic, strong) ApplePayConfiguration *configuration;
 @property (nonatomic, strong) PKPaymentAuthorizationViewController *viewController;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) SliderTransitioningDelegate *transitioningDelegate;
 @end
 
 @implementation JudoKit
@@ -108,7 +110,8 @@
     self.enricher = [[JPTransactionEnricher alloc] initWithToken:token secret:secret];
     self.apiSession = [JPSession new];
     [self.apiSession setAuthorizationHeader:[NSString stringWithFormat:@"Basic %@", base64String]];
-
+    self.transitioningDelegate = [SliderTransitioningDelegate new];
+    
     return self;
 }
 
@@ -442,7 +445,9 @@
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
-    controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.transitioningDelegate = self.transitioningDelegate;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }
 
