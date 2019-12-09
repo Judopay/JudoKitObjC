@@ -28,19 +28,78 @@
 @class LoadingButton;
 
 @interface JPAddCardView : UIView
+/**
+ * The dimmed, semi-transparent background view that fades in when the add card slider appears
+ */
 @property (nonatomic, strong) UIView *backgroundView;
+
+/**
+ * The cancel button that, when pressed, dismisses the Add Card view controller
+ */
 @property (nonatomic, strong) UIButton *cancelButton;
+
+/**
+ * A button that, when pressed, invokes the card scanning functionality
+ */
 @property (nonatomic, strong) UIButton *scanCardButton;
+
+/**
+ * The input field for adding the card number
+ */
 @property (nonatomic, strong) UITextField *cardInputTextField;
+
+/**
+ * The input field for adding the cardholder name
+ */
 @property (nonatomic, strong) UITextField *cardholderNameTextField;
+
+/**
+ * The input field for adding the card expiration date
+ */
 @property (nonatomic, strong) UITextField *expirationDateTextField;
+
+/**
+ * The input field for adding the card secure code
+ */
 @property (nonatomic, strong) UITextField *lastDigitsTextField;
+
+/**
+ * The input field for selecting the country
+ */
 @property (nonatomic, strong) UITextField *countryTextField;
+
+/**
+ * The picker view associated to the country input field;
+ */
 @property (nonatomic, strong) UIPickerView *countryPickerView;
+
+/**
+ * The input field for adding the postal code
+ */
 @property (nonatomic, strong) UITextField *postcodeTextField;
+
+/**
+ * The Add Card button that, when tapped, displays a loading spinner
+ */
 @property (nonatomic, strong) LoadingButton *addCardButton;
+
+/**
+ * The Add Card view's bottom constraint that is used to move the view when the keyboard animates
+ */
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
 
+/**
+ * A method that configures the view based on a view model
+ *
+ * @param viewModel - an instance of JPAddCardViewModel used for view customization
+ */
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel;
+
+/**
+ * A method that specifies if the user inteface should be enabled
+ *
+ * @param shouldEnable - set to YES if the interface is enabled and no if otherwise
+ */
 - (void)enableUserInterface:(BOOL)shouldEnable;
+
 @end

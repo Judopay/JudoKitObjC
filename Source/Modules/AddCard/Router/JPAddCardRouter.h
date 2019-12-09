@@ -27,9 +27,19 @@
 @class JPAddCardViewController;
 
 @protocol JPAddCardRouter
+
+/**
+ * A method that, when called, will dismiss the Add Card view controller
+ */
 - (void)dismissViewController;
+
 @end
 
 @interface JPAddCardRouterImpl : NSObject <JPAddCardRouter>
+
+/**
+ * A weak reference to the JPAddCardViewController instance
+ */
 @property (nonatomic, weak) JPAddCardViewController *viewController;
+
 @end

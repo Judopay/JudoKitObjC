@@ -28,12 +28,26 @@
 @protocol JPAddCardPresenter;
 
 @protocol JPAddCardView
+
+/**
+ * A method that updates the view based on the provided view model
+ */
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel;
+
+/**
+ * A method that updates the view with an error
+ */
 - (void)updateViewWithError:(NSError *)error;
+
 @end
 
 @interface JPAddCardViewController : UIViewController  <JPAddCardView>
+
+/**
+ * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol
+ */
 @property (nonatomic, strong) id<JPAddCardPresenter> presenter;
+
 @end
 
 @interface JPAddCardViewController (CountryPickerDelegate) <UIPickerViewDelegate, UIPickerViewDataSource>
