@@ -34,8 +34,8 @@ class JudoTestCase: XCTestCase {
                               secret: "2094c2f5484ba42557917aad2b2c2d294a35dddadb93de3c35d6910e6c461bfb")
     
     // Visa Card
-    let validVisaTestCard = JPCard(cardNumber: "4976000000003436", expiryDate: "12/20", secureCode: "452")
-    let declinedVisaTestCard = JPCard(cardNumber: "4221690000004963", expiryDate: "12/20", secureCode: "125")
+    let validVisaTestCard = JPCard(cardNumber: "4976000000003436", cardholderName: nil, expiryDate: "12/20", secureCode: "452")
+    let declinedVisaTestCard = JPCard(cardNumber: "4221690000004963", cardholderName: nil, expiryDate: "12/20", secureCode: "125")
     
     // VCO Result
     let validVCOResult = JPVCOResult(callId: "2587385100467218001",

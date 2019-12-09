@@ -28,6 +28,7 @@ import XCTest
 class PostCodeValidationTests: XCTestCase {
     
     func test_OnValidUKPostcode_ReturnTrue() {
+        
         let postcodeInputField = PostCodeInputField()
         postcodeInputField.billingCountry = BillingCountry.UK
         postcodeInputField.textField.text = "FK208QT"

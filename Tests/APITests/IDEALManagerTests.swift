@@ -26,12 +26,12 @@ import XCTest
 
 class IDEALManagerTests: JudoTestCase {
     
-    private var idealManager: IDEALManager!
+    private var idealManager: IDEALService!
     
     override func setUp() {
         super.setUp()
-        idealManager = IDEALManager(judoId: myJudoId,
-                                    amount: JPAmount("0.01", currency: "GBP"),
+        idealManager = IDEALService(judoId: myJudoId,
+                                    amount: 0.01,
                                     reference: JPReference(consumerReference: "MYR3F3R3NC3"),
                                     session: judo.apiSession,
                                     paymentMetadata: nil)
@@ -74,8 +74,8 @@ class IDEALManagerTests: JudoTestCase {
         
         let expectation = self.expectation(description: "pollSuccesful")
         
-        idealManager.pollTransactionStatus(forOrderId: "0RD3R1D", checksum: "CH3CK5VM") { status, error in
-            XCTAssertEqual(status, IDEALStatus.failed)
+        idealManager.pollTransactionStatus(forOrderId: "0RD3R1D", checksum: "CH3CK5VM") { response, error in
+            XCTAssertNotNil(response)
             XCTAssertNil(error)
             expectation.fulfill()
         }
