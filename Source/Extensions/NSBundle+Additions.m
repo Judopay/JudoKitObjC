@@ -28,7 +28,12 @@
 @implementation NSBundle (Additions)
 
 + (NSBundle *)frameworkBundle {
-    return [NSBundle bundleForClass:[JudoKit class]];
+    static NSBundle *bundle;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bundle = [NSBundle bundleForClass:[JudoKit class]];
+    });
+    return bundle;
 }
 
 + (NSBundle *)iconsBundle {

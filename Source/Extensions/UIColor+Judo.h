@@ -34,6 +34,8 @@
 
 - (BOOL)isDarkColor;
 
++ (UIColor *_Nonnull)colorFromHex:(int)hex;
+
 + (UIColor *_Nonnull)jellyBean;
 
 + (UIColor *_Nonnull)thunder;

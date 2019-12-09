@@ -31,9 +31,21 @@
 
 @property (nonatomic, assign) BOOL avsEnabled;
 
+/**
+ * Instantiates a JPTransactionService based on a specific JPTransaction object
+ *
+ * @param avsEnabled - if set to YES, sends the address information as well
+ * @param transaction - the JPTransaction object that describes the current transaction
+ */
 - (instancetype)initWithAVSEnabled:(BOOL)avsEnabled
                        transaction:(JPTransaction *)transaction;
 
+/**
+ * A method that sends a save / register card request based on the card details provided
+ *
+ * @param card - an instance of JPCard that contains the card details
+ * @param completionHandler - a response / error completion handler that is returned when the transaction finishes
+ */
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler;
 
 @end

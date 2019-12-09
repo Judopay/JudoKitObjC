@@ -1,5 +1,5 @@
 //
-//  UIColor+Constraints.h
+//  UIView+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -33,10 +33,59 @@ typedef NS_OPTIONS(NSInteger, AnchorType) {
     AnchorTypeAll = (AnchorTypeTop | AnchorTypeBottom | AnchorTypeLeading | AnchorTypeTrailing)
 };
 
-@interface UIView (Constraints)
+@interface UIView (Additions)
 
+/**
+ * Convenience method for setting a border
+ *
+ * @param color - the border color
+ * @param width - the border width
+ */
+- (void)setBorderWithColor:(UIColor *)color
+                  andWidth:(CGFloat)width;
+
+/**
+ * Convenience method for setting a rounder border
+ *
+ * @param color - the border color
+ * @param width - the border width
+ * @param cornerRadius - the border's corner radius
+ */
+- (void)setBorderWithColor:(UIColor *)color
+                     width:(CGFloat)width
+           andCornerRadius:(CGFloat)cornerRadius;
+
+/**
+ * Convenience method for rounding only specific corners of the view
+ *
+ * @param corners - rectangle corner values that have to be rounded
+ * @param radius - the radius for rounding the corners
+ */
+- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
+
+/**
+ * Constraints the view to the superview with a specified padding
+ *
+ * @param view - the view to achor to
+ * @param padding - the padding between the view and self
+ */
 - (void)pinToView:(UIView *)view withPadding:(CGFloat)padding;
+
+/**
+ * Constraints the view to the superview only for specific anchors
+ *
+ * @param anchors - the anchor values to be constrained to
+ * @param view - the view to anchor to
+ */
 - (void)pinToAnchors:(AnchorType)anchors forView:(UIView *)view;
+
+/**
+ * Constraints the view to the superview only for specific anchors with padding
+ *
+ * @param anchors - the anchor values to be constrained to
+ * @param view - the view to anchor to
+ * @param padding - the padding between the view and self
+ */
 - (void)pinToAnchors:(AnchorType)anchors forView:(UIView *)view withPadding:(CGFloat)padding;
 
 @end

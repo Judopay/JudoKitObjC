@@ -39,7 +39,7 @@
 #import "UIApplication+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
-#import "UIViewController+JPTheme.h"
+#import "UIViewController+Additions.h"
 
 @interface JudoPaymentMethodsViewController ()
 

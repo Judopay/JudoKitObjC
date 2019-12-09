@@ -22,6 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+//General
+"ok" = "OK";
+"error" = "Error";
+
 //CardInputField
 "card_number_label" = "Card number";
 "long_card_number" = "Long card number";

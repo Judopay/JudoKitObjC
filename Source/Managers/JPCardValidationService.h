@@ -28,14 +28,68 @@
 
 @interface JPCardValidationService : NSObject
 
+/**
+ * A method that validates a JPCard object
+ *
+ * @param card - an instance of JPCard that contains the card details
+ * @param isAVSEnabled - a boolean value that, if set, takes AVS fields into consideration
+ */
 - (BOOL)isCardValid:(JPCard *)card withAVSEnabled:(BOOL)isAVSEnabled;
+
+/**
+ * A method that validates the card number string
+ *
+ * @param cardNumber - the card number string to be validated
+ */
 - (BOOL)isCardNumberValid:(NSString *)cardNumber;
+
+/**
+ * A method that validates the cardholder name
+ *
+ * @param cardholderName - the cardholder name string to be validated
+ */
 - (BOOL)isCardholderNameValid:(NSString *)cardholderName;
+
+/**
+ * A method that validates the card expiry date
+ *
+ * @param expiryDate - the expiry date string to be validated
+ */
 - (BOOL)isExpiryDateValid:(NSString *)expiryDate;
+
+/**
+ * A method that validates the secure code
+ *
+ * @param secureCode - the secure code string to be validated
+ */
 - (BOOL)isLastDigitsValid:(NSString *)lastDigits;
+
+/**
+ * A method that validates the expiry date month
+ *
+ * @param month - the month string value to be validated
+ */
 - (BOOL)isValidMonth:(NSString *)month;
+
+/**
+ * A method that validates the expiry date year
+ *
+ * @param year - the year string value to be validated
+ */
 - (BOOL)isValidYear:(NSString *)year;
+
+/**
+ * A method that validates the country
+ *
+ * @param country - the country string value to be validated
+ */
 - (BOOL)isCountryValid:(NSString *)country;
+
+/**
+ * A method that validates the postal code
+ *
+ * @param postalCode - the postal code string value to be validated
+ */
 - (BOOL)isPostalCodeValid:(NSString *)postalCode;
 
 @end

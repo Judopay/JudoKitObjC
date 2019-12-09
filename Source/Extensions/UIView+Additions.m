@@ -1,5 +1,5 @@
 //
-//  UIColor+Constraints.m
+//  UIView+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,9 +22,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIView+Constraints.h"
+#import "UIView+Additions.h"
 
-@implementation UIView (Constraints)
+@implementation UIView (Additions)
+
+- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius {
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                               byRoundingCorners:corners
+                                                     cornerRadii:CGSizeMake(radius, radius)];
+    CAShapeLayer *mask = [CAShapeLayer new];
+    mask.path = path.CGPath;
+    self.layer.mask = mask;
+}
+
+- (void)setBorderWithColor:(UIColor *)color andWidth:(CGFloat)width {
+    [self setBorderWithColor:color width:width andCornerRadius:0.0];
+}
+
+- (void)setBorderWithColor:(UIColor *)color
+                     width:(CGFloat)width
+           andCornerRadius:(CGFloat)cornerRadius {
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = width;
+    self.layer.cornerRadius = cornerRadius;
+}
 
 - (void)pinToView:(UIView *)view withPadding:(CGFloat)padding {
     NSArray *constraints = @[

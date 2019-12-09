@@ -1,5 +1,5 @@
 //
-//  UIViewController+KeyboardObservers.m
+//  UIViewController+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,8 +24,24 @@
 //
 
 #import "UIViewController+Additions.h"
+#import "JPtheme.h"
+#import "UIColor+Judo.h"
+#import "NSString+Localize.h"
 
 @implementation UIViewController (Additions)
+
+- (void)applyTheme:(JPTheme *)theme {
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+
+    if (![theme.tintColor isDarkColor]) {
+        navigationBar.barStyle = UIBarStyleBlack;
+    }
+
+    navigationBar.tintColor = theme.judoTextColor;
+    navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : theme.judoNavigationBarTitleColor};
+
+    self.view.backgroundColor = [theme judoContentViewBackgroundColor];
+}
 
 - (void)connectButton:(UIButton *)button withSelector:(SEL)selector {
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
@@ -38,15 +54,40 @@
 }
 
 - (void)displayAlertWithError:(NSError *)error {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"error".localized
                                                                         message:error.localizedDescription
                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"ok".localized
                                                        style:UIAlertActionStyleDefault
                                                      handler:nil];
     [controller addAction:okAction];
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)registerKeyboardObservers {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+
+    [notificationCenter addObserver:self
+                           selector:@selector(keyboardWillShow:)
+                               name:UIKeyboardWillShowNotification
+                             object:nil];
+
+    [notificationCenter addObserver:self
+                           selector:@selector(keyboardWillHide:)
+                               name:UIKeyboardWillHideNotification
+                             object:nil];
+}
+
+- (void)removeKeyboardObservers {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
 }
 
 @end

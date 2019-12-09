@@ -28,17 +28,17 @@
 @implementation UIStackView (Additions)
 
 + (UIStackView *)verticalStackViewWithSpacing:(CGFloat)spacing {
-    UIStackView *stackView = [UIStackView new];
-    stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.spacing = spacing;
-    return stackView;
+    return [self stackViewWithAxis:UILayoutConstraintAxisVertical andSpacing:spacing];
 }
 
 + (UIStackView *)horizontalStackViewWithSpacing:(CGFloat)spacing {
+    return [self stackViewWithAxis:UILayoutConstraintAxisHorizontal andSpacing:spacing];
+}
+
++ (UIStackView *)stackViewWithAxis:(UILayoutConstraintAxis)axis andSpacing:(CGFloat)spacing {
     UIStackView *stackView = [UIStackView new];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.axis = UILayoutConstraintAxisHorizontal;
+    stackView.axis = axis;
     stackView.spacing = spacing;
     return stackView;
 }

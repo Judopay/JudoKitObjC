@@ -49,7 +49,7 @@
 #import "NSTimer+Blocks.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
-#import "UIViewController+JPTheme.h"
+#import "UIViewController+Additions.h"
 
 @import CoreLocation;
 

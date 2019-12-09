@@ -41,8 +41,7 @@
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIView+SafeAnchors.h"
-#import "UIViewController+JPTheme.h"
-#import "UIViewController+KeyboardObservers.h"
+#import "UIViewController+Additions.h"
 
 @interface IDEALFormViewController ()
 

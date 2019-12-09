@@ -70,13 +70,11 @@
 		30D0892D238FB9B400480C9E /* JPAddCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0892B238FB9B400480C9E /* JPAddCardViewController.m */; };
 		30D08930238FBA1200480C9E /* JPAddCardBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0892E238FBA1200480C9E /* JPAddCardBuilder.h */; };
 		30D08931238FBA1200480C9E /* JPAddCardBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0892F238FBA1200480C9E /* JPAddCardBuilder.m */; };
-		30D08934238FCC5200480C9E /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08932238FCC5200480C9E /* UIView+Layout.h */; };
-		30D08935238FCC5200480C9E /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08933238FCC5200480C9E /* UIView+Layout.m */; };
+		30D08934238FCC5200480C9E /* UIView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08932238FCC5200480C9E /* UIView+Additions.h */; };
+		30D08935238FCC5200480C9E /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08933238FCC5200480C9E /* UIView+Additions.m */; };
 		30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08936238FD00800480C9E /* RoundedCornerView.h */; };
 		30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08937238FD00800480C9E /* RoundedCornerView.m */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
-		30D0894523902AC700480C9E /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0894323902AC700480C9E /* UIColor+Hex.h */; };
-		30D0894623902AC700480C9E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0894423902AC700480C9E /* UIColor+Hex.m */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30D6C5BC23950FEC00172303 /* JPAddCardViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */; };
 		30D6C5BD23950FEC00172303 /* JPAddCardViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */; };
@@ -238,8 +236,6 @@
 		44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 44340F1522F4531200B36D65 /* JPCardNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44340F1822F4531200B36D65 /* JPCardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 44340F1622F4531200B36D65 /* JPCardNetwork.m */; };
 		44637AC8234B9108009E191E /* DetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44637AC6234B9107009E191E /* DetailsTableViewController.m */; };
-		447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */; };
-		447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */; };
 		447CBD5822DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */; };
 		447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */; };
 		447CBD6022DCAD0800C1C9E1 /* JudoKitPaymentMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */; };
@@ -262,16 +258,12 @@
 		5214A7C0239997AD00283B81 /* SliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5214A7B5239997AD00283B81 /* SliderTransitioningDelegate.m */; };
 		5214A7C1239997AD00283B81 /* SliderPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5214A7B6239997AD00283B81 /* SliderPresentationController.h */; };
 		5214A7C2239997AD00283B81 /* SliderTransitioningDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5214A7B7239997AD00283B81 /* SliderTransitioningDelegate.h */; };
-		528017072392943900D2AFDB /* UIView+Constraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017052392943900D2AFDB /* UIView+Constraints.h */; };
-		528017082392943900D2AFDB /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017062392943900D2AFDB /* UIView+Constraints.m */; };
 		5280171223929BB500D2AFDB /* UIImage+Icons.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171023929BB500D2AFDB /* UIImage+Icons.h */; };
 		5280171323929BB500D2AFDB /* UIImage+Icons.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171123929BB500D2AFDB /* UIImage+Icons.m */; };
 		5280171623929E8E00D2AFDB /* UIStackView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171423929E8E00D2AFDB /* UIStackView+Additions.h */; };
 		5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171523929E8E00D2AFDB /* UIStackView+Additions.m */; };
 		5280171A2392A6E000D2AFDB /* JPAddCardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017182392A6E000D2AFDB /* JPAddCardView.h */; };
 		5280171B2392A6E000D2AFDB /* JPAddCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017192392A6E000D2AFDB /* JPAddCardView.m */; };
-		5280171E2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */; };
-		5280171F2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */; };
 		528017222392F0F500D2AFDB /* UIViewController+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017202392F0F500D2AFDB /* UIViewController+Additions.h */; };
 		528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017212392F0F500D2AFDB /* UIViewController+Additions.m */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
@@ -457,12 +449,10 @@
 		30D0892B238FB9B400480C9E /* JPAddCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardViewController.m; path = Modules/AddCard/View/JPAddCardViewController.m; sourceTree = "<group>"; };
 		30D0892E238FBA1200480C9E /* JPAddCardBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardBuilder.h; path = Modules/AddCard/Builder/JPAddCardBuilder.h; sourceTree = "<group>"; };
 		30D0892F238FBA1200480C9E /* JPAddCardBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardBuilder.m; path = Modules/AddCard/Builder/JPAddCardBuilder.m; sourceTree = "<group>"; };
-		30D08932238FCC5200480C9E /* UIView+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "Extensions/UIView+Layout.h"; sourceTree = "<group>"; };
-		30D08933238FCC5200480C9E /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "Extensions/UIView+Layout.m"; sourceTree = "<group>"; };
+		30D08932238FCC5200480C9E /* UIView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Additions.h"; path = "Extensions/UIView+Additions.h"; sourceTree = "<group>"; };
+		30D08933238FCC5200480C9E /* UIView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Additions.m"; path = "Extensions/UIView+Additions.m"; sourceTree = "<group>"; };
 		30D08936238FD00800480C9E /* RoundedCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RoundedCornerView.h; path = View/RoundedCornerView.h; sourceTree = "<group>"; };
 		30D08937238FD00800480C9E /* RoundedCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RoundedCornerView.m; path = View/RoundedCornerView.m; sourceTree = "<group>"; };
-		30D0894323902AC700480C9E /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Extensions/UIColor+Hex.h"; sourceTree = "<group>"; };
-		30D0894423902AC700480C9E /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Hex.m"; path = "Extensions/UIColor+Hex.m"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardViewModel.h; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.h; sourceTree = SOURCE_ROOT; };
 		30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardViewModel.m; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.m; sourceTree = SOURCE_ROOT; };
@@ -638,8 +628,6 @@
 		44340F1622F4531200B36D65 /* JPCardNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPCardNetwork.m; path = Model/JPCardNetwork.m; sourceTree = "<group>"; };
 		44637AC6234B9107009E191E /* DetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewController.m; sourceTree = "<group>"; };
 		44637AC7234B9107009E191E /* DetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewController.h; sourceTree = "<group>"; };
-		447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JPTheme.h"; path = "Extensions/UIViewController+JPTheme.h"; sourceTree = "<group>"; };
-		447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JPTheme.m"; path = "Extensions/UIViewController+JPTheme.m"; sourceTree = "<group>"; };
 		447CBD5622DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JudoPaymentMethodsViewModel.h; path = ViewModel/JudoPaymentMethodsViewModel.h; sourceTree = "<group>"; };
 		447CBD5722DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JudoPaymentMethodsViewModel.m; path = ViewModel/JudoPaymentMethodsViewModel.m; sourceTree = "<group>"; };
 		447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitPaymentMethodTests.swift; sourceTree = "<group>"; };
@@ -666,16 +654,12 @@
 		5214A7B5239997AD00283B81 /* SliderTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTransitioningDelegate.m; sourceTree = "<group>"; };
 		5214A7B6239997AD00283B81 /* SliderPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderPresentationController.h; sourceTree = "<group>"; };
 		5214A7B7239997AD00283B81 /* SliderTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTransitioningDelegate.h; sourceTree = "<group>"; };
-		528017052392943900D2AFDB /* UIView+Constraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Constraints.h"; path = "Extensions/UIView+Constraints.h"; sourceTree = "<group>"; };
-		528017062392943900D2AFDB /* UIView+Constraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Constraints.m"; path = "Extensions/UIView+Constraints.m"; sourceTree = "<group>"; };
 		5280171023929BB500D2AFDB /* UIImage+Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+Icons.h"; path = "Extensions/UIImage+Icons.h"; sourceTree = "<group>"; };
 		5280171123929BB500D2AFDB /* UIImage+Icons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Icons.m"; path = "Extensions/UIImage+Icons.m"; sourceTree = "<group>"; };
 		5280171423929E8E00D2AFDB /* UIStackView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIStackView+Additions.h"; path = "Extensions/UIStackView+Additions.h"; sourceTree = "<group>"; };
 		5280171523929E8E00D2AFDB /* UIStackView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIStackView+Additions.m"; path = "Extensions/UIStackView+Additions.m"; sourceTree = "<group>"; };
 		528017182392A6E000D2AFDB /* JPAddCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardView.h; path = Controller/JPAddCardView.h; sourceTree = "<group>"; };
 		528017192392A6E000D2AFDB /* JPAddCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardView.m; path = Controller/JPAddCardView.m; sourceTree = "<group>"; };
-		5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KeyboardObservers.h"; path = "Extensions/UIViewController+KeyboardObservers.h"; sourceTree = "<group>"; };
-		5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KeyboardObservers.m"; path = "Extensions/UIViewController+KeyboardObservers.m"; sourceTree = "<group>"; };
 		528017202392F0F500D2AFDB /* UIViewController+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Additions.h"; path = "Extensions/UIViewController+Additions.h"; sourceTree = "<group>"; };
 		528017212392F0F500D2AFDB /* UIViewController+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Additions.m"; path = "Extensions/UIViewController+Additions.m"; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
@@ -1170,24 +1154,16 @@
 				3B4EB3901C981511006265A0 /* UIColor+Judo.m */,
 				302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */,
 				302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */,
-				447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */,
-				447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */,
 				302181C823264C5300F6BE77 /* NSBundle+Additions.h */,
 				302181C923264C5300F6BE77 /* NSBundle+Additions.m */,
 				442511D4234B8BFC00225FC4 /* UIApplication+Additions.h */,
 				442511D5234B8BFC00225FC4 /* UIApplication+Additions.m */,
-				30D08932238FCC5200480C9E /* UIView+Layout.h */,
-				30D08933238FCC5200480C9E /* UIView+Layout.m */,
-				30D0894323902AC700480C9E /* UIColor+Hex.h */,
-				30D0894423902AC700480C9E /* UIColor+Hex.m */,
-				528017052392943900D2AFDB /* UIView+Constraints.h */,
-				528017062392943900D2AFDB /* UIView+Constraints.m */,
+				30D08932238FCC5200480C9E /* UIView+Additions.h */,
+				30D08933238FCC5200480C9E /* UIView+Additions.m */,
 				5280171023929BB500D2AFDB /* UIImage+Icons.h */,
 				5280171123929BB500D2AFDB /* UIImage+Icons.m */,
 				5280171423929E8E00D2AFDB /* UIStackView+Additions.h */,
 				5280171523929E8E00D2AFDB /* UIStackView+Additions.m */,
-				5280171C2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h */,
-				5280171D2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m */,
 				528017202392F0F500D2AFDB /* UIViewController+Additions.h */,
 				528017212392F0F500D2AFDB /* UIViewController+Additions.m */,
 				30D6C5BE2395485500172303 /* UITextField+Additions.h */,
@@ -1338,11 +1314,9 @@
 				44290B1B22F051F60088F827 /* JPBrowser.h in Headers */,
 				30DB510723100E1C00B73D66 /* ApplePayWrappers.h in Headers */,
 				30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */,
-				528017072392943900D2AFDB /* UIView+Constraints.h in Headers */,
 				3B678B8B1C6DF9D00001DC2F /* JPAmount.h in Headers */,
 				3B678BB91C7331280001DC2F /* JPTransactionProcess.h in Headers */,
 				30CFA5A72397D45400329B04 /* JPTransactionService.h in Headers */,
-				447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */,
 				528017222392F0F500D2AFDB /* UIViewController+Additions.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */,
@@ -1377,7 +1351,6 @@
 				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
 				30D08930238FBA1200480C9E /* JPAddCardBuilder.h in Headers */,
-				5280171E2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */,
 				30D0892C238FB9B400480C9E /* JPAddCardViewController.h in Headers */,
@@ -1414,7 +1387,7 @@
 				3B678BAD1C7327160001DC2F /* JPRefund.h in Headers */,
 				3B6912DE1C96BFED00367660 /* NSString+Card.h in Headers */,
 				3B704A9A1C89F1C700376773 /* SecurityCodeInputField.h in Headers */,
-				30D08934238FCC5200480C9E /* UIView+Layout.h in Headers */,
+				30D08934238FCC5200480C9E /* UIView+Additions.h in Headers */,
 				44DA43DD22F82B9300C34231 /* NSString+Validation.h in Headers */,
 				30F1B4A6237C3C5A00CE676A /* JPOrderDetails.h in Headers */,
 				3BD353C71C7774780045658A /* JPConsumer.h in Headers */,
@@ -1426,7 +1399,6 @@
 				44340F1722F4531200B36D65 /* JPCardNetwork.h in Headers */,
 				3B678B9D1C7326C00001DC2F /* JPPayment.h in Headers */,
 				44290B2122F051F60088F827 /* JPThreeDSecure.h in Headers */,
-				30D0894523902AC700480C9E /* UIColor+Hex.h in Headers */,
 				3B678B7B1C6DD8800001DC2F /* NSError+Judo.h in Headers */,
 				44290B1F22F051F60088F827 /* JPEnhancedPaymentDetail.h in Headers */,
 				3B704A861C89F16500376773 /* FloatingTextField.h in Headers */,
@@ -1772,7 +1744,6 @@
 				44290B0822F051B00088F827 /* JPTransactionEnricher.m in Sources */,
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
-				528017082392943900D2AFDB /* UIView+Constraints.m in Sources */,
 				528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
@@ -1784,7 +1755,6 @@
 				3B69D5E91C99A7550075FFD8 /* NSDate+Judo.m in Sources */,
 				44290B2422F051F60088F827 /* JPClientDetails.m in Sources */,
 				30DB512923100EED00B73D66 /* CardLogoView.m in Sources */,
-				30D0894623902AC700480C9E /* UIColor+Hex.m in Sources */,
 				DA7DF5B31C7B7A8300652A1F /* JPAddress.m in Sources */,
 				302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */,
 				44290B2522F051F60088F827 /* JPEnhancedPaymentDetail.m in Sources */,
@@ -1792,7 +1762,6 @@
 				3B678B9A1C71D9D60001DC2F /* JPPaymentToken.m in Sources */,
 				44290B1E22F051F60088F827 /* JPThreeDSecure.m in Sources */,
 				30D08925238FB59C00480C9E /* JPAddCardInteractor.m in Sources */,
-				5280171F2392ED4F00D2AFDB /* UIViewController+KeyboardObservers.m in Sources */,
 				3B704A971C89F1B700376773 /* DateInputField.m in Sources */,
 				3BD353C81C7774780045658A /* JPConsumer.m in Sources */,
 				3B704A9F1C89F1D600376773 /* PostCodeInputField.m in Sources */,
@@ -1801,7 +1770,7 @@
 				44DA43EC22F82BD700C34231 /* NSString+Validation.m in Sources */,
 				3B678BA61C7326F10001DC2F /* JPRegisterCard.m in Sources */,
 				3B5AFC0A1C9079E600DABB4C /* NSString+TextDirection.m in Sources */,
-				30D08935238FCC5200480C9E /* UIView+Layout.m in Sources */,
+				30D08935238FCC5200480C9E /* UIView+Additions.m in Sources */,
 				30DB512423100E6B00B73D66 /* ApplePayManager.m in Sources */,
 				30DB510523100E1C00B73D66 /* PostalAddress.m in Sources */,
 				30D08931238FBA1200480C9E /* JPAddCardBuilder.m in Sources */,
@@ -1845,7 +1814,6 @@
 				5280171323929BB500D2AFDB /* UIImage+Icons.m in Sources */,
 				302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */,
 				30CFA5A92397D45400329B04 /* JPCardValidationService.m in Sources */,
-				447CBD4922DC844800C1C9E1 /* UIViewController+JPTheme.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
 				30225D13237E8E6D005EB28C /* TransactionStatusView.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,

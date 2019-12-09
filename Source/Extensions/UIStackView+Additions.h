@@ -26,6 +26,15 @@
 #import <UIKit/UIKit.h>
 
 @interface UIStackView (Additions)
+
+/**
+ * Creates a vertical UIStackView with specified spacing values
+ */
 + (UIStackView *)verticalStackViewWithSpacing:(CGFloat)spacing;
+
+/**
+ * Creates a horizontal UIStackView with specified spacing values
+ */
 + (UIStackView *)horizontalStackViewWithSpacing:(CGFloat)spacing;
+
 @end

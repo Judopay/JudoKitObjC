@@ -27,7 +27,6 @@
 #import "JPAddCardView.h"
 #import "LoadingButton.h"
 #import "UIViewController+Additions.h"
-#import "UIViewController+KeyboardObservers.h"
 
 @interface JPAddCardViewController ()
 @property (nonatomic, strong) JPAddCardView *addCardView;

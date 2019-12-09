@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 #import "RoundedCornerView.h"
-#import "UIView+Layout.h"
+#import "UIView+Additions.h"
 
 @interface RoundedCornerView ()
 @property (nonatomic, assign) CGFloat radius;

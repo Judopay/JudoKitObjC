@@ -26,5 +26,14 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Icons)
+
+/**
+ * Initializes an UIImage based on a icon name contained in the icons bundle
+ *
+ * @param iconName - a string describing the icon name in the icons bundle
+ *
+ * @return a configured UIImage instance
+ */
 + (UIImage *)imageWithIconName:(NSString *)iconName;
+
 @end

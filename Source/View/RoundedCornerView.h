@@ -26,6 +26,14 @@
 
 @interface RoundedCornerView : UIView
 
+/**
+ * Initializes a UIView object with rounded corners
+ *
+ * @param radius - a CGFloat value describing the corner radius value
+ * @param corners - a UIRectCorner value that describes the corners the radius applies to
+ *
+ * @return a configured UIView instance
+ */
 - (instancetype)initWithRadius:(CGFloat)radius
                     forCorners:(UIRectCorner)corners;
 

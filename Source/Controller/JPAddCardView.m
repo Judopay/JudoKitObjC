@@ -27,12 +27,11 @@
 #import "LoadingButton.h"
 #import "NSString+Localize.h"
 #import "RoundedCornerView.h"
-#import "UIColor+Hex.h"
+#import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 #import "UITextField+Additions.h"
-#import "UIView+Constraints.h"
-#import "UIView+Layout.h"
+#import "UIView+Additions.h"
 
 @interface JPAddCardView ()
 

@@ -32,48 +32,49 @@
 @interface JPCard : NSObject
 
 /**
- *  <#Description#>
+ *  A string describing the card number
  */
 @property (nonatomic, strong) NSString *_Nullable cardNumber;
 
 /**
- *  <#Description#>
+ *  A string describing the cardholder name
  */
 @property (nonatomic, strong) NSString *_Nullable cardholderName;
 
 /**
- *  <#Description#>
+ *  A string describing the card expiration date
  */
 @property (nonatomic, strong) NSString *_Nullable expiryDate;
 
 /**
- *  <#Description#>
+ *  A string describing the card's secure code
  */
 @property (nonatomic, strong) NSString *_Nullable secureCode;
 
 /**
- *  <#Description#>
+ *  A string describing the card's start date (Maestro-specific)
  */
 @property (nonatomic, strong) NSString *_Nullable startDate;
 
 /**
- *  <#Description#>
+ *  A string describing the card's issue number (Maestro-specific)
  */
 @property (nonatomic, strong) NSString *_Nullable issueNumber;
 
 /**
- *  <#Description#>
+ *  A JPAddress instance describing the billing address
  */
 @property (nonatomic, strong) JPAddress *_Nullable cardAddress;
 
 /**
- *  <#Description#>
+ *  Initializes a card with the minimum required card details
  *
- *  @param cardNumber <#cardNumber description#>
- *  @param expiryDate <#expiryDate description#>
- *  @param secureCode <#secureCode description#>
+ *  @param cardNumber - a string describing the card number
+ *  @param cardholderName - a string describing the cardholder name
+ *  @param expiryDate - a string describing the expiration date
+ *  @param secureCode - a string describing the secure code
  *
- *  @return <#return value description#>
+ *  @return a configured JPCard instance
  */
 - (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber
                             cardholderName:(nullable NSString *)cardholderName

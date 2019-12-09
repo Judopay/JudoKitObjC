@@ -60,6 +60,13 @@
     return image;
 }
 
++ (UIColor *)colorFromHex:(int)hex {
+    return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0
+                           green:((float)((hex & 0x00FF00) >> 8)) / 255.0
+                            blue:((float)((hex & 0x0000FF) >> 0)) / 255.0
+                           alpha:1.0];
+}
+
 + (UIColor *)jellyBean {
     return [UIColor colorWithRed:30 / 255.0f green:120 / 255.0f blue:160 / 255.0f alpha:1.0f];
 }
