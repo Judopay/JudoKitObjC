@@ -86,7 +86,7 @@
                                                 color:[UIColor colorFromHex:0x999999]
                                               andFont:[UIFont systemFontOfSize:16.0]];
 
-    [self.lastDigitsTextField placeholderWithText:viewModel.lastFourViewModel.placeholder
+    [self.lastDigitsTextField placeholderWithText:viewModel.secureCodeViewModel.placeholder
                                             color:[UIColor colorFromHex:0x999999]
                                           andFont:[UIFont systemFontOfSize:16.0]];
 

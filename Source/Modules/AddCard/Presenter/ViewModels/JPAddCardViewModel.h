@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger, JPCardInputType) {
 /**
  * The JPAddCardInputFieldViewModel for the secure code input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *lastFourViewModel;
+@property (nonatomic, strong) JPAddCardInputFieldViewModel *secureCodeViewModel;
 
 /**
  * The JPAddCardPickerViewModel for the country picker

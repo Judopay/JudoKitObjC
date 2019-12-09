@@ -33,9 +33,9 @@
     BOOL isCardNumberValid = [self isCardNumberValid:card.cardNumber];
     BOOL isCardholderNameValid = [self isCardholderNameValid:card.cardholderName];
     BOOL isExpiryDateValid = [self isExpiryDateValid:card.expiryDate];
-    BOOL isLastDigitsValid = [self isLastDigitsValid:card.secureCode];
+    BOOL isSecureCodeValid = [self isSecureCodeValid:card.secureCode];
 
-    BOOL isCardValid = isCardNumberValid && isCardholderNameValid && isExpiryDateValid && isLastDigitsValid;
+    BOOL isCardValid = isCardNumberValid && isCardholderNameValid && isExpiryDateValid && isSecureCodeValid;
 
     if (isAVSEnabled) {
         BOOL isCountryValid = [self isCountryValid:card.cardAddress.billingCountry];
@@ -66,9 +66,9 @@
     return [self isValidMonth:month] && [self isValidYear:year];
 }
 
-- (BOOL)isLastDigitsValid:(NSString *)lastDigits {
+- (BOOL)isSecureCodeValid:(NSString *)secureCode {
     //TODO: Handle last digit validation
-    return [lastDigits isEqualToString:@"341"];
+    return [secureCode isEqualToString:@"341"];
 }
 
 - (BOOL)isValidMonth:(NSString *)month {

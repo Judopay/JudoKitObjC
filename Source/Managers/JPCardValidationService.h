@@ -62,7 +62,7 @@
  *
  * @param secureCode - the secure code string to be validated
  */
-- (BOOL)isLastDigitsValid:(NSString *)lastDigits;
+- (BOOL)isSecureCodeValid:(NSString *)secureCode;
 
 /**
  * A method that validates the expiry date month

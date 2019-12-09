@@ -94,7 +94,7 @@
             self.addCardViewModel.expiryDateViewModel.text = text;
             break;
         case JPCardInputTypeLastDigits:
-            self.addCardViewModel.lastFourViewModel.text = text;
+            self.addCardViewModel.secureCodeViewModel.text = text;
             break;
         case JPCardInputTypeCountry:
             self.addCardViewModel.countryPickerViewModel.text = text;
@@ -111,7 +111,7 @@
     JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
                                        cardholderName:viewModel.cardholderNameViewModel.text
                                            expiryDate:viewModel.expiryDateViewModel.text
-                                           secureCode:viewModel.lastFourViewModel.text];
+                                           secureCode:viewModel.secureCodeViewModel.text];
 
     if ([self.interactor isAVSEnabled]) {
         card.cardAddress = [JPAddress new];
@@ -132,7 +132,7 @@
         _addCardViewModel.cardNumberViewModel = [self inputFieldViewModelWithPlaceholder:@"Card Number"];
         _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"Cardholder Name"];
         _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"Expiry Date"];
-        _addCardViewModel.lastFourViewModel = [self inputFieldViewModelWithPlaceholder:@"CVV"];
+        _addCardViewModel.secureCodeViewModel = [self inputFieldViewModelWithPlaceholder:@"CVV"];
         _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];
         ;
 
