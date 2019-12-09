@@ -26,7 +26,7 @@
 
 @implementation UIView (Layout)
 
--(void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius {
+- (void)roundCorners:(UIRectCorner)corners withRadius:(CGFloat)radius {
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                byRoundingCorners:corners
                                                      cornerRadii:CGSizeMake(radius, radius)];

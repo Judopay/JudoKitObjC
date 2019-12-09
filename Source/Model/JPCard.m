@@ -35,7 +35,7 @@
                     cardholderName:(NSString *)cardholderName
                         expiryDate:(NSString *)expiryDate
                         secureCode:(NSString *)secureCode {
-    
+
     self = [super init];
     if (self) {
         self.cardNumber = cardNumber;

@@ -23,12 +23,12 @@
 //  SOFTWARE.
 
 #import "JPAddCardInteractor.h"
-#import "JPCardValidationService.h"
-#import "JPTransactionService.h"
-#import "JPSession.h"
-#import "NSError+Judo.h"
 #import "JPCard.h"
+#import "JPCardValidationService.h"
 #import "JPCountry.h"
+#import "JPSession.h"
+#import "JPTransactionService.h"
+#import "NSError+Judo.h"
 
 @interface JPAddCardInteractorImpl ()
 @property (nonatomic, strong) JudoCompletionBlock completionHandler;
@@ -38,12 +38,12 @@
 
 @implementation JPAddCardInteractorImpl
 
-# pragma mark - Initializers
+#pragma mark - Initializers
 
 - (instancetype)initWithCardValidationService:(JPCardValidationService *)cardValidationService
                            transactionService:(JPTransactionService *)transactionService
                                    completion:(JudoCompletionBlock)completion {
-    
+
     if (self = [super init]) {
         self.cardValidationService = cardValidationService;
         self.transactionService = transactionService;
@@ -52,7 +52,7 @@
     return self;
 }
 
-# pragma mark - Protocol methods
+#pragma mark - Protocol methods
 
 - (BOOL)isAVSEnabled {
     return self.transactionService.avsEnabled;

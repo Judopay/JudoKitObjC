@@ -24,20 +24,20 @@
 
 #import "JPAddCardPresenter.h"
 #import "JPAddCardInteractor.h"
-#import "JPAddCardViewController.h"
 #import "JPAddCardRouter.h"
+#import "JPAddCardViewController.h"
 
+#import "JPAddress.h"
 #import "JPCard.h"
 #import "JPCountry.h"
-#import "JPAddress.h"
 
-@interface JPAddCardPresenterImpl()
+@interface JPAddCardPresenterImpl ()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
 @end
 
 @implementation JPAddCardPresenterImpl
 
-# pragma mark - Delegate methods
+#pragma mark - Delegate methods
 
 - (void)loadInitialView {
     [self updateViewWithViewModel:self.addCardViewModel];
@@ -51,18 +51,17 @@
 - (void)handleAddCardButtonTap {
 
     JPCard *card = [self cardFromViewModel:self.addCardViewModel];
-    
+
     __weak typeof(self) weakSelf = self;
     [self.interactor addCard:card
            completionHandler:^(JPResponse *response, NSError *error) {
-        
-        if (error) {
-            [weakSelf.view updateViewWithError:error];
-            return;
-        }
-        
-        [weakSelf.router dismissViewController];
-    }];
+               if (error) {
+                   [weakSelf.view updateViewWithError:error];
+                   return;
+               }
+
+               [weakSelf.router dismissViewController];
+           }];
 }
 
 - (void)didChangeCountryWithName:(NSString *)name {
@@ -73,10 +72,10 @@
 #pragma mark - Internal functionality
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
-    
+
     JPCard *card = [self cardFromViewModel:viewModel];
     BOOL isCardValid = [self.interactor isCardValid:card];
-    
+
     self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
     [self.view updateViewWithViewModel:self.addCardViewModel];
 }
@@ -106,24 +105,24 @@
     }
 }
 
-# pragma mark - Lazily instantiated properties
+#pragma mark - Lazily instantiated properties
 
 - (JPCard *)cardFromViewModel:(JPAddCardViewModel *)viewModel {
     JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
                                        cardholderName:viewModel.cardholderNameViewModel.text
                                            expiryDate:viewModel.expiryDateViewModel.text
                                            secureCode:viewModel.lastFourViewModel.text];
-    
+
     if ([self.interactor isAVSEnabled]) {
         card.cardAddress = [JPAddress new];
         card.cardAddress.billingCountry = viewModel.countryPickerViewModel.text;
         card.cardAddress.postCode = viewModel.postalCodeInputViewModel.text;
     }
-        
+
     //TODO: Handle Maestro-specific logic
     // card.startDate = viewModel.startDateViewModel.text;
     // card.issueNumber = viewModel.issueNumberViewModel.text;
-    
+
     return card;
 }
 
@@ -134,13 +133,15 @@
         _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"Cardholder Name"];
         _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"Expiry Date"];
         _addCardViewModel.lastFourViewModel = [self inputFieldViewModelWithPlaceholder:@"CVV"];
-        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];;
-        
+        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];
+        ;
+
         if ([self.interactor isAVSEnabled]) {
             NSArray *countries = [self.interactor getSelectableCounties];
             NSArray *countryNames = [self countryNamesForCountries:countries];
             _addCardViewModel.countryPickerViewModel = [self pickerViewModelWithPlaceholder:@"Country" pickerTitles:countryNames];
-            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Postcode"];;
+            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Postcode"];
+            ;
         }
     }
     return _addCardViewModel;

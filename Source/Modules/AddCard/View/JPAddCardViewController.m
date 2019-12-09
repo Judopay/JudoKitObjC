@@ -23,14 +23,14 @@
 //  SOFTWARE.
 
 #import "JPAddCardViewController.h"
-#import "JPAddCardView.h"
 #import "JPAddCardPresenter.h"
+#import "JPAddCardView.h"
 #import "LoadingButton.h"
-#import "UIViewController+KeyboardObservers.h"
 #import "UIViewController+Additions.h"
+#import "UIViewController+KeyboardObservers.h"
 
-@interface JPAddCardViewController()
-@property (nonatomic, strong) JPAddCardView* addCardView;
+@interface JPAddCardViewController ()
+@property (nonatomic, strong) JPAddCardView *addCardView;
 @property (nonatomic, strong) NSArray *countryNames;
 @end
 
@@ -58,7 +58,7 @@
     [super viewWillDisappear:animated];
 }
 
-# pragma mark - User actions
+#pragma mark - User actions
 
 - (void)onBackgroundViewTap {
     [self.addCardView endEditing:YES];
@@ -108,7 +108,7 @@
                                   withValue:self.addCardView.postcodeTextField.text];
 }
 
-# pragma mark - Protocol methods
+#pragma mark - Protocol methods
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     if (viewModel.countryPickerViewModel) {
@@ -125,33 +125,33 @@
     [self displayAlertWithError:error];
 }
 
-# pragma mark - Setup
+#pragma mark - Setup
 
 - (void)addTargets {
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
-    
+
     [self.addCardView.cardInputTextField addTarget:self
                                             action:@selector(onCardNumberValueDidChange)
                                   forControlEvents:UIControlEventEditingChanged];
-    
+
     [self.addCardView.cardholderNameTextField addTarget:self
                                                  action:@selector(onCardholderNameValueDidChange)
                                        forControlEvents:UIControlEventEditingChanged];
-    
+
     [self.addCardView.expirationDateTextField addTarget:self
                                                  action:@selector(onExpiryDateValueDidChange)
                                        forControlEvents:UIControlEventEditingChanged];
-    
+
     [self.addCardView.lastDigitsTextField addTarget:self
                                              action:@selector(onLastDigitsValueDidChange)
                                    forControlEvents:UIControlEventEditingChanged];
-    
+
     [self.addCardView.countryTextField addTarget:self
                                           action:@selector(onCountryValueDidChangee)
                                 forControlEvents:UIControlEventEditingChanged];
-    
+
     [self.addCardView.postcodeTextField addTarget:self
                                            action:@selector(onPostalCodeValueDidChange)
                                  forControlEvents:UIControlEventEditingChanged];
@@ -161,13 +161,13 @@
     [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
 }
 
-# pragma mark - Keyboard handling logic
+#pragma mark - Keyboard handling logic
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    
+
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
+
     CGSize keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     self.addCardView.bottomSliderConstraint.constant = -keyboardSize.height;
 
@@ -175,22 +175,24 @@
                           delay:0.0
                         options:curve
                      animations:^{
-        [self.view layoutIfNeeded];
-    } completion:nil];
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
+
     self.addCardView.bottomSliderConstraint.constant = 0;
 
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:curve
                      animations:^{
-        [self.view layoutIfNeeded];
-    } completion:nil];
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
 }
 
 @end
@@ -198,7 +200,7 @@
 @implementation JPAddCardViewController (CountryPickerDelegate)
 
 - (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
-    return  1;
+    return 1;
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {

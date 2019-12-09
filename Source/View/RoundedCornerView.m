@@ -25,7 +25,7 @@
 #import "RoundedCornerView.h"
 #import "UIView+Layout.h"
 
-@interface RoundedCornerView()
+@interface RoundedCornerView ()
 @property (nonatomic, assign) CGFloat radius;
 @property (nonatomic, assign) UIRectCorner corners;
 @end

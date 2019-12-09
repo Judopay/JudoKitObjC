@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
 #import "JPAddCardViewModel.h"
+#import <UIKit/UIKit.h>
 
 @protocol JPAddCardPresenter;
 
@@ -41,7 +41,7 @@
 
 @end
 
-@interface JPAddCardViewController : UIViewController  <JPAddCardView>
+@interface JPAddCardViewController : UIViewController <JPAddCardView>
 
 /**
  * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol

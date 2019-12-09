@@ -39,10 +39,10 @@
 #import "NSString+Localize.h"
 #import "TransactionStatusView.h"
 #import "UIColor+Judo.h"
+#import "UIImage+Icons.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
 #import "UIViewController+KeyboardObservers.h"
-#import "UIImage+Icons.h"
 
 @interface IDEALFormViewController ()
 
@@ -530,7 +530,7 @@
     self.selectedBank = bank;
     [self displayPaymentElementsIfNeeded];
     self.selectedBankLabelView.hidden = NO;
-    
+
     NSString *iconName = [NSString stringWithFormat:@"logo-%@", bank.bankIdentifierCode];
     self.bankSelectionCell.textLabel.text = nil;
     self.bankSelectionCell.imageView.image = [UIImage imageWithIconName:iconName];

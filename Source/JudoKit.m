@@ -111,7 +111,7 @@
     self.apiSession = [JPSession new];
     [self.apiSession setAuthorizationHeader:[NSString stringWithFormat:@"Basic %@", base64String]];
     self.transitioningDelegate = [SliderTransitioningDelegate new];
-    
+
     return self;
 }
 
@@ -412,12 +412,12 @@
     JPTransaction *transaction = [self transactionForTypeClass:JPRegisterCard.class
                                                         judoId:judoId
                                                         amount:nil
-                                                    reference:[JPReference consumerReference:reference]];
-    
+                                                     reference:[JPReference consumerReference:reference]];
+
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
@@ -440,16 +440,16 @@
 - (void)invokeSaveCard:(NSString *)judoId
      consumerReference:(NSString *)reference
             completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     JPTransaction *transaction = [self transactionForTypeClass:JPSaveCard.class
                                                         judoId:judoId
                                                         amount:nil
-                                                    reference:[JPReference consumerReference:reference]];
-    
+                                                     reference:[JPReference consumerReference:reference]];
+
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
@@ -510,11 +510,11 @@
                                                         judoId:judoId
                                                         amount:nil
                                                      reference:reference];
-    
+
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];
@@ -527,12 +527,12 @@
     JPTransaction *transaction = [self transactionForTypeClass:JPSaveCard.class
                                                         judoId:judoId
                                                         amount:nil
-                                                    reference:reference];
-    
+                                                     reference:reference];
+
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.topMostViewController presentViewController:controller animated:YES completion:nil];

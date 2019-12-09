@@ -27,9 +27,9 @@
 @implementation UIColor (Hex)
 
 + (UIColor *)colorFromHex:(int)hex {
-    return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 \
-                           green:((float)((hex & 0x00FF00) >>  8))/255.0 \
-                            blue:((float)((hex & 0x0000FF) >>  0))/255.0 \
+    return [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0
+                           green:((float)((hex & 0x00FF00) >> 8)) / 255.0
+                            blue:((float)((hex & 0x0000FF) >> 0)) / 255.0
                            alpha:1.0];
 }
 

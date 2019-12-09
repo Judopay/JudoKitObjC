@@ -23,26 +23,26 @@
 //  SOFTWARE.
 
 #import "JPCardValidationService.h"
-#import "JPCard.h"
 #import "JPAddress.h"
+#import "JPCard.h"
 
 @implementation JPCardValidationService
 
 - (BOOL)isCardValid:(JPCard *)card withAVSEnabled:(BOOL)isAVSEnabled {
-        
+
     BOOL isCardNumberValid = [self isCardNumberValid:card.cardNumber];
     BOOL isCardholderNameValid = [self isCardholderNameValid:card.cardholderName];
     BOOL isExpiryDateValid = [self isExpiryDateValid:card.expiryDate];
     BOOL isLastDigitsValid = [self isLastDigitsValid:card.secureCode];
-    
+
     BOOL isCardValid = isCardNumberValid && isCardholderNameValid && isExpiryDateValid && isLastDigitsValid;
-    
+
     if (isAVSEnabled) {
         BOOL isCountryValid = [self isCountryValid:card.cardAddress.billingCountry];
         BOOL isPostalCodeValid = [self isPostalCodeValid:card.cardAddress.postCode];
         return isCardValid && isCountryValid && isPostalCodeValid;
     }
-    
+
     return isCardValid;
 }
 

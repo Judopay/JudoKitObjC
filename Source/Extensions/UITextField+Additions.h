@@ -11,4 +11,3 @@
 @interface UITextField (Additions)
 - (void)placeholderWithText:(NSString *)text color:(UIColor *)color andFont:(UIFont *)font;
 @end
-

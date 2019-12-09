@@ -8,7 +8,7 @@
 
 #import "SliderPresentationController.h"
 
-@interface SliderPresentationController()
+@interface SliderPresentationController ()
 @property (nonatomic, strong) UIView *dimmingView;
 @end
 
@@ -16,22 +16,26 @@
 
 - (void)presentationTransitionWillBegin {
     [self addDimmingView];
-    
+
     id<UIViewControllerTransitionCoordinator> presentedCoordinator;
     presentedCoordinator = self.presentedViewController.transitionCoordinator;
-    
-    [presentedCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.dimmingView.alpha = 1.0;
-    } completion:nil];
+
+    [presentedCoordinator
+        animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+            self.dimmingView.alpha = 1.0;
+        }
+                        completion:nil];
 }
 
 - (void)dismissalTransitionWillBegin {
     id<UIViewControllerTransitionCoordinator> presentedCoordinator;
     presentedCoordinator = self.presentedViewController.transitionCoordinator;
-    
-    [presentedCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.dimmingView.alpha = 0.0;
-    } completion:nil];
+
+    [presentedCoordinator
+        animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+            self.dimmingView.alpha = 0.0;
+        }
+                        completion:nil];
 }
 
 - (void)addDimmingView {
@@ -42,7 +46,7 @@
     [self.dimmingView.bottomAnchor constraintEqualToAnchor:self.containerView.bottomAnchor].active = YES;
 }
 
-# pragma mark - Lazy instantiated properties
+#pragma mark - Lazy instantiated properties
 
 - (UIView *)dimmingView {
     if (!_dimmingView) {

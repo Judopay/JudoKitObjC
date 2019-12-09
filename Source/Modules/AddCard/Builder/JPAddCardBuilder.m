@@ -23,15 +23,15 @@
 //  SOFTWARE.
 
 #import "JPAddCardBuilder.h"
-#import "JPAddCardViewController.h"
-#import "JPAddCardPresenter.h"
 #import "JPAddCardInteractor.h"
+#import "JPAddCardPresenter.h"
 #import "JPAddCardRouter.h"
+#import "JPAddCardViewController.h"
 
-#import "JPTheme.h"
-#import "JPReference.h"
 #import "JPCardDetails.h"
 #import "JPCardValidationService.h"
+#import "JPReference.h"
+#import "JPTheme.h"
 #import "JPTransactionService.h"
 
 @implementation JPAddCardBuilderImpl
@@ -39,30 +39,30 @@
 - (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
                                                   theme:(JPTheme *)theme
                                              completion:(JudoCompletionBlock)completion {
-    
+
     JPTransactionService *transactionService;
     transactionService = [[JPTransactionService alloc] initWithAVSEnabled:theme.avsEnabled
                                                               transaction:transaction];
-    
+
     JPCardValidationService *cardValidationService = [JPCardValidationService new];
-    
+
     JPAddCardInteractorImpl *interactor;
     interactor = [[JPAddCardInteractorImpl alloc] initWithCardValidationService:cardValidationService
                                                              transactionService:transactionService
                                                                      completion:completion];
-    
+
     JPAddCardViewController *viewController = [JPAddCardViewController new];
     JPAddCardPresenterImpl *presenter = [JPAddCardPresenterImpl new];
     JPAddCardRouterImpl *router = [JPAddCardRouterImpl new];
-    
+
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
-    
+
     router.viewController = viewController;
-    
+
     viewController.presenter = presenter;
-    
+
     return viewController;
 }
 

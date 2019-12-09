@@ -108,10 +108,10 @@
         return [NSError judoAmountMissingError];
     }
 
-# pragma mark DISABLED DUPLICATION CHECK DUE TO IT CONFLICTING WITH THE ADD CARD LOGIC
-//    if (self.reference.paymentReference == self.currentTransactionReference) {
-//        return [NSError judoDuplicateTransactionError];
-//    }
+#pragma mark DISABLED DUPLICATION CHECK DUE TO IT CONFLICTING WITH THE ADD CARD LOGIC
+    //    if (self.reference.paymentReference == self.currentTransactionReference) {
+    //        return [NSError judoDuplicateTransactionError];
+    //    }
 
     return nil;
 }

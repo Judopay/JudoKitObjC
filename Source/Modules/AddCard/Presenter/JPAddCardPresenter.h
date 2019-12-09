@@ -22,10 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPAddCardViewModel.h"
+#import <Foundation/Foundation.h>
 
-@protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
+@protocol JPAddCardView
+, JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
 /**
@@ -60,16 +61,16 @@
 /**
  * A weak reference to the view that adops the  JPAddCardView protocol
  */
-@property (nonatomic, weak) id<JPAddCardView>view;
+@property (nonatomic, weak) id<JPAddCardView> view;
 
 /**
  * A strong reference to the router that adops the  JPAddCardRouter protocol
  */
-@property (nonatomic, strong) id<JPAddCardRouter>router;
+@property (nonatomic, strong) id<JPAddCardRouter> router;
 
 /**
  * A strong reference to the interactor that adops the  JPAddCardInteractor protocol
  */
-@property (nonatomic, strong) id<JPAddCardInteractor>interactor;
+@property (nonatomic, strong) id<JPAddCardInteractor> interactor;
 
 @end

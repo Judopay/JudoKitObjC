@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, JPCountryType) {
-    JPCountryTypeUSA, JPCountryTypeUK, JPCountryTypeCanada, JPCountryTypeOther
+    JPCountryTypeUSA,
+    JPCountryTypeUK,
+    JPCountryTypeCanada,
+    JPCountryTypeOther
 };
 
 @interface JPCountry : NSObject

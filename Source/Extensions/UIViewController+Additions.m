@@ -41,7 +41,7 @@
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Error"
                                                                         message:error.localizedDescription
                                                                  preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                        style:UIAlertActionStyleDefault
                                                      handler:nil];

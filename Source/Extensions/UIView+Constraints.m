@@ -28,12 +28,16 @@
 
 - (void)pinToView:(UIView *)view withPadding:(CGFloat)padding {
     NSArray *constraints = @[
-        [self.topAnchor constraintEqualToAnchor:view.topAnchor constant:padding],
-        [self.bottomAnchor constraintEqualToAnchor:view.bottomAnchor constant:padding],
-        [self.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:padding],
-        [self.trailingAnchor constraintEqualToAnchor:view.trailingAnchor constant:padding]
+        [self.topAnchor constraintEqualToAnchor:view.topAnchor
+                                       constant:padding],
+        [self.bottomAnchor constraintEqualToAnchor:view.bottomAnchor
+                                          constant:padding],
+        [self.leadingAnchor constraintEqualToAnchor:view.leadingAnchor
+                                           constant:padding],
+        [self.trailingAnchor constraintEqualToAnchor:view.trailingAnchor
+                                            constant:padding]
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -42,25 +46,29 @@
 }
 
 - (void)pinToAnchors:(AnchorType)anchors forView:(UIView *)view withPadding:(CGFloat)padding {
-    
+
     if (anchors & AnchorTypeTop) {
         [self.topAnchor constraintEqualToAnchor:view.topAnchor
-                                       constant:padding].active = YES;
+                                       constant:padding]
+            .active = YES;
     }
-    
+
     if (anchors & AnchorTypeBottom) {
         [self.bottomAnchor constraintEqualToAnchor:view.bottomAnchor
-                                          constant:-padding].active = YES;
+                                          constant:-padding]
+            .active = YES;
     }
-    
+
     if (anchors & AnchorTypeLeading) {
         [self.leadingAnchor constraintEqualToAnchor:view.leadingAnchor
-                                           constant:padding].active = YES;
+                                           constant:padding]
+            .active = YES;
     }
-    
+
     if (anchors & AnchorTypeTrailing) {
         [self.trailingAnchor constraintEqualToAnchor:view.trailingAnchor
-                                            constant:-padding].active = YES;
+                                            constant:-padding]
+            .active = YES;
     }
 }
 

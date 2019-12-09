@@ -23,8 +23,8 @@
 //  SOFTWARE.
 //
 
-#import "UIImage+Icons.h"
 #import "NSBundle+Additions.h"
+#import "UIImage+Icons.h"
 
 @implementation UIImage (Icons)
 

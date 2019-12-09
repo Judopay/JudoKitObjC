@@ -23,11 +23,11 @@
 //  SOFTWARE.
 
 #import "JPTransactionService.h"
-#import "JPTransaction.h"
 #import "JPCard.h"
+#import "JPTransaction.h"
 #import "NSError+Judo.h"
 
-@interface JPTransactionService()
+@interface JPTransactionService ()
 @property (nonatomic, strong) JPTransaction *transaction;
 @end
 
@@ -42,17 +42,16 @@
     }
     return self;
 }
-                        
+
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler {
-        
+
     if (!self.transaction.apiSession) {
         completionHandler(nil, NSError.judoParameterError);
         return;
     }
-    
+
     [self.transaction setCard:card];
     [self.transaction sendWithCompletion:completionHandler];
 }
-
 
 @end

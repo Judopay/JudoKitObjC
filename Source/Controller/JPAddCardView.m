@@ -23,16 +23,16 @@
 //  SOFTWARE.
 
 #import "JPAddCardView.h"
+#import "JPAddCardViewModel.h"
+#import "LoadingButton.h"
+#import "NSString+Localize.h"
 #import "RoundedCornerView.h"
 #import "UIColor+Hex.h"
-#import "NSString+Localize.h"
-#import "UIView+Constraints.h"
-#import "UIView+Layout.h"
 #import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
-#import "JPAddCardViewModel.h"
 #import "UITextField+Additions.h"
-#import "LoadingButton.h"
+#import "UIView+Constraints.h"
+#import "UIView+Layout.h"
 
 @interface JPAddCardView ()
 
@@ -78,44 +78,44 @@
     [self.cardInputTextField placeholderWithText:viewModel.cardNumberViewModel.placeholder
                                            color:[UIColor colorFromHex:0x999999]
                                          andFont:[UIFont systemFontOfSize:16.0]];
-    
+
     [self.cardholderNameTextField placeholderWithText:viewModel.cardholderNameViewModel.placeholder
                                                 color:[UIColor colorFromHex:0x999999]
                                               andFont:[UIFont systemFontOfSize:16.0]];
-    
+
     [self.expirationDateTextField placeholderWithText:viewModel.expiryDateViewModel.placeholder
                                                 color:[UIColor colorFromHex:0x999999]
                                               andFont:[UIFont systemFontOfSize:16.0]];
-    
+
     [self.lastDigitsTextField placeholderWithText:viewModel.lastFourViewModel.placeholder
                                             color:[UIColor colorFromHex:0x999999]
                                           andFont:[UIFont systemFontOfSize:16.0]];
-    
+
     self.sliderHeightConstraint.constant = 365.0f;
-    
+
     self.addCardButton.enabled = viewModel.addCardButtonViewModel.isEnabled;
     self.addCardButton.alpha = 0.5;
     [self.addCardButton setTitle:viewModel.addCardButtonViewModel.title
                         forState:UIControlStateNormal];
-    
+
     if (viewModel.addCardButtonViewModel.isEnabled) {
         self.addCardButton.enabled = YES;
         self.addCardButton.alpha = 1.0;
     }
-    
+
     self.countryTextField.hidden = YES;
     self.postcodeTextField.hidden = YES;
-    
+
     if (viewModel.countryPickerViewModel && viewModel.postalCodeInputViewModel) {
         self.countryTextField.hidden = NO;
         self.postcodeTextField.hidden = NO;
         self.countryTextField.text = viewModel.countryPickerViewModel.text;
         self.sliderHeightConstraint.constant = 410.0f;
-        
+
         [self.countryTextField placeholderWithText:viewModel.countryPickerViewModel.placeholder
                                              color:[UIColor colorFromHex:0x999999]
                                            andFont:[UIFont systemFontOfSize:16.0]];
-        
+
         [self.postcodeTextField placeholderWithText:viewModel.postalCodeInputViewModel.placeholder
                                               color:[UIColor colorFromHex:0x999999]
                                             andFont:[UIFont systemFontOfSize:16.0]];
@@ -150,25 +150,25 @@
 }
 
 - (void)setupBottomSliderConstraints {
-    [self.bottomSlider pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing forView:self];
-    
+    [self.bottomSlider pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing forView:self];
+
     self.bottomSliderConstraint = [self.bottomSlider.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
     self.sliderHeightConstraint = [self.bottomSlider.heightAnchor constraintEqualToConstant:365.0];
-    
+
     self.bottomSliderConstraint.active = YES;
     self.sliderHeightConstraint.active = YES;
 }
 
 - (void)setupMainStackViewConstraints {
-    
+
     [self.mainStackView pinToAnchors:AnchorTypeTop
                              forView:self.bottomSlider
                          withPadding:20.0];
-    
+
     [self.mainStackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing
                              forView:self.bottomSlider
                          withPadding:24.0];
-    
+
     [self.mainStackView pinToAnchors:AnchorTypeBottom
                              forView:self.bottomSlider
                          withPadding:32.0];
@@ -186,7 +186,7 @@
         [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
         [self.lockImageView.widthAnchor constraintEqualToConstant:17.0],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
@@ -226,20 +226,19 @@
     if (!_scanCardButton) {
         _scanCardButton = [UIButton new];
         _scanCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        
+
         [_scanCardButton setTitle:@"SCAN CARD" forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _scanCardButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
-        
+
         [_scanCardButton setImage:[UIImage imageWithIconName:@"scan-card"]
                          forState:UIControlStateNormal];
         _scanCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        
+
         [_scanCardButton setBorderWithColor:UIColor.blackColor width:1.0f andCornerRadius:4.0f];
-        
+
         _scanCardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 0);
         _scanCardButton.contentEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 5);
-        
     }
     return _scanCardButton;
 }
@@ -337,7 +336,8 @@
         _lockImageView = [UIImageView new];
         _lockImageView.contentMode = UIViewContentModeScaleAspectFit;
         _lockImageView.translatesAutoresizingMaskIntoConstraints = NO;
-        _lockImageView.image = [UIImage imageWithIconName:@"lock-icon"];;
+        _lockImageView.image = [UIImage imageWithIconName:@"lock-icon"];
+        ;
     }
     return _lockImageView;
 }
@@ -355,7 +355,7 @@
 - (UIStackView *)mainStackView {
     if (!_mainStackView) {
         _mainStackView = [UIStackView verticalStackViewWithSpacing:16.0];
-        
+
         [_mainStackView addArrangedSubview:self.topButtonStackView];
         [_mainStackView addArrangedSubview:self.inputFieldsStackView];
         [_mainStackView addArrangedSubview:self.buttonStackView];
@@ -365,42 +365,42 @@
 
 - (UIStackView *)topButtonStackView {
     UIStackView *stackView = [UIStackView new];
-    
+
     [stackView addArrangedSubview:self.cancelButton];
     [stackView addArrangedSubview:[UIView new]];
     [stackView addArrangedSubview:self.scanCardButton];
-    
+
     return stackView;
 }
 
 - (UIStackView *)additionalInputFieldsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-    
+
     [stackView addArrangedSubview:self.expirationDateTextField];
     [stackView addArrangedSubview:self.lastDigitsTextField];
-    
+
     return stackView;
 }
 
 - (UIStackView *)inputFieldsStackView {
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:8.0];
-    
+
     [stackView addArrangedSubview:self.cardInputTextField];
     [stackView addArrangedSubview:self.cardholderNameTextField];
     [stackView addArrangedSubview:self.additionalInputFieldsStackView];
     [stackView addArrangedSubview:self.avsStackView];
-    
+
     return stackView;
 }
 
 - (UIStackView *)avsStackView {
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
-    
+
     [stackView addArrangedSubview:self.countryTextField];
     [stackView addArrangedSubview:self.postcodeTextField];
-    
+
     return stackView;
 }
 

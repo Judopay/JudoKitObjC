@@ -24,8 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JPTransaction.h"
 #import "JPSession.h"
+#import "JPTransaction.h"
 
 @interface JPTransactionService : NSObject
 

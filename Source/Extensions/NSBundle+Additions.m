@@ -53,14 +53,18 @@
 }
 
 + (NSString *)pathForResourceBundle:(NSString *)resourceBundle {
-    for (NSBundle* bundle in [NSBundle allBundles]) {
-        NSString* bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
-        if (bundlePath) { return bundlePath; }
+    for (NSBundle *bundle in [NSBundle allBundles]) {
+        NSString *bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
+        if (bundlePath) {
+            return bundlePath;
+        }
     }
 
-    for (NSBundle* bundle in [NSBundle allFrameworks]) {
-        NSString* bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
-        if (bundlePath) { return bundlePath; }
+    for (NSBundle *bundle in [NSBundle allFrameworks]) {
+        NSString *bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];
+        if (bundlePath) {
+            return bundlePath;
+        }
     }
     return nil;
 }
