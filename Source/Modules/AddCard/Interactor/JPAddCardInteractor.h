@@ -28,14 +28,51 @@
 @class JPCard, JPCardValidationService, JPTransactionService, JPCountry;
 
 @protocol JPAddCardInteractor
+
+/**
+ *  A method for checking if AVS is enabled
+ *
+ *  @return YES if the merchant has set AVS as enabled and NO if otherwise
+ */
 - (BOOL)isAVSEnabled;
+
+/**
+ *  A method for validating card details
+ *
+ *  @param card - an instance of JPCard that contains the card details
+ *
+ *  @return YES if the specified card is valid and NO if otherwise
+ */
 - (BOOL)isCardValid:(JPCard *)card;
+
+/**
+ *  A method for executing the save / register card transaction
+ *
+ *  @param card - an instance of JPCard that contains the card details
+ *  @param completion - a response / error completion block that is returned after thee transaction finishes
+ */
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler;
+
+/**
+ *  A method that returns all countries selectable for AVS
+ *
+ *  @return a list of JPCountry objects
+ */
 - (NSArray<JPCountry *> *)getSelectableCounties;
+
 @end
 
 @interface JPAddCardInteractorImpl : NSObject <JPAddCardInteractor>
 
+/**
+ *  A JPAddCardInteractorImpl initializer configured with the required services
+ *
+ *  @param cardValidationService - a JPCardValidationService instance for validating the card details
+ *  @param transactionService - a JPTransactionService instance for handling the transaction
+ *  @param completion - a JudoCompletionBlock that returns once the transaction finishes
+ *
+ *  @return an instance of JPAddCardInteractorImpl
+ */
 - (instancetype)initWithCardValidationService:(JPCardValidationService *)cardValidationService
                            transactionService:(JPTransactionService *)transactionService
                                    completion:(JudoCompletionBlock)completion;

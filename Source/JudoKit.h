@@ -337,12 +337,10 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *
  *  @param judoId               The judoID of the merchant
  *  @param reference            The consumer reference for this transaction
- *  @param cardDetails          The card details to present in the input fields
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeRegisterCard:(nonnull NSString *)judoId
          consumerReference:(nonnull NSString *)reference
-               cardDetails:(nullable JPCardDetails *)cardDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -350,12 +348,10 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *
  *  @param judoId      The judoID of the merchant
  *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param cardDetails The card details to present in the input fields
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeRegisterCard:(nonnull NSString *)judoId
                  reference:(nonnull JPReference *)reference
-               cardDetails:(nullable JPCardDetails *)cardDetails
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -389,12 +385,10 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *
  *  @param judoId      The judoID of the merchant
  *  @param reference   Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param cardDetails The card details to be saved
  *  @param completion  The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeSaveCard:(nonnull NSString *)judoId
              reference:(nonnull JPReference *)reference
-           cardDetails:(nullable JPCardDetails *)cardDetails
             completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**

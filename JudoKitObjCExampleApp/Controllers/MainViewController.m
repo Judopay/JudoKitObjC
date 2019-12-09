@@ -290,7 +290,6 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 - (void)createCardTokenOperation {
     [self.judoKitSession invokeRegisterCard:judoId
                           consumerReference:self.reference
-                                cardDetails:nil
                                  completion:^(JPResponse * response, NSError * error) {
         
         [self dismissViewControllerAnimated:YES completion:nil];

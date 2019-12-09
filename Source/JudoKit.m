@@ -407,16 +407,20 @@
 
 - (void)invokeRegisterCard:(NSString *)judoId
          consumerReference:(NSString *)reference
-               cardDetails:(JPCardDetails *)cardDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
 
-    [self presentPaymentViewControllerWithJudoId:judoId
-                                          amount:nil
-                                       reference:[[JPReference alloc] initWithConsumerReference:reference]
-                                     transaction:TransactionTypeRegisterCard
-                                     cardDetails:cardDetails
-                                    paymentToken:nil
-                                      completion:completion];
+    JPTransaction *transaction = [self transactionForTypeClass:JPRegisterCard.class
+                                                        judoId:judoId
+                                                        amount:nil
+                                                    reference:[JPReference consumerReference:reference]];
+    
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
+                                                                                           theme:self.theme
+                                                                                      completion:completion];
+    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.transitioningDelegate = self.transitioningDelegate;
+    [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)invokeCheckCard:(NSString *)judoId
@@ -500,30 +504,38 @@
 
 - (void)invokeRegisterCard:(NSString *)judoId
                  reference:(JPReference *)reference
-               cardDetails:(JPCardDetails *)cardDetails
                 completion:(void (^)(JPResponse *, NSError *))completion {
 
-    [self presentPaymentViewControllerWithJudoId:judoId
-                                          amount:nil
-                                       reference:reference
-                                     transaction:TransactionTypeRegisterCard
-                                     cardDetails:cardDetails
-                                    paymentToken:nil
-                                      completion:completion];
+    JPTransaction *transaction = [self transactionForTypeClass:JPRegisterCard.class
+                                                        judoId:judoId
+                                                        amount:nil
+                                                     reference:reference];
+    
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
+                                                                                           theme:self.theme
+                                                                                      completion:completion];
+    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.transitioningDelegate = self.transitioningDelegate;
+    [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)invokeSaveCard:(NSString *)judoId
              reference:(JPReference *)reference
-           cardDetails:(JPCardDetails *)cardDetails
             completion:(void (^)(JPResponse *, NSError *))completion {
 
-    [self presentPaymentViewControllerWithJudoId:judoId
-                                          amount:nil
-                                       reference:reference
-                                     transaction:TransactionTypeSaveCard
-                                     cardDetails:cardDetails
-                                    paymentToken:nil
-                                      completion:completion];
+    JPTransaction *transaction = [self transactionForTypeClass:JPSaveCard.class
+                                                        judoId:judoId
+                                                        amount:nil
+                                                    reference:reference];
+    
+    JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
+                                                                                           theme:self.theme
+                                                                                      completion:completion];
+    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.transitioningDelegate = self.transitioningDelegate;
+    [self.topMostViewController presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)invokeTokenPayment:(NSString *)judoId

@@ -29,6 +29,15 @@
 @class JPTheme, JPTransaction;
 
 @protocol JPAddCardBuilder
+/**
+ *  Method that returns a configured JPAddCardViewController based on properties provided
+ *
+ *  @param transaction - a JPTransaction object that describes the transaction details
+ *  @param theme - a JPTheme object that primarily defines the style of Add Card view
+ *  @param completion - a response / error completion block that is returned after a transaction is sent
+ *
+ *  @return a pre-configured JPAddCardViewController instance
+ */
 - (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
                                                   theme:(JPTheme *)theme
                                              completion:(JudoCompletionBlock)completion;
