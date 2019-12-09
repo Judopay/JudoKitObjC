@@ -423,7 +423,7 @@
 
     [self invokeAddCardForTypeClass:JPCheckCard.class
                              judoId:judoId
-                          reference:[JPReference consumerReference:reference]
+                          reference:reference
                          completion:completion];
 }
 
