@@ -103,6 +103,22 @@
     return [UIColor colorWithRed:188 / 255.0f green:41 / 255.0f blue:101 / 255.0f alpha:1.0];
 }
 
++ (UIColor *)jpGrayColor {
+    return [UIColor colorFromHex:0x999999];
+}
+
++ (UIColor *)jpDarkGrayColor {
+    return [UIColor colorFromHex:0x262626];
+}
+
++ (UIColor *)jpLightGrayColor {
+    return [UIColor colorFromHex:0xF6F6F6];
+}
+
++ (UIColor *)jpDarkColor {
+    return [UIColor colorFromHex:0x262626];
+}
+
 + (UIColor *)defaultTintColor {
     if ([UIApplication isUserInterfaceStyleDark]) {
         return [UIColor hippieBlue];

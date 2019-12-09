@@ -30,6 +30,7 @@
 #import "JPAddress.h"
 #import "JPCard.h"
 #import "JPCountry.h"
+#import "NSString+Localize.h"
 
 @interface JPAddCardPresenterImpl ()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
@@ -129,11 +130,11 @@
 - (JPAddCardViewModel *)addCardViewModel {
     if (!_addCardViewModel) {
         _addCardViewModel = [JPAddCardViewModel new];
-        _addCardViewModel.cardNumberViewModel = [self inputFieldViewModelWithPlaceholder:@"Card Number"];
-        _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"Cardholder Name"];
-        _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"Expiry Date"];
-        _addCardViewModel.secureCodeViewModel = [self inputFieldViewModelWithPlaceholder:@"CVV"];
-        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"ADD CARD"];
+        _addCardViewModel.cardNumberViewModel = [self inputFieldViewModelWithPlaceholder:@"card_number".localized];
+        _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"cardholder_name".localized];
+        _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"expiry_date".localized];
+        _addCardViewModel.secureCodeViewModel = [self inputFieldViewModelWithPlaceholder:@"secure_code".localized];
+        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"add_card_button".localized];
         ;
 
         if ([self.interactor isAVSEnabled]) {

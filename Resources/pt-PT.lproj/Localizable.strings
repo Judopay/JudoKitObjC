@@ -25,6 +25,17 @@
 //General
 "ok" = "OK";
 "error" = "Erro";
+"cancel" = "Cancelar";
+
+//Add Card
+"scan_card" = "CARTÃO DE DIGITALIZAÇÃO";
+"card_number" = "Número do cartão";
+"cardholder_name" = "Nome do Titular";
+"expiry_date" = "Data de validade";
+"country" = "País";
+"postal_code" = "Código Postal";
+"secure_code" = "CVV";
+"add_card_button" = "ADICIONAR CARTÃO";
 
 //CardInputField
 "card_number_label" = "Número do Cartão";

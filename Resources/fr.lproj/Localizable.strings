@@ -25,6 +25,17 @@
 //General
 "ok" = "OK";
 "error" = "Error";
+"cancel" = "Cancel";
+
+//Add Card
+"scan_card" = "SCAN CARD";
+"card_number" = "Card Number";
+"cardholder_name" = "Cardholder Name";
+"expiry_date" = "Expiry Date";
+"country" = "Country";
+"postal_code" = "Postcode";
+"secure_code" = "CVV";
+"add_card_button" = "ADD CARD";
 
 //CardInputField
 "card_number_label" = "Card number";

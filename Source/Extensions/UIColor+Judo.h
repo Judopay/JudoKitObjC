@@ -54,4 +54,12 @@
 
 + (UIColor *_Nonnull)defaultTintColor;
 
++ (UIColor *_Nonnull)jpGrayColor;
+
++ (UIColor *_Nonnull)jpDarkGrayColor;
+
++ (UIColor *_Nonnull)jpLightGrayColor;
+
++ (UIColor *_Nonnull)jpDarkColor;
+
 @end

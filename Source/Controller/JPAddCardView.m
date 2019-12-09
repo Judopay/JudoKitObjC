@@ -75,19 +75,19 @@
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
     [self.cardInputTextField placeholderWithText:viewModel.cardNumberViewModel.placeholder
-                                           color:[UIColor colorFromHex:0x999999]
+                                           color:UIColor.jpGrayColor
                                          andFont:[UIFont systemFontOfSize:16.0]];
 
     [self.cardholderNameTextField placeholderWithText:viewModel.cardholderNameViewModel.placeholder
-                                                color:[UIColor colorFromHex:0x999999]
+                                                color:UIColor.jpGrayColor
                                               andFont:[UIFont systemFontOfSize:16.0]];
 
     [self.expirationDateTextField placeholderWithText:viewModel.expiryDateViewModel.placeholder
-                                                color:[UIColor colorFromHex:0x999999]
+                                                color:UIColor.jpGrayColor
                                               andFont:[UIFont systemFontOfSize:16.0]];
 
     [self.lastDigitsTextField placeholderWithText:viewModel.secureCodeViewModel.placeholder
-                                            color:[UIColor colorFromHex:0x999999]
+                                            color:UIColor.jpGrayColor
                                           andFont:[UIFont systemFontOfSize:16.0]];
 
     self.sliderHeightConstraint.constant = 365.0f;
@@ -112,11 +112,11 @@
         self.sliderHeightConstraint.constant = 410.0f;
 
         [self.countryTextField placeholderWithText:viewModel.countryPickerViewModel.placeholder
-                                             color:[UIColor colorFromHex:0x999999]
+                                             color:UIColor.jpGrayColor
                                            andFont:[UIFont systemFontOfSize:16.0]];
 
         [self.postcodeTextField placeholderWithText:viewModel.postalCodeInputViewModel.placeholder
-                                              color:[UIColor colorFromHex:0x999999]
+                                              color:UIColor.jpGrayColor
                                             andFont:[UIFont systemFontOfSize:16.0]];
     }
 }
@@ -215,7 +215,7 @@
         _cancelButton = [UIButton new];
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
         _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
-        [_cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
+        [_cancelButton setTitle:@"cancel".localized forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
     return _cancelButton;
@@ -226,7 +226,7 @@
         _scanCardButton = [UIButton new];
         _scanCardButton.translatesAutoresizingMaskIntoConstraints = NO;
 
-        [_scanCardButton setTitle:@"SCAN CARD" forState:UIControlStateNormal];
+        [_scanCardButton setTitle:@"scan_card".localized forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _scanCardButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
 
@@ -244,58 +244,38 @@
 
 - (UITextField *)cardInputTextField {
     if (!_cardInputTextField) {
-        _cardInputTextField = [UITextField new];
-        _cardInputTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _cardInputTextField.textColor = [UIColor colorFromHex:0x262626];
+        _cardInputTextField = self.configuredTextField;
         _cardInputTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _cardInputTextField.layer.cornerRadius = 6.0f;
-        _cardInputTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _cardInputTextField;
 }
 
 - (UITextField *)cardholderNameTextField {
     if (!_cardholderNameTextField) {
-        _cardholderNameTextField = [UITextField new];
-        _cardholderNameTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _cardholderNameTextField.textColor = [UIColor colorFromHex:0x262626];
-        _cardholderNameTextField.layer.cornerRadius = 6.0f;
-        _cardholderNameTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+        _cardholderNameTextField = self.configuredTextField;
     }
     return _cardholderNameTextField;
 }
 
 - (UITextField *)expirationDateTextField {
     if (!_expirationDateTextField) {
-        _expirationDateTextField = [UITextField new];
-        _expirationDateTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _expirationDateTextField.textColor = [UIColor colorFromHex:0x262626];
+        _expirationDateTextField = self.configuredTextField;
         _expirationDateTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _expirationDateTextField.layer.cornerRadius = 6.0f;
-        _expirationDateTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _expirationDateTextField;
 }
 
 - (UITextField *)lastDigitsTextField {
     if (!_lastDigitsTextField) {
-        _lastDigitsTextField = [UITextField new];
-        _lastDigitsTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _lastDigitsTextField.textColor = [UIColor colorFromHex:0x262626];
+        _lastDigitsTextField = self.configuredTextField;
         _lastDigitsTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _lastDigitsTextField.layer.cornerRadius = 6.0f;
-        _lastDigitsTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
     }
     return _lastDigitsTextField;
 }
 
 - (UITextField *)countryTextField {
     if (!_countryTextField) {
-        _countryTextField = [UITextField new];
-        _countryTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _countryTextField.textColor = [UIColor colorFromHex:0x262626];
-        _countryTextField.layer.cornerRadius = 6.0f;
-        _countryTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+        _countryTextField = self.configuredTextField;
         _countryTextField.inputView = self.countryPickerView;
     }
     return _countryTextField;
@@ -310,13 +290,18 @@
 
 - (UITextField *)postcodeTextField {
     if (!_postcodeTextField) {
-        _postcodeTextField = [UITextField new];
-        _postcodeTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _postcodeTextField.textColor = [UIColor colorFromHex:0x262626];
-        _postcodeTextField.layer.cornerRadius = 6.0f;
-        _postcodeTextField.backgroundColor = [UIColor colorFromHex:0xF6F6F6];
+        _postcodeTextField = self.configuredTextField;
     }
     return _postcodeTextField;
+}
+
+- (UITextField *)configuredTextField {
+    UITextField *textField = [UITextField new];
+    textField.translatesAutoresizingMaskIntoConstraints = NO;
+    textField.textColor = UIColor.jpDarkGrayColor;
+    textField.layer.cornerRadius = 6.0f;
+    textField.backgroundColor = UIColor.jpLightGrayColor;
+    return textField;
 }
 
 - (LoadingButton *)addCardButton {
@@ -325,7 +310,7 @@
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         _addCardButton.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
         _addCardButton.layer.cornerRadius = 4.0f;
-        _addCardButton.backgroundColor = [UIColor colorFromHex:0x262626];
+        _addCardButton.backgroundColor = UIColor.jpDarkColor;
     }
     return _addCardButton;
 }
@@ -347,7 +332,7 @@
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
     label.font = [UIFont systemFontOfSize:11.3];
-    label.textColor = [UIColor colorFromHex:0x999999];
+    label.textColor = UIColor.jpGrayColor;
     return label;
 }
 

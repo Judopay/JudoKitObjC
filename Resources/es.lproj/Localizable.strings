@@ -25,6 +25,17 @@
 //General
 "ok" = "OK";
 "error" = "Error";
+"cancel" = "Cancelar";
+
+//Add Card
+"scan_card" = "TARJETA DE ESCANEO";
+"card_number" = "Número de tarjeta";
+"cardholder_name" = "Nombre del titular";
+"expiry_date" = "Fecha de caducidad";
+"country" = "País";
+"postal_code" = "Código postal";
+"secure_code" = "CVV";
+"add_card_button" = "AGREGAR TARJETA";
 
 //CardInputField
 "card_number_label" = "Número de tarjeta";
