@@ -23,10 +23,10 @@
 //  SOFTWARE.
 //
 
-#import "UIViewController+Additions.h"
 #import "JPtheme.h"
-#import "UIColor+Judo.h"
 #import "NSString+Localize.h"
+#import "UIColor+Judo.h"
+#import "UIViewController+Additions.h"
 
 @implementation UIViewController (Additions)
 

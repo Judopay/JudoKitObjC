@@ -29,7 +29,7 @@
 - (void)placeholderWithText:(NSString *)text
                       color:(UIColor *)color
                     andFont:(UIFont *)font {
-    
+
     self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:text
                                                                  attributes:@{
                                                                      NSForegroundColorAttributeName : color,

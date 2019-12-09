@@ -420,11 +420,11 @@
               reference:(JPReference *)reference
             cardDetails:(JPCardDetails *)cardDetails
              completion:(void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
-    
-        [self invokeAddCardForTypeClass:JPCheckCard.class
-                                 judoId:judoId
-                              reference:[JPReference consumerReference:reference]
-                             completion:completion];
+
+    [self invokeAddCardForTypeClass:JPCheckCard.class
+                             judoId:judoId
+                          reference:[JPReference consumerReference:reference]
+                         completion:completion];
 }
 
 - (void)invokeSaveCard:(NSString *)judoId
@@ -536,16 +536,16 @@
                                       completion:completion];
 }
 
-- (void)invokeAddCardForTypeClass: (Class)type
-                           judoId: (NSString *)judoId
+- (void)invokeAddCardForTypeClass:(Class)type
+                           judoId:(NSString *)judoId
                         reference:(JPReference *)reference
                        completion:(void (^)(JPResponse *, NSError *))completion {
-    
+
     JPTransaction *transaction = [self transactionForTypeClass:type
                                                         judoId:judoId
                                                         amount:nil
                                                      reference:reference];
-    
+
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
                                                                                       completion:completion];
