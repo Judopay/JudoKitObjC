@@ -74,7 +74,6 @@
 		30D08935238FCC5200480C9E /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08933238FCC5200480C9E /* UIView+Layout.m */; };
 		30D08938238FD00800480C9E /* RoundedCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D08936238FD00800480C9E /* RoundedCornerView.h */; };
 		30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D08937238FD00800480C9E /* RoundedCornerView.m */; };
-		30D0893B238FEB1700480C9E /* fonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30D0893A238FEB1700480C9E /* fonts.bundle */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D0894523902AC700480C9E /* UIColor+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D0894323902AC700480C9E /* UIColor+Hex.h */; };
 		30D0894623902AC700480C9E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D0894423902AC700480C9E /* UIColor+Hex.m */; };
@@ -462,7 +461,6 @@
 		30D08933238FCC5200480C9E /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "Extensions/UIView+Layout.m"; sourceTree = "<group>"; };
 		30D08936238FD00800480C9E /* RoundedCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RoundedCornerView.h; path = View/RoundedCornerView.h; sourceTree = "<group>"; };
 		30D08937238FD00800480C9E /* RoundedCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RoundedCornerView.m; path = View/RoundedCornerView.m; sourceTree = "<group>"; };
-		30D0893A238FEB1700480C9E /* fonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fonts.bundle; sourceTree = "<group>"; };
 		30D0894323902AC700480C9E /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+Hex.h"; path = "Extensions/UIColor+Hex.h"; sourceTree = "<group>"; };
 		30D0894423902AC700480C9E /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Hex.m"; path = "Extensions/UIColor+Hex.m"; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -1313,7 +1311,6 @@
 		52FBFB6A2325A3770096064C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				30D0893A238FEB1700480C9E /* fonts.bundle */,
 				30C22170235DC518000D6E3A /* icons.bundle */,
 				829330FE230AF0F900689DC4 /* Localizable.strings */,
 			);
@@ -1682,7 +1679,6 @@
 			files = (
 				30D0894023901F1F00480C9E /* icons.bundle in Resources */,
 				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
-				30D0893B238FEB1700480C9E /* fonts.bundle in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
