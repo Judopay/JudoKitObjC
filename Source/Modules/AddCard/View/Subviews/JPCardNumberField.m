@@ -8,6 +8,7 @@
 
 #import "JPCardNumberField.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 
 typedef NS_ENUM(NSInteger, JPCardType) {
     JPCardTypeUnknown,
@@ -57,16 +58,20 @@ typedef NS_ENUM(NSInteger, JPCardType) {
 
 - (void)configureWithViewModel:(JPAddCardInputFieldViewModel *)viewModel {
     
+    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.smallTextFont : UIFont.defaultTextFont;
+    
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpPlaceholderColor
-                      andFont:[UIFont systemFontOfSize:16.0]];
+                      andFont:placeholderFont];
+    
     self.text = viewModel.text;
     
     if (viewModel.errorText) {
         [self displayErrorWithText:viewModel.errorText];
-    } else {
-        [self clearError];
+        return;
     }
+    
+    [self clearError];
 }
 
 //------------------------------------------------------------------------------------

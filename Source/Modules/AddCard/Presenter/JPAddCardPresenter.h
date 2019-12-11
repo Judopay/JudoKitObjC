@@ -29,33 +29,8 @@
 , JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
-/**
- * A method that gives the view the initial view model when view begins loading
- */
-- (void)loadInitialView;
-
-- (void)handleInputShouldUpdateForType:(JPInputType)type withValue:(NSString *)value;
-
-/**
- * A method that updates the view model everytime an input field's content changes
- *
- * @param type - an value of JPCardInputType that identifies the input field changed
- * @param value - the new value of the input field
- */
-- (void)handleChangeInputOfType:(JPInputType)type withValue:(NSString *)value;
-
-/**
- * A method that handles logic when the Add Card button is tapped
- */
-- (void)handleAddCardButtonTap;
-
-/**
- * A method that updates the view model when a country is selected via the country picker
- *
- * @param name - the name of the country picked
- */
-- (void)didChangeCountryWithName:(NSString *)name;
-
+- (void)prepareInitialViewModel;
+- (void)handleInputChange:(NSString *)input forType:(JPInputType)type;
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>

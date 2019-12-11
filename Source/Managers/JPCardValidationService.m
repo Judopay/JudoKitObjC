@@ -23,76 +23,102 @@
 //  SOFTWARE.
 
 #import "JPCardValidationService.h"
-#import "JPAddress.h"
-#import "JPCard.h"
+#import "JPValidationResult.h"
+#import "JPCardNetwork.h"
 
 @implementation JPCardValidationService
 
 //------------------------------------------------------------------------------------
-# pragma mark - Public methods
+# pragma mark - Public Methods
 //------------------------------------------------------------------------------------
 
-- (BOOL)isCardValid:(JPCard *)card withAVSEnabled:(BOOL)isAVSEnabled {
-
-    BOOL isCardNumberValid = [self isCardNumberValid:card.cardNumber];
-    BOOL isCardholderNameValid = [self isCardholderNameValid:card.cardholderName];
-    BOOL isExpiryDateValid = [self isExpiryDateValid:card.expiryDate];
-    BOOL isSecureCodeValid = [self isSecureCodeValid:card.secureCode];
-
-    BOOL isCardValid = isCardNumberValid && isCardholderNameValid && isExpiryDateValid && isSecureCodeValid;
-
-    if (isAVSEnabled) {
-        BOOL isCountryValid = [self isCountryValid:card.cardAddress.billingCountry];
-        BOOL isPostalCodeValid = [self isPostalCodeValid:card.cardAddress.postCode];
-        return isCardValid && isCountryValid && isPostalCodeValid;
+- (JPValidationResult *)validateCardNumberInput:(NSString *)input {
+    
+    CardNetwork cardNetworkType = [JPCardNetwork cardNetworkForCardNumber:input];
+    
+    if (cardNetworkType == CardNetworkUATP) {
+        return [self validateUATPNetworkForInput:input];
     }
-
-    return isCardValid;
-}
-
-- (BOOL)isCardNumberValid:(NSString *)cardNumber {
-    //TODO: Handle card number validation
-    return [cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length == 16;
-}
-
-- (BOOL)isCardholderNameValid:(NSString *)cardholderName {
-    //TODO: Handle cardholder name validation
-    return cardholderName.length > 3;
-}
-
-- (BOOL)isExpiryDateValid:(NSString *)expiryDate {
-    if ([expiryDate rangeOfString:@"/"].location == NSNotFound) {
-        return false;
+    
+    if (cardNetworkType == CardNetworkUnknown) {
+        return [self validateUnknownNetworkForInput:input];
     }
-    NSArray *dateComponents = [expiryDate componentsSeparatedByString:@"/"];
-    NSString *month = [dateComponents objectAtIndex:0];
-    NSString *year = [dateComponents objectAtIndex:1];
-    return [self isValidMonth:month] && [self isValidYear:year];
+    
+    
+    if (cardNetworkType == CardNetworkVisa) {
+        // TODO: Validate VISA
+    }
+    
+    if (cardNetworkType == CardNetworkMasterCard) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkMaestro) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkAMEX) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkChinaUnionPay) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkDankort) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkInterPayment) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkDinersClub) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkInstaPayment) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkJCB) {
+        
+    }
+    
+    if (cardNetworkType == CardNetworkDiscover) {
+        
+    }
+    
+    // 3. Create
+    JPCardNetwork *cardNetwork = [JPCardNetwork cardNetworkWithType:cardNetworkType];
+    
+    return [JPValidationResult validationWithResult:YES
+                                       inputAllowed:NO
+                                       errorMessage:@"Invalid character"];
 }
 
-- (BOOL)isSecureCodeValid:(NSString *)secureCode {
-    //TODO: Handle last digit validation
-    return [secureCode isEqualToString:@"341"];
+//------------------------------------------------------------------------------------
+# pragma mark - Helper methods
+//------------------------------------------------------------------------------------
+
+- (JPValidationResult *)validateUATPNetworkForInput:(NSString *)input {
+    return [JPValidationResult validationWithResult:NO
+                                       inputAllowed:NO
+                                       errorMessage:@"UATP not yet supported"];
 }
 
-- (BOOL)isValidMonth:(NSString *)month {
-    //TODO: Handle the month logic
-    return month.intValue > 0 && month.intValue < 13;
-}
+- (JPValidationResult *)validate
 
-- (BOOL)isValidYear:(NSString *)year {
-    //TODO: Handle the year logic
-    return year.intValue > 18;
-}
-
-- (BOOL)isCountryValid:(NSString *)country {
-    //TODO: Handle country validation
-    return country.length > 0;
-}
-
-- (BOOL)isPostalCodeValid:(NSString *)postalCode {
-    //TODO: Handlee postal code validation
-    return postalCode.length > 0;
+- (JPValidationResult *)validateUnknownNetworkForInput:(NSString *)input {
+    if (input.length < 16) {
+        return [JPValidationResult validationWithResult:NO
+                                           inputAllowed:YES
+                                           errorMessage:nil];
+    }
+    
+    return [JPValidationResult validationWithResult:YES
+                                       inputAllowed:NO
+                                       errorMessage:nil];
 }
 
 @end

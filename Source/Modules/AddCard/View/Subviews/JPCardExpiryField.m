@@ -8,6 +8,7 @@
 
 #import "JPCardExpiryField.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 
 @implementation JPCardExpiryField
 
@@ -18,7 +19,7 @@
 - (void)configureWithViewModel:(JPAddCardInputFieldViewModel *)viewModel {
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpPlaceholderColor
-                      andFont:[UIFont systemFontOfSize:16.0]];
+                      andFont:UIFont.defaultTextFont];
 }
 
 @end

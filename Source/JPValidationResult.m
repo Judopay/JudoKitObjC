@@ -11,21 +11,23 @@
 @implementation JPValidationResult
 
 - (instancetype)initWithResult:(BOOL)isValid
-               andErrorMessage:(NSString *)errorMessage {
-    
+                isInputAllowed:(BOOL)isInputAllowed
+                  errorMessage:(NSString *)errorMessage {
     if (self = [super init]) {
         self.isValid = isValid;
+        self.isInputAllowed = isInputAllowed;
         self.errorMessage = errorMessage;
     }
-    
     return self;
 }
 
-+ (instancetype)validationResultWithResult:(BOOL)isValid
-                           andErrorMessage:(NSString *)errorMessage {
++ (instancetype)validationWithResult:(BOOL)isValid
+                        inputAllowed:(BOOL)isInputAllowed
+                        errorMessage:(NSString *)errorMessage {
     
     return [[JPValidationResult alloc] initWithResult:isValid
-                                      andErrorMessage:errorMessage];
+                                       isInputAllowed:isInputAllowed
+                                         errorMessage:errorMessage];
 }
 
 @end

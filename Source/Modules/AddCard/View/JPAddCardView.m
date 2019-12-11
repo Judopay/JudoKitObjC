@@ -39,6 +39,7 @@
 #import "UIStackView+Additions.h"
 #import "UITextField+Additions.h"
 #import "UIView+Additions.h"
+#import "UIFont+Additions.h"
 
 @interface JPAddCardView ()
 
@@ -85,8 +86,7 @@
 //------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
-   
-    self.sliderHeightConstraint.constant = viewModel.sliderHeight;
+    self.sliderHeightConstraint.constant = 365.0f;
     [self.cardNumberTextField configureWithViewModel:viewModel.cardNumberViewModel];
     [self.cardHolderTextField configureWithViewModel:viewModel.cardholderNameViewModel];
     [self.cardExpiryTextField configureWithViewModel:viewModel.expiryDateViewModel];
@@ -96,7 +96,8 @@
     self.countryTextField.hidden = !viewModel.shouldDisplayAVSFields;
     self.postcodeTextField.hidden = !viewModel.shouldDisplayAVSFields;
 
-    if (viewModel.countryPickerViewModel && viewModel.postalCodeInputViewModel) {
+    if (viewModel.shouldDisplayAVSFields) {
+        self.sliderHeightConstraint.constant = 410.0f;
         [self.countryTextField configureWithViewModel:viewModel.countryPickerViewModel];
         [self.postcodeTextField configureWithViewModel:viewModel.postalCodeInputViewModel];
     }
@@ -203,7 +204,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
+        _cancelButton.titleLabel.font = UIFont.smallButtonTitleFont;
         [_cancelButton setTitle:@"cancel".localized forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
@@ -217,7 +218,7 @@
 
         [_scanCardButton setTitle:@"scan_card".localized forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _scanCardButton.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
+        _scanCardButton.titleLabel.font = UIFont.smallButtonTitleFont;
 
         [_scanCardButton setImage:[UIImage imageWithIconName:@"scan-card"]
                          forState:UIControlStateNormal];
@@ -288,7 +289,7 @@
     if (!_addCardButton) {
         _addCardButton = [JPAddCardButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _addCardButton.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _addCardButton.titleLabel.font = UIFont.largetButtonTitleFont;
         _addCardButton.layer.cornerRadius = 4.0f;
         _addCardButton.backgroundColor = UIColor.jpDarkColor;
     }
@@ -311,7 +312,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
-    label.font = [UIFont systemFontOfSize:11.3];
+    label.font = UIFont.subtitleTextFont;
     label.textColor = UIColor.jpGrayColor;
     return label;
 }

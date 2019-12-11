@@ -62,31 +62,22 @@
     return self.transactionService.avsEnabled;
 }
 
-- (BOOL)isCardValid:(JPCard *)card {
-    BOOL avsEnabled = self.transactionService.avsEnabled;
-    return [self.cardValidationService isCardValid:card withAVSEnabled:avsEnabled];
-}
-
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler {
     self.completionHandler = completionHandler;
     [self.transactionService addCard:card completionHandler:completionHandler];
 }
 
-- (NSArray<JPCountry *> *)getSelectableCounties {
-    return self.defaultCountries;
+- (NSArray<NSString *> *)getSelectableCountryNames {
+    return @[
+        [JPCountry countryWithType:JPCountryTypeUK].name,
+        [JPCountry countryWithType:JPCountryTypeUSA].name,
+        [JPCountry countryWithType:JPCountryTypeCanada].name,
+        [JPCountry countryWithType:JPCountryTypeOther].name,
+    ];
 }
 
-//------------------------------------------------------------------------------------
-# pragma mark - Helper Getters
-//------------------------------------------------------------------------------------
-
-- (NSArray<JPCountry *> *)defaultCountries {
-    return @[
-        [JPCountry countryWithType:JPCountryTypeUK],
-        [JPCountry countryWithType:JPCountryTypeUSA],
-        [JPCountry countryWithType:JPCountryTypeCanada],
-        [JPCountry countryWithType:JPCountryTypeOther],
-    ];
+- (JPValidationResult *)validateCardNumberInput:(NSString *)input {
+    return [self.cardValidationService validateCardNumberInput:input];
 }
 
 @end

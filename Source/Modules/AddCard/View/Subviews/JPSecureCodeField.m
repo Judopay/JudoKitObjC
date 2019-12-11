@@ -8,6 +8,7 @@
 
 #import "JPSecureCodeField.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 
 @implementation JPSecureCodeField
 
@@ -19,7 +20,7 @@
     
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpPlaceholderColor
-                      andFont:[UIFont systemFontOfSize:16.0]];
+                      andFont:UIFont.defaultTextFont];
 }
 
 @end

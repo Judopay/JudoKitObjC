@@ -281,6 +281,8 @@
 		5214A7C0239997AD00283B81 /* SliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5214A7B5239997AD00283B81 /* SliderTransitioningDelegate.m */; };
 		5214A7C1239997AD00283B81 /* SliderPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5214A7B6239997AD00283B81 /* SliderPresentationController.h */; };
 		5214A7C2239997AD00283B81 /* SliderTransitioningDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5214A7B7239997AD00283B81 /* SliderTransitioningDelegate.h */; };
+		52374F3723A163FD000F1340 /* UIFont+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 52374F3523A163FD000F1340 /* UIFont+Additions.h */; };
+		52374F3823A163FD000F1340 /* UIFont+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 52374F3623A163FD000F1340 /* UIFont+Additions.m */; };
 		5280171223929BB500D2AFDB /* UIImage+Icons.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171023929BB500D2AFDB /* UIImage+Icons.h */; };
 		5280171323929BB500D2AFDB /* UIImage+Icons.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171123929BB500D2AFDB /* UIImage+Icons.m */; };
 		5280171623929E8E00D2AFDB /* UIStackView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5280171423929E8E00D2AFDB /* UIStackView+Additions.h */; };
@@ -698,6 +700,8 @@
 		5214A7B5239997AD00283B81 /* SliderTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTransitioningDelegate.m; sourceTree = "<group>"; };
 		5214A7B6239997AD00283B81 /* SliderPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderPresentationController.h; sourceTree = "<group>"; };
 		5214A7B7239997AD00283B81 /* SliderTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTransitioningDelegate.h; sourceTree = "<group>"; };
+		52374F3523A163FD000F1340 /* UIFont+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIFont+Additions.h"; path = "Extensions/UIFont+Additions.h"; sourceTree = "<group>"; };
+		52374F3623A163FD000F1340 /* UIFont+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Additions.m"; path = "Extensions/UIFont+Additions.m"; sourceTree = "<group>"; };
 		5280171023929BB500D2AFDB /* UIImage+Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+Icons.h"; path = "Extensions/UIImage+Icons.h"; sourceTree = "<group>"; };
 		5280171123929BB500D2AFDB /* UIImage+Icons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Icons.m"; path = "Extensions/UIImage+Icons.m"; sourceTree = "<group>"; };
 		5280171423929E8E00D2AFDB /* UIStackView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIStackView+Additions.h"; path = "Extensions/UIStackView+Additions.h"; sourceTree = "<group>"; };
@@ -1235,6 +1239,8 @@
 				528017212392F0F500D2AFDB /* UIViewController+Additions.m */,
 				30D6C5BE2395485500172303 /* UITextField+Additions.h */,
 				30D6C5BF2395485500172303 /* UITextField+Additions.m */,
+				52374F3523A163FD000F1340 /* UIFont+Additions.h */,
+				52374F3623A163FD000F1340 /* UIFont+Additions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1434,6 +1440,7 @@
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
+				52374F3723A163FD000F1340 /* UIFont+Additions.h in Headers */,
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
 				30CFA5E3239A55EF00329B04 /* JPCountry.h in Headers */,
 				44DA43EF22F82FE500C34231 /* NSString+Manipulation.h in Headers */,
@@ -1895,6 +1902,7 @@
 				30472A9A23A0E41C00279A87 /* JPCardHolderField.m in Sources */,
 				30D6C5C523956BD700172303 /* LoadingButton.m in Sources */,
 				3B6912DF1C96BFED00367660 /* NSString+Card.m in Sources */,
+				52374F3823A163FD000F1340 /* UIFont+Additions.m in Sources */,
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
 				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
 				44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */,

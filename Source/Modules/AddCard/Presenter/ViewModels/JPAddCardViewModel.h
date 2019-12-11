@@ -34,7 +34,6 @@ typedef NS_ENUM(NSInteger, JPInputType) {
     JPInputTypeCardSecureCode,
     JPInputTypeCardCountry,
     JPInputTypeCardPostalCode,
-    JPInputTypeOther
 };
 
 #pragma mark - JPAddCardInputFieldViewModel
@@ -92,8 +91,6 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 #pragma mark - JPAddCardViewModel
 
 @interface JPAddCardViewModel : NSObject
-
-@property (nonatomic, assign) double sliderHeight;
 
 @property (nonatomic, assign) BOOL shouldDisplayAVSFields;
 

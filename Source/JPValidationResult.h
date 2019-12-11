@@ -11,12 +11,15 @@
 @interface JPValidationResult : NSObject
 
 @property (nonatomic, assign) BOOL isValid;
+@property (nonatomic, assign) BOOL isInputAllowed;
 @property (nonatomic, strong) NSString *errorMessage;
 
 - (instancetype)initWithResult:(BOOL)isValid
-               andErrorMessage:(NSString *)errorMessage;
+                isInputAllowed:(BOOL)isInputAllowed
+                  errorMessage:(NSString *)errorMessage;
 
-+ (instancetype)validationResultWithResult:(BOOL)isValid
-                           andErrorMessage:(NSString *)errorMessage;
++ (instancetype)validationWithResult:(BOOL)isValid
+                        inputAllowed:(BOOL)isInputAllowed
+                        errorMessage:(NSString *)errorMessage;
 
 @end

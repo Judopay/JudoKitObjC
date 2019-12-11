@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPSession.h"
+#import "JPValidationResult.h"
 #import <Foundation/Foundation.h>
 
 @class JPCard, JPCardValidationService, JPTransactionService, JPCountry;
@@ -37,15 +38,6 @@
 - (BOOL)isAVSEnabled;
 
 /**
- *  A method for validating card details
- *
- *  @param card - an instance of JPCard that contains the card details
- *
- *  @return YES if the specified card is valid and NO if otherwise
- */
-- (BOOL)isCardValid:(JPCard *)card;
-
-/**
  *  A method for executing the save / register card transaction
  *
  *  @param card - an instance of JPCard that contains the card details
@@ -56,9 +48,11 @@
 /**
  *  A method that returns all countries selectable for AVS
  *
- *  @return a list of JPCountry objects
+ *  @return a list of country names
  */
-- (NSArray<JPCountry *> *)getSelectableCounties;
+- (NSArray<NSString *> *)getSelectableCountryNames;
+
+- (JPValidationResult *)validateCardNumberInput:(NSString *)input;
 
 @end
 

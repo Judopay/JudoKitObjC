@@ -8,6 +8,7 @@
 
 #import "JPCountryField.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 
 @implementation JPCountryField
 
@@ -16,10 +17,10 @@
 //------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardPickerViewModel *)viewModel {
-    
+    self.text = viewModel.text;
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpPlaceholderColor
-                      andFont:[UIFont systemFontOfSize:16.0]];
+                      andFont:UIFont.defaultTextFont];
 }
 
 @end

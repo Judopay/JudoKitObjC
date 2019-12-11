@@ -49,7 +49,7 @@
 
 - (void)loadView {
     self.addCardView = [JPAddCardView new];
-    [self.presenter loadInitialView];
+    [self.presenter prepareInitialViewModel];
     self.view = self.addCardView;
     [self addTargets];
     [self addGestureRecognizers];
@@ -86,7 +86,7 @@
 - (void)onAddCardButtonTap {
     [self.addCardView.addCardButton startLoading];
     [self.addCardView enableUserInterface:NO];
-    [self.presenter handleAddCardButtonTap];
+    //TODO: Handle add card button tap
 }
 
 //------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@
 //------------------------------------------------------------------------------------
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
-    if (viewModel.countryPickerViewModel) {
+    if ([viewModel shouldDisplayAVSFields]) {
         self.addCardView.countryPickerView.delegate = self;
         self.addCardView.countryPickerView.dataSource = self;
         self.countryNames = viewModel.countryPickerViewModel.pickerTitles;
@@ -181,7 +181,8 @@
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
-    [self.presenter didChangeCountryWithName:self.countryNames[row]];
+    [self.presenter handleInputChange:self.countryNames[row]
+                              forType:JPInputTypeCardCountry];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
@@ -201,11 +202,11 @@
 @implementation JPAddCardViewController (CardNumberDelegate)
 
 - (void)cardNumberField:(JPCardNumberField *)cardNumberField shouldEditWithInput:(NSString *)input {
-    [self.presenter handleInputShouldUpdateForType:JPInputTypeCardNumber withValue:input];
+    [self.presenter handleInputChange:input forType:JPInputTypeCardNumber];
 }
 
 - (void)cardNumberField:(JPCardNumberField *)cardNumberField didEditWithInput:(NSString *)input {
-    
+    //TODO: Handle card type detection and validation
 }
 
 @end

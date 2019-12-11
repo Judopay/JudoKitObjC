@@ -7,6 +7,7 @@
 //
 
 #import "JPFloatingTextField.h"
+#import "UIFont+Additions.h"
 
 @interface JPFloatingTextField()
 @property (nonatomic, strong) UILabel *floatingLabel;
@@ -106,7 +107,7 @@
     if (!_floatingLabel) {
         _floatingLabel = [UILabel new];
         _floatingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _floatingLabel.font = [UIFont systemFontOfSize:10.0];
+        _floatingLabel.font = UIFont.errorTextFont;
         _floatingLabel.alpha = 0.0f;
         _floatingLabel.textColor = [UIColor colorWithRed:226/255.0
                                                    green:25/255.0

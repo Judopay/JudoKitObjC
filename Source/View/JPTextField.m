@@ -10,6 +10,7 @@
 #import "JPFloatingTextField.h"
 #import "UITextField+Additions.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 
 @interface JPTextField()
 @property (nonatomic, strong) JPFloatingTextField *floatingTextField;
@@ -119,11 +120,11 @@
     if (!_floatingTextField) {
         _floatingTextField = [JPFloatingTextField new];
         _floatingTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _floatingTextField.font = [UIFont systemFontOfSize:16.0];
+        _floatingTextField.font = UIFont.defaultTextFont;
         _floatingTextField.textColor = UIColor.jpTextColor;
         [_floatingTextField placeholderWithText:@""
                                           color:UIColor.jpPlaceholderColor
-                                        andFont:[UIFont systemFontOfSize:16.0]];
+                                        andFont:UIFont.defaultTextFont];
         
         [_floatingTextField addTarget:self
                                action:@selector(didChangeText)

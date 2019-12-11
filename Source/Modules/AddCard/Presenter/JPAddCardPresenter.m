@@ -42,165 +42,97 @@
 # pragma mark - Delegate methods
 //------------------------------------------------------------------------------------
 
-- (void)loadInitialView {
-    [self updateViewWithViewModel:self.addCardViewModel];
-}
-
-- (void)handleInputShouldUpdateForType:(JPInputType)type withValue:(NSString *)value {
-    [self updateInputViewModelForType:type withText:value andErrorText:@"Error"];
-    [self updateViewWithViewModel:self.addCardViewModel];
-}
-
-- (void)handleChangeInputOfType:(JPInputType)type withValue:(NSString *)value {
-    [self updateInputViewModelForType:type withText:value andErrorText:nil];
-    [self updateViewWithViewModel:self.addCardViewModel];
-}
-
-- (void)handleAddCardButtonTap {
-
-    JPCard *card = [self cardFromViewModel:self.addCardViewModel];
-
-    __weak typeof(self) weakSelf = self;
-    [self.interactor addCard:card
-           completionHandler:^(JPResponse *response, NSError *error) {
-               if (error) {
-                   [weakSelf.view updateViewWithError:error];
-                   return;
-               }
-
-               [weakSelf.router dismissViewController];
-           }];
-}
-
-- (void)didChangeCountryWithName:(NSString *)name {
-    self.addCardViewModel.countryPickerViewModel.text = name;
-    [self updateViewWithViewModel:self.addCardViewModel];
-}
-
-//------------------------------------------------------------------------------------
-#pragma mark - View model logic
-//------------------------------------------------------------------------------------
-
-- (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
-
-    self.addCardViewModel.sliderHeight = [self.interactor isAVSEnabled] ? 410.0f : 365.0f;
+- (void)prepareInitialViewModel {
     self.addCardViewModel.shouldDisplayAVSFields = [self.interactor isAVSEnabled];
+    self.addCardViewModel.cardNumberViewModel.placeholder = @"card_number".localized;
+    self.addCardViewModel.cardholderNameViewModel.placeholder = @"cardholder_name".localized;
+    self.addCardViewModel.expiryDateViewModel.placeholder = @"expiry_date".localized;
+    self.addCardViewModel.secureCodeViewModel.placeholder = @"secure_code".localized;
+    self.addCardViewModel.countryPickerViewModel.placeholder = @"country".localized;
+    self.addCardViewModel.countryPickerViewModel.pickerTitles = [self.interactor getSelectableCountryNames];
+    self.addCardViewModel.postalCodeInputViewModel.placeholder = @"postal_code".localized;
+    self.addCardViewModel.addCardButtonViewModel.title = @"add_card".localized;
+    self.addCardViewModel.addCardButtonViewModel.isEnabled = false;
     
-    JPCard *card = [self cardFromViewModel:viewModel];
-    BOOL isCardValid = [self.interactor isCardValid:card];
-    
-    self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
     [self.view updateViewWithViewModel:self.addCardViewModel];
 }
 
-- (void)updateInputViewModelForType:(JPInputType)type
-                           withText:(NSString *)text
-                       andErrorText:(NSString *)errorText {
+- (void)handleInputChange:(NSString *)input forType:(JPInputType)type {
     
     switch (type) {
         case JPInputTypeCardNumber:
-            self.addCardViewModel.cardNumberViewModel.text = text;
-            self.addCardViewModel.cardNumberViewModel.errorText = errorText;
+            [self updateCardNumberViewModelForInput:input];
             break;
         case JPInputTypeCardholderName:
-            self.addCardViewModel.cardholderNameViewModel.text = text;
-            self.addCardViewModel.cardholderNameViewModel.errorText = errorText;
+            [self updateCardholderNameViewModelForInput:input];
             break;
         case JPInputTypeCardExpiryDate:
-            self.addCardViewModel.expiryDateViewModel.text = text;
-            self.addCardViewModel.expiryDateViewModel.errorText = errorText;
+            [self updateExpiryDateViewModelForInput:input];
             break;
         case JPInputTypeCardSecureCode:
-            self.addCardViewModel.secureCodeViewModel.text = text;
-            self.addCardViewModel.secureCodeViewModel.errorText = errorText;
+            [self updateSecureCodeViewModelForInput:input];
             break;
         case JPInputTypeCardCountry:
-            self.addCardViewModel.countryPickerViewModel.text = text;
-            self.addCardViewModel.countryPickerViewModel.errorText = errorText;
+            [self updateCountryViewModelForInput:input];
             break;
         case JPInputTypeCardPostalCode:
-            self.addCardViewModel.postalCodeInputViewModel.text = text;
-            self.addCardViewModel.postalCodeInputViewModel.errorText = errorText;
-            break;
-        default:
+            [self updatePostalCodeViewModelForInput:input];
             break;
     }
+    
+    [self.view updateViewWithViewModel:self.addCardViewModel];
 }
 
 //------------------------------------------------------------------------------------
 # pragma mark - Helper methods
 //------------------------------------------------------------------------------------
 
-- (JPCard *)cardFromViewModel:(JPAddCardViewModel *)viewModel {
-    JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
-                                       cardholderName:viewModel.cardholderNameViewModel.text
-                                           expiryDate:viewModel.expiryDateViewModel.text
-                                           secureCode:viewModel.secureCodeViewModel.text];
-
-    if ([self.interactor isAVSEnabled]) {
-        card.cardAddress = [JPAddress new];
-        card.cardAddress.billingCountry = viewModel.countryPickerViewModel.text;
-        card.cardAddress.postCode = viewModel.postalCodeInputViewModel.text;
+- (void)updateCardNumberViewModelForInput:(NSString *)input {
+    JPValidationResult * result = [self.interactor validateCardNumberInput:input];
+    self.addCardViewModel.cardNumberViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.cardNumberViewModel.text = input;
+        return;
     }
+}
 
-    //TODO: Handle Maestro-specific logic
-    // card.startDate = viewModel.startDateViewModel.text;
-    // card.issueNumber = viewModel.issueNumberViewModel.text;
+- (void)updateCardholderNameViewModelForInput:(NSString *)input {
+    self.addCardViewModel.cardholderNameViewModel.text = input;
+}
 
-    return card;
+- (void)updateExpiryDateViewModelForInput:(NSString *)input {
+    self.addCardViewModel.expiryDateViewModel.text = input;
+}
+
+- (void)updateSecureCodeViewModelForInput:(NSString *)input {
+    self.addCardViewModel.secureCodeViewModel.text = input;
+}
+
+- (void)updateCountryViewModelForInput:(NSString *)input {
+    self.addCardViewModel.countryPickerViewModel.text = input;
+}
+
+- (void)updatePostalCodeViewModelForInput:(NSString *)input {
+    self.addCardViewModel.postalCodeInputViewModel.text = input;
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Lazily instantiated properties
+# pragma mark - Lazy instantiated properties
 //------------------------------------------------------------------------------------
 
 - (JPAddCardViewModel *)addCardViewModel {
     if (!_addCardViewModel) {
         _addCardViewModel = [JPAddCardViewModel new];
-        _addCardViewModel.cardNumberViewModel = [self inputFieldViewModelWithPlaceholder:@"card_number".localized];
-        _addCardViewModel.cardholderNameViewModel = [self inputFieldViewModelWithPlaceholder:@"cardholder_name".localized];
-        _addCardViewModel.expiryDateViewModel = [self inputFieldViewModelWithPlaceholder:@"expiry_date".localized];
-        _addCardViewModel.secureCodeViewModel = [self inputFieldViewModelWithPlaceholder:@"secure_code".localized];
-        _addCardViewModel.addCardButtonViewModel = [self buttonViewModelWithTitle:@"add_card_button".localized];
-        ;
-
-        if ([self.interactor isAVSEnabled]) {
-            NSArray *countries = [self.interactor getSelectableCounties];
-            NSArray *countryNames = [self countryNamesForCountries:countries];
-            _addCardViewModel.countryPickerViewModel = [self pickerViewModelWithPlaceholder:@"country".localized pickerTitles:countryNames];
-            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"postcode".localized];
-            ;
-        }
+        _addCardViewModel.cardNumberViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.cardholderNameViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.expiryDateViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.secureCodeViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.countryPickerViewModel = [JPAddCardPickerViewModel new];
+        _addCardViewModel.postalCodeInputViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.addCardButtonViewModel = [JPAddCardButtonViewModel new];
     }
     return _addCardViewModel;
-}
-
-- (JPAddCardInputFieldViewModel *)inputFieldViewModelWithPlaceholder:(NSString *)placeholder {
-    JPAddCardInputFieldViewModel *viewModel = [JPAddCardInputFieldViewModel new];
-    viewModel.placeholder = placeholder;
-    return viewModel;
-}
-
-- (JPAddCardButtonViewModel *)buttonViewModelWithTitle:(NSString *)title {
-    JPAddCardButtonViewModel *viewModel = [JPAddCardButtonViewModel new];
-    viewModel.title = title;
-    return viewModel;
-}
-
-- (JPAddCardPickerViewModel *)pickerViewModelWithPlaceholder:(NSString *)placeholder
-                                                pickerTitles:(NSArray *)pickerTitles {
-    JPAddCardPickerViewModel *viewModel = [JPAddCardPickerViewModel new];
-    viewModel.placeholder = placeholder;
-    viewModel.pickerTitles = pickerTitles;
-    return viewModel;
-}
-
-- (NSArray *)countryNamesForCountries:(NSArray<JPCountry *> *)countries {
-    NSMutableArray *countryNames = [NSMutableArray new];
-    for (JPCountry *country in countries) {
-        [countryNames addObject:country.name];
-    }
-    return countryNames;
 }
 
 @end
