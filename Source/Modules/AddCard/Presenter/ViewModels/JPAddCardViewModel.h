@@ -27,13 +27,14 @@
 /**
  * An enum that defines the input field types present in the Add Card view
  */
-typedef NS_ENUM(NSInteger, JPCardInputType) {
-    JPCardInputTypeCardNumber,
-    JPCardInputTypeCardholderName,
-    JPCardInputTypeExpiryDate,
-    JPCardInputTypeLastDigits,
-    JPCardInputTypeCountry,
-    JPCardInputTypePostalCode
+typedef NS_ENUM(NSInteger, JPInputType) {
+    JPInputTypeCardNumber,
+    JPInputTypeCardholderName,
+    JPInputTypeCardExpiryDate,
+    JPInputTypeCardSecureCode,
+    JPInputTypeCardCountry,
+    JPInputTypeCardPostalCode,
+    JPInputTypeOther
 };
 
 #pragma mark - JPAddCardInputFieldViewModel
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSInteger, JPCardInputType) {
 /**
  * The type of the input field
  */
-@property (nonatomic, assign) JPCardInputType type;
+@property (nonatomic, assign) JPInputType type;
 
 /**
  * The text string of the input field
@@ -91,6 +92,10 @@ typedef NS_ENUM(NSInteger, JPCardInputType) {
 #pragma mark - JPAddCardViewModel
 
 @interface JPAddCardViewModel : NSObject
+
+@property (nonatomic, assign) double sliderHeight;
+
+@property (nonatomic, assign) BOOL shouldDisplayAVSFields;
 
 /**
  * The JPAddCardInputFieldViewModel for the card number input field

@@ -25,7 +25,8 @@
 #import <UIKit/UIKit.h>
 
 @class JPAddCardViewModel;
-@class LoadingButton;
+@class LoadingButton, JPTextField, JPCardNumberField, JPCardHolderField, JPCardExpiryField,
+        JPSecureCodeField, JPCountryField, JPPostalCodeField, JPAddCardButton;
 
 @interface JPAddCardView : UIView
 /**
@@ -46,27 +47,27 @@
 /**
  * The input field for adding the card number
  */
-@property (nonatomic, strong) UITextField *cardInputTextField;
+@property (nonatomic, strong) JPCardNumberField *cardNumberTextField;
 
 /**
  * The input field for adding the cardholder name
  */
-@property (nonatomic, strong) UITextField *cardholderNameTextField;
+@property (nonatomic, strong) JPCardHolderField *cardHolderTextField;
 
 /**
  * The input field for adding the card expiration date
  */
-@property (nonatomic, strong) UITextField *expirationDateTextField;
+@property (nonatomic, strong) JPCardExpiryField *cardExpiryTextField;
 
 /**
  * The input field for adding the card secure code
  */
-@property (nonatomic, strong) UITextField *lastDigitsTextField;
+@property (nonatomic, strong) JPSecureCodeField *secureCodeTextField;
 
 /**
  * The input field for selecting the country
  */
-@property (nonatomic, strong) UITextField *countryTextField;
+@property (nonatomic, strong) JPCountryField *countryTextField;
 
 /**
  * The picker view associated to the country input field;
@@ -76,12 +77,12 @@
 /**
  * The input field for adding the postal code
  */
-@property (nonatomic, strong) UITextField *postcodeTextField;
+@property (nonatomic, strong) JPPostalCodeField *postcodeTextField;
 
 /**
  * The Add Card button that, when tapped, displays a loading spinner
  */
-@property (nonatomic, strong) LoadingButton *addCardButton;
+@property (nonatomic, strong) JPAddCardButton *addCardButton;
 
 /**
  * The Add Card view's bottom constraint that is used to move the view when the keyboard animates

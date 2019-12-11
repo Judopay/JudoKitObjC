@@ -28,6 +28,10 @@
 
 @implementation JPCardValidationService
 
+//------------------------------------------------------------------------------------
+# pragma mark - Public methods
+//------------------------------------------------------------------------------------
+
 - (BOOL)isCardValid:(JPCard *)card withAVSEnabled:(BOOL)isAVSEnabled {
 
     BOOL isCardNumberValid = [self isCardNumberValid:card.cardNumber];

@@ -38,7 +38,9 @@
 
 @implementation JPAddCardInteractorImpl
 
-#pragma mark - Initializers
+//------------------------------------------------------------------------------------
+# pragma mark - Initializers
+//------------------------------------------------------------------------------------
 
 - (instancetype)initWithCardValidationService:(JPCardValidationService *)cardValidationService
                            transactionService:(JPTransactionService *)transactionService
@@ -52,7 +54,9 @@
     return self;
 }
 
-#pragma mark - Protocol methods
+//------------------------------------------------------------------------------------
+# pragma mark - Interactor Protocol Methods
+//------------------------------------------------------------------------------------
 
 - (BOOL)isAVSEnabled {
     return self.transactionService.avsEnabled;
@@ -71,6 +75,10 @@
 - (NSArray<JPCountry *> *)getSelectableCounties {
     return self.defaultCountries;
 }
+
+//------------------------------------------------------------------------------------
+# pragma mark - Helper Getters
+//------------------------------------------------------------------------------------
 
 - (NSArray<JPCountry *> *)defaultCountries {
     return @[

@@ -25,6 +25,14 @@
 #import "JPAddCardViewController.h"
 #import "JPAddCardPresenter.h"
 #import "JPAddCardView.h"
+#import "JPCardNumberField.h"
+#import "JPCardHolderField.h"
+#import "JPCardExpiryField.h"
+#import "JPSecureCodeField.h"
+#import "JPCountryField.h"
+#import "JPPostalCodeField.h"
+#import "JPAddCardButton.h"
+#import "JPTextField.h"
 #import "LoadingButton.h"
 #import "UIViewController+Additions.h"
 
@@ -35,7 +43,9 @@
 
 @implementation JPAddCardViewController
 
-#pragma mark - View lifecycle
+//------------------------------------------------------------------------------------
+# pragma mark - View Lifecycle
+//------------------------------------------------------------------------------------
 
 - (void)loadView {
     self.addCardView = [JPAddCardView new];
@@ -48,7 +58,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self registerKeyboardObservers];
-    [self.addCardView.cardInputTextField becomeFirstResponder];
+    [self.addCardView.cardNumberTextField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -57,7 +67,9 @@
     [super viewWillDisappear:animated];
 }
 
-#pragma mark - User actions
+//------------------------------------------------------------------------------------
+# pragma mark - User actions
+//------------------------------------------------------------------------------------
 
 - (void)onBackgroundViewTap {
     [self.addCardView endEditing:YES];
@@ -77,37 +89,9 @@
     [self.presenter handleAddCardButtonTap];
 }
 
-- (void)onCardNumberValueDidChange {
-    [self.presenter handleChangeInputOfType:JPCardInputTypeCardNumber
-                                  withValue:self.addCardView.cardInputTextField.text];
-}
-
-- (void)onCardholderNameValueDidChange {
-    [self.presenter handleChangeInputOfType:JPCardInputTypeCardholderName
-                                  withValue:self.addCardView.cardholderNameTextField.text];
-}
-
-- (void)onExpiryDateValueDidChange {
-    [self.presenter handleChangeInputOfType:JPCardInputTypeExpiryDate
-                                  withValue:self.addCardView.expirationDateTextField.text];
-}
-
-- (void)onLastDigitsValueDidChange {
-    [self.presenter handleChangeInputOfType:JPCardInputTypeLastDigits
-                                  withValue:self.addCardView.lastDigitsTextField.text];
-}
-
-- (void)onCountryValueDidChangee {
-    [self.presenter handleChangeInputOfType:JPCardInputTypeCountry
-                                  withValue:self.addCardView.countryTextField.text];
-}
-
-- (void)onPostalCodeValueDidChange {
-    [self.presenter handleChangeInputOfType:JPCardInputTypePostalCode
-                                  withValue:self.addCardView.postcodeTextField.text];
-}
-
-#pragma mark - Protocol methods
+//------------------------------------------------------------------------------------
+# pragma mark - View protocol methods
+//------------------------------------------------------------------------------------
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     if (viewModel.countryPickerViewModel) {
@@ -124,43 +108,25 @@
     [self displayAlertWithError:error];
 }
 
-#pragma mark - Setup
+//------------------------------------------------------------------------------------
+# pragma mark - Layout setup
+//------------------------------------------------------------------------------------
 
 - (void)addTargets {
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
-
-    [self.addCardView.cardInputTextField addTarget:self
-                                            action:@selector(onCardNumberValueDidChange)
-                                  forControlEvents:UIControlEventEditingChanged];
-
-    [self.addCardView.cardholderNameTextField addTarget:self
-                                                 action:@selector(onCardholderNameValueDidChange)
-                                       forControlEvents:UIControlEventEditingChanged];
-
-    [self.addCardView.expirationDateTextField addTarget:self
-                                                 action:@selector(onExpiryDateValueDidChange)
-                                       forControlEvents:UIControlEventEditingChanged];
-
-    [self.addCardView.lastDigitsTextField addTarget:self
-                                             action:@selector(onLastDigitsValueDidChange)
-                                   forControlEvents:UIControlEventEditingChanged];
-
-    [self.addCardView.countryTextField addTarget:self
-                                          action:@selector(onCountryValueDidChangee)
-                                forControlEvents:UIControlEventEditingChanged];
-
-    [self.addCardView.postcodeTextField addTarget:self
-                                           action:@selector(onPostalCodeValueDidChange)
-                                 forControlEvents:UIControlEventEditingChanged];
+    
+    self.addCardView.cardNumberTextField.cardNumberDelegate = self;
 }
 
 - (void)addGestureRecognizers {
     [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
 }
 
-#pragma mark - Keyboard handling logic
+//------------------------------------------------------------------------------------
+# pragma mark - Keyboard handling logic
+//------------------------------------------------------------------------------------
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 
@@ -196,6 +162,12 @@
 
 @end
 
+
+
+//------------------------------------------------------------------------------------
+# pragma mark - Country UIPickerView delegate
+//------------------------------------------------------------------------------------
+
 @implementation JPAddCardViewController (CountryPickerDelegate)
 
 - (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
@@ -216,6 +188,24 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
     return self.countryNames[row];
+}
+
+@end
+
+
+
+//------------------------------------------------------------------------------------
+# pragma mark - Card number delegate
+//------------------------------------------------------------------------------------
+
+@implementation JPAddCardViewController (CardNumberDelegate)
+
+- (void)cardNumberField:(JPCardNumberField *)cardNumberField shouldEditWithInput:(NSString *)input {
+    [self.presenter handleInputShouldUpdateForType:JPInputTypeCardNumber withValue:input];
+}
+
+- (void)cardNumberField:(JPCardNumberField *)cardNumberField didEditWithInput:(NSString *)input {
+    
 }
 
 @end

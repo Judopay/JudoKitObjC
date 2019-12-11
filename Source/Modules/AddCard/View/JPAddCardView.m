@@ -24,6 +24,13 @@
 
 #import "JPAddCardView.h"
 #import "JPAddCardViewModel.h"
+#import "JPCardNumberField.h"
+#import "JPCardHolderField.h"
+#import "JPCardExpiryField.h"
+#import "JPSecureCodeField.h"
+#import "JPCountryField.h"
+#import "JPPostalCodeField.h"
+#import "JPAddCardButton.h"
 #import "LoadingButton.h"
 #import "NSString+Localize.h"
 #import "RoundedCornerView.h"
@@ -45,7 +52,9 @@
 
 @implementation JPAddCardView
 
-#pragma mark - Instantiation
+//------------------------------------------------------------------------------------
+# pragma mark - Initializers
+//------------------------------------------------------------------------------------
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -71,69 +80,47 @@
     return self;
 }
 
-#pragma mark - View model configuration
+//------------------------------------------------------------------------------------
+# pragma mark - View model configuration
+//------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
-    [self.cardInputTextField placeholderWithText:viewModel.cardNumberViewModel.placeholder
-                                           color:UIColor.jpGrayColor
-                                         andFont:[UIFont systemFontOfSize:16.0]];
-
-    [self.cardholderNameTextField placeholderWithText:viewModel.cardholderNameViewModel.placeholder
-                                                color:UIColor.jpGrayColor
-                                              andFont:[UIFont systemFontOfSize:16.0]];
-
-    [self.expirationDateTextField placeholderWithText:viewModel.expiryDateViewModel.placeholder
-                                                color:UIColor.jpGrayColor
-                                              andFont:[UIFont systemFontOfSize:16.0]];
-
-    [self.lastDigitsTextField placeholderWithText:viewModel.secureCodeViewModel.placeholder
-                                            color:UIColor.jpGrayColor
-                                          andFont:[UIFont systemFontOfSize:16.0]];
-
-    self.sliderHeightConstraint.constant = 365.0f;
-
-    self.addCardButton.enabled = viewModel.addCardButtonViewModel.isEnabled;
-    self.addCardButton.alpha = 0.5;
-    [self.addCardButton setTitle:viewModel.addCardButtonViewModel.title
-                        forState:UIControlStateNormal];
-
-    if (viewModel.addCardButtonViewModel.isEnabled) {
-        self.addCardButton.enabled = YES;
-        self.addCardButton.alpha = 1.0;
-    }
-
-    self.countryTextField.hidden = YES;
-    self.postcodeTextField.hidden = YES;
+   
+    self.sliderHeightConstraint.constant = viewModel.sliderHeight;
+    [self.cardNumberTextField configureWithViewModel:viewModel.cardNumberViewModel];
+    [self.cardHolderTextField configureWithViewModel:viewModel.cardholderNameViewModel];
+    [self.cardExpiryTextField configureWithViewModel:viewModel.expiryDateViewModel];
+    [self.secureCodeTextField configureWithViewModel:viewModel.secureCodeViewModel];
+    [self.addCardButton configureWithViewModel:viewModel.addCardButtonViewModel];
+    
+    self.countryTextField.hidden = !viewModel.shouldDisplayAVSFields;
+    self.postcodeTextField.hidden = !viewModel.shouldDisplayAVSFields;
 
     if (viewModel.countryPickerViewModel && viewModel.postalCodeInputViewModel) {
-        self.countryTextField.hidden = NO;
-        self.postcodeTextField.hidden = NO;
-        self.countryTextField.text = viewModel.countryPickerViewModel.text;
-        self.sliderHeightConstraint.constant = 410.0f;
-
-        [self.countryTextField placeholderWithText:viewModel.countryPickerViewModel.placeholder
-                                             color:UIColor.jpGrayColor
-                                           andFont:[UIFont systemFontOfSize:16.0]];
-
-        [self.postcodeTextField placeholderWithText:viewModel.postalCodeInputViewModel.placeholder
-                                              color:UIColor.jpGrayColor
-                                            andFont:[UIFont systemFontOfSize:16.0]];
+        [self.countryTextField configureWithViewModel:viewModel.countryPickerViewModel];
+        [self.postcodeTextField configureWithViewModel:viewModel.postalCodeInputViewModel];
     }
 }
+
+//------------------------------------------------------------------------------------
+# pragma mark - Helper methods
+//------------------------------------------------------------------------------------
 
 - (void)enableUserInterface:(BOOL)shouldEnable {
     self.cancelButton.enabled = shouldEnable;
     self.scanCardButton.enabled = shouldEnable;
-    self.cardInputTextField.enabled = shouldEnable;
-    self.cardholderNameTextField.enabled = shouldEnable;
-    self.expirationDateTextField.enabled = shouldEnable;
-    self.lastDigitsTextField.enabled = shouldEnable;
+    self.cardNumberTextField.enabled = shouldEnable;
+    self.cardHolderTextField.enabled = shouldEnable;
+    self.cardExpiryTextField.enabled = shouldEnable;
+    self.secureCodeTextField.enabled = shouldEnable;
     self.countryTextField.enabled = shouldEnable;
     self.postcodeTextField.enabled = shouldEnable;
     self.addCardButton.enabled = shouldEnable;
 }
 
-#pragma mark - Setup layout
+//------------------------------------------------------------------------------------
+# pragma mark - Layout setup
+//------------------------------------------------------------------------------------
 
 - (void)setupSubviews {
     [self addSubview:self.backgroundView];
@@ -176,10 +163,10 @@
 - (void)setupContentsConstraints {
     NSArray *constraints = @[
         [self.scanCardButton.heightAnchor constraintEqualToConstant:36.0],
-        [self.cardInputTextField.heightAnchor constraintEqualToConstant:44.0],
-        [self.cardholderNameTextField.heightAnchor constraintEqualToConstant:44.0],
-        [self.expirationDateTextField.heightAnchor constraintEqualToConstant:44.0],
-        [self.lastDigitsTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.cardNumberTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.cardHolderTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.cardExpiryTextField.heightAnchor constraintEqualToConstant:44.0],
+        [self.secureCodeTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.countryTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.postcodeTextField.heightAnchor constraintEqualToConstant:44.0],
         [self.addCardButton.heightAnchor constraintEqualToConstant:46.0],
@@ -189,7 +176,9 @@
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
-#pragma mark - Lazily instantiated properties
+//------------------------------------------------------------------------------------
+# pragma mark - Lazily instantiated properties
+//------------------------------------------------------------------------------------
 
 - (UIView *)backgroundView {
     if (!_backgroundView) {
@@ -242,40 +231,40 @@
     return _scanCardButton;
 }
 
-- (UITextField *)cardInputTextField {
-    if (!_cardInputTextField) {
-        _cardInputTextField = self.configuredTextField;
-        _cardInputTextField.keyboardType = UIKeyboardTypeNumberPad;
+- (JPCardNumberField *)cardNumberTextField {
+    if (!_cardNumberTextField) {
+        _cardNumberTextField = [JPCardNumberField new];
+        _cardNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
-    return _cardInputTextField;
+    return _cardNumberTextField;
 }
 
-- (UITextField *)cardholderNameTextField {
-    if (!_cardholderNameTextField) {
-        _cardholderNameTextField = self.configuredTextField;
+- (JPCardHolderField *)cardHolderTextField {
+    if (!_cardHolderTextField) {
+        _cardHolderTextField = [JPCardHolderField new];
     }
-    return _cardholderNameTextField;
+    return _cardHolderTextField;
 }
 
-- (UITextField *)expirationDateTextField {
-    if (!_expirationDateTextField) {
-        _expirationDateTextField = self.configuredTextField;
-        _expirationDateTextField.keyboardType = UIKeyboardTypeNumberPad;
+- (JPCardExpiryField *)cardExpiryTextField {
+    if (!_cardExpiryTextField) {
+        _cardExpiryTextField = [JPCardExpiryField new];
+        _cardExpiryTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
-    return _expirationDateTextField;
+    return _cardExpiryTextField;
 }
 
-- (UITextField *)lastDigitsTextField {
-    if (!_lastDigitsTextField) {
-        _lastDigitsTextField = self.configuredTextField;
-        _lastDigitsTextField.keyboardType = UIKeyboardTypeNumberPad;
+- (JPSecureCodeField *)secureCodeTextField {
+    if (!_secureCodeTextField) {
+        _secureCodeTextField = [JPSecureCodeField new];
+        _secureCodeTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
-    return _lastDigitsTextField;
+    return _secureCodeTextField;
 }
 
-- (UITextField *)countryTextField {
+- (JPCountryField *)countryTextField {
     if (!_countryTextField) {
-        _countryTextField = self.configuredTextField;
+        _countryTextField = [JPCountryField new];
         _countryTextField.inputView = self.countryPickerView;
     }
     return _countryTextField;
@@ -288,25 +277,16 @@
     return _countryPickerView;
 }
 
-- (UITextField *)postcodeTextField {
+- (JPPostalCodeField *)postcodeTextField {
     if (!_postcodeTextField) {
-        _postcodeTextField = self.configuredTextField;
+        _postcodeTextField = [JPPostalCodeField new];
     }
     return _postcodeTextField;
 }
 
-- (UITextField *)configuredTextField {
-    UITextField *textField = [UITextField new];
-    textField.translatesAutoresizingMaskIntoConstraints = NO;
-    textField.textColor = UIColor.jpDarkGrayColor;
-    textField.layer.cornerRadius = 6.0f;
-    textField.backgroundColor = UIColor.jpLightGrayColor;
-    return textField;
-}
-
-- (LoadingButton *)addCardButton {
+- (JPAddCardButton *)addCardButton {
     if (!_addCardButton) {
-        _addCardButton = [LoadingButton new];
+        _addCardButton = [JPAddCardButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         _addCardButton.titleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
         _addCardButton.layer.cornerRadius = 4.0f;
@@ -336,6 +316,10 @@
     return label;
 }
 
+//------------------------------------------------------------------------------------
+# pragma mark - Stack Views
+//------------------------------------------------------------------------------------
+
 - (UIStackView *)mainStackView {
     if (!_mainStackView) {
         _mainStackView = [UIStackView verticalStackViewWithSpacing:16.0];
@@ -361,8 +345,8 @@
     UIStackView *stackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
 
-    [stackView addArrangedSubview:self.expirationDateTextField];
-    [stackView addArrangedSubview:self.lastDigitsTextField];
+    [stackView addArrangedSubview:self.cardExpiryTextField];
+    [stackView addArrangedSubview:self.secureCodeTextField];
 
     return stackView;
 }
@@ -370,8 +354,8 @@
 - (UIStackView *)inputFieldsStackView {
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:8.0];
 
-    [stackView addArrangedSubview:self.cardInputTextField];
-    [stackView addArrangedSubview:self.cardholderNameTextField];
+    [stackView addArrangedSubview:self.cardNumberTextField];
+    [stackView addArrangedSubview:self.cardHolderTextField];
     [stackView addArrangedSubview:self.additionalInputFieldsStackView];
     [stackView addArrangedSubview:self.avsStackView];
 

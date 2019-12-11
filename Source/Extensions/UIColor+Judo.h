@@ -62,4 +62,12 @@
 
 + (UIColor *_Nonnull)jpDarkColor;
 
++ (UIColor *_Nonnull)jpErrorColor;
+
++ (UIColor *_Nonnull)jpPlaceholderColor;
+
++ (UIColor *_Nonnull)jpTextColor;
+
++ (UIColor *_Nonnull)jpTextFieldBackgroundColor;
+
 @end

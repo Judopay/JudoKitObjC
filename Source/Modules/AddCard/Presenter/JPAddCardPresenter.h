@@ -34,13 +34,15 @@
  */
 - (void)loadInitialView;
 
+- (void)handleInputShouldUpdateForType:(JPInputType)type withValue:(NSString *)value;
+
 /**
  * A method that updates the view model everytime an input field's content changes
  *
  * @param type - an value of JPCardInputType that identifies the input field changed
  * @param value - the new value of the input field
  */
-- (void)handleChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value;
+- (void)handleChangeInputOfType:(JPInputType)type withValue:(NSString *)value;
 
 /**
  * A method that handles logic when the Add Card button is tapped

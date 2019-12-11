@@ -38,13 +38,20 @@
 
 @implementation JPAddCardPresenterImpl
 
-#pragma mark - Delegate methods
+//------------------------------------------------------------------------------------
+# pragma mark - Delegate methods
+//------------------------------------------------------------------------------------
 
 - (void)loadInitialView {
     [self updateViewWithViewModel:self.addCardViewModel];
 }
 
-- (void)handleChangeInputOfType:(JPCardInputType)type withValue:(NSString *)value {
+- (void)handleInputShouldUpdateForType:(JPInputType)type withValue:(NSString *)value {
+    [self updateInputViewModelForType:type withText:value andErrorText:@"Error"];
+    [self updateViewWithViewModel:self.addCardViewModel];
+}
+
+- (void)handleChangeInputOfType:(JPInputType)type withValue:(NSString *)value {
     [self updateInputViewModelForType:type withText:value andErrorText:nil];
     [self updateViewWithViewModel:self.addCardViewModel];
 }
@@ -70,43 +77,59 @@
     [self updateViewWithViewModel:self.addCardViewModel];
 }
 
-#pragma mark - Internal functionality
+//------------------------------------------------------------------------------------
+#pragma mark - View model logic
+//------------------------------------------------------------------------------------
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
 
+    self.addCardViewModel.sliderHeight = [self.interactor isAVSEnabled] ? 410.0f : 365.0f;
+    self.addCardViewModel.shouldDisplayAVSFields = [self.interactor isAVSEnabled];
+    
     JPCard *card = [self cardFromViewModel:viewModel];
     BOOL isCardValid = [self.interactor isCardValid:card];
-
+    
     self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
     [self.view updateViewWithViewModel:self.addCardViewModel];
 }
 
-- (void)updateInputViewModelForType:(JPCardInputType)type
+- (void)updateInputViewModelForType:(JPInputType)type
                            withText:(NSString *)text
                        andErrorText:(NSString *)errorText {
+    
     switch (type) {
-        case JPCardInputTypeCardNumber:
+        case JPInputTypeCardNumber:
             self.addCardViewModel.cardNumberViewModel.text = text;
+            self.addCardViewModel.cardNumberViewModel.errorText = errorText;
             break;
-        case JPCardInputTypeCardholderName:
+        case JPInputTypeCardholderName:
             self.addCardViewModel.cardholderNameViewModel.text = text;
+            self.addCardViewModel.cardholderNameViewModel.errorText = errorText;
             break;
-        case JPCardInputTypeExpiryDate:
+        case JPInputTypeCardExpiryDate:
             self.addCardViewModel.expiryDateViewModel.text = text;
+            self.addCardViewModel.expiryDateViewModel.errorText = errorText;
             break;
-        case JPCardInputTypeLastDigits:
+        case JPInputTypeCardSecureCode:
             self.addCardViewModel.secureCodeViewModel.text = text;
+            self.addCardViewModel.secureCodeViewModel.errorText = errorText;
             break;
-        case JPCardInputTypeCountry:
+        case JPInputTypeCardCountry:
             self.addCardViewModel.countryPickerViewModel.text = text;
+            self.addCardViewModel.countryPickerViewModel.errorText = errorText;
             break;
-        case JPCardInputTypePostalCode:
+        case JPInputTypeCardPostalCode:
             self.addCardViewModel.postalCodeInputViewModel.text = text;
+            self.addCardViewModel.postalCodeInputViewModel.errorText = errorText;
+            break;
+        default:
             break;
     }
 }
 
-#pragma mark - Lazily instantiated properties
+//------------------------------------------------------------------------------------
+# pragma mark - Helper methods
+//------------------------------------------------------------------------------------
 
 - (JPCard *)cardFromViewModel:(JPAddCardViewModel *)viewModel {
     JPCard *card = [[JPCard alloc] initWithCardNumber:viewModel.cardNumberViewModel.text
@@ -127,6 +150,10 @@
     return card;
 }
 
+//------------------------------------------------------------------------------------
+# pragma mark - Lazily instantiated properties
+//------------------------------------------------------------------------------------
+
 - (JPAddCardViewModel *)addCardViewModel {
     if (!_addCardViewModel) {
         _addCardViewModel = [JPAddCardViewModel new];
@@ -140,8 +167,8 @@
         if ([self.interactor isAVSEnabled]) {
             NSArray *countries = [self.interactor getSelectableCounties];
             NSArray *countryNames = [self countryNamesForCountries:countries];
-            _addCardViewModel.countryPickerViewModel = [self pickerViewModelWithPlaceholder:@"Country" pickerTitles:countryNames];
-            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"Postcode"];
+            _addCardViewModel.countryPickerViewModel = [self pickerViewModelWithPlaceholder:@"country".localized pickerTitles:countryNames];
+            _addCardViewModel.postalCodeInputViewModel = [self inputFieldViewModelWithPlaceholder:@"postcode".localized];
             ;
         }
     }
