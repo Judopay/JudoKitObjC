@@ -80,4 +80,28 @@
     return [self.cardValidationService validateCardNumberInput:input];
 }
 
+- (JPValidationResult *)validateCardholderNameInput:(NSString *)input {
+    
+    NSString *errorMessage = @"Cardholder name must be longer than 3 characters";
+    
+    return JPValidationResult validationWithResult:input.length > 3
+inputAllowed:YES errorMessage:<#(NSString *)#> cardNetwork:<#(CardNetwork)#> formattedInput:<#(NSString *)#>
+}
+
+- (JPValidationResult *)validateExpiryDateInput:(NSString *)input {
+    
+}
+
+- (JPValidationResult *)validateSecureCodeInput:(NSString *)input {
+    
+}
+
+- (JPValidationResult *)validateCountryInput:(NSString *)input {
+    
+}
+
+- (JPValidationResult *)validatePostalCodeInput:(NSString *)input {
+    
+}
+
 @end

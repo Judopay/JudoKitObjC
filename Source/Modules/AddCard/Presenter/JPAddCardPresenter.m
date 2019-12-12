@@ -92,7 +92,8 @@
     self.addCardViewModel.cardNumberViewModel.errorText = result.errorMessage;
     
     if (result.isInputAllowed) {
-        self.addCardViewModel.cardNumberViewModel.text = input;
+        self.addCardViewModel.cardNumberViewModel.text = result.formattedInput;
+        self.addCardViewModel.cardNumberViewModel.cardNetwork = result.cardNetwork;
         return;
     }
 }
@@ -124,12 +125,12 @@
 - (JPAddCardViewModel *)addCardViewModel {
     if (!_addCardViewModel) {
         _addCardViewModel = [JPAddCardViewModel new];
-        _addCardViewModel.cardNumberViewModel = [JPAddCardInputFieldViewModel new];
-        _addCardViewModel.cardholderNameViewModel = [JPAddCardInputFieldViewModel new];
-        _addCardViewModel.expiryDateViewModel = [JPAddCardInputFieldViewModel new];
-        _addCardViewModel.secureCodeViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.cardNumberViewModel = [JPAddCardNumberInputViewModel new];
+        _addCardViewModel.cardholderNameViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardholderName];
+        _addCardViewModel.expiryDateViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardExpiryDate];
+        _addCardViewModel.secureCodeViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardSecureCode];
         _addCardViewModel.countryPickerViewModel = [JPAddCardPickerViewModel new];
-        _addCardViewModel.postalCodeInputViewModel = [JPAddCardInputFieldViewModel new];
+        _addCardViewModel.postalCodeInputViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardPostalCode];
         _addCardViewModel.addCardButtonViewModel = [JPAddCardButtonViewModel new];
     }
     return _addCardViewModel;

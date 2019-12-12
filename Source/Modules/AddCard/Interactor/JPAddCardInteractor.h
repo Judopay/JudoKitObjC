@@ -53,6 +53,11 @@
 - (NSArray<NSString *> *)getSelectableCountryNames;
 
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input;
+- (JPValidationResult *)validateCardholderNameInput:(NSString *)input;
+- (JPValidationResult *)validateExpiryDateInput:(NSString *)input;
+- (JPValidationResult *)validateSecureCodeInput:(NSString *)input;
+- (JPValidationResult *)validateCountryInput:(NSString *)input;
+- (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
 
 @end
 

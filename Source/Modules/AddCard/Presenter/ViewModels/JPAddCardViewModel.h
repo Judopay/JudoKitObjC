@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPCardNetwork.h"
 
 /**
  * An enum that defines the input field types present in the Add Card view
@@ -44,6 +45,9 @@ typedef NS_ENUM(NSInteger, JPInputType) {
  */
 @property (nonatomic, assign) JPInputType type;
 
++ (instancetype)viewModelWithType:(JPInputType)inputType;
+- (instancetype)initWithType:(JPInputType)inputType;
+
 /**
  * The text string of the input field
  */
@@ -58,6 +62,14 @@ typedef NS_ENUM(NSInteger, JPInputType) {
  * The error string of the input field
  */
 @property (nonatomic, strong) NSString *errorText;
+
+@end
+
+#pragma mark - JPAddCardNumberInputViewModel
+
+@interface JPAddCardNumberInputViewModel : JPAddCardInputFieldViewModel
+
+@property (nonatomic, assign) CardNetwork cardNetwork;
 
 @end
 
@@ -97,7 +109,7 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 /**
  * The JPAddCardInputFieldViewModel for the card number input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *cardNumberViewModel;
+@property (nonatomic, strong) JPAddCardNumberInputViewModel *cardNumberViewModel;
 
 /**
  * The JPAddCardInputFieldViewModel for the cardholder name input field

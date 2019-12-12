@@ -26,6 +26,21 @@
 
 @implementation JPAddCardInputFieldViewModel
 
++ (instancetype)viewModelWithType:(JPInputType)inputType {
+    return [[JPAddCardInputFieldViewModel alloc] initWithType:inputType];
+}
+
+- (instancetype)initWithType:(JPInputType)inputType {
+    if (self = [super init]) {
+        self.type = inputType;
+    }
+    return self;
+}
+
+@end
+
+@implementation JPAddCardNumberInputViewModel
+
 @end
 
 @implementation JPAddCardButtonViewModel

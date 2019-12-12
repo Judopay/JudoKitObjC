@@ -26,13 +26,8 @@
 #import "JPAddCardPresenter.h"
 #import "JPAddCardView.h"
 #import "JPCardNumberField.h"
-#import "JPCardHolderField.h"
-#import "JPCardExpiryField.h"
-#import "JPSecureCodeField.h"
-#import "JPCountryField.h"
-#import "JPPostalCodeField.h"
+#import "JPCardInputField.h"
 #import "JPAddCardButton.h"
-#import "JPTextField.h"
 #import "LoadingButton.h"
 #import "UIViewController+Additions.h"
 
@@ -117,7 +112,12 @@
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
     
-    self.addCardView.cardNumberTextField.cardNumberDelegate = self;
+    self.addCardView.cardNumberTextField.delegate = self;
+    self.addCardView.cardHolderTextField.delegate = self;
+    self.addCardView.cardExpiryTextField.delegate = self;
+    self.addCardView.secureCodeTextField.delegate = self;
+    self.addCardView.countryTextField.delegate = self;
+    self.addCardView.postcodeTextField.delegate = self;
 }
 
 - (void)addGestureRecognizers {
@@ -199,14 +199,11 @@
 # pragma mark - Card number delegate
 //------------------------------------------------------------------------------------
 
-@implementation JPAddCardViewController (CardNumberDelegate)
+@implementation JPAddCardViewController (InputFieldDelegate)
 
-- (void)cardNumberField:(JPCardNumberField *)cardNumberField shouldEditWithInput:(NSString *)input {
-    [self.presenter handleInputChange:input forType:JPInputTypeCardNumber];
-}
-
-- (void)cardNumberField:(JPCardNumberField *)cardNumberField didEditWithInput:(NSString *)input {
-    //TODO: Handle card type detection and validation
+- (BOOL)textField:(JPTextField *)inputField shouldChangeText:(NSString *)text {
+    [self.presenter handleInputChange:text forType:inputField.type];
+    return NO;
 }
 
 @end

@@ -8,16 +8,10 @@
 
 #import "JPTextField.h"
 #import "JPAddCardViewModel.h"
+#import "JPAddCardViewModel.h"
 
 @class JPCardNumberField;
 
-@protocol JPCardNumberFieldDelegate
-- (void)cardNumberField:(JPCardNumberField *)cardNumberField shouldEditWithInput:(NSString *)input;
-- (void)cardNumberField:(JPCardNumberField *)cardNumberField didEditWithInput:(NSString *)input;
-@end
-
-@interface JPCardNumberField : JPTextField <JPTextFieldDelegate>
-
-@property (nonatomic, strong) id <JPCardNumberFieldDelegate> cardNumberDelegate;
-- (void)configureWithViewModel:(JPAddCardInputFieldViewModel *)viewModel;
+@interface JPCardNumberField : JPTextField
+- (void)configureWithViewModel:(JPAddCardNumberInputViewModel *)viewModel;
 @end

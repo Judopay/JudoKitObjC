@@ -25,8 +25,7 @@
 #import <UIKit/UIKit.h>
 
 @class JPAddCardViewModel;
-@class LoadingButton, JPTextField, JPCardNumberField, JPCardHolderField, JPCardExpiryField,
-        JPSecureCodeField, JPCountryField, JPPostalCodeField, JPAddCardButton;
+@class LoadingButton, JPTextField, JPCardNumberField, JPCardInputField, JPAddCardButton;
 
 @interface JPAddCardView : UIView
 /**
@@ -52,22 +51,22 @@
 /**
  * The input field for adding the cardholder name
  */
-@property (nonatomic, strong) JPCardHolderField *cardHolderTextField;
+@property (nonatomic, strong) JPCardInputField *cardHolderTextField;
 
 /**
  * The input field for adding the card expiration date
  */
-@property (nonatomic, strong) JPCardExpiryField *cardExpiryTextField;
+@property (nonatomic, strong) JPCardInputField *cardExpiryTextField;
 
 /**
  * The input field for adding the card secure code
  */
-@property (nonatomic, strong) JPSecureCodeField *secureCodeTextField;
+@property (nonatomic, strong) JPCardInputField *secureCodeTextField;
 
 /**
  * The input field for selecting the country
  */
-@property (nonatomic, strong) JPCountryField *countryTextField;
+@property (nonatomic, strong) JPCardInputField *countryTextField;
 
 /**
  * The picker view associated to the country input field;
@@ -77,7 +76,7 @@
 /**
  * The input field for adding the postal code
  */
-@property (nonatomic, strong) JPPostalCodeField *postcodeTextField;
+@property (nonatomic, strong) JPCardInputField *postcodeTextField;
 
 /**
  * The Add Card button that, when tapped, displays a loading spinner

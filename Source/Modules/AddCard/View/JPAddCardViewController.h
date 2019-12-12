@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 #import "JPAddCardViewModel.h"
-#import "JPCardNumberField.h"
+#import "JPTextField.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPAddCardPresenter;
@@ -54,5 +54,5 @@
 @interface JPAddCardViewController (CountryPickerDelegate) <UIPickerViewDelegate, UIPickerViewDataSource>
 @end
 
-@interface JPAddCardViewController (CardNumberDelegate) <JPCardNumberFieldDelegate>
+@interface JPAddCardViewController (InputFieldDelegate) <JPTextFieldDelegate>
 @end

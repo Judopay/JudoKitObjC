@@ -25,11 +25,7 @@
 #import "JPAddCardView.h"
 #import "JPAddCardViewModel.h"
 #import "JPCardNumberField.h"
-#import "JPCardHolderField.h"
-#import "JPCardExpiryField.h"
-#import "JPSecureCodeField.h"
-#import "JPCountryField.h"
-#import "JPPostalCodeField.h"
+#import "JPCardInputField.h"
 #import "JPAddCardButton.h"
 #import "LoadingButton.h"
 #import "NSString+Localize.h"
@@ -240,32 +236,32 @@
     return _cardNumberTextField;
 }
 
-- (JPCardHolderField *)cardHolderTextField {
+- (JPCardInputField *)cardHolderTextField {
     if (!_cardHolderTextField) {
-        _cardHolderTextField = [JPCardHolderField new];
+        _cardHolderTextField = [JPCardInputField new];
     }
     return _cardHolderTextField;
 }
 
-- (JPCardExpiryField *)cardExpiryTextField {
+- (JPCardInputField *)cardExpiryTextField {
     if (!_cardExpiryTextField) {
-        _cardExpiryTextField = [JPCardExpiryField new];
+        _cardExpiryTextField = [JPCardInputField new];
         _cardExpiryTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _cardExpiryTextField;
 }
 
-- (JPSecureCodeField *)secureCodeTextField {
+- (JPCardInputField *)secureCodeTextField {
     if (!_secureCodeTextField) {
-        _secureCodeTextField = [JPSecureCodeField new];
+        _secureCodeTextField = [JPCardInputField new];
         _secureCodeTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _secureCodeTextField;
 }
 
-- (JPCountryField *)countryTextField {
+- (JPCardInputField *)countryTextField {
     if (!_countryTextField) {
-        _countryTextField = [JPCountryField new];
+        _countryTextField = [JPCardInputField new];
         _countryTextField.inputView = self.countryPickerView;
     }
     return _countryTextField;
@@ -278,9 +274,9 @@
     return _countryPickerView;
 }
 
-- (JPPostalCodeField *)postcodeTextField {
+- (JPCardInputField *)postcodeTextField {
     if (!_postcodeTextField) {
-        _postcodeTextField = [JPPostalCodeField new];
+        _postcodeTextField = [JPCardInputField new];
     }
     return _postcodeTextField;
 }

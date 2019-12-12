@@ -7,15 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JPAddCardViewModel.h"
 
 @class JPTextField;
 
 @protocol JPTextFieldDelegate <NSObject>
+
 - (BOOL)textField:(JPTextField *)inputField shouldChangeText:(NSString *)text;
+
+@optional
 - (void)textField:(JPTextField *)inputField didChangeText:(NSString *)text;
+
 @end
 
 @interface JPTextField : UIView
+
+@property (nonatomic, assign) JPInputType type;
 
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIColor *textColor;

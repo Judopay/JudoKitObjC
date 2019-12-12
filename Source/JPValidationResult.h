@@ -7,19 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JPCardNetwork.h"
 
 @interface JPValidationResult : NSObject
 
 @property (nonatomic, assign) BOOL isValid;
 @property (nonatomic, assign) BOOL isInputAllowed;
 @property (nonatomic, strong) NSString *errorMessage;
+@property (nonatomic, assign) CardNetwork cardNetwork;
+@property (nonatomic, strong) NSString *formattedInput;
 
 - (instancetype)initWithResult:(BOOL)isValid
                 isInputAllowed:(BOOL)isInputAllowed
-                  errorMessage:(NSString *)errorMessage;
+                  errorMessage:(NSString *)errorMessage
+                   cardNetwork:(CardNetwork)cardNetwork
+                formattedInput:(NSString *)formattedInput;
 
 + (instancetype)validationWithResult:(BOOL)isValid
                         inputAllowed:(BOOL)isInputAllowed
-                        errorMessage:(NSString *)errorMessage;
+                        errorMessage:(NSString *)errorMessage
+                         cardNetwork:(CardNetwork)cardNetwork
+                      formattedInput:(NSString *)formattedInput;
 
 @end

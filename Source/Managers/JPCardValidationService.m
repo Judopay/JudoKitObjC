@@ -25,6 +25,15 @@
 #import "JPCardValidationService.h"
 #import "JPValidationResult.h"
 #import "JPCardNetwork.h"
+#import "NSString+Card.h"
+#import "NSString+Localize.h"
+#import "NSError+Judo.h"
+
+@interface JPCardValidationService()
+
+@property (nonatomic, strong) JPValidationResult *lastValidationResult;
+
+@end
 
 @implementation JPCardValidationService
 
@@ -34,91 +43,64 @@
 
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input {
     
-    CardNetwork cardNetworkType = [JPCardNetwork cardNetworkForCardNumber:input];
+    NSError *error;
+    NSString *presentationString = [input cardPresentationStringWithAcceptedNetworks:self.acceptedCardNetworks
+                                                                               error:&error];
     
-    if (cardNetworkType == CardNetworkUATP) {
-        return [self validateUATPNetworkForInput:input];
+    NSString *trimmedString = [input stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // 1. Invalidate input over 15 / 16 characters
+    
+    if (input.cardNetwork == CardNetworkAMEX || input.cardNetwork == CardNetworkUATP) {
+        if (trimmedString.length > 15) {
+            return self.lastValidationResult;
+        }
     }
     
-    if (cardNetworkType == CardNetworkUnknown) {
-        return [self validateUnknownNetworkForInput:input];
+    if (trimmedString.length > 16) {
+        return self.lastValidationResult;
+    }
+    
+    // 2. If input is valid, return valid response
+    
+    if ([input isCardNumberValid]) {
+        self.lastValidationResult = [JPValidationResult validationWithResult:YES
+                                                                inputAllowed:YES
+                                                                errorMessage:nil
+                                                                 cardNetwork:input.cardNetwork
+                                                              formattedInput:presentationString];
+        return self.lastValidationResult;
+    }
+
+    // 3. If input is not valid
+    if (input.cardNetwork == CardNetworkAMEX || input.cardNetwork == CardNetworkUATP) {
+        if (trimmedString.length == 15) {
+            error = NSError.judoInvalidCardNumberError;
+        }
+    }
+    
+    if (trimmedString.length == 16) {
+        error = NSError.judoInvalidCardNumberError;
     }
     
     
-    if (cardNetworkType == CardNetworkVisa) {
-        // TODO: Validate VISA
-    }
-    
-    if (cardNetworkType == CardNetworkMasterCard) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkMaestro) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkAMEX) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkChinaUnionPay) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkDankort) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkInterPayment) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkDinersClub) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkInstaPayment) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkJCB) {
-        
-    }
-    
-    if (cardNetworkType == CardNetworkDiscover) {
-        
-    }
-    
-    // 3. Create
-    JPCardNetwork *cardNetwork = [JPCardNetwork cardNetworkWithType:cardNetworkType];
-    
-    return [JPValidationResult validationWithResult:YES
-                                       inputAllowed:NO
-                                       errorMessage:@"Invalid character"];
+    self.lastValidationResult = [JPValidationResult validationWithResult:NO
+                                                            inputAllowed:(presentationString != nil)
+                                                            errorMessage:error.localizedDescription
+                                                             cardNetwork:input.cardNetwork
+                                                          formattedInput:presentationString];
+    return self.lastValidationResult;
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Helper methods
+# pragma mark - Helper getters
 //------------------------------------------------------------------------------------
 
-- (JPValidationResult *)validateUATPNetworkForInput:(NSString *)input {
-    return [JPValidationResult validationWithResult:NO
-                                       inputAllowed:NO
-                                       errorMessage:@"UATP not yet supported"];
-}
-
-- (JPValidationResult *)validate
-
-- (JPValidationResult *)validateUnknownNetworkForInput:(NSString *)input {
-    if (input.length < 16) {
-        return [JPValidationResult validationWithResult:NO
-                                           inputAllowed:YES
-                                           errorMessage:nil];
-    }
-    
-    return [JPValidationResult validationWithResult:YES
-                                       inputAllowed:NO
-                                       errorMessage:nil];
+- (NSArray *)acceptedCardNetworks {
+    return @[
+        @(CardNetworkVisa), @(CardNetworkAMEX), @(CardNetworkMasterCard), @(CardNetworkMaestro),
+        @(CardNetworkDiscover), @(CardNetworkJCB), @(CardNetworkDinersClub), @(CardNetworkChinaUnionPay),
+    ];
 }
 
 @end
