@@ -20,13 +20,11 @@
 - (instancetype)initWithResult:(BOOL)isValid
                 isInputAllowed:(BOOL)isInputAllowed
                   errorMessage:(NSString *)errorMessage
-                   cardNetwork:(CardNetwork)cardNetwork
                 formattedInput:(NSString *)formattedInput;
 
 + (instancetype)validationWithResult:(BOOL)isValid
                         inputAllowed:(BOOL)isInputAllowed
                         errorMessage:(NSString *)errorMessage
-                         cardNetwork:(CardNetwork)cardNetwork
                       formattedInput:(NSString *)formattedInput;
 
 @end

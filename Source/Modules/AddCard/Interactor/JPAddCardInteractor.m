@@ -81,27 +81,23 @@
 }
 
 - (JPValidationResult *)validateCardholderNameInput:(NSString *)input {
-    
-    NSString *errorMessage = @"Cardholder name must be longer than 3 characters";
-    
-    return JPValidationResult validationWithResult:input.length > 3
-inputAllowed:YES errorMessage:<#(NSString *)#> cardNetwork:<#(CardNetwork)#> formattedInput:<#(NSString *)#>
+    return [self.cardValidationService validateCarholderNameInput:input];
 }
 
 - (JPValidationResult *)validateExpiryDateInput:(NSString *)input {
-    
+    return [self.cardValidationService validateExpiryDateInput:input];
 }
 
 - (JPValidationResult *)validateSecureCodeInput:(NSString *)input {
-    
+    return [self.cardValidationService validateSecureCodeInput:input];
 }
 
 - (JPValidationResult *)validateCountryInput:(NSString *)input {
-    
+    return [self.cardValidationService validateCountryInput:input];
 }
 
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input {
-    
+    return [self.cardValidationService validatePostalCodeInput:input];
 }
 
 @end

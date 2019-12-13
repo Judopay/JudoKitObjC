@@ -29,5 +29,10 @@
 @interface JPCardValidationService : NSObject
 
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input;
+- (JPValidationResult *)validateCarholderNameInput:(NSString *)input;
+- (JPValidationResult *)validateExpiryDateInput:(NSString *)input;
+- (JPValidationResult *)validateSecureCodeInput:(NSString *)input;
+- (JPValidationResult *)validateCountryInput:(NSString *)input;
+- (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
 
 @end

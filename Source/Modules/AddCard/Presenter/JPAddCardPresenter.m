@@ -99,23 +99,53 @@
 }
 
 - (void)updateCardholderNameViewModelForInput:(NSString *)input {
-    self.addCardViewModel.cardholderNameViewModel.text = input;
+    JPValidationResult * result = [self.interactor validateCardholderNameInput:input];
+    self.addCardViewModel.cardholderNameViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.cardholderNameViewModel.text = result.formattedInput;
+        return;
+    }
 }
 
 - (void)updateExpiryDateViewModelForInput:(NSString *)input {
-    self.addCardViewModel.expiryDateViewModel.text = input;
+    JPValidationResult * result = [self.interactor validateExpiryDateInput:input];
+    self.addCardViewModel.expiryDateViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.expiryDateViewModel.text = result.formattedInput;
+        return;
+    }
 }
 
 - (void)updateSecureCodeViewModelForInput:(NSString *)input {
-    self.addCardViewModel.secureCodeViewModel.text = input;
+    JPValidationResult * result = [self.interactor validateSecureCodeInput:input];
+    self.addCardViewModel.secureCodeViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.secureCodeViewModel.text = result.formattedInput;
+        return;
+    }
 }
 
 - (void)updateCountryViewModelForInput:(NSString *)input {
-    self.addCardViewModel.countryPickerViewModel.text = input;
+    JPValidationResult * result = [self.interactor validateCountryInput:input];
+    self.addCardViewModel.countryPickerViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.countryPickerViewModel.text = result.formattedInput;
+        return;
+    }
 }
 
 - (void)updatePostalCodeViewModelForInput:(NSString *)input {
-    self.addCardViewModel.postalCodeInputViewModel.text = input;
+    JPValidationResult * result = [self.interactor validatePostalCodeInput:input];
+    self.addCardViewModel.postalCodeInputViewModel.errorText = result.errorMessage;
+    
+    if (result.isInputAllowed) {
+        self.addCardViewModel.postalCodeInputViewModel.text = result.formattedInput;
+        return;
+    }
 }
 
 //------------------------------------------------------------------------------------

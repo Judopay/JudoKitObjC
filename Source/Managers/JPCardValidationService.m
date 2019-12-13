@@ -31,7 +31,8 @@
 
 @interface JPCardValidationService()
 
-@property (nonatomic, strong) JPValidationResult *lastValidationResult;
+@property (nonatomic, strong) JPValidationResult *lastCardNumberValidationResult;
+@property (nonatomic, strong) JPValidationResult *lastCardholderValidationResult;
 
 @end
 
@@ -48,31 +49,27 @@
                                                                                error:&error];
     
     NSString *trimmedString = [input stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    // 1. Invalidate input over 15 / 16 characters
-    
+
     if (input.cardNetwork == CardNetworkAMEX || input.cardNetwork == CardNetworkUATP) {
         if (trimmedString.length > 15) {
-            return self.lastValidationResult;
+            return self.lastCardNumberValidationResult;
         }
     }
     
     if (trimmedString.length > 16) {
-        return self.lastValidationResult;
-    }
-    
-    // 2. If input is valid, return valid response
-    
-    if ([input isCardNumberValid]) {
-        self.lastValidationResult = [JPValidationResult validationWithResult:YES
-                                                                inputAllowed:YES
-                                                                errorMessage:nil
-                                                                 cardNetwork:input.cardNetwork
-                                                              formattedInput:presentationString];
-        return self.lastValidationResult;
+        return self.lastCardNumberValidationResult;
     }
 
-    // 3. If input is not valid
+    if ([input isCardNumberValid]) {
+        self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:YES
+                                                                inputAllowed:YES
+                                                                errorMessage:nil
+                                                              formattedInput:presentationString];
+        
+        self.lastCardNumberValidationResult.cardNetwork = input.cardNetwork;
+        return self.lastCardNumberValidationResult;
+    }
+
     if (input.cardNetwork == CardNetworkAMEX || input.cardNetwork == CardNetworkUATP) {
         if (trimmedString.length == 15) {
             error = NSError.judoInvalidCardNumberError;
@@ -83,13 +80,125 @@
         error = NSError.judoInvalidCardNumberError;
     }
     
-    
-    self.lastValidationResult = [JPValidationResult validationWithResult:NO
+    self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:NO
                                                             inputAllowed:(presentationString != nil)
                                                             errorMessage:error.localizedDescription
-                                                             cardNetwork:input.cardNetwork
                                                           formattedInput:presentationString];
-    return self.lastValidationResult;
+    
+    self.lastCardNumberValidationResult.cardNetwork = input.cardNetwork;
+    return self.lastCardNumberValidationResult;
+}
+
+- (JPValidationResult *)validateCarholderNameInput:(NSString *)input {
+    return [JPValidationResult validationWithResult:input.length > 3
+                                       inputAllowed:YES
+                                       errorMessage:nil
+                                     formattedInput:input];
+}
+
+- (JPValidationResult *)validateExpiryDateInput:(NSString *)input {
+    
+    NSString *invalidInputError = @"Invalid value entered";
+    NSString *invalidDateError = @"Please check your expiry date";
+    
+    //-----------------------------------------------------------------------------
+    # pragma mark - VALIDATE FOR 1 DIGIT
+    //-----------------------------------------------------------------------------
+    
+    if (input.length == 1) {
+        BOOL isValidInput = ([input isEqualToString:@"0"] || [input isEqualToString:@"1"]);
+        self.lastCardholderValidationResult = [JPValidationResult validationWithResult:NO
+                                                                          inputAllowed:isValidInput
+                                                                          errorMessage:isValidInput ? nil : invalidInputError
+                                                                        formattedInput:input];
+        return self.lastCardholderValidationResult;
+    }
+    
+    //-----------------------------------------------------------------------------
+    # pragma mark - VALIDATE FOR 2 DIGITS
+    //-----------------------------------------------------------------------------
+    
+    if (input.length == 2) {
+        
+        // Handle backspace -> delete / character
+        
+        BOOL isValidInput = (input.intValue > 0 && input.intValue <= 12);
+        
+        NSString *formattedInput = [NSString stringWithFormat:@"%@/", input];
+        self.lastCardholderValidationResult = [JPValidationResult validationWithResult:NO
+                                                                          inputAllowed:isValidInput
+                                                                          errorMessage:isValidInput ? nil : invalidInputError
+                                                                        formattedInput:isValidInput ? formattedInput : input];
+        return self.lastCardholderValidationResult;
+    }
+    
+    //-----------------------------------------------------------------------------
+    # pragma mark - VALIDATE FOR 4 DIGITS
+    //----------------------------------------------------------a-------------------
+    
+    if (input.length == 4) {
+        
+        NSString *lastDigitString = [input substringFromIndex:input.length - 1];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yy"];
+        NSString *yearString = [formatter stringFromDate:[NSDate date]];
+        int yearFirstDigit = [yearString substringToIndex:1].intValue;
+        
+        BOOL isValid = lastDigitString.intValue >= yearFirstDigit && lastDigitString.intValue < yearFirstDigit + 2;
+        
+        self.lastCardholderValidationResult = [JPValidationResult validationWithResult:NO
+                                                                          inputAllowed:isValid
+                                                                          errorMessage:isValid ? nil : invalidInputError
+                                                                        formattedInput:input];
+        return self.lastCardholderValidationResult;
+        
+    }
+    
+    if (input.length == 5) {
+                
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setLocale:NSLocale.currentLocale];
+        [formatter setDateFormat:@"MM/yy"];
+        NSDate *inputDate = [formatter dateFromString:input];
+        
+        BOOL isValid = [NSDate.date compare:inputDate] != NSOrderedDescending;
+        
+        self.lastCardholderValidationResult = [JPValidationResult validationWithResult:NO
+                                                                          inputAllowed:isValid
+                                                                          errorMessage:isValid ? nil : invalidDateError
+                                                                        formattedInput:input];
+        return self.lastCardholderValidationResult;
+        
+    }
+    
+    
+    
+    return [JPValidationResult validationWithResult:input.length > 3
+                                       inputAllowed:YES
+                                       errorMessage:nil
+                                     formattedInput:input];
+}
+
+- (JPValidationResult *)validateSecureCodeInput:(NSString *)input {
+    return [JPValidationResult validationWithResult:input.length > 3
+                                       inputAllowed:YES
+                                       errorMessage:nil
+                                     formattedInput:input];
+}
+
+- (JPValidationResult *)validateCountryInput:(NSString *)input {
+    return [JPValidationResult validationWithResult:input.length > 3
+                                       inputAllowed:YES
+                                       errorMessage:nil
+                                     formattedInput:input];
+}
+
+- (JPValidationResult *)validatePostalCodeInput:(NSString *)input {
+    return [JPValidationResult validationWithResult:input.length > 3
+                                       inputAllowed:YES
+                                       errorMessage:nil
+                                     formattedInput:input];
 }
 
 //------------------------------------------------------------------------------------
