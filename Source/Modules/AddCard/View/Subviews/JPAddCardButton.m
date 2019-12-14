@@ -11,7 +11,7 @@
 @implementation JPAddCardButton
 
 //------------------------------------------------------------------------------------
-# pragma mark - View model configuration
+#pragma mark - View model configuration
 //------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardButtonViewModel *)viewModel {

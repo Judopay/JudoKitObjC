@@ -6,8 +6,8 @@
 //  Copyright © 2019 Judo Payments. All rights reserved.
 //
 
-#import "JPTextField.h"
 #import "JPAddCardViewModel.h"
+#import "JPTextField.h"
 
 @interface JPCardInputField : JPTextField
 - (void)configureWithViewModel:(JPAddCardInputFieldViewModel *)viewModel;

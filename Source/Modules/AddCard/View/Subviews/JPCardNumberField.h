@@ -6,9 +6,8 @@
 //  Copyright © 2019 Mihai Petrenco. All rights reserved.
 //
 
+#import "JPAddCardViewModel.h"
 #import "JPTextField.h"
-#import "JPAddCardViewModel.h"
-#import "JPAddCardViewModel.h"
 
 @class JPCardNumberField;
 

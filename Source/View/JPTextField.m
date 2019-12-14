@@ -8,11 +8,11 @@
 
 #import "JPTextField.h"
 #import "JPFloatingTextField.h"
-#import "UITextField+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
+#import "UITextField+Additions.h"
 
-@interface JPTextField()
+@interface JPTextField ()
 @property (nonatomic, strong) JPFloatingTextField *floatingTextField;
 @property (nonatomic, strong) UIStackView *stackView;
 @end
@@ -106,13 +106,13 @@
     self.layer.cornerRadius = 6.0f;
     self.backgroundColor = UIColor.jpTextFieldBackgroundColor;
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     [self addSubview:self.stackView];
     [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:14.0].active = YES;
     [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-14.0].active = YES;
     [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10.0].active = YES;
     [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-10.0].active = YES;
-    
+
     [self.stackView addArrangedSubview:self.floatingTextField];
 }
 
@@ -125,11 +125,11 @@
         [_floatingTextField placeholderWithText:@""
                                           color:UIColor.jpPlaceholderColor
                                         andFont:UIFont.defaultTextFont];
-        
+
         [_floatingTextField addTarget:self
                                action:@selector(didChangeText)
                      forControlEvents:UIControlEventEditingChanged];
-        
+
         _floatingTextField.delegate = self;
     }
     return _floatingTextField;

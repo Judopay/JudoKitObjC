@@ -13,8 +13,8 @@
 - (instancetype)initWithResult:(BOOL)isValid
                 isInputAllowed:(BOOL)isInputAllowed
                   errorMessage:(NSString *)errorMessage
-                formattedInput:(NSString *)formattedInput{
-    
+                formattedInput:(NSString *)formattedInput {
+
     if (self = [super init]) {
         self.isValid = isValid;
         self.isInputAllowed = isInputAllowed;
@@ -27,8 +27,8 @@
 + (instancetype)validationWithResult:(BOOL)isValid
                         inputAllowed:(BOOL)isInputAllowed
                         errorMessage:(NSString *)errorMessage
-                      formattedInput:(NSString *)formattedInput{
-    
+                      formattedInput:(NSString *)formattedInput {
+
     return [[JPValidationResult alloc] initWithResult:isValid
                                        isInputAllowed:isInputAllowed
                                          errorMessage:errorMessage

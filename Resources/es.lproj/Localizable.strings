@@ -31,11 +31,14 @@
 "scan_card" = "TARJETA DE ESCANEO";
 "card_number" = "Número de tarjeta";
 "cardholder_name" = "Nombre del titular";
-"expiry_date" = "Fecha de caducidad";
+"expiry_date" = "MM/YY";
 "country" = "País";
 "postal_code" = "Código postal";
 "secure_code" = "CVV";
 "add_card_button" = "AGREGAR TARJETA";
+"invalid_expiry_date_value" = "Valor de fecha inválido ingresado";
+"invalid_postcode" = "Código postal no válido ingresado";
+"invalid_zip_code" = "Código postal no válido ingresado";
 
 //CardInputField
 "card_number_label" = "Número de tarjeta";

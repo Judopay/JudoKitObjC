@@ -23,11 +23,11 @@
 //  SOFTWARE.
 
 #import "JPAddCardViewController.h"
+#import "JPAddCardButton.h"
 #import "JPAddCardPresenter.h"
 #import "JPAddCardView.h"
-#import "JPCardNumberField.h"
 #import "JPCardInputField.h"
-#import "JPAddCardButton.h"
+#import "JPCardNumberField.h"
 #import "LoadingButton.h"
 #import "UIViewController+Additions.h"
 
@@ -39,7 +39,7 @@
 @implementation JPAddCardViewController
 
 //------------------------------------------------------------------------------------
-# pragma mark - View Lifecycle
+#pragma mark - View Lifecycle
 //------------------------------------------------------------------------------------
 
 - (void)loadView {
@@ -63,7 +63,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - User actions
+#pragma mark - User actions
 //------------------------------------------------------------------------------------
 
 - (void)onBackgroundViewTap {
@@ -81,11 +81,11 @@
 - (void)onAddCardButtonTap {
     [self.addCardView.addCardButton startLoading];
     [self.addCardView enableUserInterface:NO];
-    //TODO: Handle add card button tap
+    [self.presenter handleAddCardButtonTap];
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - View protocol methods
+#pragma mark - View protocol methods
 //------------------------------------------------------------------------------------
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
@@ -104,14 +104,14 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Layout setup
+#pragma mark - Layout setup
 //------------------------------------------------------------------------------------
 
 - (void)addTargets {
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
-    
+
     self.addCardView.cardNumberTextField.delegate = self;
     self.addCardView.cardHolderTextField.delegate = self;
     self.addCardView.cardExpiryTextField.delegate = self;
@@ -125,7 +125,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Keyboard handling logic
+#pragma mark - Keyboard handling logic
 //------------------------------------------------------------------------------------
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -162,10 +162,8 @@
 
 @end
 
-
-
 //------------------------------------------------------------------------------------
-# pragma mark - Country UIPickerView delegate
+#pragma mark - Country UIPickerView delegate
 //------------------------------------------------------------------------------------
 
 @implementation JPAddCardViewController (CountryPickerDelegate)
@@ -193,10 +191,8 @@
 
 @end
 
-
-
 //------------------------------------------------------------------------------------
-# pragma mark - Card number delegate
+#pragma mark - Card number delegate
 //------------------------------------------------------------------------------------
 
 @implementation JPAddCardViewController (InputFieldDelegate)

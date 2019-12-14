@@ -21,7 +21,7 @@
 @dynamic stackView;
 
 //------------------------------------------------------------------------------------
-# pragma mark - Initializers
+#pragma mark - Initializers
 //------------------------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -46,45 +46,49 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - View Model Configuration
+#pragma mark - View Model Configuration
 //------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardNumberInputViewModel *)viewModel {
-    
+
     self.type = viewModel.type;
-    
+
     UIFont *placeholderFont = (viewModel.errorText) ? UIFont.smallTextFont : UIFont.defaultTextFont;
     [self setCardNetwork:viewModel.cardNetwork];
-    
+
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpPlaceholderColor
                       andFont:placeholderFont];
-    
+
     self.text = viewModel.text;
-    
+
     if (viewModel.errorText) {
         [self displayErrorWithText:viewModel.errorText];
         return;
     }
-    
+
     [self clearError];
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Public Methods
+#pragma mark - Public Methods
 //------------------------------------------------------------------------------------
 
 - (void)setCardNetwork:(CardNetwork)cardNetwork {
-    
+
     UIImage *cardIcon = [self iconForCardNetwork:cardNetwork];
-    
-    if (cardIcon) self.cardLogoImageView.image = cardIcon;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.cardLogoImageView.alpha = (cardIcon) ? 1.0 : 0.0;
-    } completion:^(BOOL finished) {
-        if (!cardIcon) self.cardLogoImageView.image = cardIcon;
-    }];
+
+    if (cardIcon)
+        self.cardLogoImageView.image = cardIcon;
+
+    [UIView animateWithDuration:0.3
+        animations:^{
+            self.cardLogoImageView.alpha = (cardIcon) ? 1.0 : 0.0;
+        }
+        completion:^(BOOL finished) {
+            if (!cardIcon)
+                self.cardLogoImageView.image = cardIcon;
+        }];
 }
 
 - (UIImage *)iconForCardNetwork:(CardNetwork)cardNetwork {

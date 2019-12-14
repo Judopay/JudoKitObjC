@@ -6,8 +6,8 @@
 //  Copyright © 2019 Mihai Petrenco. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "JPCardNetwork.h"
+#import <Foundation/Foundation.h>
 
 @interface JPValidationResult : NSObject
 

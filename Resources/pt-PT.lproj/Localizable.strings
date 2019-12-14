@@ -31,11 +31,14 @@
 "scan_card" = "CARTÃO DE DIGITALIZAÇÃO";
 "card_number" = "Número do cartão";
 "cardholder_name" = "Nome do Titular";
-"expiry_date" = "Data de validade";
+"expiry_date" = "MM/YY";
 "country" = "País";
 "postal_code" = "Código Postal";
 "secure_code" = "CVV";
 "add_card_button" = "ADICIONAR CARTÃO";
+"invalid_expiry_date_value" = "Valor de data inválido digitado";
+"invalid_postcode" = "Código postal inválido inserido";
+"invalid_zip_code" = "Código postal inválido inserido";
 
 //CardInputField
 "card_number_label" = "Número do Cartão";

@@ -23,19 +23,19 @@
 //  SOFTWARE.
 
 #import "JPAddCardView.h"
-#import "JPAddCardViewModel.h"
-#import "JPCardNumberField.h"
-#import "JPCardInputField.h"
 #import "JPAddCardButton.h"
+#import "JPAddCardViewModel.h"
+#import "JPCardInputField.h"
+#import "JPCardNumberField.h"
 #import "LoadingButton.h"
 #import "NSString+Localize.h"
 #import "RoundedCornerView.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 #import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 #import "UITextField+Additions.h"
 #import "UIView+Additions.h"
-#import "UIFont+Additions.h"
 
 @interface JPAddCardView ()
 
@@ -50,7 +50,7 @@
 @implementation JPAddCardView
 
 //------------------------------------------------------------------------------------
-# pragma mark - Initializers
+#pragma mark - Initializers
 //------------------------------------------------------------------------------------
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -78,7 +78,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - View model configuration
+#pragma mark - View model configuration
 //------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
@@ -88,7 +88,7 @@
     [self.cardExpiryTextField configureWithViewModel:viewModel.expiryDateViewModel];
     [self.secureCodeTextField configureWithViewModel:viewModel.secureCodeViewModel];
     [self.addCardButton configureWithViewModel:viewModel.addCardButtonViewModel];
-    
+
     self.countryTextField.hidden = !viewModel.shouldDisplayAVSFields;
     self.postcodeTextField.hidden = !viewModel.shouldDisplayAVSFields;
 
@@ -100,7 +100,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Helper methods
+#pragma mark - Helper methods
 //------------------------------------------------------------------------------------
 
 - (void)enableUserInterface:(BOOL)shouldEnable {
@@ -116,7 +116,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Layout setup
+#pragma mark - Layout setup
 //------------------------------------------------------------------------------------
 
 - (void)setupSubviews {
@@ -174,7 +174,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Lazily instantiated properties
+#pragma mark - Lazily instantiated properties
 //------------------------------------------------------------------------------------
 
 - (UIView *)backgroundView {
@@ -314,7 +314,7 @@
 }
 
 //------------------------------------------------------------------------------------
-# pragma mark - Stack Views
+#pragma mark - Stack Views
 //------------------------------------------------------------------------------------
 
 - (UIStackView *)mainStackView {

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Judo Payments. All rights reserved.
 //
 
-#import "LoadingButton.h"
 #import "JPAddCardViewModel.h"
+#import "LoadingButton.h"
 
 @interface JPAddCardButton : LoadingButton
 - (void)configureWithViewModel:(JPAddCardButtonViewModel *)viewModel;

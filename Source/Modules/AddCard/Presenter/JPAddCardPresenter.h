@@ -31,6 +31,7 @@
 @protocol JPAddCardPresenter
 - (void)prepareInitialViewModel;
 - (void)handleInputChange:(NSString *)input forType:(JPInputType)type;
+- (void)handleAddCardButtonTap;
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Mihai Petrenco. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "JPAddCardViewModel.h"
+#import <UIKit/UIKit.h>
 
 @class JPTextField;
 
