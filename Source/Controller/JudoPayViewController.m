@@ -292,6 +292,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear: animated];
+     if (self.completionBlock) {
+           self.completionBlock(nil, [NSError judoUserDidCancelError]);
+       }
+}
+
 - (void)setupView {
 
     // Themes (needs to be set before setting up subviews
