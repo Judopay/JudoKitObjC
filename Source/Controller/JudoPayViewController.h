@@ -30,7 +30,7 @@
 /**
  *  the JudoPayViewController is the one solution build to guide a user through the journey of entering their card details.
  */
-@interface JudoPayViewController : UIViewController
+@interface JudoPayViewController : UIViewController <UIAdaptivePresentationControllerDelegate>
 
 /**
  *  the current JudoKit Session

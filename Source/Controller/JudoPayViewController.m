@@ -263,7 +263,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                                                             target:self
                                                                             action:@selector(doneButtonAction:)];
     self.navigationItem.rightBarButtonItem = self.paymentNavBarButton;
-
+    self.navigationController.presentationController.delegate = self;
     [self applyTheme:self.theme];
 }
 
@@ -290,13 +290,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     } else {
         [self.cardInputField.textField becomeFirstResponder];
     }
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear: animated];
-     if (self.completionBlock) {
-           self.completionBlock(nil, [NSError judoUserDidCancelError]);
-       }
 }
 
 - (void)setupView {
@@ -1011,6 +1004,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     if (self.completionBlock) {
         self.completionBlock(nil, [NSError judo3DSRequestFailedErrorWithUnderlyingError:error]);
     }
+}
+
+#pragma mark -  UIAdaptivePresentationControllerDelegate methods
+- (void)presentationControllerWillDismiss:(UIPresentationController *)presentationController {
+      if (self.completionBlock) {
+          self.completionBlock(nil, [NSError judoUserDidCancelError]);
+      }
 }
 
 @end

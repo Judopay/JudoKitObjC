@@ -189,13 +189,6 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear: animated];
-     if (self.completionBlock) {
-           self.completionBlock(nil, [NSError judoUserDidCancelError]);
-       }
-}
-
 - (void)paymentMethodButtonDidTap:(UIView *)button {
 
     if (button.tag == PaymentMethodCard) {
