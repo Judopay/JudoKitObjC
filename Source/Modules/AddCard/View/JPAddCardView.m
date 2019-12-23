@@ -49,9 +49,7 @@
 
 @implementation JPAddCardView
 
-//------------------------------------------------------------------------------------
 #pragma mark - Initializers
-//------------------------------------------------------------------------------------
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -77,9 +75,7 @@
     return self;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - View model configuration
-//------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
     self.sliderHeightConstraint.constant = 365.0f;
@@ -99,9 +95,7 @@
     }
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Helper methods
-//------------------------------------------------------------------------------------
 
 - (void)enableUserInterface:(BOOL)shouldEnable {
     self.cancelButton.enabled = shouldEnable;
@@ -115,9 +109,7 @@
     self.addCardButton.enabled = shouldEnable;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Layout setup
-//------------------------------------------------------------------------------------
 
 - (void)setupSubviews {
     [self addSubview:self.backgroundView];
@@ -173,9 +165,7 @@
     [NSLayoutConstraint activateConstraints:constraints];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Lazily instantiated properties
-//------------------------------------------------------------------------------------
 
 - (UIView *)backgroundView {
     if (!_backgroundView) {
@@ -313,9 +303,7 @@
     return label;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Stack Views
-//------------------------------------------------------------------------------------
 
 - (UIStackView *)mainStackView {
     if (!_mainStackView) {

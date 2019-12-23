@@ -1,10 +1,26 @@
 //
-//  JPCardInputField.m
-//  InputFieldTest
+//  JPCardNumberField.m
+//  JudoKitObjC
 //
-//  Created by Mihai Petrenco on 12/10/19.
-//  Copyright © 2019 Mihai Petrenco. All rights reserved.
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 
 #import "JPCardNumberField.h"
 #import "UIColor+Judo.h"
@@ -20,9 +36,7 @@
 
 @dynamic stackView;
 
-//------------------------------------------------------------------------------------
 #pragma mark - Initializers
-//------------------------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
@@ -45,9 +59,7 @@
     return self;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//------------------------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPAddCardNumberInputViewModel *)viewModel {
 
@@ -70,9 +82,7 @@
     [self clearError];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Public Methods
-//------------------------------------------------------------------------------------
 
 - (void)setCardNetwork:(CardNetwork)cardNetwork {
 
@@ -114,18 +124,14 @@
     }
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Layout Setup
-//------------------------------------------------------------------------------------
 
 - (void)setupCardNumberViews {
     [self.cardLogoImageView.widthAnchor constraintEqualToConstant:50.0].active = YES;
     [self.stackView addArrangedSubview:self.cardLogoImageView];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//------------------------------------------------------------------------------------
 
 - (UIImageView *)cardLogoImageView {
     if (!_cardLogoImageView) {

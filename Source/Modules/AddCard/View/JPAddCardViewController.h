@@ -51,8 +51,14 @@
 
 @end
 
+/**
+ * An extension that conforms to the UIPickerViewDelegate and UIPickerViewDataSource used for the country picker
+ */
 @interface JPAddCardViewController (CountryPickerDelegate) <UIPickerViewDelegate, UIPickerViewDataSource>
 @end
 
+/**
+ * An extension that conforms to the InputFieldDelegate used for handling the credit card input
+ */
 @interface JPAddCardViewController (InputFieldDelegate) <JPTextFieldDelegate>
 @end

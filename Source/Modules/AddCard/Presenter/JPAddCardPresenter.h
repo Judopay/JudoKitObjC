@@ -25,13 +25,25 @@
 #import "JPAddCardViewModel.h"
 #import <Foundation/Foundation.h>
 
-@protocol JPAddCardView
-, JPAddCardRouter, JPAddCardInteractor;
+@protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
+
+/**
+ * A method that is called when the view initially loads to prepare the initial view model
+ */
 - (void)prepareInitialViewModel;
+
+/**
+ * A method that updates the view model whenever a input field value changes
+ */
 - (void)handleInputChange:(NSString *)input forType:(JPInputType)type;
+
+/**
+ * A method that handles Add Card button tap
+ */
 - (void)handleAddCardButtonTap;
+
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>

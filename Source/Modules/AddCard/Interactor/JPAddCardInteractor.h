@@ -52,11 +52,58 @@
  */
 - (NSArray<NSString *> *)getSelectableCountryNames;
 
+/**
+ *  A method for validating the card number
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input;
+
+/**
+ *  A method for validating the cardholder name
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateCardholderNameInput:(NSString *)input;
+
+/**
+ *  A method for validating the expiry date
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateExpiryDateInput:(NSString *)input;
+
+/**
+ *  A method for validating the secure code
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateSecureCodeInput:(NSString *)input;
+
+/**
+ *  A method for validating the country
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateCountryInput:(NSString *)input;
+
+/**
+ *  A method for validating the postal code
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
 
 @end

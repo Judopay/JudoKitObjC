@@ -28,6 +28,7 @@
 @class LoadingButton, JPTextField, JPCardNumberField, JPCardInputField, JPAddCardButton;
 
 @interface JPAddCardView : UIView
+
 /**
  * The dimmed, semi-transparent background view that fades in when the add card slider appears
  */

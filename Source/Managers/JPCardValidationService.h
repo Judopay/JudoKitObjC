@@ -26,9 +26,27 @@
 
 @class JPCard, JPValidationResult;
 
+/**
+ * A class that handles credit card validation
+ */
 @interface JPCardValidationService : NSObject
 
+/**
+ *  A method for validating the card number
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input;
+
+/**
+ *  A method for validating the cardholder name
+ *
+ *  @param input - an input string
+ *
+ *  @return an instancee of JPValidationResult that contains the validation status
+ */
 - (JPValidationResult *)validateCarholderNameInput:(NSString *)input;
 - (JPValidationResult *)validateExpiryDateInput:(NSString *)input;
 - (JPValidationResult *)validateSecureCodeInput:(NSString *)input;

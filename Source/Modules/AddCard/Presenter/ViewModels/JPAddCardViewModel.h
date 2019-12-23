@@ -45,7 +45,18 @@ typedef NS_ENUM(NSInteger, JPInputType) {
  */
 @property (nonatomic, assign) JPInputType type;
 
+/**
+ * Designated initializer that is configured based on an input type
+ *
+ * @param inputType - An instance of JPInputType that is used to define the view model
+ */
 + (instancetype)viewModelWithType:(JPInputType)inputType;
+
+/**
+ * Designated initializer that is configured based on an input type
+ *
+ * @param inputType - An instance of JPInputType that is used to define the view model
+ */
 - (instancetype)initWithType:(JPInputType)inputType;
 
 /**
@@ -69,6 +80,9 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 
 @interface JPAddCardNumberInputViewModel : JPAddCardInputFieldViewModel
 
+/**
+ * The detected card network of the view model
+ */
 @property (nonatomic, assign) CardNetwork cardNetwork;
 
 @end
@@ -104,6 +118,9 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 
 @interface JPAddCardViewModel : NSObject
 
+/**
+ * A boolean parameter that tells the view if AVS fields should be displayed
+ */
 @property (nonatomic, assign) BOOL shouldDisplayAVSFields;
 
 /**

@@ -38,9 +38,7 @@
 
 @implementation JPAddCardViewController
 
-//------------------------------------------------------------------------------------
 #pragma mark - View Lifecycle
-//------------------------------------------------------------------------------------
 
 - (void)loadView {
     self.addCardView = [JPAddCardView new];
@@ -62,9 +60,7 @@
     [super viewWillDisappear:animated];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - User actions
-//------------------------------------------------------------------------------------
 
 - (void)onBackgroundViewTap {
     [self.addCardView endEditing:YES];
@@ -84,9 +80,7 @@
     [self.presenter handleAddCardButtonTap];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - View protocol methods
-//------------------------------------------------------------------------------------
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
     if ([viewModel shouldDisplayAVSFields]) {
@@ -103,9 +97,7 @@
     [self displayAlertWithError:error];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Layout setup
-//------------------------------------------------------------------------------------
 
 - (void)addTargets {
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
@@ -124,9 +116,7 @@
     [self addTapGestureForView:self.addCardView.backgroundView withSelector:@selector(onBackgroundViewTap)];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Keyboard handling logic
-//------------------------------------------------------------------------------------
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 
@@ -162,9 +152,7 @@
 
 @end
 
-//------------------------------------------------------------------------------------
 #pragma mark - Country UIPickerView delegate
-//------------------------------------------------------------------------------------
 
 @implementation JPAddCardViewController (CountryPickerDelegate)
 
@@ -191,9 +179,7 @@
 
 @end
 
-//------------------------------------------------------------------------------------
 #pragma mark - Card number delegate
-//------------------------------------------------------------------------------------
 
 @implementation JPAddCardViewController (InputFieldDelegate)
 

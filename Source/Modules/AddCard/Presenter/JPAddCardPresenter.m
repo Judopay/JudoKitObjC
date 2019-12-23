@@ -56,9 +56,7 @@
     return self;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Delegate methods
-//------------------------------------------------------------------------------------
 
 - (void)prepareInitialViewModel {
     self.addCardViewModel.shouldDisplayAVSFields = [self.interactor isAVSEnabled];
@@ -118,9 +116,7 @@
            }];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Helper methods
-//------------------------------------------------------------------------------------
 
 - (void)updateAddCardButtonModelIfNeeded {
 
@@ -223,9 +219,7 @@
     return card;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Lazy instantiated properties
-//------------------------------------------------------------------------------------
 
 - (JPAddCardViewModel *)addCardViewModel {
     if (!_addCardViewModel) {

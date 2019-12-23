@@ -38,9 +38,7 @@
 
 @implementation JPAddCardInteractorImpl
 
-//------------------------------------------------------------------------------------
 #pragma mark - Initializers
-//------------------------------------------------------------------------------------
 
 - (instancetype)initWithCardValidationService:(JPCardValidationService *)cardValidationService
                            transactionService:(JPTransactionService *)transactionService
@@ -54,9 +52,7 @@
     return self;
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Interactor Protocol Methods
-//------------------------------------------------------------------------------------
 
 - (BOOL)isAVSEnabled {
     return self.transactionService.avsEnabled;
