@@ -260,7 +260,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
  *  @param cardDetails          The card details to present in the input fields
- *  @param delegate             An optional delegate parameter that, once implemented, will allow you to capture the IDEAL redirect response data
+ *  @param redirectCompletion             An optional completion handler that, once implemented, will allow you to capture the IDEAL redirect response data
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
