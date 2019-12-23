@@ -215,7 +215,8 @@ class MainViewController: UITableViewController {
 
     @objc func navigateToPaymentMethods() {
         
-        judoKit.invokePayment(judoId, amount: testAmount,
+        judoKit.invokePayment(judoId,
+                              amount: testAmount,
                               consumerReference: self.consumerReference,
                               paymentMethods: .methodsAll,
                               applePayConfiguratation: testPaymentApplePayConfiguration,

@@ -114,31 +114,30 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 
     if (self.didTimeout)
         return;
-    
-    //NSString *newOrderId = [orderId stringByReplacingOccurrencesOfString:@"-" withString:@"%2D"];
+
     NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", self.session.iDealEndpoint, statusEndpoint, orderId];
-    
+
     [self.session GET:fullURL
-            parameters:nil
-            completion:^(JPResponse *response, NSError *error) {
-                if (error) {
-                    completion(nil, error);
-                    [self.timer invalidate];
-                    return;
-                }
+           parameters:nil
+           completion:^(JPResponse *response, NSError *error) {
+               if (error) {
+                   completion(nil, error);
+                   [self.timer invalidate];
+                   return;
+               }
 
-                if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
+               if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
 
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
-                                   dispatch_get_main_queue(), ^{
-                                       [self getStatusForOrderId:orderId checksum:checksum completion:completion];
-                                   });
-                    return;
-                }
+                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
+                                  dispatch_get_main_queue(), ^{
+                                      [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+                                  });
+                   return;
+               }
 
-                completion(response, error);
-                [self.timer invalidate];
-            }];
+               completion(response, error);
+               [self.timer invalidate];
+           }];
 }
 
 - (void)stopPollingTransactionStatus {
