@@ -57,7 +57,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input;
 
@@ -66,7 +66,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateCardholderNameInput:(NSString *)input;
 
@@ -75,7 +75,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateExpiryDateInput:(NSString *)input;
 
@@ -84,7 +84,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateSecureCodeInput:(NSString *)input;
 
@@ -93,7 +93,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateCountryInput:(NSString *)input;
 
@@ -102,7 +102,7 @@
  *
  *  @param input - an input string
  *
- *  @return an instancee of JPValidationResult that contains the validation status
+ *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
 

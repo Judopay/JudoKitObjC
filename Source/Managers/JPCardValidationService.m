@@ -177,9 +177,7 @@
                                      formattedInput:input];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Getters
-//------------------------------------------------------------------------------------
 
 - (NSArray *)acceptedCardNetworks {
     return @[
@@ -194,9 +192,7 @@
     ];
 }
 
-//------------------------------------------------------------------------------------
 #pragma mark - Expiry Date Validation Methods
-//------------------------------------------------------------------------------------
 
 - (JPValidationResult *)validateNoExpiryDigitInput:(NSString *)input {
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
