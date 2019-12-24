@@ -27,6 +27,7 @@
 @protocol JPPaymentMethodsView, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
 
 @protocol JPPaymentMethodsPresenter
+- (void)prepareInitialViewModel;
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

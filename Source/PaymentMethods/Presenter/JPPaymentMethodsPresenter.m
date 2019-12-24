@@ -23,7 +23,42 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsPresenter.h"
+#import "JPPaymentMethodsViewModel.h"
+#import "JPPaymentMethodsViewController.h"
+
+@interface JPPaymentMethodsPresenterImpl()
+@property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
+@property (nonatomic, strong) JPPaymentMethodsEmptyListModel *emptyListModel;
+@end
 
 @implementation JPPaymentMethodsPresenterImpl
+
+- (void)prepareInitialViewModel {
+    [self.viewModel.items addObject:self.emptyListModel];
+    [self.view configureWithViewModel:self.viewModel];
+}
+
+- (JPPaymentMethodsViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [JPPaymentMethodsViewModel new];
+        _viewModel.shouldDisplayHeadline = NO;
+        _viewModel.items = [NSMutableArray new];
+    }
+    return _viewModel;
+}
+
+- (JPPaymentMethodsEmptyListModel *)emptyListModel {
+    if (!_emptyListModel) {
+        _emptyListModel = [JPPaymentMethodsEmptyListModel new];
+        _emptyListModel.title = @"You didn't connect any cards yet";
+        _emptyListModel.addCardButtonTitle = @"ADD CARD";
+        _emptyListModel.onAddCardButtonTapHandler = @selector(onAddCardButtonTap);
+    }
+    return _emptyListModel;
+}
+
+- (void)onAddCardButtonTap {
+    
+}
 
 @end

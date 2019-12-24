@@ -190,7 +190,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _cancelButton.titleLabel.font = UIFont.smallButtonTitleFont;
+        _cancelButton.titleLabel.font = UIFont.smallTitleFont;
         [_cancelButton setTitle:@"cancel".localized forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
@@ -204,7 +204,7 @@
 
         [_scanCardButton setTitle:@"scan_card".localized forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _scanCardButton.titleLabel.font = UIFont.smallButtonTitleFont;
+        _scanCardButton.titleLabel.font = UIFont.smallTitleFont;
 
         [_scanCardButton setImage:[UIImage imageWithIconName:@"scan-card"]
                          forState:UIControlStateNormal];
@@ -275,7 +275,7 @@
     if (!_addCardButton) {
         _addCardButton = [JPAddCardButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _addCardButton.titleLabel.font = UIFont.largetButtonTitleFont;
+        _addCardButton.titleLabel.font = UIFont.largeTitleFont;
         _addCardButton.layer.cornerRadius = 4.0f;
         _addCardButton.backgroundColor = UIColor.jpDarkColor;
     }

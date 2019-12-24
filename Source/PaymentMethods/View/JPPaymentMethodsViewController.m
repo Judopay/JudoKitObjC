@@ -24,36 +24,73 @@
 
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsView.h"
+#import "JPPaymentMethodsViewModel.h"
+#import "JPPaymentMethodSelectionCell.h"
+#import "JPPaymentMethodsPresenter.h"
 
 @interface JPPaymentMethodsViewController()
 
 @property (nonatomic, strong) JPPaymentMethodsView *paymentMethodsView;
+@property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
 
 @end
 
 @implementation JPPaymentMethodsViewController
 
+//------------------------------------------------------------------------
+#pragma mark - View lifecycle
+//------------------------------------------------------------------------
+
 - (void)loadView {
     self.paymentMethodsView = [JPPaymentMethodsView new];
     self.view = self.paymentMethodsView;
     [self configureView];
+    [self.presenter prepareInitialViewModel];
 }
+
+//------------------------------------------------------------------------
+#pragma mark - Layout setup
+//------------------------------------------------------------------------
 
 - (void)configureView {
     self.paymentMethodsView.tableView.delegate = self;
     self.paymentMethodsView.tableView.dataSource = self;
 }
 
+//------------------------------------------------------------------------
+#pragma mark - JPPaymentMethodsView protocol conformance
+//------------------------------------------------------------------------
+
+- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
+    self.viewModel = viewModel;
+    
+    for (JPPaymentMethodsModel *item in viewModel.items) {
+        [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)
+                                  forCellReuseIdentifier:item.identifier];
+    }
+    
+    [self.paymentMethodsView.tableView reloadData];
+}
+
 @end
 
 @implementation JPPaymentMethodsViewController (TableViewDelegates)
 
+//------------------------------------------------------------------------
+#pragma mark - UITableView Data Source
+//------------------------------------------------------------------------
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.viewModel.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell new];
+    
+    JPPaymentMethodsModel *model = self.viewModel.items[indexPath.row];
+    JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
+                                                                 forIndexPath:indexPath];
+    [cell configureWithViewModel:model];
+    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -61,6 +98,14 @@
     UIView *view = [UIView new];
     view.backgroundColor = UIColor.yellowColor;
     return view;
+}
+
+//------------------------------------------------------------------------
+#pragma mark - UITableView Delegate
+//------------------------------------------------------------------------
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

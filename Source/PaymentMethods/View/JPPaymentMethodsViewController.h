@@ -25,8 +25,10 @@
 #import <UIKit/UIKit.h>
 
 @protocol JPPaymentMethodsPresenter;
+@class JPPaymentMethodsViewModel;
 
 @protocol JPPaymentMethodsView
+- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
 @end
 
 @interface JPPaymentMethodsViewController: UIViewController <JPPaymentMethodsView>

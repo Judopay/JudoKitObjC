@@ -1,8 +1,8 @@
 //
-//  UIFont.h
+//  JPPaymentMethodsViewModel.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,37 +22,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "JPCardDetails.h"
 
-@interface UIFont (Additions)
+@interface JPPaymentMethodsModel : NSObject
+@property (nonatomic, strong) NSString *identifier;
+@end
 
-/**
- * The default text font (San Francisco Regular - 16)
- */
-+ (UIFont *)defaultTextFont;
+@interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
+@end
 
-/**
- * The smaller default text font that is displayed when an error superscript is visible (San Francisco Regular - 14)
- */
-+ (UIFont *)smallTextFont;
+@interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
+@end
 
-/**
- * The error text font (San Francisco Regular - 10)
- */
-+ (UIFont *)errorTextFont;
+@interface JPPaymentMethodsEmptyListModel: JPPaymentMethodsModel
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *addCardButtonTitle;
+@property (nonatomic, assign) SEL onAddCardButtonTapHandler;
+@end
 
-/**
- * The font for non-prominent titles (San Francisco Semibold - 14)
- */
-+ (UIFont *)smallTitleFont;
+@interface JPPaymentMethodsCardModel : NSObject
+@property (nonatomic, strong) NSString *cardTitle;
+@property (nonatomic, assign) CardNetwork cardNetwork;
+@property (nonatomic, strong) NSString *cardNumberLastFour;
+@property (nonatomic, assign) BOOL isDefaultCard;
+@end
 
-/**
- * The font for prominent titles (San Francisco Semibold - 16)
- */
-+ (UIFont *)largeTitleFont;
-
-/**
- * The font for small text messages (San Francisco Regular - 11.3)
- */
-+ (UIFont *)subtitleTextFont;
+@interface JPPaymentMethodsViewModel : NSObject
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> *items;
+@property (nonatomic, assign) BOOL shouldDisplayHeadline;
 @end
