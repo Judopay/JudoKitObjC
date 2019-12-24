@@ -27,28 +27,32 @@
 @interface UIFont (Additions)
 
 /**
- * The default text font (San Francisco - 16)
+ * The default text font (San Francisco Regular - 16)
  */
 + (UIFont *)defaultTextFont;
 
 /**
- * The smaller default text font that is displayed when an error superscript is visible (San Francisco - 14)
+ * The smaller default text font that is displayed when an error superscript is visible (San Francisco Regular - 14)
  */
 + (UIFont *)smallTextFont;
 
 /**
- * The error text font (San Francisco - 10)
+ * The error text font (San Francisco Regular - 10)
  */
 + (UIFont *)errorTextFont;
 
 /**
- * The font for non-prominent buttons (San Francisco - 14)
+ * The font for non-prominent buttons (San Francisco Semibold - 14)
  */
 + (UIFont *)smallButtonTitleFont;
 
 /**
- * The 
+ * The font for promiment buttons (San Francisco Semibold - 16)
  */
 + (UIFont *)largetButtonTitleFont;
+
+/**
+ * The font for small text messages (San Francisco Regular - 11.3)
+ */
 + (UIFont *)subtitleTextFont;
 @end
