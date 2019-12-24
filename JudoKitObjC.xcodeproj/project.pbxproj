@@ -67,6 +67,16 @@
 		30C2215523588D6E000D6E3A /* IDEALBankTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 30C2215223588D6E000D6E3A /* IDEALBankTableViewCell.h */; };
 		30C2215623588D6E000D6E3A /* IDEALBankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2215323588D6E000D6E3A /* IDEALBankTableViewCell.m */; };
 		30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */; };
+		30CB2BA723B2138500D392FF /* JPPaymentMethodsBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BA523B2138500D392FF /* JPPaymentMethodsBuilder.h */; };
+		30CB2BA823B2138500D392FF /* JPPaymentMethodsBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BA623B2138500D392FF /* JPPaymentMethodsBuilder.m */; };
+		30CB2BAB23B2139300D392FF /* JPPaymentMethodsInteractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BA923B2139300D392FF /* JPPaymentMethodsInteractor.h */; };
+		30CB2BAC23B2139300D392FF /* JPPaymentMethodsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BAA23B2139300D392FF /* JPPaymentMethodsInteractor.m */; };
+		30CB2BAF23B213A100D392FF /* JPPaymentMethodsPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BAD23B213A100D392FF /* JPPaymentMethodsPresenter.h */; };
+		30CB2BB023B213A100D392FF /* JPPaymentMethodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BAE23B213A100D392FF /* JPPaymentMethodsPresenter.m */; };
+		30CB2BB323B213B200D392FF /* JPPaymentMethodsRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BB123B213B200D392FF /* JPPaymentMethodsRouter.h */; };
+		30CB2BB423B213B300D392FF /* JPPaymentMethodsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BB223B213B200D392FF /* JPPaymentMethodsRouter.m */; };
+		30CB2BB723B213C300D392FF /* JPPaymentMethodsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */; };
+		30CB2BB823B213C300D392FF /* JPPaymentMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */; };
 		30CFA5A62397D45400329B04 /* JPTransactionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CFA5A22397D45400329B04 /* JPTransactionService.m */; };
 		30CFA5A72397D45400329B04 /* JPTransactionService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A32397D45400329B04 /* JPTransactionService.h */; };
 		30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A42397D45400329B04 /* JPCardValidationService.h */; };
@@ -461,6 +471,16 @@
 		30C2215323588D6E000D6E3A /* IDEALBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALBankTableViewCell.m; sourceTree = "<group>"; };
 		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitIDEALTransactionTests.swift; sourceTree = "<group>"; };
+		30CB2BA523B2138500D392FF /* JPPaymentMethodsBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsBuilder.h; sourceTree = "<group>"; };
+		30CB2BA623B2138500D392FF /* JPPaymentMethodsBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsBuilder.m; sourceTree = "<group>"; };
+		30CB2BA923B2139300D392FF /* JPPaymentMethodsInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsInteractor.h; sourceTree = "<group>"; };
+		30CB2BAA23B2139300D392FF /* JPPaymentMethodsInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsInteractor.m; sourceTree = "<group>"; };
+		30CB2BAD23B213A100D392FF /* JPPaymentMethodsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsPresenter.h; sourceTree = "<group>"; };
+		30CB2BAE23B213A100D392FF /* JPPaymentMethodsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsPresenter.m; sourceTree = "<group>"; };
+		30CB2BB123B213B200D392FF /* JPPaymentMethodsRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsRouter.h; sourceTree = "<group>"; };
+		30CB2BB223B213B200D392FF /* JPPaymentMethodsRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsRouter.m; sourceTree = "<group>"; };
+		30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsViewController.h; sourceTree = "<group>"; };
+		30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsViewController.m; sourceTree = "<group>"; };
 		30CFA5A22397D45400329B04 /* JPTransactionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionService.m; sourceTree = "<group>"; };
 		30CFA5A32397D45400329B04 /* JPTransactionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionService.h; sourceTree = "<group>"; };
 		30CFA5A42397D45400329B04 /* JPCardValidationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardValidationService.h; sourceTree = "<group>"; };
@@ -810,9 +830,67 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		30CB2B9523B211DD00D392FF /* PaymentMethods */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BA423B2137100D392FF /* Builder */,
+				30CB2BA023B2137100D392FF /* Interactor */,
+				30CB2BA323B2137100D392FF /* Presenter */,
+				30CB2BA123B2137100D392FF /* Router */,
+				30CB2BA223B2137100D392FF /* View */,
+			);
+			path = PaymentMethods;
+			sourceTree = "<group>";
+		};
+		30CB2BA023B2137100D392FF /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BA923B2139300D392FF /* JPPaymentMethodsInteractor.h */,
+				30CB2BAA23B2139300D392FF /* JPPaymentMethodsInteractor.m */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		30CB2BA123B2137100D392FF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BB123B213B200D392FF /* JPPaymentMethodsRouter.h */,
+				30CB2BB223B213B200D392FF /* JPPaymentMethodsRouter.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		30CB2BA223B2137100D392FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */,
+				30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		30CB2BA323B2137100D392FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BAD23B213A100D392FF /* JPPaymentMethodsPresenter.h */,
+				30CB2BAE23B213A100D392FF /* JPPaymentMethodsPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		30CB2BA423B2137100D392FF /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BA523B2138500D392FF /* JPPaymentMethodsBuilder.h */,
+				30CB2BA623B2138500D392FF /* JPPaymentMethodsBuilder.m */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		30D08910238FB4CD00480C9E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				30CB2B9523B211DD00D392FF /* PaymentMethods */,
 				30D08918238FB4D600480C9E /* AddCard */,
 			);
 			name = Modules;
@@ -1384,6 +1462,7 @@
 				300654C0237AB7D000097955 /* IDEALService.h in Headers */,
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
 				30DB511723100E5200B73D66 /* BillingCountry.h in Headers */,
+				30CB2BAB23B2139300D392FF /* JPPaymentMethodsInteractor.h in Headers */,
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
 				30D6C5C02395485500172303 /* UITextField+Additions.h in Headers */,
 				3B678B831C6DE2850001DC2F /* JPResponse.h in Headers */,
@@ -1397,11 +1476,13 @@
 				3BD353C31C77557F0045658A /* JPTransactionData.h in Headers */,
 				30DB510823100E1C00B73D66 /* ApplePayConfiguration.h in Headers */,
 				3B6991561C8DD85B006ED1FB /* JPTheme.h in Headers */,
+				30CB2BA723B2138500D392FF /* JPPaymentMethodsBuilder.h in Headers */,
 				3B704AA21C89F1E800376773 /* BillingCountryInputField.h in Headers */,
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
+				30CB2BB323B213B200D392FF /* JPPaymentMethodsRouter.h in Headers */,
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				5214A7C1239997AD00283B81 /* SliderPresentationController.h in Headers */,
 				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
@@ -1415,6 +1496,7 @@
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
 				30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */,
 				44290B1C22F051F60088F827 /* JPClientDetails.h in Headers */,
+				30CB2BAF23B213A100D392FF /* JPPaymentMethodsPresenter.h in Headers */,
 				52374F3723A163FD000F1340 /* UIFont+Additions.h in Headers */,
 				30DB511523100E5200B73D66 /* JudoKitObjC.h in Headers */,
 				30CFA5E3239A55EF00329B04 /* JPCountry.h in Headers */,
@@ -1440,6 +1522,7 @@
 				442511D6234B8BFC00225FC4 /* UIApplication+Additions.h in Headers */,
 				306BCF1D23570F86008540E7 /* IDEALBankSelectionTableViewController.h in Headers */,
 				3BD353CB1C77803F0045658A /* JPCardDetails.h in Headers */,
+				30CB2BB723B213C300D392FF /* JPPaymentMethodsViewController.h in Headers */,
 				15CFC9EF1FB759B300430D31 /* JPVCOResult.h in Headers */,
 				44290B0722F051B00088F827 /* JPTransactionEnricher.h in Headers */,
 				3B678BAD1C7327160001DC2F /* JPRefund.h in Headers */,
@@ -1807,11 +1890,13 @@
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */,
+				30CB2BB423B213B300D392FF /* JPPaymentMethodsRouter.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				30472AA623A0E45700279A87 /* JPFloatingTextField.m in Sources */,
 				306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */,
 				30D08939238FD00800480C9E /* RoundedCornerView.m in Sources */,
 				44290B2322F051F60088F827 /* JPSDKInfo.m in Sources */,
+				30CB2BB823B213C300D392FF /* JPPaymentMethodsViewController.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				30F1B4A7237C3C5A00CE676A /* JPOrderDetails.m in Sources */,
 				30CFA5E4239A55EF00329B04 /* JPCountry.m in Sources */,
@@ -1851,6 +1936,7 @@
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
 				300654AF237AA91900097955 /* JPCheckCard.m in Sources */,
+				30CB2BAC23B2139300D392FF /* JPPaymentMethodsInteractor.m in Sources */,
 				30225D17237E8F2F005EB28C /* JPReachability.m in Sources */,
 				3B678B881C6DF6130001DC2F /* JPTransaction.m in Sources */,
 				44290B0C22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m in Sources */,
@@ -1862,6 +1948,7 @@
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
 				30D0892D238FB9B400480C9E /* JPAddCardViewController.m in Sources */,
 				30D08929238FB95700480C9E /* JPAddCardPresenter.m in Sources */,
+				30CB2BB023B213A100D392FF /* JPPaymentMethodsPresenter.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
 				3B704A8F1C89F19800376773 /* IssueNumberInputField.m in Sources */,
 				30CFA5A62397D45400329B04 /* JPTransactionService.m in Sources */,
@@ -1872,6 +1959,7 @@
 				52374F3823A163FD000F1340 /* UIFont+Additions.m in Sources */,
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
 				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
+				30CB2BA823B2138500D392FF /* JPPaymentMethodsBuilder.m in Sources */,
 				44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */,
 				5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */,
 				3B678BAA1C7327040001DC2F /* JPCollection.m in Sources */,
