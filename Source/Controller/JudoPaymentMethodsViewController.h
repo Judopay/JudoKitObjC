@@ -35,7 +35,7 @@
  *  @param theme            The current theme
  *  @param viewModel        The view configuration model
  *  @param session          The current judo apiSession
- *  @param delegate         An optional delegate property that, if set, returns the IDEAL redirect response data
+ *  @param redirectCompletion         An optional completion handler that. if set, returns the redirect response/error
  *  @param completion       Completion block called when transaction has been finished
  *
  *  @return a JudoPaymentMethodsViewController instance

@@ -59,6 +59,7 @@
 @property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, strong) NSString *checksum;
 @property (nonatomic, strong) NSString *redirectUrl;
+@property (nonatomic, assign) BOOL shouldDismissWebView;
 
 @property (nonatomic, strong) NSTimer *delayTimer;
 @property (nonatomic, strong) IDEALService *idealService;
@@ -221,7 +222,7 @@
 - (IDEALStatus)orderStatusFromStatusString:(NSString *)orderStatusString {
     if ([orderStatusString isEqual:@"PENDING"])
         return IDEALStatusPending;
-    if ([orderStatusString isEqual:@"SUCCESS"])
+    if ([orderStatusString isEqual:@"SUCCEEDED"])
         return IDEALStatusSuccess;
     return IDEALStatusFailed;
 }
@@ -514,22 +515,25 @@
 
 @implementation IDEALFormViewController (WebView)
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    
+    if (self.shouldDismissWebView) {
+        [self.webView removeFromSuperview];
+        [self startPollingStatus];
+        return;
+    }
+    
     self.transactionStatusView.hidden = NO;
 
-    NSRange fragmanetsRange = [webView.URL.absoluteString rangeOfString:@"#" options:NSBackwardsSearch];
-    NSString *returnedURL = [webView.URL.absoluteString substringToIndex:fragmanetsRange.location];
-
-    if ([self.redirectUrl isEqualToString:returnedURL]) {
+    if ([self.redirectUrl isEqualToString:webView.URL.absoluteString]) {
 
         NSURLComponents *components = [NSURLComponents componentsWithString:webView.URL.absoluteString];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name = 'cs'"];
         NSURLQueryItem *checksum = [components.queryItems filteredArrayUsingPredicate:predicate].firstObject;
 
         if (checksum) {
-            [self.webView removeFromSuperview];
+            self.shouldDismissWebView = YES;
             self.checksum = checksum.value;
-            [self startPollingStatus];
             return;
         }
     }

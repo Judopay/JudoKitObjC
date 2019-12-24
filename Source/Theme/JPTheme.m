@@ -266,6 +266,24 @@
     return [textColor inverseColor];
 }
 
+- (UIColor *)judoNavigationBarColor {
+    if (_judoNavigationBarColor) {
+        _judoNavigationBarColor = UINavigationBar.appearance.barTintColor;
+    }
+    return _judoNavigationBarColor;
+}
+
+- (UIColor *)judoNavigationButtonColor {
+    if (_judoNavigationButtonColor) {
+        return _judoNavigationButtonColor;
+    }
+    UIColor *textColor = [UIColor thunder];
+    if ([self.tintColor isDarkColor]) {
+        return textColor;
+    }
+    return [textColor inverseColor];
+}
+
 - (UIColor *)judoNavigationBarTitleColor {
     if (_judoNavigationBarTitleColor) {
         return _judoNavigationBarTitleColor;
@@ -397,6 +415,20 @@
         _judoInputFieldBorderWidth = 0.0;
     }
     return _judoInputFieldBorderWidth;
+}
+
+- (NSString *)judoLeftBarButtonTitle {
+    if (!_judoLeftBarButtonTitle) {
+        _judoLeftBarButtonTitle = @"back".localized;
+    }
+    return _judoLeftBarButtonTitle;
+}
+
+- (NSString *)judoRightBarButtonTitle {
+    if (!_judoLeftBarButtonTitle) {
+        _judoLeftBarButtonTitle = @"pay".localized;
+    }
+    return _judoLeftBarButtonTitle;
 }
 
 #pragma mark - iDEAL Status View

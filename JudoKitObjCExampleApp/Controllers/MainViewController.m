@@ -409,7 +409,16 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
                                    redirectCompletion:nil
                                            completion:^(JPResponse *response, NSError *error) {
 
-        // TODO: Handle response / error
+        if (error || response.items.count == 0) {
+            if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self presentErrorWithMessage: error.userInfo[NSLocalizedDescriptionKey]];
+            }];
+            return;
+        }
     }];
 }
 

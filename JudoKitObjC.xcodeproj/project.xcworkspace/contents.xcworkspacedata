@@ -1,7 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:../JudoKitSwiftExampleApp"
+      name = "JudoKitSwiftExampleApp">
+      <FileRef
+         location = "group:ExampleAppCredentials.swift">
+      </FileRef>
+      <Group
+         location = "group:Assets.xcassets"
+         name = "Assets.xcassets">
+         <Group
+            location = "group:AppIcon.appiconset"
+            name = "AppIcon.appiconset">
+            <FileRef
+               location = "group:Icon-40@2x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-40@3x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-60@3x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-60@2x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-20@3x.png">
+            </FileRef>
+            <FileRef
+               location = "group:judo-1024x1024.png">
+            </FileRef>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-20@2x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-Small@3x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Icon-Small@2x.png">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:ic_judo_logo.imageset"
+            name = "ic_judo_logo.imageset">
+            <FileRef
+               location = "group:ic_judo_logo@2x.png">
+            </FileRef>
+            <FileRef
+               location = "group:ic_judo_logo@3x.png">
+            </FileRef>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Contents.json">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:JudoKitSwiftExampleApp-Bridging-Header.h">
+      </FileRef>
+      <Group
+         location = "group:Models"
+         name = "Models">
+         <FileRef
+            location = "group:DetailsTableViewSection.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Currency.swift">
+         </FileRef>
+         <FileRef
+            location = "group:DemoFeature.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Settings.swift">
+         </FileRef>
+         <FileRef
+            location = "group:DetailsTableViewRow.swift">
+         </FileRef>
+         <FileRef
+            location = "group:DemoFeatureType.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Base.lproj"
+         name = "Base.lproj">
+         <FileRef
+            location = "group:LaunchScreen.storyboard">
+         </FileRef>
+         <FileRef
+            location = "group:Main.storyboard">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Extensions"
+         name = "Extensions">
+         <FileRef
+            location = "group:NSError.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Segues"
+         name = "Segues">
+         <FileRef
+            location = "group:HalfSizePresentationSegue.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:ViewControllers"
+         name = "ViewControllers">
+         <FileRef
+            location = "group:StandaloneApplePayViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:SettingsTableViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:MainViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:TransactionDetailsTableViewController.swift">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:HalfHeightPresentationController.swift">
+      </FileRef>
+      <FileRef
+         location = "group:AppDelegate.swift">
+      </FileRef>
+      <FileRef
+         location = "group:JudoKitSwiftExample.entitlements">
+      </FileRef>
+      <FileRef
+         location = "group:Info.plist">
+      </FileRef>
+   </Group>
    <FileRef
-      location = "self:JudoKitObjC.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
