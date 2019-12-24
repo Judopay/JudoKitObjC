@@ -1,99 +1,100 @@
-//
-//  Localizable.strings (French)
-//  JudoKitObjC
-//
-//  Copyright (c) 2016 Alternative Payments Ltd
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
-
-//CardInputField
-"card_number_label" = "Card number";
-"long_card_number" = "Long card number";
-
-//SecurityCodeInputField
-"please_reenter_the_card_security_code" = "Re-enter security code";
-"security_code" = "Security code";
-
-//IssueNumberInputField
-"issue_number_label" = "Issue number";
-"issue_number_front_of_card" = "Issue number on front of card";
-
-//DateInputField
-"check_expiry_date" = "Check expiry date";
-"check_start_date" = "Check start date";
-"start_date_label" = "Start date";
-"expiry_date_label" = "Expiry date";
-"date_hint" = "MM/YY";
-"date_format" = "MM/yy";
-
-//PostcodeInputField
-"billing_postcode" = "Billing postcode";
-"billing_zip_code" = "Billing ZIP code";
-"billing_postal_code" = "Billing postal code";
-
-//BillingCountryInputField
-"united_kingdom" = "UK";
-"united_states" = "USA";
-"canada" = "Canada";
-"other_country" = "Other";
-
-//JudoPayViewController
-"secure_server" = "Secure server: ";
-"pay" = "Pay";
-
-//JudoPaymentMethodsViewController
-"payment_method" = "Payment Method";
-"select_payment_method" = "Please select from one of the payment methods listed below:";
-"card_payment" = "Card Payment";
-
-//NSError+Judo
-"unable_to_process_request_error_desc" = "Sorry, we're currently unable to process this request.";
-"unable_to_process_request_error_title" = "Unable to process";
-"error_request_failed" = "The request responded without data";
-"error_payment_method_missing" = "The payment method (card details, token or PKPayment) has not been set for a transaction that requires it (custom UI)";
-"error_amount_missing" = "The amount has not been set for a transaction that requires it (custom UI)";
-"error_reference_missing" = "The reference has not been set for a transaction that requires it (custom UI)";
-"error_response_parse_error" = "An error with a response from the backend API";
-"error_user_did_cancel" = "Received when user cancels the payment journey";
-"error_parameter_error" = "A parameter entered into the dictionary (request body to Judo API) is not set";
-"error_failed_3DS_request" = "After receiving the 3DS payload, when the payload has faulty data, the WebView fails to load the 3DS Page or the resolution page";
-"error_jailbroken_device_disallowed" = "The device the code is currently running is jailbroken. Jailbroken devices are not allowed when instantiating a new Judo session";
-"error_3DS_request" = "Error when routing to 3DS";
-"error_underlying_error" = "An error in the iOS system with an enclosed underlying error";
-"error_transaction_declined" = "A transaction that was sent to the backend returned declined";
-
-//NSString+Card
-"check_card_number" = "Check card number";
-"error_card_not_supported" = "We do not accept %@";
-
-//JPTheme
-"add_card" = "Add card";
-"add" = "Add";
-"back" = "Back";
-"payment" = "Payment";
-"refund" = "Refund";
-"check_card" = "Check card";
-"authentication" = "Authentication";
-"adding_card" = "Adding card...";
-"processing_payment" = "Processing payment...";
-"redirecting" = "Redirecting...";
-"verifying_payment" = "Verifying payment";
-"verifying_card" = "Verifying card";
-"secure_server_transmission" = " Your card details are encrypted using SSL before transmission to our secure payment service provider. They will not be stored on this device or on our servers.";
-
+"billing_postcode"                      = "Code postal de facturation";
+"billing_zip_code"                      = "Code postal de facturation";
+"billing_postal_code"                   = "Code postal de facturation";
+"pay"                                   = "Payer";
+"confirm_payment"                       = "Confirmer le paiement";
+"payment"                               = "Paiement";
+"card_number_label"                     = "Numéro de carte";
+"expiry_date_label"                     = "Date d'expiration";
+"start_date_label"                      = "Date d'émission";
+"issue_number_label"                    = "Numéro d'émission";
+"date_hint"                             = "MM/AA";
+"add_card"                              = "Ajouter une carte";
+"enter_card_details"                    = "Entrez les détails de la carte";
+"error_postcode_uk"                     = "Vérifiez le code postal";
+"error_postcode_us"                     = "Vérifiez le code postal";
+"error_postcode_canada"                 = "Vérifiez le code postal";
+"check_expiry_date"                     = "Vérifiez la date d'expiration";
+"check_start_date"                      = "Vérifiez la date d'émission";
+"check_card_number"                     = "Vérifiez le numéro de carte";
+"check_cvv"                             = "Vérifiez le CVV";
+"error_maestro_not_supported"           = "Nous n'acceptons pas Maestro, veuillez utiliser d'autres cartes";
+"error_amex_not_supported"              = "Nous n'acceptons pas AmEx, veuillez utiliser d'autres cartes";
+"processing_payment"                    = "Paiement en cours";
+"billing_country"                       = "Pays de facturation";
+"long_card_number"                      = "Numéro de carte long";
+"security_code"                         = "Code de sécurité";
+"issue_number_front_of_card"            = "Numéro d'émission au recto";
+"adding_card"                           = "Ajout de carte en cours";
+"saving_card"                           = "Savegarde de carte en cours";
+"checking_card"                         = "Vérification de carte en cours";
+"redirecting"                           = "Redirection";
+"authentication"                        = "Authentication";
+"verifying_card"                        = "Vérification de carte en cours";
+"please_reenter_the_card_security_code" = "Veuillez saisir à nouveau le code de sécurité de la carte";
+"secure_server_transmission"            = "Serveur sécurisé : Vos informations de paiement sont encryptées par SSL avant transfert vers notre prestataire de paiements sécurisés. Aucune information ne sera conservée sur cet appareil ou sur nos serveurs.";
+"united_kingdom"                        = "Royaume-Uni";
+"united_states"                         = "Etats-Unis";
+"canada"                                = "Canada";
+"other_country"                         = "Autre";
+"judo_payment_method"                   = "Méthode de paiement";
+"judo_card_payment"                     = "Paiement par carte";
+"judo_payment_method_header_title"      = "Veuillez sélectionner une méthode de paiement ci-dessous :";
+"processing"                            = "En cours";
+"ideal"                                 = "Paiement iDEAL";
+"enter_name"                            = "Entrez le nom";
+"pay_with_ideal"                        = "Payer avec iDEAL";
+"select_bank"                           = "Sélectionner une banque iDEAL";
+"bank"                                  = "Banque";
+"order_timeout"                         = "La transaction a expiré !";
+"order_fail"                            = "La transaction a échoué !";
+"order_success"                         = "La transaction a été effectuée !";
+"try_again"                             = "Réessayer";
+"close"                                 = "Fermer";
+"no_internet"                           = "Veuillez vérifier votre connexion internet puis réessayer";
+"there_is_a_delay"                      = "Cette opération prend plus de temps que prévu. Merci de patienter.";
+"something_went_wrong"                  = "Oups ! Une erreur s'est produite.";
+"order_pending"                         = "Transaction en cours";
+"payment_status"                        = "Statut du paiement ";
+"date_format"                           = "MM/aa";
+"ideal_transaction"                     = "Paiement iDEAL";
+"selected_bank"                         = "Banque sélectionnée : ";
+"select_ideal_bank"                     = "Banque iDEAL sélectionnée : ";
+"name"                                  = "Nom";
+"ideal_transaction_success"             = "La transaction a été effectuée !";
+"ideal_transaction_pending"             = "Transaction en cours...";
+"ideal_transaction_pending_delay"       = "Cette opération prend plus de temps que prévu. Merci de patienter...";
+"ideal_transaction_timeout"             = "La transaction a expiré !";
+"ideal_transaction_error"               = "Oups ! Une erreur s'est produite.";
+"ideal_transaction_failed"              = "La transaction a échoué !";
+"retry"                                 = "Réessayer";
+"secure_server"                         = "Serveur sécurisé : Vos informations de paiement sont encryptées par SSL avant transfert vers notre prestataire de paiements sécurisés. Aucune information ne sera conservée sur cet appareil ou sur nos serveurs.";
+"payment_method"                        = "Méthode de paiement";
+"select_payment_method"                 = "Veuillez sélectionner une méthode de paiement ci-dessous :";
+"card_payment"                          = "Paiement par carte";
+"unable_to_process_request_error_desc"  = "Désolé, nous ne somme pas en mesure de traiter cette requête pour le moment.";
+"unable_to_process_request_error_title" = "Impossible de traiter la requête ";
+"error_request_failed"                  = "La requête n'a pas renvoyé de données";
+"error_payment_method_missing"          = "Le moyen de paiement (détails de votre carte, token ou PKPayment) n'a pas été configuré pour une transaction qui le nécessite (IU personalisée)";
+"error_amount_missing"                  = "Le montant n'a pas été configuré pour une transaction qui le nécessite (IU personalisée)";
+"error_reference_missing"               = "La référence n'a pas été configuré pour une transaction qui le nécessite (IU personalisée)";
+"error_response_parse_error"            = "Une erreur dans la réponse de l'API backend ";
+"error_user_did_cancel"                 = "Reçu quand l'utilisateur annule le paiement ";
+"error_parameter_error"                 = "Un paramètre inséré dans le dictonnaire (corps de la requête effectuée à l'API de Judo) n'est pas configuré";
+"error_failed_3DS_request"              = "Après avoir reçu le payload 3DS, quand le payload contient des données erronées, la vue Web ne parvient pas à charger la page 3DS ou la page de résultats";
+"error_jailbroken_device_disallowed"    = "L'appareil sur lequel le code est executé est jailbreaké. Les appareils jailbreakés ne sont pas autorisés pour la création d'une nouvelle session Judo. ";
+"error_3DS_request"                     = "Erreur lors du routage 3DS";
+"error_underlying_error"                = "Une erreur dans le système iOS avec une erreur sous-jacente";
+"error_transaction_declined"            = "Une transaction transmise au backend a été déclinée ";
+"error_checksum_missing_title"          = "Le checksum est manquant ";
+"error_checksum_missing_description"    = "Paramètre de checksum manquant dans l'URL de redirection iDEAL ";
+"error_timeout_title"                   = "La requête a expiré";
+"error_timeout_description"             = "Lq requête n'a pas abouti dans le temps imparti ";
+"no_internet_error_description"         = "Veuillez vérifier votre connexion internet puis réessayer.";
+"no_internet_error_title"               = "Pas de connexion internet !";
+"error_card_not_supported"              = "Nous n'acceptions pas %@";
+"add"                                   = "Ajouter ";
+"back"                                  = "Retour";
+"refund"                                = "Remboursement ";
+"check_card"                            = "Vérifier la care";
+"verifying_payment"                     = "Paiement en cours de vérification";
