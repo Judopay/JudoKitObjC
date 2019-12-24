@@ -77,6 +77,10 @@
 		30CB2BB423B213B300D392FF /* JPPaymentMethodsRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BB223B213B200D392FF /* JPPaymentMethodsRouter.m */; };
 		30CB2BB723B213C300D392FF /* JPPaymentMethodsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */; };
 		30CB2BB823B213C300D392FF /* JPPaymentMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */; };
+		30CB2BC923B2323400D392FF /* JPPaymentMethodSelectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BC723B2323400D392FF /* JPPaymentMethodSelectionView.h */; };
+		30CB2BCA23B2323400D392FF /* JPPaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BC823B2323400D392FF /* JPPaymentMethodSelectionView.m */; };
+		30CB2BCD23B236B400D392FF /* JPPaymentMethodsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CB2BCB23B236B400D392FF /* JPPaymentMethodsView.h */; };
+		30CB2BCE23B236B400D392FF /* JPPaymentMethodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CB2BCC23B236B400D392FF /* JPPaymentMethodsView.m */; };
 		30CFA5A62397D45400329B04 /* JPTransactionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CFA5A22397D45400329B04 /* JPTransactionService.m */; };
 		30CFA5A72397D45400329B04 /* JPTransactionService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A32397D45400329B04 /* JPTransactionService.h */; };
 		30CFA5A82397D45400329B04 /* JPCardValidationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30CFA5A42397D45400329B04 /* JPCardValidationService.h */; };
@@ -481,6 +485,10 @@
 		30CB2BB223B213B200D392FF /* JPPaymentMethodsRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsRouter.m; sourceTree = "<group>"; };
 		30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsViewController.h; sourceTree = "<group>"; };
 		30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsViewController.m; sourceTree = "<group>"; };
+		30CB2BC723B2323400D392FF /* JPPaymentMethodSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodSelectionView.h; sourceTree = "<group>"; };
+		30CB2BC823B2323400D392FF /* JPPaymentMethodSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodSelectionView.m; sourceTree = "<group>"; };
+		30CB2BCB23B236B400D392FF /* JPPaymentMethodsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPPaymentMethodsView.h; path = Source/PaymentMethods/View/JPPaymentMethodsView.h; sourceTree = SOURCE_ROOT; };
+		30CB2BCC23B236B400D392FF /* JPPaymentMethodsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPPaymentMethodsView.m; path = Source/PaymentMethods/View/JPPaymentMethodsView.m; sourceTree = SOURCE_ROOT; };
 		30CFA5A22397D45400329B04 /* JPTransactionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionService.m; sourceTree = "<group>"; };
 		30CFA5A32397D45400329B04 /* JPTransactionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionService.h; sourceTree = "<group>"; };
 		30CFA5A42397D45400329B04 /* JPCardValidationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardValidationService.h; sourceTree = "<group>"; };
@@ -863,8 +871,11 @@
 		30CB2BA223B2137100D392FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30CB2BC623B2323400D392FF /* Subviews */,
 				30CB2BB523B213C300D392FF /* JPPaymentMethodsViewController.h */,
 				30CB2BB623B213C300D392FF /* JPPaymentMethodsViewController.m */,
+				30CB2BCB23B236B400D392FF /* JPPaymentMethodsView.h */,
+				30CB2BCC23B236B400D392FF /* JPPaymentMethodsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -885,6 +896,15 @@
 				30CB2BA623B2138500D392FF /* JPPaymentMethodsBuilder.m */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		30CB2BC623B2323400D392FF /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				30CB2BC723B2323400D392FF /* JPPaymentMethodSelectionView.h */,
+				30CB2BC823B2323400D392FF /* JPPaymentMethodSelectionView.m */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		30D08910238FB4CD00480C9E /* Modules */ = {
@@ -1461,6 +1481,7 @@
 				3B678B951C6E282B0001DC2F /* JPCard.h in Headers */,
 				300654C0237AB7D000097955 /* IDEALService.h in Headers */,
 				3B5362A21C7CBD9000CEBAE2 /* LoadingView.h in Headers */,
+				30CB2BC923B2323400D392FF /* JPPaymentMethodSelectionView.h in Headers */,
 				30DB511723100E5200B73D66 /* BillingCountry.h in Headers */,
 				30CB2BAB23B2139300D392FF /* JPPaymentMethodsInteractor.h in Headers */,
 				44290B2222F051F60088F827 /* JPSDKInfo.h in Headers */,
@@ -1480,6 +1501,7 @@
 				3B704AA21C89F1E800376773 /* BillingCountryInputField.h in Headers */,
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
+				30CB2BCD23B236B400D392FF /* JPPaymentMethodsView.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
 				82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */,
 				30CB2BB323B213B200D392FF /* JPPaymentMethodsRouter.h in Headers */,
@@ -1948,6 +1970,7 @@
 				3B678B7C1C6DD8800001DC2F /* NSError+Judo.m in Sources */,
 				30D0892D238FB9B400480C9E /* JPAddCardViewController.m in Sources */,
 				30D08929238FB95700480C9E /* JPAddCardPresenter.m in Sources */,
+				30CB2BCE23B236B400D392FF /* JPPaymentMethodsView.m in Sources */,
 				30CB2BB023B213A100D392FF /* JPPaymentMethodsPresenter.m in Sources */,
 				3B678BBA1C7331280001DC2F /* JPTransactionProcess.m in Sources */,
 				3B704A8F1C89F19800376773 /* IssueNumberInputField.m in Sources */,
@@ -1971,6 +1994,7 @@
 				302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */,
 				30CFA5A92397D45400329B04 /* JPCardValidationService.m in Sources */,
 				3B704A9B1C89F1C700376773 /* SecurityCodeInputField.m in Sources */,
+				30CB2BCA23B2323400D392FF /* JPPaymentMethodSelectionView.m in Sources */,
 				30225D13237E8E6D005EB28C /* TransactionStatusView.m in Sources */,
 				3B6991641C8F26FE006ED1FB /* NSTimer+Blocks.m in Sources */,
 				30D08921238FB53000480C9E /* JPAddCardRouter.m in Sources */,

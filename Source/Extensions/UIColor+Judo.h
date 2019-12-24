@@ -70,4 +70,6 @@
 
 + (UIColor *_Nonnull)jpTextFieldBackgroundColor;
 
++ (UIColor *_Nonnull)jpContentBackgroundColor;
+
 @end

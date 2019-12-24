@@ -142,4 +142,8 @@
     return [UIColor colorWithRed:246 / 255.0f green:246 / 255.0f blue:246 / 255.0f alpha:1.0];
 }
 
++ (UIColor *)jpContentBackgroundColor {
+    return [UIColor colorWithRed:238 / 255.0f green:238 / 255.0f blue:238 / 255.0f alpha:1.0];
+}
+
 @end

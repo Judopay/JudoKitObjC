@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsViewController.h
+//  JPPaymentMethodSelectionView.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,22 +22,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "JPPaymentMethodSelectionView.h"
+#import "UIColor+Judo.h"
 
-@protocol JPPaymentMethodsPresenter;
+@implementation JPPaymentMethodSelectionView
 
-@protocol JPPaymentMethodsView
-@end
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setupViews];
+    }
+    return self;
+}
 
-@interface JPPaymentMethodsViewController: UIViewController <JPPaymentMethodsView>
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+    }
+    return self;
+}
 
-/**
- * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol
- */
-@property (nonatomic, strong) id<JPPaymentMethodsPresenter> presenter;
-
-@end
-
-@interface JPPaymentMethodsViewController (TableViewDelegates) <UITableViewDelegate, UITableViewDataSource>
+- (void)setupViews {
+    self.backgroundColor = UIColor.jpContentBackgroundColor;
+    //TODO: Implement custom Payment Method Selection view;
+}
 
 @end

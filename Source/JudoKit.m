@@ -55,6 +55,10 @@
 
 #import "JPAddCardBuilder.h"
 #import "JPAddCardViewController.h"
+
+#import "JPPaymentMethodsBuilder.h"
+#import "JPPaymentMethodsViewController.h"
+
 #import "SliderTransitioningDelegate.h"
 
 @interface JPSession ()
@@ -341,19 +345,7 @@
          redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
-    JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
-                                                                                          amount:amount
-                                                                               consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
-                                                                                  paymentMethods:methods
-                                                                           primaryAccountDetails:self.primaryAccountDetails
-                                                                           applePayConfiguration:applePayConfigs
-                                                                                     cardDetails:cardDetails];
-
-    JudoPaymentMethodsViewController *viewController = [[JudoPaymentMethodsViewController alloc] initWithTheme:self.theme
-                                                                                                     viewModel:viewModel
-                                                                                                currentSession:self
-                                                                                            redirectCompletion:redirectCompletion
-                                                                                                 andCompletion:completion];
+    JPPaymentMethodsViewController *viewController = [[JPPaymentMethodsBuilderImpl new] buildModule];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.activeViewController = viewController;

@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsViewController.m
+//  JPPaymentMethodsView.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,49 +22,57 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsView.h"
+#import "UIView+Additions.h"
 
-@interface JPPaymentMethodsViewController()
+@implementation JPPaymentMethodsView
 
-@property (nonatomic, strong) JPPaymentMethodsView *paymentMethodsView;
+#pragma mark - Initializers
 
-@end
-
-@implementation JPPaymentMethodsViewController
-
-- (void)loadView {
-    self.paymentMethodsView = [JPPaymentMethodsView new];
-    self.view = self.paymentMethodsView;
-    [self configureView];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+        [self setupConstraints];
+    }
+    return self;
 }
 
-- (void)configureView {
-    self.paymentMethodsView.tableView.delegate = self;
-    self.paymentMethodsView.tableView.dataSource = self;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setupViews];
+        [self setupConstraints];
+    }
+    return self;
 }
 
-@end
-
-@implementation JPPaymentMethodsViewController (TableViewDelegates)
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setupViews];
+        [self setupConstraints];
+    }
+    return self;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell new];
+#pragma mark - Layout setup
+
+- (void)setupViews {
+    [self addSubview:self.tableView];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    //TODO: Add the custom header view
-    UIView *view = [UIView new];
-    view.backgroundColor = UIColor.yellowColor;
-    return view;
+- (void)setupConstraints {
+    [self.tableView pinToView:self withPadding:0.0];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 312.0f;
+#pragma mark - Lazy properties
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [UITableView new];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _tableView;
 }
+
 
 @end
