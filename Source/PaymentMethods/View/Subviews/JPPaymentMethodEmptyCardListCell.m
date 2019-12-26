@@ -27,6 +27,7 @@
 #import "UIFont+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIView+Additions.h"
+#import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 
 @interface JPPaymentMethodEmptyCardListCell()
@@ -51,20 +52,29 @@
     [self.addCardButton setTitle:emptyViewModel.addCardButtonTitle
                         forState:UIControlStateNormal];
     
+    UIImage *buttonImage = [UIImage imageWithIconName:emptyViewModel.addCardButtonIconName];
+    [self.addCardButton setImage:buttonImage forState:UIControlStateNormal];
+    self.addCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     [self.addCardButton addTarget:self
                            action:emptyViewModel.onAddCardButtonTapHandler
                  forControlEvents:UIControlEventTouchUpInside];
+    
+    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0);
+    self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
 }
 
 - (void)setupViews {
     self.stackView = [UIStackView verticalStackViewWithSpacing:16.0f];
+    self.stackView.alignment = UIStackViewAlignmentCenter;
     [self.stackView addArrangedSubview:self.titleLabel];
     [self.stackView addArrangedSubview:self.addCardButton];
     [self addSubview:self.stackView];
 }
 
 - (void)setupConstraints {
-    [self.stackView.heightAnchor constraintEqualToConstant:72.0f].active = YES;
+    [self.addCardButton.widthAnchor constraintEqualToConstant:106.0f].active = YES;
+    [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f].active = YES;
     [self.stackView pinToView:self withPadding:25.0f];
 }
 
@@ -72,6 +82,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = UIFont.largeTitleFont;
         _titleLabel.textColor = UIColor.jpTextColor;
     }

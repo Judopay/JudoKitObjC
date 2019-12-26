@@ -38,6 +38,7 @@
 @interface JPPaymentMethodsEmptyListModel: JPPaymentMethodsModel
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *addCardButtonTitle;
+@property (nonatomic, strong) NSString *addCardButtonIconName;
 @property (nonatomic, assign) SEL onAddCardButtonTapHandler;
 @end
 
