@@ -27,24 +27,78 @@
 
 @interface JPStoredCardDetails : NSObject
 
+/**
+ * The last four digits of the credit card
+ */
 @property (nonatomic, strong) NSString *cardLastFour;
+
+/**
+ * The expiry date of the card
+ */
 @property (nonatomic, strong) NSString *expiryDate;
+
+/**
+ * The card's network
+ */
 @property (nonatomic, assign) CardNetwork cardNetwork;
+
+/**
+ * A boolean property describing if the card is set as the default card
+ */
 @property (nonatomic, assign) BOOL isDefault;
+
+/**
+ * A boolean property that describes if the card is currently selected
+ */
 @property (nonatomic, assign) BOOL isSelected;
 
+/**
+ * The designated initializer that creates a new instance with the last four digits, expiry date and card network set
+ *
+ * @param lastFour - the last four digits of the credit card
+ * @param expiryDate - the card's expiration date
+ * @param cardNetwork - the card's network
+ *
+ * @return an instance of JPStoredCardDetails
+ */
 - (instancetype)initWithLastFour:(NSString *)lastFour
                       expiryDate:(NSString *)expiryDate
                      cardNetwork:(CardNetwork)cardNetwork;
 
+/**
+ * A designated initializer that creates a new instance based on a passed NSDictionary
+ *
+ * @param dictionary - an instance of NSDictionary that contains the necessary card details
+ *
+ * @return an instance of JPStoredCardDetails
+ */
 - (instancetype)initFromDictionary:(NSDictionary *)dictionary;
 
+/**
+ * The designated initializer that creates a new instance with the last four digits, expiry date and card network set
+ *
+ * @param lastFour - the last four digits of the credit card
+ * @param expiryDate - the card's expiration date
+ * @param cardNetwork - the card's network
+ *
+ * @return an instance of JPStoredCardDetails
+ */
 + (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
                              expiryDate:(NSString *)expiryDate
                             cardNetwork:(CardNetwork)cardNetwork;
 
+/**
+ * A designated initializer that creates a new instance based on a passed NSDictionary
+ *
+ * @param dictionary - an instance of NSDictionary that contains the necessary card details
+ *
+ * @return an instance of JPStoredCardDetails
+ */
 + (instancetype)cardDetailsFromDictionary:(NSDictionary *)dictionary;
 
+/**
+ * A convenience method that converts the properties into a dictionary
+ */
 - (NSDictionary *)toDictionary;
 
 @end
