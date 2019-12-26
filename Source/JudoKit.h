@@ -264,13 +264,10 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
-                     amount:(nonnull JPAmount *)amount
-          consumerReference:(nonnull NSString *)reference
-             paymentMethods:(PaymentMethods)methods
-    applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
-                cardDetails:(nullable JPCardDetails *)cardDetails
-         redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
-                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+               amount:(nonnull JPAmount *)amount
+    consumerReference:(nonnull NSString *)reference
+       paymentMethods:(PaymentMethods)methods
+           completion:(nonnull JudoCompletionBlock)completion;
 
 /**
  *  This method will invoke the Judo UI on the top UIViewController instance of the Application window. When the form has been successfully filled, the button will invoke a payment with the judo API and respond in a completion block

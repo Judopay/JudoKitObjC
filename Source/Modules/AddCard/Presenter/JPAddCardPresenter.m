@@ -112,6 +112,7 @@
                    return;
                }
 
+        [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel];
                [weakSelf.router dismissViewController];
            }];
 }

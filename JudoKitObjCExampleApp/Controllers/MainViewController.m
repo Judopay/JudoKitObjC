@@ -188,16 +188,11 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.settings.currency];
-    
-    ApplePayConfiguration *configuration = [self applePayConfigurationWithType:TransactionTypePayment];
-    
+        
     [self.judoKitSession invokePayment:judoId
                                 amount:amount
                      consumerReference:self.reference
                         paymentMethods:PaymentMethodsAll
-               applePayConfiguratation:configuration
-                           cardDetails:nil
-                    redirectCompletion:nil
                             completion:^(JPResponse * response, NSError * error) {
                                 if (error || response.items.count == 0) {
                                     if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {

@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsPresenter.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "JPPaymentMethodsViewController.h"
+#import "JPPaymentMethodsRouter.h"
 
 @interface JPPaymentMethodsPresenterImpl()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -64,13 +65,17 @@
         _emptyListModel.title = @"You didn't connect any cards yet";
         _emptyListModel.addCardButtonTitle = @"ADD CARD";
         _emptyListModel.addCardButtonIconName = @"plus-icon";
-        _emptyListModel.onAddCardButtonTapHandler = @selector(onAddCardButtonTap);
+        
+        __weak typeof(self) weakSelf = self;
+        _emptyListModel.onAddCardButtonTapHandler = ^{
+            [weakSelf handleAddCardButtonTap];
+        };
     }
     return _emptyListModel;
 }
 
-- (void)onAddCardButtonTap {
-    
+- (void)handleAddCardButtonTap {
+    [self.router navigateToAddCardModule];
 }
 
 @end

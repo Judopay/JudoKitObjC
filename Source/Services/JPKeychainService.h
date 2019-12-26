@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsRouter.h
+//  JPKeychainService.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -23,21 +23,11 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "JPSession.h"
 
-@class JPPaymentMethodsViewController;
-@class JPTransaction, JPTheme, SliderTransitioningDelegate;
+@interface JPKeychainService : NSObject
 
-@protocol JPPaymentMethodsRouter
-- (void)navigateToAddCardModule;
-@end
-
-@interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
-@property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
-
-- (instancetype)initWithTransaction:(JPTransaction *)transaction
-              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                              theme:(JPTheme *)theme
-                         completion:(JudoCompletionBlock)completion;
++ (BOOL)saveObject:(id)object forKey:(NSString *)key;
++ (id)getObjectForKey:(NSString *)key;
++ (BOOL)deleteObjectForKey:(NSString *)key;
 
 @end

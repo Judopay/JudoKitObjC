@@ -28,6 +28,10 @@
 #import "JPCountry.h"
 #import "JPSession.h"
 #import "JPTransactionService.h"
+#import "JPKeychainService.h"
+#import "JPAddCardViewModel.h"
+#import "JPStoredCardDetails.h"
+#import "JPCardStorage.h"
 #import "NSError+Judo.h"
 
 @interface JPAddCardInteractorImpl ()
@@ -61,6 +65,24 @@
 - (void)addCard:(JPCard *)card completionHandler:(JudoCompletionBlock)completionHandler {
     self.completionHandler = completionHandler;
     [self.transactionService addCard:card completionHandler:completionHandler];
+}
+
+- (BOOL)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel {
+    
+    CardNetwork cardNetwork = viewModel.cardNumberViewModel.cardNetwork;
+    NSString *cardNumberString = viewModel.cardNumberViewModel.text;
+
+    NSString *lastFour = [cardNumberString substringFromIndex: cardNumberString.length - 4];
+    NSString *expiryDate = viewModel.expiryDateViewModel.text;
+    
+    JPStoredCardDetails *storedCardDetails = [JPStoredCardDetails cardDetailsWithLastFour:lastFour
+                                                                               expiryDate:expiryDate
+                                                                              cardNetwork:cardNetwork];
+    
+    JPCardStorage *cardStorage = [JPCardStorage new];
+    [cardStorage addCardDetails:storedCardDetails];
+    
+    return NO;
 }
 
 - (NSArray<NSString *> *)getSelectableCountryNames {

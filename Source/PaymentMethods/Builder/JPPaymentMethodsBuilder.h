@@ -22,12 +22,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPSession.h"
 #import <Foundation/Foundation.h>
 
 @class JPPaymentMethodsViewController;
+@class JudoKit, JPTheme, JPAmount, SliderTransitioningDelegate;
 
 @protocol JPPaymentMethodsBuilder
-- (JPPaymentMethodsViewController *)buildModule;
+- (JPPaymentMethodsViewController *)buildModuleWithJudoID:(NSString *)judoId
+                                                  session:(JudoKit *)session
+                                    transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                   amount:(JPAmount *)amount
+                                        consumerReference:(NSString *)consumerReference
+                                        completionHandler:(JudoCompletionBlock)completion;
 @end
 
 @interface JPPaymentMethodsBuilderImpl : NSObject <JPPaymentMethodsBuilder>

@@ -26,7 +26,7 @@
 #import "JPValidationResult.h"
 #import <Foundation/Foundation.h>
 
-@class JPCard, JPCardValidationService, JPTransactionService, JPCountry;
+@class JPCard, JPCardValidationService, JPTransactionService, JPCountry, JPAddCardViewModel;
 
 @protocol JPAddCardInteractor
 
@@ -105,6 +105,8 @@
  *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
+
+- (BOOL)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel;
 
 @end
 

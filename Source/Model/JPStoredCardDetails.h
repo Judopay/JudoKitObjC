@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsRouter.h
+//  JPStoredCardDetails.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -23,21 +23,28 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "JPSession.h"
+#import "JPCardNetwork.h"
 
-@class JPPaymentMethodsViewController;
-@class JPTransaction, JPTheme, SliderTransitioningDelegate;
+@interface JPStoredCardDetails : NSObject
 
-@protocol JPPaymentMethodsRouter
-- (void)navigateToAddCardModule;
-@end
+@property (nonatomic, strong) NSString *cardLastFour;
+@property (nonatomic, strong) NSString *expiryDate;
+@property (nonatomic, assign) CardNetwork cardNetwork;
+@property (nonatomic, assign) BOOL isDefault;
+@property (nonatomic, assign) BOOL isSelected;
 
-@interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
-@property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
+- (instancetype)initWithLastFour:(NSString *)lastFour
+                      expiryDate:(NSString *)expiryDate
+                     cardNetwork:(CardNetwork)cardNetwork;
 
-- (instancetype)initWithTransaction:(JPTransaction *)transaction
-              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                              theme:(JPTheme *)theme
-                         completion:(JudoCompletionBlock)completion;
+- (instancetype)initFromDictionary:(NSDictionary *)dictionary;
+
++ (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
+                             expiryDate:(NSString *)expiryDate
+                            cardNetwork:(CardNetwork)cardNetwork;
+
++ (instancetype)cardDetailsFromDictionary:(NSDictionary *)dictionary;
+
+- (NSDictionary *)toDictionary;
 
 @end

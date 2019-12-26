@@ -23,7 +23,48 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsRouter.h"
+#import "JPPaymentMethodsViewController.h"
+#import "JPAddCardBuilder.h"
+#import "JPAddCardViewController.h"
+
+#import "SliderTransitioningDelegate.h"
+#import "JPTransaction.h"
+#import "JPTheme.h"
+
+@interface JPPaymentMethodsRouterImpl()
+
+@property (nonatomic, strong) JPTransaction *transaction;
+@property (nonatomic, strong) JPTheme *theme;
+@property (nonatomic, strong) JudoCompletionBlock completionHandler;
+@property (nonatomic, strong) SliderTransitioningDelegate *transitioningDelegate;
+
+@end
 
 @implementation JPPaymentMethodsRouterImpl
+
+- (instancetype)initWithTransaction:(JPTransaction *)transaction
+              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                              theme:(JPTheme *)theme
+                         completion:(JudoCompletionBlock)completion {
+    if (self = [super init]) {
+        self.transaction = transaction;
+        self.theme = theme;
+        self.transitioningDelegate = transitioningDelegate;
+        self.completionHandler = completion;
+    }
+    return self;
+}
+
+- (void)navigateToAddCardModule {
+    
+    JPAddCardViewController *controller;
+    controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:self.transaction
+                                                                      theme:self.theme
+                                                                 completion:self.completionHandler];
+    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.transitioningDelegate = self.transitioningDelegate;
+    [self.viewController presentViewController:controller animated:YES completion:nil];
+}
 
 @end

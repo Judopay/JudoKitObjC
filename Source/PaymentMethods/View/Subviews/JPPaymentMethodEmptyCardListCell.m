@@ -34,9 +34,12 @@
 @property (nonatomic, strong) UIStackView *stackView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *addCardButton;
+@property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
 @end
 
 @implementation JPPaymentMethodEmptyCardListCell
+
+#pragma mark - View model configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
     
@@ -56,13 +59,19 @@
     [self.addCardButton setImage:buttonImage forState:UIControlStateNormal];
     self.addCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    [self.addCardButton addTarget:self
-                           action:emptyViewModel.onAddCardButtonTapHandler
-                 forControlEvents:UIControlEventTouchUpInside];
-    
     self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0);
     self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    
+    self.onAddCardButtonTapHandler = emptyViewModel.onAddCardButtonTapHandler;
 }
+
+#pragma mark - User actions
+
+- (void)onAddCardButtonTap {
+    self.onAddCardButtonTapHandler();
+}
+
+#pragma mark - Layout setup
 
 - (void)setupViews {
     self.stackView = [UIStackView verticalStackViewWithSpacing:16.0f];
@@ -77,6 +86,8 @@
     [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f].active = YES;
     [self.stackView pinToView:self withPadding:25.0f];
 }
+
+#pragma mark - Lazy properties
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
@@ -96,6 +107,10 @@
         [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
         _addCardButton.titleLabel.font = UIFont.smallTitleFont;
+        
+        [self.addCardButton addTarget:self
+                  action:@selector(onAddCardButtonTap)
+        forControlEvents:UIControlEventTouchUpInside];
     }
     return _addCardButton;
 }

@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *addCardButtonTitle;
 @property (nonatomic, strong) NSString *addCardButtonIconName;
-@property (nonatomic, assign) SEL onAddCardButtonTapHandler;
+@property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
 @end
 
 @interface JPPaymentMethodsCardModel : NSObject

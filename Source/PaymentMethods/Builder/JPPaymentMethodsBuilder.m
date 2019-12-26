@@ -24,6 +24,10 @@
 
 #import "JPPaymentMethodsBuilder.h"
 
+#import "JudoKit.h"
+#import "JPAmount.h"
+#import "JPReference.h"
+
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsPresenter.h"
@@ -31,11 +35,34 @@
 
 @implementation JPPaymentMethodsBuilderImpl
 
-- (JPPaymentMethodsViewController *)buildModule {
+- (JPPaymentMethodsViewController *)buildModuleWithJudoID:(NSString *)judoId
+                                                  session:(JudoKit *)session
+                                    transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                   amount:(JPAmount *)amount
+                                        consumerReference:(NSString *)consumerReference
+                                        completionHandler:(JudoCompletionBlock)completion {
+
+    JPReference *reference = [JPReference consumerReference:consumerReference];
+    
+    JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard
+                                                             judoId:judoId
+                                                             amount:amount
+                                                          reference:reference];
+    
+    JPTransaction *paymentTransaction = [session transactionForType:TransactionTypePayment
+                                                             judoId:judoId
+                                                             amount:amount
+                                                          reference:reference];
+    
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
     JPPaymentMethodsInteractorImpl *interactor = [JPPaymentMethodsInteractorImpl new];
-    JPPaymentMethodsRouterImpl *router = [JPPaymentMethodsRouterImpl new];
+    
+    JPPaymentMethodsRouterImpl *router;
+    router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction
+                                               transitioningDelegate:transitioningDelegate
+                                                               theme:session.theme
+                                                          completion:completion];
     
     presenter.view = viewController;
     presenter.interactor = interactor;
