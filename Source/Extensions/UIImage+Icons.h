@@ -36,4 +36,14 @@
  */
 + (UIImage *)imageWithIconName:(NSString *)iconName;
 
+/**
+* Initializes an UIImage based on a icon name contained in the resources bundle
+*
+* @param resourceName - a string describing the icon name in the resources bundle
+*
+* @return a configured UIImage instance
+*/
++ (UIImage *)imageWithResourceName:(NSString *)resourceName;
+
+
 @end

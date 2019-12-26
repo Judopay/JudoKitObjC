@@ -32,4 +32,11 @@
     return [UIImage imageNamed:iconName inBundle:NSBundle.iconsBundle compatibleWithTraitCollection:nil];
 }
 
+
++ (UIImage *)imageWithResourceName:(NSString *)resourceName {
+    return [UIImage imageNamed:resourceName inBundle:NSBundle.resourecesBundle compatibleWithTraitCollection:nil];
+}
+
+
+
 @end

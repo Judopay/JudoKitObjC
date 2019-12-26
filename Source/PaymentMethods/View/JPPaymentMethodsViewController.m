@@ -24,6 +24,8 @@
 
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsView.h"
+#import "CardPreviewView.h"
+#import "CardPreviewViewModel.h"
 
 @interface JPPaymentMethodsViewController()
 
@@ -57,9 +59,8 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    //TODO: Add the custom header view
-    UIView *view = [UIView new];
-    view.backgroundColor = UIColor.yellowColor;
+    CardPreviewViewModel *cardPrevieViewModel = [[CardPreviewViewModel alloc] initWithAmount:[JPAmount amount:@"15.33" currency:@"$"] type:@"NONE"];
+    CardPreviewView *view = [[CardPreviewView alloc] initWithType:cardPrevieViewModel];
     return view;
 }
 
