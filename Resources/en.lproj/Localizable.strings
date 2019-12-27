@@ -1,7 +1,7 @@
 "billing_postcode"                      = "Billing postcode";
 "billing_zip_code"                      = "Billing ZIP code";
 "billing_postal_code"                   = "Billing postal code";
-"pay"                                   = "PAY";
+"pay"                                   = "Pay";
 "confirm_payment"                       = "Confirm payment";
 "payment"                               = "Payment";
 "card_number_label"                     = "Card number";
