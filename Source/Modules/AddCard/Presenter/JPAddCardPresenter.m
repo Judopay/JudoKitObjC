@@ -114,6 +114,7 @@
 
         [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel];
                [weakSelf.router dismissViewController];
+            [weakSelf.view didFinishAddingCard];
            }];
 }
 

@@ -24,7 +24,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class JPStoredCardDetails;
+
 @protocol JPPaymentMethodsInteractor
+- (NSArray <JPStoredCardDetails *> *)getStoredCardDetails;
+- (void)selectCardAtIndex:(NSInteger)index;
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>

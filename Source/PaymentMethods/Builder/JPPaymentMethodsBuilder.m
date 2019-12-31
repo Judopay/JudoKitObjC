@@ -27,6 +27,7 @@
 #import "JudoKit.h"
 #import "JPAmount.h"
 #import "JPReference.h"
+#import "JPCardStorage.h"
 
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsInteractor.h"

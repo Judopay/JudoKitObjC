@@ -62,6 +62,7 @@
                                                                       theme:self.theme
                                                                  completion:self.completionHandler];
     
+    controller.delegate = self.viewController;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.viewController presentViewController:controller animated:YES completion:nil];

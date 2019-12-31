@@ -40,6 +40,9 @@
 "invalid_postcode" = "Código postal no válido ingresado";
 "invalid_zip_code" = "Código postal no válido ingresado";
 
+//Payment Method Screen
+"card_subtitle" = "%@ Ending %@";
+
 //CardInputField
 "card_number_label" = "Número de tarjeta";
 "long_card_number" = "Número largo de la tarjeta";

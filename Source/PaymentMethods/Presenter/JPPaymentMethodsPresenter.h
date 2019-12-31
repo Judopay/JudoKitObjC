@@ -25,9 +25,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol JPPaymentMethodsView, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
+@class JPPaymentMethodsCardModel;
 
 @protocol JPPaymentMethodsPresenter
 - (void)prepareInitialViewModel;
+- (void)viewModelNeedsUpdate;
+- (void)didSelectCardAtIndex:(NSInteger)index;
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

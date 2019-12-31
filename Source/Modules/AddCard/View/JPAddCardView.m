@@ -298,7 +298,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
-    label.font = UIFont.subtitleTextFont;
+    label.font = UIFont.subtitleFont;
     label.textColor = UIColor.jpGrayColor;
     return label;
 }

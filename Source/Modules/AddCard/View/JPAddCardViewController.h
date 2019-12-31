@@ -28,6 +28,10 @@
 
 @protocol JPAddCardPresenter;
 
+@protocol JPAddCardViewDelegate
+- (void)didFinishAddingCard;
+@end
+
 @protocol JPAddCardView
 
 /**
@@ -40,9 +44,13 @@
  */
 - (void)updateViewWithError:(NSError *)error;
 
+- (void)didFinishAddingCard;
+
 @end
 
 @interface JPAddCardViewController : UIViewController <JPAddCardView>
+
+@property (nonatomic, strong) id<JPAddCardViewDelegate> delegate;
 
 /**
  * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol

@@ -32,4 +32,27 @@
     return [UIImage imageNamed:iconName inBundle:NSBundle.iconsBundle compatibleWithTraitCollection:nil];
 }
 
++ (UIImage *)imageForCardNetwork:(CardNetwork)cardNetwork {
+    switch (cardNetwork) {
+        case CardNetworkAMEX:
+            return [UIImage imageWithIconName:@"card-amex"];
+        case CardNetworkDinersClub:
+            return [UIImage imageWithIconName:@"card-diners"];
+        case CardNetworkDiscover:
+            return [UIImage imageWithIconName:@"card-discover"];
+        case CardNetworkJCB:
+            return [UIImage imageWithIconName:@"card-jcb"];
+        case CardNetworkMaestro:
+            return [UIImage imageWithIconName:@"card-maestro"];
+        case CardNetworkMasterCard:
+            return [UIImage imageWithIconName:@"card-mastercard"];
+        case CardNetworkChinaUnionPay:
+            return [UIImage imageWithIconName:@"card-unionpay"];
+        case CardNetworkVisa:
+            return [UIImage imageWithIconName:@"card-visa"];
+        default:
+            return nil;
+    }
+}
+
 @end

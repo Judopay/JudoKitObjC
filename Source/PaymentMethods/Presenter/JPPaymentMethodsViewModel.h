@@ -32,11 +32,19 @@
 @interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
 @end
 
-@interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
-@end
-
 @interface JPPaymentMethodsEmptyListModel: JPPaymentMethodsModel
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *addCardButtonTitle;
+@property (nonatomic, strong) NSString *addCardButtonIconName;
+@property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
+@end
+
+@interface JPPaymentMethodsCardHeaderModel : JPPaymentMethodsModel
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *editButtonTitle;
+@end
+
+@interface JPPaymentMethodsCardFooterModel : JPPaymentMethodsModel
 @property (nonatomic, strong) NSString *addCardButtonTitle;
 @property (nonatomic, strong) NSString *addCardButtonIconName;
 @property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
@@ -47,6 +55,11 @@
 @property (nonatomic, assign) CardNetwork cardNetwork;
 @property (nonatomic, strong) NSString *cardNumberLastFour;
 @property (nonatomic, assign) BOOL isDefaultCard;
+@property (nonatomic, assign) BOOL isSelected;
+@end
+
+@interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
+@property (nonatomic, strong) NSMutableArray <JPPaymentMethodsCardModel *> *cardModels;
 @end
 
 @interface JPPaymentMethodsViewModel : NSObject

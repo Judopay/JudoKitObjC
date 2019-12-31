@@ -138,6 +138,10 @@
     return [UIColor colorWithRed:38 / 255.0f green:38 / 225.0 blue:38 / 255.0 alpha:1.0];
 }
 
++ (UIColor *)jpSubtitleColor {
+    return [UIColor colorWithRed:141 / 255.0f green:141 / 225.0 blue:141 / 255.0 alpha:1.0];
+}
+
 + (UIColor *)jpTextFieldBackgroundColor {
     return [UIColor colorWithRed:246 / 255.0f green:246 / 255.0f blue:246 / 255.0f alpha:1.0];
 }

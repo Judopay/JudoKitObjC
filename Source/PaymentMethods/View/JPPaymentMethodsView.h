@@ -26,6 +26,7 @@
 
 @interface JPPaymentMethodsView : UIView
 
+@property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end

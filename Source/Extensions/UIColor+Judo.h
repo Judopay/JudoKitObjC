@@ -68,6 +68,8 @@
 
 + (UIColor *_Nonnull)jpTextColor;
 
++ (UIColor *_Nonnull)jpSubtitleColor;
+
 + (UIColor *_Nonnull)jpTextFieldBackgroundColor;
 
 + (UIColor *_Nonnull)jpContentBackgroundColor;

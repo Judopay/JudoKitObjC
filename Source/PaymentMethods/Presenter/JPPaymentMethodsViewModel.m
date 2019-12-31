@@ -32,6 +32,14 @@
 
 @end
 
+@implementation JPPaymentMethodsCardHeaderModel
+
+@end
+
+@implementation JPPaymentMethodsCardFooterModel
+
+@end
+
 @implementation JPPaymentMethodsCardListModel
 
 @end

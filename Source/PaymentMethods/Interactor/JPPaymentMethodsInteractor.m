@@ -23,7 +23,29 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsInteractor.h"
+#import "JPCardStorage.h"
 
 @implementation JPPaymentMethodsInteractorImpl
+
+- (NSArray<JPStoredCardDetails *> *)getStoredCardDetails {
+    return [JPCardStorage.sharedInstance getStoredCardDetails];
+}
+
+- (void)selectCardAtIndex:(NSInteger)index {
+    
+    NSArray<JPStoredCardDetails *> *storedCardDetails;
+    storedCardDetails = [JPCardStorage.sharedInstance getStoredCardDetails];
+    
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        cardDetails.isSelected = NO;
+    }
+    storedCardDetails[index].isSelected = YES;
+    
+    [JPCardStorage.sharedInstance deleteCardDetails];
+    
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        [JPCardStorage.sharedInstance addCardDetails:cardDetails];
+    }
+}
 
 @end

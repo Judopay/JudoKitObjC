@@ -28,6 +28,12 @@
 @interface JPCardStorage : NSObject
 
 /**
+ * The shared JPCardStorage instance
+ *
+ */
++ (instancetype)sharedInstance;
+
+/**
  * A method that returns all the card details stored in the Keychain
  *
  * @returns An array of JPStoredCardDetails objects
@@ -40,5 +46,12 @@
  * @param cardDetails - An instance of JPStoredCardDetails that describes the card details
  */
 -(void)addCardDetails:(JPStoredCardDetails *)cardDetails;
+
+/**
+ * A method for deleting the existing card details from the keychain
+ *
+ * @returns a boolean value describing if the cards have been succesfully deleted
+ */
+-(BOOL)deleteCardDetails;
 
 @end

@@ -46,8 +46,12 @@
     return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
 }
 
-+ (UIFont *)subtitleTextFont {
-    return [UIFont systemFontOfSize:11.3];
++ (UIFont *)semiboldSubtitleFont {
+    return [UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
+}
+
++ (UIFont *)subtitleFont {
+    return [UIFont systemFontOfSize:10];
 }
 
 @end

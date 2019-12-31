@@ -33,6 +33,15 @@
 
 @implementation JPCardStorage
 
++ (instancetype)sharedInstance {
+    static JPCardStorage *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [JPCardStorage new];
+    });
+    return sharedInstance;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         
@@ -49,7 +58,7 @@
 }
 
 - (NSMutableArray<JPStoredCardDetails *> *)getStoredCardDetails {
-    return self.storedCards;
+    return self.storedCards.copy;
 }
 
 - (NSArray *)convertStoredCardsToArray {
@@ -64,6 +73,11 @@
     [self.storedCards addObject:cardDetails];
     NSArray *cardDetailsArray = [self convertStoredCardsToArray];
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
+}
+
+- (BOOL)deleteCardDetails {
+    [self.storedCards removeAllObjects];
+    return [JPKeychainService deleteObjectForKey:@"storedCards"];
 }
 
 @end

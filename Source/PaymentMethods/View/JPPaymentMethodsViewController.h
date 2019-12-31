@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPAddCardViewController.h"
 
 @protocol JPPaymentMethodsPresenter;
 @class JPPaymentMethodsViewModel;
@@ -41,5 +42,9 @@
 @end
 
 @interface JPPaymentMethodsViewController (TableViewDelegates) <UITableViewDelegate, UITableViewDataSource>
+
+@end
+
+@interface JPPaymentMethodsViewController (AddCardDelegate) <JPAddCardViewDelegate>
 
 @end

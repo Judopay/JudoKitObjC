@@ -79,8 +79,7 @@
                                                                                expiryDate:expiryDate
                                                                               cardNetwork:cardNetwork];
     
-    JPCardStorage *cardStorage = [JPCardStorage new];
-    [cardStorage addCardDetails:storedCardDetails];
+    [JPCardStorage.sharedInstance addCardDetails:storedCardDetails];
     
     return NO;
 }

@@ -86,7 +86,7 @@
 
 - (void)setCardNetwork:(CardNetwork)cardNetwork {
 
-    UIImage *cardIcon = [self iconForCardNetwork:cardNetwork];
+    UIImage *cardIcon = [UIImage imageForCardNetwork:cardNetwork];
 
     if (cardIcon)
         self.cardLogoImageView.image = cardIcon;
@@ -99,29 +99,6 @@
             if (!cardIcon)
                 self.cardLogoImageView.image = cardIcon;
         }];
-}
-
-- (UIImage *)iconForCardNetwork:(CardNetwork)cardNetwork {
-    switch (cardNetwork) {
-        case CardNetworkAMEX:
-            return [UIImage imageWithIconName:@"card-amex"];
-        case CardNetworkDinersClub:
-            return [UIImage imageWithIconName:@"card-diners"];
-        case CardNetworkDiscover:
-            return [UIImage imageWithIconName:@"card-discover"];
-        case CardNetworkJCB:
-            return [UIImage imageWithIconName:@"card-jcb"];
-        case CardNetworkMaestro:
-            return [UIImage imageWithIconName:@"card-maestro"];
-        case CardNetworkMasterCard:
-            return [UIImage imageWithIconName:@"card-mastercard"];
-        case CardNetworkChinaUnionPay:
-            return [UIImage imageWithIconName:@"card-unionpay"];
-        case CardNetworkVisa:
-            return [UIImage imageWithIconName:@"card-visa"];
-        default:
-            return nil;
-    }
 }
 
 #pragma mark - Layout Setup

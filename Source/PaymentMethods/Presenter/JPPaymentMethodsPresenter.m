@@ -26,20 +26,85 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsRouter.h"
+#import "JPPaymentMethodsInteractor.h"
+#import "JPStoredCardDetails.h"
+#import "JPCardNetwork.h"
 
 @interface JPPaymentMethodsPresenterImpl()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
 @property (nonatomic, strong) JPPaymentMethodsSelectionModel *paymentSelectionModel;
 @property (nonatomic, strong) JPPaymentMethodsEmptyListModel *emptyListModel;
+@property (nonatomic, strong) JPPaymentMethodsCardHeaderModel *cardHeaderModel;
+@property (nonatomic, strong) JPPaymentMethodsCardFooterModel *cardFooterModel;
+@property (nonatomic, strong) JPPaymentMethodsCardListModel *cardListModel;
 @end
 
 @implementation JPPaymentMethodsPresenterImpl
 
+//------------------------------------------------------------------------
+#pragma mark - Protocol Methods
+//------------------------------------------------------------------------
+
 - (void)prepareInitialViewModel {
-    [self.viewModel.items addObject:self.paymentSelectionModel];
-    [self.viewModel.items addObject:self.emptyListModel];
+    [self updateViewModel];
     [self.view configureWithViewModel:self.viewModel];
 }
+
+- (void)viewModelNeedsUpdate {
+    [self updateViewModel];
+    [self.view configureWithViewModel:self.viewModel];
+}
+
+- (void)didSelectCardAtIndex:(NSInteger)index {
+    [self.interactor selectCardAtIndex:index];
+    [self viewModelNeedsUpdate];
+}
+
+- (void)updateViewModel {
+    [self.viewModel.items removeAllObjects];
+    [self.viewModel.items addObject:self.paymentSelectionModel];
+    
+    NSArray <JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
+    
+    if (cardDetailsArray.count == 0) {
+        [self.viewModel.items addObject:self.emptyListModel];
+    } else {
+        [self prepareCardModelsForStoredCardDetails:cardDetailsArray];
+        [self.viewModel.items addObject:self.cardHeaderModel];
+        [self.viewModel.items addObject:self.cardListModel];
+        [self.viewModel.items addObject:self.cardFooterModel];
+    }
+}
+
+- (void)prepareCardModelsForStoredCardDetails:(NSArray <JPStoredCardDetails *>*)storedCardDetails {
+    [self.cardListModel.cardModels removeAllObjects];
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        JPPaymentMethodsCardModel *cardModel = [self cardModelFromStoredCardDetails:cardDetails];
+        [self.cardListModel.cardModels addObject:cardModel];
+    }
+}
+
+- (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
+    JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
+    cardModel.cardTitle = @"Card for shopping";
+    cardModel.cardNetwork = cardDetails.cardNetwork;
+    cardModel.cardNumberLastFour = cardDetails.cardLastFour;
+    cardModel.isDefaultCard = cardDetails.isDefault;
+    cardModel.isSelected = cardDetails.isSelected;
+    return cardModel;
+}
+
+//------------------------------------------------------------------------
+#pragma mark - Handlers
+//------------------------------------------------------------------------
+
+- (void)handleAddCardButtonTap {
+    [self.router navigateToAddCardModule];
+}
+
+//------------------------------------------------------------------------
+#pragma mark - Lazy instantiated properties
+//------------------------------------------------------------------------
 
 - (JPPaymentMethodsViewModel *)viewModel {
     if (!_viewModel) {
@@ -74,8 +139,47 @@
     return _emptyListModel;
 }
 
-- (void)handleAddCardButtonTap {
-    [self.router navigateToAddCardModule];
+- (JPPaymentMethodsCardHeaderModel *)cardHeaderModel {
+    if (!_cardHeaderModel) {
+        _cardHeaderModel = [JPPaymentMethodsCardHeaderModel new];
+        _cardHeaderModel.title = @"Connected cards";
+        _cardHeaderModel.editButtonTitle = @"EDIT";
+        _cardHeaderModel.identifier = @"JPPaymentMethodsCardListHeaderCell";
+    }
+    return _cardHeaderModel;
+}
+
+- (JPPaymentMethodsCardFooterModel *)cardFooterModel {
+    if (!_cardFooterModel) {
+        _cardFooterModel = [JPPaymentMethodsCardFooterModel new];
+        _cardFooterModel.addCardButtonTitle = @"ADD CARD";
+        _cardFooterModel.addCardButtonIconName = @"plus-icon";
+        _cardFooterModel.identifier = @"JPPaymentMethodsCardListFooterCell";
+        
+        __weak typeof(self) weakSelf = self;
+        _cardFooterModel.onAddCardButtonTapHandler = ^{
+            [weakSelf handleAddCardButtonTap];
+        };
+    }
+    return _cardFooterModel;
+}
+
+- (JPPaymentMethodsCardListModel *)cardListModel {
+    if (!_cardListModel) {
+        _cardListModel = [JPPaymentMethodsCardListModel new];
+        _cardListModel.cardModels = [NSMutableArray new];
+        _cardListModel.identifier = @"JPPaymentMethodsCardCell";
+    }
+    return _cardListModel;
+}
+
+- (JPPaymentMethodsCardModel *)cardModel {
+    JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
+    cardModel.cardTitle = @"Card for online shopping";
+    cardModel.cardNumberLastFour = @"1122";
+    cardModel.cardNetwork = CardNetworkVisa;
+    cardModel.isSelected = NO;
+    return cardModel;
 }
 
 @end

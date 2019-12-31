@@ -97,6 +97,10 @@
     [self displayAlertWithError:error];
 }
 
+- (void)didFinishAddingCard {
+    [self.delegate didFinishAddingCard];
+}
+
 #pragma mark - Layout setup
 
 - (void)addTargets {

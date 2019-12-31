@@ -56,14 +56,25 @@
 #pragma mark - Layout setup
 
 - (void)setupViews {
+    [self addSubview:self.headerView];
     [self addSubview:self.tableView];
 }
 
 - (void)setupConstraints {
-    [self.tableView pinToView:self withPadding:0.0];
+    [self.tableView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing | AnchorTypeBottom forView:self];
+    [self.tableView.topAnchor constraintEqualToAnchor:self.headerView.bottomAnchor].active = YES;
 }
 
 #pragma mark - Lazy properties
+
+- (UIView *)headerView {
+    if (!_headerView) {
+        _headerView = [UIView new];
+        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 350);
+        _headerView.backgroundColor = UIColor.lightGrayColor;
+    }
+    return _headerView;
+}
 
 - (UITableView *)tableView {
     if (!_tableView) {
@@ -73,6 +84,5 @@
     }
     return _tableView;
 }
-
 
 @end
