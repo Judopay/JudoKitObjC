@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsInteractor.h
+//  JPPaymentMethodsCardListHeaderCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,14 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPPaymentMethodsCell.h"
+#import <UIKit/UIKit.h>
 
-@class JPStoredCardDetails;
-
-@protocol JPPaymentMethodsInteractor
-- (NSArray <JPStoredCardDetails *> *)getStoredCardDetails;
-- (void)selectCardAtIndex:(NSInteger)index;
-@end
-
-@interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
+@interface JPPaymentMethodsCardListHeaderCell : JPPaymentMethodsCell
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIButton *actionButton;
 @end

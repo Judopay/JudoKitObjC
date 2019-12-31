@@ -23,13 +23,13 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsViewController.h"
-#import "JPPaymentMethodsView.h"
-#import "JPPaymentMethodsViewModel.h"
 #import "JPPaymentMethodSelectionCell.h"
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsPresenter.h"
+#import "JPPaymentMethodsView.h"
+#import "JPPaymentMethodsViewModel.h"
 
-@interface JPPaymentMethodsViewController()
+@interface JPPaymentMethodsViewController ()
 
 @property (nonatomic, strong) JPPaymentMethodsView *paymentMethodsView;
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -64,12 +64,12 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
-    
+
     for (JPPaymentMethodsModel *item in viewModel.items) {
         [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)
                                   forCellReuseIdentifier:item.identifier];
     }
-    
+
     [self.paymentMethodsView.tableView reloadData];
 }
 
@@ -86,30 +86,30 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
     if ([self.viewModel.items[section] isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;
         cardListModel = (JPPaymentMethodsCardListModel *)self.viewModel.items[section];
         return cardListModel.cardModels.count;
     }
-    
+
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
     JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
                                                                  forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;
         cardListModel = (JPPaymentMethodsCardListModel *)model;
         [cell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
         return cell;
     }
-    
+
     [cell configureWithViewModel:model];
     return cell;
 }
@@ -130,13 +130,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
-    
+
     if (![model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         return;
     }
-    
+
     [self.presenter didSelectCardAtIndex:indexPath.row];
 }
 

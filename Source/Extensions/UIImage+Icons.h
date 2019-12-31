@@ -23,8 +23,8 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
 #import "JPCardNetwork.h"
+#import <UIKit/UIKit.h>
 
 @interface UIImage (Icons)
 

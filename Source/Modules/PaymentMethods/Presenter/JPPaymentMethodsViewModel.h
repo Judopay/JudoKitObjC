@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPCardDetails.h"
+#import <Foundation/Foundation.h>
 
 @interface JPPaymentMethodsModel : NSObject
 @property (nonatomic, strong) NSString *identifier;
@@ -32,7 +32,7 @@
 @interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
 @end
 
-@interface JPPaymentMethodsEmptyListModel: JPPaymentMethodsModel
+@interface JPPaymentMethodsEmptyListModel : JPPaymentMethodsModel
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *addCardButtonTitle;
 @property (nonatomic, strong) NSString *addCardButtonIconName;
@@ -59,7 +59,7 @@
 @end
 
 @interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
-@property (nonatomic, strong) NSMutableArray <JPPaymentMethodsCardModel *> *cardModels;
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsCardModel *> *cardModels;
 @end
 
 @interface JPPaymentMethodsViewModel : NSObject

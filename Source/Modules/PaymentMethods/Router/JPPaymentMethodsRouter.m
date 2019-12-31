@@ -23,15 +23,15 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsRouter.h"
-#import "JPPaymentMethodsViewController.h"
 #import "JPAddCardBuilder.h"
 #import "JPAddCardViewController.h"
+#import "JPPaymentMethodsViewController.h"
 
-#import "SliderTransitioningDelegate.h"
-#import "JPTransaction.h"
 #import "JPTheme.h"
+#import "JPTransaction.h"
+#import "SliderTransitioningDelegate.h"
 
-@interface JPPaymentMethodsRouterImpl()
+@interface JPPaymentMethodsRouterImpl ()
 
 @property (nonatomic, strong) JPTransaction *transaction;
 @property (nonatomic, strong) JPTheme *theme;
@@ -56,12 +56,12 @@
 }
 
 - (void)navigateToAddCardModule {
-    
+
     JPAddCardViewController *controller;
     controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:self.transaction
-                                                                      theme:self.theme
-                                                                 completion:self.completionHandler];
-    
+                                                                  theme:self.theme
+                                                             completion:self.completionHandler];
+
     controller.delegate = self.viewController;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;

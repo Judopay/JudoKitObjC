@@ -23,16 +23,16 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsCardCell.h"
-#import "UIFont+Additions.h"
-#import "UIColor+Judo.h"
-#import "UIStackView+Additions.h"
-#import "UIImage+Icons.h"
-#import "UIView+Additions.h"
-#import "JPPaymentMethodsViewModel.h"
 #import "JPCardNetwork.h"
+#import "JPPaymentMethodsViewModel.h"
 #import "NSString+Localize.h"
+#import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
+#import "UIImage+Icons.h"
+#import "UIStackView+Additions.h"
+#import "UIView+Additions.h"
 
-@interface JPPaymentMethodsCardCell()
+@interface JPPaymentMethodsCardCell ()
 
 @property (nonatomic, strong) UIView *iconContainerView;
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -70,24 +70,24 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
-    
+
     if (![viewModel isKindOfClass:JPPaymentMethodsCardModel.class]) {
         return;
     }
-    
+
     JPPaymentMethodsCardModel *cardModel = (JPPaymentMethodsCardModel *)viewModel;
     self.titleLabel.text = cardModel.cardTitle;
-    
+
     self.subtitleLabel.text = [NSString stringWithFormat:@"card_subtitle".localized,
-                               [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
-                               cardModel.cardNumberLastFour];
-    
+                                                         [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
+                                                         cardModel.cardNumberLastFour];
+
     self.iconImageView.image = [UIImage imageForCardNetwork:cardModel.cardNetwork];
-    
+
     NSString *iconName = cardModel.isSelected ? @"radio-on" : @"radio-off";
 
     UIImage *accesoryImage = [UIImage imageWithIconName:iconName];
-    UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage: accesoryImage];
+    UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:accesoryImage];
     accessoryImageView.contentMode = UIViewContentModeScaleAspectFit;
     accessoryImageView.frame = CGRectMake(0, 0, 24, 24);
     self.accessoryView = accessoryImageView;
@@ -98,16 +98,16 @@
 - (void)setupViews {
     UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:3.0];
-    
+
     [verticalStackView addArrangedSubview:self.titleLabel];
     [verticalStackView addArrangedSubview:self.subtitleLabel];
-    
+
     [self.iconContainerView addSubview:self.iconImageView];
     [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
-    
+
     [horizontalStackView addArrangedSubview:self.iconContainerView];
     [horizontalStackView addArrangedSubview:verticalStackView];
-    
+
     [self addSubview:horizontalStackView];
     [horizontalStackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self withPadding:13.0f];
     [horizontalStackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing forView:self withPadding:24.0f];

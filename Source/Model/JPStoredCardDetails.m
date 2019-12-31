@@ -43,14 +43,14 @@
     NSNumber *cardNetwork = dictionary[@"cardNetwork"];
     NSNumber *isDefault = dictionary[@"isDefault"];
     NSNumber *isSelected = dictionary[@"isSelected"];
-    
-    JPStoredCardDetails *storedCardDetails =  [self initWithLastFour:cardLastFour
-                                                    expiryDate:expiryDate
+
+    JPStoredCardDetails *storedCardDetails = [self initWithLastFour:cardLastFour
+                                                         expiryDate:expiryDate
                                                         cardNetwork:cardNetwork.intValue];
-    
+
     storedCardDetails.isDefault = isDefault.boolValue;
     storedCardDetails.isSelected = isSelected.boolValue;
-    
+
     return storedCardDetails;
 }
 
@@ -68,11 +68,11 @@
 
 - (NSDictionary *)toDictionary {
     return @{
-        @"cardLastFour": self.cardLastFour,
-        @"expiryDate": self.expiryDate,
-        @"cardNetwork": @(self.cardNetwork),
-        @"isDefault": @(self.isDefault),
-        @"isSelected": @(self.isSelected)
+        @"cardLastFour" : self.cardLastFour,
+        @"expiryDate" : self.expiryDate,
+        @"cardNetwork" : @(self.cardNetwork),
+        @"isDefault" : @(self.isDefault),
+        @"isSelected" : @(self.isSelected)
     };
 }
 

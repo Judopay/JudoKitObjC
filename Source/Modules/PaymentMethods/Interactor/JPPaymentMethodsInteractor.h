@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodSelectionView.h
+//  JPPaymentMethodsInteractor.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,9 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface JPPaymentMethodSelectionView : UIView
+@class JPStoredCardDetails;
 
+@protocol JPPaymentMethodsInteractor
+- (NSArray<JPStoredCardDetails *> *)getStoredCardDetails;
+- (void)selectCardAtIndex:(NSInteger)index;
 @end
 
+@interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
+@end

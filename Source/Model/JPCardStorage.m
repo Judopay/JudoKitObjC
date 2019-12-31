@@ -25,9 +25,9 @@
 #import "JPCardStorage.h"
 #import "JPKeychainService.h"
 
-@interface JPCardStorage()
+@interface JPCardStorage ()
 
-@property (nonatomic, strong) NSMutableArray <JPStoredCardDetails *> *storedCards;
+@property (nonatomic, strong) NSMutableArray<JPStoredCardDetails *> *storedCards;
 
 @end
 
@@ -44,15 +44,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+
         self.storedCards = [NSMutableArray new];
         NSArray *storedCardsArray = [JPKeychainService getObjectForKey:@"storedCards"];
-        
+
         for (NSDictionary *storedCardDictionary in storedCardsArray) {
             JPStoredCardDetails *storedCard = [JPStoredCardDetails cardDetailsFromDictionary:storedCardDictionary];
             [self.storedCards addObject:storedCard];
         }
-        
     }
     return self;
 }

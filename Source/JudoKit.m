@@ -349,11 +349,11 @@
                                                                        amount:amount
                                                             consumerReference:reference
                                                             completionHandler:completion];
-        
+
     UINavigationController *navigationController;
     navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
-    
+
     self.activeViewController = viewController;
     [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
 }

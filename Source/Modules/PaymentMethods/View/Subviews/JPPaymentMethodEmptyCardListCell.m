@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsCardListFooterCell.m
+//  JPPaymentMethodEmptyCardListCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,96 +22,93 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCardListFooterCell.h"
-#import "UIFont+Additions.h"
-#import "UIColor+Judo.h"
-#import "UIImage+Icons.h"
-#import "UIView+Additions.h"
+#import "JPPaymentMethodEmptyCardListCell.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
+#import "UIImage+Icons.h"
+#import "UIStackView+Additions.h"
+#import "UIView+Additions.h"
 
-@interface JPPaymentMethodsCardListFooterCell ()
+@interface JPPaymentMethodEmptyCardListCell ()
+@property (nonatomic, strong) UIStackView *stackView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIButton *addCardButton;
 @property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
 @end
 
-@implementation JPPaymentMethodsCardListFooterCell
+@implementation JPPaymentMethodEmptyCardListCell
 
-#pragma mark - Initializers
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    if (self = [super initWithCoder:coder]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-#pragma mark - View Model Configuration
+#pragma mark - View model configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
-    
-    if (![viewModel isKindOfClass:JPPaymentMethodsCardFooterModel.class]) {
+
+    [self setupViews];
+    [self setupConstraints];
+
+    JPPaymentMethodsEmptyListModel *emptyViewModel = (JPPaymentMethodsEmptyListModel *)viewModel;
+
+    if (!emptyViewModel)
         return;
-    }
-    
-    JPPaymentMethodsCardFooterModel *footerModel;
-    footerModel = (JPPaymentMethodsCardFooterModel *)viewModel;
-    
-    [self.addCardButton setTitle:footerModel.addCardButtonTitle
+
+    self.titleLabel.text = emptyViewModel.title;
+
+    [self.addCardButton setTitle:emptyViewModel.addCardButtonTitle
                         forState:UIControlStateNormal];
-    
-    UIImage *buttonImage = [UIImage imageWithIconName:footerModel.addCardButtonIconName];
-    
+
+    UIImage *buttonImage = [UIImage imageWithIconName:emptyViewModel.addCardButtonIconName];
     [self.addCardButton setImage:buttonImage forState:UIControlStateNormal];
     self.addCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 0);
+
+    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0);
     self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    
-    self.onAddCardButtonTapHandler = footerModel.onAddCardButtonTapHandler;
+
+    self.onAddCardButtonTapHandler = emptyViewModel.onAddCardButtonTapHandler;
 }
+
+#pragma mark - User actions
 
 - (void)onAddCardButtonTap {
     self.onAddCardButtonTapHandler();
 }
 
-#pragma mark - Layout Setup
+#pragma mark - Layout setup
 
 - (void)setupViews {
-    [self addSubview:self.addCardButton];
-    [self.addCardButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
-    [self.addCardButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+    self.stackView = [UIStackView verticalStackViewWithSpacing:16.0f];
+    self.stackView.alignment = UIStackViewAlignmentCenter;
+    [self.stackView addArrangedSubview:self.titleLabel];
+    [self.stackView addArrangedSubview:self.addCardButton];
+    [self addSubview:self.stackView];
 }
 
-#pragma mark - Lazy instantiated properties
+- (void)setupConstraints {
+    [self.addCardButton.widthAnchor constraintEqualToConstant:106.0f].active = YES;
+    [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f].active = YES;
+    [self.stackView pinToView:self withPadding:25.0f];
+}
+
+#pragma mark - Lazy properties
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [UILabel new];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = UIFont.largeTitleFont;
+        _titleLabel.textColor = UIColor.jpTextColor;
+    }
+    return _titleLabel;
+}
 
 - (UIButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
         _addCardButton.titleLabel.font = UIFont.smallTitleFont;
-        
+
         [self.addCardButton addTarget:self
                                action:@selector(onAddCardButtonTap)
                      forControlEvents:UIControlEventTouchUpInside];

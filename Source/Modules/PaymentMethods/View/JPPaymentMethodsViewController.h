@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsInteractor.m
+//  JPPaymentMethodsViewController.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,30 +22,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsInteractor.h"
-#import "JPCardStorage.h"
+#import "JPAddCardViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation JPPaymentMethodsInteractorImpl
+@protocol JPPaymentMethodsPresenter;
+@class JPPaymentMethodsViewModel;
 
-- (NSArray<JPStoredCardDetails *> *)getStoredCardDetails {
-    return [JPCardStorage.sharedInstance getStoredCardDetails];
-}
+@protocol JPPaymentMethodsView
+- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
+@end
 
-- (void)selectCardAtIndex:(NSInteger)index {
-    
-    NSArray<JPStoredCardDetails *> *storedCardDetails;
-    storedCardDetails = [JPCardStorage.sharedInstance getStoredCardDetails];
-    
-    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
-        cardDetails.isSelected = NO;
-    }
-    storedCardDetails[index].isSelected = YES;
-    
-    [JPCardStorage.sharedInstance deleteCardDetails];
-    
-    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
-        [JPCardStorage.sharedInstance addCardDetails:cardDetails];
-    }
-}
+@interface JPPaymentMethodsViewController : UIViewController <JPPaymentMethodsView>
+
+/**
+ * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol
+ */
+@property (nonatomic, strong) id<JPPaymentMethodsPresenter> presenter;
+
+@end
+
+@interface JPPaymentMethodsViewController (TableViewDelegates) <UITableViewDelegate, UITableViewDataSource>
+
+@end
+
+@interface JPPaymentMethodsViewController (AddCardDelegate) <JPAddCardViewDelegate>
 
 @end

@@ -23,15 +23,15 @@
 //  SOFTWARE.
 
 #import "JPAddCardInteractor.h"
+#import "JPAddCardViewModel.h"
 #import "JPCard.h"
+#import "JPCardStorage.h"
 #import "JPCardValidationService.h"
 #import "JPCountry.h"
-#import "JPSession.h"
-#import "JPTransactionService.h"
 #import "JPKeychainService.h"
-#import "JPAddCardViewModel.h"
+#import "JPSession.h"
 #import "JPStoredCardDetails.h"
-#import "JPCardStorage.h"
+#import "JPTransactionService.h"
 #import "NSError+Judo.h"
 
 @interface JPAddCardInteractorImpl ()
@@ -68,19 +68,19 @@
 }
 
 - (BOOL)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel {
-    
+
     CardNetwork cardNetwork = viewModel.cardNumberViewModel.cardNetwork;
     NSString *cardNumberString = viewModel.cardNumberViewModel.text;
 
-    NSString *lastFour = [cardNumberString substringFromIndex: cardNumberString.length - 4];
+    NSString *lastFour = [cardNumberString substringFromIndex:cardNumberString.length - 4];
     NSString *expiryDate = viewModel.expiryDateViewModel.text;
-    
+
     JPStoredCardDetails *storedCardDetails = [JPStoredCardDetails cardDetailsWithLastFour:lastFour
                                                                                expiryDate:expiryDate
                                                                               cardNetwork:cardNetwork];
-    
+
     [JPCardStorage.sharedInstance addCardDetails:storedCardDetails];
-    
+
     return NO;
 }
 

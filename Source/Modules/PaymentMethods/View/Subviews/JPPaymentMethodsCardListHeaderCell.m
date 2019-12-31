@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsCardListHeaderCell.h"
-#import "UIFont+Additions.h"
-#import "UIColor+Judo.h"
-#import "UIView+Additions.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
+#import "UIView+Additions.h"
 
 @implementation JPPaymentMethodsCardListHeaderCell
 
@@ -73,10 +73,10 @@
 - (void)setupViews {
     [self addSubview:self.titleLabel];
     [self addSubview:self.actionButton];
-    
+
     [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self withPadding:24.0];
     [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
-    
+
     [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
     [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
 }

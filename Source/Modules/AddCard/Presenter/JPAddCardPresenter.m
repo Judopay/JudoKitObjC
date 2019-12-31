@@ -112,9 +112,9 @@
                    return;
                }
 
-        [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel];
+               [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel];
                [weakSelf.router dismissViewController];
-            [weakSelf.view didFinishAddingCard];
+               [weakSelf.view didFinishAddingCard];
            }];
 }
 

@@ -23,14 +23,14 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsPresenter.h"
-#import "JPPaymentMethodsViewModel.h"
-#import "JPPaymentMethodsViewController.h"
-#import "JPPaymentMethodsRouter.h"
-#import "JPPaymentMethodsInteractor.h"
-#import "JPStoredCardDetails.h"
 #import "JPCardNetwork.h"
+#import "JPPaymentMethodsInteractor.h"
+#import "JPPaymentMethodsRouter.h"
+#import "JPPaymentMethodsViewController.h"
+#import "JPPaymentMethodsViewModel.h"
+#import "JPStoredCardDetails.h"
 
-@interface JPPaymentMethodsPresenterImpl()
+@interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
 @property (nonatomic, strong) JPPaymentMethodsSelectionModel *paymentSelectionModel;
 @property (nonatomic, strong) JPPaymentMethodsEmptyListModel *emptyListModel;
@@ -63,9 +63,9 @@
 - (void)updateViewModel {
     [self.viewModel.items removeAllObjects];
     [self.viewModel.items addObject:self.paymentSelectionModel];
-    
-    NSArray <JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
-    
+
+    NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
+
     if (cardDetailsArray.count == 0) {
         [self.viewModel.items addObject:self.emptyListModel];
     } else {
@@ -76,7 +76,7 @@
     }
 }
 
-- (void)prepareCardModelsForStoredCardDetails:(NSArray <JPStoredCardDetails *>*)storedCardDetails {
+- (void)prepareCardModelsForStoredCardDetails:(NSArray<JPStoredCardDetails *> *)storedCardDetails {
     [self.cardListModel.cardModels removeAllObjects];
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         JPPaymentMethodsCardModel *cardModel = [self cardModelFromStoredCardDetails:cardDetails];
@@ -130,7 +130,7 @@
         _emptyListModel.title = @"You didn't connect any cards yet";
         _emptyListModel.addCardButtonTitle = @"ADD CARD";
         _emptyListModel.addCardButtonIconName = @"plus-icon";
-        
+
         __weak typeof(self) weakSelf = self;
         _emptyListModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];
@@ -155,7 +155,7 @@
         _cardFooterModel.addCardButtonTitle = @"ADD CARD";
         _cardFooterModel.addCardButtonIconName = @"plus-icon";
         _cardFooterModel.identifier = @"JPPaymentMethodsCardListFooterCell";
-        
+
         __weak typeof(self) weakSelf = self;
         _cardFooterModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];

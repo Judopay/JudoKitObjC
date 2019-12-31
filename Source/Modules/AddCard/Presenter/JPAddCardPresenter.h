@@ -25,7 +25,8 @@
 #import "JPAddCardViewModel.h"
 #import <Foundation/Foundation.h>
 
-@protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
+@protocol JPAddCardView
+, JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
 

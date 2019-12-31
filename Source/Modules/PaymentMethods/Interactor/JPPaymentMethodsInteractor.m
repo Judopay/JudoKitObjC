@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsRouter.h
+//  JPPaymentMethodsInteractor.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,22 +22,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "JPSession.h"
+#import "JPPaymentMethodsInteractor.h"
+#import "JPCardStorage.h"
 
-@class JPPaymentMethodsViewController;
-@class JPTransaction, JPTheme, SliderTransitioningDelegate;
+@implementation JPPaymentMethodsInteractorImpl
 
-@protocol JPPaymentMethodsRouter
-- (void)navigateToAddCardModule;
-@end
+- (NSArray<JPStoredCardDetails *> *)getStoredCardDetails {
+    return [JPCardStorage.sharedInstance getStoredCardDetails];
+}
 
-@interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
-@property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
+- (void)selectCardAtIndex:(NSInteger)index {
 
-- (instancetype)initWithTransaction:(JPTransaction *)transaction
-              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                              theme:(JPTheme *)theme
-                         completion:(JudoCompletionBlock)completion;
+    NSArray<JPStoredCardDetails *> *storedCardDetails;
+    storedCardDetails = [JPCardStorage.sharedInstance getStoredCardDetails];
+
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        cardDetails.isSelected = NO;
+    }
+    storedCardDetails[index].isSelected = YES;
+
+    [JPCardStorage.sharedInstance deleteCardDetails];
+
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        [JPCardStorage.sharedInstance addCardDetails:cardDetails];
+    }
+}
 
 @end

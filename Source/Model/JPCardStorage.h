@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPStoredCardDetails.h"
+#import <Foundation/Foundation.h>
 
 @interface JPCardStorage : NSObject
 
@@ -38,20 +38,20 @@
  *
  * @returns An array of JPStoredCardDetails objects
  */
--(NSMutableArray <JPStoredCardDetails *> *)getStoredCardDetails;
+- (NSMutableArray<JPStoredCardDetails *> *)getStoredCardDetails;
 
 /**
  * A method for adding new card details objects into the keychain
  *
  * @param cardDetails - An instance of JPStoredCardDetails that describes the card details
  */
--(void)addCardDetails:(JPStoredCardDetails *)cardDetails;
+- (void)addCardDetails:(JPStoredCardDetails *)cardDetails;
 
 /**
  * A method for deleting the existing card details from the keychain
  *
  * @returns a boolean value describing if the cards have been succesfully deleted
  */
--(BOOL)deleteCardDetails;
+- (BOOL)deleteCardDetails;
 
 @end

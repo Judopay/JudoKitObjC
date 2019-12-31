@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodSelectionCell.m
+//  JPPaymentMethodsCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,45 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodSelectionCell.h"
 #import "JPPaymentMethodsCell.h"
-#import "UIColor+Judo.h"
-#import "UIView+Additions.h"
 
-@interface JPPaymentMethodSelectionCell()
-
-@property (nonatomic, strong) UIView *containerView;
-
-@end
-
-@implementation JPPaymentMethodSelectionCell
+@implementation JPPaymentMethodsCell
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
-    [self setupViews];
-    [self setupConstraints];
-}
-
-- (void)setupViews {
-    //TODO: Implement custom Payment Method Selection view;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self addSubview:self.containerView];
-}
-
-- (void)setupConstraints {
-    [self.containerView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self withPadding:24.0];
-    [self.containerView pinToAnchors:AnchorTypeLeading forView:self withPadding:20.0];
-    [self.containerView pinToAnchors:AnchorTypeTrailing forView:self withPadding:-20.0];
-    [self.containerView.heightAnchor constraintEqualToConstant:64.0].active = YES;
-}
-
-- (UIView *)containerView {
-    if (!_containerView) {
-        _containerView = [UIView new];
-        _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = UIColor.jpContentBackgroundColor;
-        _containerView.layer.cornerRadius = 14.0f;
-    }
-    return _containerView;
 }
 
 @end

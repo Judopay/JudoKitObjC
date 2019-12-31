@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsCardListHeaderCell.h
+//  JPPaymentMethodsRouter.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,10 +22,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "JPPaymentMethodsCell.h"
+#import "JPSession.h"
+#import <Foundation/Foundation.h>
 
-@interface JPPaymentMethodsCardListHeaderCell : JPPaymentMethodsCell
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *actionButton;
+@class JPPaymentMethodsViewController;
+@class JPTransaction, JPTheme, SliderTransitioningDelegate;
+
+@protocol JPPaymentMethodsRouter
+- (void)navigateToAddCardModule;
+@end
+
+@interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
+@property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
+
+- (instancetype)initWithTransaction:(JPTransaction *)transaction
+              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                              theme:(JPTheme *)theme
+                         completion:(JudoCompletionBlock)completion;
+
 @end

@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsViewController.h
+//  JPPaymentMethodSelectionView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -23,28 +23,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "JPAddCardViewController.h"
 
-@protocol JPPaymentMethodsPresenter;
-@class JPPaymentMethodsViewModel;
-
-@protocol JPPaymentMethodsView
-- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
-@end
-
-@interface JPPaymentMethodsViewController: UIViewController <JPPaymentMethodsView>
-
-/**
- * A strong reference to a presenter object that adopts the JPAddCardPresenter protocol
- */
-@property (nonatomic, strong) id<JPPaymentMethodsPresenter> presenter;
-
-@end
-
-@interface JPPaymentMethodsViewController (TableViewDelegates) <UITableViewDelegate, UITableViewDataSource>
-
-@end
-
-@interface JPPaymentMethodsViewController (AddCardDelegate) <JPAddCardViewDelegate>
+@interface JPPaymentMethodSelectionView : UIView
 
 @end
