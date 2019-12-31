@@ -28,9 +28,17 @@
 
 @protocol JPAddCardPresenter;
 
+#pragma mark - JPAddCardViewDelegate
+
 @protocol JPAddCardViewDelegate
+/**
+ * A method that is called once the Add Card flow completes
+ */
 - (void)didFinishAddingCard;
+
 @end
+
+#pragma mark - JPAddCardView
 
 @protocol JPAddCardView
 
@@ -44,12 +52,20 @@
  */
 - (void)updateViewWithError:(NSError *)error;
 
+/**
+ * A method that signals that the Add Card flow is completed and the view should dismiss
+ */
 - (void)didFinishAddingCard;
 
 @end
 
+#pragma mark - JPAddCardViewController
+
 @interface JPAddCardViewController : UIViewController <JPAddCardView>
 
+/**
+ * An object conforming to the JPAddCardViewDelegate protocol
+ */
 @property (nonatomic, strong) id<JPAddCardViewDelegate> delegate;
 
 /**

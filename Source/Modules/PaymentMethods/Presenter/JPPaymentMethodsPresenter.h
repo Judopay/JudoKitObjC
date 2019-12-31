@@ -29,9 +29,18 @@
 @class JPPaymentMethodsCardModel;
 
 @protocol JPPaymentMethodsPresenter
-- (void)prepareInitialViewModel;
+
+/**
+ * A method that updates the view model with the latest state and refreshes the view
+ */
 - (void)viewModelNeedsUpdate;
+
+/**
+ * A method called once a card was selected from the list. This method updates the view model for that specific card
+ * and changes its isSelected state.
+ */
 - (void)didSelectCardAtIndex:(NSInteger)index;
+
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

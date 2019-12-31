@@ -67,7 +67,7 @@
     [self.transactionService addCard:card completionHandler:completionHandler];
 }
 
-- (BOOL)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel {
+- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel {
 
     CardNetwork cardNetwork = viewModel.cardNumberViewModel.cardNetwork;
     NSString *cardNumberString = viewModel.cardNumberViewModel.text;
@@ -80,8 +80,6 @@
                                                                               cardNetwork:cardNetwork];
 
     [JPCardStorage.sharedInstance addCardDetails:storedCardDetails];
-
-    return NO;
 }
 
 - (NSArray<NSString *> *)getSelectableCountryNames {

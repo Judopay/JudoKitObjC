@@ -41,14 +41,7 @@
 
 @implementation JPPaymentMethodsPresenterImpl
 
-//------------------------------------------------------------------------
-#pragma mark - Protocol Methods
-//------------------------------------------------------------------------
-
-- (void)prepareInitialViewModel {
-    [self updateViewModel];
-    [self.view configureWithViewModel:self.viewModel];
-}
+#pragma mark - Protocol Conformance
 
 - (void)viewModelNeedsUpdate {
     [self updateViewModel];
@@ -59,6 +52,8 @@
     [self.interactor selectCardAtIndex:index];
     [self viewModelNeedsUpdate];
 }
+
+#pragma mark - Helper methods
 
 - (void)updateViewModel {
     [self.viewModel.items removeAllObjects];
@@ -94,17 +89,14 @@
     return cardModel;
 }
 
-//------------------------------------------------------------------------
-#pragma mark - Handlers
-//------------------------------------------------------------------------
+#pragma mark - Action Handlers
 
 - (void)handleAddCardButtonTap {
     [self.router navigateToAddCardModule];
 }
 
-//------------------------------------------------------------------------
-#pragma mark - Lazy instantiated properties
-//------------------------------------------------------------------------
+
+#pragma mark - Lazy properties
 
 - (JPPaymentMethodsViewModel *)viewModel {
     if (!_viewModel) {

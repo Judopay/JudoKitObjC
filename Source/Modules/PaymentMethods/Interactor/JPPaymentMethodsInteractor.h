@@ -27,8 +27,19 @@
 @class JPStoredCardDetails;
 
 @protocol JPPaymentMethodsInteractor
+
+/**
+ * A method that returns the stored card details from the keychain
+ *
+ * @returns an array of JPStoredCardDetails objects
+ */
 - (NSArray<JPStoredCardDetails *> *)getStoredCardDetails;
+
+/**
+ * A method that updates the selected state of a card stored in the keychain
+ */
 - (void)selectCardAtIndex:(NSInteger)index;
+
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>

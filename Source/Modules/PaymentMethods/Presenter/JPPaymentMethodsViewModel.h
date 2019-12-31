@@ -25,44 +25,133 @@
 #import "JPCardDetails.h"
 #import <Foundation/Foundation.h>
 
+#pragma mark - JPPaymentMethodsModel
+
 @interface JPPaymentMethodsModel : NSObject
+/**
+ * A string that identifies the UITableViewCell that this view model applies to.
+ * Must match the exact name of the UITableViewCell so that it can be registered correctly.
+ */
 @property (nonatomic, strong) NSString *identifier;
+
 @end
+
+#pragma mark - JPPaymentMethodsSelectionModel
 
 @interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
 @end
 
+#pragma mark - JPPaymentMethodsEmptyListModel
+
 @interface JPPaymentMethodsEmptyListModel : JPPaymentMethodsModel
+
+/**
+ * The text displayed when no card has been added
+ */
 @property (nonatomic, strong) NSString *title;
+
+/**
+ * The title of the Add Card button
+ */
 @property (nonatomic, strong) NSString *addCardButtonTitle;
+
+/**
+ * The icon name of the Add Card button that is displayed on the left side of the title
+ */
 @property (nonatomic, strong) NSString *addCardButtonIconName;
+
+/**
+ * The action handler of the Add Card button that handles the tap events
+ */
 @property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
+
 @end
+
+#pragma mark - JPPaymentMethodsCardHeaderModel
 
 @interface JPPaymentMethodsCardHeaderModel : JPPaymentMethodsModel
+
+/**
+ * The title of the header displayed above the card selection list
+ */
 @property (nonatomic, strong) NSString *title;
+
+/**
+ * The title of the Edit button displayed above the card selection list
+ */
 @property (nonatomic, strong) NSString *editButtonTitle;
+
 @end
+
+#pragma mark - JPPaymentMethodsCardFooterModel
 
 @interface JPPaymentMethodsCardFooterModel : JPPaymentMethodsModel
+
+/**
+ * The title of the Add Card button displayed below the card selection list
+ */
 @property (nonatomic, strong) NSString *addCardButtonTitle;
+
+/**
+ * The icon name of the Add Card button displayed below the card selection list
+ */
 @property (nonatomic, strong) NSString *addCardButtonIconName;
+
+/**
+ * The action handler of the Add Card button displayed below the card selection list
+ */
 @property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
+
 @end
+
+#pragma mark - JPPaymentMethodsCardModel
 
 @interface JPPaymentMethodsCardModel : NSObject
+
+/**
+ * The title of the card
+ */
 @property (nonatomic, strong) NSString *cardTitle;
+
+/**
+ * The card network used for displaying the card logo and name
+ */
 @property (nonatomic, assign) CardNetwork cardNetwork;
+
+/**
+ * The last four digits of the card
+ */
 @property (nonatomic, strong) NSString *cardNumberLastFour;
+
+/**
+ * A value that specifies if the card is set as the default credit card of the user
+ */
 @property (nonatomic, assign) BOOL isDefaultCard;
+
+/**
+ * A value that specifies if the card is currently selected
+ */
 @property (nonatomic, assign) BOOL isSelected;
+
 @end
+
+#pragma mark - JPPaymentMethodsCardListModel
 
 @interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
+/**
+ * An array of JPPaymentMethodsCardModel objects that describe the added cards
+ */
 @property (nonatomic, strong) NSMutableArray<JPPaymentMethodsCardModel *> *cardModels;
+
 @end
 
+#pragma mark - JPPaymentMethodsCardListModel
+
 @interface JPPaymentMethodsViewModel : NSObject
+
+/**
+ * An array of JPPaymentMethodsModel objects that define the layout of the view
+ */
 @property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> *items;
-@property (nonatomic, assign) BOOL shouldDisplayHeadline;
+
 @end

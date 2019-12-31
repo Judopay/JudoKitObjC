@@ -35,6 +35,14 @@
 @interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
 @property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
 
+/**
+ * The designated initializer that configures the router with the necessary properties
+ *
+ * @param transaction - a reference to the Save Card transaction needed to call the Add Card screen
+ * @param transitioningDelegate - the custom transitioning delegate for the Add Card presentation animation
+ * @param theme - the JPTheme reference that is used for customizing the Add Card flow
+ * @param completion - the response/error completion handler returned after a backend request
+ */
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
               transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                               theme:(JPTheme *)theme

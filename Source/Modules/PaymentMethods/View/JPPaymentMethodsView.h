@@ -26,7 +26,14 @@
 
 @interface JPPaymentMethodsView : UIView
 
+/**
+ * The header view displaying the card information
+ */
 @property (nonatomic, strong) UIView *headerView;
+
+/**
+ * The table view displaying the card selection list
+ */
 @property (nonatomic, strong) UITableView *tableView;
 
 @end

@@ -25,33 +25,25 @@
 #import "JPPaymentMethodsViewModel.h"
 
 @implementation JPPaymentMethodsModel
-
 @end
 
 @implementation JPPaymentMethodsSelectionModel
-
 @end
 
 @implementation JPPaymentMethodsCardHeaderModel
-
 @end
 
 @implementation JPPaymentMethodsCardFooterModel
-
 @end
 
 @implementation JPPaymentMethodsCardListModel
-
 @end
 
 @implementation JPPaymentMethodsEmptyListModel
-
 @end
 
 @implementation JPPaymentMethodsCardModel
-
 @end
 
 @implementation JPPaymentMethodsViewModel
-
 @end

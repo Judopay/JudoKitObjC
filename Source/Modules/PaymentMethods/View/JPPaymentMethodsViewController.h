@@ -28,9 +28,20 @@
 @protocol JPPaymentMethodsPresenter;
 @class JPPaymentMethodsViewModel;
 
+#pragma mark - JPPaymentMethodsView
+
 @protocol JPPaymentMethodsView
+
+/**
+ * A method that configures the view based on a passed view model
+ *
+ * @param viewModel - a view model detailing the layout details
+ */
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
+
 @end
+
+#pragma mark - JPPaymentMethodsViewController
 
 @interface JPPaymentMethodsViewController : UIViewController <JPPaymentMethodsView>
 
@@ -41,10 +52,20 @@
 
 @end
 
-@interface JPPaymentMethodsViewController (TableViewDelegates) <UITableViewDelegate, UITableViewDataSource>
-
+/**
+ * A JPPaymentMethodsViewController extension for implementing the table view data source methods
+ */
+@interface JPPaymentMethodsViewController (TableViewDataSource) <UITableViewDataSource>
 @end
 
-@interface JPPaymentMethodsViewController (AddCardDelegate) <JPAddCardViewDelegate>
+/**
+ * A JPPaymentMethodsViewController extension for implementing the table view delegate methods
+ */
+@interface JPPaymentMethodsViewController (TableViewDelegate) <UITableViewDelegate>
+@end
 
+/**
+ * A JPPaymentMethodsViewController extension that adopts the Add Card delegate methods
+ */
+@interface JPPaymentMethodsViewController (AddCardDelegate) <JPAddCardViewDelegate>
 @end

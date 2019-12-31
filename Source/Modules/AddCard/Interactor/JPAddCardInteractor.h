@@ -106,7 +106,13 @@
  */
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input;
 
-- (BOOL)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel;
+/**
+ *  Method that stores card details in the keychain
+ *
+ *  @param viewModel - the card details view model
+ *
+ */
+- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel;
 
 @end
 

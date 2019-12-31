@@ -36,8 +36,6 @@
 
 + (UIColor *_Nonnull)colorFromHex:(int)hex;
 
-+ (UIColor *_Nonnull)jellyBean;
-
 + (UIColor *_Nonnull)thunder;
 
 + (UIColor *_Nonnull)magnesium;
@@ -47,8 +45,6 @@
 + (UIColor *_Nonnull)lightGray;
 
 + (UIColor *_Nonnull)cgRed;
-
-+ (UIColor *_Nonnull)errorRed;
 
 + (UIColor *_Nonnull)idealPurple;
 

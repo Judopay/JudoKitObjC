@@ -29,6 +29,17 @@
 @class JudoKit, JPTheme, JPAmount, SliderTransitioningDelegate;
 
 @protocol JPPaymentMethodsBuilder
+
+/**
+ * A method that builds the configured JPPaymentMethodsViewController
+ *
+ * @param judoId - the Judo ID of the merchant
+ * @param session - the current JudoKit session needed for creating transactions
+ * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
+ * @param amount - the amount of the transaction
+ * @param consumerReference - the consumer's reference string
+ * @param completionHandler - a response/error completion handler returned to the merchant
+ */
 - (JPPaymentMethodsViewController *)buildModuleWithJudoID:(NSString *)judoId
                                                   session:(JudoKit *)session
                                     transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate

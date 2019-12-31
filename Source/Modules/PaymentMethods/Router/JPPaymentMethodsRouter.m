@@ -42,6 +42,8 @@
 
 @implementation JPPaymentMethodsRouterImpl
 
+#pragma mark - Initializers
+
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
               transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                               theme:(JPTheme *)theme
@@ -54,6 +56,8 @@
     }
     return self;
 }
+
+#pragma mark - Protocol Conformance
 
 - (void)navigateToAddCardModule {
 

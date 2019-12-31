@@ -43,21 +43,16 @@
                                         consumerReference:(NSString *)consumerReference
                                         completionHandler:(JudoCompletionBlock)completion {
 
+    JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
+    JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
+    JPPaymentMethodsInteractorImpl *interactor = [JPPaymentMethodsInteractorImpl new];
+    
     JPReference *reference = [JPReference consumerReference:consumerReference];
 
     JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard
                                                              judoId:judoId
                                                              amount:amount
                                                           reference:reference];
-
-    JPTransaction *paymentTransaction = [session transactionForType:TransactionTypePayment
-                                                             judoId:judoId
-                                                             amount:amount
-                                                          reference:reference];
-
-    JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
-    JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
-    JPPaymentMethodsInteractorImpl *interactor = [JPPaymentMethodsInteractorImpl new];
 
     JPPaymentMethodsRouterImpl *router;
     router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction

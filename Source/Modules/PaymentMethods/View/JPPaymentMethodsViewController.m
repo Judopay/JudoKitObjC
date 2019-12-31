@@ -38,9 +38,7 @@
 
 @implementation JPPaymentMethodsViewController
 
-//------------------------------------------------------------------------
-#pragma mark - View lifecycle
-//------------------------------------------------------------------------
+#pragma mark - View Lifecycle
 
 - (void)loadView {
     self.paymentMethodsView = [JPPaymentMethodsView new];
@@ -49,18 +47,14 @@
     [self.presenter prepareInitialViewModel];
 }
 
-//------------------------------------------------------------------------
-#pragma mark - Layout setup
-//------------------------------------------------------------------------
+#pragma mark - Layout Setup
 
 - (void)configureView {
     self.paymentMethodsView.tableView.delegate = self;
     self.paymentMethodsView.tableView.dataSource = self;
 }
 
-//------------------------------------------------------------------------
-#pragma mark - JPPaymentMethodsView protocol conformance
-//------------------------------------------------------------------------
+#pragma mark - Protocol Conformance
 
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
@@ -73,13 +67,20 @@
     [self.paymentMethodsView.tableView reloadData];
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat yValue = 350 - scrollView.contentOffset.y;
+    CGFloat height = MIN(MAX(yValue, 234), 350);
+    CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
+    self.paymentMethodsView.headerView.frame = newFrame;
+}
+
 @end
 
-@implementation JPPaymentMethodsViewController (TableViewDelegates)
+#pragma mark - UITableViewDataSource
 
-//------------------------------------------------------------------------
-#pragma mark - UITableView Data Source
-//------------------------------------------------------------------------
+@implementation JPPaymentMethodsViewController (TableViewDataSource)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.viewModel.items.count;
@@ -114,19 +115,14 @@
     return cell;
 }
 
-//------------------------------------------------------------------------
-#pragma mark - UITableView Delegate
-//------------------------------------------------------------------------
+@end
+
+#pragma mark - UITableViewDelegate
+
+@implementation JPPaymentMethodsViewController (TableViewDelegate)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat yValue = 350 - scrollView.contentOffset.y;
-    CGFloat height = MIN(MAX(yValue, 234), 350);
-    CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
-    self.paymentMethodsView.headerView.frame = newFrame;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,6 +137,8 @@
 }
 
 @end
+
+#pragma mark - JPAddCardViewDelegate
 
 @implementation JPPaymentMethodsViewController (AddCardDelegate)
 
