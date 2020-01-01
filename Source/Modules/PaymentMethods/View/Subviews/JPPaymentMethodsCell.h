@@ -28,6 +28,9 @@
 
 @interface JPPaymentMethodsCell : UITableViewCell
 
+/**
+ * A method for configuring the view with a JPPaymentMethodsModel object
+ */
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel;
 
 @end

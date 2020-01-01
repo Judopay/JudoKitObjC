@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodSelectionCell.m
+//  JPPaymentMethodsSelectionCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,18 +22,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodSelectionCell.h"
+#import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsCell.h"
 #import "UIColor+Judo.h"
 #import "UIView+Additions.h"
 
-@interface JPPaymentMethodSelectionCell ()
+@interface JPPaymentMethodsSelectionCell ()
 
 @property (nonatomic, strong) UIView *containerView;
 
 @end
 
-@implementation JPPaymentMethodSelectionCell
+@implementation JPPaymentMethodsSelectionCell
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
     [self setupViews];

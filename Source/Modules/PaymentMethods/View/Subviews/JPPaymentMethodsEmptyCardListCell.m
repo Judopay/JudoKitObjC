@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodEmptyCardListCell.m
+//  JPPaymentMethodsEmptyCardListCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodEmptyCardListCell.h"
+#import "JPPaymentMethodsEmptyCardListCell.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
@@ -30,14 +30,14 @@
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
 
-@interface JPPaymentMethodEmptyCardListCell ()
+@interface JPPaymentMethodsEmptyCardListCell ()
 @property (nonatomic, strong) UIStackView *stackView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *addCardButton;
 @property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
 @end
 
-@implementation JPPaymentMethodEmptyCardListCell
+@implementation JPPaymentMethodsEmptyCardListCell
 
 #pragma mark - View model configuration
 

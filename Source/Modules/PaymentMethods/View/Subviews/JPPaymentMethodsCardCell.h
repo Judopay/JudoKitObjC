@@ -26,5 +26,4 @@
 #import <UIKit/UIKit.h>
 
 @interface JPPaymentMethodsCardCell : JPPaymentMethodsCell
-
 @end

@@ -26,8 +26,31 @@
 
 @interface JPKeychainService : NSObject
 
+/**
+ * A method that saves an object to the keychain with a specific key
+ *
+ * @param key - a NSString value that identifies the object
+ *
+ * @returns YES if the object was saved successfully, NO otherwise
+ */
 + (BOOL)saveObject:(id)object forKey:(NSString *)key;
+
+/**
+ * A method that returns an object from the keychain based on a specified key
+ *
+ * @param key - a NSString value that identifies the object
+ *
+ * @returns id - a pointer to any type
+ */
 + (id)getObjectForKey:(NSString *)key;
+
+/**
+ * A method that deletes a value from the keychain based on a specified key
+ *
+ * @param key - a NSString value that identifies the object
+ *
+ * @return YES if the object was deleted successfully, NO otherwise
+ */
 + (BOOL)deleteObjectForKey:(NSString *)key;
 
 @end

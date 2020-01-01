@@ -46,7 +46,7 @@
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
     JPPaymentMethodsInteractorImpl *interactor = [JPPaymentMethodsInteractorImpl new];
-    
+
     JPReference *reference = [JPReference consumerReference:consumerReference];
 
     JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard

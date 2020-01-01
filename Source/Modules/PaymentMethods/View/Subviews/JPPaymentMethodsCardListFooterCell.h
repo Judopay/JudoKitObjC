@@ -26,5 +26,10 @@
 #import <UIKit/UIKit.h>
 
 @interface JPPaymentMethodsCardListFooterCell : JPPaymentMethodsCell
+
+/**
+ * The Add Card button of the footer displayed below the card list
+ */
 @property (nonatomic, strong) UIButton *addCardButton;
+
 @end

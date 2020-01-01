@@ -26,6 +26,14 @@
 #import <UIKit/UIKit.h>
 
 @interface JPPaymentMethodsCardListHeaderCell : JPPaymentMethodsCell
+
+/**
+ * The title label of the header above the card list
+ */
 @property (nonatomic, strong) UILabel *titleLabel;
+
+/**
+ * The Edit button of the header above the card list
+ */
 @property (nonatomic, strong) UIButton *actionButton;
 @end

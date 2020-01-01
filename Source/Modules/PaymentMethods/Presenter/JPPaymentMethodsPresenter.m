@@ -29,6 +29,7 @@
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
+#import "NSString+Localize.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -81,11 +82,15 @@
 
 - (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
+
+    //TODO: Replace with actual card name once card editing is available
     cardModel.cardTitle = @"Card for shopping";
+
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
     cardModel.isDefaultCard = cardDetails.isDefault;
     cardModel.isSelected = cardDetails.isSelected;
+
     return cardModel;
 }
 
@@ -95,13 +100,11 @@
     [self.router navigateToAddCardModule];
 }
 
-
 #pragma mark - Lazy properties
 
 - (JPPaymentMethodsViewModel *)viewModel {
     if (!_viewModel) {
         _viewModel = [JPPaymentMethodsViewModel new];
-        _viewModel.shouldDisplayHeadline = NO;
         _viewModel.items = [NSMutableArray new];
     }
     return _viewModel;
@@ -110,7 +113,7 @@
 - (JPPaymentMethodsSelectionModel *)paymentSelectionModel {
     if (!_paymentSelectionModel) {
         _paymentSelectionModel = [JPPaymentMethodsSelectionModel new];
-        _paymentSelectionModel.identifier = @"JPPaymentMethodSelectionCell";
+        _paymentSelectionModel.identifier = @"JPPaymentMethodsSelectionCell";
     }
     return _paymentSelectionModel;
 }
@@ -118,9 +121,9 @@
 - (JPPaymentMethodsEmptyListModel *)emptyListModel {
     if (!_emptyListModel) {
         _emptyListModel = [JPPaymentMethodsEmptyListModel new];
-        _emptyListModel.identifier = @"JPPaymentMethodEmptyCardListCell";
-        _emptyListModel.title = @"You didn't connect any cards yet";
-        _emptyListModel.addCardButtonTitle = @"ADD CARD";
+        _emptyListModel.identifier = @"JPPaymentMethodsEmptyCardListCell";
+        _emptyListModel.title = @"no_connected_cards".localized;
+        _emptyListModel.addCardButtonTitle = @"add_card_button".localized;
         _emptyListModel.addCardButtonIconName = @"plus-icon";
 
         __weak typeof(self) weakSelf = self;
@@ -134,8 +137,8 @@
 - (JPPaymentMethodsCardHeaderModel *)cardHeaderModel {
     if (!_cardHeaderModel) {
         _cardHeaderModel = [JPPaymentMethodsCardHeaderModel new];
-        _cardHeaderModel.title = @"Connected cards";
-        _cardHeaderModel.editButtonTitle = @"EDIT";
+        _cardHeaderModel.title = @"connected_cards".localized;
+        _cardHeaderModel.editButtonTitle = @"edit_capitalized".localized;
         _cardHeaderModel.identifier = @"JPPaymentMethodsCardListHeaderCell";
     }
     return _cardHeaderModel;
@@ -144,7 +147,7 @@
 - (JPPaymentMethodsCardFooterModel *)cardFooterModel {
     if (!_cardFooterModel) {
         _cardFooterModel = [JPPaymentMethodsCardFooterModel new];
-        _cardFooterModel.addCardButtonTitle = @"ADD CARD";
+        _cardFooterModel.addCardButtonTitle = @"add_card_button".localized;
         _cardFooterModel.addCardButtonIconName = @"plus-icon";
         _cardFooterModel.identifier = @"JPPaymentMethodsCardListFooterCell";
 
@@ -167,10 +170,6 @@
 
 - (JPPaymentMethodsCardModel *)cardModel {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
-    cardModel.cardTitle = @"Card for online shopping";
-    cardModel.cardNumberLastFour = @"1122";
-    cardModel.cardNetwork = CardNetworkVisa;
-    cardModel.isSelected = NO;
     return cardModel;
 }
 

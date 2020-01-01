@@ -23,9 +23,9 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsViewController.h"
-#import "JPPaymentMethodSelectionCell.h"
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsPresenter.h"
+#import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsView.h"
 #import "JPPaymentMethodsViewModel.h"
 
@@ -44,7 +44,7 @@
     self.paymentMethodsView = [JPPaymentMethodsView new];
     self.view = self.paymentMethodsView;
     [self configureView];
-    [self.presenter prepareInitialViewModel];
+    [self.presenter viewModelNeedsUpdate];
 }
 
 #pragma mark - Layout Setup

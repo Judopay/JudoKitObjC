@@ -64,8 +64,16 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
-    self.titleLabel.text = @"Connected Cards";
-    [self.actionButton setTitle:@"EDIT" forState:UIControlStateNormal];
+
+    if (![viewModel isKindOfClass:JPPaymentMethodsCardHeaderModel.class]) {
+        return;
+    }
+
+    JPPaymentMethodsCardHeaderModel *headerModel;
+    headerModel = (JPPaymentMethodsCardHeaderModel *)viewModel;
+
+    self.titleLabel.text = headerModel.title;
+    [self.actionButton setTitle:headerModel.editButtonTitle forState:UIControlStateNormal];
 }
 
 #pragma mark - Layout Setup
