@@ -36,4 +36,13 @@
  */
 @property (nonatomic, strong) UITableView *tableView;
 
+/**
+ * The 'Powered by Judo' headline that is displayed on the bottom of the view
+ */
+@property (nonatomic, strong) UIImageView *judoHeadlineImageView;
+
+/**
+ * The judo headline height constraint that is set to 0 if the headline is hidden and 20 otherwise
+ */
+@property (nonatomic, strong) NSLayoutConstraint *judoHeadlineHeightConstraint;
 @end

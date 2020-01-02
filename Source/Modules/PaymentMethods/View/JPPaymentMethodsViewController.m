@@ -79,6 +79,9 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
+    
+    self.paymentMethodsView.judoHeadlineImageView.hidden = !viewModel.shouldDisplayHeadline;
+    self.paymentMethodsView.judoHeadlineHeightConstraint.constant = viewModel.shouldDisplayHeadline ? 20.0 : 0.0;
 
     for (JPPaymentMethodsModel *item in viewModel.items) {
         [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)
