@@ -315,6 +315,7 @@
 		5280171723929E8E00D2AFDB /* UIStackView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5280171523929E8E00D2AFDB /* UIStackView+Additions.m */; };
 		528017222392F0F500D2AFDB /* UIViewController+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 528017202392F0F500D2AFDB /* UIViewController+Additions.h */; };
 		528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 528017212392F0F500D2AFDB /* UIViewController+Additions.m */; };
+		529CCB7F23BE775B00A8DBDD /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 529CCB7723BE775A00A8DBDD /* resources.bundle */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
 		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
@@ -760,6 +761,7 @@
 		5280171523929E8E00D2AFDB /* UIStackView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIStackView+Additions.m"; path = "Extensions/UIStackView+Additions.m"; sourceTree = "<group>"; };
 		528017202392F0F500D2AFDB /* UIViewController+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Additions.h"; path = "Extensions/UIViewController+Additions.h"; sourceTree = "<group>"; };
 		528017212392F0F500D2AFDB /* UIViewController+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Additions.m"; path = "Extensions/UIViewController+Additions.m"; sourceTree = "<group>"; };
+		529CCB7723BE775A00A8DBDD /* resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resources.bundle; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
 		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1555,6 +1557,7 @@
 		52FBFB6A2325A3770096064C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				529CCB7723BE775A00A8DBDD /* resources.bundle */,
 				30C22170235DC518000D6E3A /* icons.bundle */,
 				829330FE230AF0F900689DC4 /* Localizable.strings */,
 			);
@@ -1944,6 +1947,7 @@
 				30D0894023901F1F00480C9E /* icons.bundle in Resources */,
 				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
+				529CCB7F23BE775B00A8DBDD /* resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -83,9 +83,11 @@
 }
 
 - (void)setupConstraints {
-    [self.addCardButton.widthAnchor constraintEqualToConstant:106.0f].active = YES;
-    [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f].active = YES;
-    [self.stackView pinToView:self withPadding:25.0f];
+    NSLayoutConstraint *heightConstraint = [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f];
+    heightConstraint.priority = 999;
+    heightConstraint.active = YES;
+    
+    [self.stackView pinToView:self withPadding:0.0f];
 }
 
 #pragma mark - Lazy properties
@@ -104,7 +106,6 @@
 - (UIButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
-        _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
         _addCardButton.titleLabel.font = UIFont.smallTitleFont;

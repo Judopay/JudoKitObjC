@@ -29,6 +29,9 @@
 #import "NSString+Localize.h"
 #import "UIFont+Additions.h"
 #import "UIColor+Judo.h"
+#import "UIStackView+Additions.h"
+#import "UIImage+Icons.h"
+#import "UIView+Additions.h"
 
 @interface JPPaymentMethodsHeaderView()
 
@@ -41,34 +44,109 @@
 @property (nonatomic, strong) JPAddCardButton *payButton;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, strong) UIStackView *emptyTextStackView;
+@property (nonatomic, strong) UIStackView *paymentStackView;
+@property (nonatomic, strong) UIStackView *amountStackView;
+@property (nonatomic, strong) UIStackView *mainStackView;
+
 @end
 
 @implementation JPPaymentMethodsHeaderView
 
-- (instancetype)initWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    if (self = [super init]) {
+//----------------------------------------------------------------------
+#pragma mark - Initializers
+//----------------------------------------------------------------------
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
         [self setupViews];
-        
-        self.amountValueLabel.text = [NSString stringWithFormat:@"%@ %@",
-                                      viewModel.amount.currency,
-                                      viewModel.amount.amount];
-        
-        [self.payButton configureWithViewModel:viewModel.payButtonModel];
-        
     }
     return self;
 }
 
-- (void)changePreviewWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel
-                     animationType:(CardPreviewAnimationType)animationType {
-    
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+    }
+    return self;
 }
 
-- (void)setupViews {
-    self.backgroundColor = UIColor.whiteColor;
-    
-    
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setupViews];
+    }
+    return self;
 }
+
+//----------------------------------------------------------------------
+#pragma mark - View Model Configuration
+//----------------------------------------------------------------------
+
+- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    self.amountValueLabel.text = [NSString stringWithFormat:@"%@ %@",
+                                  viewModel.amount.currency,
+                                  viewModel.amount.amount];
+    
+    [self.payButton configureWithViewModel:viewModel.payButtonModel];
+}
+
+//----------------------------------------------------------------------
+#pragma mark - Layout Setup
+//----------------------------------------------------------------------
+
+- (void)setupViews {
+    
+    self.backgroundColor = UIColor.redColor;
+    
+    [self addSubview:self.backgroundImageView];
+    [self setupBackgroundImageViewConstraints];
+    
+    [self setupStackViews];
+    [self setupStackViewConstraints];
+}
+
+- (void)setupStackViews {
+    [self.emptyTextStackView addArrangedSubview:self.emptyTitleLabel];
+    [self.emptyTextStackView addArrangedSubview:self.emptyTextLabel];
+    
+    [self.amountStackView addArrangedSubview:self.amountPrefixLabel];
+    [self.amountStackView addArrangedSubview:self.amountValueLabel];
+    
+    [self.paymentStackView addArrangedSubview:self.amountStackView];
+    [self.paymentStackView addArrangedSubview:self.payButton];
+    
+    [self.mainStackView addArrangedSubview:self.emptyTextStackView];
+    [self.mainStackView addArrangedSubview:self.paymentStackView];
+    
+    [self addSubview:self.mainStackView];
+}
+
+//----------------------------------------------------------------------
+#pragma mark - Constraints Setup
+//----------------------------------------------------------------------
+
+- (void)setupBackgroundImageViewConstraints {
+    [self.backgroundImageView pinToView:self withPadding:0.0];
+}
+
+- (void)setupStackViewConstraints {
+    
+    [self.amountStackView.topAnchor constraintEqualToAnchor:self.paymentStackView.topAnchor].active = YES;
+    [self.amountStackView.bottomAnchor constraintEqualToAnchor:self.paymentStackView.bottomAnchor].active = YES;
+    
+    [self.payButton.heightAnchor constraintEqualToConstant:45].active = YES;
+    [self.payButton.trailingAnchor constraintEqualToAnchor:self.mainStackView.trailingAnchor].active = YES;
+    [self.payButton.leadingAnchor constraintEqualToAnchor:self.amountStackView.trailingAnchor].active = YES;
+
+    [self.mainStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:24].active = true;
+    [self.mainStackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-24].active = true;
+    [self.mainStackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:35].active = true;
+    [self.mainStackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-15].active = true;
+}
+
+//----------------------------------------------------------------------
+#pragma mark - Lazy Properties
+//----------------------------------------------------------------------
 
 - (UILabel *)emptyTitleLabel {
     if (!_emptyTitleLabel) {
@@ -126,6 +204,52 @@
         _payButton.backgroundColor = UIColor.jpTextColor;
     }
     return _payButton;
+}
+
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        UIImage *image = [UIImage imageWithResourceName:@"no-cards"];
+        _backgroundImageView = [[UIImageView alloc] initWithImage:image];
+        _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _backgroundImageView;
+}
+
+-(UIStackView *)emptyTextStackView {
+    if(!_emptyTextStackView) {
+        _emptyTextStackView = [UIStackView verticalStackViewWithSpacing:4.0];
+        _emptyTextStackView.distribution = UIStackViewDistributionEqualSpacing;
+        _emptyTextStackView.alignment = UIStackViewAlignmentLeading;
+    }
+    return  _emptyTextStackView;
+}
+
+-(UIStackView *)paymentStackView {
+    if(!_paymentStackView) {
+        _paymentStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
+        _paymentStackView.distribution = UIStackViewDistributionFillEqually;
+        _paymentStackView.alignment = UIStackViewAlignmentTop;
+    }
+    return  _paymentStackView;
+}
+
+-(UIStackView *)amountStackView {
+    if(!_amountStackView) {
+        _amountStackView = [UIStackView verticalStackViewWithSpacing:0.0];
+        _amountStackView.distribution = UIStackViewDistributionEqualSpacing;
+        _amountStackView.alignment = UIStackViewAlignmentTop;
+    }
+    return  _amountStackView;
+}
+
+-(UIStackView *)mainStackView {
+    if(!_mainStackView) {
+        _mainStackView = [UIStackView verticalStackViewWithSpacing:50.0];
+        _mainStackView.distribution = UIStackViewDistributionEqualSpacing;
+        _mainStackView.alignment = UIStackViewAlignmentLeading;
+    }
+    return  _mainStackView;
 }
 
 @end

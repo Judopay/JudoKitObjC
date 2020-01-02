@@ -81,7 +81,7 @@
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    self.paymentMethodsView.headerView = [[JPPaymentMethodsHeaderView alloc] initWithViewModel:viewModel.headerModel];
+    [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
     
     self.paymentMethodsView.judoHeadlineImageView.hidden = !viewModel.shouldDisplayHeadline;
     self.paymentMethodsView.judoHeadlineHeightConstraint.constant = viewModel.shouldDisplayHeadline ? 20.0 : 0.0;

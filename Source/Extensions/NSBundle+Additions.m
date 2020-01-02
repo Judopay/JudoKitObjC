@@ -57,6 +57,16 @@
     return bundle;
 }
 
++ (instancetype)resourcesBundle {
+    static NSBundle *iconsBundle;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *iconBundlePath = [NSBundle pathForResourceBundle:@"resources"];
+        iconsBundle = [NSBundle bundleWithPath:iconBundlePath];
+    });
+    return iconsBundle;
+}
+
 + (NSString *)pathForResourceBundle:(NSString *)resourceBundle {
     for (NSBundle *bundle in [NSBundle allBundles]) {
         NSString *bundlePath = [bundle pathForResource:resourceBundle ofType:@"bundle"];

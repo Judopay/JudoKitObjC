@@ -26,23 +26,8 @@
 
 @class JPPaymentMethodsHeaderModel;
 
-typedef NS_ENUM(NSUInteger, CardPreviewAnimationType) {
-    AnimateLeftToRight,
-    AnimateRightToLeft,
-    AnimateBottomToTop
-};
-
 @interface JPPaymentMethodsHeaderView : UIView
 
-/**
- * Initializes the Payment Methods header with an  optional payment method
- */
-- (instancetype)initWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
-
-/**
- * Changes the header with a specified animation type
- */
-- (void)changePreviewWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel
-                     animationType:(CardPreviewAnimationType)animationType;
+- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 
 @end
