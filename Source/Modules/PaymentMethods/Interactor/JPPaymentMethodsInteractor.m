@@ -24,8 +24,20 @@
 
 #import "JPPaymentMethodsInteractor.h"
 #import "JPCardStorage.h"
+#import "JPTheme.h"
+
+@interface JPPaymentMethodsInteractorImpl()
+@property (nonatomic, strong) JPTheme *theme;
+@end
 
 @implementation JPPaymentMethodsInteractorImpl
+
+- (instancetype)initWithTheme:(JPTheme *)theme {
+    if (self = [super init]) {
+        self.theme = theme;
+    }
+    return self;
+}
 
 - (NSArray<JPStoredCardDetails *> *)getStoredCardDetails {
     return [JPCardStorage.sharedInstance getStoredCardDetails];
@@ -46,6 +58,10 @@
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         [JPCardStorage.sharedInstance addCardDetails:cardDetails];
     }
+}
+
+- (BOOL)shouldDisplayJudoHeadline {
+    return [self.theme displayJudoHeadline];
 }
 
 @end

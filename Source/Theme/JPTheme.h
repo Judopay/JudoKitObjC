@@ -49,6 +49,11 @@
  */
 @property (nonatomic, assign) BOOL showSecurityMessage;
 
+/**
+ * A boolean property indicating whether the 'Powered by Judo' headline must be displayed
+ */
+@property (nonatomic, assign) BOOL displayJudoHeadline;
+
 #pragma mark - Buttons
 
 /**
