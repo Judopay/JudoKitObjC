@@ -425,10 +425,10 @@
 }
 
 - (NSString *)judoRightBarButtonTitle {
-    if (!_judoLeftBarButtonTitle) {
-        _judoLeftBarButtonTitle = @"pay".localized;
+    if (!_judoRightBarButtonTitle) {
+        _judoRightBarButtonTitle = @"pay".localized;
     }
-    return _judoLeftBarButtonTitle;
+    return _judoRightBarButtonTitle;
 }
 
 #pragma mark - iDEAL Status View
