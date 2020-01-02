@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPStoredCardDetails;
+@class JPStoredCardDetails, JPTheme;
 
 @protocol JPPaymentMethodsInteractor
 
@@ -40,7 +40,18 @@
  */
 - (void)selectCardAtIndex:(NSInteger)index;
 
+/**
+ * A method that returns YES if the 'Powered by Judo' headline should be displayed
+ */
+- (BOOL)shouldDisplayJudoHeadline;
+
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
+
+/**
+ * A designated initializer that sets up the JPTheme object needed for view customization
+ */
+- (instancetype)initWithTheme:(JPTheme *)theme;
+
 @end

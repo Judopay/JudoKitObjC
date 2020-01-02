@@ -92,6 +92,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 - (void)setSettings:(Settings *)settings {
     _settings = settings;
     self.judoKitSession.theme.avsEnabled = settings.isAVSEnabled;
+    self.judoKitSession.theme.displayJudoHeadline = YES;
 }
 
 - (void)settingsViewController:(SettingsViewController *)viewController didUpdateSettings:(Settings *)settings {

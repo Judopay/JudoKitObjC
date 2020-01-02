@@ -150,6 +150,11 @@
 @interface JPPaymentMethodsViewModel : NSObject
 
 /**
+ * A property that is set to YES if the 'Powered by Judo' headline should be displayed;
+ */
+@property (nonatomic, assign) BOOL shouldDisplayHeadline;
+
+/**
  * An array of JPPaymentMethodsModel objects that define the layout of the view
  */
 @property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> *items;

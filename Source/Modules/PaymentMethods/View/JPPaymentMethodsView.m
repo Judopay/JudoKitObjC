@@ -24,6 +24,9 @@
 
 #import "JPPaymentMethodsView.h"
 #import "UIView+Additions.h"
+#import "UIColor+Judo.h"
+#import "UIView+SafeAnchors.h"
+#import "UIImage+Icons.h"
 
 @implementation JPPaymentMethodsView
 
@@ -56,13 +59,24 @@
 #pragma mark - Layout setup
 
 - (void)setupViews {
-    [self addSubview:self.headerView];
+    self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.tableView];
+    [self addSubview:self.headerView];
+    [self addSubview:self.judoHeadlineImageView];
 }
 
 - (void)setupConstraints {
-    [self.tableView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing | AnchorTypeBottom forView:self];
-    [self.tableView.topAnchor constraintEqualToAnchor:self.headerView.bottomAnchor].active = YES;
+    [self.tableView.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+    [self.tableView.leftAnchor constraintEqualToAnchor:self.safeLeftAnchor].active = YES;
+    [self.tableView.rightAnchor constraintEqualToAnchor:self.safeRightAnchor].active = YES;
+    [self.tableView.bottomAnchor constraintEqualToAnchor:self.judoHeadlineImageView.topAnchor].active = YES;
+    
+    self.judoHeadlineHeightConstraint = [self.judoHeadlineImageView.heightAnchor constraintEqualToConstant:20.0f];
+    self.judoHeadlineHeightConstraint.active = YES;
+    
+    [self.judoHeadlineImageView.leftAnchor constraintEqualToAnchor:self.safeLeftAnchor].active = YES;
+    [self.judoHeadlineImageView.rightAnchor constraintEqualToAnchor:self.safeRightAnchor].active = YES;
+    [self.judoHeadlineImageView.bottomAnchor constraintEqualToAnchor:self.safeBottomAnchor].active = YES;
 }
 
 #pragma mark - Lazy properties
@@ -70,8 +84,8 @@
 - (UIView *)headerView {
     if (!_headerView) {
         _headerView = [UIView new];
-        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 350);
-        _headerView.backgroundColor = UIColor.lightGrayColor;
+        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
+        _headerView.backgroundColor = UIColor.jpContentBackgroundColor;
     }
     return _headerView;
 }
@@ -81,8 +95,19 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
     }
     return _tableView;
+}
+
+- (UIImageView *)judoHeadlineImageView {
+    if (!_judoHeadlineImageView) {
+        UIImage *logoImage = [UIImage imageWithIconName:@"judo-headline"];
+        _judoHeadlineImageView = [[UIImageView alloc] initWithImage:logoImage];
+        _judoHeadlineImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _judoHeadlineImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _judoHeadlineImageView;
 }
 
 @end
