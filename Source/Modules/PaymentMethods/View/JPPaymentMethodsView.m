@@ -24,6 +24,7 @@
 
 #import "JPPaymentMethodsView.h"
 #import "UIView+Additions.h"
+#import "UIColor+Judo.h"
 
 @implementation JPPaymentMethodsView
 
@@ -56,13 +57,12 @@
 #pragma mark - Layout setup
 
 - (void)setupViews {
-    [self addSubview:self.headerView];
     [self addSubview:self.tableView];
+    [self addSubview:self.headerView];
 }
 
 - (void)setupConstraints {
-    [self.tableView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing | AnchorTypeBottom forView:self];
-    [self.tableView.topAnchor constraintEqualToAnchor:self.headerView.bottomAnchor].active = YES;
+    [self.tableView pinToView:self withPadding:0.0f];
 }
 
 #pragma mark - Lazy properties
@@ -70,8 +70,8 @@
 - (UIView *)headerView {
     if (!_headerView) {
         _headerView = [UIView new];
-        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 350);
-        _headerView.backgroundColor = UIColor.lightGrayColor;
+        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
+        _headerView.backgroundColor = UIColor.jpContentBackgroundColor;
     }
     return _headerView;
 }
@@ -81,6 +81,7 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
     }
     return _tableView;
 }

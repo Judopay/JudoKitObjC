@@ -70,8 +70,8 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat yValue = 350 - scrollView.contentOffset.y;
-    CGFloat height = MIN(MAX(yValue, 234), 350);
+    CGFloat yValue = -scrollView.contentOffset.y;
+    CGFloat height = MIN(MAX(yValue, 295), 400);
     CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     self.paymentMethodsView.headerView.frame = newFrame;
 }

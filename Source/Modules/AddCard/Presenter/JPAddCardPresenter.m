@@ -67,7 +67,7 @@
     self.addCardViewModel.countryPickerViewModel.placeholder = @"country".localized;
     self.addCardViewModel.countryPickerViewModel.pickerTitles = [self.interactor getSelectableCountryNames];
     self.addCardViewModel.postalCodeInputViewModel.placeholder = @"postal_code".localized;
-    self.addCardViewModel.addCardButtonViewModel.title = @"add_card".localized;
+    self.addCardViewModel.addCardButtonViewModel.title = @"add_card_button".localized;
     self.addCardViewModel.addCardButtonViewModel.isEnabled = false;
 
     [self.view updateViewWithViewModel:self.addCardViewModel];

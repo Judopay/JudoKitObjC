@@ -38,7 +38,7 @@
     UIFont *placeholderFont = (viewModel.errorText) ? UIFont.smallTextFont : UIFont.defaultTextFont;
 
     [self placeholderWithText:viewModel.placeholder
-                        color:UIColor.jpPlaceholderColor
+                        color:UIColor.jpSubtitleColor
                       andFont:placeholderFont];
 
     if (viewModel.errorText) {
