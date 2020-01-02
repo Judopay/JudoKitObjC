@@ -947,11 +947,11 @@
 		30D61D3123BB741A004E5CEE /* PaymentMethods */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D3223BB741A004E5CEE /* Presenter */,
-				30D61D3723BB741A004E5CEE /* View */,
 				30D61D4B23BB741A004E5CEE /* Builder */,
 				30D61D4E23BB741A004E5CEE /* Interactor */,
+				30D61D3223BB741A004E5CEE /* Presenter */,
 				30D61D5123BB741A004E5CEE /* Router */,
+				30D61D3723BB741A004E5CEE /* View */,
 			);
 			name = PaymentMethods;
 			path = Modules/PaymentMethods;
@@ -961,9 +961,9 @@
 			isa = PBXGroup;
 			children = (
 				30D61D3323BB741A004E5CEE /* JPPaymentMethodsPresenter.h */,
-				30D61D3423BB741A004E5CEE /* JPPaymentMethodsViewModel.m */,
 				30D61D3523BB741A004E5CEE /* JPPaymentMethodsPresenter.m */,
 				30D61D3623BB741A004E5CEE /* JPPaymentMethodsViewModel.h */,
+				30D61D3423BB741A004E5CEE /* JPPaymentMethodsViewModel.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -971,11 +971,11 @@
 		30D61D3723BB741A004E5CEE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30D61D4923BB741A004E5CEE /* JPPaymentMethodsView.h */,
 				30D61D3823BB741A004E5CEE /* JPPaymentMethodsView.m */,
+				30D61D4A23BB741A004E5CEE /* JPPaymentMethodsViewController.h */,
 				30D61D3923BB741A004E5CEE /* JPPaymentMethodsViewController.m */,
 				30D61D3A23BB741A004E5CEE /* Subviews */,
-				30D61D4923BB741A004E5CEE /* JPPaymentMethodsView.h */,
-				30D61D4A23BB741A004E5CEE /* JPPaymentMethodsViewController.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -983,17 +983,17 @@
 		30D61D3A23BB741A004E5CEE /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D3B23BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.h */,
-				30D61D3D23BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.h */,
-				30D61D3E23BB741A004E5CEE /* JPPaymentMethodsSelectionCell.h */,
 				30D61D3F23BB741A004E5CEE /* JPPaymentMethodsCardCell.h */,
-				30D61D4023BB741A004E5CEE /* JPPaymentMethodsCell.m */,
-				30D61D4123BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.m */,
-				30D61D4323BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.m */,
-				30D61D4423BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.m */,
-				30D61D4523BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.h */,
-				30D61D4623BB741A004E5CEE /* JPPaymentMethodsCell.h */,
 				30D61D4723BB741A004E5CEE /* JPPaymentMethodsCardCell.m */,
+				30D61D4523BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.h */,
+				30D61D4123BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.m */,
+				30D61D3B23BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.h */,
+				30D61D4423BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.m */,
+				30D61D4623BB741A004E5CEE /* JPPaymentMethodsCell.h */,
+				30D61D4023BB741A004E5CEE /* JPPaymentMethodsCell.m */,
+				30D61D3D23BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.h */,
+				30D61D4323BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.m */,
+				30D61D3E23BB741A004E5CEE /* JPPaymentMethodsSelectionCell.h */,
 				30D61D4823BB741A004E5CEE /* JPPaymentMethodsSelectionCell.m */,
 			);
 			path = Subviews;
@@ -1002,8 +1002,8 @@
 		30D61D4B23BB741A004E5CEE /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D4C23BB741A004E5CEE /* JPPaymentMethodsBuilder.m */,
 				30D61D4D23BB741A004E5CEE /* JPPaymentMethodsBuilder.h */,
+				30D61D4C23BB741A004E5CEE /* JPPaymentMethodsBuilder.m */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -1011,8 +1011,8 @@
 		30D61D4E23BB741A004E5CEE /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D4F23BB741A004E5CEE /* JPPaymentMethodsInteractor.m */,
 				30D61D5023BB741A004E5CEE /* JPPaymentMethodsInteractor.h */,
+				30D61D4F23BB741A004E5CEE /* JPPaymentMethodsInteractor.m */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1020,8 +1020,8 @@
 		30D61D5123BB741A004E5CEE /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D5223BB741A004E5CEE /* JPPaymentMethodsRouter.m */,
 				30D61D5323BB741A004E5CEE /* JPPaymentMethodsRouter.h */,
+				30D61D5223BB741A004E5CEE /* JPPaymentMethodsRouter.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1138,10 +1138,10 @@
 			isa = PBXGroup;
 			children = (
 				306BCF1523570475008540E7 /* iDEAL */,
-				3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */,
-				3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */,
 				44AF432222DBD491008A4839 /* JudoPaymentMethodsViewController.h */,
 				44AF432322DBD491008A4839 /* JudoPaymentMethodsViewController.m */,
+				3B5362931C7CBD3F00CEBAE2 /* JudoPayViewController.h */,
+				3B5362941C7CBD3F00CEBAE2 /* JudoPayViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1173,15 +1173,15 @@
 		3B678B4C1C6CE5190001DC2F = {
 			isa = PBXGroup;
 			children = (
-				52FBFB6A2325A3770096064C /* Resources */,
-				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				701050B91E1E90D70001ED87 /* DeviceDNA */,
+				15779454211085A9007BD3E1 /* Frameworks */,
+				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
+				3B678B571C6CE5190001DC2F /* Products */,
+				52FBFB6A2325A3770096064C /* Resources */,
 				3B678B581C6CE5190001DC2F /* Source */,
 				3B678B641C6CE5190001DC2F /* Tests */,
-				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
+				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				3B4EB3B61C981EA7006265A0 /* UITests */,
-				3B678B571C6CE5190001DC2F /* Products */,
-				15779454211085A9007BD3E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1199,18 +1199,18 @@
 		3B678B581C6CE5190001DC2F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				5214A7B3239997AD00283B81 /* Presentations */,
-				30D08910238FB4CD00480C9E /* Modules */,
-				3B678BC71C735AB80001DC2F /* JudoKit.h */,
-				3B678BC81C735AB80001DC2F /* JudoKit.m */,
-				3B678B5B1C6CE5190001DC2F /* Info.plist */,
 				3B678B711C6CE6190001DC2F /* API */,
 				3B5362921C7CBD2100CEBAE2 /* Controller */,
 				3B678B731C6CE6500001DC2F /* Extensions */,
 				30DB511923100E6B00B73D66 /* Helpers */,
-				30DB511E23100E6B00B73D66 /* Services */,
+				3B678B5B1C6CE5190001DC2F /* Info.plist */,
+				3B678BC71C735AB80001DC2F /* JudoKit.h */,
+				3B678BC81C735AB80001DC2F /* JudoKit.m */,
 				30DB511C23100E6B00B73D66 /* Mocks */,
 				3B678B701C6CE5F70001DC2F /* Model */,
+				30D08910238FB4CD00480C9E /* Modules */,
+				5214A7B3239997AD00283B81 /* Presentations */,
+				30DB511E23100E6B00B73D66 /* Services */,
 				3B6991531C8DD841006ED1FB /* Theme */,
 				3B678B741C6CE68D0001DC2F /* View */,
 				447CBD5522DCA81700C1C9E1 /* ViewModel */,
@@ -1232,10 +1232,6 @@
 		3B678B701C6CE5F70001DC2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D7123BB742D004E5CEE /* JPValidationResult.h */,
-				30D61D7023BB742D004E5CEE /* JPValidationResult.m */,
-				30F1B49D237C3C5A00CE676A /* JPOrderDetails.h */,
-				30F1B4A5237C3C5A00CE676A /* JPOrderDetails.m */,
 				30DB50F823100E1C00B73D66 /* ApplePay */,
 				30DB511323100E5200B73D66 /* BillingCountry.h */,
 				306BCECE2355FC9E008540E7 /* IDEALBank.h */,
@@ -1252,6 +1248,8 @@
 				3BD353CA1C77803F0045658A /* JPCardDetails.m */,
 				44340F1522F4531200B36D65 /* JPCardNetwork.h */,
 				44340F1622F4531200B36D65 /* JPCardNetwork.m */,
+				30CB2BF323B4ED0400D392FF /* JPCardStorage.h */,
+				30CB2BF423B4ED0400D392FF /* JPCardStorage.m */,
 				44290B0F22F051F50088F827 /* JPClientDetails.h */,
 				44290B1722F051F60088F827 /* JPClientDetails.m */,
 				30DB511223100E5200B73D66 /* JPConstants.h */,
@@ -1259,9 +1257,13 @@
 				3BD353C61C7774780045658A /* JPConsumer.m */,
 				44290B1322F051F60088F827 /* JPConsumerDevice.h */,
 				44290B1022F051F50088F827 /* JPConsumerDevice.m */,
+				30CFA5E1239A55EF00329B04 /* JPCountry.h */,
+				30CFA5E2239A55EF00329B04 /* JPCountry.m */,
 				44290B0D22F051F50088F827 /* JPDictionaryConvertible.h */,
 				44290B1222F051F60088F827 /* JPEnhancedPaymentDetail.h */,
 				44290B1822F051F60088F827 /* JPEnhancedPaymentDetail.m */,
+				30F1B49D237C3C5A00CE676A /* JPOrderDetails.h */,
+				30F1B4A5237C3C5A00CE676A /* JPOrderDetails.m */,
 				3B678B7D1C6DE0FA0001DC2F /* JPPagination.h */,
 				3B678B7E1C6DE0FA0001DC2F /* JPPagination.m */,
 				3B678B971C71D9D60001DC2F /* JPPaymentToken.h */,
@@ -1272,20 +1274,18 @@
 				3B678B821C6DE2850001DC2F /* JPResponse.m */,
 				44290B1522F051F60088F827 /* JPSDKInfo.h */,
 				44290B1622F051F60088F827 /* JPSDKInfo.m */,
+				30CB2BEF23B4E82100D392FF /* JPStoredCardDetails.h */,
+				30CB2BF023B4E82100D392FF /* JPStoredCardDetails.m */,
 				44290B1422F051F60088F827 /* JPThreeDSecure.h */,
 				44290B1122F051F50088F827 /* JPThreeDSecure.m */,
 				3BD353C11C77557F0045658A /* JPTransactionData.h */,
 				3BD353C21C77557F0045658A /* JPTransactionData.m */,
+				30D61D7123BB742D004E5CEE /* JPValidationResult.h */,
+				30D61D7023BB742D004E5CEE /* JPValidationResult.m */,
 				15CFC9E81FB7371300430D31 /* JPVCOResult.h */,
 				15CFC9EA1FB738E600430D31 /* JPVCOResult.m */,
 				30DB511123100E5100B73D66 /* JudoKitObjC.h */,
 				30DB511423100E5200B73D66 /* PaymentMethods.h */,
-				30CFA5E1239A55EF00329B04 /* JPCountry.h */,
-				30CFA5E2239A55EF00329B04 /* JPCountry.m */,
-				30CB2BEF23B4E82100D392FF /* JPStoredCardDetails.h */,
-				30CB2BF023B4E82100D392FF /* JPStoredCardDetails.m */,
-				30CB2BF323B4ED0400D392FF /* JPCardStorage.h */,
-				30CB2BF423B4ED0400D392FF /* JPCardStorage.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1293,34 +1293,34 @@
 		3B678B711C6CE6190001DC2F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				30225D14237E8F2F005EB28C /* JPReachability.h */,
-				30225D15237E8F2F005EB28C /* JPReachability.m */,
 				300654A5237AA91900097955 /* JPCheckCard.h */,
 				300654AD237AA91900097955 /* JPCheckCard.m */,
-				44290B0522F051B00088F827 /* JPTransactionEnricher.h */,
-				44290B0622F051B00088F827 /* JPTransactionEnricher.m */,
-				3B678B751C6CE7770001DC2F /* JPSession.h */,
-				3B678B761C6CE7770001DC2F /* JPSession.m */,
-				3B678B851C6DF6130001DC2F /* JPTransaction.h */,
-				3B678B861C6DF6130001DC2F /* JPTransaction.m */,
+				3B678BA71C7327040001DC2F /* JPCollection.h */,
+				3B678BA81C7327040001DC2F /* JPCollection.m */,
 				3B678B9B1C7326C00001DC2F /* JPPayment.h */,
 				3B678B9C1C7326C00001DC2F /* JPPayment.m */,
 				3B678B9F1C7326D30001DC2F /* JPPreAuth.h */,
 				3B678BA01C7326D30001DC2F /* JPPreAuth.m */,
-				3B678BA31C7326F10001DC2F /* JPRegisterCard.h */,
-				3B678BA41C7326F10001DC2F /* JPRegisterCard.m */,
-				3B678BB71C7331280001DC2F /* JPTransactionProcess.h */,
-				3B678BB81C7331280001DC2F /* JPTransactionProcess.m */,
-				3B678BA71C7327040001DC2F /* JPCollection.h */,
-				3B678BA81C7327040001DC2F /* JPCollection.m */,
-				3B678BAF1C7327270001DC2F /* JPVoid.h */,
-				3B678BB01C7327270001DC2F /* JPVoid.m */,
-				3B678BAB1C7327160001DC2F /* JPRefund.h */,
-				3B678BAC1C7327160001DC2F /* JPRefund.m */,
+				30225D14237E8F2F005EB28C /* JPReachability.h */,
+				30225D15237E8F2F005EB28C /* JPReachability.m */,
 				3B678BB31C7327410001DC2F /* JPReceipt.h */,
 				3B678BB41C7327410001DC2F /* JPReceipt.m */,
+				3B678BAB1C7327160001DC2F /* JPRefund.h */,
+				3B678BAC1C7327160001DC2F /* JPRefund.m */,
+				3B678BA31C7326F10001DC2F /* JPRegisterCard.h */,
+				3B678BA41C7326F10001DC2F /* JPRegisterCard.m */,
 				1577945C2110C8CF007BD3E1 /* JPSaveCard.h */,
 				1577945A2110C8B9007BD3E1 /* JPSaveCard.m */,
+				3B678B751C6CE7770001DC2F /* JPSession.h */,
+				3B678B761C6CE7770001DC2F /* JPSession.m */,
+				3B678B851C6DF6130001DC2F /* JPTransaction.h */,
+				3B678B861C6DF6130001DC2F /* JPTransaction.m */,
+				44290B0522F051B00088F827 /* JPTransactionEnricher.h */,
+				44290B0622F051B00088F827 /* JPTransactionEnricher.m */,
+				3B678BB71C7331280001DC2F /* JPTransactionProcess.h */,
+				3B678BB81C7331280001DC2F /* JPTransactionProcess.m */,
+				3B678BAF1C7327270001DC2F /* JPVoid.h */,
+				3B678BB01C7327270001DC2F /* JPVoid.m */,
 			);
 			name = API;
 			sourceTree = "<group>";

@@ -29,7 +29,16 @@
 @class JPTransaction, JPTheme, SliderTransitioningDelegate;
 
 @protocol JPPaymentMethodsRouter
+/**
+ * A method that opens up the Add Card view for entering new card details
+ */
 - (void)navigateToAddCardModule;
+
+/**
+ * A method that dismisses the current view
+ */
+- (void)dismissViewController;
+
 @end
 
 @interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>

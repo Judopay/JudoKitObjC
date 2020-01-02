@@ -41,6 +41,11 @@
  */
 - (void)didSelectCardAtIndex:(NSInteger)index;
 
+/**
+ * A method that is called when the Back button is tapped. It handles the view dismissal flow
+ */
+- (void)handleBackButtonTap;
+
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

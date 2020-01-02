@@ -45,7 +45,7 @@
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
-    JPPaymentMethodsInteractorImpl *interactor = [JPPaymentMethodsInteractorImpl new];
+    JPPaymentMethodsInteractorImpl *interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTheme:session.theme];
 
     JPReference *reference = [JPReference consumerReference:consumerReference];
 

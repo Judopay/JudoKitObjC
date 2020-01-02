@@ -72,4 +72,8 @@
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 
+- (void)dismissViewController {
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

@@ -54,10 +54,15 @@
     [self viewModelNeedsUpdate];
 }
 
+- (void)handleBackButtonTap {
+    [self.router dismissViewController];
+}
+
 #pragma mark - Helper methods
 
 - (void)updateViewModel {
     [self.viewModel.items removeAllObjects];
+    self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
     [self.viewModel.items addObject:self.paymentSelectionModel];
 
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
@@ -105,6 +110,7 @@
 - (JPPaymentMethodsViewModel *)viewModel {
     if (!_viewModel) {
         _viewModel = [JPPaymentMethodsViewModel new];
+        _viewModel.shouldDisplayHeadline = NO;
         _viewModel.items = [NSMutableArray new];
     }
     return _viewModel;
