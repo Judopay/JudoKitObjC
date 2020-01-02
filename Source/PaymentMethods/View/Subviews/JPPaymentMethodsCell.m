@@ -1,8 +1,8 @@
 //
-//  UIFont.h
+//  JPPaymentMethodsCell.m
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2019 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,37 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "JPPaymentMethodsCell.h"
 
-@interface UIFont (Additions)
+@implementation JPPaymentMethodsCell
 
-/**
- * The default text font (San Francisco Regular - 16)
- */
-+ (UIFont *)defaultTextFont;
+- (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
+    
+}
 
-/**
- * The smaller default text font that is displayed when an error superscript is visible (San Francisco Regular - 14)
- */
-+ (UIFont *)smallTextFont;
-
-/**
- * The error text font (San Francisco Regular - 10)
- */
-+ (UIFont *)errorTextFont;
-
-/**
- * The font for non-prominent titles (San Francisco Semibold - 14)
- */
-+ (UIFont *)smallTitleFont;
-
-/**
- * The font for prominent titles (San Francisco Semibold - 16)
- */
-+ (UIFont *)largeTitleFont;
-
-/**
- * The font for small text messages (San Francisco Regular - 11.3)
- */
-+ (UIFont *)subtitleTextFont;
 @end

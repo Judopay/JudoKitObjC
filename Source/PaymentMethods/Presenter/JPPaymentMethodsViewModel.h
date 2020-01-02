@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsPresenter.h
+//  JPPaymentMethodsViewModel.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -23,28 +23,34 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPCardDetails.h"
 
-@protocol JPPaymentMethodsView, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
-
-@protocol JPPaymentMethodsPresenter
-- (void)prepareInitialViewModel;
+@interface JPPaymentMethodsModel : NSObject
+@property (nonatomic, strong) NSString *identifier;
 @end
 
-@interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>
+@interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
+@end
 
-/**
- * A weak reference to the view that adops the  JPPaymentMethodsView protocol
- */
-@property (nonatomic, weak) id<JPPaymentMethodsView> view;
+@interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
+@end
 
-/**
- * A strong reference to the router that adops the  JPPaymentMethodsRouter protocol
- */
-@property (nonatomic, strong) id<JPPaymentMethodsRouter> router;
+@interface JPPaymentMethodsEmptyListModel: JPPaymentMethodsModel
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *addCardButtonTitle;
+@property (nonatomic, strong) NSString *addCardButtonIconName;
+@property (nonatomic, assign) SEL onAddCardButtonTapHandler;
+@end
 
-/**
- * A strong reference to the interactor that adops the  JPPaymentMethodsInteractor protocol
- */
-@property (nonatomic, strong) id<JPPaymentMethodsInteractor> interactor;
+@interface JPPaymentMethodsCardModel : NSObject
+@property (nonatomic, strong) NSString *cardTitle;
+@property (nonatomic, assign) CardNetwork cardNetwork;
+@property (nonatomic, strong) NSString *cardNumberLastFour;
+@property (nonatomic, strong) NSString *expiryDate;
+@property (nonatomic, assign) BOOL isDefaultCard;
+@end
 
+@interface JPPaymentMethodsViewModel : NSObject
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> *items;
+@property (nonatomic, assign) BOOL shouldDisplayHeadline;
 @end

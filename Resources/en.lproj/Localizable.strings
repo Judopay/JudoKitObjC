@@ -98,3 +98,8 @@
 "refund"                                = "Refund";
 "check_card"                            = "Check Card";
 "verifying_payment"                     = "Verifying payment";
+
+"choose_payment_method"               = "Choose a Payment Method";
+"no_cards_added"  = "You didn’t add any cards yet.\nAdd one right now or use any of the payment methods below";
+"you_will_pay" = "You will pay";
+"pay_now" = "PAY NOW";

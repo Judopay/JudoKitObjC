@@ -52,11 +52,11 @@
         [self.topAnchor constraintEqualToAnchor:view.topAnchor
                                        constant:padding],
         [self.bottomAnchor constraintEqualToAnchor:view.bottomAnchor
-                                          constant:padding],
+                                          constant:-padding],
         [self.leadingAnchor constraintEqualToAnchor:view.leadingAnchor
                                            constant:padding],
         [self.trailingAnchor constraintEqualToAnchor:view.trailingAnchor
-                                            constant:padding]
+                                            constant:-padding]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];

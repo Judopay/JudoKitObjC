@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JPPaymentMethodsViewModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JPCreditCardUI : UIView
-- (instancetype)init;
+- (instancetype)initWithViewModel:(JPPaymentMethodsCardModel*)viewModel;
 @end
 
 NS_ASSUME_NONNULL_END

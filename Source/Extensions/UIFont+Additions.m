@@ -38,11 +38,11 @@
     return [UIFont systemFontOfSize:10.0];
 }
 
-+ (UIFont *)smallButtonTitleFont {
++ (UIFont *)smallTitleFont {
     return [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
 }
 
-+ (UIFont *)largetButtonTitleFont {
++ (UIFont *)largeTitleFont {
     return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
 }
 
