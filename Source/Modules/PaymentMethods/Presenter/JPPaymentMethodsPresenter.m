@@ -68,10 +68,8 @@
     [self.viewModel.items removeAllObjects];
     self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
     
-    self.headerModel.amount = [self.interactor getAmount];
-    self.headerModel.payButtonModel = self.paymentButtonModel;
+    [self prepareHeaderModel];
     
-    self.viewModel.headerModel = self.headerModel;
     [self.viewModel.items addObject:self.paymentSelectionModel];
 
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
@@ -84,6 +82,23 @@
         [self.viewModel.items addObject:self.cardListModel];
         [self.viewModel.items addObject:self.cardFooterModel];
     }
+}
+
+- (void)prepareHeaderModel {
+    self.headerModel.amount = [self.interactor getAmount];
+    self.headerModel.payButtonModel = self.paymentButtonModel;
+    self.headerModel.payButtonModel.isEnabled = NO;
+    
+    NSArray *storedCardDetails = [self.interactor getStoredCardDetails];
+    
+    for (JPStoredCardDetails *cardDetails in storedCardDetails) {
+        if (cardDetails.isSelected) {
+            self.headerModel.cardModel = [self cardModelFromStoredCardDetails:cardDetails];
+            self.headerModel.payButtonModel.isEnabled = YES;
+        }
+    }
+    
+    self.viewModel.headerModel = self.headerModel;
 }
 
 - (void)prepareCardModelsForStoredCardDetails:(NSArray<JPStoredCardDetails *> *)storedCardDetails {

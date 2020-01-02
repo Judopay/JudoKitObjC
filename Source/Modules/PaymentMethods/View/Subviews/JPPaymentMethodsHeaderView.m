@@ -33,10 +33,14 @@
 #import "UIImage+Icons.h"
 #import "UIView+Additions.h"
 
+#import "JPPaymentMethodsEmptyHeaderView.h"
+#import "JPPaymentMethodsCardHeaderView.h"
+
 @interface JPPaymentMethodsHeaderView()
 
-@property (nonatomic, strong) UILabel *emptyTitleLabel;
-@property (nonatomic, strong) UILabel *emptyTextLabel;
+@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong) JPPaymentMethodsEmptyHeaderView *emptyHeaderView;
+@property (nonatomic, strong) JPPaymentMethodsCardHeaderView *cardHeaderView;
 
 @property (nonatomic, strong) UILabel *amountPrefixLabel;
 @property (nonatomic, strong) UILabel *amountValueLabel;
@@ -44,8 +48,6 @@
 @property (nonatomic, strong) JPAddCardButton *payButton;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
-@property (nonatomic, strong) UIStackView *emptyTextStackView;
-@property (nonatomic, strong) UIStackView *paymentStackView;
 @property (nonatomic, strong) UIStackView *amountStackView;
 @property (nonatomic, strong) UIStackView *mainStackView;
 
@@ -88,6 +90,27 @@
                                   viewModel.amount.amount];
     
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
+    
+    [self.emptyHeaderView removeFromSuperview];
+    [self.cardHeaderView removeFromSuperview];
+    
+    if (viewModel.cardModel == nil) {
+        [self.topView addSubview:self.emptyHeaderView];
+        [self.emptyHeaderView pinToView:self.topView withPadding:0.0];
+    } else {
+        [self.topView addSubview:self.cardHeaderView];
+        [self.cardHeaderView pinToView:self.topView withPadding:0.0];
+        [self.cardHeaderView configureWithViewModel:viewModel];
+        
+        [self insertSubview:self.mainStackView aboveSubview:self.topView];
+        
+        self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
+        self.cardHeaderView.alpha = 0.0;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.cardHeaderView.alpha = 1.0;
+            self.cardHeaderView.transform = CGAffineTransformIdentity;
+        }];
+    }
 }
 
 //----------------------------------------------------------------------
@@ -96,27 +119,22 @@
 
 - (void)setupViews {
     
-    self.backgroundColor = UIColor.redColor;
-    
     [self addSubview:self.backgroundImageView];
     [self setupBackgroundImageViewConstraints];
     
-    [self setupStackViews];
+    [self setupPaymentStackViews];
     [self setupStackViewConstraints];
+    
+    [self addSubview:self.topView];
+    [self setupGeneralConstraints];
 }
 
-- (void)setupStackViews {
-    [self.emptyTextStackView addArrangedSubview:self.emptyTitleLabel];
-    [self.emptyTextStackView addArrangedSubview:self.emptyTextLabel];
-    
+- (void)setupPaymentStackViews {
     [self.amountStackView addArrangedSubview:self.amountPrefixLabel];
     [self.amountStackView addArrangedSubview:self.amountValueLabel];
-    
-    [self.paymentStackView addArrangedSubview:self.amountStackView];
-    [self.paymentStackView addArrangedSubview:self.payButton];
-    
-    [self.mainStackView addArrangedSubview:self.emptyTextStackView];
-    [self.mainStackView addArrangedSubview:self.paymentStackView];
+
+    [self.mainStackView addArrangedSubview:self.amountStackView];
+    [self.mainStackView addArrangedSubview:self.payButton];
     
     [self addSubview:self.mainStackView];
 }
@@ -129,47 +147,45 @@
     [self.backgroundImageView pinToView:self withPadding:0.0];
 }
 
-- (void)setupStackViewConstraints {
-    
-    [self.amountStackView.topAnchor constraintEqualToAnchor:self.paymentStackView.topAnchor].active = YES;
-    [self.amountStackView.bottomAnchor constraintEqualToAnchor:self.paymentStackView.bottomAnchor].active = YES;
-    
-    [self.payButton.heightAnchor constraintEqualToConstant:45].active = YES;
-    [self.payButton.trailingAnchor constraintEqualToAnchor:self.mainStackView.trailingAnchor].active = YES;
-    [self.payButton.leadingAnchor constraintEqualToAnchor:self.amountStackView.trailingAnchor].active = YES;
+- (void)setupGeneralConstraints {
+    [self.payButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
+    [self.topView pinToAnchors:AnchorTypeTop|AnchorTypeLeading|AnchorTypeTrailing forView:self];
+    [self.topView.bottomAnchor constraintEqualToAnchor:self.mainStackView.topAnchor].active = YES;
+}
 
-    [self.mainStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:24].active = true;
-    [self.mainStackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-24].active = true;
-    [self.mainStackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:35].active = true;
-    [self.mainStackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-15].active = true;
+- (void)setupStackViewConstraints {
+    [self.mainStackView.heightAnchor constraintEqualToConstant:46.0].active = YES;
+    [self.mainStackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    [self.mainStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:24.0].active = YES;
+    [self.mainStackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-24.0].active = YES;
 }
 
 //----------------------------------------------------------------------
 #pragma mark - Lazy Properties
 //----------------------------------------------------------------------
 
-- (UILabel *)emptyTitleLabel {
-    if (!_emptyTitleLabel) {
-        _emptyTitleLabel = [UILabel new];
-        _emptyTitleLabel.numberOfLines = 0;
-        _emptyTitleLabel.text = @"choose_payment_method".localized;
-        _emptyTitleLabel.font = [UIFont boldSystemFontOfSize:18]; //TODO: Replace with predefined fonts
-        _emptyTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _emptyTitleLabel.textAlignment = NSTextAlignmentCenter;
+- (UIView *)topView {
+    if (!_topView) {
+        _topView = [UIView new];
+        _topView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _emptyTitleLabel;
+    return _topView;
 }
 
-- (UILabel *)emptyTextLabel {
-    if (!_emptyTextLabel) {
-        _emptyTextLabel = [UILabel new];
-        _emptyTextLabel.numberOfLines = 0;
-        _emptyTextLabel.text = @"no_cards_added".localized;
-        _emptyTextLabel.font = [UIFont systemFontOfSize:14]; //TODO: Replace with predefined fonts
-        _emptyTextLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _emptyTextLabel.textAlignment = NSTextAlignmentLeft;
+- (JPPaymentMethodsEmptyHeaderView *)emptyHeaderView {
+    if (!_emptyHeaderView) {
+        _emptyHeaderView = [JPPaymentMethodsEmptyHeaderView new];
+        _emptyHeaderView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _emptyTextLabel;
+    return _emptyHeaderView;
+}
+
+- (JPPaymentMethodsCardHeaderView *)cardHeaderView {
+    if (!_cardHeaderView) {
+        _cardHeaderView = [JPPaymentMethodsCardHeaderView new];
+        _cardHeaderView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _cardHeaderView;
 }
 
 - (UILabel *)amountValueLabel {
@@ -216,38 +232,17 @@
     return _backgroundImageView;
 }
 
--(UIStackView *)emptyTextStackView {
-    if(!_emptyTextStackView) {
-        _emptyTextStackView = [UIStackView verticalStackViewWithSpacing:4.0];
-        _emptyTextStackView.distribution = UIStackViewDistributionEqualSpacing;
-        _emptyTextStackView.alignment = UIStackViewAlignmentLeading;
-    }
-    return  _emptyTextStackView;
-}
-
--(UIStackView *)paymentStackView {
-    if(!_paymentStackView) {
-        _paymentStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
-        _paymentStackView.distribution = UIStackViewDistributionFillEqually;
-        _paymentStackView.alignment = UIStackViewAlignmentTop;
-    }
-    return  _paymentStackView;
-}
-
 -(UIStackView *)amountStackView {
     if(!_amountStackView) {
         _amountStackView = [UIStackView verticalStackViewWithSpacing:0.0];
-        _amountStackView.distribution = UIStackViewDistributionEqualSpacing;
-        _amountStackView.alignment = UIStackViewAlignmentTop;
+        _amountStackView.alignment = NSLayoutAttributeLeading;
     }
     return  _amountStackView;
 }
 
 -(UIStackView *)mainStackView {
     if(!_mainStackView) {
-        _mainStackView = [UIStackView verticalStackViewWithSpacing:50.0];
-        _mainStackView.distribution = UIStackViewDistributionEqualSpacing;
-        _mainStackView.alignment = UIStackViewAlignmentLeading;
+        _mainStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
     }
     return  _mainStackView;
 }

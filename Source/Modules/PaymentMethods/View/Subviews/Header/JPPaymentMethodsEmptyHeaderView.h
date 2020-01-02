@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsHeaderView.h
+//  JPPaymentMethodsEmptyHeaderView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,10 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPPaymentMethodsCardHeaderModel;
+@class JPPaymentMethodsHeaderModel;
 
-@interface JPPaymentMethodsHeaderView : UIView
-
-- (void)configureWithViewModel:(JPPaymentMethodsCardHeaderModel *)viewModel;
-
+@interface JPPaymentMethodsEmptyHeaderView : UIView
 @end

@@ -47,4 +47,5 @@
  * The judo headline height constraint that is set to 0 if the headline is hidden and 20 otherwise
  */
 @property (nonatomic, strong) NSLayoutConstraint *judoHeadlineHeightConstraint;
+
 @end
