@@ -123,6 +123,8 @@
 		30D61D6F23BB741A004E5CEE /* JPPaymentMethodsRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61D5323BB741A004E5CEE /* JPPaymentMethodsRouter.h */; };
 		30D61D7223BB742E004E5CEE /* JPValidationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D61D7023BB742D004E5CEE /* JPValidationResult.m */; };
 		30D61D7323BB742E004E5CEE /* JPValidationResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61D7123BB742D004E5CEE /* JPValidationResult.h */; };
+		30D61DE523BE3976004E5CEE /* JPPaymentMethodsHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61DE323BE3976004E5CEE /* JPPaymentMethodsHeaderView.h */; };
+		30D61DE623BE3976004E5CEE /* JPPaymentMethodsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D61DE423BE3976004E5CEE /* JPPaymentMethodsHeaderView.m */; };
 		30D6C5BC23950FEC00172303 /* JPAddCardViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */; };
 		30D6C5BD23950FEC00172303 /* JPAddCardViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */; };
 		30D6C5C02395485500172303 /* UITextField+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D6C5BE2395485500172303 /* UITextField+Additions.h */; };
@@ -548,6 +550,8 @@
 		30D61D5323BB741A004E5CEE /* JPPaymentMethodsRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsRouter.h; sourceTree = "<group>"; };
 		30D61D7023BB742D004E5CEE /* JPValidationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPValidationResult.m; path = Model/JPValidationResult.m; sourceTree = "<group>"; };
 		30D61D7123BB742D004E5CEE /* JPValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPValidationResult.h; path = Model/JPValidationResult.h; sourceTree = "<group>"; };
+		30D61DE323BE3976004E5CEE /* JPPaymentMethodsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsHeaderView.h; sourceTree = "<group>"; };
+		30D61DE423BE3976004E5CEE /* JPPaymentMethodsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsHeaderView.m; sourceTree = "<group>"; };
 		30D6C5BA23950FEC00172303 /* JPAddCardViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JPAddCardViewModel.h; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.h; sourceTree = SOURCE_ROOT; };
 		30D6C5BB23950FEC00172303 /* JPAddCardViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JPAddCardViewModel.m; path = Source/Modules/AddCard/Presenter/ViewModels/JPAddCardViewModel.m; sourceTree = SOURCE_ROOT; };
 		30D6C5BE2395485500172303 /* UITextField+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UITextField+Additions.h"; path = "Extensions/UITextField+Additions.h"; sourceTree = "<group>"; };
@@ -983,18 +987,9 @@
 		30D61D3A23BB741A004E5CEE /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				30D61D3F23BB741A004E5CEE /* JPPaymentMethodsCardCell.h */,
-				30D61D4723BB741A004E5CEE /* JPPaymentMethodsCardCell.m */,
-				30D61D4523BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.h */,
-				30D61D4123BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.m */,
-				30D61D3B23BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.h */,
-				30D61D4423BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.m */,
-				30D61D4623BB741A004E5CEE /* JPPaymentMethodsCell.h */,
-				30D61D4023BB741A004E5CEE /* JPPaymentMethodsCell.m */,
-				30D61D3D23BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.h */,
-				30D61D4323BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.m */,
-				30D61D3E23BB741A004E5CEE /* JPPaymentMethodsSelectionCell.h */,
-				30D61D4823BB741A004E5CEE /* JPPaymentMethodsSelectionCell.m */,
+				30D61DF423BE3A45004E5CEE /* Cells */,
+				30D61DE323BE3976004E5CEE /* JPPaymentMethodsHeaderView.h */,
+				30D61DE423BE3976004E5CEE /* JPPaymentMethodsHeaderView.m */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1024,6 +1019,73 @@
 				30D61D5223BB741A004E5CEE /* JPPaymentMethodsRouter.m */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		30D61DEE23BE39D4004E5CEE /* CardCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D3F23BB741A004E5CEE /* JPPaymentMethodsCardCell.h */,
+				30D61D4723BB741A004E5CEE /* JPPaymentMethodsCardCell.m */,
+			);
+			path = CardCell;
+			sourceTree = "<group>";
+		};
+		30D61DEF23BE39DF004E5CEE /* CardListFooterCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D4523BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.h */,
+				30D61D4123BB741A004E5CEE /* JPPaymentMethodsCardListFooterCell.m */,
+			);
+			path = CardListFooterCell;
+			sourceTree = "<group>";
+		};
+		30D61DF023BE39EB004E5CEE /* CardListHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D3B23BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.h */,
+				30D61D4423BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.m */,
+			);
+			path = CardListHeaderCell;
+			sourceTree = "<group>";
+		};
+		30D61DF123BE39F4004E5CEE /* JPPaymentMethodsCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D4623BB741A004E5CEE /* JPPaymentMethodsCell.h */,
+				30D61D4023BB741A004E5CEE /* JPPaymentMethodsCell.m */,
+			);
+			path = JPPaymentMethodsCell;
+			sourceTree = "<group>";
+		};
+		30D61DF223BE3A05004E5CEE /* EmptyCardListCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D3D23BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.h */,
+				30D61D4323BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.m */,
+			);
+			path = EmptyCardListCell;
+			sourceTree = "<group>";
+		};
+		30D61DF323BE3A30004E5CEE /* PaymentMethodSelectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				30D61D3E23BB741A004E5CEE /* JPPaymentMethodsSelectionCell.h */,
+				30D61D4823BB741A004E5CEE /* JPPaymentMethodsSelectionCell.m */,
+			);
+			path = PaymentMethodSelectionCell;
+			sourceTree = "<group>";
+		};
+		30D61DF423BE3A45004E5CEE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				30D61DF323BE3A30004E5CEE /* PaymentMethodSelectionCell */,
+				30D61DF223BE3A05004E5CEE /* EmptyCardListCell */,
+				30D61DF123BE39F4004E5CEE /* JPPaymentMethodsCell */,
+				30D61DF023BE39EB004E5CEE /* CardListHeaderCell */,
+				30D61DEF23BE39DF004E5CEE /* CardListFooterCell */,
+				30D61DEE23BE39D4004E5CEE /* CardCell */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		30D6C5B9239509F200172303 /* ViewModels */ = {
@@ -1559,6 +1621,7 @@
 				3B6991561C8DD85B006ED1FB /* JPTheme.h in Headers */,
 				30D61D5423BB741A004E5CEE /* JPPaymentMethodsPresenter.h in Headers */,
 				3B704AA21C89F1E800376773 /* BillingCountryInputField.h in Headers */,
+				30D61DE523BE3976004E5CEE /* JPPaymentMethodsHeaderView.h in Headers */,
 				3B678B8F1C6DFF340001DC2F /* JPReference.h in Headers */,
 				44290B0B22F051D20088F827 /* CLLocation+JPDictionaryConvertible.h in Headers */,
 				3B704A8E1C89F19800376773 /* IssueNumberInputField.h in Headers */,
@@ -1977,6 +2040,7 @@
 				3B678B841C6DE2850001DC2F /* JPResponse.m in Sources */,
 				3BF476F41C748FEA008AE0D3 /* JudoKit.m in Sources */,
 				528017232392F0F500D2AFDB /* UIViewController+Additions.m in Sources */,
+				30D61DE623BE3976004E5CEE /* JPPaymentMethodsHeaderView.m in Sources */,
 				3B6912D21C93179100367660 /* NSArray+Prefix.m in Sources */,
 				30472AA623A0E45700279A87 /* JPFloatingTextField.m in Sources */,
 				30CB2BF623B4ED0400D392FF /* JPCardStorage.m in Sources */,

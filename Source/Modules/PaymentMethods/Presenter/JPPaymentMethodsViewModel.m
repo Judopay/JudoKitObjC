@@ -45,5 +45,8 @@
 @implementation JPPaymentMethodsCardModel
 @end
 
+@implementation JPPaymentMethodsHeaderModel
+@end
+
 @implementation JPPaymentMethodsViewModel
 @end

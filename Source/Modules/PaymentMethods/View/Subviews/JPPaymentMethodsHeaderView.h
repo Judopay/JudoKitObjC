@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsView.h
+//  JPPaymentMethodsHeaderView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -24,27 +24,25 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPPaymentMethodsHeaderView;
+@class JPPaymentMethodsHeaderModel;
 
-@interface JPPaymentMethodsView : UIView
+typedef NS_ENUM(NSUInteger, CardPreviewAnimationType) {
+    AnimateLeftToRight,
+    AnimateRightToLeft,
+    AnimateBottomToTop
+};
 
-/**
- * The header view displaying the card information
- */
-@property (nonatomic, strong) JPPaymentMethodsHeaderView *headerView;
-
-/**
- * The table view displaying the card selection list
- */
-@property (nonatomic, strong) UITableView *tableView;
+@interface JPPaymentMethodsHeaderView : UIView
 
 /**
- * The 'Powered by Judo' headline that is displayed on the bottom of the view
+ * Initializes the Payment Methods header with an  optional payment method
  */
-@property (nonatomic, strong) UIImageView *judoHeadlineImageView;
+- (instancetype)initWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 
 /**
- * The judo headline height constraint that is set to 0 if the headline is hidden and 20 otherwise
+ * Changes the header with a specified animation type
  */
-@property (nonatomic, strong) NSLayoutConstraint *judoHeadlineHeightConstraint;
+- (void)changePreviewWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel
+                     animationType:(CardPreviewAnimationType)animationType;
+
 @end

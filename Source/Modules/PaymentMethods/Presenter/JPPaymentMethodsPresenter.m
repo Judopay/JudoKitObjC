@@ -30,14 +30,18 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
 #import "NSString+Localize.h"
+#import "JPAddCardViewModel.h"
+#import "JPAmount.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
+@property (nonatomic, strong) JPPaymentMethodsHeaderModel *headerModel;
 @property (nonatomic, strong) JPPaymentMethodsSelectionModel *paymentSelectionModel;
 @property (nonatomic, strong) JPPaymentMethodsEmptyListModel *emptyListModel;
 @property (nonatomic, strong) JPPaymentMethodsCardHeaderModel *cardHeaderModel;
 @property (nonatomic, strong) JPPaymentMethodsCardFooterModel *cardFooterModel;
 @property (nonatomic, strong) JPPaymentMethodsCardListModel *cardListModel;
+@property (nonatomic, strong) JPAddCardButtonViewModel *paymentButtonModel;
 @end
 
 @implementation JPPaymentMethodsPresenterImpl
@@ -63,6 +67,11 @@
 - (void)updateViewModel {
     [self.viewModel.items removeAllObjects];
     self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
+    
+    self.headerModel.amount = [self.interactor getAmount];
+    self.headerModel.payButtonModel = self.paymentButtonModel;
+    
+    self.viewModel.headerModel = self.headerModel;
     [self.viewModel.items addObject:self.paymentSelectionModel];
 
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
@@ -114,6 +123,14 @@
         _viewModel.items = [NSMutableArray new];
     }
     return _viewModel;
+}
+
+- (JPPaymentMethodsHeaderModel *)headerModel {
+    if (!_headerModel) {
+        _headerModel = [JPPaymentMethodsHeaderModel new];
+        _headerModel.amount = [JPAmount amount:@"0.0" currency:@"GBP"];
+    }
+    return _headerModel;
 }
 
 - (JPPaymentMethodsSelectionModel *)paymentSelectionModel {
@@ -177,6 +194,15 @@
 - (JPPaymentMethodsCardModel *)cardModel {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
     return cardModel;
+}
+
+- (JPAddCardButtonViewModel *)paymentButtonModel {
+    if (!_paymentButtonModel) {
+        _paymentButtonModel = [JPAddCardButtonViewModel new];
+        _paymentButtonModel.title = @"pay_now_capitalized".localized;
+        _paymentButtonModel.isEnabled = NO;
+    }
+    return _paymentButtonModel;
 }
 
 @end

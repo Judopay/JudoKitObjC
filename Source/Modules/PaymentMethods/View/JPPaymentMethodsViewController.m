@@ -28,6 +28,7 @@
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsView.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "JPPaymentMethodsHeaderView.h"
 #import "UIImage+Icons.h"
 #import "UIColor+Judo.h"
 
@@ -79,6 +80,8 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
+    
+    self.paymentMethodsView.headerView = [[JPPaymentMethodsHeaderView alloc] initWithViewModel:viewModel.headerModel];
     
     self.paymentMethodsView.judoHeadlineImageView.hidden = !viewModel.shouldDisplayHeadline;
     self.paymentMethodsView.judoHeadlineHeightConstraint.constant = viewModel.shouldDisplayHeadline ? 20.0 : 0.0;

@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPStoredCardDetails, JPTheme;
+@class JPStoredCardDetails, JPTheme, JPAmount;
 
 @protocol JPPaymentMethodsInteractor
 
@@ -45,6 +45,11 @@
  */
 - (BOOL)shouldDisplayJudoHeadline;
 
+/**
+ * A method that returns the amount passed from the builder
+ */
+- (JPAmount *)getAmount;
+
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
@@ -52,6 +57,6 @@
 /**
  * A designated initializer that sets up the JPTheme object needed for view customization
  */
-- (instancetype)initWithTheme:(JPTheme *)theme;
+- (instancetype)initWithTheme:(JPTheme *)theme andAmount:(JPAmount *)amount;
 
 @end

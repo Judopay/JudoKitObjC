@@ -27,6 +27,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIImage+Icons.h"
+#import "JPPaymentMethodsHeaderView.h"
 
 @implementation JPPaymentMethodsView
 
@@ -83,9 +84,8 @@
 
 - (UIView *)headerView {
     if (!_headerView) {
-        _headerView = [UIView new];
+        _headerView = [JPPaymentMethodsHeaderView new];
         _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
-        _headerView.backgroundColor = UIColor.jpContentBackgroundColor;
     }
     return _headerView;
 }

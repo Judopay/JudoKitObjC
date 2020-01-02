@@ -45,7 +45,7 @@
 "no_connected_cards" = "You didn't connect any cards yet";
 "connected_cards" = "Connected cards";
 "edit_capitalized" = "EDIT";
-
+"pay_now_capitalized" = "PAY NOW";
 
 //CardInputField
 "card_number_label" = "Card number";
