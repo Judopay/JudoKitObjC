@@ -54,6 +54,10 @@
     [self viewModelNeedsUpdate];
 }
 
+- (void)handleBackButtonTap {
+    [self.router dismissViewController];
+}
+
 #pragma mark - Helper methods
 
 - (void)updateViewModel {
