@@ -85,8 +85,8 @@
 //----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    self.amountValueLabel.text = [NSString stringWithFormat:@"%@ %@",
-                                  viewModel.amount.currency,
+    self.amountValueLabel.text = [NSString stringWithFormat:@"%@%@",
+                                  viewModel.amount.currency.toCurrencySymbol,
                                   viewModel.amount.amount];
     
     [self.payButton configureWithViewModel:viewModel.payButtonModel];

@@ -37,4 +37,8 @@
     return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.frameworkBundle, nil);
 }
 
+- (NSString *)toCurrencySymbol {
+    return [NSLocale.currentLocale displayNameForKey:NSLocaleCurrencySymbol value:self];
+}
+
 @end

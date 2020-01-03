@@ -12,5 +12,6 @@
 @interface NSString (Localize)
 
 - (nonnull NSString *)localized;
+- (nullable NSString *)toCurrencySymbol;
 
 @end

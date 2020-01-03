@@ -28,6 +28,7 @@
 #import "UIView+Additions.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "UIImage+Icons.h"
+#import "JPCardNetwork.h"
 
 @interface JPCardView()
 
@@ -72,8 +73,14 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.titleLabel.text = viewModel.cardModel.cardTitle;
-    self.expiryDateLabel.text = @"07/22";
-    self.cardNumberLabel.text = @"**** **** **** 1111";
+    self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
+    
+    JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:viewModel.cardModel.cardNetwork];
+    //TODO: Add formatting logic
+    
+    self.cardNumberLabel.text = [NSString stringWithFormat:@"•••• •••• •••• %@",
+                                 viewModel.cardModel.cardNumberLastFour];
+    
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
 }
 

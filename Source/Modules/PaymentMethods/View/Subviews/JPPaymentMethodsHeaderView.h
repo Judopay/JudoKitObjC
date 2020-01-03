@@ -24,10 +24,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPPaymentMethodsCardHeaderModel;
+@class JPPaymentMethodsHeaderModel;
 
 @interface JPPaymentMethodsHeaderView : UIView
 
-- (void)configureWithViewModel:(JPPaymentMethodsCardHeaderModel *)viewModel;
+- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 
 @end

@@ -127,6 +127,11 @@
 @property (nonatomic, strong) NSString * _Nullable cardNumberLastFour;
 
 /**
+ * The card's expiration date string
+ */
+@property (nonatomic, strong) NSString *_Nullable cardExpiryDate;
+
+/**
  * A value that specifies if the card is set as the default credit card of the user
  */
 @property (nonatomic, assign) BOOL isDefaultCard;

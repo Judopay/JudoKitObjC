@@ -117,6 +117,7 @@
 
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
+    cardModel.cardExpiryDate = cardDetails.expiryDate;
     cardModel.isDefaultCard = cardDetails.isDefault;
     cardModel.isSelected = cardDetails.isSelected;
 
