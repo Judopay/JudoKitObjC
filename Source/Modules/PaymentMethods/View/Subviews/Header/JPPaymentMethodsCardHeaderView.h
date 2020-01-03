@@ -28,4 +28,5 @@
 
 @interface JPPaymentMethodsCardHeaderView : UIView
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
+- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 @end

@@ -104,14 +104,23 @@
         
         [self insertSubview:self.mainStackView aboveSubview:self.topView];
         
-        self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
-        self.cardHeaderView.alpha = 0.0;
-        [UIView animateWithDuration:0.3 animations:^{
-            self.cardHeaderView.alpha = 1.0;
-            self.cardHeaderView.transform = CGAffineTransformIdentity;
-        }];
+//        self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
+//        self.cardHeaderView.alpha = 0.0;
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.cardHeaderView.alpha = 1.0;
+//            self.cardHeaderView.transform = CGAffineTransformIdentity;
+//        }];
     }
 }
+
+- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    if (viewModel.cardModel == nil) {
+        [self.cardHeaderView changeCardWithViewModel:viewModel];
+    }
+}
+
+
+
 
 //----------------------------------------------------------------------
 #pragma mark - Layout Setup

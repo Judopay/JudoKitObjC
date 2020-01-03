@@ -28,6 +28,8 @@
 
 @interface JPPaymentMethodsCardHeaderView()
 @property (nonatomic, strong) JPCardView *cardView;
+@property (nonatomic, strong) JPCardView *tempCardView;
+
 @end
 
 @implementation JPPaymentMethodsCardHeaderView
@@ -62,7 +64,14 @@
 //----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self.cardView configureWithViewModel:viewModel];
+    [self animateCartChangeTransitionWithViewModel:viewModel];
+
+}
+
+
+- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    [self.tempCardView configureWithViewModel:viewModel];
+    [self animateCartChangeTransitionWithViewModel:viewModel];
 }
 
 //----------------------------------------------------------------------
@@ -76,6 +85,77 @@
     [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
     [self.cardView.widthAnchor constraintEqualToAnchor:self.cardView.heightAnchor multiplier:1.715].active = YES;
 }
+
+- (void)setupViewsForAnimation:(CGRect)frame {
+    [self addSubview:self.cardView];
+    [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0+frame.size.height].active = YES;
+    [self.cardView.heightAnchor constraintEqualToConstant:frame.size.height].active = YES;
+    [self.cardView.widthAnchor constraintEqualToConstant:frame.size.width].active = YES;
+
+    [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
+   
+}
+
+
+//----------------------------------------------------------------------
+#pragma mark - ANIMATIONS
+//----------------------------------------------------------------------
+
+
+-(void)animateCartChangeTransitionWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel{
+    switch (viewModel.animationType) {
+        case AnimationTypeBottomToTop:
+            [self animateBottomToTopCardChangeWithViewModel:viewModel];
+            break;
+        case AnimationTypeSetup:
+            [self.cardView configureWithViewModel:viewModel];
+            [self animateCardSetup];
+        
+        default:
+            break;
+    }
+}
+
+-(void)animateCardSetup {
+            self.cardView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
+            self.cardView.alpha = 0.0;
+            [UIView animateWithDuration:0.3 animations:^{
+                self.cardView.alpha = 1.0;
+                self.cardView.transform = CGAffineTransformIdentity;
+            }];
+}
+
+-(void)animateBottomToTopCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+   __block JPCardView *toRemoveCardView = self.cardView;
+    self.cardView = [JPCardView new];
+    self.cardView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.cardView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+    self.cardView.layer.shadowRadius = 1.0;
+    self.cardView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.cardView.layer.shadowOpacity = 1.0;
+    [self.cardView configureWithViewModel:viewModel];
+    [self setupViewsForAnimation:toRemoveCardView.frame];
+    
+//    CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, (self.cardView.frame.size.height)+30);
+//    CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+//    self.cardView.transform = CGAffineTransformConcat(t1, t2);
+
+
+    [self layoutIfNeeded];
+              [UIView animateWithDuration:0.3 animations:^{
+                toRemoveCardView.alpha = 0.6;
+               CGAffineTransform t1  = CGAffineTransformMakeTranslation(0.0, (-self.cardView.frame.size.height)+100);
+                  CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                  self.cardView.transform = CGAffineTransformConcat(t1, t2);
+
+                  toRemoveCardView.transform = CGAffineTransformMakeTranslation(0.0, self.cardView.frame.size.height);
+              } completion:^(BOOL finished) {
+                  [toRemoveCardView removeFromSuperview];
+              }];
+}
+
+
+
 
 //----------------------------------------------------------------------
 #pragma mark - Lazy Properties
