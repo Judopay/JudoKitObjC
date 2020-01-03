@@ -76,9 +76,11 @@
     self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
     
     JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:viewModel.cardModel.cardNetwork];
-    //TODO: Add formatting logic
+    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
+    NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
     
-    self.cardNumberLabel.text = [NSString stringWithFormat:@"•••• •••• •••• %@",
+    self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
+                                 stylizedPattern,
                                  viewModel.cardModel.cardNumberLastFour];
     
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];

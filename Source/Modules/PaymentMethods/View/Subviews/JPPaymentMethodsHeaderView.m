@@ -90,27 +90,36 @@
                                   viewModel.amount.amount];
     
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
+    self.backgroundImageView.hidden = (viewModel.cardModel != nil);
     
     [self.emptyHeaderView removeFromSuperview];
     [self.cardHeaderView removeFromSuperview];
     
     if (viewModel.cardModel == nil) {
-        [self.topView addSubview:self.emptyHeaderView];
-        [self.emptyHeaderView pinToView:self.topView withPadding:0.0];
+        [self displayEmptyHeaderView];
     } else {
-        [self.topView addSubview:self.cardHeaderView];
-        [self.cardHeaderView pinToView:self.topView withPadding:0.0];
-        [self.cardHeaderView configureWithViewModel:viewModel];
-        
-        [self insertSubview:self.mainStackView aboveSubview:self.topView];
-        
-        self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
-        self.cardHeaderView.alpha = 0.0;
-        [UIView animateWithDuration:0.3 animations:^{
-            self.cardHeaderView.alpha = 1.0;
-            self.cardHeaderView.transform = CGAffineTransformIdentity;
-        }];
+        [self displayCardHeaderViewWithViewModel:viewModel];
     }
+}
+
+- (void)displayEmptyHeaderView {
+    [self.topView addSubview:self.emptyHeaderView];
+    [self.emptyHeaderView pinToView:self.topView withPadding:0.0];
+}
+
+- (void)displayCardHeaderViewWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    [self.topView addSubview:self.cardHeaderView];
+    [self.cardHeaderView pinToView:self.topView withPadding:0.0];
+    [self.cardHeaderView configureWithViewModel:viewModel];
+    
+    [self insertSubview:self.mainStackView aboveSubview:self.topView];
+    
+    self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
+    self.cardHeaderView.alpha = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.cardHeaderView.alpha = 1.0;
+        self.cardHeaderView.transform = CGAffineTransformIdentity;
+    }];
 }
 
 //----------------------------------------------------------------------
@@ -118,6 +127,15 @@
 //----------------------------------------------------------------------
 
 - (void)setupViews {
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.bounds;
+    gradient.colors = @[
+        [UIColor colorWithRed:16 green:49 blue:107 alpha:0.1],
+        [UIColor colorWithRed:16 green:49 blue:107 alpha:0.0]
+    ];
+    
+    [self.layer insertSublayer:gradient atIndex:0];
     
     [self addSubview:self.backgroundImageView];
     [self setupBackgroundImageViewConstraints];

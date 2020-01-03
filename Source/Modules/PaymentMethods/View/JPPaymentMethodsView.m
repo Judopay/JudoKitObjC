@@ -95,7 +95,7 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-        _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(320, 0, 0, 0);
     }
     return _tableView;
 }
