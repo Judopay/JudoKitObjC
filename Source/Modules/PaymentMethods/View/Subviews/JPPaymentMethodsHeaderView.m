@@ -90,14 +90,15 @@
                                   viewModel.amount.amount];
     
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
-    self.backgroundImageView.hidden = (viewModel.cardModel != nil);
     
     [self.emptyHeaderView removeFromSuperview];
     [self.cardHeaderView removeFromSuperview];
     
     if (viewModel.cardModel == nil) {
+        self.backgroundImageView.image = [UIImage imageWithResourceName:@"no-cards"];
         [self displayEmptyHeaderView];
     } else {
+        self.backgroundImageView.image = [UIImage imageWithResourceName:@"gradient-background"];
         [self displayCardHeaderViewWithViewModel:viewModel];
     }
 }
@@ -127,15 +128,6 @@
 //----------------------------------------------------------------------
 
 - (void)setupViews {
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.bounds;
-    gradient.colors = @[
-        [UIColor colorWithRed:16 green:49 blue:107 alpha:0.1],
-        [UIColor colorWithRed:16 green:49 blue:107 alpha:0.0]
-    ];
-    
-    [self.layer insertSublayer:gradient atIndex:0];
     
     [self addSubview:self.backgroundImageView];
     [self setupBackgroundImageViewConstraints];
