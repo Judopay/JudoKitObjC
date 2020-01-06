@@ -62,8 +62,9 @@
 - (void)setupViews {
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.tableView];
-    [self addSubview:self.headerView];
+    [self insertSubview:self.headerView belowSubview:self.tableView];
     [self addSubview:self.judoHeadlineImageView];
+    [self setupTableViewBackground];
 }
 
 - (void)setupConstraints {
@@ -78,6 +79,16 @@
     [self.judoHeadlineImageView.leftAnchor constraintEqualToAnchor:self.safeLeftAnchor].active = YES;
     [self.judoHeadlineImageView.rightAnchor constraintEqualToAnchor:self.safeRightAnchor].active = YES;
     [self.judoHeadlineImageView.bottomAnchor constraintEqualToAnchor:self.safeBottomAnchor].active = YES;
+}
+
+-(void)setupTableViewBackground{
+    UIView *tableViewBackground = [[UIView alloc] initWithFrame:CGRectZero];
+    tableViewBackground.translatesAutoresizingMaskIntoConstraints = NO;
+    self.tableView.backgroundView = tableViewBackground;
+    [tableViewBackground.topAnchor constraintEqualToAnchor:self.tableView.topAnchor constant:0].active = YES;
+    [tableViewBackground.heightAnchor constraintEqualToAnchor:self.tableView.heightAnchor].active = YES;
+    [tableViewBackground.widthAnchor constraintEqualToAnchor:self.tableView.widthAnchor].active = YES;
+    tableViewBackground.backgroundColor = UIColor.whiteColor;
 }
 
 #pragma mark - Lazy properties
@@ -95,6 +106,7 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _tableView.backgroundColor = UIColor.clearColor;
         _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
     }
     return _tableView;

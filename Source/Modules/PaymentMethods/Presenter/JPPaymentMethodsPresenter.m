@@ -53,7 +53,7 @@
 - (void)viewModelNeedsUpdate {
     [self updateViewModelWithAnimationType:AnimationTypeSetup];
     [self.view configureWithViewModel:self.viewModel];
-
+    
 }
 
 - (void)viewModelNeedsUpdateWithAnimationType:(AnimationType)animationType {
@@ -63,7 +63,11 @@
 
 - (void)didSelectCardAtIndex:(NSInteger)index {
     [self.interactor selectCardAtIndex:index];
-    [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop];
+    if(self.headerModel.cardModel){
+        [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop];
+    } else {
+        [self viewModelNeedsUpdateWithAnimationType:AnimationTypeSetup];
+    }
 }
 
 - (void)handleBackButtonTap {
@@ -82,7 +86,7 @@
     [self.viewModel.items addObject:self.paymentSelectionModel];
     
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
-
+    
     if (cardDetailsArray.count == 0) {
         [self.viewModel.items addObject:self.emptyListModel];
     } else {
@@ -121,16 +125,16 @@
 
 - (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
-
+    
     //TODO: Replace with actual card name once card editing is available
     cardModel.cardTitle = @"Card for shopping";
-
+    
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
     cardModel.cardExpiryDate = cardDetails.expiryDate;
     cardModel.isDefaultCard = cardDetails.isDefault;
     cardModel.isSelected = cardDetails.isSelected;
-
+    
     return cardModel;
 }
 
@@ -174,7 +178,7 @@
         _emptyListModel.title = @"no_connected_cards".localized;
         _emptyListModel.addCardButtonTitle = @"add_card_button".localized;
         _emptyListModel.addCardButtonIconName = @"plus-icon";
-
+        
         __weak typeof(self) weakSelf = self;
         _emptyListModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];
@@ -199,7 +203,7 @@
         _cardFooterModel.addCardButtonTitle = @"add_card_button".localized;
         _cardFooterModel.addCardButtonIconName = @"plus-icon";
         _cardFooterModel.identifier = @"JPPaymentMethodsCardListFooterCell";
-
+        
         __weak typeof(self) weakSelf = self;
         _cardFooterModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];
