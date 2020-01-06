@@ -23,6 +23,8 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsPresenter.h"
+#import "JPAddCardViewModel.h"
+#import "JPAmount.h"
 #import "JPCardNetwork.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsRouter.h"
@@ -30,10 +32,6 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
 #import "NSString+Additions.h"
-#import "JPAddCardViewModel.h"
-#import "JPAmount.h"
-
-
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -53,7 +51,6 @@
 - (void)viewModelNeedsUpdate {
     [self updateViewModelWithAnimationType:AnimationTypeSetup];
     [self.view configureWithViewModel:self.viewModel];
-    
 }
 
 - (void)viewModelNeedsUpdateWithAnimationType:(AnimationType)animationType {
@@ -63,7 +60,7 @@
 
 - (void)didSelectCardAtIndex:(NSInteger)index {
     [self.interactor selectCardAtIndex:index];
-    if(self.headerModel.cardModel){
+    if (self.headerModel.cardModel) {
         [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop];
     } else {
         [self viewModelNeedsUpdateWithAnimationType:AnimationTypeSetup];
@@ -79,14 +76,14 @@
 - (void)updateViewModelWithAnimationType:(AnimationType)animationType {
     [self.viewModel.items removeAllObjects];
     self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
-    
+
     [self prepareHeaderModel];
     self.viewModel.headerModel.animationType = animationType;
-    
+
     [self.viewModel.items addObject:self.paymentSelectionModel];
-    
+
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
-    
+
     if (cardDetailsArray.count == 0) {
         [self.viewModel.items addObject:self.emptyListModel];
     } else {
@@ -102,16 +99,16 @@
     self.headerModel.payButtonModel = self.paymentButtonModel;
     self.headerModel.payButtonModel.isEnabled = NO;
     self.headerModel.animationType = AnimationTypeSetup;
-    
+
     NSArray *storedCardDetails = [self.interactor getStoredCardDetails];
-    
+
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         if (cardDetails.isSelected) {
             self.headerModel.cardModel = [self cardModelFromStoredCardDetails:cardDetails];
             self.headerModel.payButtonModel.isEnabled = YES;
         }
     }
-    
+
     self.viewModel.headerModel = self.headerModel;
 }
 
@@ -125,16 +122,16 @@
 
 - (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
-    
+
     //TODO: Replace with actual card name once card editing is available
     cardModel.cardTitle = @"Card for shopping";
-    
+
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
     cardModel.cardExpiryDate = cardDetails.expiryDate;
     cardModel.isDefaultCard = cardDetails.isDefault;
     cardModel.isSelected = cardDetails.isSelected;
-    
+
     return cardModel;
 }
 
@@ -178,7 +175,7 @@
         _emptyListModel.title = @"no_connected_cards".localized;
         _emptyListModel.addCardButtonTitle = @"add_card_button".localized;
         _emptyListModel.addCardButtonIconName = @"plus-icon";
-        
+
         __weak typeof(self) weakSelf = self;
         _emptyListModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];
@@ -203,7 +200,7 @@
         _cardFooterModel.addCardButtonTitle = @"add_card_button".localized;
         _cardFooterModel.addCardButtonIconName = @"plus-icon";
         _cardFooterModel.identifier = @"JPPaymentMethodsCardListFooterCell";
-        
+
         __weak typeof(self) weakSelf = self;
         _cardFooterModel.onAddCardButtonTapHandler = ^{
             [weakSelf handleAddCardButtonTap];

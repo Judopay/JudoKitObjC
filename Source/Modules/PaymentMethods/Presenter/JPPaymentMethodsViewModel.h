@@ -30,7 +30,6 @@
 
 #pragma mark - JPPaymentMethodsModel
 
-
 typedef NS_ENUM(NSInteger, AnimationType) {
     AnimationTypeSetup,
     AnimationTypeLeftToRight,
@@ -181,9 +180,6 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 @property (nonatomic, strong) JPPaymentMethodsCardModel *_Nullable cardModel;
 
 @property (nonatomic, assign) AnimationType animationType;
-
-
-
 
 @end
 

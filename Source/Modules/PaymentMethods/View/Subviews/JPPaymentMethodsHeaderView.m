@@ -110,9 +110,7 @@
     [self.cardHeaderView configureWithViewModel:viewModel];
 
     [self insertSubview:self.mainStackView aboveSubview:self.topView];
-
 }
-
 
 - (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     if (viewModel.cardModel == nil) {
@@ -145,12 +143,12 @@
     [self insertSubview:self.mainStackView aboveSubview:self.topView];
 }
 
--(void)setupPaymentStackViewBackground {
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50)];
+- (void)setupPaymentStackViewBackground {
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50)];
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = bgView.bounds;
-    gradient.colors = @[(id)[UIColor colorWithWhite:1 alpha:0].CGColor, (id)[UIColor colorWithWhite:1 alpha:1].CGColor];
-    gradient.locations = @[@0.0, @0.2];
+    gradient.colors = @[ (id)[UIColor colorWithWhite:1 alpha:0].CGColor, (id)[UIColor colorWithWhite:1 alpha:1].CGColor ];
+    gradient.locations = @[ @0.0, @0.2 ];
     [bgView.layer insertSublayer:gradient atIndex:1];
     [self.mainStackView insertSubview:bgView atIndex:0];
 }

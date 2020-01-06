@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsCardHeaderView.h"
-#import "JPPaymentMethodsViewModel.h"
 #import "JPCardView.h"
+#import "JPPaymentMethodsViewModel.h"
 
-@interface JPPaymentMethodsCardHeaderView()
+@interface JPPaymentMethodsCardHeaderView ()
 @property (nonatomic, strong) JPCardView *cardView;
 
 @end
@@ -59,12 +59,11 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self animateCartChangeTransitionWithViewModel:viewModel];
-
+    [self animateCardChangeTransitionWithViewModel:viewModel];
 }
 
 - (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self animateCartChangeTransitionWithViewModel:viewModel];
+    [self animateCardChangeTransitionWithViewModel:viewModel];
 }
 
 #pragma mark - Layout Setup
@@ -87,7 +86,7 @@
 
 #pragma mark - ANIMATIONS
 
--(void)animateCartChangeTransitionWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel{
+- (void)animateCardChangeTransitionWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     switch (viewModel.animationType) {
         case AnimationTypeBottomToTop:
             [self animateBottomToTopCardChangeWithViewModel:viewModel];
@@ -106,7 +105,7 @@
     }
 }
 
--(void)prepareForAnimations{
+- (void)prepareForAnimations {
     self.cardView = [JPCardView new];
     self.cardView.translatesAutoresizingMaskIntoConstraints = NO;
     self.cardView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
@@ -115,83 +114,90 @@
     self.cardView.layer.shadowOpacity = 1.0;
 }
 
--(void)animateCardSetup {
-            self.cardView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
-            self.cardView.alpha = 0.0;
-            [UIView animateWithDuration:0.3 animations:^{
-                self.cardView.alpha = 1.0;
-                self.cardView.transform = CGAffineTransformIdentity;
-            }];
+- (void)animateCardSetup {
+    self.cardView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
+    self.cardView.alpha = 0.0;
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.cardView.alpha = 1.0;
+                         self.cardView.transform = CGAffineTransformIdentity;
+                     }];
 }
 
--(void)animateBottomToTopCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-   __block JPCardView *toRemoveCardView = self.cardView;
-    [self prepareForAnimations];
-    [self.cardView configureWithViewModel:viewModel];
-    [self setupViewsForAnimation:toRemoveCardView.frame];
-    
-    CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, (self.cardView.frame.size.height+self.frame.size.width)+130);
-    CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
-    self.cardView.transform = CGAffineTransformConcat(t1, t2);
-    [self layoutIfNeeded];
-              [UIView animateWithDuration:0.5 animations:^{
-                toRemoveCardView.alpha = 0.4;
-               CGAffineTransform t1  = CGAffineTransformMakeTranslation(0.0, 0.0);
-                  CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-                  self.cardView.transform = CGAffineTransformConcat(t1, t2);
-
-                 CGAffineTransform t11 = CGAffineTransformMakeTranslation(0.0, toRemoveCardView.frame.size.height*2);
-                 CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
-                 toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-              } completion:^(BOOL finished) {
-                  [toRemoveCardView removeFromSuperview];
-              }];
-}
-
--(void)animateRightToLeftCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    __block JPCardView *toRemoveCardView = self.cardView;
-        [self prepareForAnimations];
-       [self.cardView configureWithViewModel:viewModel];
-       [self setupViewsForAnimation:toRemoveCardView.frame];
-       CGAffineTransform t1 = CGAffineTransformMakeTranslation(self.frame.size.width*2,0.0 );
-       CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
-       self.cardView.transform = CGAffineTransformConcat(t1, t2);
-       [self layoutIfNeeded];
-                 [UIView animateWithDuration:0.5 animations:^{
-                   toRemoveCardView.alpha = 0.6;
-                  CGAffineTransform t1  = CGAffineTransformMakeTranslation(0.0, 0.0);
-                     CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-                     self.cardView.transform = CGAffineTransformConcat(t1, t2);
-
-                    CGAffineTransform t11 = CGAffineTransformMakeTranslation(-self.frame.size.width-30,0.0);
-                    CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
-                    toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-                 } completion:^(BOOL finished) {
-                     [toRemoveCardView removeFromSuperview];
-                 }];
-}
-
--(void)animateLeftToRightCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+- (void)animateBottomToTopCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     __block JPCardView *toRemoveCardView = self.cardView;
     [self prepareForAnimations];
     [self.cardView configureWithViewModel:viewModel];
     [self setupViewsForAnimation:toRemoveCardView.frame];
-    CGAffineTransform t1 = CGAffineTransformMakeTranslation(-self.frame.size.width*2,0.0 );
-    CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, (self.cardView.frame.size.height + self.frame.size.width) + 130);
+    CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
     self.cardView.transform = CGAffineTransformConcat(t1, t2);
     [self layoutIfNeeded];
-              [UIView animateWithDuration:0.5 animations:^{
-                toRemoveCardView.alpha = 0.6;
-               CGAffineTransform t1  = CGAffineTransformMakeTranslation(0.0, 0.0);
-                  CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-                  self.cardView.transform = CGAffineTransformConcat(t1, t2);
+    [UIView animateWithDuration:0.5
+        animations:^{
+            toRemoveCardView.alpha = 0.4;
+            CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, 0.0);
+            CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            self.cardView.transform = CGAffineTransformConcat(t1, t2);
 
-                 CGAffineTransform t11 = CGAffineTransformMakeTranslation(self.frame.size.width-30,0.0);
-                 CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
-                 toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-              } completion:^(BOOL finished) {
-                  [toRemoveCardView removeFromSuperview];
-              }];
+            CGAffineTransform t11 = CGAffineTransformMakeTranslation(0.0, toRemoveCardView.frame.size.height * 2);
+            CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
+            toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
+        }
+        completion:^(BOOL finished) {
+            [toRemoveCardView removeFromSuperview];
+        }];
+}
+
+- (void)animateRightToLeftCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    __block JPCardView *toRemoveCardView = self.cardView;
+    [self prepareForAnimations];
+    [self.cardView configureWithViewModel:viewModel];
+    [self setupViewsForAnimation:toRemoveCardView.frame];
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(self.frame.size.width * 2, 0.0);
+    CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+    self.cardView.transform = CGAffineTransformConcat(t1, t2);
+    [self layoutIfNeeded];
+    [UIView animateWithDuration:0.5
+        animations:^{
+            toRemoveCardView.alpha = 0.6;
+            CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, 0.0);
+            CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            self.cardView.transform = CGAffineTransformConcat(t1, t2);
+
+            CGAffineTransform t11 = CGAffineTransformMakeTranslation(-self.frame.size.width - 30, 0.0);
+            CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
+            toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
+        }
+        completion:^(BOOL finished) {
+            [toRemoveCardView removeFromSuperview];
+        }];
+}
+
+- (void)animateLeftToRightCardChangeWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    __block JPCardView *toRemoveCardView = self.cardView;
+    [self prepareForAnimations];
+    [self.cardView configureWithViewModel:viewModel];
+    [self setupViewsForAnimation:toRemoveCardView.frame];
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(-self.frame.size.width * 2, 0.0);
+    CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
+    self.cardView.transform = CGAffineTransformConcat(t1, t2);
+    [self layoutIfNeeded];
+    [UIView animateWithDuration:0.5
+        animations:^{
+            toRemoveCardView.alpha = 0.6;
+            CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, 0.0);
+            CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            self.cardView.transform = CGAffineTransformConcat(t1, t2);
+
+            CGAffineTransform t11 = CGAffineTransformMakeTranslation(self.frame.size.width - 30, 0.0);
+            CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
+            toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
+        }
+        completion:^(BOOL finished) {
+            [toRemoveCardView removeFromSuperview];
+        }];
 }
 
 #pragma mark - Lazy Properties
