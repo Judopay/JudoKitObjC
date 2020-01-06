@@ -63,7 +63,6 @@
 
 }
 
-
 - (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     [self animateCartChangeTransitionWithViewModel:viewModel];
 }
@@ -83,9 +82,7 @@
     [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0].active = YES;
     [self.cardView.heightAnchor constraintEqualToConstant:frame.size.height].active = YES;
     [self.cardView.widthAnchor constraintEqualToConstant:frame.size.width].active = YES;
-
     [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
-   
 }
 
 #pragma mark - ANIMATIONS
@@ -104,7 +101,6 @@
         case AnimationTypeSetup:
             [self.cardView configureWithViewModel:viewModel];
             [self animateCardSetup];
-        
         default:
             break;
     }
@@ -137,7 +133,6 @@
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, (self.cardView.frame.size.height+self.frame.size.width)+130);
     CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
     self.cardView.transform = CGAffineTransformConcat(t1, t2);
-
     [self layoutIfNeeded];
               [UIView animateWithDuration:0.5 animations:^{
                 toRemoveCardView.alpha = 0.4;
@@ -148,8 +143,6 @@
                  CGAffineTransform t11 = CGAffineTransformMakeTranslation(0.0, toRemoveCardView.frame.size.height*2);
                  CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
                  toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-
-
               } completion:^(BOOL finished) {
                   [toRemoveCardView removeFromSuperview];
               }];
@@ -160,11 +153,9 @@
         [self prepareForAnimations];
        [self.cardView configureWithViewModel:viewModel];
        [self setupViewsForAnimation:toRemoveCardView.frame];
-       
        CGAffineTransform t1 = CGAffineTransformMakeTranslation(self.frame.size.width*2,0.0 );
        CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
        self.cardView.transform = CGAffineTransformConcat(t1, t2);
-
        [self layoutIfNeeded];
                  [UIView animateWithDuration:0.5 animations:^{
                    toRemoveCardView.alpha = 0.6;
@@ -175,8 +166,6 @@
                     CGAffineTransform t11 = CGAffineTransformMakeTranslation(-self.frame.size.width-30,0.0);
                     CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
                     toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-
-
                  } completion:^(BOOL finished) {
                      [toRemoveCardView removeFromSuperview];
                  }];
@@ -187,11 +176,9 @@
     [self prepareForAnimations];
     [self.cardView configureWithViewModel:viewModel];
     [self setupViewsForAnimation:toRemoveCardView.frame];
-    
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(-self.frame.size.width*2,0.0 );
     CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
     self.cardView.transform = CGAffineTransformConcat(t1, t2);
-
     [self layoutIfNeeded];
               [UIView animateWithDuration:0.5 animations:^{
                 toRemoveCardView.alpha = 0.6;
@@ -202,8 +189,6 @@
                  CGAffineTransform t11 = CGAffineTransformMakeTranslation(self.frame.size.width-30,0.0);
                  CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
                  toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
-
-
               } completion:^(BOOL finished) {
                   [toRemoveCardView removeFromSuperview];
               }];
