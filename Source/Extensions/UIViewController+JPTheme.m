@@ -29,6 +29,7 @@
 @implementation UIViewController (JPTheme)
 
 - (void)applyTheme:(JPTheme *)theme {
+    
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
 
     if (![theme.tintColor isDarkColor]) {

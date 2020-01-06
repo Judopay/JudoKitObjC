@@ -266,35 +266,6 @@
     return [textColor inverseColor];
 }
 
-- (UIColor *)judoNavigationBarColor {
-    if (_judoNavigationBarColor) {
-        _judoNavigationBarColor = UINavigationBar.appearance.barTintColor;
-    }
-    return _judoNavigationBarColor;
-}
-
-- (UIColor *)judoNavigationButtonColor {
-    if (_judoNavigationButtonColor) {
-        return _judoNavigationButtonColor;
-    }
-    UIColor *textColor = [UIColor thunder];
-    if ([self.tintColor isDarkColor]) {
-        return textColor;
-    }
-    return [textColor inverseColor];
-}
-
-- (UIColor *)judoNavigationBarTitleColor {
-    if (_judoNavigationBarTitleColor) {
-        return _judoNavigationBarTitleColor;
-    }
-    UIColor *navigationBarTintColor = [UIColor thunder];
-    if ([self.tintColor isDarkColor]) {
-        return navigationBarTintColor;
-    }
-    return [navigationBarTintColor inverseColor];
-}
-
 - (UIColor *)judoInputFieldTextColor {
     if (_judoInputFieldTextColor) {
         return _judoInputFieldTextColor;
@@ -335,13 +306,6 @@
 
 - (UIColor *)judoButtonColor {
     return _judoButtonColor ? _judoButtonColor : self.tintColor;
-}
-
-- (UIColor *)judoButtonTitleColor {
-    if (_judoButtonTitleColor) {
-        return _judoButtonTitleColor;
-    }
-    return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
 }
 
 - (UIColor *)judoLoadingBackgroundColor {
@@ -417,20 +381,6 @@
     return _judoInputFieldBorderWidth;
 }
 
-- (NSString *)judoLeftBarButtonTitle {
-    if (!_judoLeftBarButtonTitle) {
-        _judoLeftBarButtonTitle = @"back".localized;
-    }
-    return _judoLeftBarButtonTitle;
-}
-
-- (NSString *)judoRightBarButtonTitle {
-    if (!_judoRightBarButtonTitle) {
-        _judoRightBarButtonTitle = @"pay".localized;
-    }
-    return _judoRightBarButtonTitle;
-}
-
 #pragma mark - iDEAL Status View
 
 - (UIColor *)iDEALStatusTitleColor {
@@ -473,6 +423,136 @@
         _judoIDEALCloseButtonTitle = @"close".localized;
     }
     return _judoIDEALCloseButtonTitle;
+}
+
+//------------------------------------------------------------------------
+#pragma mark - New additions
+//------------------------------------------------------------------------
+
+- (UIColor *)judoNavigationButtonColor {
+    if (!_judoNavigationButtonColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+    }
+    return _judoNavigationButtonColor;
+}
+
+- (UIFont *)judoNavigationButtonFont {
+    if (!_judoNavigationButtonFont) {
+        //TODO: Add default navigation button font
+    }
+    return _judoNavigationButtonFont;
+}
+
+- (UIColor *)judoNavigationBarTitleColor {
+    if (!_judoNavigationBarTitleColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+    }
+    return _judoNavigationBarTitleColor;
+}
+
+- (UIFont *)judoNavigationBarTitleFont {
+    if (!_judoNavigationBarTitleFont) {
+        //TODO: Add default navigation title font
+    }
+    return _judoNavigationBarTitleFont;
+}
+
+- (UIColor *)judoNavigationBarColor {
+    if (!_judoNavigationBarColor) {
+        _judoNavigationBarColor = UINavigationBar.appearance.barTintColor;
+    }
+    return _judoNavigationBarColor;
+}
+
+- (BOOL)isJudoNavigationBarTranslucent {
+    if (!_isJudoNavigationBarTranslucent) {
+        _isJudoNavigationBarTranslucent = YES;
+    }
+    return _isJudoNavigationBarTranslucent;
+}
+
+- (UIColor *)judoBackgroundColor {
+    if (!_judoBackgroundColor) {
+        _judoBackgroundColor = [self.tintColor isDarkColor] ? UIColor.zircon : UIColor.zircon.inverseColor;
+    }
+    return _judoBackgroundColor;
+}
+
+- (UIColor *)judoPlaceholderColor {
+    if (!_judoPlaceholderColor) {
+        //TODO: Add default placeholder color
+    }
+    return _judoPlaceholderColor;
+}
+
+- (UIFont *)judoPlaceholderFont {
+    if (!_judoPlaceholderFont) {
+        //TODO: Add default placeholder font
+    }
+    return _judoPlaceholderFont;
+}
+
+- (UIColor *)judoFloatingLabelColor {
+    if (!_judoFloatingLabelColor) {
+        //TODO: Add default floating label color
+    }
+    return _judoFloatingLabelColor;
+}
+
+- (UIFont *)judoFloatingLabelFont {
+    if (_judoFloatingLabelFont) {
+        //TODO: Add default floating label font
+    }
+    return _judoFloatingLabelFont;
+}
+
+- (UIColor *)judoTextFieldColor {
+    if (!_judoTextFieldColor) {
+        //TODO: Add default text field color
+    }
+    return _judoTextFieldColor;
+}
+
+- (UIFont *)judoTextFieldFont {
+    if (!_judoTextFieldFont) {
+        //TODO: Add default text field font
+    }
+    return _judoTextFieldFont;
+}
+
+- (UIColor *)judoButtonBackgroundColor {
+    if (!_judoBackgroundColor) {
+        //TODO: Add default button background color
+    }
+    return _judoBackgroundColor;
+}
+
+- (UIColor *)judoButtonTitleColor {
+    if (!_judoButtonTitleColor) {
+        return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
+    }
+    return _judoButtonTitleColor;
+}
+
+- (UIFont *)judoButtonTitleFont {
+    if (!_judoButtonTitleFont) {
+        //TODO: Add default button title font
+    }
+    return _judoButtonTitleFont;
+}
+
+- (UIColor *)judoLabelColor {
+    if (!_judoLabelColor) {
+        //TODO: Add default label color
+    }
+    return _judoLabelColor;
+}
+
+- (UIFont *)judoLabelFont {
+    if (!_judoLabelFont) {
+        //TODO: Add default label font
+    }
+    return _judoLabelFont;
 }
 
 @end
