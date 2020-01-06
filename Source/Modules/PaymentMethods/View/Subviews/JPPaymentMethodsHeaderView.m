@@ -114,7 +114,7 @@
 
 - (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     if (viewModel.cardModel == nil) {
-        [self.cardHeaderView changeCardWithViewModel:viewModel];
+        [self.cardHeaderView configureWithViewModel:viewModel];
     }
 }
 
@@ -131,6 +131,7 @@
 
     [self addSubview:self.topView];
     [self setupGeneralConstraints];
+    [self setupPaymentStackViewBackground];
 }
 
 - (void)setupPaymentStackViews {

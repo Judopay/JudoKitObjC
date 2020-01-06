@@ -62,10 +62,6 @@
     [self animateCardChangeTransitionWithViewModel:viewModel];
 }
 
-- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self animateCardChangeTransitionWithViewModel:viewModel];
-}
-
 #pragma mark - Layout Setup
 
 - (void)setupViews {
@@ -74,14 +70,6 @@
     [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-30.0].active = YES;
     [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
     [self.cardView.widthAnchor constraintEqualToAnchor:self.cardView.heightAnchor multiplier:1.715].active = YES;
-}
-
-- (void)setupViewsForAnimation:(CGRect)frame {
-    [self addSubview:self.cardView];
-    [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0].active = YES;
-    [self.cardView.heightAnchor constraintEqualToConstant:frame.size.height].active = YES;
-    [self.cardView.widthAnchor constraintEqualToConstant:frame.size.width].active = YES;
-    [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
 }
 
 #pragma mark - ANIMATIONS
@@ -128,7 +116,7 @@
     __block JPCardView *toRemoveCardView = self.cardView;
     [self prepareForAnimations];
     [self.cardView configureWithViewModel:viewModel];
-    [self setupViewsForAnimation:toRemoveCardView.frame];
+    [self setupViews];
 
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(0.0, (self.cardView.frame.size.height + self.frame.size.width) + 130);
     CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
@@ -154,7 +142,7 @@
     __block JPCardView *toRemoveCardView = self.cardView;
     [self prepareForAnimations];
     [self.cardView configureWithViewModel:viewModel];
-    [self setupViewsForAnimation:toRemoveCardView.frame];
+    [self setupViews];
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(self.frame.size.width * 2, 0.0);
     CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
     self.cardView.transform = CGAffineTransformConcat(t1, t2);
@@ -179,7 +167,7 @@
     __block JPCardView *toRemoveCardView = self.cardView;
     [self prepareForAnimations];
     [self.cardView configureWithViewModel:viewModel];
-    [self setupViewsForAnimation:toRemoveCardView.frame];
+    [self setupViews];
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(-self.frame.size.width * 2, 0.0);
     CGAffineTransform t2 = CGAffineTransformScale(CGAffineTransformIdentity, 0.5, 0.5);
     self.cardView.transform = CGAffineTransformConcat(t1, t2);

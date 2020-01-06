@@ -98,8 +98,6 @@
     self.headerModel.amount = [self.interactor getAmount];
     self.headerModel.payButtonModel = self.paymentButtonModel;
     self.headerModel.payButtonModel.isEnabled = NO;
-    self.headerModel.animationType = AnimationTypeSetup;
-
     NSArray *storedCardDetails = [self.interactor getStoredCardDetails];
 
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {

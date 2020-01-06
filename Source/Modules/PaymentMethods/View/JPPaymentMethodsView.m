@@ -62,9 +62,9 @@
 - (void)setupViews {
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.tableView];
-    [self insertSubview:self.headerView belowSubview:self.tableView];
+    self.headerView.clipsToBounds = YES;
+    [self insertSubview:self.headerView aboveSubview:self.tableView];
     [self addSubview:self.judoHeadlineImageView];
-    [self setupTableViewBackground];
 }
 
 - (void)setupConstraints {
@@ -81,19 +81,9 @@
     [self.judoHeadlineImageView.bottomAnchor constraintEqualToAnchor:self.safeBottomAnchor].active = YES;
 }
 
-- (void)setupTableViewBackground {
-    UIView *tableViewBackground = [[UIView alloc] initWithFrame:CGRectZero];
-    tableViewBackground.translatesAutoresizingMaskIntoConstraints = NO;
-    self.tableView.backgroundView = tableViewBackground;
-    [tableViewBackground.topAnchor constraintEqualToAnchor:self.tableView.topAnchor constant:0].active = YES;
-    [tableViewBackground.heightAnchor constraintEqualToAnchor:self.tableView.heightAnchor].active = YES;
-    [tableViewBackground.widthAnchor constraintEqualToAnchor:self.tableView.widthAnchor].active = YES;
-    tableViewBackground.backgroundColor = UIColor.whiteColor;
-}
-
 #pragma mark - Lazy properties
 
-- (UIView *)headerView {
+- (JPPaymentMethodsHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [JPPaymentMethodsHeaderView new];
         _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
@@ -107,7 +97,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         _tableView.backgroundColor = UIColor.clearColor;
-        _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(320, 0, 0, 0);
     }
     return _tableView;
 }
