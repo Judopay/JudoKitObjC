@@ -56,7 +56,7 @@
                                                           reference:reference];
 
     [JPCardStorage.sharedInstance deleteCardDetails];
-    
+
     JPPaymentMethodsRouterImpl *router;
     router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction
                                                transitioningDelegate:transitioningDelegate

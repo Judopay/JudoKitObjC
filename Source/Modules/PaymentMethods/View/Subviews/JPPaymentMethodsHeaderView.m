@@ -23,20 +23,20 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsHeaderView.h"
-#import "JPPaymentMethodsViewModel.h"
 #import "JPAddCardButton.h"
 #import "JPAmount.h"
+#import "JPPaymentMethodsViewModel.h"
 #import "NSString+Localize.h"
-#import "UIFont+Additions.h"
 #import "UIColor+Judo.h"
-#import "UIStackView+Additions.h"
+#import "UIFont+Additions.h"
 #import "UIImage+Icons.h"
+#import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
 
-#import "JPPaymentMethodsEmptyHeaderView.h"
 #import "JPPaymentMethodsCardHeaderView.h"
+#import "JPPaymentMethodsEmptyHeaderView.h"
 
-@interface JPPaymentMethodsHeaderView()
+@interface JPPaymentMethodsHeaderView ()
 
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) JPPaymentMethodsEmptyHeaderView *emptyHeaderView;
@@ -55,9 +55,7 @@
 
 @implementation JPPaymentMethodsHeaderView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
@@ -80,20 +78,18 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.amountValueLabel.text = [NSString stringWithFormat:@"%@%@",
-                                  viewModel.amount.currency.toCurrencySymbol,
-                                  viewModel.amount.amount];
-    
+                                                            viewModel.amount.currency.toCurrencySymbol,
+                                                            viewModel.amount.amount];
+
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
-    
+
     [self.emptyHeaderView removeFromSuperview];
     [self.cardHeaderView removeFromSuperview];
-    
+
     if (viewModel.cardModel == nil) {
         self.backgroundImageView.image = [UIImage imageWithResourceName:@"no-cards"];
         [self displayEmptyHeaderView];
@@ -112,29 +108,29 @@
     [self.topView addSubview:self.cardHeaderView];
     [self.cardHeaderView pinToView:self.topView withPadding:0.0];
     [self.cardHeaderView configureWithViewModel:viewModel];
-    
+
     [self insertSubview:self.mainStackView aboveSubview:self.topView];
-    
+
     self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
     self.cardHeaderView.alpha = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.cardHeaderView.alpha = 1.0;
-        self.cardHeaderView.transform = CGAffineTransformIdentity;
-    }];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.cardHeaderView.alpha = 1.0;
+                         self.cardHeaderView.transform = CGAffineTransformIdentity;
+                     }];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
-    
+    self.backgroundColor = UIColor.whiteColor;
+
     [self addSubview:self.backgroundImageView];
     [self setupBackgroundImageViewConstraints];
-    
+
     [self setupPaymentStackViews];
     [self setupStackViewConstraints];
-    
+
     [self addSubview:self.topView];
     [self setupGeneralConstraints];
 }
@@ -145,13 +141,11 @@
 
     [self.mainStackView addArrangedSubview:self.amountStackView];
     [self.mainStackView addArrangedSubview:self.payButton];
-    
+
     [self addSubview:self.mainStackView];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Constraints Setup
-//----------------------------------------------------------------------
 
 - (void)setupBackgroundImageViewConstraints {
     [self.backgroundImageView pinToView:self withPadding:0.0];
@@ -159,7 +153,7 @@
 
 - (void)setupGeneralConstraints {
     [self.payButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
-    [self.topView pinToAnchors:AnchorTypeTop|AnchorTypeLeading|AnchorTypeTrailing forView:self];
+    [self.topView pinToAnchors:AnchorTypeTop | AnchorTypeLeading | AnchorTypeTrailing forView:self];
     [self.topView.bottomAnchor constraintEqualToAnchor:self.mainStackView.topAnchor].active = YES;
 }
 
@@ -170,9 +164,7 @@
     [self.mainStackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-24.0].active = YES;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (UIView *)topView {
     if (!_topView) {
@@ -202,7 +194,7 @@
     if (!_amountValueLabel) {
         _amountValueLabel = [UILabel new];
         _amountValueLabel.numberOfLines = 0;
-        _amountValueLabel.font = [UIFont boldSystemFontOfSize:24]; //TODO: Replace with predefined fonts
+        _amountValueLabel.font = UIFont.largeTitle;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountValueLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -214,7 +206,7 @@
         _amountPrefixLabel = [UILabel new];
         _amountPrefixLabel.numberOfLines = 0;
         _amountPrefixLabel.text = @"you_will_pay".localized;
-        _amountPrefixLabel.font = [UIFont boldSystemFontOfSize:14]; //TODO: Replace with predefined fonts
+        _amountPrefixLabel.font = UIFont.body;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -226,7 +218,7 @@
         _payButton = [JPAddCardButton new];
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
         _payButton.layer.cornerRadius = 4.0f;
-        _payButton.titleLabel.font = UIFont.largeTitleFont;
+        _payButton.titleLabel.font = UIFont.headline;
         _payButton.backgroundColor = UIColor.jpTextColor;
     }
     return _payButton;
@@ -242,19 +234,19 @@
     return _backgroundImageView;
 }
 
--(UIStackView *)amountStackView {
-    if(!_amountStackView) {
+- (UIStackView *)amountStackView {
+    if (!_amountStackView) {
         _amountStackView = [UIStackView verticalStackViewWithSpacing:0.0];
         _amountStackView.alignment = NSLayoutAttributeLeading;
     }
-    return  _amountStackView;
+    return _amountStackView;
 }
 
--(UIStackView *)mainStackView {
-    if(!_mainStackView) {
+- (UIStackView *)mainStackView {
+    if (!_mainStackView) {
         _mainStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
     }
-    return  _mainStackView;
+    return _mainStackView;
 }
 
 @end

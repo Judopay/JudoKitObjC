@@ -120,11 +120,11 @@
     if (!_floatingTextField) {
         _floatingTextField = [JPFloatingTextField new];
         _floatingTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _floatingTextField.font = UIFont.defaultTextFont;
+        _floatingTextField.font = UIFont.headlineLight;
         _floatingTextField.textColor = UIColor.jpTextColor;
         [_floatingTextField placeholderWithText:@""
                                           color:UIColor.jpPlaceholderColor
-                                        andFont:UIFont.defaultTextFont];
+                                        andFont:UIFont.headlineLight];
 
         [_floatingTextField addTarget:self
                                action:@selector(didChangeText)

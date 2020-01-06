@@ -23,14 +23,14 @@
 //  SOFTWARE.
 
 #import "JPCardView.h"
+#import "JPCardNetwork.h"
+#import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
+#import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
-#import "JPPaymentMethodsViewModel.h"
-#import "UIImage+Icons.h"
-#import "JPCardNetwork.h"
 
-@interface JPCardView()
+@interface JPCardView ()
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *logoImageView;
@@ -74,15 +74,15 @@
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.titleLabel.text = viewModel.cardModel.cardTitle;
     self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
-    
+
     JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:viewModel.cardModel.cardNetwork];
     NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
     NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
-    
+
     self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
-                                 stylizedPattern,
-                                 viewModel.cardModel.cardNumberLastFour];
-    
+                                                           stylizedPattern,
+                                                           viewModel.cardModel.cardNumberLastFour];
+
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
 }
 
@@ -91,30 +91,30 @@
 //----------------------------------------------------------------------
 
 - (void)setupViews {
-    
+
     UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0];
     [bottomStackView addArrangedSubview:self.cardNumberLabel];
     [bottomStackView addArrangedSubview:self.expiryDateLabel];
-    
+
     UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:24];
     [cardTitleStackView addArrangedSubview:self.titleLabel];
     [cardTitleStackView addArrangedSubview:bottomStackView];
-    
+
     UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
     [logoStackView addArrangedSubview:self.logoImageView];
     [logoStackView addArrangedSubview:[UIView new]];
-    
+
     UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
     [mainStackView addArrangedSubview:logoStackView];
     [mainStackView addArrangedSubview:[UIView new]];
     [mainStackView addArrangedSubview:cardTitleStackView];
-    
+
     [self.logoImageView.widthAnchor constraintEqualToConstant:50.0].active = YES;
     [self.logoImageView.heightAnchor constraintEqualToConstant:30.0].active = YES;
-    
+
     [self.contentView addSubview:mainStackView];
     [mainStackView pinToView:self.contentView withPadding:28.0];
-    
+
     [self addSubview:self.contentView];
     [self.contentView pinToView:self withPadding:0.0];
 }

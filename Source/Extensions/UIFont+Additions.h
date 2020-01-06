@@ -27,38 +27,38 @@
 @interface UIFont (Additions)
 
 /**
- * The default text font (San Francisco Regular - 16)
+ * The font used for prominent UI elements (San Francisco Semibold - 24)
  */
-+ (UIFont *)defaultTextFont;
++ (UIFont *)largeTitle;
 
 /**
- * The smaller default text font that is displayed when an error superscript is visible (San Francisco Regular - 14)
+ * The font used for smaller prominent UI elements (San Francisco Semibold - 18)
  */
-+ (UIFont *)smallTextFont;
++ (UIFont *)title;
 
 /**
- * The error text font (San Francisco Regular - 10)
- */
-+ (UIFont *)errorTextFont;
+ * The headline font (San Francisco Semibold - 16)
+*/
++ (UIFont *)headline;
 
 /**
- * The font for non-prominent titles (San Francisco Semibold - 14)
+ * The headline light font (San Francisco Regular - 16)
  */
-+ (UIFont *)smallTitleFont;
++ (UIFont *)headlineLight;
 
 /**
- * The font for prominent titles (San Francisco Semibold - 16)
+ * Body font (San Francisco Regular - 14)
  */
-+ (UIFont *)largeTitleFont;
++ (UIFont *)body;
 
 /**
- * The font for prominent subtitles (San Francisco Semibold - 10)
+ * The bold version of the body font (San Francisco Semibold - 14)
  */
-+ (UIFont *)semiboldSubtitleFont;
++ (UIFont *)bodyBold;
 
 /**
- * The font for small text messages (San Francisco Regular - 11.3)
+ * The caption font (San Francisco Regular - 10)
  */
-+ (UIFont *)subtitleFont;
++ (UIFont *)caption;
 
 @end

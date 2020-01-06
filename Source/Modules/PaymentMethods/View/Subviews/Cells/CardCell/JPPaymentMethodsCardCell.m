@@ -141,7 +141,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = UIFont.smallTitleFont;
+        _titleLabel.font = UIFont.bodyBold;
         _titleLabel.textColor = UIColor.jpTextColor;
     }
     return _titleLabel;
@@ -151,7 +151,7 @@
     if (!_subtitleLabel) {
         _subtitleLabel = [UILabel new];
         _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _subtitleLabel.font = UIFont.subtitleFont;
+        _subtitleLabel.font = UIFont.caption;
         _subtitleLabel.textColor = UIColor.jpSubtitleColor;
     }
     return _subtitleLabel;

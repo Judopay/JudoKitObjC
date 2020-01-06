@@ -23,18 +23,16 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsCardHeaderView.h"
-#import "JPPaymentMethodsViewModel.h"
 #import "JPCardView.h"
+#import "JPPaymentMethodsViewModel.h"
 
-@interface JPPaymentMethodsCardHeaderView()
+@interface JPPaymentMethodsCardHeaderView ()
 @property (nonatomic, strong) JPCardView *cardView;
 @end
 
 @implementation JPPaymentMethodsCardHeaderView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
@@ -57,17 +55,13 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     [self.cardView configureWithViewModel:viewModel];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
     [self addSubview:self.cardView];
@@ -77,9 +71,7 @@
     [self.cardView.widthAnchor constraintEqualToAnchor:self.cardView.heightAnchor multiplier:1.715].active = YES;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (JPCardView *)cardView {
     if (!_cardView) {

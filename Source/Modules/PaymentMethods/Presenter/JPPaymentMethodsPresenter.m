@@ -23,6 +23,8 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsPresenter.h"
+#import "JPAddCardViewModel.h"
+#import "JPAmount.h"
 #import "JPCardNetwork.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsRouter.h"
@@ -30,8 +32,6 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
 #import "NSString+Localize.h"
-#import "JPAddCardViewModel.h"
-#import "JPAmount.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -67,9 +67,9 @@
 - (void)updateViewModel {
     [self.viewModel.items removeAllObjects];
     self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
-    
+
     [self prepareHeaderModel];
-    
+
     [self.viewModel.items addObject:self.paymentSelectionModel];
 
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
@@ -88,16 +88,16 @@
     self.headerModel.amount = [self.interactor getAmount];
     self.headerModel.payButtonModel = self.paymentButtonModel;
     self.headerModel.payButtonModel.isEnabled = NO;
-    
+
     NSArray *storedCardDetails = [self.interactor getStoredCardDetails];
-    
+
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         if (cardDetails.isSelected) {
             self.headerModel.cardModel = [self cardModelFromStoredCardDetails:cardDetails];
             self.headerModel.payButtonModel.isEnabled = YES;
         }
     }
-    
+
     self.viewModel.headerModel = self.headerModel;
 }
 

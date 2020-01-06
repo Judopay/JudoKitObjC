@@ -96,7 +96,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textColor = UIColor.jpTextColor;
-        _titleLabel.font = UIFont.largeTitleFont;
+        _titleLabel.font = UIFont.headline;
     }
     return _titleLabel;
 }
@@ -105,7 +105,7 @@
     if (!_actionButton) {
         _actionButton = [UIButton new];
         _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _actionButton.titleLabel.font = UIFont.smallTitleFont;
+        _actionButton.titleLabel.font = UIFont.bodyBold;
         [_actionButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
     }
     return _actionButton;

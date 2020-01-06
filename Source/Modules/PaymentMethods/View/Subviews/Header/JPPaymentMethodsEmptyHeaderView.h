@@ -26,5 +26,8 @@
 
 @class JPPaymentMethodsHeaderModel;
 
+/**
+ * A view that describes the header when no card is being selected
+ */
 @interface JPPaymentMethodsEmptyHeaderView : UIView
 @end

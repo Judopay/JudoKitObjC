@@ -35,7 +35,7 @@
  * A string that identifies the UITableViewCell that this view model applies to.
  * Must match the exact name of the UITableViewCell so that it can be registered correctly.
  */
-@property (nonatomic, strong) NSString * _Nonnull identifier;
+@property (nonatomic, strong) NSString *_Nonnull identifier;
 
 @end
 
@@ -51,22 +51,22 @@
 /**
  * The text displayed when no card has been added
  */
-@property (nonatomic, strong) NSString * _Nullable title;
+@property (nonatomic, strong) NSString *_Nullable title;
 
 /**
  * The title of the Add Card button
  */
-@property (nonatomic, strong) NSString * _Nullable addCardButtonTitle;
+@property (nonatomic, strong) NSString *_Nullable addCardButtonTitle;
 
 /**
  * The icon name of the Add Card button that is displayed on the left side of the title
  */
-@property (nonatomic, strong) NSString * _Nullable addCardButtonIconName;
+@property (nonatomic, strong) NSString *_Nullable addCardButtonIconName;
 
 /**
  * The action handler of the Add Card button that handles the tap events
  */
-@property (nonatomic, copy) void (^ _Nullable onAddCardButtonTapHandler)(void);
+@property (nonatomic, copy) void (^_Nullable onAddCardButtonTapHandler)(void);
 
 @end
 
@@ -77,12 +77,12 @@
 /**
  * The title of the header displayed above the card selection list
  */
-@property (nonatomic, strong) NSString * _Nullable title;
+@property (nonatomic, strong) NSString *_Nullable title;
 
 /**
  * The title of the Edit button displayed above the card selection list
  */
-@property (nonatomic, strong) NSString * _Nullable editButtonTitle;
+@property (nonatomic, strong) NSString *_Nullable editButtonTitle;
 
 @end
 
@@ -93,17 +93,17 @@
 /**
  * The title of the Add Card button displayed below the card selection list
  */
-@property (nonatomic, strong) NSString * _Nullable addCardButtonTitle;
+@property (nonatomic, strong) NSString *_Nullable addCardButtonTitle;
 
 /**
  * The icon name of the Add Card button displayed below the card selection list
  */
-@property (nonatomic, strong) NSString * _Nullable addCardButtonIconName;
+@property (nonatomic, strong) NSString *_Nullable addCardButtonIconName;
 
 /**
  * The action handler of the Add Card button displayed below the card selection list
  */
-@property (nonatomic, copy) void (^ _Nullable onAddCardButtonTapHandler)(void);
+@property (nonatomic, copy) void (^_Nullable onAddCardButtonTapHandler)(void);
 
 @end
 
@@ -114,7 +114,7 @@
 /**
  * The title of the card
  */
-@property (nonatomic, strong) NSString * _Nullable cardTitle;
+@property (nonatomic, strong) NSString *_Nullable cardTitle;
 
 /**
  * The card network used for displaying the card logo and name
@@ -124,7 +124,7 @@
 /**
  * The last four digits of the card
  */
-@property (nonatomic, strong) NSString * _Nullable cardNumberLastFour;
+@property (nonatomic, strong) NSString *_Nullable cardNumberLastFour;
 
 /**
  * The card's expiration date string
@@ -149,7 +149,7 @@
 /**
  * An array of JPPaymentMethodsCardModel objects that describe the added cards
  */
-@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsCardModel *> * _Nullable cardModels;
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsCardModel *> *_Nullable cardModels;
 
 @end
 
@@ -186,11 +186,11 @@
 /**
  * A property that defines the way the Payment Method header behaves
  */
-@property (nonatomic, strong) JPPaymentMethodsHeaderModel * _Nullable headerModel;
+@property (nonatomic, strong) JPPaymentMethodsHeaderModel *_Nullable headerModel;
 
 /**
  * An array of JPPaymentMethodsModel objects that define the layout of the view
  */
-@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> * _Nullable items;
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsModel *> *_Nullable items;
 
 @end

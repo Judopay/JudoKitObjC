@@ -86,7 +86,7 @@
     NSLayoutConstraint *heightConstraint = [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f];
     heightConstraint.priority = 999;
     heightConstraint.active = YES;
-    
+
     [self.stackView pinToView:self withPadding:0.0f];
 }
 
@@ -97,7 +97,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = UIFont.largeTitleFont;
+        _titleLabel.font = UIFont.headline;
         _titleLabel.textColor = UIColor.jpTextColor;
     }
     return _titleLabel;
@@ -108,7 +108,7 @@
         _addCardButton = [UIButton new];
         [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.smallTitleFont;
+        _addCardButton.titleLabel.font = UIFont.bodyBold;
 
         [self.addCardButton addTarget:self
                                action:@selector(onAddCardButtonTap)

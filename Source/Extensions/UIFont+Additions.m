@@ -26,32 +26,32 @@
 
 @implementation UIFont (Additions)
 
-+ (UIFont *)defaultTextFont {
-    return [UIFont systemFontOfSize:16.0];
++ (UIFont *)largeTitle {
+    return [UIFont systemFontOfSize:24 weight:UIFontWeightSemibold];
 }
 
-+ (UIFont *)smallTextFont {
-    return [UIFont systemFontOfSize:14.0];
++ (UIFont *)title {
+    return [UIFont systemFontOfSize:18 weight:UIFontWeightSemibold];
 }
 
-+ (UIFont *)errorTextFont {
-    return [UIFont systemFontOfSize:10.0];
-}
-
-+ (UIFont *)smallTitleFont {
-    return [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)largeTitleFont {
++ (UIFont *)headline {
     return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
 }
 
-+ (UIFont *)semiboldSubtitleFont {
-    return [UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
++ (UIFont *)headlineLight {
+    return [UIFont systemFontOfSize:16.0];
 }
 
-+ (UIFont *)subtitleFont {
-    return [UIFont systemFontOfSize:10];
++ (UIFont *)body {
+    return [UIFont systemFontOfSize:14.0];
+}
+
++ (UIFont *)bodyBold {
+    return [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
+}
+
++ (UIFont *)caption {
+    return [UIFont systemFontOfSize:10.0];
 }
 
 @end
