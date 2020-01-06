@@ -110,7 +110,7 @@
         _addCardButton = [UIButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.smallTitleFont;
+        _addCardButton.titleLabel.font = UIFont.bodyBold;
 
         [self.addCardButton addTarget:self
                                action:@selector(onAddCardButtonTap)

@@ -55,7 +55,6 @@
                                                              amount:amount
                                                           reference:reference];
 
-    
     JPPaymentMethodsRouterImpl *router;
     router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction
                                                transitioningDelegate:transitioningDelegate

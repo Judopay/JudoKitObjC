@@ -28,7 +28,7 @@
 #import "JPCardInputField.h"
 #import "JPCardNumberField.h"
 #import "LoadingButton.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "RoundedCornerView.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
@@ -190,7 +190,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
         _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _cancelButton.titleLabel.font = UIFont.smallTitleFont;
+        _cancelButton.titleLabel.font = UIFont.bodyBold;
         [_cancelButton setTitle:@"cancel".localized forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     }
@@ -204,7 +204,7 @@
 
         [_scanCardButton setTitle:@"scan_card".localized forState:UIControlStateNormal];
         [_scanCardButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        _scanCardButton.titleLabel.font = UIFont.smallTitleFont;
+        _scanCardButton.titleLabel.font = UIFont.bodyBold;
 
         [_scanCardButton setImage:[UIImage imageWithIconName:@"scan-card"]
                          forState:UIControlStateNormal];
@@ -275,7 +275,7 @@
     if (!_addCardButton) {
         _addCardButton = [JPAddCardButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _addCardButton.titleLabel.font = UIFont.largeTitleFont;
+        _addCardButton.titleLabel.font = UIFont.headline;
         _addCardButton.layer.cornerRadius = 4.0f;
         _addCardButton.backgroundColor = UIColor.jpTextColor;
     }
@@ -298,7 +298,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
-    label.font = UIFont.subtitleFont;
+    label.font = UIFont.caption;
     label.textColor = UIColor.jpSubtitleColor;
     return label;
 }

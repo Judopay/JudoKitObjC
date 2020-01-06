@@ -29,7 +29,7 @@
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "JPAddCardViewModel.h"
 #import "JPAmount.h"
 

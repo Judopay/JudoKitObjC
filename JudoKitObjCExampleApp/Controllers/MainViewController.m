@@ -124,6 +124,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 }
 
 #pragma mark - UITableViewDelegate
+
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DemoFeature *feature = self.features[indexPath.row];

@@ -24,7 +24,7 @@
 //
 
 #import "JPtheme.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIViewController+Additions.h"
 

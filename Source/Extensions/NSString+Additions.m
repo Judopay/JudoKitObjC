@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsCardHeaderView.h
+//  NSString+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,15 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "NSBundle+Additions.h"
+#import "NSString+Additions.h"
+#import <Foundation/Foundation.h>
 
-@class JPPaymentMethodsHeaderModel;
+@implementation NSString (Manipulation)
 
-@interface JPPaymentMethodsCardHeaderView : UIView
+- (nonnull NSString *)localized {
+    if (NSBundle.stringsBundle != nil) {
+        return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.stringsBundle, nil);
+    }
+    return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.frameworkBundle, nil);
+}
 
-/**
- * A method that configures the card header based on a view model
- */
-- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
-- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
+- (NSString *)toCurrencySymbol {
+    return [NSLocale.currentLocale displayNameForKey:NSLocaleCurrencySymbol value:self];
+}
+
 @end

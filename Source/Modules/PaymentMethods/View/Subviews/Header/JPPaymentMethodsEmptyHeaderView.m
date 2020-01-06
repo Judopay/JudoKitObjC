@@ -23,20 +23,19 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsEmptyHeaderView.h"
-#import "UIStackView+Additions.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
+#import "UIFont+Additions.h"
+#import "UIStackView+Additions.h"
 
-@interface JPPaymentMethodsEmptyHeaderView()
+@interface JPPaymentMethodsEmptyHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation JPPaymentMethodsEmptyHeaderView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
@@ -59,31 +58,27 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:4.0];
-    
+
     [stackView addArrangedSubview:self.titleLabel];
     [stackView addArrangedSubview:self.textLabel];
-    
+
     [self addSubview:stackView];
-    
+
     [stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:24].active = YES;
     [stackView.widthAnchor constraintEqualToConstant:227.0].active = YES;
     [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        _titleLabel.font = UIFont.title;
         _titleLabel.text = @"choose_payment_method".localized;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -94,7 +89,7 @@
     if (!_textLabel) {
         _textLabel = [UILabel new];
         _textLabel.numberOfLines = 0;
-        _textLabel.font = [UIFont systemFontOfSize:14];
+        _textLabel.font = UIFont.body;
         _textLabel.text = @"no_cards_added".localized;
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }

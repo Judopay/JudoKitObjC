@@ -25,7 +25,7 @@
 #import "IDEALBankTableViewCell.h"
 #import "IDEALBank.h"
 #import "NSBundle+Additions.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 @interface IDEALBankTableViewCell ()
 

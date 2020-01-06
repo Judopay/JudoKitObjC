@@ -23,11 +23,11 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsInteractor.h"
+#import "JPAmount.h"
 #import "JPCardStorage.h"
 #import "JPTheme.h"
-#import "JPAmount.h"
 
-@interface JPPaymentMethodsInteractorImpl()
+@interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JPAmount *amount;
 @end

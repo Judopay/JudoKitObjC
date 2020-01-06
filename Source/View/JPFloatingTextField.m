@@ -107,7 +107,7 @@
     if (!_floatingLabel) {
         _floatingLabel = [UILabel new];
         _floatingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _floatingLabel.font = UIFont.errorTextFont;
+        _floatingLabel.font = UIFont.caption;
         _floatingLabel.alpha = 0.0f;
         _floatingLabel.textColor = [UIColor colorWithRed:226 / 255.0
                                                    green:25 / 255.0

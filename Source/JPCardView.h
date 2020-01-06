@@ -28,6 +28,9 @@
 
 @interface JPCardView : UIView
 
+/**
+ * A method that configures the custom card view based on a view model
+ */
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 
 @end

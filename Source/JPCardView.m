@@ -23,14 +23,15 @@
 //  SOFTWARE.
 
 #import "JPCardView.h"
+#import "JPCardNetwork.h"
+#import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
+#import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
-#import "JPPaymentMethodsViewModel.h"
-#import "UIImage+Icons.h"
-#import "JPCardNetwork.h"
 
-@interface JPCardView()
+@interface JPCardView ()
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *logoImageView;
@@ -42,9 +43,7 @@
 
 @implementation JPCardView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -67,59 +66,55 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.titleLabel.text = viewModel.cardModel.cardTitle;
     self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
-    
+
     JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:viewModel.cardModel.cardNetwork];
-    //TODO: Add formatting logic
-    
-    self.cardNumberLabel.text = [NSString stringWithFormat:@"•••• •••• •••• %@",
-                                 viewModel.cardModel.cardNumberLastFour];
-    
+    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
+    NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
+
+    self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
+                                                           stylizedPattern,
+                                                           viewModel.cardModel.cardNumberLastFour];
+
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
-    
+
     UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0];
     [bottomStackView addArrangedSubview:self.cardNumberLabel];
     [bottomStackView addArrangedSubview:self.expiryDateLabel];
-    
+
     UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:24];
     [cardTitleStackView addArrangedSubview:self.titleLabel];
     [cardTitleStackView addArrangedSubview:bottomStackView];
-    
+
     UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
     [logoStackView addArrangedSubview:self.logoImageView];
     [logoStackView addArrangedSubview:[UIView new]];
-    
+
     UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
     [mainStackView addArrangedSubview:logoStackView];
     [mainStackView addArrangedSubview:[UIView new]];
     [mainStackView addArrangedSubview:cardTitleStackView];
-    
+
     [self.logoImageView.widthAnchor constraintEqualToConstant:50.0].active = YES;
     [self.logoImageView.heightAnchor constraintEqualToConstant:30.0].active = YES;
-    
+
     [self.contentView addSubview:mainStackView];
     [mainStackView pinToView:self.contentView withPadding:28.0];
-    
+
     [self addSubview:self.contentView];
     [self.contentView pinToView:self withPadding:0.0];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (UIView *)contentView {
     if (!_contentView) {
@@ -136,7 +131,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = [UIFont systemFontOfSize:18.0 weight:UIFontWeightSemibold];
+        _titleLabel.font = UIFont.title;
         _titleLabel.textColor = UIColor.jpTextColor;
     }
     return _titleLabel;
@@ -146,7 +141,7 @@
     if (!_cardNumberLabel) {
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _cardNumberLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _cardNumberLabel.font = UIFont.bodyBold;
         _cardNumberLabel.textColor = UIColor.jpSubtitleColor;
     }
     return _cardNumberLabel;
@@ -157,7 +152,7 @@
         _expiryDateLabel = [UILabel new];
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
-        _expiryDateLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _expiryDateLabel.font = UIFont.bodyBold;
         _expiryDateLabel.textColor = UIColor.jpSubtitleColor;
     }
     return _expiryDateLabel;

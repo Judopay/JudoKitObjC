@@ -33,9 +33,7 @@
 
 @implementation JPPaymentMethodsCardHeaderView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
@@ -58,9 +56,7 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     [self animateCartChangeTransitionWithViewModel:viewModel];
@@ -72,9 +68,7 @@
     [self animateCartChangeTransitionWithViewModel:viewModel];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
     [self addSubview:self.cardView];
@@ -94,10 +88,8 @@
    
 }
 
-
-//----------------------------------------------------------------------
 #pragma mark - ANIMATIONS
-//----------------------------------------------------------------------
+
 -(void)animateCartChangeTransitionWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel{
     switch (viewModel.animationType) {
         case AnimationTypeBottomToTop:
@@ -153,7 +145,7 @@
                   CGAffineTransform t2  = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
                   self.cardView.transform = CGAffineTransformConcat(t1, t2);
 
-                 CGAffineTransform t11 = CGAffineTransformMakeTranslation(0.0, self.cardView.frame.size.height);
+                 CGAffineTransform t11 = CGAffineTransformMakeTranslation(0.0, toRemoveCardView.frame.size.height*2);
                  CGAffineTransform t22 = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3);
                  toRemoveCardView.transform = CGAffineTransformConcat(t11, t22);
 
@@ -217,9 +209,7 @@
               }];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (JPCardView *)cardView {
     if (!_cardView) {

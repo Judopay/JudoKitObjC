@@ -56,6 +56,11 @@
 
 /**
  * A designated initializer that sets up the JPTheme object needed for view customization
+ *
+ * @param theme - an instance of JPTheme that is used to configure the payment methods flow
+ * @param amount - the amount of the transaction
+ *
+ * @returns a configured instance of JPPaymentMethodsInteractor
  */
 - (instancetype)initWithTheme:(JPTheme *)theme andAmount:(JPAmount *)amount;
 

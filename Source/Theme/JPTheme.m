@@ -24,7 +24,7 @@
 
 #import "JPTheme.h"
 #import "JPCardDetails.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 
 @implementation JPTheme
