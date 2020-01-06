@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 #import "TransactionStatusView.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 
 @interface TransactionStatusView ()

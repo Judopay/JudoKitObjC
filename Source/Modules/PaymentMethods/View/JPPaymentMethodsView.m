@@ -82,7 +82,7 @@
 
 #pragma mark - Lazy properties
 
-- (UIView *)headerView {
+- (JPPaymentMethodsHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [JPPaymentMethodsHeaderView new];
         _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);

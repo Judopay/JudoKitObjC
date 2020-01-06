@@ -29,7 +29,7 @@
 #import "JPTheme.h"
 #import "NSError+Judo.h"
 #import "NSString+Card.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
 

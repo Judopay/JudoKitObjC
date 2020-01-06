@@ -28,7 +28,7 @@
 #import "JPTheme.h"
 #import "NSDate+Judo.h"
 #import "NSError+Judo.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "NSString+Validation.h"
 
 @interface DateInputField ()

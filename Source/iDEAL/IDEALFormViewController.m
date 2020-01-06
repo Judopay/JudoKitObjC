@@ -36,7 +36,7 @@
 #import "JPTheme.h"
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "TransactionStatusView.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"

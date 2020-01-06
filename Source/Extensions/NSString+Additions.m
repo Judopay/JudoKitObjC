@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsInteractor.h
+//  NSString+Additions.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,46 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "NSBundle+Additions.h"
+#import "NSString+Additions.h"
 #import <Foundation/Foundation.h>
 
-@class JPStoredCardDetails, JPTheme, JPAmount;
+@implementation NSString (Manipulation)
 
-@protocol JPPaymentMethodsInteractor
+- (nonnull NSString *)localized {
+    if (NSBundle.stringsBundle != nil) {
+        return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.stringsBundle, nil);
+    }
+    return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.frameworkBundle, nil);
+}
 
-/**
- * A method that returns the stored card details from the keychain
- *
- * @returns an array of JPStoredCardDetails objects
- */
-- (NSArray<JPStoredCardDetails *> *)getStoredCardDetails;
-
-/**
- * A method that updates the selected state of a card stored in the keychain
- */
-- (void)selectCardAtIndex:(NSInteger)index;
-
-/**
- * A method that returns YES if the 'Powered by Judo' headline should be displayed
- */
-- (BOOL)shouldDisplayJudoHeadline;
-
-/**
- * A method that returns the amount passed from the builder
- */
-- (JPAmount *)getAmount;
-
-@end
-
-@interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
-
-/**
- * A designated initializer that sets up the JPTheme object needed for view customization
- *
- * @param theme - an instance of JPTheme that is used to configure the payment methods flow
- * @param amount - the amount of the transaction
- *
- * @returns a configured instance of JPPaymentMethodsInteractor
- */
-- (instancetype)initWithTheme:(JPTheme *)theme andAmount:(JPAmount *)amount;
+- (NSString *)toCurrencySymbol {
+    return [NSLocale.currentLocale displayNameForKey:NSLocaleCurrencySymbol value:self];
+}
 
 @end

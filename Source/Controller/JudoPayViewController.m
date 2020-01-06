@@ -44,7 +44,7 @@
 #import "JPCard.h"
 #import "JPTheme+Additions.h"
 #import "NSString+Card.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "NSString+Manipulation.h"
 #import "NSTimer+Blocks.h"
 #import "UIColor+Judo.h"

@@ -25,7 +25,7 @@
 #import "JPPaymentMethodsCardCell.h"
 #import "JPCardNetwork.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
 #import "UIImage+Icons.h"

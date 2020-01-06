@@ -30,7 +30,7 @@
 #import "JPAddress.h"
 #import "JPCard.h"
 #import "JPCountry.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 @interface JPAddCardPresenterImpl ()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;

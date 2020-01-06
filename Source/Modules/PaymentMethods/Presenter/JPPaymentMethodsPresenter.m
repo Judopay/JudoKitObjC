@@ -31,7 +31,7 @@
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "JPStoredCardDetails.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;

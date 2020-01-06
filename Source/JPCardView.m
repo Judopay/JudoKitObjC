@@ -26,6 +26,7 @@
 #import "JPCardNetwork.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
+#import "UIFont+Additions.h"
 #import "UIImage+Icons.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -42,9 +43,7 @@
 
 @implementation JPCardView
 
-//----------------------------------------------------------------------
 #pragma mark - Initializers
-//----------------------------------------------------------------------
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -67,9 +66,7 @@
     return self;
 }
 
-//----------------------------------------------------------------------
 #pragma mark - View Model Configuration
-//----------------------------------------------------------------------
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.titleLabel.text = viewModel.cardModel.cardTitle;
@@ -86,9 +83,7 @@
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Layout Setup
-//----------------------------------------------------------------------
 
 - (void)setupViews {
 
@@ -119,9 +114,7 @@
     [self.contentView pinToView:self withPadding:0.0];
 }
 
-//----------------------------------------------------------------------
 #pragma mark - Lazy Properties
-//----------------------------------------------------------------------
 
 - (UIView *)contentView {
     if (!_contentView) {
@@ -138,7 +131,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = [UIFont systemFontOfSize:18.0 weight:UIFontWeightSemibold];
+        _titleLabel.font = UIFont.title;
         _titleLabel.textColor = UIColor.jpTextColor;
     }
     return _titleLabel;
@@ -148,7 +141,7 @@
     if (!_cardNumberLabel) {
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _cardNumberLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _cardNumberLabel.font = UIFont.bodyBold;
         _cardNumberLabel.textColor = UIColor.jpSubtitleColor;
     }
     return _cardNumberLabel;
@@ -159,7 +152,7 @@
         _expiryDateLabel = [UILabel new];
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
-        _expiryDateLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _expiryDateLabel.font = UIFont.bodyBold;
         _expiryDateLabel.textColor = UIColor.jpSubtitleColor;
     }
     return _expiryDateLabel;

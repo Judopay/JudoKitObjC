@@ -28,7 +28,7 @@
 #import "JPCardInputField.h"
 #import "JPCardNumberField.h"
 #import "LoadingButton.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "RoundedCornerView.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
