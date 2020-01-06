@@ -29,7 +29,9 @@ class JudoKitPaymentMethodsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        XCUIApplication().launch()
+        let app = XCUIApplication()
+        app.launchEnvironment = ["UITEST":"1"]
+        app.launch()
     }
     
     func test_OnPaymentMethodSelection_DisplayPaymentMethodScreen() {
@@ -48,6 +50,46 @@ class JudoKitPaymentMethodsTests: XCTestCase {
         let app = XCUIApplication();
         app.tables.staticTexts["Payment Method"].tap();
         app.buttons["ADD CARD"].tap();
+        
+        enterCardDetails()
+        
+        XCTAssertTrue(app.staticTexts["Card for shopping"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Visa Ending 1111"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Connected cards"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["EDIT"].isEnabled)
+        XCTAssertTrue(app.buttons["ADD CARD"].isEnabled)
     }
     
+    func test_OnCardSelection_DisplayHeader() {
+        
+        let app = XCUIApplication();
+        app.tables.staticTexts["Payment Method"].tap();
+        app.buttons["ADD CARD"].tap();
+        
+        enterCardDetails()
+        
+        app.cells.staticTexts["Card for shopping"].firstMatch.tap()
+        
+        XCTAssertTrue(app.staticTexts["•••• •••• •••• 1111"].waitForExistence(timeout: 3.0))
+        XCTAssertTrue(app.staticTexts["12/20"].waitForExistence(timeout: 3.0))
+    }
+    
+    func enterCardDetails() {
+        
+        let app = XCUIApplication()
+        
+        app.textFields["Card Number"].tap()
+        app.textFields["Card Number"].typeText("4111 1111 1111 1111")
+        
+        app.textFields["Cardholder Name"].tap()
+        app.textFields["Cardholder Name"].typeText("Hello")
+        
+        app.textFields["MM/YY"].tap()
+        app.textFields["MM/YY"].typeText("12/20")
+        
+        app.textFields["CVV"].tap()
+        app.textFields["CVV"].typeText("341")
+        
+        app.buttons["ADD CARD"].firstMatch.tap();
+    }
 }
