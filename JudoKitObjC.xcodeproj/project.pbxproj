@@ -254,6 +254,12 @@
 		44E3A10723498B770042C9EC /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10623498B770042C9EC /* Settings.m */; };
 		44E3A10A23498D150042C9EC /* HalfHeightPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */; };
 		44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */; };
+		524B41ED23C678C800539556 /* JPInputField+JPTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 524B41EB23C678C800539556 /* JPInputField+JPTheme.h */; };
+		524B41EE23C678C800539556 /* JPInputField+JPTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 524B41EC23C678C800539556 /* JPInputField+JPTheme.m */; };
+		524B41F123C67A5000539556 /* UILabel+JPTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 524B41EF23C67A5000539556 /* UILabel+JPTheme.h */; };
+		524B41F223C67A5000539556 /* UILabel+JPTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 524B41F023C67A5000539556 /* UILabel+JPTheme.m */; };
+		524B41F523C67AE000539556 /* UIButton+JPTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 524B41F323C67AE000539556 /* UIButton+JPTheme.h */; };
+		524B41F623C67AE000539556 /* UIButton+JPTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 524B41F423C67AE000539556 /* UIButton+JPTheme.m */; };
 		52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */; };
 		52AE7F432358D34200F41C5B /* IDEALFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE7F402358D34200F41C5B /* IDEALFormViewController.m */; };
 		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
@@ -656,6 +662,12 @@
 		44E3A10823498D150042C9EC /* HalfHeightPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfHeightPresentationController.h; sourceTree = "<group>"; };
 		44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfHeightPresentationController.m; sourceTree = "<group>"; };
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
+		524B41EB23C678C800539556 /* JPInputField+JPTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JPInputField+JPTheme.h"; path = "Extensions/JPInputField+JPTheme.h"; sourceTree = "<group>"; };
+		524B41EC23C678C800539556 /* JPInputField+JPTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "JPInputField+JPTheme.m"; path = "Extensions/JPInputField+JPTheme.m"; sourceTree = "<group>"; };
+		524B41EF23C67A5000539556 /* UILabel+JPTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UILabel+JPTheme.h"; path = "Extensions/UILabel+JPTheme.h"; sourceTree = "<group>"; };
+		524B41F023C67A5000539556 /* UILabel+JPTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UILabel+JPTheme.m"; path = "Extensions/UILabel+JPTheme.m"; sourceTree = "<group>"; };
+		524B41F323C67AE000539556 /* UIButton+JPTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+JPTheme.h"; path = "Extensions/UIButton+JPTheme.h"; sourceTree = "<group>"; };
+		524B41F423C67AE000539556 /* UIButton+JPTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIButton+JPTheme.m"; path = "Extensions/UIButton+JPTheme.m"; sourceTree = "<group>"; };
 		52AE7F3F2358D34200F41C5B /* IDEALFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDEALFormViewController.h; sourceTree = "<group>"; };
 		52AE7F402358D34200F41C5B /* IDEALFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALFormViewController.m; sourceTree = "<group>"; };
 		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1118,6 +1130,7 @@
 		3B678B731C6CE6500001DC2F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				524B41DF23C677D600539556 /* Theming */,
 				44290B0922F051D20088F827 /* CLLocation+JPDictionaryConvertible.h */,
 				44290B0A22F051D20088F827 /* CLLocation+JPDictionaryConvertible.m */,
 				44DA43F722F8D9F500C34231 /* JPTheme+Additions.h */,
@@ -1144,8 +1157,6 @@
 				3B4EB3901C981511006265A0 /* UIColor+Judo.m */,
 				302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */,
 				302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */,
-				447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */,
-				447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */,
 				302181C823264C5300F6BE77 /* NSBundle+Additions.h */,
 				302181C923264C5300F6BE77 /* NSBundle+Additions.m */,
 				442511D4234B8BFC00225FC4 /* UIApplication+Additions.h */,
@@ -1251,6 +1262,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		524B41DF23C677D600539556 /* Theming */ = {
+			isa = PBXGroup;
+			children = (
+				447CBD4622DC844800C1C9E1 /* UIViewController+JPTheme.h */,
+				447CBD4722DC844800C1C9E1 /* UIViewController+JPTheme.m */,
+				524B41EB23C678C800539556 /* JPInputField+JPTheme.h */,
+				524B41EC23C678C800539556 /* JPInputField+JPTheme.m */,
+				524B41EF23C67A5000539556 /* UILabel+JPTheme.h */,
+				524B41F023C67A5000539556 /* UILabel+JPTheme.m */,
+				524B41F323C67AE000539556 /* UIButton+JPTheme.h */,
+				524B41F423C67AE000539556 /* UIButton+JPTheme.m */,
+			);
+			name = Theming;
+			sourceTree = "<group>";
+		};
 		52FBFB6A2325A3770096064C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1285,6 +1311,7 @@
 				447CBD4822DC844800C1C9E1 /* UIViewController+JPTheme.h in Headers */,
 				3B5362951C7CBD3F00CEBAE2 /* JudoPayViewController.h in Headers */,
 				300654B2237AA92A00097955 /* JPPrimaryAccountDetails.h in Headers */,
+				524B41ED23C678C800539556 /* JPInputField+JPTheme.h in Headers */,
 				30DB512A23100EED00B73D66 /* CardLogoView.h in Headers */,
 				30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */,
 				3B5AFC091C9079E600DABB4C /* NSString+TextDirection.h in Headers */,
@@ -1311,6 +1338,7 @@
 				44290B2022F051F60088F827 /* JPConsumerDevice.h in Headers */,
 				30225D12237E8E6D005EB28C /* TransactionStatusView.h in Headers */,
 				3B704A9E1C89F1D600376773 /* PostCodeInputField.h in Headers */,
+				524B41F123C67A5000539556 /* UILabel+JPTheme.h in Headers */,
 				306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */,
 				52AE7F422358D34200F41C5B /* IDEALFormViewController.h in Headers */,
 				44AF432422DBD491008A4839 /* JudoPaymentMethodsViewController.h in Headers */,
@@ -1325,6 +1353,7 @@
 				302181CA23264C5300F6BE77 /* NSBundle+Additions.h in Headers */,
 				44290B1A22F051F60088F827 /* JPDictionaryConvertible.h in Headers */,
 				3B704A8A1C89F18000376773 /* JPInputField.h in Headers */,
+				524B41F523C67AE000539556 /* UIButton+JPTheme.h in Headers */,
 				30DB512223100E6B00B73D66 /* Functions.h in Headers */,
 				3B69D5E81C99A7550075FFD8 /* NSDate+Judo.h in Headers */,
 				3B704A921C89F1A800376773 /* CardInputField.h in Headers */,
@@ -1741,6 +1770,7 @@
 			files = (
 				3B678B9E1C7326C00001DC2F /* JPPayment.m in Sources */,
 				30DB510623100E1C00B73D66 /* ContactInformation.m in Sources */,
+				524B41F223C67A5000539556 /* UILabel+JPTheme.m in Sources */,
 				3B678BB21C7327270001DC2F /* JPVoid.m in Sources */,
 				82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */,
 				3BD353CC1C77803F0045658A /* JPCardDetails.m in Sources */,
@@ -1780,6 +1810,7 @@
 				306BCF1E23570F86008540E7 /* IDEALBankSelectionTableViewController.m in Sources */,
 				447CBD5922DCA84A00C1C9E1 /* JudoPaymentMethodsViewModel.m in Sources */,
 				442511D7234B8BFC00225FC4 /* UIApplication+Additions.m in Sources */,
+				524B41F623C67AE000539556 /* UIButton+JPTheme.m in Sources */,
 				3B678B901C6DFF340001DC2F /* JPReference.m in Sources */,
 				3B678BAE1C7327160001DC2F /* JPRefund.m in Sources */,
 				300654AF237AA91900097955 /* JPCheckCard.m in Sources */,
@@ -1798,6 +1829,7 @@
 				3B6912DF1C96BFED00367660 /* NSString+Card.m in Sources */,
 				3B678BB61C7327410001DC2F /* JPReceipt.m in Sources */,
 				30DB510323100E1C00B73D66 /* ApplePayWrappers.m in Sources */,
+				524B41EE23C678C800539556 /* JPInputField+JPTheme.m in Sources */,
 				44DA43FA22F8D9F500C34231 /* JPTheme+Additions.m in Sources */,
 				3B678BAA1C7327040001DC2F /* JPCollection.m in Sources */,
 				44AF432522DBD491008A4839 /* JudoPaymentMethodsViewController.m in Sources */,

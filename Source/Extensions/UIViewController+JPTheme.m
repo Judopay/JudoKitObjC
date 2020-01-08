@@ -29,17 +29,31 @@
 @implementation UIViewController (JPTheme)
 
 - (void)applyTheme:(JPTheme *)theme {
-    
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
 
-    if (![theme.tintColor isDarkColor]) {
-        navigationBar.barStyle = UIBarStyleBlack;
+    self.view.backgroundColor = theme.judoBackgroundColor;
+
+    self.navigationController.navigationBar.barTintColor = theme.judoNavigationBarColor;
+    self.navigationController.navigationBar.tintColor = theme.judoNavigationButtonColor;
+
+    self.navigationController.navigationBar.titleTextAttributes = @{
+        NSFontAttributeName : theme.judoNavigationBarTitleFont,
+        NSForegroundColorAttributeName : theme.judoNavigationBarTitleColor
+    };
+
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{
+        NSFontAttributeName : theme.judoNavigationButtonFont,
     }
+                                                         forState:UIControlStateNormal];
 
-    navigationBar.tintColor = theme.judoTextColor;
-    navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : theme.judoNavigationBarTitleColor};
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{
+        NSFontAttributeName : theme.judoNavigationButtonFont,
+    }
+                                                          forState:UIControlStateNormal];
 
-    self.view.backgroundColor = [theme judoContentViewBackgroundColor];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{
+        NSFontAttributeName : theme.judoNavigationButtonFont,
+    }
+                                                          forState:UIControlStateDisabled];
 }
 
 @end

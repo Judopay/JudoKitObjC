@@ -1008,9 +1008,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 #pragma mark -  UIAdaptivePresentationControllerDelegate methods
 - (void)presentationControllerWillDismiss:(UIPresentationController *)presentationController {
-      if (self.completionBlock) {
-          self.completionBlock(nil, [NSError judoUserDidCancelError]);
-      }
+    if (self.completionBlock) {
+        self.completionBlock(nil, [NSError judoUserDidCancelError]);
+    }
 }
 
 @end

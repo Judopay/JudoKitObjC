@@ -1,5 +1,5 @@
 //
-//  UIViewController+JPTheme.h
+//  JPInputField+JPTheme.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,10 +22,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "FloatingTextField.h"
+#import "JPInputField+JPTheme.h"
+#import "JPTheme.h"
 
-@class JPTheme;
+@implementation JPInputField (JPTheme)
 
-@interface UIViewController (JPTheme)
-- (void)applyTheme:(JPTheme *)theme;
+- (void)applyTheme:(JPTheme *)theme {
+    self.textField.font = theme.judoTextFieldFont;
+    self.textField.textColor = theme.judoTextFieldColor;
+
+    self.textField.floatingLabelFont = theme.judoFloatingLabelFont;
+    self.textField.floatingLabelActiveTextColor = theme.judoFloatingLabelColor;
+
+    NSDictionary *placeholderAttributes = @{
+        NSFontAttributeName : theme.judoPlaceholderFont,
+        NSForegroundColorAttributeName : theme.judoPlaceholderColor
+    };
+
+    NSString *placeholder = self.textField.placeholder.length > 0 ? self.textField.placeholder : @"";
+    self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder
+                                                                           attributes:placeholderAttributes];
+}
+
 @end

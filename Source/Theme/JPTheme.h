@@ -182,11 +182,6 @@
 @property (nonatomic, strong) UIColor *_Nonnull judoInputFieldTextColor;
 
 /**
- *  The color that is used for the placeholders of the input fields
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoPlaceholderTextColor;
-
-/**
  *  The color that is used for the border color of the input fields
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoInputFieldBorderColor;
@@ -324,7 +319,6 @@
  *  The font of the iDEAL Transaction Status view subtitle
  */
 @property (nonatomic, strong) UIFont *_Nullable iDEALStatusSubtitleFont;
-
 
 //--------------------------------------------------------
 #pragma mark - Navigation Bar

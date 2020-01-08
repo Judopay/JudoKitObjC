@@ -29,6 +29,7 @@
 #import "IDEALBankTableViewCell.h"
 #import "IDEALService.h"
 #import "JPAmount.h"
+#import "JPInputField+JPTheme.h"
 #import "JPInputField.h"
 #import "JPOrderDetails.h"
 #import "JPReference.h"
@@ -38,7 +39,9 @@
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "TransactionStatusView.h"
+#import "UIButton+JPTheme.h"
 #import "UIColor+Judo.h"
+#import "UILabel+JPTheme.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
 
@@ -47,6 +50,7 @@
 @property (nonatomic, strong) UIView *safeAreaView;
 @property (nonatomic, strong) UIButton *paymentButton;
 @property (nonatomic, strong) JPInputField *nameInputField;
+@property (nonatomic, strong) UILabel *selectedBankLabel;
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) WKWebView *webView;
@@ -102,6 +106,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
+    [self applyTheming];
     [self displaySavedBankIfNeeded];
 }
 
@@ -188,7 +193,10 @@
 #pragma mark - Theming
 
 - (void)applyTheming {
-    self.view.backgroundColor = self.theme.judoBackgroundColor;
+    [self applyTheme:self.theme];
+    [self.nameInputField applyTheme:self.theme];
+    [self.selectedBankLabel applyTheme:self.theme];
+    [self.paymentButton applyTheme:self.theme];
 }
 
 #pragma mark - Private methods
@@ -260,7 +268,7 @@
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
-    
+
     [self applyTheming];
 }
 
@@ -274,7 +282,7 @@
                                                                             action:@selector(onBackButtonTap:)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"pay".localized
-                                                                              style:UIBarButtonItemStyleDone
+                                                                              style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
 
@@ -342,6 +350,7 @@
 - (JPInputField *)nameInputField {
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
+        _nameInputField.textField.placeholder = @"enter_name".localized;
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
 
         [_nameInputField.textField addTarget:self
@@ -355,20 +364,20 @@
 - (UIView *)selectedBankLabelView {
     if (!_selectedBankLabelView) {
 
-        UILabel *selectedBankLabel = [UILabel new];
-        selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        selectedBankLabel.text = @"selected_bank".localized;
+        _selectedBankLabel = [UILabel new];
+        _selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _selectedBankLabel.text = @"selected_bank".localized;
 
         _selectedBankLabelView = [UIView new];
         _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
-        [_selectedBankLabelView addSubview:selectedBankLabel];
+        [_selectedBankLabelView addSubview:_selectedBankLabel];
 
         NSArray *constraints = @[
-            [selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor
-                                                            constant:15.0f],
-            [selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
-            [selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
-            [selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
+            [_selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor
+                                                             constant:15.0f],
+            [_selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
+            [_selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
+            [_selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
         ];
 
         [NSLayoutConstraint activateConstraints:constraints];
@@ -495,13 +504,13 @@
 @implementation IDEALFormViewController (WebView)
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    
+
     if (self.shouldDismissWebView) {
         [self.webView removeFromSuperview];
         [self startPollingStatus];
         return;
     }
-    
+
     self.transactionStatusView.hidden = NO;
 
     if ([self.redirectUrl isEqualToString:webView.URL.absoluteString]) {
