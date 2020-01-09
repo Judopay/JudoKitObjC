@@ -57,6 +57,7 @@
     if (self = [super init]) {
         self.theme = theme;
         [self setupLayout];
+        [self applyTheme];
         [self setupViewsForStatus:status andSubtitle:subtitle];
     }
     return self;
@@ -82,8 +83,22 @@
 
 #pragma mark - Layout setup methods
 
+- (void)applyTheme {
+    self.backgroundColor = self.theme.judoBackgroundColor;
+    
+    self.titleLabel.textColor = self.theme.judoTextColor;
+    self.titleLabel.font = self.theme.judoLabelFont;
+    
+    self.subtitleLabel.textColor = self.theme.judoTextColor;
+    self.subtitleLabel.font = self.theme.judoLabelFont;
+    
+    self.activityIndicatorView.color = self.theme.judoActivityIndicatorColor;
+    self.actionButton.backgroundColor = self.theme.judoButtonBackgroundColor;
+    self.actionButton.titleLabel.font = self.theme.judoButtonTitleFont;
+    [self.actionButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+}
+
 - (void)setupLayout {
-    self.backgroundColor = self.theme.judoLoadingBackgroundColor;
 
     UIStackView *titleStackView = [UIStackView new];
     [titleStackView setAxis:UILayoutConstraintAxisVertical];
@@ -135,7 +150,7 @@
 
     if (status == IDEALStatusSuccess || status == IDEALStatusFailed || status == IDEALStatusTimeout) {
 
-        [self.actionButton setTitle:self.theme.judoIDEALCloseButtonTitle
+        [self.actionButton setTitle:@"close".localized
                            forState:UIControlStateNormal];
 
         [self.actionButton addTarget:self
@@ -147,7 +162,7 @@
 
     if (status == IDEALStatusError) {
 
-        [self.actionButton setTitle:self.theme.judoIDEALRetryButtonTitle
+        [self.actionButton setTitle:@"retry".localized
                            forState:UIControlStateNormal];
 
         [self.actionButton addTarget:self
@@ -163,22 +178,22 @@
 - (NSString *)titleForStatus:(IDEALStatus)status {
     switch (status) {
         case IDEALStatusFailed:
-            return self.theme.idealTransactionFailedTitle;
+            return @"ideal_transaction_failed".localized;
 
         case IDEALStatusPending:
-            return self.theme.idealTransactionPendingTitle;
+            return @"ideal_transaction_pending".localized;
 
         case IDEALStatusPendingDelay:
-            return self.theme.idealTransactionPendingDelayTitle;
+            return @"ideal_transaction_pending_delay".localized;
 
         case IDEALStatusTimeout:
-            return self.theme.idealTransactionTimeoutTitle;
+            return @"ideal_transaction_timeout".localized;
 
         case IDEALStatusError:
-            return self.theme.idealTransactionErrorTitle;
+            return @"ideal_transaction_error".localized;
 
         case IDEALStatusSuccess:
-            return self.theme.idealTransactionSuccessTitle;
+            return @"ideal_transaction_success".localized;
     }
 }
 
@@ -217,8 +232,6 @@
         _titleLabel.numberOfLines = 0;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.textColor = self.theme.iDEALStatusTitleColor;
-        _titleLabel.font = self.theme.iDEALStatusTitleFont;
     }
     return _titleLabel;
 }
@@ -229,8 +242,6 @@
         _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _subtitleLabel.numberOfLines = 0;
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
-        _subtitleLabel.textColor = self.theme.iDEALStatusSubtitleColor;
-        _subtitleLabel.font = self.theme.iDEALStatusSubtitleFont;
     }
     return _subtitleLabel;
 }
@@ -238,7 +249,6 @@
 - (UIActivityIndicatorView *)activityIndicatorView {
     if (!_activityIndicatorView) {
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.theme.judoActivityIndicatorType];
-        _activityIndicatorView.color = self.theme.judoActivityIndicatorColor;
         _activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
         _activityIndicatorView.hidesWhenStopped = YES;
     }
@@ -258,9 +268,7 @@
     if (!_actionButton) {
         _actionButton = [UIButton new];
         _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_actionButton setTitle:self.theme.judoIDEALRetryButtonTitle forState:UIControlStateNormal];
-        [_actionButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
-        [_actionButton setBackgroundColor:self.theme.judoButtonColor];
+        [_actionButton setTitle:@"retry".localized forState:UIControlStateNormal];
         _actionButton.layer.cornerRadius = 5.0f;
     }
     return _actionButton;

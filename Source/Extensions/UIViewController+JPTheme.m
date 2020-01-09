@@ -34,6 +34,7 @@
 
     self.navigationController.navigationBar.barTintColor = theme.judoNavigationBarColor;
     self.navigationController.navigationBar.tintColor = theme.judoNavigationButtonColor;
+    self.navigationController.navigationBar.translucent = theme.isJudoNavigationBarTranslucent;
 
     self.navigationController.navigationBar.titleTextAttributes = @{
         NSFontAttributeName : theme.judoNavigationBarTitleFont,
