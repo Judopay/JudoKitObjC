@@ -26,7 +26,7 @@
 #import "JPCardStorage.h"
 #import "JPTheme.h"
 
-@interface JPPaymentMethodsInteractorImpl()
+@interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, strong) JPTheme *theme;
 @end
 

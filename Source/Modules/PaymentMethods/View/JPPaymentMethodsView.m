@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsView.h"
-#import "UIView+Additions.h"
 #import "UIColor+Judo.h"
-#import "UIView+SafeAnchors.h"
 #import "UIImage+Icons.h"
+#import "UIView+Additions.h"
+#import "UIView+SafeAnchors.h"
 
 @implementation JPPaymentMethodsView
 
@@ -70,10 +70,10 @@
     [self.tableView.leftAnchor constraintEqualToAnchor:self.safeLeftAnchor].active = YES;
     [self.tableView.rightAnchor constraintEqualToAnchor:self.safeRightAnchor].active = YES;
     [self.tableView.bottomAnchor constraintEqualToAnchor:self.judoHeadlineImageView.topAnchor].active = YES;
-    
+
     self.judoHeadlineHeightConstraint = [self.judoHeadlineImageView.heightAnchor constraintEqualToConstant:20.0f];
     self.judoHeadlineHeightConstraint.active = YES;
-    
+
     [self.judoHeadlineImageView.leftAnchor constraintEqualToAnchor:self.safeLeftAnchor].active = YES;
     [self.judoHeadlineImageView.rightAnchor constraintEqualToAnchor:self.safeRightAnchor].active = YES;
     [self.judoHeadlineImageView.bottomAnchor constraintEqualToAnchor:self.safeBottomAnchor].active = YES;
