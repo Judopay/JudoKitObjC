@@ -336,12 +336,12 @@
 @property (nonatomic, strong) UIFont *_Nullable judoLabelFont;
 
 /**
- * The style of the activity indicator
+ * The color of the activity indicator
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoActivityIndicatorColor;
 
 /**
- * The color of the activity indicator
+ * The style of the activity indicator
  */
 @property (nonatomic, assign) UIActivityIndicatorViewStyle judoActivityIndicatorType;
 

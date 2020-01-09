@@ -323,13 +323,6 @@
     return _judoNavigationBarColor;
 }
 
-- (BOOL)isJudoNavigationBarTranslucent {
-    if (!_isJudoNavigationBarTranslucent) {
-        _isJudoNavigationBarTranslucent = YES;
-    }
-    return _isJudoNavigationBarTranslucent;
-}
-
 - (UIColor *)judoBackgroundColor {
     if (!_judoBackgroundColor) {
         _judoBackgroundColor = [self.tintColor isDarkColor] ? UIColor.zircon : UIColor.zircon.inverseColor;
