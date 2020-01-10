@@ -32,5 +32,4 @@
  * A method that configures the card header based on a view model
  */
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
-;
 @end

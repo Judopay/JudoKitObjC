@@ -112,12 +112,6 @@
     [self insertSubview:self.mainStackView aboveSubview:self.topView];
 }
 
-- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    if (viewModel.cardModel == nil) {
-        [self.cardHeaderView configureWithViewModel:viewModel];
-    }
-}
-
 #pragma mark - Layout Setup
 
 - (void)setupViews {

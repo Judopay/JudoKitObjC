@@ -32,6 +32,5 @@
  * A method that configures the header of the payment method screen based on a view model
  */
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
-- (void)changeCardWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
 
 @end
