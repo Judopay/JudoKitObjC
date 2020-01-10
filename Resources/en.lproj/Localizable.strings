@@ -25,10 +25,10 @@
 "long_card_number"                      = "Long card number";
 "security_code"                         = "Security code";
 "issue_number_front_of_card"            = "Issue on front of card";
-"adding_card"                           = "Adding card‚Ä¶";
-"saving_card"                           = "Saving card‚Ä¶";
-"checking_card"                         = "Checking card‚Ä¶";
-"redirecting"                           = "Redirecting‚Ä¶";
+"adding_card"                           = "Adding card...";
+"saving_card"                           = "Saving card...";
+"checking_card"                         = "Checking card...";
+"redirecting"                           = "Redirecting...";
 "authentication"                        = "Authentication";
 "verifying_card"                        = "Verifying card";
 "please_reenter_the_card_security_code" = "Please re-enter the card security code";
@@ -40,7 +40,7 @@
 "judo_payment_method"                   = "Payment Method";
 "judo_card_payment"                     = "Card Payment";
 "judo_payment_method_header_title"      = "Please select from one of the payment methods listed below:";
-"processing"                            = "Processing‚Ä¶";
+"processing"                            = "Processing...";
 "ideal"                                 = "iDEAL transaction";
 "enter_name"                            = "Enter name";
 "pay_with_ideal"                        = "Pay with iDEAL";
@@ -52,9 +52,9 @@
 "try_again"                             = "Retry";
 "close"                                 = "Close";
 "no_internet"                           = "Please check your internet connection and try again";
-"there_is_a_delay"                      = "This is taking longer than expected. Please wait‚Ä¶";
+"there_is_a_delay"                      = "This is taking longer than expected. Please wait...";
 "something_went_wrong"                  = "Oops! Something went wrong.";
-"order_pending"                         = "Transaction pending‚Ä¶";
+"order_pending"                         = "Transaction pending...";
 "payment_status"                        = "Payment status";
 "date_format"                           = "MM/yy";
 "ideal_transaction"                     = "iDEAL Transaction";

@@ -52,9 +52,9 @@
 "try_again"                             = "Retry";
 "close"                                 = "Close";
 "no_internet"                           = "Please check your internet connection and try again";
-"there_is_a_delay"                      = "This is taking longer than expected. Please wait‚Ä¶";
+"there_is_a_delay"                      = "This is taking longer than expected. Please wait...";
 "something_went_wrong"                  = "Oops! Something went wrong.";
-"order_pending"                         = "Transaction pending‚Ä¶";
+"order_pending"                         = "Transaction pending...";
 "payment_status"                        = "Payment status";
 "date_format"                           = "MM/yy";
 "ideal_transaction"                     = "iDEAL Transaction";
