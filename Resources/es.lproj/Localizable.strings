@@ -32,7 +32,7 @@
 "authentication"                        = "Autenticación";
 "verifying_card"                        = "Verificando tarjeta";
 "please_reenter_the_card_security_code" = "Por favor, vuelva a introducir el código de seguridad";
-"secure_server_transmission"            = "Servidor seguro: los detalles de su tarjeta son encriptados usando SSL antes de su transmisión a nuestro procesador de pagos seguro. No se almacenarán en su dispositivo ni en nuestros servidores.";
+"secure_server_transmission"            = "los detalles de su tarjeta son encriptados usando SSL antes de su transmisión a nuestro procesador de pagos seguro. No se almacenarán en su dispositivo ni en nuestros servidores.";
 "united_kingdom"                        = "Reino Unido";
 "united_states"                         = "Estados Unidos";
 "canada"                                = "Canadá";
