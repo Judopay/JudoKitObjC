@@ -68,7 +68,7 @@
 "ideal_transaction_error"               = "Oups ! Une erreur s'est produite.";
 "ideal_transaction_failed"              = "La transaction a échoué !";
 "retry"                                 = "Réessayer";
-"secure_server"                         = "Serveur sécurisé : Vos informations de paiement sont encryptées par SSL avant transfert vers notre prestataire de paiements sécurisés. Aucune information ne sera conservée sur cet appareil ou sur nos serveurs.";
+"secure_server"                         = "Serveur sécurisé:";
 "payment_method"                        = "Méthode de paiement";
 "select_payment_method"                 = "Veuillez sélectionner une méthode de paiement ci-dessous :";
 "card_payment"                          = "Paiement par carte";
