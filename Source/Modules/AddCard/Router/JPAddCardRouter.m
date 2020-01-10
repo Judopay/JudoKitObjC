@@ -24,6 +24,7 @@
 
 #import "JPAddCardRouter.h"
 #import "JPAddCardViewController.h"
+#import "JPAddCardPresenter.h"
 
 @interface JPAddCardRouterImpl ()
 @property (nonatomic, strong) PayCardsRecognizer *recognizer;
@@ -51,6 +52,7 @@
 - (void)payCardsRecognizer:(PayCardsRecognizer *)payCardsRecognizer
               didRecognize:(PayCardsRecognizerResult *)result {
     
+    [self.presenter updateViewModelWithScanCardResult:result];
     [self.recognizer stopCamera];
 }
 

@@ -26,6 +26,7 @@
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
 
 @class JPAddCardViewController;
+@protocol JPAddCardPresenter;
 
 @protocol JPAddCardRouter
 
@@ -35,7 +36,7 @@
 - (void)dismissViewController;
 
 /**
- * A method that starts the scan camera flow
+ * A method that starts the scan camera flow and returns a completion result
  */
 - (void)navigateToScanCamera;
 
@@ -47,6 +48,11 @@
  * A weak reference to the JPAddCardViewController instance
  */
 @property (nonatomic, weak) JPAddCardViewController *viewController;
+
+/**
+ * A weak reference to a JPAddCardPresenter-conforming instance
+ */
+@property (nonatomic, weak) id<JPAddCardPresenter> presenter;
 
 @end
 
