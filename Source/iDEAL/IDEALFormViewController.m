@@ -170,7 +170,15 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.view addSubview:self.webView];
+    [self setupWebViewConstraints];
     [self.webView loadRequest:request];
+}
+
+- (void)setupWebViewConstraints {
+    [self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.webView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [self.webView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 }
 
 - (void)displaySavedBankIfNeeded {
@@ -415,6 +423,7 @@
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
         _webView = [[WKWebView alloc] initWithFrame:UIScreen.mainScreen.bounds
                                       configuration:configuration];
+        _webView.translatesAutoresizingMaskIntoConstraints = NO;
         _webView.navigationDelegate = self;
     }
     return _webView;
