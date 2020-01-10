@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <PayCardsRecognizer/PayCardsRecognizer.h>
 
 @class JPAddCardViewController;
 
@@ -33,6 +34,11 @@
  */
 - (void)dismissViewController;
 
+/**
+ * A method that starts the scan camera flow
+ */
+- (void)navigateToScanCamera;
+
 @end
 
 @interface JPAddCardRouterImpl : NSObject <JPAddCardRouter>
@@ -42,4 +48,10 @@
  */
 @property (nonatomic, weak) JPAddCardViewController *viewController;
 
+@end
+
+/**
+ * An extension for handling the pay card recognizer delegate
+ */
+@interface JPAddCardRouterImpl (RecognizerDelegate) <PayCardsRecognizerPlatformDelegate>
 @end

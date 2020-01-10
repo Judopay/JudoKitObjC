@@ -25,10 +25,33 @@
 #import "JPAddCardRouter.h"
 #import "JPAddCardViewController.h"
 
+@interface JPAddCardRouterImpl ()
+@property (nonatomic, strong) PayCardsRecognizer *recognizer;
+@end
+
 @implementation JPAddCardRouterImpl
+
+- (void)navigateToScanCamera {
+    self.recognizer = [[PayCardsRecognizer alloc] initWithDelegate:self
+                                                        resultMode:PayCardsRecognizerResultModeAsync
+                                                         container:self.viewController.view
+                                                        frameColor:UIColor.whiteColor];
+    
+    [self.recognizer startCamera];
+}
 
 - (void)dismissViewController {
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+@end
+
+@implementation JPAddCardRouterImpl (RecognizerDelegate)
+
+- (void)payCardsRecognizer:(PayCardsRecognizer *)payCardsRecognizer
+              didRecognize:(PayCardsRecognizerResult *)result {
+    
+    [self.recognizer stopCamera];
 }
 
 @end
