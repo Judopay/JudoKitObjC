@@ -23,11 +23,11 @@
 //  SOFTWARE.
 
 #import "JPScanCardViewController.h"
-#import "UIStackView+Additions.h"
+#import "NSString+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIImage+Icons.h"
+#import "UIStackView+Additions.h"
 #import "UIView+SafeAnchors.h"
-#import "NSString+Additions.h"
 
 @interface JPScanCardViewController ()
 @property (nonatomic, strong) PayCardsRecognizer *recognizer;
@@ -52,7 +52,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.recognizer startCamera];
         [self.containerView bringSubviewToFront:self.labelStackView];
@@ -75,18 +75,18 @@
 - (void)setupViews {
     self.view.backgroundColor = UIColor.blackColor;
     [self.view addSubview:self.containerView];
-    
+
     [self.labelStackView addArrangedSubview:self.titleLabel];
     [self.labelStackView addArrangedSubview:self.subtitleLabel];
-    
+
     [self.containerView addSubview:self.labelStackView];
     [self.containerView addSubview:self.backButton];
-    
+
     [self.containerView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:25].active = YES;
     [self.containerView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor].active = YES;
     [self.containerView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor].active = YES;
     [self.containerView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor constant:-25].active = YES;
-    
+
     [self.labelStackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     [self.labelStackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
 }

@@ -23,9 +23,9 @@
 //  SOFTWARE.
 
 #import "JPAddCardRouter.h"
+#import "JPAddCardPresenter.h"
 #import "JPAddCardViewController.h"
 #import "JPScanCardViewController.h"
-#import "JPAddCardPresenter.h"
 
 @interface JPAddCardRouterImpl ()
 @property (nonatomic, strong) JPScanCardViewController *scanCardViewController;
@@ -51,7 +51,7 @@
 
 - (void)payCardsRecognizer:(PayCardsRecognizer *)payCardsRecognizer
               didRecognize:(PayCardsRecognizerResult *)result {
-    
+
     [self.presenter updateViewModelWithScanCardResult:result];
     [self.scanCardViewController dismissViewControllerAnimated:YES completion:nil];
 }

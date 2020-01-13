@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
+#import <UIKit/UIKit.h>
 
 @interface JPScanCardViewController : UIViewController
 
