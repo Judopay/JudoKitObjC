@@ -40,6 +40,10 @@
 "invalid_postcode" = "Invalid postcode entered";
 "invalid_zip_code" = "Invalid ZIP code entered";
 
+//Scan Card
+"scan_card_message_title" = "Position card in this frame";
+"scan_card_message_subtitle" = "We will automatically scan it";
+
 //Payment Method Screen
 "card_subtitle" = "%@ Ending %@";
 "no_connected_cards" = "You didn't connect any cards yet";

@@ -1,5 +1,5 @@
 //
-//  JPAddCardRouter.m
+//  JPScanCardViewController.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,38 +22,36 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPAddCardRouter.h"
-#import "JPAddCardViewController.h"
-#import "JPScanCardViewController.h"
-#import "JPAddCardPresenter.h"
+#import <UIKit/UIKit.h>
+#import <PayCardsRecognizer/PayCardsRecognizer.h>
 
-@interface JPAddCardRouterImpl ()
-@property (nonatomic, strong) JPScanCardViewController *scanCardViewController;
-@property (nonatomic, strong) PayCardsRecognizer *recognizer;
-@end
+@interface JPScanCardViewController : UIViewController
 
-@implementation JPAddCardRouterImpl
+- (instancetype)initWithRecognizerDelegate:(id<PayCardsRecognizerPlatformDelegate>)delegate;
 
-- (void)navigateToScanCamera {
+/**
+ * The container view which hosts the scan card camera
+ */
+@property (nonatomic, strong) UIView *containerView;
 
-    self.scanCardViewController = [[JPScanCardViewController alloc] initWithRecognizerDelegate:self];
-    self.scanCardViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self.viewController presentViewController:self.scanCardViewController animated:YES completion:nil];
-}
+/**
+ * The stack view containing the scan card labels displayed on top of the camera view
+ */
+@property (nonatomic, strong) UIStackView *labelStackView;
 
-- (void)dismissViewController {
-    [self.viewController dismissViewControllerAnimated:YES completion:nil];
-}
+/**
+ * The back button displayed on top of the camera view that cancels the scanning process
+ */
+@property (nonatomic, strong) UIButton *backButton;
 
-@end
+/**
+ * The title displayed on top of the scan card camera view
+ */
+@property (nonatomic, strong) UILabel *titleLabel;
 
-@implementation JPAddCardRouterImpl (RecognizerDelegate)
-
-- (void)payCardsRecognizer:(PayCardsRecognizer *)payCardsRecognizer
-              didRecognize:(PayCardsRecognizerResult *)result {
-    
-    [self.presenter updateViewModelWithScanCardResult:result];
-    [self.scanCardViewController dismissViewControllerAnimated:YES completion:nil];
-}
+/**
+ * The subtitle displayed on top of the scan card camera view
+ */
+@property (nonatomic, strong) UILabel *subtitleLabel;
 
 @end
