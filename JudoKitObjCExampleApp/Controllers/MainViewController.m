@@ -210,7 +210,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
             }];
             return;
         }
-        JPTransactionData *tData = response.items[0];
+        JPTransactionData *tData = response.items.firstObject;
         if (tData.cardDetails) {
             self.cardDetails = tData.cardDetails;
             self.payToken = tData.paymentToken;
