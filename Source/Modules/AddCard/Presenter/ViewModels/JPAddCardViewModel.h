@@ -116,15 +116,6 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 
 #pragma mark - JPAddCardScanButtonViewModel
 
-@interface JPAddCardScanButtonViewModel : NSObject
-
-/**
- * The action handler of the Scan Card button that handles the tap events
- */
-@property (nonatomic, copy) void (^_Nullable onScanCardButtonTap)(void);
-
-@end
-
 #pragma mark - JPAddCardViewModel
 
 @interface JPAddCardViewModel : NSObject
@@ -168,10 +159,5 @@ typedef NS_ENUM(NSInteger, JPInputType) {
  * The JPAddCardButtonViewModel for the add card button
  */
 @property (nonatomic, strong) JPAddCardButtonViewModel *_Nonnull addCardButtonViewModel;
-
-/**
- * The JPAddCardScanButtonModel for the scan card button
- */
-@property (nonatomic, strong) JPAddCardScanButtonViewModel *_Nonnull scanCardButtonViewModel;
 
 @end

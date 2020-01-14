@@ -80,7 +80,6 @@
 
 - (void)configureWithViewModel:(JPAddCardViewModel *)viewModel {
     self.sliderHeightConstraint.constant = 365.0f;
-    self.onScanCardButtonTapHandler = viewModel.scanCardButtonViewModel.onScanCardButtonTap;
     [self.cardNumberTextField configureWithViewModel:viewModel.cardNumberViewModel];
     [self.cardHolderTextField configureWithViewModel:viewModel.cardholderNameViewModel];
     [self.cardExpiryTextField configureWithViewModel:viewModel.expiryDateViewModel];
@@ -95,13 +94,6 @@
         [self.countryTextField configureWithViewModel:viewModel.countryPickerViewModel];
         [self.postcodeTextField configureWithViewModel:viewModel.postalCodeInputViewModel];
     }
-}
-
-#pragma mark - User actions
-
-- (void)onScanCardButtonTap {
-    [self endEditing:YES];
-    self.onScanCardButtonTapHandler();
 }
 
 #pragma mark - Helper methods
@@ -223,10 +215,6 @@
 
         _scanCardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 0);
         _scanCardButton.contentEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 5);
-        
-        [_scanCardButton addTarget:self
-                            action:@selector(onScanCardButtonTap)
-                  forControlEvents:UIControlEventTouchUpInside];
     }
     return _scanCardButton;
 }

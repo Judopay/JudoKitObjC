@@ -76,6 +76,11 @@
     [self.presenter handleAddCardButtonTap];
 }
 
+- (void)onScanCardButtonTap {
+    [self.addCardView endEditing:YES];
+    [self.presenter handleScanCardButtonTap];
+}
+
 #pragma mark - View protocol methods
 
 - (void)updateViewWithViewModel:(JPAddCardViewModel *)viewModel {
@@ -102,6 +107,7 @@
 - (void)addTargets {
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
+    [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
 
     self.addCardView.cardNumberTextField.delegate = self;
     self.addCardView.cardHolderTextField.delegate = self;

@@ -51,10 +51,6 @@
 
 @end
 
-@implementation JPAddCardScanButtonViewModel
-
-@end
-
 @implementation JPAddCardViewModel
 
 @end

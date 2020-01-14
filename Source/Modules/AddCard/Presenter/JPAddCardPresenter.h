@@ -44,6 +44,11 @@
  */
 - (void)handleAddCardButtonTap;
 
+/**
+ * A method that handles Scan Card button tap
+ */
+- (void)handleScanCardButtonTap;
+
 @end
 
 @interface JPAddCardPresenterImpl : NSObject <JPAddCardPresenter>
