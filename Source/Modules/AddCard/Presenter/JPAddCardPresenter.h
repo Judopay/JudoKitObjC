@@ -24,6 +24,7 @@
 
 #import "JPAddCardViewModel.h"
 #import <Foundation/Foundation.h>
+#import <PayCardsRecognizer/PayCardsRecognizer.h>
 
 @protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
 
@@ -48,6 +49,13 @@
  * A method that handles Scan Card button tap
  */
 - (void)handleScanCardButtonTap;
+
+/**
+ * A method that updates the view model with a card scan result
+ *
+ * @param result - the PayCardsRecognizerResult object that contains the scan result
+ */
+- (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result;
 
 @end
 

@@ -1,8 +1,8 @@
 //
-//  JPAddCardRouter.h
+//  JPScanCardViewController.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2019 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,42 +22,36 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
+#import <UIKit/UIKit.h>
 
-@class JPAddCardViewController;
-@protocol JPAddCardPresenter;
+@interface JPScanCardViewController : UIViewController
 
-@protocol JPAddCardRouter
-
-/**
- * A method that, when called, will dismiss the Add Card view controller
- */
-- (void)dismissViewController;
+- (instancetype)initWithRecognizerDelegate:(id<PayCardsRecognizerPlatformDelegate>)delegate;
 
 /**
- * A method that starts the scan camera flow and returns a completion result
+ * The container view which hosts the scan card camera
  */
-- (void)navigateToScanCamera;
-
-@end
-
-@interface JPAddCardRouterImpl : NSObject <JPAddCardRouter>
+@property (nonatomic, strong) UIView *containerView;
 
 /**
- * A weak reference to the JPAddCardViewController instance
+ * The stack view containing the scan card labels displayed on top of the camera view
  */
-@property (nonatomic, weak) JPAddCardViewController *viewController;
+@property (nonatomic, strong) UIStackView *labelStackView;
 
 /**
- * A weak reference to a JPAddCardPresenter-conforming instance
+ * The back button displayed on top of the camera view that cancels the scanning process
  */
-@property (nonatomic, weak) id<JPAddCardPresenter> presenter;
-
-@end
+@property (nonatomic, strong) UIButton *backButton;
 
 /**
- * An extension for handling the pay card recognizer delegate
+ * The title displayed on top of the scan card camera view
  */
-@interface JPAddCardRouterImpl (RecognizerDelegate) <PayCardsRecognizerPlatformDelegate>
+@property (nonatomic, strong) UILabel *titleLabel;
+
+/**
+ * The subtitle displayed on top of the scan card camera view
+ */
+@property (nonatomic, strong) UILabel *subtitleLabel;
+
 @end

@@ -23,7 +23,9 @@
 //  SOFTWARE.
 
 #import "JPAddCardRouter.h"
+#import "JPAddCardPresenter.h"
 #import "JPAddCardViewController.h"
+#import "JPScanCardViewController.h"
 
 @interface JPAddCardRouterImpl ()
 @property (nonatomic, strong) PayCardsRecognizer *recognizer;
@@ -32,12 +34,10 @@
 @implementation JPAddCardRouterImpl
 
 - (void)navigateToScanCamera {
-    self.recognizer = [[PayCardsRecognizer alloc] initWithDelegate:self
-                                                        resultMode:PayCardsRecognizerResultModeAsync
-                                                         container:self.viewController.view
-                                                        frameColor:UIColor.whiteColor];
-    
-    [self.recognizer startCamera];
+
+    JPScanCardViewController *scanCardViewController = [[JPScanCardViewController alloc] initWithRecognizerDelegate:self];
+    scanCardViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.viewController presentViewController:scanCardViewController animated:YES completion:nil];
 }
 
 - (void)dismissViewController {
@@ -50,8 +50,9 @@
 
 - (void)payCardsRecognizer:(PayCardsRecognizer *)payCardsRecognizer
               didRecognize:(PayCardsRecognizerResult *)result {
-    
-    [self.recognizer stopCamera];
+
+    [self.presenter updateViewModelWithScanCardResult:result];
+    [self.viewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
