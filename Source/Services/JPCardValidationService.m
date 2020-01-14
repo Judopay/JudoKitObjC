@@ -214,12 +214,16 @@
     return self.lastExpiryDateValidationResult;
 }
 
+- (BOOL)shouldRejectInput:(NSString *)input {
+    BOOL isErrorPresent = self.lastExpiryDateValidationResult.errorMessage != nil;
+    BOOL isAddingCharacter = input.length > self.lastExpiryDateValidationResult.formattedInput.length;
+    return isErrorPresent && isAddingCharacter;
+}
+
 - (JPValidationResult *)validateSecondExpiryDigitInput:(NSString *)input {
 
-    if (self.lastExpiryDateValidationResult.errorMessage != nil) {
-        if (input.length > self.lastExpiryDateValidationResult.formattedInput.length) {
-            return self.lastExpiryDateValidationResult;
-        }
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
     }
 
     if (input.length < self.lastExpiryDateValidationResult.formattedInput.length) {
@@ -244,10 +248,8 @@
 
 - (JPValidationResult *)validateThirdExpiryDigitInput:(NSString *)input {
 
-    if (self.lastExpiryDateValidationResult.errorMessage != nil) {
-        if (input.length > self.lastExpiryDateValidationResult.formattedInput.length) {
-            return self.lastExpiryDateValidationResult;
-        }
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
     }
 
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
@@ -259,10 +261,8 @@
 
 - (JPValidationResult *)validateFourthExpiryDigitInput:(NSString *)input {
 
-    if (self.lastExpiryDateValidationResult.errorMessage != nil) {
-        if (input.length > self.lastExpiryDateValidationResult.formattedInput.length) {
-            return self.lastExpiryDateValidationResult;
-        }
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
     }
 
     NSString *lastDigitString = [input substringFromIndex:input.length - 1];
@@ -284,10 +284,8 @@
 
 - (JPValidationResult *)validateFifthExpiryDigitInput:(NSString *)input {
 
-    if (self.lastExpiryDateValidationResult.errorMessage != nil) {
-        if (input.length > self.lastExpiryDateValidationResult.formattedInput.length) {
-            return self.lastExpiryDateValidationResult;
-        }
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
     }
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
