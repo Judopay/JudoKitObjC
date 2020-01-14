@@ -62,7 +62,8 @@
 - (void)setupViews {
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.tableView];
-    [self addSubview:self.headerView];
+    self.headerView.clipsToBounds = YES;
+    [self insertSubview:self.headerView aboveSubview:self.tableView];
     [self addSubview:self.judoHeadlineImageView];
 }
 
@@ -95,6 +96,7 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _tableView.backgroundColor = UIColor.clearColor;
         _tableView.contentInset = UIEdgeInsetsMake(320, 0, 0, 0);
     }
     return _tableView;

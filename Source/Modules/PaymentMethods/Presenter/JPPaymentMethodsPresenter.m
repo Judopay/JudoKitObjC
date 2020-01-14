@@ -49,13 +49,22 @@
 #pragma mark - Protocol Conformance
 
 - (void)viewModelNeedsUpdate {
-    [self updateViewModel];
+    [self updateViewModelWithAnimationType:AnimationTypeSetup];
+    [self.view configureWithViewModel:self.viewModel];
+}
+
+- (void)viewModelNeedsUpdateWithAnimationType:(AnimationType)animationType {
+    [self updateViewModelWithAnimationType:animationType];
     [self.view configureWithViewModel:self.viewModel];
 }
 
 - (void)didSelectCardAtIndex:(NSInteger)index {
     [self.interactor selectCardAtIndex:index];
-    [self viewModelNeedsUpdate];
+    if (self.headerModel.cardModel) {
+        [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop];
+    } else {
+        [self viewModelNeedsUpdateWithAnimationType:AnimationTypeSetup];
+    }
 }
 
 - (void)handleBackButtonTap {
@@ -64,11 +73,12 @@
 
 #pragma mark - Helper methods
 
-- (void)updateViewModel {
+- (void)updateViewModelWithAnimationType:(AnimationType)animationType {
     [self.viewModel.items removeAllObjects];
     self.viewModel.shouldDisplayHeadline = [self.interactor shouldDisplayJudoHeadline];
 
     [self prepareHeaderModel];
+    self.viewModel.headerModel.animationType = animationType;
 
     [self.viewModel.items addObject:self.paymentSelectionModel];
 
@@ -88,7 +98,6 @@
     self.headerModel.amount = [self.interactor getAmount];
     self.headerModel.payButtonModel = self.paymentButtonModel;
     self.headerModel.payButtonModel.isEnabled = NO;
-
     NSArray *storedCardDetails = [self.interactor getStoredCardDetails];
 
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {

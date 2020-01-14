@@ -110,14 +110,6 @@
     [self.cardHeaderView configureWithViewModel:viewModel];
 
     [self insertSubview:self.mainStackView aboveSubview:self.topView];
-
-    self.cardHeaderView.transform = CGAffineTransformMakeTranslation(0.0, 100.0);
-    self.cardHeaderView.alpha = 0.0;
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         self.cardHeaderView.alpha = 1.0;
-                         self.cardHeaderView.transform = CGAffineTransformIdentity;
-                     }];
 }
 
 #pragma mark - Layout Setup
@@ -125,7 +117,7 @@
 - (void)setupViews {
     self.backgroundColor = UIColor.whiteColor;
 
-    [self addSubview:self.backgroundImageView];
+    [self insertSubview:self.backgroundImageView belowSubview:self.mainStackView];
     [self setupBackgroundImageViewConstraints];
 
     [self setupPaymentStackViews];
@@ -133,6 +125,7 @@
 
     [self addSubview:self.topView];
     [self setupGeneralConstraints];
+    [self setupPaymentStackViewBackground];
 }
 
 - (void)setupPaymentStackViews {
@@ -142,7 +135,17 @@
     [self.mainStackView addArrangedSubview:self.amountStackView];
     [self.mainStackView addArrangedSubview:self.payButton];
 
-    [self addSubview:self.mainStackView];
+    [self insertSubview:self.mainStackView aboveSubview:self.topView];
+}
+
+- (void)setupPaymentStackViewBackground {
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50)];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = bgView.bounds;
+    gradient.colors = @[ (id)[UIColor colorWithWhite:1 alpha:0].CGColor, (id)[UIColor colorWithWhite:1 alpha:1].CGColor ];
+    gradient.locations = @[ @0.0, @0.2 ];
+    [bgView.layer insertSublayer:gradient atIndex:1];
+    [self.mainStackView insertSubview:bgView atIndex:0];
 }
 
 #pragma mark - Constraints Setup
