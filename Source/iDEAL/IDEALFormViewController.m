@@ -29,6 +29,7 @@
 #import "IDEALBankTableViewCell.h"
 #import "IDEALService.h"
 #import "JPAmount.h"
+#import "JPInputField+JPTheme.h"
 #import "JPInputField.h"
 #import "JPOrderDetails.h"
 #import "JPReference.h"
@@ -38,7 +39,9 @@
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "TransactionStatusView.h"
+#import "UIButton+JPTheme.h"
 #import "UIColor+Judo.h"
+#import "UILabel+JPTheme.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
 
@@ -47,6 +50,7 @@
 @property (nonatomic, strong) UIView *safeAreaView;
 @property (nonatomic, strong) UIButton *paymentButton;
 @property (nonatomic, strong) JPInputField *nameInputField;
+@property (nonatomic, strong) UILabel *selectedBankLabel;
 @property (nonatomic, strong) UIView *selectedBankLabelView;
 @property (nonatomic, strong) UITableViewCell *bankSelectionCell;
 @property (nonatomic, strong) WKWebView *webView;
@@ -102,6 +106,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
+    [self applyTheming];
     [self displaySavedBankIfNeeded];
 }
 
@@ -193,6 +198,15 @@
     [self tableViewController:self.bankSelectionController didSelectBank:storedBank];
 }
 
+#pragma mark - Theming
+
+- (void)applyTheming {
+    [self applyTheme:self.theme];
+    [self.nameInputField applyTheme:self.theme];
+    [self.selectedBankLabel applyTheme:self.theme];
+    [self.paymentButton applyTheme:self.theme];
+}
+
 #pragma mark - Private methods
 
 - (void)startPollingStatus {
@@ -239,7 +253,6 @@
 
 - (void)setupViews {
 
-    self.view.backgroundColor = self.theme.judoContentViewBackgroundColor;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(onViewTap:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -263,32 +276,25 @@
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
+
+    [self applyTheming];
 }
 
 - (void)setupNavigationBar {
 
-    self.navigationItem.title = self.theme.iDEALTitle;
+    self.navigationItem.title = @"ideal".localized;
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.judoLeftBarButtonTitle
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"back".localized
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(onBackButtonTap:)];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.judoRightBarButtonTitle
-                                                                              style:UIBarButtonItemStyleDone
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"pay".localized
+                                                                              style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(onPayButtonTap:)];
 
     [self shouldDisplayPaymentElements:NO];
-
-    self.navigationController.navigationBar.barTintColor = self.theme.judoNavigationBarColor;
-    self.navigationController.navigationBar.tintColor = self.theme.judoNavigationButtonColor;
-
-    NSDictionary *textAttributes = @{
-        NSForegroundColorAttributeName : self.theme.judoNavigationBarTitleColor,
-    };
-
-    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 }
 
 - (void)setupPaymentButton {
@@ -352,20 +358,12 @@
 - (JPInputField *)nameInputField {
     if (!_nameInputField) {
         _nameInputField = [[JPInputField alloc] initWithTheme:self.theme];
+        _nameInputField.textField.placeholder = @"enter_name".localized;
         _nameInputField.textField.keyboardType = UIKeyboardTypeAlphabet;
-        _nameInputField.textField.textColor = self.theme.judoInputFieldTextColor;
-        _nameInputField.layer.borderColor = self.theme.judoInputFieldBorderColor.CGColor;
-        _nameInputField.layer.borderWidth = self.theme.judoInputFieldBorderWidth;
-        _nameInputField.backgroundColor = self.theme.judoInputFieldBackgroundColor;
 
         [_nameInputField.textField addTarget:self
                                       action:@selector(displayPaymentElementsIfNeeded)
                             forControlEvents:UIControlEventEditingChanged];
-
-        [_nameInputField.textField setPlaceholder:self.theme.judoIDEALNameInputPlaceholder
-                                    floatingTitle:self.theme.judoIDEALNameInputFloatingTitle];
-        self.nameInputField.textField.floatingLabelTextColor = self.theme.judoPlaceholderTextColor;
-        self.nameInputField.textField.floatingLabelActiveTextColor = self.theme.judoPlaceholderTextColor;
     }
 
     return _nameInputField;
@@ -374,23 +372,20 @@
 - (UIView *)selectedBankLabelView {
     if (!_selectedBankLabelView) {
 
-        UILabel *selectedBankLabel = [UILabel new];
-        selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        selectedBankLabel.text = self.theme.judoSelectedBankTitle;
-
-        selectedBankLabel.textColor = self.theme.judoTextColor;
-        selectedBankLabel.font = self.theme.judoTextFont;
+        _selectedBankLabel = [UILabel new];
+        _selectedBankLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _selectedBankLabel.text = @"selected_bank".localized;
 
         _selectedBankLabelView = [UIView new];
         _selectedBankLabelView.translatesAutoresizingMaskIntoConstraints = NO;
-        [_selectedBankLabelView addSubview:selectedBankLabel];
+        [_selectedBankLabelView addSubview:_selectedBankLabel];
 
         NSArray *constraints = @[
-            [selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor
-                                                            constant:15.0f],
-            [selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
-            [selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
-            [selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
+            [_selectedBankLabel.leadingAnchor constraintEqualToAnchor:_selectedBankLabelView.leadingAnchor
+                                                             constant:15.0f],
+            [_selectedBankLabel.topAnchor constraintEqualToAnchor:_selectedBankLabelView.topAnchor],
+            [_selectedBankLabel.bottomAnchor constraintEqualToAnchor:_selectedBankLabelView.bottomAnchor],
+            [_selectedBankLabel.trailingAnchor constraintEqualToAnchor:_selectedBankLabelView.trailingAnchor],
         ];
 
         [NSLayoutConstraint activateConstraints:constraints];
@@ -403,9 +398,7 @@
     if (!_bankSelectionCell) {
         _bankSelectionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         _bankSelectionCell.translatesAutoresizingMaskIntoConstraints = NO;
-        _bankSelectionCell.textLabel.text = self.theme.judoSelectBankTitle;
-        _bankSelectionCell.textLabel.textColor = self.theme.judoTextColor;
-        _bankSelectionCell.textLabel.font = self.theme.judoTextFont;
+        _bankSelectionCell.textLabel.text = @"select_ideal_bank".localized;
         _bankSelectionCell.imageView.contentMode = UIViewContentModeLeft;
         _bankSelectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -433,7 +426,6 @@
     if (!_safeAreaView) {
         _safeAreaView = [UIView new];
         _safeAreaView.translatesAutoresizingMaskIntoConstraints = NO;
-        _safeAreaView.backgroundColor = self.theme.judoButtonColor;
     }
     return _safeAreaView;
 }
@@ -443,10 +435,7 @@
         _paymentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _paymentButton.translatesAutoresizingMaskIntoConstraints = NO;
         _paymentButton.accessibilityIdentifier = @"Pay Button";
-        [_paymentButton setBackgroundImage:self.theme.judoButtonColor.asImage forState:UIControlStateNormal];
-        [_paymentButton setTitle:self.theme.paymentButtonTitle forState:UIControlStateNormal];
-        [_paymentButton.titleLabel setFont:self.theme.buttonFont];
-        [_paymentButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+        [_paymentButton setTitle:@"pay".localized forState:UIControlStateNormal];
 
         [_paymentButton addTarget:self
                            action:@selector(onPayButtonTap:)
@@ -462,7 +451,6 @@
                                                               andTheme:self.theme];
 
         _transactionStatusView.translatesAutoresizingMaskIntoConstraints = NO;
-        _transactionStatusView.backgroundColor = self.theme.judoLoadingBlockViewColor;
         _transactionStatusView.delegate = self;
     }
     return _transactionStatusView;
@@ -525,13 +513,13 @@
 @implementation IDEALFormViewController (WebView)
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    
+
     if (self.shouldDismissWebView) {
         [self.webView removeFromSuperview];
         [self startPollingStatus];
         return;
     }
-    
+
     self.transactionStatusView.hidden = NO;
 
     if ([self.redirectUrl isEqualToString:webView.URL.absoluteString]) {
