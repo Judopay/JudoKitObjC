@@ -46,6 +46,11 @@
 - (void)handleAddCardButtonTap;
 
 /**
+ * A method that handles Scan Card button tap
+ */
+- (void)handleScanCardButtonTap;
+
+/**
  * A method that updates the view model with a card scan result
  *
  * @param result - the PayCardsRecognizerResult object that contains the scan result

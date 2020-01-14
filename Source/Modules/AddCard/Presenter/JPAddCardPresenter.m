@@ -257,12 +257,6 @@
         _addCardViewModel.countryPickerViewModel = [JPAddCardPickerViewModel new];
         _addCardViewModel.postalCodeInputViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardPostalCode];
         _addCardViewModel.addCardButtonViewModel = [JPAddCardButtonViewModel new];
-        _addCardViewModel.scanCardButtonViewModel = [JPAddCardScanButtonViewModel new];
-
-        __weak typeof(self) weakSelf = self;
-        _addCardViewModel.scanCardButtonViewModel.onScanCardButtonTap = ^{
-            [weakSelf handleScanCardButtonTap];
-        };
     }
     return _addCardViewModel;
 }
