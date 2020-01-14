@@ -223,7 +223,7 @@
 
         _scanCardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 10, 5, 0);
         _scanCardButton.contentEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 5);
-        
+
         [_scanCardButton addTarget:self
                             action:@selector(onScanCardButtonTap)
                   forControlEvents:UIControlEventTouchUpInside];

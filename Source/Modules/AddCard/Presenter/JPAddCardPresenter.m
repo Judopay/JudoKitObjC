@@ -123,21 +123,21 @@
 }
 
 - (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
-    
+
     if (result.recognizedNumber != nil) {
         [self updateCardNumberViewModelForInput:result.recognizedNumber];
     }
-    
+
     if (result.recognizedHolderName != nil) {
         [self updateCardholderNameViewModelForInput:result.recognizedHolderName];
     }
-    
+
     if (result.recognizedExpireDateMonth != nil && result.recognizedExpireDateYear != nil) {
         [self updateExpiryDateViewModelForInput:[NSString stringWithFormat:@"%@/%@",
-                                                 result.recognizedExpireDateMonth,
-                                                 result.recognizedExpireDateYear]];
+                                                                           result.recognizedExpireDateMonth,
+                                                                           result.recognizedExpireDateYear]];
     }
-    
+
     [self updateAddCardButtonModelIfNeeded];
     [self.view updateViewWithViewModel:self.addCardViewModel];
 }
@@ -258,12 +258,11 @@
         _addCardViewModel.postalCodeInputViewModel = [JPAddCardInputFieldViewModel viewModelWithType:JPInputTypeCardPostalCode];
         _addCardViewModel.addCardButtonViewModel = [JPAddCardButtonViewModel new];
         _addCardViewModel.scanCardButtonViewModel = [JPAddCardScanButtonViewModel new];
-        
+
         __weak typeof(self) weakSelf = self;
         _addCardViewModel.scanCardButtonViewModel.onScanCardButtonTap = ^{
             [weakSelf handleScanCardButtonTap];
         };
-        
     }
     return _addCardViewModel;
 }
