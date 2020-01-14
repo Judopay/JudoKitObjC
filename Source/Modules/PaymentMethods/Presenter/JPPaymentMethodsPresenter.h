@@ -24,8 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JPPaymentMethodsView
-, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
+@protocol JPPaymentMethodsView, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
 @class JPPaymentMethodsCardModel;
 
 @protocol JPPaymentMethodsPresenter
