@@ -2,7 +2,7 @@
 //  JPScanCardViewController.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2019 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -70,6 +70,7 @@
 - (void)onBackButtonTap {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma mark - Layout Setup
 
 - (void)setupViews {
@@ -82,13 +83,17 @@
     [self.containerView addSubview:self.labelStackView];
     [self.containerView addSubview:self.backButton];
 
-    [self.containerView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:25].active = YES;
-    [self.containerView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor].active = YES;
-    [self.containerView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor].active = YES;
-    [self.containerView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor constant:-25].active = YES;
+    [NSLayoutConstraint activateConstraints: @[
+        [self.containerView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:25],
+        [self.containerView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [self.containerView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
+        [self.containerView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor constant:-25],
+    ]];
 
-    [self.labelStackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.labelStackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.labelStackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [self.labelStackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor]
+    ]];
 }
 
 #pragma mark - Lazy Properties

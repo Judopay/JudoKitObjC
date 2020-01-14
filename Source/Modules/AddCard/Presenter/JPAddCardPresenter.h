@@ -26,8 +26,7 @@
 #import <Foundation/Foundation.h>
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
 
-@protocol JPAddCardView
-, JPAddCardRouter, JPAddCardInteractor;
+@protocol JPAddCardView, JPAddCardRouter, JPAddCardInteractor;
 
 @protocol JPAddCardPresenter
 
