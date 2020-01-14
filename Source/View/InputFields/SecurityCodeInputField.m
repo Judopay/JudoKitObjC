@@ -26,7 +26,7 @@
 #import "CardLogoView.h"
 #import "FloatingTextField.h"
 #import "JPTheme.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "NSString+Validation.h"
 
 @interface JPInputField ()

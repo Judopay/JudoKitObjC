@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsView.h"
+#import "JPPaymentMethodsHeaderView.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIView+Additions.h"
@@ -81,11 +82,10 @@
 
 #pragma mark - Lazy properties
 
-- (UIView *)headerView {
+- (JPPaymentMethodsHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [UIView new];
+        _headerView = [JPPaymentMethodsHeaderView new];
         _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
-        _headerView.backgroundColor = UIColor.jpContentBackgroundColor;
     }
     return _headerView;
 }
@@ -95,7 +95,7 @@
         _tableView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-        _tableView.contentInset = UIEdgeInsetsMake(300, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(320, 0, 0, 0);
     }
     return _tableView;
 }

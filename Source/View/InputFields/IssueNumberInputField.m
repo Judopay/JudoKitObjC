@@ -25,7 +25,7 @@
 #import "IssueNumberInputField.h"
 #import "FloatingTextField.h"
 #import "JPTheme.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "NSString+Validation.h"
 
 @implementation IssueNumberInputField

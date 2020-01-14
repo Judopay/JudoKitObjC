@@ -1,5 +1,5 @@
 //
-//  JPPaymentMethodsCardListFooterCell.m
+//  JPPaymentMethodsCardListHeaderCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,18 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCardListFooterCell.h"
+#import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIFont+Additions.h"
-#import "UIImage+Icons.h"
 #import "UIView+Additions.h"
 
-@interface JPPaymentMethodsCardListFooterCell ()
-@property (nonatomic, copy) void (^onAddCardButtonTapHandler)(void);
-@end
-
-@implementation JPPaymentMethodsCardListFooterCell
+@implementation JPPaymentMethodsCardListHeaderCell
 
 #pragma mark - Initializers
 
@@ -70,53 +65,50 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
 
-    if (![viewModel isKindOfClass:JPPaymentMethodsCardFooterModel.class]) {
+    if (![viewModel isKindOfClass:JPPaymentMethodsCardHeaderModel.class]) {
         return;
     }
 
-    JPPaymentMethodsCardFooterModel *footerModel;
-    footerModel = (JPPaymentMethodsCardFooterModel *)viewModel;
+    JPPaymentMethodsCardHeaderModel *headerModel;
+    headerModel = (JPPaymentMethodsCardHeaderModel *)viewModel;
 
-    [self.addCardButton setTitle:footerModel.addCardButtonTitle
-                        forState:UIControlStateNormal];
-
-    UIImage *buttonImage = [UIImage imageWithIconName:footerModel.addCardButtonIconName];
-
-    [self.addCardButton setImage:buttonImage forState:UIControlStateNormal];
-    self.addCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-
-    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 0);
-    self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-
-    self.onAddCardButtonTapHandler = footerModel.onAddCardButtonTapHandler;
-}
-
-- (void)onAddCardButtonTap {
-    self.onAddCardButtonTapHandler();
+    self.titleLabel.text = headerModel.title;
+    [self.actionButton setTitle:headerModel.editButtonTitle forState:UIControlStateNormal];
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
-    [self addSubview:self.addCardButton];
-    [self.addCardButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
-    [self.addCardButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.actionButton];
+
+    [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self withPadding:24.0];
+    [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+
+    [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
+    [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
 }
 
 #pragma mark - Lazy instantiated properties
 
-- (UIButton *)addCardButton {
-    if (!_addCardButton) {
-        _addCardButton = [UIButton new];
-        _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.smallTitleFont;
-
-        [self.addCardButton addTarget:self
-                               action:@selector(onAddCardButtonTap)
-                     forControlEvents:UIControlEventTouchUpInside];
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [UILabel new];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.textColor = UIColor.jpTextColor;
+        _titleLabel.font = UIFont.headline;
     }
-    return _addCardButton;
+    return _titleLabel;
+}
+
+- (UIButton *)actionButton {
+    if (!_actionButton) {
+        _actionButton = [UIButton new];
+        _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _actionButton.titleLabel.font = UIFont.bodyBold;
+        [_actionButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
+    }
+    return _actionButton;
 }
 
 @end

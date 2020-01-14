@@ -35,7 +35,7 @@
     self.type = viewModel.type;
     self.text = viewModel.text;
 
-    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.smallTextFont : UIFont.defaultTextFont;
+    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.body : UIFont.headlineLight;
 
     [self placeholderWithText:viewModel.placeholder
                         color:UIColor.jpSubtitleColor

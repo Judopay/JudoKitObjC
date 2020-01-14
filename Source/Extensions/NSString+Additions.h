@@ -1,5 +1,5 @@
 //
-//  NSString+Manipulation.h
+//  NSString+Additions.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,19 +22,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSBundle+Additions.h"
-#import "NSString+Localize.h"
+#import "JPTheme.h"
 #import <Foundation/Foundation.h>
 
-@implementation NSString (Manipulation)
+@interface NSString (Additions)
+/**
+ * Returns the localized version of the string
+ */
+- (nonnull NSString *)localized;
 
-- (nonnull NSString *)localized {
-
-    if (NSBundle.stringsBundle != nil) {
-        return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.stringsBundle, nil);
-    }
-
-    return NSLocalizedStringFromTableInBundle(self, nil, NSBundle.frameworkBundle, nil);
-}
+/**
+ * Returns the currency symbol for the currency code string
+ */
+- (nullable NSString *)toCurrencySymbol;
 
 @end

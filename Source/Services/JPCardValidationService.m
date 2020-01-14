@@ -27,8 +27,8 @@
 #import "JPCardNetwork.h"
 #import "JPValidationResult.h"
 #import "NSError+Judo.h"
+#import "NSString+Additions.h"
 #import "NSString+Card.h"
-#import "NSString+Localize.h"
 
 @interface JPCardValidationService ()
 

@@ -83,9 +83,11 @@
 }
 
 - (void)setupConstraints {
-    [self.addCardButton.widthAnchor constraintEqualToConstant:106.0f].active = YES;
-    [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f].active = YES;
-    [self.stackView pinToView:self withPadding:25.0f];
+    NSLayoutConstraint *heightConstraint = [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f];
+    heightConstraint.priority = 999;
+    heightConstraint.active = YES;
+
+    [self.stackView pinToView:self withPadding:0.0f];
 }
 
 #pragma mark - Lazy properties
@@ -95,7 +97,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = UIFont.largeTitleFont;
+        _titleLabel.font = UIFont.headline;
         _titleLabel.textColor = UIColor.jpTextColor;
     }
     return _titleLabel;
@@ -104,10 +106,9 @@
 - (UIButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
-        _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
         [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.smallTitleFont;
+        _addCardButton.titleLabel.font = UIFont.bodyBold;
 
         [self.addCardButton addTarget:self
                                action:@selector(onAddCardButtonTap)

@@ -26,7 +26,7 @@
 #import "BillingCountry.h"
 
 #import "FloatingTextField.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 @interface JPInputField ()
 

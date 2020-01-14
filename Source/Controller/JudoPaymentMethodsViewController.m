@@ -35,7 +35,7 @@
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSBundle+Additions.h"
 #import "NSError+Judo.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 #import "UIApplication+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"

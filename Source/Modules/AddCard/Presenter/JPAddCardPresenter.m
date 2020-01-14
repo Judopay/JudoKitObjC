@@ -30,7 +30,7 @@
 #import "JPAddress.h"
 #import "JPCard.h"
 #import "JPCountry.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 @interface JPAddCardPresenterImpl ()
 @property (nonatomic, strong) JPAddCardViewModel *addCardViewModel;
@@ -116,6 +116,30 @@
                [weakSelf.router dismissViewController];
                [weakSelf.view didFinishAddingCard];
            }];
+}
+
+- (void)handleScanCardButtonTap {
+    [self.router navigateToScanCamera];
+}
+
+- (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
+
+    if (result.recognizedNumber != nil) {
+        [self updateCardNumberViewModelForInput:result.recognizedNumber];
+    }
+
+    if (result.recognizedHolderName != nil) {
+        [self updateCardholderNameViewModelForInput:result.recognizedHolderName];
+    }
+
+    if (result.recognizedExpireDateMonth != nil && result.recognizedExpireDateYear != nil) {
+        [self updateExpiryDateViewModelForInput:[NSString stringWithFormat:@"%@/%@",
+                                                                           result.recognizedExpireDateMonth,
+                                                                           result.recognizedExpireDateYear]];
+    }
+
+    [self updateAddCardButtonModelIfNeeded];
+    [self.view updateViewWithViewModel:self.addCardViewModel];
 }
 
 #pragma mark - Helper methods

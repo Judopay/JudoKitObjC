@@ -26,8 +26,8 @@
 #import "JPConstants.h"
 #import "NSArray+Prefix.h"
 #import "NSError+Judo.h"
+#import "NSString+Additions.h"
 #import "NSString+Card.h"
-#import "NSString+Localize.h"
 #import "NSString+Manipulation.h"
 #import "NSString+Validation.h"
 

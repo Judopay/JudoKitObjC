@@ -27,6 +27,7 @@
 @implementation JPPaymentMethodsCell
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
+    //TODO: Implement custom payment methods logic
 }
 
 @end

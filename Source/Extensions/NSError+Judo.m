@@ -24,7 +24,7 @@
 
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
-#import "NSString+Localize.h"
+#import "NSString+Additions.h"
 
 NSString *const JudoErrorDomain = @"com.judo.error";
 

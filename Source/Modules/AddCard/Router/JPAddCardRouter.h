@@ -23,8 +23,10 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <PayCardsRecognizer/PayCardsRecognizer.h>
 
 @class JPAddCardViewController;
+@protocol JPAddCardPresenter;
 
 @protocol JPAddCardRouter
 
@@ -32,6 +34,11 @@
  * A method that, when called, will dismiss the Add Card view controller
  */
 - (void)dismissViewController;
+
+/**
+ * A method that starts the scan camera flow and returns a completion result
+ */
+- (void)navigateToScanCamera;
 
 @end
 
@@ -42,4 +49,15 @@
  */
 @property (nonatomic, weak) JPAddCardViewController *viewController;
 
+/**
+ * A weak reference to a JPAddCardPresenter-conforming instance
+ */
+@property (nonatomic, weak) id<JPAddCardPresenter> presenter;
+
+@end
+
+/**
+ * An extension for handling the pay card recognizer delegate
+ */
+@interface JPAddCardRouterImpl (RecognizerDelegate) <PayCardsRecognizerPlatformDelegate>
 @end

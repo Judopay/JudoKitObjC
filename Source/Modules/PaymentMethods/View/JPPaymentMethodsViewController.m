@@ -24,6 +24,7 @@
 
 #import "JPPaymentMethodsViewController.h"
 #import "JPPaymentMethodsCardListHeaderCell.h"
+#import "JPPaymentMethodsHeaderView.h"
 #import "JPPaymentMethodsPresenter.h"
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsView.h"
@@ -80,6 +81,8 @@
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
 
+    [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
+
     self.paymentMethodsView.judoHeadlineImageView.hidden = !viewModel.shouldDisplayHeadline;
     self.paymentMethodsView.judoHeadlineHeightConstraint.constant = viewModel.shouldDisplayHeadline ? 20.0 : 0.0;
 
@@ -95,7 +98,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat yValue = -scrollView.contentOffset.y;
-    CGFloat height = MIN(MAX(yValue, 295), 400);
+    CGFloat height = MIN(MAX(yValue, 350), 400);
     CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     self.paymentMethodsView.headerView.frame = newFrame;
 }

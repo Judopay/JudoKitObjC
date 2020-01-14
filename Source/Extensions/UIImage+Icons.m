@@ -32,6 +32,10 @@
     return [UIImage imageNamed:iconName inBundle:NSBundle.iconsBundle compatibleWithTraitCollection:nil];
 }
 
++ (UIImage *)imageWithResourceName:(NSString *)resourceName {
+    return [UIImage imageNamed:resourceName inBundle:NSBundle.resourcesBundle compatibleWithTraitCollection:nil];
+}
+
 + (UIImage *)imageForCardNetwork:(CardNetwork)cardNetwork {
     switch (cardNetwork) {
         case CardNetworkAMEX:

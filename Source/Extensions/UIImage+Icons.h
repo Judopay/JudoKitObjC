@@ -38,6 +38,15 @@
 + (UIImage *)imageWithIconName:(NSString *)iconName;
 
 /**
+ * Initializes an UIImage based on a resource name contained in the resources bundle
+ *
+ * @param resourceName - a string describing the resource name in the resources bundle
+ *
+ * @return a configured UIImage instance
+ */
++ (UIImage *)imageWithResourceName:(NSString *)resourceName;
+
+/**
  * Initializes an UIImage based on a card network
  *
  * @param cardNetwork - a value describing the Card Network

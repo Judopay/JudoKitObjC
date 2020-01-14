@@ -65,7 +65,7 @@
 
     self.type = viewModel.type;
 
-    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.smallTextFont : UIFont.defaultTextFont;
+    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.body : UIFont.headlineLight;
     [self setCardNetwork:viewModel.cardNetwork];
 
     [self placeholderWithText:viewModel.placeholder

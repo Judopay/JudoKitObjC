@@ -24,12 +24,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class JPPaymentMethodsHeaderView;
+
 @interface JPPaymentMethodsView : UIView
 
 /**
  * The header view displaying the card information
  */
-@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) JPPaymentMethodsHeaderView *headerView;
 
 /**
  * The table view displaying the card selection list
@@ -45,4 +47,5 @@
  * The judo headline height constraint that is set to 0 if the headline is hidden and 20 otherwise
  */
 @property (nonatomic, strong) NSLayoutConstraint *judoHeadlineHeightConstraint;
+
 @end

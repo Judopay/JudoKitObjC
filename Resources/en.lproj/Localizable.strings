@@ -40,12 +40,19 @@
 "invalid_postcode" = "Invalid postcode entered";
 "invalid_zip_code" = "Invalid ZIP code entered";
 
+//Scan Card
+"scan_card_message_title" = "Position card in this frame";
+"scan_card_message_subtitle" = "We will automatically scan it";
+
 //Payment Method Screen
 "card_subtitle" = "%@ Ending %@";
 "no_connected_cards" = "You didn't connect any cards yet";
 "connected_cards" = "Connected cards";
 "edit_capitalized" = "EDIT";
-
+"pay_now_capitalized" = "PAY NOW";
+"choose_payment_method" = "Choose a Payment Method";
+"no_cards_added"  = "You didn’t add any cards yet.\nAdd one right now or use any of the payment methods below";
+"you_will_pay" = "You will pay";
 
 //CardInputField
 "card_number_label" = "Card number";

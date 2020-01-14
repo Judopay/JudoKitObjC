@@ -23,18 +23,22 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsInteractor.h"
+#import "JPAmount.h"
 #import "JPCardStorage.h"
 #import "JPTheme.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, strong) JPTheme *theme;
+@property (nonatomic, strong) JPAmount *amount;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
 
-- (instancetype)initWithTheme:(JPTheme *)theme {
+- (instancetype)initWithTheme:(JPTheme *)theme
+                    andAmount:(JPAmount *)amount {
     if (self = [super init]) {
         self.theme = theme;
+        self.amount = amount;
     }
     return self;
 }
@@ -62,6 +66,10 @@
 
 - (BOOL)shouldDisplayJudoHeadline {
     return [self.theme displayJudoHeadline];
+}
+
+- (JPAmount *)getAmount {
+    return self.amount;
 }
 
 @end
