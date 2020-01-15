@@ -48,6 +48,8 @@
     self.view = self.paymentMethodsView;
     [self configureView];
     [self.presenter viewModelNeedsUpdate];
+    
+    NSLog(@"%f, %f",UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
 }
 
 #pragma mark - Layout Setup
@@ -98,9 +100,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat yValue = -scrollView.contentOffset.y;
-    CGFloat height = MIN(MAX(yValue, 350), 400);
+    CGFloat height = MIN(MAX(yValue, 350 * self.aspectRatio), 400 * self.aspectRatio);
     CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     self.paymentMethodsView.headerView.frame = newFrame;
+}
+
+- (double)aspectRatio {
+    return UIScreen.mainScreen.bounds.size.width / 414;
 }
 
 @end

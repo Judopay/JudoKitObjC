@@ -86,7 +86,7 @@
 - (JPPaymentMethodsHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [JPPaymentMethodsHeaderView new];
-        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400);
+        _headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 400 * self.aspectRatio);
     }
     return _headerView;
 }
@@ -97,7 +97,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         _tableView.backgroundColor = UIColor.clearColor;
-        _tableView.contentInset = UIEdgeInsetsMake(320, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(320 * self.aspectRatio, 0, 0, 0);
     }
     return _tableView;
 }
@@ -110,6 +110,10 @@
         _judoHeadlineImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _judoHeadlineImageView;
+}
+
+- (double)aspectRatio {
+    return UIScreen.mainScreen.bounds.size.width / 414;
 }
 
 @end
