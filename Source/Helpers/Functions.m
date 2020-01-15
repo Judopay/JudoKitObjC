@@ -31,6 +31,10 @@
 #import "JudoKit.h"
 #import "NSString+Manipulation.h"
 
+double getWidthAspectRatio() {
+    return UIScreen.mainScreen.bounds.size.width / 414;
+}
+
 NSString *getUserAgent() {
     UIDevice *device = UIDevice.currentDevice;
     NSBundle *mainBundle = NSBundle.mainBundle;
