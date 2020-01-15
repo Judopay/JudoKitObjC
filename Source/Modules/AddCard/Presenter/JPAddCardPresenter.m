@@ -118,6 +118,30 @@
            }];
 }
 
+- (void)handleScanCardButtonTap {
+    [self.router navigateToScanCamera];
+}
+
+- (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
+
+    if (result.recognizedNumber != nil) {
+        [self updateCardNumberViewModelForInput:result.recognizedNumber];
+    }
+
+    if (result.recognizedHolderName != nil) {
+        [self updateCardholderNameViewModelForInput:result.recognizedHolderName];
+    }
+
+    if (result.recognizedExpireDateMonth != nil && result.recognizedExpireDateYear != nil) {
+        [self updateExpiryDateViewModelForInput:[NSString stringWithFormat:@"%@/%@",
+                                                                           result.recognizedExpireDateMonth,
+                                                                           result.recognizedExpireDateYear]];
+    }
+
+    [self updateAddCardButtonModelIfNeeded];
+    [self.view updateViewWithViewModel:self.addCardViewModel];
+}
+
 #pragma mark - Helper methods
 
 - (void)updateAddCardButtonModelIfNeeded {

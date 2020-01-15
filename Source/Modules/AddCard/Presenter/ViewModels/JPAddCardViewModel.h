@@ -50,29 +50,29 @@ typedef NS_ENUM(NSInteger, JPInputType) {
  *
  * @param inputType - An instance of JPInputType that is used to define the view model
  */
-+ (instancetype)viewModelWithType:(JPInputType)inputType;
++ (instancetype _Nonnull)viewModelWithType:(JPInputType)inputType;
 
 /**
  * Designated initializer that is configured based on an input type
  *
  * @param inputType - An instance of JPInputType that is used to define the view model
  */
-- (instancetype)initWithType:(JPInputType)inputType;
+- (instancetype _Nonnull)initWithType:(JPInputType)inputType;
 
 /**
  * The text string of the input field
  */
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *_Nullable text;
 
 /**
  * The placeholder string of the input field
  */
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSString *_Nonnull placeholder;
 
 /**
  * The error string of the input field
  */
-@property (nonatomic, strong) NSString *errorText;
+@property (nonatomic, strong) NSString *_Nullable errorText;
 
 @end
 
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 /**
  * The title of the button
  */
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *_Nullable title;
 
 /**
  * A boolean value that indicates if the button is enabled
@@ -110,9 +110,11 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 /**
  * An array of strings that act as picker titles
  */
-@property (nonatomic, strong) NSArray *pickerTitles;
+@property (nonatomic, strong) NSArray *_Nonnull pickerTitles;
 
 @end
+
+#pragma mark - JPAddCardScanButtonViewModel
 
 #pragma mark - JPAddCardViewModel
 
@@ -126,36 +128,36 @@ typedef NS_ENUM(NSInteger, JPInputType) {
 /**
  * The JPAddCardInputFieldViewModel for the card number input field
  */
-@property (nonatomic, strong) JPAddCardNumberInputViewModel *cardNumberViewModel;
+@property (nonatomic, strong) JPAddCardNumberInputViewModel *_Nonnull cardNumberViewModel;
 
 /**
  * The JPAddCardInputFieldViewModel for the cardholder name input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *cardholderNameViewModel;
+@property (nonatomic, strong) JPAddCardInputFieldViewModel *_Nonnull cardholderNameViewModel;
 
 /**
  * The JPAddCardInputFieldViewModel for the expiry date input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *expiryDateViewModel;
+@property (nonatomic, strong) JPAddCardInputFieldViewModel *_Nonnull expiryDateViewModel;
 
 /**
  * The JPAddCardInputFieldViewModel for the secure code input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *secureCodeViewModel;
+@property (nonatomic, strong) JPAddCardInputFieldViewModel *_Nonnull secureCodeViewModel;
 
 /**
  * The JPAddCardPickerViewModel for the country picker
  */
-@property (nonatomic, strong) JPAddCardPickerViewModel *countryPickerViewModel;
+@property (nonatomic, strong) JPAddCardPickerViewModel *_Nonnull countryPickerViewModel;
 
 /**
  * The JPAddCardInputFieldViewModel for the postal code input field
  */
-@property (nonatomic, strong) JPAddCardInputFieldViewModel *postalCodeInputViewModel;
+@property (nonatomic, strong) JPAddCardInputFieldViewModel *_Nonnull postalCodeInputViewModel;
 
 /**
  * The JPAddCardButtonViewModel for the add card button
  */
-@property (nonatomic, strong) JPAddCardButtonViewModel *addCardButtonViewModel;
+@property (nonatomic, strong) JPAddCardButtonViewModel *_Nonnull addCardButtonViewModel;
 
 @end

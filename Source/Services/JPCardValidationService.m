@@ -205,17 +205,26 @@
 - (JPValidationResult *)validateFirstExpiryDigitInput:(NSString *)input {
 
     BOOL isValidInput = ([input isEqualToString:@"0"] || [input isEqualToString:@"1"]);
-
     NSString *errorMessage = isValidInput ? nil : @"invalid_expiry_date_value".localized;
 
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
-                                                                      inputAllowed:isValidInput
+                                                                      inputAllowed:YES
                                                                       errorMessage:errorMessage
                                                                     formattedInput:input];
     return self.lastExpiryDateValidationResult;
 }
 
+- (BOOL)shouldRejectInput:(NSString *)input {
+    BOOL isErrorPresent = self.lastExpiryDateValidationResult.errorMessage != nil;
+    BOOL isAddingCharacter = input.length > self.lastExpiryDateValidationResult.formattedInput.length;
+    return isErrorPresent && isAddingCharacter;
+}
+
 - (JPValidationResult *)validateSecondExpiryDigitInput:(NSString *)input {
+
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
+    }
 
     if (input.length < self.lastExpiryDateValidationResult.formattedInput.length) {
         NSString *formattedInput = [input substringToIndex:input.length - 1];
@@ -231,13 +240,18 @@
     NSString *formattedInput = [NSString stringWithFormat:@"%@/", input];
     NSString *errorMessage = isValidInput ? nil : @"invalid_expiry_date_value".localized;
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
-                                                                      inputAllowed:isValidInput
+                                                                      inputAllowed:YES
                                                                       errorMessage:errorMessage
                                                                     formattedInput:isValidInput ? formattedInput : input];
     return self.lastExpiryDateValidationResult;
 }
 
 - (JPValidationResult *)validateThirdExpiryDigitInput:(NSString *)input {
+
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
+    }
+
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
                                                                       inputAllowed:YES
                                                                       errorMessage:nil
@@ -246,6 +260,11 @@
 }
 
 - (JPValidationResult *)validateFourthExpiryDigitInput:(NSString *)input {
+
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
+    }
+
     NSString *lastDigitString = [input substringFromIndex:input.length - 1];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -257,13 +276,18 @@
     NSString *errorMessage = isValid ? nil : @"invalid_expiry_date_value".localized;
 
     self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
-                                                                      inputAllowed:isValid
+                                                                      inputAllowed:YES
                                                                       errorMessage:errorMessage
                                                                     formattedInput:input];
     return self.lastExpiryDateValidationResult;
 }
 
 - (JPValidationResult *)validateFifthExpiryDigitInput:(NSString *)input {
+
+    if ([self shouldRejectInput:input]) {
+        return self.lastExpiryDateValidationResult;
+    }
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/yy"];
     NSString *currentDate = [formatter stringFromDate:NSDate.date];
@@ -279,7 +303,7 @@
 
     if (inputYear < currentYear) {
         self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
-                                                                          inputAllowed:NO
+                                                                          inputAllowed:YES
                                                                           errorMessage:@"check_expiry_date".localized
                                                                         formattedInput:input];
         return self.lastExpiryDateValidationResult;
@@ -287,7 +311,7 @@
 
     if (inputYear == currentYear && inputMonth < currentMonth) {
         self.lastExpiryDateValidationResult = [JPValidationResult validationWithResult:NO
-                                                                          inputAllowed:NO
+                                                                          inputAllowed:YES
                                                                           errorMessage:@"check_expiry_date".localized
                                                                         formattedInput:input];
         return self.lastExpiryDateValidationResult;

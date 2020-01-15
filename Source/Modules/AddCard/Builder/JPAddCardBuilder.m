@@ -60,6 +60,7 @@
     presenter.router = router;
 
     router.viewController = viewController;
+    router.presenter = presenter;
 
     viewController.presenter = presenter;
 

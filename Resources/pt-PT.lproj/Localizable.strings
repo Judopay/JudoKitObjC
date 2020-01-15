@@ -40,6 +40,10 @@
 "invalid_postcode" = "Código postal inválido inserido";
 "invalid_zip_code" = "Código postal inválido inserido";
 
+//Scan Card
+"scan_card_message_title" = "Position card in this frame";
+"scan_card_message_subtitle" = "We will automatically scan it";
+
 //Payment Method Screen
 "card_subtitle" = "%@ Ending %@";
 "no_connected_cards" = "You didn't connect any cards yet";
