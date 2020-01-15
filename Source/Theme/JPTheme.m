@@ -175,76 +175,6 @@
     return _securityMessageString;
 }
 
-- (NSString *)idealTransactionSuccessTitle {
-    if (!_idealTransactionSuccessTitle) {
-        _idealTransactionSuccessTitle = @"ideal_transaction_success".localized;
-    }
-    return _idealTransactionSuccessTitle;
-}
-
-- (NSString *)idealTransactionPendingTitle {
-    if (!_idealTransactionPendingTitle) {
-        _idealTransactionPendingTitle = @"ideal_transaction_pending".localized;
-    }
-    return _idealTransactionPendingTitle;
-}
-
-- (NSString *)idealTransactionPendingDelayTitle {
-    if (!_idealTransactionPendingDelayTitle) {
-        _idealTransactionPendingDelayTitle = @"ideal_transaction_pending_delay".localized;
-    }
-    return _idealTransactionPendingDelayTitle;
-}
-
-- (NSString *)idealTransactionTimeoutTitle {
-    if (!_idealTransactionTimeoutTitle) {
-        _idealTransactionTimeoutTitle = @"ideal_transaction_timeout".localized;
-    }
-    return _idealTransactionTimeoutTitle;
-}
-
-- (NSString *)idealTransactionErrorTitle {
-    if (!_idealTransactionErrorTitle) {
-        _idealTransactionErrorTitle = @"ideal_transaction_error".localized;
-    }
-    return _idealTransactionErrorTitle;
-}
-
-- (NSString *)idealTransactionFailedTitle {
-    if (!_idealTransactionFailedTitle) {
-        _idealTransactionFailedTitle = @"ideal_transaction_failed".localized;
-    }
-    return _idealTransactionFailedTitle;
-}
-
-- (NSString *)judoSelectBankTitle {
-    if (!_judoSelectBankTitle) {
-        _judoSelectBankTitle = @"select_ideal_bank".localized;
-    }
-    return _judoSelectBankTitle;
-}
-
-- (NSString *)judoSelectedBankTitle {
-    if (!_judoSelectedBankTitle) {
-        _judoSelectedBankTitle = @"selected_bank".localized;
-    }
-    return _judoSelectedBankTitle;
-}
-
-- (NSString *)judoIDEALNameInputFloatingTitle {
-    if (!_judoIDEALNameInputFloatingTitle) {
-        _judoIDEALNameInputFloatingTitle = @"name".localized;
-    }
-    return _judoIDEALNameInputFloatingTitle;
-}
-
-- (NSString *)judoIDEALNameInputPlaceholder {
-    if (!_judoIDEALNameInputPlaceholder) {
-        _judoIDEALNameInputPlaceholder = @"enter_name".localized;
-    }
-    return _judoIDEALNameInputPlaceholder;
-}
-
 #pragma mark - Sizes
 
 - (CGFloat)inputFieldHeight {
@@ -280,33 +210,11 @@
     return [textColor inverseColor];
 }
 
-- (UIColor *)judoNavigationBarTitleColor {
-    if (_judoNavigationBarTitleColor) {
-        return _judoNavigationBarTitleColor;
-    }
-    UIColor *navigationBarTintColor = [UIColor thunder];
-    if ([self.tintColor isDarkColor]) {
-        return navigationBarTintColor;
-    }
-    return [navigationBarTintColor inverseColor];
-}
-
 - (UIColor *)judoInputFieldTextColor {
     if (_judoInputFieldTextColor) {
         return _judoInputFieldTextColor;
     }
     UIColor *textColor = [UIColor darkGrayColor];
-    if ([self.tintColor isDarkColor]) {
-        return textColor;
-    }
-    return [textColor inverseColor];
-}
-
-- (UIColor *)judoPlaceholderTextColor {
-    if (_judoPlaceholderTextColor) {
-        return _judoPlaceholderTextColor;
-    }
-    UIColor *textColor = [UIColor magnesium];
     if ([self.tintColor isDarkColor]) {
         return textColor;
     }
@@ -331,13 +239,6 @@
 
 - (UIColor *)judoButtonColor {
     return _judoButtonColor ? _judoButtonColor : self.tintColor;
-}
-
-- (UIColor *)judoButtonTitleColor {
-    if (_judoButtonTitleColor) {
-        return _judoButtonTitleColor;
-    }
-    return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
 }
 
 - (UIColor *)judoLoadingBackgroundColor {
@@ -369,13 +270,6 @@
     return _judoInputFieldBackgroundColor ? _judoInputFieldBackgroundColor : _judoContentViewBackgroundColor;
 }
 
-- (UIColor *)judoActivityIndicatorColor {
-    if (_judoActivityIndicatorColor) {
-        return _judoActivityIndicatorColor;
-    }
-    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
-}
-
 #pragma mark - Payment Methods
 
 - (CGFloat)buttonHeight {
@@ -399,13 +293,6 @@
     return _buttonFont;
 }
 
-- (UIFont *)judoTextFont {
-    if (!_judoTextFont) {
-        _judoTextFont = [UIFont systemFontOfSize:16.0];
-    }
-    return _judoTextFont;
-}
-
 - (CGFloat)judoInputFieldBorderWidth {
     if (!_judoInputFieldBorderWidth) {
         _judoInputFieldBorderWidth = 0.0;
@@ -413,48 +300,139 @@
     return _judoInputFieldBorderWidth;
 }
 
-#pragma mark - iDEAL Status View
+#pragma mark - New styles (use for iDEAL page styling)
 
-- (UIColor *)iDEALStatusTitleColor {
-    if (_iDEALStatusTitleColor) {
-        return _iDEALStatusTitleColor;
+- (UIColor *)judoNavigationButtonColor {
+    if (!_judoNavigationButtonColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
-    return [self.tintColor isDarkColor] ? [UIColor blackColor] : [UIColor whiteColor];
+    return _judoNavigationButtonColor;
 }
 
-- (UIFont *)iDEALStatusTitleFont {
-    if (!_iDEALStatusTitleFont) {
-        _iDEALStatusTitleFont = [UIFont boldSystemFontOfSize:20.0];
+- (UIFont *)judoNavigationButtonFont {
+    if (!_judoNavigationButtonFont) {
+        _judoNavigationButtonFont = [UIFont systemFontOfSize:16.0];
     }
-    return _iDEALStatusTitleFont;
+    return _judoNavigationButtonFont;
 }
 
-- (UIColor *)iDEALStatusSubtitleColor {
-    if (_iDEALStatusSubtitleColor) {
-        return _iDEALStatusSubtitleColor;
+- (UIColor *)judoNavigationBarTitleColor {
+    if (!_judoNavigationBarTitleColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
-    return [self.tintColor isDarkColor] ? [UIColor grayColor] : [UIColor whiteColor];
+    return _judoNavigationBarTitleColor;
 }
 
-- (UIFont *)iDEALStatusSubtitleFont {
-    if (!_iDEALStatusSubtitleFont) {
-        _iDEALStatusSubtitleFont = [UIFont boldSystemFontOfSize:18.0];
+- (UIFont *)judoNavigationBarTitleFont {
+    if (!_judoNavigationBarTitleFont) {
+        _judoNavigationBarTitleFont = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
     }
-    return _iDEALStatusSubtitleFont;
+    return _judoNavigationBarTitleFont;
 }
 
-- (NSString *)judoIDEALRetryButtonTitle {
-    if (!_judoIDEALRetryButtonTitle) {
-        _judoIDEALRetryButtonTitle = @"retry".localized;
+- (UIColor *)judoNavigationBarColor {
+    if (!_judoNavigationBarColor) {
+        _judoNavigationBarColor = UINavigationBar.appearance.barTintColor;
     }
-    return _judoIDEALRetryButtonTitle;
+    return _judoNavigationBarColor;
 }
 
-- (NSString *)judoIDEALCloseButtonTitle {
-    if (!_judoIDEALCloseButtonTitle) {
-        _judoIDEALCloseButtonTitle = @"close".localized;
+- (UIColor *)judoBackgroundColor {
+    if (!_judoBackgroundColor) {
+        _judoBackgroundColor = [self.tintColor isDarkColor] ? UIColor.zircon : UIColor.zircon.inverseColor;
     }
-    return _judoIDEALCloseButtonTitle;
+    return _judoBackgroundColor;
+}
+
+- (UIColor *)judoPlaceholderColor {
+    if (!_judoPlaceholderColor) {
+        return [self.tintColor isDarkColor] ? UIColor.magnesium : UIColor.magnesium.inverseColor;
+    }
+    return _judoPlaceholderColor;
+}
+
+- (UIFont *)judoPlaceholderFont {
+    if (!_judoPlaceholderFont) {
+        return [UIFont systemFontOfSize:16.0];
+    }
+    return _judoPlaceholderFont;
+}
+
+- (UIColor *)judoFloatingLabelColor {
+    if (!_judoFloatingLabelColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+    }
+    return _judoFloatingLabelColor;
+}
+
+- (UIFont *)judoFloatingLabelFont {
+    if (_judoFloatingLabelFont) {
+        return [UIFont systemFontOfSize:10.0 weight:UIFontWeightSemibold];
+    }
+    return _judoFloatingLabelFont;
+}
+
+- (UIColor *)judoTextFieldColor {
+    if (!_judoTextFieldColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+    }
+    return _judoTextFieldColor;
+}
+
+- (UIFont *)judoTextFieldFont {
+    if (!_judoTextFieldFont) {
+        return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+    }
+    return _judoTextFieldFont;
+}
+
+- (UIColor *)judoButtonBackgroundColor {
+    if (!_judoButtonBackgroundColor) {
+        _judoButtonBackgroundColor = self.tintColor;
+    }
+    return _judoButtonBackgroundColor;
+}
+
+- (UIColor *)judoButtonTitleColor {
+    if (!_judoButtonTitleColor) {
+        return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
+    }
+    return _judoButtonTitleColor;
+}
+
+- (UIFont *)judoButtonTitleFont {
+    if (!_judoButtonTitleFont) {
+        return [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];
+    }
+    return _judoButtonTitleFont;
+}
+
+- (UIColor *)judoLabelColor {
+    if (!_judoLabelColor) {
+        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+    }
+    return _judoLabelColor;
+}
+
+- (UIFont *)judoLabelFont {
+    if (!_judoLabelFont) {
+        return [UIFont systemFontOfSize:16];
+    }
+    return _judoLabelFont;
+}
+
+- (UIActivityIndicatorViewStyle)judoActivityIndicatorType {
+    if (!_judoActivityIndicatorType) {
+        _judoActivityIndicatorType = UIActivityIndicatorViewStyleGray;
+    }
+    return _judoActivityIndicatorType;
+}
+
+- (UIColor *)judoActivityIndicatorColor {
+    if (_judoActivityIndicatorColor) {
+        _judoActivityIndicatorColor = [self.tintColor isDarkColor] ? self.tintColor : self.tintColor.inverseColor;
+    }
+    return _judoActivityIndicatorColor;
 }
 
 @end

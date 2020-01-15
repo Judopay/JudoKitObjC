@@ -1,5 +1,5 @@
 //
-//  UIViewController+JPTheme.h
+//  UILabel+JPTheme.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,10 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "JPTheme.h"
+#import "UILabel+JPTheme.h"
 
-@class JPTheme;
+@implementation UILabel (JPTheme)
 
-@interface UIViewController (JPTheme)
-- (void)applyTheme:(JPTheme *)theme;
+- (void)applyTheme:(JPTheme *)theme {
+    self.textColor = theme.judoLabelColor;
+    self.font = theme.judoLabelFont;
+}
+
 @end

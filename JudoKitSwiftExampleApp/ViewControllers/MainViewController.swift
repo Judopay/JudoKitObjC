@@ -214,13 +214,15 @@ class MainViewController: UITableViewController {
     }
 
     @objc func navigateToPaymentMethods() {
+        
         judoKit.invokePayment(judoId,
                               amount: testAmount,
                               consumerReference: self.consumerReference,
                               paymentMethods: .methodsAll,
                               applePayConfiguratation: testPaymentApplePayConfiguration,
-                              cardDetails: nil) { [weak self] response, error in
-                                self?.transactionData = self?.handle(response, error: error)
+                              cardDetails: nil,
+                              redirectCompletion: nil) { [weak self] response, error in
+            self?.transactionData = self?.handle(response, error: error)
         }
     }
 

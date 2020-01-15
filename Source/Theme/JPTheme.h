@@ -103,23 +103,6 @@
  */
 @property (nonatomic, strong) NSString *_Nonnull authenticationTitle;
 
-#pragma mark - Navigation Bar
-
-/**
- * Title of the left navigation bar button
- */
-@property (nonatomic, strong) NSString *_Nonnull judoLeftBarButtonTitle;
-
-/**
- * Title of the right navigation bar button
- */
-@property (nonatomic, strong) NSString *_Nonnull judoRightBarButtonTitle;
-
-/**
- * Color of the navigation bar button
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoNavigationButtonColor;
-
 #pragma mark - Loading
 
 /**
@@ -194,19 +177,9 @@
 @property (nonatomic, strong) UIColor *_Nonnull judoTextColor;
 
 /**
- *  The default navigation bar title color
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoNavigationBarTitleColor;
-
-/**
  *  The color that is used for active input fields
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoInputFieldTextColor;
-
-/**
- *  The color that is used for the placeholders of the input fields
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoPlaceholderTextColor;
 
 /**
  *  The color that is used for the border color of the input fields
@@ -222,11 +195,6 @@
  *  The button color
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoButtonColor;
-
-/**
- *  The title color of the button
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoButtonTitleColor;
 
 /**
  *  The background color of the loadingView
@@ -247,21 +215,6 @@
  *  Input field background color
  */
 @property (nonatomic, strong) UIColor *_Nonnull judoInputFieldBackgroundColor;
-
-/**
- *  The color of the activity indicator spinner
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoActivityIndicatorColor;
-
-/**
- *  The navigation bar color
- */
-@property (nonatomic, strong) UIColor *_Nonnull judoNavigationBarColor;
-
-/**
- *  The type of the activity indicator spinner
- */
-@property (nonatomic, assign) UIActivityIndicatorViewStyle judoActivityIndicatorType;
 
 #pragma marks - Payment Methods
 
@@ -286,75 +239,110 @@
 @property (nonatomic, strong) UIFont *_Nonnull buttonFont;
 
 /**
- * The font to be used by text elements
- */
-@property (nonatomic, strong) UIFont *_Nonnull judoTextFont;
-
-/**
  * The border width of input fields
  */
 @property (nonatomic, assign) CGFloat judoInputFieldBorderWidth;
 
-#pragma mark - iDEAL Status view
+#pragma mark - New style parameters (applied for iDEAL only at the moment)
 
 /**
- *  the title displayed on the transaction status view indicating a successful iDEAL transaction;
+ * The tint color of the navigation bar buttons
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionSuccessTitle;
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationButtonColor;
 
 /**
- *  the title displayed on the transaction status view indicating a pending iDEAL transaction;
+ * The font of the navigation bar buttons
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingTitle;
+@property (nonatomic, strong) UIFont *_Nonnull judoNavigationButtonFont;
 
 /**
- *  the title displayed on the transaction status view indicating a delayed pending iDEAL transaction;
+ * The color of the navigation bar title
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionPendingDelayTitle;
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationBarTitleColor;
 
 /**
- *  the title displayed on the transaction status view indicating a timed out iDEAL transaction;
+ * The font of the navigation bar title
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionTimeoutTitle;
+@property (nonatomic, strong) UIFont *_Nonnull judoNavigationBarTitleFont;
 
 /**
- *  the title displayed on the transaction status view indicating a iDEAL transaction error;
+ * The color of the navigation bar
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionErrorTitle;
+@property (nonatomic, strong) UIColor *_Nonnull judoNavigationBarColor;
 
 /**
- *  the title displayed on the transaction status view indicating a failed iDEAL transaction;
+ * The boolean parameter that defines the navigation bar's translucency;
  */
-@property (nonatomic, strong) NSString *_Nonnull idealTransactionFailedTitle;
+@property (nonatomic, assign) BOOL isJudoNavigationBarTranslucent;
 
 /**
- *  the title of the Retry button present in the iDEAL flow
+ * The background color of the view
  */
-@property (nonatomic, strong) NSString *_Nonnull judoIDEALRetryButtonTitle;
+@property (nonatomic, strong) UIColor *_Nullable judoBackgroundColor;
 
 /**
- *  the title of the Close button present in the iDEAL flow
+ * The placeholder color of the input field
  */
-@property (nonatomic, strong) NSString *_Nonnull judoIDEALCloseButtonTitle;
+@property (nonatomic, strong) UIColor *_Nullable judoPlaceholderColor;
 
 /**
- *  The color of the iDEAL Transaction Status view title
+ * The placeholder font of the input field
  */
-@property (nonatomic, strong) UIColor *_Nullable iDEALStatusTitleColor;
+@property (nonatomic, strong) UIFont *_Nullable judoPlaceholderFont;
 
 /**
- *  The font of the iDEAL Transaction Status view title
+ * The floating label color of the input field
  */
-@property (nonatomic, strong) UIFont *_Nullable iDEALStatusTitleFont;
+@property (nonatomic, strong) UIColor *_Nullable judoFloatingLabelColor;
 
 /**
- *  The color of the iDEAL Transaction Status view subtitle
+ * The floating label font of the input field
  */
-@property (nonatomic, strong) UIColor *_Nullable iDEALStatusSubtitleColor;
+@property (nonatomic, strong) UIFont *_Nullable judoFloatingLabelFont;
 
 /**
- *  The font of the iDEAL Transaction Status view subtitle
+ * The input field's text color
  */
-@property (nonatomic, strong) UIFont *_Nullable iDEALStatusSubtitleFont;
+@property (nonatomic, strong) UIColor *_Nullable judoTextFieldColor;
+
+/**
+ * The input field's text font
+ */
+@property (nonatomic, strong) UIFont *_Nullable judoTextFieldFont;
+
+/**
+ * The background color of the button
+ */
+@property (nonatomic, strong) UIColor *_Nullable judoButtonBackgroundColor;
+
+/**
+ * The title color of the button
+ */
+@property (nonatomic, strong) UIColor *_Nullable judoButtonTitleColor;
+
+/**
+ * The title font of the button
+ */
+@property (nonatomic, strong) UIFont *_Nullable judoButtonTitleFont;
+
+/**
+ * The color of the label
+ */
+@property (nonatomic, strong) UIColor *_Nullable judoLabelColor;
+
+/**
+ * The font of the label
+ */
+@property (nonatomic, strong) UIFont *_Nullable judoLabelFont;
+
+/**
+ * The color of the activity indicator
+ */
+@property (nonatomic, strong) UIColor *_Nonnull judoActivityIndicatorColor;
+
+/**
+ * The style of the activity indicator
+ */
+@property (nonatomic, assign) UIActivityIndicatorViewStyle judoActivityIndicatorType;
 
 @end

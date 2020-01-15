@@ -1,5 +1,5 @@
 //
-//  UIViewController+JPTheme.h
+//  JPInputField+JPTheme.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,10 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <JudoKitObjC/JudoKitObjC.h>
 
 @class JPTheme;
 
-@interface UIViewController (JPTheme)
+@interface JPInputField (JPTheme)
 - (void)applyTheme:(JPTheme *)theme;
 @end

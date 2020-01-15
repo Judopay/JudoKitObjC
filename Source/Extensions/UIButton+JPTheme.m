@@ -1,5 +1,5 @@
 //
-//  UIViewController+JPTheme.h
+//  UIButton+JPTheme.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,10 +22,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "JPTheme.h"
+#import "UIButton+JPTheme.h"
+#import "UIColor+Judo.h"
 
-@class JPTheme;
+@implementation UIButton (JPTheme)
 
-@interface UIViewController (JPTheme)
-- (void)applyTheme:(JPTheme *)theme;
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.judoButtonTitleFont;
+    [self setTitleColor:theme.judoButtonTitleColor forState:UIControlStateNormal];
+    [self setBackgroundImage:theme.judoButtonBackgroundColor.asImage forState:UIControlStateNormal];
+}
+
 @end
