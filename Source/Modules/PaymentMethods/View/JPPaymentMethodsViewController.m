@@ -31,6 +31,7 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
+#import "Functions.h"
 
 @interface JPPaymentMethodsViewController ()
 
@@ -98,7 +99,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat yValue = -scrollView.contentOffset.y;
-    CGFloat height = MIN(MAX(yValue, 350), 400);
+    CGFloat height = MIN(MAX(yValue, 350 * getWidthAspectRatio()), 400 * getWidthAspectRatio());
     CGRect newFrame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     self.paymentMethodsView.headerView.frame = newFrame;
 }

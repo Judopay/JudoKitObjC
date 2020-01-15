@@ -24,5 +24,6 @@
 
 #import <Foundation/Foundation.h>
 
+double getWidthAspectRatio(void);
 NSString *getUserAgent(void);
 NSString *getIPAddress(void);

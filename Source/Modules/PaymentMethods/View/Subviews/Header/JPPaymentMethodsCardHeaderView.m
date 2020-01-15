@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsCardHeaderView.h"
 #import "JPCardView.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "Functions.h"
 
 @interface JPPaymentMethodsCardHeaderView ()
 @property (nonatomic, strong) JPCardView *cardView;
@@ -67,8 +68,8 @@
 - (void)setupViews {
     self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.cardView];
-    [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0].active = YES;
-    [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-30.0].active = YES;
+    [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0 * getWidthAspectRatio()].active = YES;
+    [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-30.0 * getWidthAspectRatio()].active = YES;
     [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
     [self.cardView.widthAnchor constraintEqualToAnchor:self.cardView.heightAnchor multiplier:1.715].active = YES;
 }
