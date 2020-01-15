@@ -49,8 +49,6 @@
     self.view = self.paymentMethodsView;
     [self configureView];
     [self.presenter viewModelNeedsUpdate];
-    
-    NSLog(@"%f, %f",UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
 }
 
 #pragma mark - Layout Setup
