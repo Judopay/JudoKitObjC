@@ -34,7 +34,7 @@
         // defaults
         _buttonCornerRadius = 4;
     }
-    
+
     return self;
 }
 
@@ -75,20 +75,6 @@
         _backButtonTitle = @"back".localized;
     }
     return _backButtonTitle;
-}
-
-- (NSString *)judoLeftBarButtonTitle {
-    if (!_judoLeftBarButtonTitle) {
-        _judoLeftBarButtonTitle = @"back".localized;
-    }
-    return _judoLeftBarButtonTitle;
-}
-
-- (NSString *)judoRightBarButtonTitle {
-    if (!_judoRightBarButtonTitle) {
-        _judoRightBarButtonTitle = @"pay".localized;
-    }
-    return _judoRightBarButtonTitle;
 }
 
 - (NSString *)paymentTitle {
