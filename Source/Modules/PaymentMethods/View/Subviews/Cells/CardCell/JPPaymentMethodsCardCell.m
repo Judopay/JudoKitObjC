@@ -96,6 +96,7 @@
 #pragma mark - Layout Setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:3.0];
 

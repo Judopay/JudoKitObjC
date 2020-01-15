@@ -65,6 +65,7 @@
 #pragma mark - Layout Setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.cardView];
     [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor constant:100.0].active = YES;
     [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-30.0].active = YES;

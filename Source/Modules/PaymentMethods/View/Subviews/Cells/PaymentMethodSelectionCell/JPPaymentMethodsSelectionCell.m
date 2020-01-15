@@ -42,6 +42,7 @@
 
 - (void)setupViews {
     //TODO: Implement custom Payment Method Selection view;
+    self.backgroundColor = UIColor.clearColor;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self addSubview:self.containerView];
 }

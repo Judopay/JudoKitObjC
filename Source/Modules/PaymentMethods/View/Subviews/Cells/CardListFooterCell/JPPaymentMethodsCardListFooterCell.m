@@ -98,6 +98,7 @@
 #pragma mark - Layout Setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.addCardButton];
     [self.addCardButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
     [self.addCardButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;

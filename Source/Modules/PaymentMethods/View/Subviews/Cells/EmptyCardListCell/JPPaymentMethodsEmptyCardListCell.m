@@ -75,6 +75,7 @@
 #pragma mark - Layout setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     self.stackView = [UIStackView verticalStackViewWithSpacing:16.0f];
     self.stackView.alignment = UIStackViewAlignmentCenter;
     [self.stackView addArrangedSubview:self.titleLabel];
