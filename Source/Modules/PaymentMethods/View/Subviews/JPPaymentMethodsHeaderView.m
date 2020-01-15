@@ -198,6 +198,7 @@
         _amountValueLabel = [UILabel new];
         _amountValueLabel.numberOfLines = 0;
         _amountValueLabel.font = UIFont.largeTitle;
+        _amountValueLabel.textColor = UIColor.jpTextColor;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountValueLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -210,6 +211,7 @@
         _amountPrefixLabel.numberOfLines = 0;
         _amountPrefixLabel.text = @"you_will_pay".localized;
         _amountPrefixLabel.font = UIFont.body;
+        _amountPrefixLabel.textColor = UIColor.jpTextColor;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
     }

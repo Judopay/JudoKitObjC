@@ -79,6 +79,7 @@
 #pragma mark - Layout Setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.titleLabel];
     [self addSubview:self.actionButton];
 

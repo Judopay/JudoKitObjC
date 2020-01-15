@@ -27,6 +27,7 @@
 #import "NSString+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIStackView+Additions.h"
+#import "UIColor+Judo.h"
 
 @interface JPPaymentMethodsEmptyHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -61,6 +62,7 @@
 #pragma mark - Layout Setup
 
 - (void)setupViews {
+    self.backgroundColor = UIColor.clearColor;
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:4.0];
 
     [stackView addArrangedSubview:self.titleLabel];
@@ -79,6 +81,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.font = UIFont.title;
+        _titleLabel.textColor = UIColor.jpTextColor;
         _titleLabel.text = @"choose_payment_method".localized;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -90,6 +93,7 @@
         _textLabel = [UILabel new];
         _textLabel.numberOfLines = 0;
         _textLabel.font = UIFont.body;
+        _textLabel.textColor = UIColor.jpTextColor;
         _textLabel.text = @"no_cards_added".localized;
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
