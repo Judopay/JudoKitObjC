@@ -30,13 +30,6 @@
 
 #pragma mark - JPPaymentMethodsModel
 
-typedef NS_ENUM(NSInteger, AnimationType) {
-    AnimationTypeSetup,
-    AnimationTypeLeftToRight,
-    AnimationTypeRightToLeft,
-    AnimationTypeBottomToTop
-};
-
 @interface JPPaymentMethodsModel : NSObject
 /**
  * A string that identifies the UITableViewCell that this view model applies to.
@@ -178,12 +171,6 @@ typedef NS_ENUM(NSInteger, AnimationType) {
  * The currently selected card model
  */
 @property (nonatomic, strong) JPPaymentMethodsCardModel *_Nullable cardModel;
-
-/**
-* Card appearance animation type
-*/
-
-@property (nonatomic, assign) AnimationType animationType;
 
 @end
 

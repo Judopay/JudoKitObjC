@@ -20,6 +20,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera permissions for the scan card functionality</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This sample app would like to know your location.</string>
 	<key>UILaunchStoryboardName</key>

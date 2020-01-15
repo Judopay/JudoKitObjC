@@ -44,6 +44,7 @@
 @property (nonatomic, strong) UIImageView *lockImageView;
 @property (nonatomic, strong) UILabel *securityMessageLabel;
 @property (nonatomic, strong) NSLayoutConstraint *sliderHeightConstraint;
+@property (nonatomic, copy) void (^onScanCardButtonTapHandler)(void);
 
 @end
 

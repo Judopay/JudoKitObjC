@@ -38,10 +38,94 @@ class JudoKitAddCardTests: XCTestCase {
         
         XCTAssertTrue(app.textFields["Card Number"].exists)
         XCTAssertTrue(app.textFields["Cardholder Name"].exists)
-        XCTAssertTrue(app.textFields["Expiry Date"].exists)
+        XCTAssertTrue(app.textFields["MM/YY"].exists)
         XCTAssertTrue(app.textFields["CVV"].exists)
         XCTAssertTrue(app.buttons["ADD CARD"].exists)
         XCTAssertTrue(app.buttons["Cancel"].exists)
+        XCTAssertFalse(app.buttons["ADD CARD"].isEnabled)
+    }
+    
+    func test_OnInvalidCardDetails_DisableAddCardButton() {
+        let app = XCUIApplication()
+        app.tables.staticTexts["Save card"].tap()
+        
+        app.textFields["Card Number"].tap()
+        app.textFields["Card Number"].typeText("4141 4141 4141 4141")
+        
+        app.textFields["Cardholder Name"].tap()
+        app.textFields["Cardholder Name"].typeText("Hello")
+        
+        app.textFields["MM/YY"].tap()
+        app.textFields["MM/YY"].typeText("11/19")
+        
+        app.textFields["CVV"].tap()
+        app.textFields["CVV"].typeText("123")
+        
+        XCTAssertFalse(app.buttons["ADD CARD"].isEnabled)
+    }
+    
+    func test_OnValidCardDetails_EnableAddCardButton() {
+        let app = XCUIApplication()
+        app.tables.staticTexts["Save card"].tap()
+        
+        app.textFields["Card Number"].tap()
+        app.textFields["Card Number"].typeText("4111 1111 1111 1111")
+        
+        app.textFields["Cardholder Name"].tap()
+        app.textFields["Cardholder Name"].typeText("Hello")
+        
+        app.textFields["MM/YY"].tap()
+        app.textFields["MM/YY"].typeText("12/20")
+        
+        app.textFields["CVV"].tap()
+        app.textFields["CVV"].typeText("341")
+        
+        XCTAssertTrue(app.buttons["ADD CARD"].isEnabled)
+    }
+    
+    func test_OnCancelButtonTap_DismissAddCardView() {
+        let app = XCUIApplication()
+        app.tables.staticTexts["Save card"].tap()
+        app.buttons["Cancel"].tap()
+        
+        XCTAssertFalse(app.textFields["Card Number"].exists)
+        XCTAssertFalse(app.textFields["Cardholder Name"].exists)
+        XCTAssertFalse(app.textFields["MM/YY"].exists)
+        XCTAssertFalse(app.textFields["CVV"].exists)
+        XCTAssertFalse(app.buttons["ADD CARD"].exists)
+        XCTAssertFalse(app.buttons["Cancel"].exists)
+    }
+    
+    func test_OnAVSEnabled_DisplayCountryAndPostcode() {
+        let app = XCUIApplication()
+        app.buttons["Settings"].tap()
+        app.switches.firstMatch.tap()
+        app.buttons["Close"].tap()
+        app.tables.staticTexts["Save card"].tap()
+        
+        XCTAssertTrue(app.textFields["Country"].exists)
+        XCTAssertTrue(app.textFields["Postcode"].exists)
+    }
+    
+    func test_OnAVSEnabled_ValidateCountryAndPostcode() {
+        let app = XCUIApplication()
+        app.buttons["Settings"].tap()
+        app.switches.firstMatch.tap()
+        app.buttons["Close"].tap()
+        app.tables.staticTexts["Save card"].tap()
+        
+        app.textFields["Card Number"].tap()
+        app.textFields["Card Number"].typeText("4111 1111 1111 1111")
+        
+        app.textFields["Cardholder Name"].tap()
+        app.textFields["Cardholder Name"].typeText("Hello")
+        
+        app.textFields["MM/YY"].tap()
+        app.textFields["MM/YY"].typeText("12/20")
+        
+        app.textFields["CVV"].tap()
+        app.textFields["CVV"].typeText("341")
+        
         XCTAssertFalse(app.buttons["ADD CARD"].isEnabled)
     }
     

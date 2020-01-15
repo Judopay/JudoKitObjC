@@ -76,7 +76,7 @@
     NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
     NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
 
-    self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
+    self.cardNumberLabel.text = [NSString stringWithFormat:@"%@%@",
                                                            stylizedPattern,
                                                            viewModel.cardModel.cardNumberLastFour];
 

@@ -1,8 +1,8 @@
 //
-//  AppDelegate.m
-//  JudoKitObjCExample
+//  JPScanCardViewController.h
+//  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,25 +22,36 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "AppDelegate.h"
-#import "JPCardStorage.h"
+#import <PayCardsRecognizer/PayCardsRecognizer.h>
+#import <UIKit/UIKit.h>
 
-@import JudoKitObjC;
+@interface JPScanCardViewController : UIViewController
 
-@interface AppDelegate ()
+- (instancetype)initWithRecognizerDelegate:(id<PayCardsRecognizerPlatformDelegate>)delegate;
 
-@end
+/**
+ * The container view which hosts the scan card camera
+ */
+@property (nonatomic, strong) UIView *containerView;
 
-@implementation AppDelegate
+/**
+ * The stack view containing the scan card labels displayed on top of the camera view
+ */
+@property (nonatomic, strong) UIStackView *labelStackView;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    NSDictionary *environment = NSProcessInfo.processInfo.environment;
-    if ([environment[@"UITEST"] isEqualToString:@"1"]) {
-        [JPCardStorage.sharedInstance deleteCardDetails];
-    }
-    
-    return YES;
-}
+/**
+ * The back button displayed on top of the camera view that cancels the scanning process
+ */
+@property (nonatomic, strong) UIButton *backButton;
+
+/**
+ * The title displayed on top of the scan card camera view
+ */
+@property (nonatomic, strong) UILabel *titleLabel;
+
+/**
+ * The subtitle displayed on top of the scan card camera view
+ */
+@property (nonatomic, strong) UILabel *subtitleLabel;
 
 @end
