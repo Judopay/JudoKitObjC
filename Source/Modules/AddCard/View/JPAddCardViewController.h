@@ -57,6 +57,11 @@
  */
 - (void)didFinishAddingCard;
 
+/**
+ * A method that triggers an UIAlertViewController with the option of navigating to Settings
+ */
+- (void)displayCameraPermissionsAlert;
+
 @end
 
 #pragma mark - JPAddCardViewController

@@ -38,6 +38,13 @@
 - (BOOL)isAVSEnabled;
 
 /**
+ * A method that handles camera permissions requests
+ *
+ * @param completion - the completion handler that returns a boolean value describing the permission result
+ */
+- (void)handleCameraPermissionsWithCompletion:(void (^)(BOOL))completion;
+
+/**
  *  A method for executing the save / register card transaction
  *
  *  @param card - an instance of JPCard that contains the card details

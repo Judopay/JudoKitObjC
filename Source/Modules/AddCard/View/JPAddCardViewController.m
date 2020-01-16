@@ -30,6 +30,7 @@
 #import "JPCardNumberField.h"
 #import "LoadingButton.h"
 #import "UIViewController+Additions.h"
+#import "NSString+Additions.h"
 
 @interface JPAddCardViewController ()
 @property (nonatomic, strong) JPAddCardView *addCardView;
@@ -100,6 +101,29 @@
 
 - (void)didFinishAddingCard {
     [self.delegate didFinishAddingCard];
+}
+
+- (void)displayCameraPermissionsAlert {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"scan_card_no_permission_title".localized
+                                                                             message:@"scan_card_no_permission_message".localized
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"scan_card_confirm".localized
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:nil];
+    
+    UIAlertAction *goToSettingsAction = [UIAlertAction actionWithTitle:@"scan_card_go_to_settings".localized
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * _Nonnull action) {
+        [UIApplication.sharedApplication openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]
+                                         options:@{}
+                               completionHandler:nil];
+    }];
+    
+    [alertController addAction:confirmAction];
+    [alertController addAction:goToSettingsAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Layout setup

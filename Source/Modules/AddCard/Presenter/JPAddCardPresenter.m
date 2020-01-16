@@ -119,7 +119,20 @@
 }
 
 - (void)handleScanCardButtonTap {
-    [self.router navigateToScanCamera];
+    [self.interactor handleCameraPermissionsWithCompletion:^(BOOL isPermissionGranted) {
+        
+        if (isPermissionGranted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [self.router navigateToScanCamera];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [self.view displayCameraPermissionsAlert];
+            });
+        }
+    }];
+    
+    //TODO: Handle device
 }
 
 - (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {

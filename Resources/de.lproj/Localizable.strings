@@ -43,6 +43,10 @@
 //Scan Card
 "scan_card_message_title" = "Position card in this frame";
 "scan_card_message_subtitle" = "We will automatically scan it";
+"scan_card_no_permission_title" = "Camera permissions not granted";
+"scan_card_no_permission_message" = "Permissions must be granted in order to use the scan card functionality. Please go to Settings and toggle Camera on";
+"scan_card_confirm" = "Got it";
+"scan_card_go_to_settings" = "Go to Settings";
 
 //Payment Method Screen
 "card_subtitle" = "%@ Ending %@";
