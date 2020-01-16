@@ -972,8 +972,8 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
     [_threeDSWebView evaluateJavaScript:scriptContent completionHandler:^(id response, NSError * error) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSString *stuff = @"meta.content = 'width=' + document.documentElement.scrollWidth + ', maximum-scale=1.0'";
-            [self->_threeDSWebView evaluateJavaScript:stuff completionHandler:nil];
+            NSString *metaSizingContent= @"meta.content = 'width=' + document.documentElement.scrollWidth + ', maximum-scale=1.0'";
+            [self->_threeDSWebView evaluateJavaScript:metaSizingContent completionHandler:nil];
         });
     }];
     
