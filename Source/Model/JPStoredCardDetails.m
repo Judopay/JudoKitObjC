@@ -28,11 +28,13 @@
 
 - (instancetype)initWithLastFour:(NSString *)lastFour
                       expiryDate:(NSString *)expiryDate
-                     cardNetwork:(CardNetwork)cardNetwork {
+                     cardNetwork:(CardNetwork)cardNetwork
+                       cardToken:(NSString *)cardToken {
     if (self = [super init]) {
         self.cardLastFour = lastFour;
         self.expiryDate = expiryDate;
         self.cardNetwork = cardNetwork;
+        self.cardToken = cardToken;
     }
     return self;
 }
@@ -41,12 +43,14 @@
     NSString *cardLastFour = dictionary[@"cardLastFour"];
     NSString *expiryDate = dictionary[@"expiryDate"];
     NSNumber *cardNetwork = dictionary[@"cardNetwork"];
+    NSString *cardToken = dictionary[@"cardToken"];
     NSNumber *isDefault = dictionary[@"isDefault"];
     NSNumber *isSelected = dictionary[@"isSelected"];
 
     JPStoredCardDetails *storedCardDetails = [self initWithLastFour:cardLastFour
                                                          expiryDate:expiryDate
-                                                        cardNetwork:cardNetwork.intValue];
+                                                        cardNetwork:cardNetwork.intValue
+                                                          cardToken:cardToken];
 
     storedCardDetails.isDefault = isDefault.boolValue;
     storedCardDetails.isSelected = isSelected.boolValue;
@@ -56,10 +60,13 @@
 
 + (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
                              expiryDate:(NSString *)expiryDate
-                            cardNetwork:(CardNetwork)cardNetwork {
+                            cardNetwork:(CardNetwork)cardNetwork
+                              cardToken:(NSString *)cardToken {
+
     return [[JPStoredCardDetails new] initWithLastFour:lastFour
                                             expiryDate:expiryDate
-                                           cardNetwork:cardNetwork];
+                                           cardNetwork:cardNetwork
+                                             cardToken:cardToken];
 }
 
 + (instancetype)cardDetailsFromDictionary:(NSDictionary *)dictionary {
@@ -71,6 +78,7 @@
         @"cardLastFour" : self.cardLastFour,
         @"expiryDate" : self.expiryDate,
         @"cardNetwork" : @(self.cardNetwork),
+        @"cardToken" : self.cardToken,
         @"isDefault" : @(self.isDefault),
         @"isSelected" : @(self.isSelected)
     };

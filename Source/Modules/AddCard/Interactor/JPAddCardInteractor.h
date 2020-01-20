@@ -119,9 +119,11 @@
  *  Method that stores card details in the keychain
  *
  *  @param viewModel - the card details view model
+ *  @param token - the token associated with the card
  *
  */
-- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel;
+- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel
+                           andToken:(NSString *)token;
 
 @end
 

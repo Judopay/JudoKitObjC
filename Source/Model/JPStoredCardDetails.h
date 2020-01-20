@@ -43,6 +43,11 @@
 @property (nonatomic, assign) CardNetwork cardNetwork;
 
 /**
+ * The token associated with the card
+ */
+@property (nonatomic, strong) NSString *cardToken;
+
+/**
  * A boolean property describing if the card is set as the default card
  */
 @property (nonatomic, assign) BOOL isDefault;
@@ -58,12 +63,14 @@
  * @param lastFour - the last four digits of the credit card
  * @param expiryDate - the card's expiration date
  * @param cardNetwork - the card's network
+ * @param cardToken - the card's token
  *
  * @return an instance of JPStoredCardDetails
  */
 - (instancetype)initWithLastFour:(NSString *)lastFour
                       expiryDate:(NSString *)expiryDate
-                     cardNetwork:(CardNetwork)cardNetwork;
+                     cardNetwork:(CardNetwork)cardNetwork
+                       cardToken:(NSString *)cardToken;
 
 /**
  * A designated initializer that creates a new instance based on a passed NSDictionary
@@ -80,12 +87,14 @@
  * @param lastFour - the last four digits of the credit card
  * @param expiryDate - the card's expiration date
  * @param cardNetwork - the card's network
+ * @param cardToken - the card's token
  *
  * @return an instance of JPStoredCardDetails
  */
 + (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
                              expiryDate:(NSString *)expiryDate
-                            cardNetwork:(CardNetwork)cardNetwork;
+                            cardNetwork:(CardNetwork)cardNetwork
+                              cardToken:(NSString *)cardToken;
 
 /**
  * A designated initializer that creates a new instance based on a passed NSDictionary

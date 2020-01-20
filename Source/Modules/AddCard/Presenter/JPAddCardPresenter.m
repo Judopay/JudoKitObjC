@@ -30,6 +30,8 @@
 #import "JPAddress.h"
 #import "JPCard.h"
 #import "JPCountry.h"
+#import "JPResponse.h"
+#import "JPTransactionData.h"
 #import "NSString+Additions.h"
 
 @interface JPAddCardPresenterImpl ()
@@ -112,7 +114,10 @@
                    return;
                }
 
-               [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel];
+               NSString *token = response.items[0].cardDetails.cardToken;
+
+               [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel
+                                                       andToken:token];
                [weakSelf.router dismissViewController];
                [weakSelf.view didFinishAddingCard];
            }];

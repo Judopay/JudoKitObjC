@@ -80,7 +80,7 @@
     [self.transactionService addCard:card completionHandler:completionHandler];
 }
 
-- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel {
+- (void)updateKeychainWithCardModel:(JPAddCardViewModel *)viewModel andToken:(NSString *)token {
 
     CardNetwork cardNetwork = viewModel.cardNumberViewModel.cardNetwork;
     NSString *cardNumberString = viewModel.cardNumberViewModel.text;
@@ -90,7 +90,8 @@
 
     JPStoredCardDetails *storedCardDetails = [JPStoredCardDetails cardDetailsWithLastFour:lastFour
                                                                                expiryDate:expiryDate
-                                                                              cardNetwork:cardNetwork];
+                                                                              cardNetwork:cardNetwork
+                                                                                cardToken:token];
 
     [JPCardStorage.sharedInstance addCardDetails:storedCardDetails];
 }
