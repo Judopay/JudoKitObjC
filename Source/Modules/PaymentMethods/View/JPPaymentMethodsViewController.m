@@ -32,6 +32,7 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
+#import "JPAddCardButton.h"
 
 @interface JPPaymentMethodsViewController ()
 
@@ -51,6 +52,16 @@
     [self.presenter viewModelNeedsUpdate];
 }
 
+#pragma mark - User Actions
+
+- (void)onBackButtonTap {
+    [self.presenter handleBackButtonTap];
+}
+
+- (void)onPayButtonTap {
+    [self.presenter handlePayButtonTap];
+}
+
 #pragma mark - Layout Setup
 
 - (void)configureView {
@@ -68,13 +79,13 @@
     [backBarButton.customView.heightAnchor constraintEqualToConstant:22.0].active = YES;
     [backBarButton.customView.widthAnchor constraintEqualToConstant:22.0].active = YES;
     self.navigationItem.leftBarButtonItem = backBarButton;
+    
+    [self.paymentMethodsView.headerView.payButton addTarget:self
+                                                     action:@selector(onPayButtonTap)
+                                           forControlEvents:UIControlEventTouchUpInside];
 
     self.paymentMethodsView.tableView.delegate = self;
     self.paymentMethodsView.tableView.dataSource = self;
-}
-
-- (void)onBackButtonTap {
-    [self.presenter handleBackButtonTap];
 }
 
 #pragma mark - Protocol Conformance

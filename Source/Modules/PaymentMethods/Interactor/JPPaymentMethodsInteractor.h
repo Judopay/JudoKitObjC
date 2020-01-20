@@ -23,8 +23,9 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPSession.h"
 
-@class JPStoredCardDetails, JPTheme, JPAmount;
+@class JPStoredCardDetails, JPTheme, JPAmount, JPTransaction;
 
 @protocol JPPaymentMethodsInteractor
 
@@ -50,6 +51,12 @@
  */
 - (JPAmount *)getAmount;
 
+/**
+ * Sends a payment transaction based on a stored card token
+ */
+- (void)paymentTransactionWithToken:(NSString *)token
+                      andCompletion:(JudoCompletionBlock)completion;
+
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>
@@ -57,11 +64,16 @@
 /**
  * A designated initializer that sets up the JPTheme object needed for view customization
  *
+ * @param transaction - an instance describing the JPTransaction details
+ * @param consumerReference - the consumer reference needed for the transaction
  * @param theme - an instance of JPTheme that is used to configure the payment methods flow
  * @param amount - the amount of the transaction
  *
  * @returns a configured instance of JPPaymentMethodsInteractor
  */
-- (instancetype)initWithTheme:(JPTheme *)theme andAmount:(JPAmount *)amount;
+- (instancetype)initWithTransaction:(JPTransaction *)transaction
+                  consumerReference:(NSString *)consumerReference
+                              theme:(JPTheme *)theme
+                          andAmount:(JPAmount *)amount;
 
 @end

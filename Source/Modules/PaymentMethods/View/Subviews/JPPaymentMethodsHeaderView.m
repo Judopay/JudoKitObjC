@@ -45,7 +45,6 @@
 @property (nonatomic, strong) UILabel *amountPrefixLabel;
 @property (nonatomic, strong) UILabel *amountValueLabel;
 
-@property (nonatomic, strong) JPAddCardButton *payButton;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @property (nonatomic, strong) UIStackView *amountStackView;

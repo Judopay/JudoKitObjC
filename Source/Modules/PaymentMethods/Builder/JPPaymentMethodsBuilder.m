@@ -45,21 +45,30 @@
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
-    JPPaymentMethodsInteractorImpl *interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTheme:session.theme
-                                                                                             andAmount:amount];
-
+    
     JPReference *reference = [JPReference consumerReference:consumerReference];
 
     JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard
                                                              judoId:judoId
                                                              amount:amount
                                                           reference:reference];
-
+    
     JPPaymentMethodsRouterImpl *router;
     router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction
                                                transitioningDelegate:transitioningDelegate
                                                                theme:session.theme
                                                           completion:completion];
+    
+    JPTransaction *paymentTransaction = [session transactionForType:TransactionTypePayment
+                                                             judoId:judoId
+                                                             amount:amount
+                                                          reference:reference];
+    
+    JPPaymentMethodsInteractorImpl *interactor;
+    interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:paymentTransaction
+                                                           consumerReference:consumerReference
+                                                                       theme:session.theme
+                                                                   andAmount:amount];
 
     presenter.view = viewController;
     presenter.interactor = interactor;

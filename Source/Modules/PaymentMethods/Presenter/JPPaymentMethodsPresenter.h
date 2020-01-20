@@ -45,6 +45,11 @@
  */
 - (void)handleBackButtonTap;
 
+/**
+ * A method that is called when the Pay button is tapped. It handles the payment / pre-auth transaction.
+ */
+- (void)handlePayButtonTap;
+
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

@@ -24,9 +24,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPPaymentMethodsHeaderModel;
+@class JPPaymentMethodsHeaderModel, JPAddCardButton;
 
 @interface JPPaymentMethodsHeaderView : UIView
+
+/**
+ * The Pay button that triggers the payment flow
+ */
+@property (nonatomic, strong) JPAddCardButton *payButton;
 
 /**
  * A method that configures the header of the payment method screen based on a view model
