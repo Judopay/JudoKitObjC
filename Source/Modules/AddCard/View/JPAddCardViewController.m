@@ -103,14 +103,22 @@
     [self.delegate didFinishAddingCard];
 }
 
-- (void)displayCameraPermissionsAlert {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"scan_card_no_permission_title".localized
-                                                                             message:@"scan_card_no_permission_message".localized
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
+- (UIAlertController *)alertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:title
+                                                                        message:message
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"scan_card_confirm".localized
                                                             style:UIAlertActionStyleDefault
                                                           handler:nil];
+
+    [controller addAction:confirmAction];
+    return controller;
+}
+
+- (void)displayCameraPermissionsAlert {
+    UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_no_permission_title".localized
+                                                        andMessage:@"scan_card_no_permission_message".localized];
 
     UIAlertAction *goToSettingsAction = [UIAlertAction actionWithTitle:@"scan_card_go_to_settings".localized
                                                                  style:UIAlertActionStyleDefault
@@ -120,36 +128,22 @@
                                                                                           completionHandler:nil];
                                                                }];
 
-    [alertController addAction:confirmAction];
-    [alertController addAction:goToSettingsAction];
-
-    [self presentViewController:alertController animated:YES completion:nil];
+    [controller addAction:goToSettingsAction];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)displayCameraRestrictionAlert {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"scan_card_restricted_title".localized
-                                                                             message:@"scan_card_restricted_message".localized
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_restricted_title".localized
+                                                        andMessage:@"scan_card_restricted_message".localized];
 
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"scan_card_confirm".localized
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:nil];
-
-    [alertController addAction:confirmAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)displayCameraSimulatorAlert {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"scan_card_simulator_title".localized
-                                                                             message:nil
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_simulator_title".localized
+                                                        andMessage:nil];
 
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"scan_card_confirm".localized
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:nil];
-
-    [alertController addAction:confirmAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - Layout setup
