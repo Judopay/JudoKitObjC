@@ -83,11 +83,13 @@
     [self.containerView addSubview:self.labelStackView];
     [self.containerView addSubview:self.backButton];
 
-    [NSLayoutConstraint activateConstraints: @[
-        [self.containerView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor constant:25],
+    [NSLayoutConstraint activateConstraints:@[
+        [self.containerView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor
+                                                     constant:25],
         [self.containerView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
         [self.containerView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-        [self.containerView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor constant:-25],
+        [self.containerView.bottomAnchor constraintEqualToAnchor:self.view.safeBottomAnchor
+                                                        constant:-25],
     ]];
 
     [NSLayoutConstraint activateConstraints:@[

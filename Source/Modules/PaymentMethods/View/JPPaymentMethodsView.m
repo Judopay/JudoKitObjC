@@ -23,12 +23,12 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsView.h"
+#import "Functions.h"
 #import "JPPaymentMethodsHeaderView.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIView+Additions.h"
 #import "UIView+SafeAnchors.h"
-#import "Functions.h"
 
 @implementation JPPaymentMethodsView
 

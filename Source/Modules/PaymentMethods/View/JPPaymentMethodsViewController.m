@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsViewController.h"
+#import "Functions.h"
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsHeaderView.h"
 #import "JPPaymentMethodsPresenter.h"
@@ -31,7 +32,6 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
-#import "Functions.h"
 
 @interface JPPaymentMethodsViewController ()
 

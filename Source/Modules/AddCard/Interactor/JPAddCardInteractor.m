@@ -34,8 +34,6 @@
 #import "JPTransactionService.h"
 #import "NSError+Judo.h"
 
-#import <AVFoundation/AVFoundation.h>
-
 @interface JPAddCardInteractorImpl ()
 @property (nonatomic, strong) JudoCompletionBlock completionHandler;
 @property (nonatomic, strong) JPCardValidationService *cardValidationService;
@@ -64,24 +62,16 @@
     return self.transactionService.avsEnabled;
 }
 
-- (void)handleCameraPermissionsWithCompletion:(void (^)(BOOL))completion {
+- (void)handleCameraPermissionsWithCompletion:(void (^)(AVAuthorizationStatus))completion {
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    
-    if (status == AVAuthorizationStatusDenied) {
-        completion(NO);
-        return;
-    }
-    
+
     if (status == AVAuthorizationStatusNotDetermined) {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo
                                  completionHandler:^(BOOL granted) {
-            completion(granted);
-            return;
-        }];
-    }
-    
-    if (status == AVAuthorizationStatusAuthorized) {
-        completion(YES);
+                                     completion(granted ? AVAuthorizationStatusAuthorized : AVAuthorizationStatusDenied);
+                                 }];
+    } else {
+        completion(status);
     }
 }
 

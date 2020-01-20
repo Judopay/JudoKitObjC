@@ -24,6 +24,8 @@
 
 #import "JPSession.h"
 #import "JPValidationResult.h"
+
+#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
 @class JPCard, JPCardValidationService, JPTransactionService, JPCountry, JPAddCardViewModel;
@@ -42,7 +44,7 @@
  *
  * @param completion - the completion handler that returns a boolean value describing the permission result
  */
-- (void)handleCameraPermissionsWithCompletion:(void (^)(BOOL))completion;
+- (void)handleCameraPermissionsWithCompletion:(void (^)(AVAuthorizationStatus))completion;
 
 /**
  *  A method for executing the save / register card transaction

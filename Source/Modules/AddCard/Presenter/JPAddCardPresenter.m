@@ -119,20 +119,26 @@
 }
 
 - (void)handleScanCardButtonTap {
-    [self.interactor handleCameraPermissionsWithCompletion:^(BOOL isPermissionGranted) {
-        
-        if (isPermissionGranted) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-               [self.router navigateToScanCamera];
-            });
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-               [self.view displayCameraPermissionsAlert];
-            });
-        }
+#if TARGET_OS_SIMULATOR
+    [self.view displayCameraSimulatorAlert];
+#else
+    [self.interactor handleCameraPermissionsWithCompletion:^(AVAuthorizationStatus authorizationStatus) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            switch (authorizationStatus) {
+                case AVAuthorizationStatusDenied:
+                    [self.view displayCameraPermissionsAlert];
+                    break;
+
+                case AVAuthorizationStatusAuthorized:
+                    [self.router navigateToScanCamera];
+                    break;
+
+                default:
+                    [self.view displayCameraRestrictionAlert];
+            }
+        });
     }];
-    
-    //TODO: Handle device
+#endif
 }
 
 - (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
