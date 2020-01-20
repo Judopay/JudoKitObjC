@@ -6,7 +6,6 @@ target 'JudoKitObjC' do
   use_frameworks!
 
   # Pods for JudoKitObjC
-  pod 'PayCardsRecognizer'
 
   target 'JudoKitObjCTests' do
     inherit! :search_paths
