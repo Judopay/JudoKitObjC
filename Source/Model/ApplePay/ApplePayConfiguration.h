@@ -29,6 +29,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class JPReference;
+
 /**
  * A configuration file responsible for setting all the necessary parameters
  * for a successful initialization of the PKPaymentAuthorizationViewController,
@@ -51,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * [REQUIRED] The payment reference number
  */
-@property (nonatomic, strong) NSString *_Nonnull reference;
+@property (nonatomic, strong) JPReference *_Nonnull reference;
 
 /**
  * [REQUIRED] The merchant identifier that is the one specified in the app's entitlements
@@ -127,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param paymentSummaryItems - An array of items that summarize the amount of the payment (total, shipping, tax, etc.)
  */
 - (instancetype)initWithJudoId:(NSString *)judoId
-                     reference:(NSString *)reference
+                     reference:(JPReference *)reference
                     merchantId:(NSString *)merchantId
                       currency:(NSString *)currency
                    countryCode:(NSString *)countryCode

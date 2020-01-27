@@ -114,7 +114,7 @@
                        ];
     
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
-                                                                               reference:[self getSampleConsumerReference]
+                                                                               reference:[[JPReference alloc] initWithConsumerReference:@"judoPay-sample-app-objc"]
                                                                               merchantId:merchantId
                                                                                 currency:self.currentCurrency
                                                                              countryCode:@"GB"
@@ -128,10 +128,6 @@
     configuration.returnedContactInfo = ReturnedInfoAll;
     
     return configuration;
-}
-
-- (NSString *) getSampleConsumerReference {
-    return @"judoPay-sample-app-objc";
 }
 
 @end

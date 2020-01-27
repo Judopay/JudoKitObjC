@@ -39,7 +39,7 @@ class ApplePayTests: JudoTestCase {
         ]
         
         configuration = ApplePayConfiguration(judoId: myJudoId,
-                                              reference: "consumer reference",
+                                              reference: JPReference(consumerReference: "consumer reference"),
                                               merchantId: "",
                                               currency: "GBP",
                                               countryCode: "GB",
@@ -140,24 +140,23 @@ class ApplePayTests: JudoTestCase {
     /**
      * GIVEN:  ApplePayConfiguration is initialized correctly
      *
-     *  THEN:  ApplePayManager should return a valid JPReference object when calling
-     *         its "jpReference" instance method
+     *  THEN:  ApplePayConfiguration should return a valid JPReference object when calling
+     *        its "reference" instance method
      */
     func test_OnValidConfiguration_ManagerGeneratesCorrectJPReference() {
-        XCTAssertEqual(manager.jpReference().consumerReference, "consumer reference",
+        XCTAssertEqual(configuration.reference.consumerReference, "consumer reference",
                        "JPReference's consumerReference must match the one specified")
     }
     
     /**
      * GIVEN:  ApplePayConfiguration is initialized incorrectly
      *
-     *  THEN:  ApplePayManager should return a JPReference object with empty consumerReference when
-     *         calling its "jpReference" instance method
+     *  THEN:  ApplePayConfiguration should return a JPReference object with empty consumerReference when
+     *        calling its "reference" instance method
      */
-    func test_OnInvalidConfiguration_ManagerGeneratesCorrectJPReference() {
+    func test_OnInvalidConfiguration_CorrectJPReference() {
         configuration = ApplePayConfiguration()
-        manager = ApplePayManager(configuration: configuration)
-        XCTAssertEqual(manager.jpReference().consumerReference, "",
+        XCTAssertEqual(configuration.reference.consumerReference, "",
                        "JPReference must have empty consumerReference on incorrect configuration")
     }
     
