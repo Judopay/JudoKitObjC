@@ -591,7 +591,13 @@
     NSError *error;
     
     [transaction setPkPayment:payment error:&error];
-
+    
+    if (error) {
+        self.completionBlock(nil, [NSError judoJSONSerializationFailedWithError:error]);
+        completion(PKPaymentAuthorizationStatusFailure);
+        return;
+    }
+    
     [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
         if (error || response.items.count == 0) {
             self.completionBlock(response, error);
@@ -614,20 +620,6 @@
 
 - (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (JPResponse *)mockJPResponse {
-
-    NSString *path = [[NSBundle bundleForClass:JudoKit.class] pathForResource:@"MockJPTransactionData" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *transactionDataDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                              options:kNilOptions
-                                                                                error:nil];
-
-    JPResponse *response = [JPResponse new];
-    [response appendItem:transactionDataDictionary];
-
-    return response;
 }
 
 @end
