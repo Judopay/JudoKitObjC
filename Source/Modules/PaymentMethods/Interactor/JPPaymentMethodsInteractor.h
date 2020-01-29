@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPSession.h"
 #import "JPReference.h"
+#import "JPSession.h"
 #import <Foundation/Foundation.h>
 
 @class JPStoredCardDetails, JPTheme, JPAmount, JPTransaction;

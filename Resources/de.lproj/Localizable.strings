@@ -139,6 +139,7 @@
 "error_timeout_description" = "Request did not complete in the specified time";
 "no_internet_error_description" = "Please check your internet connection and try again.";
 "no_internet_error_title" = "No internet connection!";
+"error_token_missing" = "The card token could not be retrieved from the response";
 
 //NSString+Card
 "check_card_number" = "Check card number";
