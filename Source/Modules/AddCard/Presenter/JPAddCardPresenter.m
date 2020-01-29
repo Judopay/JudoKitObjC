@@ -114,7 +114,7 @@
                    return;
                }
 
-               NSString *token = response.items[0].cardDetails.cardToken;
+               NSString *token = response.items.firstObject.cardDetails.cardToken;
 
                [weakSelf.interactor updateKeychainWithCardModel:weakSelf.addCardViewModel
                                                        andToken:token];
