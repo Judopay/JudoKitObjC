@@ -36,11 +36,42 @@
 
 @implementation JPPaymentMethodsBuilderImpl
 
+- (JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(NSString *)judoId
+                                                         session:(JudoKit *)session
+                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                          amount:(JPAmount *)amount
+                                               consumerReference:(NSString *)consumerReference
+                                               completionHandler:(JudoCompletionBlock)completion {
+    return [self buildModuleWithJudoID:judoId
+                               session:session
+                 transitioningDelegate:transitioningDelegate
+                                amount:amount
+                     consumerReference:consumerReference
+                       transactionType:TransactionTypePayment
+                     completionHandler:completion];
+}
+
+- (JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(NSString *)judoId
+                                                         session:(JudoKit *)session
+                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                          amount:(JPAmount *)amount
+                                               consumerReference:(NSString *)consumerReference
+                                               completionHandler:(JudoCompletionBlock)completion {
+    return [self buildModuleWithJudoID:judoId
+                               session:session
+                 transitioningDelegate:transitioningDelegate
+                                amount:amount
+                     consumerReference:consumerReference
+                       transactionType:TransactionTypePreAuth
+                     completionHandler:completion];
+}
+
 - (JPPaymentMethodsViewController *)buildModuleWithJudoID:(NSString *)judoId
                                                   session:(JudoKit *)session
                                     transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                    amount:(JPAmount *)amount
                                         consumerReference:(NSString *)consumerReference
+                                          transactionType:(TransactionType)transactionType
                                         completionHandler:(JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
@@ -59,13 +90,13 @@
                                                                theme:session.theme
                                                           completion:completion];
 
-    JPTransaction *paymentTransaction = [session transactionForType:TransactionTypePayment
-                                                             judoId:judoId
-                                                             amount:amount
-                                                          reference:reference];
+    JPTransaction *transaction = [session transactionForType:transactionType
+                                                      judoId:judoId
+                                                      amount:amount
+                                                   reference:reference];
 
     JPPaymentMethodsInteractorImpl *interactor;
-    interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:paymentTransaction
+    interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:transaction
                                                            consumerReference:consumerReference
                                                                        theme:session.theme
                                                                    andAmount:amount];
