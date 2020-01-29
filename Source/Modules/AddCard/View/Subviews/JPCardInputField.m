@@ -38,7 +38,7 @@
     UIFont *placeholderFont = (viewModel.errorText) ? UIFont.body : UIFont.headlineLight;
 
     [self placeholderWithText:viewModel.placeholder
-                        color:UIColor.jpSubtitleColor
+                        color:UIColor.jpDarkGrayColor
                       andFont:placeholderFont];
 
     if (viewModel.errorText) {

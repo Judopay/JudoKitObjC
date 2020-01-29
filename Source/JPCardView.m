@@ -132,7 +132,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.jpTextColor;
+        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -142,7 +142,7 @@
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _cardNumberLabel.font = UIFont.bodyBold;
-        _cardNumberLabel.textColor = UIColor.jpSubtitleColor;
+        _cardNumberLabel.textColor = UIColor.jpDarkGrayColor;
     }
     return _cardNumberLabel;
 }
@@ -153,7 +153,7 @@
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
         _expiryDateLabel.font = UIFont.bodyBold;
-        _expiryDateLabel.textColor = UIColor.jpSubtitleColor;
+        _expiryDateLabel.textColor = UIColor.jpDarkGrayColor;
     }
     return _expiryDateLabel;
 }

@@ -81,9 +81,9 @@
 #pragma mark - User Actions
 
 - (void)displayErrorWithText:(NSString *)text {
-    self.floatingTextField.textColor = UIColor.jpErrorColor;
+    self.floatingTextField.textColor = UIColor.jpRedColor;
     [self.floatingTextField displayFloatingLabelWithText:text
-                                                   color:UIColor.jpErrorColor];
+                                                   color:UIColor.jpRedColor];
 }
 
 - (void)clearError {
@@ -104,7 +104,7 @@
 - (void)setupViews {
 
     self.layer.cornerRadius = 6.0f;
-    self.backgroundColor = UIColor.jpTextFieldBackgroundColor;
+    self.backgroundColor = UIColor.jpLightGrayColor;
     self.translatesAutoresizingMaskIntoConstraints = NO;
 
     [self addSubview:self.stackView];
@@ -121,9 +121,9 @@
         _floatingTextField = [JPFloatingTextField new];
         _floatingTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _floatingTextField.font = UIFont.headlineLight;
-        _floatingTextField.textColor = UIColor.jpTextColor;
+        _floatingTextField.textColor = UIColor.jpBlackColor;
         [_floatingTextField placeholderWithText:@""
-                                          color:UIColor.jpPlaceholderColor
+                                          color:UIColor.jpGrayColor
                                         andFont:UIFont.headlineLight];
 
         [_floatingTextField addTarget:self

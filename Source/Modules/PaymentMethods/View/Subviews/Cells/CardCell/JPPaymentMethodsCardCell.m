@@ -143,7 +143,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.bodyBold;
-        _titleLabel.textColor = UIColor.jpTextColor;
+        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -153,7 +153,7 @@
         _subtitleLabel = [UILabel new];
         _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _subtitleLabel.font = UIFont.caption;
-        _subtitleLabel.textColor = UIColor.jpSubtitleColor;
+        _subtitleLabel.textColor = UIColor.jpDarkGrayColor;
     }
     return _subtitleLabel;
 }
