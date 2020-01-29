@@ -60,6 +60,8 @@
 }
 
 - (void)onPayButtonTap {
+    [self.paymentMethodsView.headerView.payButton startLoading];
+    self.paymentMethodsView.userInteractionEnabled = NO;
     [self.presenter handlePayButtonTap];
 }
 
@@ -105,6 +107,12 @@
     }
 
     [self.paymentMethodsView.tableView reloadData];
+}
+
+- (void)displayAlertWithError:(NSError *)error {
+    [self.paymentMethodsView.headerView.payButton stopLoading];
+    self.paymentMethodsView.userInteractionEnabled = YES;
+    [super displayAlertWithError:error];
 }
 
 #pragma mark - UIScrollViewDelegate

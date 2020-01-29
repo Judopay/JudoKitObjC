@@ -223,7 +223,8 @@
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
         _payButton.layer.cornerRadius = 4.0f;
         _payButton.titleLabel.font = UIFont.headline;
-        _payButton.backgroundColor = UIColor.jpTextColor;
+        [_payButton setBackgroundImage:UIColor.jpTextColor.asImage forState:UIControlStateNormal];
+        [_payButton setClipsToBounds:YES];
     }
     return _payButton;
 }
