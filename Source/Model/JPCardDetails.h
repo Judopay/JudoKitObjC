@@ -31,127 +31,131 @@ typedef NS_ENUM(NSUInteger, CardNetwork) {
     /**
      * Unknown
      */
-    CardNetworkUnknown,
+    CardNetworkUnknown = 0,
     /**
      * Visa Card Network
      */
-    CardNetworkVisa,
+    CardNetworkVisa = 1 << 0,
     /**
      * MasterCard Network
      */
-    CardNetworkMasterCard,
+    CardNetworkMasterCard = 1 << 1,
     /**
      * Visa Electron Network
      */
-    CardNetworkVisaElectron,
+    CardNetworkVisaElectron = 1 << 2,
     /**
      * Switch Network
      */
-    CardNetworkSwitch,
+    CardNetworkSwitch = 1 << 3,
     /**
      * Solo Network
      */
-    CardNetworkSolo,
+    CardNetworkSolo = 1 << 4,
     /**
      * Laser Network
      */
-    CardNetworkLaser,
+    CardNetworkLaser = 1 << 5,
     /**
      * China UnionPay Network
      */
-    CardNetworkChinaUnionPay,
+    CardNetworkChinaUnionPay = 1 << 6,
     /**
      * American Express Card Network
      */
-    CardNetworkAMEX,
+    CardNetworkAMEX = 1 << 7,
     /**
      * JCB Network
      */
-    CardNetworkJCB,
+    CardNetworkJCB = 1 << 8,
     /**
      * Maestro Card Network
      */
-    CardNetworkMaestro,
+    CardNetworkMaestro = 1 << 9,
     /**
      * Visa Debit Card Network
      */
-    CardNetworkVisaDebit,
+    CardNetworkVisaDebit = 1 << 10,
     /**
      * MasterCard Network
      */
-    CardNetworkMasterCardDebit,
+    CardNetworkMasterCardDebit = 1 << 11,
     /**
      * Visa Purchasing Network
      */
-    CardNetworkVisaPurchasing,
+    CardNetworkVisaPurchasing = 1 << 12,
     /**
      * Discover Network
      */
-    CardNetworkDiscover,
+    CardNetworkDiscover = 1 << 13,
     /**
      * Carnet Network
      */
-    CardNetworkCarnet,
+    CardNetworkCarnet = 1 << 14,
     /**
      * Carte Bancaire Network
      */
-    CardNetworkCarteBancaire,
+    CardNetworkCarteBancaire = 1 << 15,
     /**
      * Diners Club Network
      */
-    CardNetworkDinersClub,
+    CardNetworkDinersClub = 1 << 16,
     /**
      * Elo Network
      */
-    CardNetworkElo,
+    CardNetworkElo = 1 << 17,
     /**
      * Farmers Card Network
      */
-    CardNetworkFarmersCard,
+    CardNetworkFarmersCard = 1 << 18,
     /**
      * Soriana Network
      */
-    CardNetworkSoriana,
+    CardNetworkSoriana = 1 << 19,
     /**
      * Private Label Card Network
      */
-    CardNetworkPrivateLabelCard,
+    CardNetworkPrivateLabelCard = 1 << 20,
     /**
      * Q Card Network
      */
-    CardNetworkQCard,
+    CardNetworkQCard = 1 << 21,
     /**
      * Style Network
      */
-    CardNetworkStyle,
+    CardNetworkStyle = 1 << 22,
     /**
      * True Rewards Network
      */
-    CardNetworkTrueRewards,
+    CardNetworkTrueRewards = 1 << 23,
     /**
      * UATP Network
      */
-    CardNetworkUATP,
+    CardNetworkUATP = 1 << 24,
     /**
      * Bank Card Network
      */
-    CardNetworkBankCard,
+    CardNetworkBankCard = 1 << 25,
     /**
      * Banamex Costco Network
      */
-    CardNetworkBanamex_Costco,
+    CardNetworkBanamex_Costco = 1 << 26,
     /**
      * InterPayment Network
      */
-    CardNetworkInterPayment,
+    CardNetworkInterPayment = 1 << 27,
     /**
      * InstaPayment Network
      */
-    CardNetworkInstaPayment,
+    CardNetworkInstaPayment = 1 << 28,
     /**
      * Dankort Network
      */
-    CardNetworkDankort
+    CardNetworkDankort = 1 << 29,
+    /**
+     * All Cards
+     */
+    CardNetworksAll,
 };
 
 /**

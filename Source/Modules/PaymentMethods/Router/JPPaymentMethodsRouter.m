@@ -36,6 +36,7 @@
 @property (nonatomic, strong) JPTransaction *transaction;
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JudoCompletionBlock completionHandler;
+@property (nonatomic, assign) CardNetwork cardNetworks;
 @property (nonatomic, strong) SliderTransitioningDelegate *transitioningDelegate;
 
 @end
@@ -47,11 +48,13 @@
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
               transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                               theme:(JPTheme *)theme
+              supportedCardNetworks:(CardNetwork)cardNetworks
                          completion:(JudoCompletionBlock)completion {
     if (self = [super init]) {
         self.transaction = transaction;
         self.theme = theme;
         self.transitioningDelegate = transitioningDelegate;
+        self.cardNetworks = cardNetworks;
         self.completionHandler = completion;
     }
     return self;

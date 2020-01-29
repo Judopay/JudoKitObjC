@@ -340,6 +340,7 @@
                               amount:(nonnull JPAmount *)amount
                    consumerReference:(nonnull NSString *)reference
                       paymentMethods:(PaymentMethods)methods
+               supportedCardNetworks:(CardNetwork)cardNetworks
                           completion:(nonnull JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController;
@@ -348,6 +349,7 @@
                                                                transitioningDelegate:self.transitioningDelegate
                                                                               amount:amount
                                                                    consumerReference:reference
+                                                               supportedCardNetworks:cardNetworks
                                                                    completionHandler:completion];
 
     UINavigationController *navigationController;
@@ -362,6 +364,7 @@
                               amount:(nonnull JPAmount *)amount
                    consumerReference:(nonnull NSString *)reference
                       paymentMethods:(PaymentMethods)methods
+               supportedCardNetworks:(CardNetwork)cardNetworks
                           completion:(nonnull JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController;
@@ -370,6 +373,7 @@
                                                                transitioningDelegate:self.transitioningDelegate
                                                                               amount:amount
                                                                    consumerReference:reference
+                                                               supportedCardNetworks:cardNetworks
                                                                    completionHandler:completion];
 
     UINavigationController *navigationController;

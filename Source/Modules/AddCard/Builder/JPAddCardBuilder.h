@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPSession.h"
+#import "JPCardDetails.h"
 #import <Foundation/Foundation.h>
 
 @class JPAddCardViewController;

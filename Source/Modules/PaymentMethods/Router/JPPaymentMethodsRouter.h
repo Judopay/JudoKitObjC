@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPSession.h"
+#import "JPCardDetails.h"
 #import <Foundation/Foundation.h>
 
 @class JPPaymentMethodsViewController;
@@ -59,11 +60,13 @@
  * @param transaction - a reference to the Save Card transaction needed to call the Add Card screen
  * @param transitioningDelegate - the custom transitioning delegate for the Add Card presentation animation
  * @param theme - the JPTheme reference that is used for customizing the Add Card flow
+ * @param cardNetworks - the supported card networks to be accepted
  * @param completion - the response/error completion handler returned after a backend request
  */
 - (nonnull instancetype)initWithTransaction:(JPTransaction *_Nonnull)transaction
                       transitioningDelegate:(SliderTransitioningDelegate *_Nonnull)transitioningDelegate
                                       theme:(JPTheme *_Nonnull)theme
+                      supportedCardNetworks:(CardNetwork)cardNetworks
                                  completion:(JudoCompletionBlock _Nonnull)completion;
 
 @end

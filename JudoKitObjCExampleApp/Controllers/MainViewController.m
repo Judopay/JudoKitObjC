@@ -199,6 +199,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
                                                amount:amount
                                     consumerReference:self.reference
                                        paymentMethods:PaymentMethodsAll
+                                supportedCardNetworks:CardNetworksAll
                                            completion:^(JPResponse * response, NSError * error) {
                                     //Handle response / error
                                 }];
@@ -211,6 +212,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
                                                amount:amount
                                     consumerReference:self.reference
                                        paymentMethods:PaymentMethodsAll
+                                supportedCardNetworks:CardNetworksAll
                                            completion:^(JPResponse * response, NSError * error) {
                                     //Handle response / error
                                 }];
