@@ -60,6 +60,14 @@
 - (void)displayAlertWithError:(NSError *)error;
 
 /**
+ * Convenience method for displaying alert controllers based on a specified error with an optional title
+ *
+ * @param error - an NSError instance describing the current error
+ * @param title - an optional NSString that defines the title of the alert
+ */
+- (void)displayAlertWithError:(NSError *)error andTitle:(NSString *)title;
+
+/**
  * A convenience method for quickly registering keyboard observers
  */
 - (void)registerKeyboardObservers;

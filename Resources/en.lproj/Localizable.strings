@@ -60,6 +60,7 @@
 "choose_payment_method" = "Choose a Payment Method";
 "no_cards_added"  = "You didn’t add any cards yet.\nAdd one right now or use any of the payment methods below";
 "you_will_pay" = "You will pay";
+"card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
 
 //CardInputField
 "card_number_label" = "Card number";

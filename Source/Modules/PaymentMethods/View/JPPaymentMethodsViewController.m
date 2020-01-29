@@ -31,6 +31,7 @@
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsView.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIViewController+Additions.h"
@@ -112,7 +113,7 @@
 - (void)displayAlertWithError:(NSError *)error {
     [self.paymentMethodsView.headerView.payButton stopLoading];
     self.paymentMethodsView.userInteractionEnabled = YES;
-    [super displayAlertWithError:error];
+    [super displayAlertWithError:error andTitle:@"card_transaction_unsuccesful_error".localized];
 }
 
 #pragma mark - UIScrollViewDelegate
