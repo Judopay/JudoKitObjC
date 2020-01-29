@@ -95,7 +95,7 @@
 
 - (void)handlePaymentError:(NSError *)error {
     [self.router completeTransactionWithResponse:nil andError:error];
-    [self.view displayAlertWithError:error];
+    [self.view displayAlertWithTitle:@"card_transaction_unsuccesful_error".localized andError:error];
 }
 
 #pragma mark - Helper methods

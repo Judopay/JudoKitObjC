@@ -110,11 +110,11 @@
     [self.paymentMethodsView.tableView reloadData];
 }
 
-- (void)displayAlertWithError:(NSError *)error {
+- (void)displayAlertWithTitle:(NSString *)title andError:(NSError *)error {
     [self.paymentMethodsView.headerView.payButton stopLoading];
     self.paymentMethodsView.userInteractionEnabled = YES;
     [self triggerNotificationFeedbackWithType:UINotificationFeedbackTypeError];
-    [super displayAlertWithTitle:@"card_transaction_unsuccesful_error".localized andError:error];
+    [super displayAlertWithTitle:title andError:error];
 }
 
 #pragma mark - UIScrollViewDelegate
