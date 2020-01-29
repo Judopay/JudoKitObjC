@@ -58,6 +58,10 @@
 }
 
 - (void)displayAlertWithError:(NSError *)error andTitle:(NSString *)title {
+    
+    UINotificationFeedbackGenerator *feedbackGenerator = [UINotificationFeedbackGenerator new];
+    [feedbackGenerator notificationOccurred:UINotificationFeedbackTypeError];
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title
                                                                         message:error.localizedDescription
                                                                  preferredStyle:UIAlertControllerStyleAlert];
