@@ -112,10 +112,6 @@
 - (void)displayAlertWithError:(NSError *)error {
     [self.paymentMethodsView.headerView.payButton stopLoading];
     self.paymentMethodsView.userInteractionEnabled = YES;
-    
-    UINotificationFeedbackGenerator *feedbackGenerator = [UINotificationFeedbackGenerator new];
-    [feedbackGenerator notificationOccurred:UINotificationFeedbackTypeError];
-    
     [super displayAlertWithError:error];
 }
 
