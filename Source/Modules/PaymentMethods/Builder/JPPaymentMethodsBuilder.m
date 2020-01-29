@@ -45,25 +45,25 @@
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
-    
+
     JPReference *reference = [JPReference consumerReference:consumerReference];
 
     JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard
                                                              judoId:judoId
                                                              amount:amount
                                                           reference:reference];
-    
+
     JPPaymentMethodsRouterImpl *router;
     router = [[JPPaymentMethodsRouterImpl alloc] initWithTransaction:addCardTransaction
                                                transitioningDelegate:transitioningDelegate
                                                                theme:session.theme
                                                           completion:completion];
-    
+
     JPTransaction *paymentTransaction = [session transactionForType:TransactionTypePayment
                                                              judoId:judoId
                                                              amount:amount
                                                           reference:reference];
-    
+
     JPPaymentMethodsInteractorImpl *interactor;
     interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:paymentTransaction
                                                            consumerReference:consumerReference

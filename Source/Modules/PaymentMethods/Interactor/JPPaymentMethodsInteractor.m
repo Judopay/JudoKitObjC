@@ -25,9 +25,9 @@
 #import "JPPaymentMethodsInteractor.h"
 #import "JPAmount.h"
 #import "JPCardStorage.h"
+#import "JPPaymentToken.h"
 #import "JPTheme.h"
 #import "JPTransaction.h"
-#import "JPPaymentToken.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, strong) JPTransaction *transaction;
@@ -81,11 +81,11 @@
 }
 
 - (void)paymentTransactionWithToken:(NSString *)token
-                      andCompletion:(JudoCompletionBlock)completion { 
-    
+                      andCompletion:(JudoCompletionBlock)completion {
+
     JPPaymentToken *paymentToken = [[JPPaymentToken alloc] initWithConsumerToken:self.consumerReference
                                                                        cardToken:token];
-    
+
     [self.transaction setPaymentToken:paymentToken];
     [self.transaction sendWithCompletion:completion];
 }

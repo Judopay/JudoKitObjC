@@ -24,6 +24,7 @@
 
 #import "JPPaymentMethodsViewController.h"
 #import "Functions.h"
+#import "JPAddCardButton.h"
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsHeaderView.h"
 #import "JPPaymentMethodsPresenter.h"
@@ -32,7 +33,6 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
-#import "JPAddCardButton.h"
 #import "UIViewController+Additions.h"
 
 @interface JPPaymentMethodsViewController ()
@@ -82,7 +82,7 @@
     [backBarButton.customView.heightAnchor constraintEqualToConstant:22.0].active = YES;
     [backBarButton.customView.widthAnchor constraintEqualToConstant:22.0].active = YES;
     self.navigationItem.leftBarButtonItem = backBarButton;
-    
+
     [self.paymentMethodsView.headerView.payButton addTarget:self
                                                      action:@selector(onPayButtonTap)
                                            forControlEvents:UIControlEventTouchUpInside];

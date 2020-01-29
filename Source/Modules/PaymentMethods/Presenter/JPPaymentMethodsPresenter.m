@@ -80,12 +80,12 @@
 - (void)handlePayButtonTap {
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
-        if (error) {
-            [self handlePaymentError:error];
-            return;
-        }
-        [self handlePaymentResponse:response];
-    }];
+                                       if (error) {
+                                           [self handlePaymentError:error];
+                                           return;
+                                       }
+                                       [self handlePaymentResponse:response];
+                                   }];
 }
 
 - (void)handlePaymentResponse:(JPResponse *)response {

@@ -62,8 +62,8 @@
  * @param completion - the response/error completion handler returned after a backend request
  */
 - (nonnull instancetype)initWithTransaction:(JPTransaction *_Nonnull)transaction
-              transitioningDelegate:(SliderTransitioningDelegate *_Nonnull)transitioningDelegate
-                              theme:(JPTheme *_Nonnull)theme
-                         completion:(JudoCompletionBlock _Nonnull)completion;
+                      transitioningDelegate:(SliderTransitioningDelegate *_Nonnull)transitioningDelegate
+                                      theme:(JPTheme *_Nonnull)theme
+                                 completion:(JudoCompletionBlock _Nonnull)completion;
 
 @end
