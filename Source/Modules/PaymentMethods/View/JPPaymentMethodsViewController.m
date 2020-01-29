@@ -113,7 +113,8 @@
 - (void)displayAlertWithError:(NSError *)error {
     [self.paymentMethodsView.headerView.payButton stopLoading];
     self.paymentMethodsView.userInteractionEnabled = YES;
-    [super displayAlertWithError:error andTitle:@"card_transaction_unsuccesful_error".localized];
+    [self triggerNotificationFeedbackWithType:UINotificationFeedbackTypeError];
+    [super displayAlertWithTitle:@"card_transaction_unsuccesful_error".localized andError:error];
 }
 
 #pragma mark - UIScrollViewDelegate
