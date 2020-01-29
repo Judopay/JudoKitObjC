@@ -76,4 +76,9 @@
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)completeTransactionWithResponse:(JPResponse *)response
+                               andError:(NSError *)error {
+    self.completionHandler(response, error);
+}
+
 @end

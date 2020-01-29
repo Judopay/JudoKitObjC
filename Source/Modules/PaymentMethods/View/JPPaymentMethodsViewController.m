@@ -33,6 +33,7 @@
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "JPAddCardButton.h"
+#import "UIViewController+Additions.h"
 
 @interface JPPaymentMethodsViewController ()
 

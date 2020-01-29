@@ -80,8 +80,22 @@
 - (void)handlePayButtonTap {
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
-        //TODO: Handle success / error
+        if (error) {
+            [self handlePaymentError:error];
+            return;
+        }
+        [self handlePaymentResponse:response];
     }];
+}
+
+- (void)handlePaymentResponse:(JPResponse *)response {
+    [self.router completeTransactionWithResponse:response andError:nil];
+    [self.router dismissViewController];
+}
+
+- (void)handlePaymentError:(NSError *)error {
+    [self.router completeTransactionWithResponse:nil andError:error];
+    [self.view displayAlertWithError:error];
 }
 
 #pragma mark - Helper methods

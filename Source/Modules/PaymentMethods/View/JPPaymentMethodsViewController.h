@@ -39,6 +39,13 @@
  */
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
 
+/**
+ * A method that displays a UIAlertController based on a specified NSError
+ *
+ * @param error - an instance of NSError describing the error
+ */
+- (void)displayAlertWithError:(NSError *)error;
+
 @end
 
 #pragma mark - JPPaymentMethodsViewController

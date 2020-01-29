@@ -39,10 +39,19 @@
  */
 - (void)dismissViewController;
 
+/**
+ * A method that triggers the completion handler passed by the merchant with an optional response / error
+ *
+ * @param response - an optional instance of the JPResponse object that contains the response details
+ * @param error - an optional instance of NSError that contains the error details
+ */
+- (void)completeTransactionWithResponse:(JPResponse *_Nullable)response
+                               andError:(NSError *_Nullable)error;
+
 @end
 
 @interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
-@property (nonatomic, weak) JPPaymentMethodsViewController *viewController;
+@property (nonatomic, weak) JPPaymentMethodsViewController *_Nullable viewController;
 
 /**
  * The designated initializer that configures the router with the necessary properties
@@ -52,9 +61,9 @@
  * @param theme - the JPTheme reference that is used for customizing the Add Card flow
  * @param completion - the response/error completion handler returned after a backend request
  */
-- (instancetype)initWithTransaction:(JPTransaction *)transaction
-              transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                              theme:(JPTheme *)theme
-                         completion:(JudoCompletionBlock)completion;
+- (nonnull instancetype)initWithTransaction:(JPTransaction *_Nonnull)transaction
+              transitioningDelegate:(SliderTransitioningDelegate *_Nonnull)transitioningDelegate
+                              theme:(JPTheme *_Nonnull)theme
+                         completion:(JudoCompletionBlock _Nonnull)completion;
 
 @end
