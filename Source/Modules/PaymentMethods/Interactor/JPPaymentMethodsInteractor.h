@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPSession.h"
+#import "JPReference.h"
 #import <Foundation/Foundation.h>
 
 @class JPStoredCardDetails, JPTheme, JPAmount, JPTransaction;
@@ -65,14 +66,14 @@
  * A designated initializer that sets up the JPTheme object needed for view customization
  *
  * @param transaction - an instance describing the JPTransaction details
- * @param consumerReference - the consumer reference needed for the transaction
+ * @param reference - the reference needed for the transaction
  * @param theme - an instance of JPTheme that is used to configure the payment methods flow
  * @param amount - the amount of the transaction
  *
  * @returns a configured instance of JPPaymentMethodsInteractor
  */
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
-                  consumerReference:(NSString *)consumerReference
+                          reference:(JPReference *)reference
                               theme:(JPTheme *)theme
                           andAmount:(JPAmount *)amount;
 

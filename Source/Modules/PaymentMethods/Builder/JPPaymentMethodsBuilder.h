@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPSession.h"
+#import "JPReference.h"
 #import <Foundation/Foundation.h>
 
 @class JPPaymentMethodsViewController;
@@ -37,14 +38,14 @@
  * @param session - the current JudoKit session needed for creating transactions
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
- * @param consumerReference - the consumer's reference string
+ * @param reference - the reference for this transaction
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
 - (JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(NSString *)judoId
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                                completionHandler:(JudoCompletionBlock)completion;
 
 /**
@@ -54,14 +55,14 @@
  * @param session - the current JudoKit session needed for creating transactions
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
- * @param consumerReference - the consumer's reference string
+ * @param reference - the reference for this transaction
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
 - (JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(NSString *)judoId
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                                completionHandler:(JudoCompletionBlock)completion;
 
 @end
