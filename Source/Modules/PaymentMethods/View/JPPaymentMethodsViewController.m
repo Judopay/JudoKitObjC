@@ -31,6 +31,7 @@
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsView.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSString+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIImage+Icons.h"
 #import "UIViewController+Additions.h"
@@ -109,10 +110,11 @@
     [self.paymentMethodsView.tableView reloadData];
 }
 
-- (void)displayAlertWithError:(NSError *)error {
+- (void)displayAlertWithTitle:(NSString *)title andError:(NSError *)error {
     [self.paymentMethodsView.headerView.payButton stopLoading];
     self.paymentMethodsView.userInteractionEnabled = YES;
-    [super displayAlertWithError:error];
+    [self triggerNotificationFeedbackWithType:UINotificationFeedbackTypeError];
+    [super displayAlertWithTitle:title andError:error];
 }
 
 #pragma mark - UIScrollViewDelegate

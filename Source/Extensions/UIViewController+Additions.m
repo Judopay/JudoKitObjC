@@ -54,7 +54,11 @@
 }
 
 - (void)displayAlertWithError:(NSError *)error {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"error".localized
+    [self displayAlertWithTitle:@"error".localized andError:error];
+}
+
+- (void)displayAlertWithTitle:(NSString *)title andError:(NSError *)error {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:title
                                                                         message:error.localizedDescription
                                                                  preferredStyle:UIAlertControllerStyleAlert];
 
@@ -63,6 +67,11 @@
                                                      handler:nil];
     [controller addAction:okAction];
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)triggerNotificationFeedbackWithType:(UINotificationFeedbackType)type {
+    UINotificationFeedbackGenerator *feedbackGenerator = [UINotificationFeedbackGenerator new];
+    [feedbackGenerator notificationOccurred:type];
 }
 
 - (void)registerKeyboardObservers {

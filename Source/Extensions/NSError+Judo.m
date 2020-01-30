@@ -37,6 +37,7 @@ NSString *const ErrorRequestFailed = @"error_request_failed";
 NSString *const ErrorPaymentMethodMissing = @"error_payment_method_missing";
 NSString *const ErrorAmountMissing = @"error_amount_missing";
 NSString *const ErrorReferenceMissing = @"error_reference_missing";
+NSString *const ErrorTokenMissing = @"error_token_missing";
 NSString *const ErrorResponseParseError = @"error_response_parse_error";
 NSString *const ErrorUserDidCancel = @"error_user_did_cancel";
 NSString *const ErrorParameterError = @"error_parameter_error";
@@ -106,6 +107,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                code:JudoErrorReferenceMissing
                            userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc.localized
                                                         failureReason:ErrorReferenceMissing.localized
+                                                                title:UnableToProcessRequestErrorTitle.localized]];
+}
+
++ (NSError *)judoTokenMissingError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorTokenMissing
+                           userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc.localized
+                                                        failureReason:ErrorTokenMissing.localized
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 

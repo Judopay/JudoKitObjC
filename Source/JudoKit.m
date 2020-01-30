@@ -336,19 +336,41 @@
 
 @implementation JudoKit (Invokers)
 
-- (void)invokePayment:(nonnull NSString *)judoId
-               amount:(nonnull JPAmount *)amount
-    consumerReference:(nonnull NSString *)reference
-       paymentMethods:(PaymentMethods)methods
-           completion:(nonnull JudoCompletionBlock)completion {
+- (void)invokePaymentMethodSelection:(nonnull NSString *)judoId
+                              amount:(nonnull JPAmount *)amount
+                           reference:(nonnull JPReference *)reference
+                      paymentMethods:(PaymentMethods)methods
+                          completion:(nonnull JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController;
-    viewController = [[JPPaymentMethodsBuilderImpl new] buildModuleWithJudoID:judoId
-                                                                      session:self
-                                                        transitioningDelegate:self.transitioningDelegate
-                                                                       amount:amount
-                                                            consumerReference:reference
-                                                            completionHandler:completion];
+    viewController = [[JPPaymentMethodsBuilderImpl new] buildPaymentModuleWithJudoID:judoId
+                                                                             session:self
+                                                               transitioningDelegate:self.transitioningDelegate
+                                                                              amount:amount
+                                                                           reference:reference
+                                                                   completionHandler:completion];
+
+    UINavigationController *navigationController;
+    navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+
+    self.activeViewController = viewController;
+    [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)invokePreAuthMethodSelection:(nonnull NSString *)judoId
+                              amount:(nonnull JPAmount *)amount
+                           reference:(nonnull JPReference *)reference
+                      paymentMethods:(PaymentMethods)methods
+                          completion:(nonnull JudoCompletionBlock)completion {
+
+    JPPaymentMethodsViewController *viewController;
+    viewController = [[JPPaymentMethodsBuilderImpl new] buildPreAuthModuleWithJudoID:judoId
+                                                                             session:self
+                                                               transitioningDelegate:self.transitioningDelegate
+                                                                              amount:amount
+                                                                           reference:reference
+                                                                   completionHandler:completion];
 
     UINavigationController *navigationController;
     navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];

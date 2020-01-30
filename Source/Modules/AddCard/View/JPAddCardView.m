@@ -278,7 +278,7 @@
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
         _addCardButton.titleLabel.font = UIFont.headline;
         _addCardButton.layer.cornerRadius = 4.0f;
-        _addCardButton.backgroundColor = UIColor.jpTextColor;
+        _addCardButton.backgroundColor = UIColor.jpBlackColor;
     }
     return _addCardButton;
 }
@@ -300,7 +300,7 @@
     label.text = @"secure_server_transmission".localized;
     label.numberOfLines = 0;
     label.font = UIFont.caption;
-    label.textColor = UIColor.jpSubtitleColor;
+    label.textColor = UIColor.jpDarkGrayColor;
     return label;
 }
 

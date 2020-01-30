@@ -51,7 +51,7 @@ class JudoKitPaymentMethodsTests: XCTestCase {
         app.tables.staticTexts["Payment Method"].tap();
         app.buttons["ADD CARD"].tap();
         
-        enterCardDetails()
+        enterCardDetails(with: "4976 0000 0000 3436")
         
         XCTAssertTrue(app.staticTexts["Card for shopping"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Visa Ending 1111"].waitForExistence(timeout: 5))
@@ -66,7 +66,7 @@ class JudoKitPaymentMethodsTests: XCTestCase {
         app.tables.staticTexts["Payment Method"].tap();
         app.buttons["ADD CARD"].tap();
         
-        enterCardDetails()
+        enterCardDetails(with: "4976 0000 0000 3436")
         
         app.cells.staticTexts["Card for shopping"].firstMatch.tap()
         
@@ -74,22 +74,49 @@ class JudoKitPaymentMethodsTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["12/20"].waitForExistence(timeout: 3.0))
     }
     
-    func enterCardDetails() {
+    func test_OnSuccessfulPayment_DismissPaymentMethodScreen() {
+        
+        let app = XCUIApplication();
+        app.tables.staticTexts["Payment Method"].tap();
+        app.buttons["ADD CARD"].tap();
+        
+        enterCardDetails(with: "4976 0000 0000 3436")
+        
+        app.cells.staticTexts["Card for shopping"].firstMatch.tap()
+        app.buttons["PAY NOW"].tap();
+                
+        XCTAssertTrue(app.tables.staticTexts["Payment Method"].waitForExistence(timeout: 30))
+    }
+    
+    func test_OnFailedPayment_DisplayAlert() {
+        let app = XCUIApplication();
+        app.tables.staticTexts["Payment Method"].tap();
+        app.buttons["ADD CARD"].tap();
+        
+        enterCardDetails(with: "4111 1111 1111 1111")
+        
+        app.cells.staticTexts["Card for shopping"].firstMatch.tap()
+        app.buttons["PAY NOW"].tap();
+        
+        XCTAssertTrue(app.alerts.firstMatch.waitForExistence(timeout: 30))
+    }
+    
+    func enterCardDetails(with number:String) {
         
         let app = XCUIApplication()
         
         app.textFields["Card Number"].tap()
-        app.textFields["Card Number"].typeText("4111 1111 1111 1111")
+        app.textFields["Card Number"].typeText(number)
         
         app.textFields["Cardholder Name"].tap()
         app.textFields["Cardholder Name"].typeText("Hello")
         
         app.textFields["MM/YY"].tap()
-        app.textFields["MM/YY"].typeText("12/20")
+        app.textFields["MM/YY"].typeText("1220")
         
         app.textFields["CVV"].tap()
-        app.textFields["CVV"].typeText("341")
+        app.textFields["CVV"].typeText("452")
         
-        app.buttons["ADD CARD"].firstMatch.tap();
+        app.buttons["ADD CARD"].firstMatch.tap()
     }
 }

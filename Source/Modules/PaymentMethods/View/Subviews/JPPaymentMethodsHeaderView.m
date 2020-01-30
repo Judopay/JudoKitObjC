@@ -197,7 +197,7 @@
         _amountValueLabel = [UILabel new];
         _amountValueLabel.numberOfLines = 0;
         _amountValueLabel.font = UIFont.largeTitle;
-        _amountValueLabel.textColor = UIColor.jpTextColor;
+        _amountValueLabel.textColor = UIColor.jpBlackColor;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountValueLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -210,7 +210,7 @@
         _amountPrefixLabel.numberOfLines = 0;
         _amountPrefixLabel.text = @"you_will_pay".localized;
         _amountPrefixLabel.font = UIFont.body;
-        _amountPrefixLabel.textColor = UIColor.jpTextColor;
+        _amountPrefixLabel.textColor = UIColor.jpBlackColor;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -223,7 +223,7 @@
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
         _payButton.layer.cornerRadius = 4.0f;
         _payButton.titleLabel.font = UIFont.headline;
-        [_payButton setBackgroundImage:UIColor.jpTextColor.asImage forState:UIControlStateNormal];
+        [_payButton setBackgroundImage:UIColor.jpBlackColor.asImage forState:UIControlStateNormal];
         [_payButton setClipsToBounds:YES];
     }
     return _payButton;

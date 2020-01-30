@@ -60,6 +60,19 @@
 - (void)displayAlertWithError:(NSError *)error;
 
 /**
+ * Method that triggers haptic feedback based on a specified feedback type
+ */
+- (void)triggerNotificationFeedbackWithType:(UINotificationFeedbackType)type;
+
+/**
+ * Convenience method for displaying alert controllers based on a specified error with an optional title
+ *
+ * @param title - an optional NSString that defines the title of the alert
+ * @param error - an NSError instance describing the current error
+ */
+- (void)displayAlertWithTitle:(NSString *)title andError:(NSError *)error;
+
+/**
  * A convenience method for quickly registering keyboard observers
  */
 - (void)registerKeyboardObservers;

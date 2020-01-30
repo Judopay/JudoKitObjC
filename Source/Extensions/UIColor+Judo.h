@@ -50,16 +50,14 @@
 
 + (UIColor *_Nonnull)defaultTintColor;
 
-+ (UIColor *_Nonnull)jpErrorColor;
++ (UIColor *_Nonnull)jpBlackColor;
 
-+ (UIColor *_Nonnull)jpPlaceholderColor;
++ (UIColor *_Nonnull)jpRedColor;
 
-+ (UIColor *_Nonnull)jpTextColor;
++ (UIColor *_Nonnull)jpDarkGrayColor;
 
-+ (UIColor *_Nonnull)jpSubtitleColor;
++ (UIColor *_Nonnull)jpGrayColor;
 
-+ (UIColor *_Nonnull)jpTextFieldBackgroundColor;
-
-+ (UIColor *_Nonnull)jpContentBackgroundColor;
++ (UIColor *_Nonnull)jpLightGrayColor;
 
 @end

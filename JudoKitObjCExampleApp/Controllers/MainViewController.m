@@ -169,6 +169,10 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
             [self paymentMethodOption];
             break;
             
+        case DemoFeatureTypePreAuthMethods:
+            [self preAuthMethodOption];
+            break;
+            
         case DemoFeatureTypeIDEALTransaction:
             [self idealTransactionOperation];
             break;
@@ -191,13 +195,25 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 - (void)paymentMethodOption {
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.settings.currency];
         
-    [self.judoKitSession invokePayment:judoId
-                                amount:amount
-                     consumerReference:self.reference
-                        paymentMethods:PaymentMethodsAll
-                            completion:^(JPResponse * response, NSError * error) {
-                                //Handle response / error
-                            }];
+    [self.judoKitSession invokePaymentMethodSelection:judoId
+                                               amount:amount
+                                            reference:[JPReference consumerReference:self.reference]
+                                       paymentMethods:PaymentMethodsAll
+                                           completion:^(JPResponse * response, NSError * error) {
+                                    //Handle response / error
+                                }];
+}
+
+- (void)preAuthMethodOption {
+    JPAmount *amount = [[JPAmount alloc] initWithAmount:@"0.01" currency:self.settings.currency];
+        
+    [self.judoKitSession invokePreAuthMethodSelection:judoId
+                                               amount:amount
+                                            reference:[JPReference consumerReference:self.reference]
+                                       paymentMethods:PaymentMethodsAll
+                                           completion:^(JPResponse * response, NSError * error) {
+                                    //Handle response / error
+                                }];
 }
 
 - (void)paymentOperation {

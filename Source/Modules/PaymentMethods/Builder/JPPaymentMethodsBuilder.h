@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPReference.h"
 #import "JPSession.h"
 #import <Foundation/Foundation.h>
 
@@ -31,21 +32,39 @@
 @protocol JPPaymentMethodsBuilder
 
 /**
- * A method that builds the configured JPPaymentMethodsViewController
+ * A method that builds the configured JPPaymentMethodsViewController for a Payment transaction
  *
  * @param judoId - the Judo ID of the merchant
  * @param session - the current JudoKit session needed for creating transactions
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
- * @param consumerReference - the consumer's reference string
+ * @param reference - the reference for this transaction
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
-- (JPPaymentMethodsViewController *)buildModuleWithJudoID:(NSString *)judoId
-                                                  session:(JudoKit *)session
-                                    transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                                                   amount:(JPAmount *)amount
-                                        consumerReference:(NSString *)consumerReference
-                                        completionHandler:(JudoCompletionBlock)completion;
+- (JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(NSString *)judoId
+                                                         session:(JudoKit *)session
+                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                          amount:(JPAmount *)amount
+                                                       reference:(JPReference *)reference
+                                               completionHandler:(JudoCompletionBlock)completion;
+
+/**
+ * A method that builds the configured JPPaymentMethodsViewController for a PreAuth transaction
+ *
+ * @param judoId - the Judo ID of the merchant
+ * @param session - the current JudoKit session needed for creating transactions
+ * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
+ * @param amount - the amount of the transaction
+ * @param reference - the reference for this transaction
+ * @param completionHandler - a response/error completion handler returned to the merchant
+ */
+- (JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(NSString *)judoId
+                                                         session:(JudoKit *)session
+                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
+                                                          amount:(JPAmount *)amount
+                                                       reference:(JPReference *)reference
+                                               completionHandler:(JudoCompletionBlock)completion;
+
 @end
 
 @interface JPPaymentMethodsBuilderImpl : NSObject <JPPaymentMethodsBuilder>

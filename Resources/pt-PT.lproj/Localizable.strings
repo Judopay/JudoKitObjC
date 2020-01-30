@@ -60,6 +60,7 @@
 "choose_payment_method" = "Choose a Payment Method";
 "no_cards_added"  = "You didn’t add any cards yet.\nAdd one right now or use any of the payment methods below";
 "you_will_pay" = "You will pay";
+"card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
 
 //CardInputField
 "card_number_label" = "Número do Cartão";
@@ -139,6 +140,7 @@
 "error_timeout_description" = "A solicitação não foi concluída no tempo especificado";
 "no_internet_error_description" = "Por favor verifique sua conexão com a internet e tente novamente.";
 "no_internet_error_title" = "Sem conexão à internet!";
+"error_token_missing" = "The card token could not be retrieved from the response";
 
 //NSString+Card
 "check_card_number" = "Confirmar número do cartão";

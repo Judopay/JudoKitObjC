@@ -106,28 +106,24 @@
     return [UIColor jellyBean];
 }
 
-+ (UIColor *)jpErrorColor {
-    return [UIColor colorFromHex:0xE21900];
-}
-
-+ (UIColor *)jpPlaceholderColor {
-    return [UIColor colorFromHex:0xE5E5E5];
-}
-
-+ (UIColor *)jpTextColor {
++ (UIColor *)jpBlackColor {
     return [UIColor colorFromHex:0x262626];
 }
 
-+ (UIColor *)jpSubtitleColor {
++ (UIColor *)jpDarkGrayColor {
     return [UIColor colorFromHex:0x999999];
 }
 
-+ (UIColor *)jpTextFieldBackgroundColor {
++ (UIColor *)jpGrayColor {
+    return [UIColor colorFromHex:0xE5E5E5];
+}
+
++ (UIColor *)jpLightGrayColor {
     return [UIColor colorFromHex:0xF6F6F6];
 }
 
-+ (UIColor *)jpContentBackgroundColor {
-    return [UIColor colorFromHex:0xEEEEEE];
++ (UIColor *)jpRedColor {
+    return [UIColor colorFromHex:0xE21900];
 }
 
 @end

@@ -31,7 +31,7 @@
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, strong) JPTransaction *transaction;
-@property (nonatomic, strong) NSString *consumerReference;
+@property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JPAmount *amount;
 @end
@@ -39,12 +39,12 @@
 @implementation JPPaymentMethodsInteractorImpl
 
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
-                  consumerReference:(NSString *)consumerReference
+                          reference:(JPReference *)reference
                               theme:(JPTheme *)theme
                           andAmount:(JPAmount *)amount {
     if (self = [super init]) {
         self.transaction = transaction;
-        self.consumerReference = consumerReference;
+        self.reference = reference;
         self.theme = theme;
         self.amount = amount;
     }
@@ -83,7 +83,7 @@
 - (void)paymentTransactionWithToken:(NSString *)token
                       andCompletion:(JudoCompletionBlock)completion {
 
-    JPPaymentToken *paymentToken = [[JPPaymentToken alloc] initWithConsumerToken:self.consumerReference
+    JPPaymentToken *paymentToken = [[JPPaymentToken alloc] initWithConsumerToken:self.reference.consumerReference
                                                                        cardToken:token];
 
     [self.transaction setPaymentToken:paymentToken];
