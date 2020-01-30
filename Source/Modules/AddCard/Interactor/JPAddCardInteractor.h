@@ -135,7 +135,7 @@
  *
  *  @param cardValidationService - a JPCardValidationService instance for validating the card details
  *  @param transactionService - a JPTransactionService instance for handling the transaction
- *  @param cardNetworks - the supported card networks to be accepted
+ *  @param cardNetworks - the supported card networks
  *  @param completion - a JudoCompletionBlock that returns once the transaction finishes
  *
  *  @return an instance of JPAddCardInteractorImpl

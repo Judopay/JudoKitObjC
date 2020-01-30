@@ -35,7 +35,7 @@
  *
  *  @param transaction - a JPTransaction object that describes the transaction details
  *  @param theme - a JPTheme object that primarily defines the style of Add Card view
- *  @param cardNetworks - the supported card networks to be accepted
+ *  @param cardNetworks - the supported card networks
  *  @param completion - a response / error completion block that is returned after a transaction is sent
  *
  *  @return a pre-configured JPAddCardViewController instance

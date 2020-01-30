@@ -260,7 +260,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference         The reference for this transaction
  *  @param methods              The payment methods to be shown
- *  @param cardNetworks   The supported card networks to be accepted
+ *  @param cardNetworks   The supported card networks
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePaymentMethodSelection:(nonnull NSString *)judoId
@@ -277,7 +277,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference            The reference for this transaction
  *  @param methods              The payment methods to be shown
- *  @param cardNetworks   The supported card networks to be accepted
+ *  @param cardNetworks   The supported card networks
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePreAuthMethodSelection:(nonnull NSString *)judoId

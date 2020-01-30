@@ -166,6 +166,14 @@
 
     JPCardNetwork *cardNetwork = [JPCardNetwork cardNetworkWithType:self.lastCardNumberValidationResult.cardNetwork];
 
+    if (cardNetwork == CardNetworkUnknown) {
+        self.lastSecureCodeValidationResult = [JPValidationResult validationWithResult:input.length == 3
+                                                                          inputAllowed:input.length <= 3
+                                                                          errorMessage:nil
+                                                                        formattedInput:input];
+        return self.lastSecureCodeValidationResult;
+    }
+    
     if (input.length > cardNetwork.securityCodeLength) {
         return self.lastSecureCodeValidationResult;
     }
