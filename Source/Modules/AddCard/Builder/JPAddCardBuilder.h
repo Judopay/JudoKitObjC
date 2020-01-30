@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPSession.h"
 #import "JPCardDetails.h"
+#import "JPSession.h"
 #import <Foundation/Foundation.h>
 
 @class JPAddCardViewController;
@@ -35,12 +35,14 @@
  *
  *  @param transaction - a JPTransaction object that describes the transaction details
  *  @param theme - a JPTheme object that primarily defines the style of Add Card view
+ *  @param cardNetworks - the supported card networks to be accepted
  *  @param completion - a response / error completion block that is returned after a transaction is sent
  *
  *  @return a pre-configured JPAddCardViewController instance
  */
 - (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
                                                   theme:(JPTheme *)theme
+                                  supportedCardNetworks:(CardNetwork)cardNetworks
                                              completion:(JudoCompletionBlock)completion;
 @end
 

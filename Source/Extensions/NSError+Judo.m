@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardNetwork.h"
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
 #import "NSString+Additions.h"
@@ -30,6 +31,9 @@ NSString *const JudoErrorDomain = @"com.judo.error";
 
 NSString *const UnableToProcessRequestErrorDesc = @"unable_to_process_request_error_desc";
 NSString *const UnableToProcessRequestErrorTitle = @"unable_to_process_request_error_title";
+
+NSString *const ErrorUnsupportedCardNetworkTitle = @"error_unsupported_card_network_title";
+NSString *const ErrorUnsupportedCardNetworkDescription = @"error_unsupported_card_network_desc";
 
 NSString *const JPErrorTitleKey = @"JPErrorTitleKey";
 
@@ -188,6 +192,18 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorInvalidCardNumberError
                            userInfo:@{NSLocalizedDescriptionKey : @"check_card_number".localized}];
+}
+
++ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)cardNetwork {
+
+    NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:cardNetwork];
+    NSString *description = [NSString stringWithFormat:ErrorUnsupportedCardNetworkDescription.localized, cardNetworkName];
+
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorUnsupportedCardNetwork
+                           userInfo:[self userDataDictWithDescription:description
+                                                        failureReason:description
+                                                                title:ErrorUnsupportedCardNetworkTitle.localized]];
 }
 
 + (NSError *)judoResponseParseError {

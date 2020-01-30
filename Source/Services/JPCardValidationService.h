@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardDetails.h"
 #import <Foundation/Foundation.h>
 
 @class JPCard, JPValidationResult;
@@ -35,10 +36,12 @@
  *  A method for validating the card number
  *
  *  @param input - an input string
+ *  @param cardNetwork - the supported card networks
  *
  *  @return an instance of JPValidationResult that contains the validation status
  */
-- (JPValidationResult *)validateCardNumberInput:(NSString *)input;
+- (JPValidationResult *)validateCardNumberInput:(NSString *)input
+                           forSupportedNetworks:(CardNetwork)cardNetwork;
 
 /**
  *  A method for validating the cardholder name

@@ -572,6 +572,7 @@
 
     JPAddCardViewController *controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:transaction
                                                                                            theme:self.theme
+                                                                           supportedCardNetworks:CardNetworksAll
                                                                                       completion:completion];
 
     controller.modalPresentationStyle = UIModalPresentationCustom;

@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardNetwork.h"
 #import <Foundation/Foundation.h>
 
 @class JPTransactionData;
@@ -48,6 +49,7 @@ extern NSString *const JudoErrorDomain;
 + (NSError *)judoMissingChecksumError;
 + (NSError *)judoRequestTimeoutError;
 + (NSError *)judoInvalidCardNumberError;
++ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)cardNetwork;
 + (NSError *)judoJailbrokenDeviceDisallowedError;
 + (NSError *)judoInputMismatchErrorWithMessage:(nullable NSString *)message;
 
@@ -78,6 +80,7 @@ typedef NS_ENUM(NSUInteger, JudoError) {
     JudoErrorResponseParseError,
     JudoErrorInvalidApplePayConfiguration,
     JudoErrorInvalidCardNumberError,
+    JudoErrorUnsupportedCardNetwork,
     JudoErrorJailbrokenDeviceDisallowed,
 
     JudoErrorGeneral_Error = 0,

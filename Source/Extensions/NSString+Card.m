@@ -99,18 +99,6 @@
         return NO;
     }
 
-    // make sure to only check for the allowed networks
-    BOOL networkAccepted = [networks containsObject:@(network)];
-
-    if (!networkAccepted && network != CardNetworkUnknown) {
-        if (error != NULL) {
-            NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:network];
-            NSString *message = [NSString stringWithFormat:@"error_card_not_supported".localized, cardNetworkName];
-            *error = [NSError judoInputMismatchErrorWithMessage:message];
-        }
-        return NO;
-    }
-
     if (network == CardNetworkAMEX && number.length > 15) {
         if (error != NULL) {
             *error = [NSError judoInputMismatchErrorWithMessage:@"check_card_number".localized];

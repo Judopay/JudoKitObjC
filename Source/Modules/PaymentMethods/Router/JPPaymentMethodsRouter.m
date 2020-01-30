@@ -67,6 +67,7 @@
     JPAddCardViewController *controller;
     controller = [[JPAddCardBuilderImpl new] buildModuleWithTransaction:self.transaction
                                                                   theme:self.theme
+                                                  supportedCardNetworks:self.cardNetworks
                                                              completion:self.completionHandler];
 
     controller.delegate = self.viewController;

@@ -139,6 +139,8 @@
 "error_timeout_description" = "Request did not complete in the specified time";
 "no_internet_error_description" = "Please check your internet connection and try again.";
 "no_internet_error_title" = "No internet connection!";
+"error_unsupported_card_network_desc" = "%@ is not supported";
+"error_unsupported_card_network_title" = "Card type is not supported";
 
 //NSString+Card
 "check_card_number" = "Check card number";
