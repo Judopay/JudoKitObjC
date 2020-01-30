@@ -203,9 +203,9 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                            userInfo:@{NSLocalizedDescriptionKey : @"check_card_number".localized}];
 }
 
-+ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)cardNetwork {
++ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)network {
 
-    NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:cardNetwork];
+    NSString *cardNetworkName = [JPCardNetwork nameOfCardNetwork:network];
     NSString *description = [NSString stringWithFormat:ErrorUnsupportedCardNetworkDescription.localized, cardNetworkName];
 
     return [NSError errorWithDomain:JudoErrorDomain

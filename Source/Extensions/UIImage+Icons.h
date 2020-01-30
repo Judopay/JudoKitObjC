@@ -49,10 +49,10 @@
 /**
  * Initializes an UIImage based on a card network
  *
- * @param cardNetwork - a value describing the Card Network
+ * @param network - a value describing the Card Network
  *
  * @return a configured UIImage instance
  */
-+ (UIImage *)imageForCardNetwork:(CardNetwork)cardNetwork;
++ (UIImage *)imageForCardNetwork:(CardNetwork)network;
 
 @end

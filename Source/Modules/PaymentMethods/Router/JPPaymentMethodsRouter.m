@@ -48,13 +48,13 @@
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
               transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                               theme:(JPTheme *)theme
-              supportedCardNetworks:(CardNetwork)cardNetworks
+              supportedCardNetworks:(CardNetwork)networks
                          completion:(JudoCompletionBlock)completion {
     if (self = [super init]) {
         self.transaction = transaction;
         self.theme = theme;
         self.transitioningDelegate = transitioningDelegate;
-        self.cardNetworks = cardNetworks;
+        self.cardNetworks = networks;
         self.completionHandler = completion;
     }
     return self;

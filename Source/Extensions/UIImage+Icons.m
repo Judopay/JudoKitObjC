@@ -36,8 +36,8 @@
     return [UIImage imageNamed:resourceName inBundle:NSBundle.resourcesBundle compatibleWithTraitCollection:nil];
 }
 
-+ (UIImage *)imageForCardNetwork:(CardNetwork)cardNetwork {
-    switch (cardNetwork) {
++ (UIImage *)imageForCardNetwork:(CardNetwork)network {
+    switch (network) {
         case CardNetworkAMEX:
             return [UIImage imageWithIconName:@"card-amex"];
         case CardNetworkDinersClub:

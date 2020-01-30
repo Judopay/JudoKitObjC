@@ -50,7 +50,7 @@ extern NSString *const JudoErrorDomain;
 + (NSError *)judoMissingChecksumError;
 + (NSError *)judoRequestTimeoutError;
 + (NSError *)judoInvalidCardNumberError;
-+ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)cardNetwork;
++ (NSError *)judoUnsupportedCardNetwork:(CardNetwork)network;
 + (NSError *)judoJailbrokenDeviceDisallowedError;
 + (NSError *)judoInputMismatchErrorWithMessage:(nullable NSString *)message;
 

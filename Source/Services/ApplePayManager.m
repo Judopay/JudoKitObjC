@@ -174,9 +174,9 @@
 
 #pragma mark - Conversions to PassKit objects
 
-- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)cardNetwork { //!OCLINT
+- (nullable PKPaymentNetwork)pkPaymentNetworkForCardNetwork:(CardNetwork)network { //!OCLINT
 
-    switch (cardNetwork) {
+    switch (network) {
 
         case CardNetworkAMEX:
             return PKPaymentNetworkAmex;

@@ -47,13 +47,13 @@
 
 - (instancetype)initWithCardValidationService:(JPCardValidationService *)cardValidationService
                            transactionService:(JPTransactionService *)transactionService
-                        supportedCardNetworks:(CardNetwork)cardNetworks
+                        supportedCardNetworks:(CardNetwork)networks
                                    completion:(JudoCompletionBlock)completion {
 
     if (self = [super init]) {
         self.cardValidationService = cardValidationService;
         self.transactionService = transactionService;
-        self.cardNetworks = cardNetworks;
+        self.cardNetworks = networks;
         self.completionHandler = completion;
     }
     return self;

@@ -28,12 +28,12 @@
 
 - (instancetype)initWithLastFour:(NSString *)lastFour
                       expiryDate:(NSString *)expiryDate
-                     cardNetwork:(CardNetwork)cardNetwork
+                     cardNetwork:(CardNetwork)network
                        cardToken:(NSString *)cardToken {
     if (self = [super init]) {
         self.cardLastFour = lastFour;
         self.expiryDate = expiryDate;
-        self.cardNetwork = cardNetwork;
+        self.cardNetwork = network;
         self.cardToken = cardToken;
     }
     return self;
@@ -60,12 +60,12 @@
 
 + (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
                              expiryDate:(NSString *)expiryDate
-                            cardNetwork:(CardNetwork)cardNetwork
+                            cardNetwork:(CardNetwork)network
                               cardToken:(NSString *)cardToken {
 
     return [[JPStoredCardDetails new] initWithLastFour:lastFour
                                             expiryDate:expiryDate
-                                           cardNetwork:cardNetwork
+                                           cardNetwork:network
                                              cardToken:cardToken];
 }
 

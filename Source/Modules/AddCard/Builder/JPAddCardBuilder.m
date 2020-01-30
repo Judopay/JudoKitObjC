@@ -38,7 +38,7 @@
 
 - (JPAddCardViewController *)buildModuleWithTransaction:(JPTransaction *)transaction
                                                   theme:(JPTheme *)theme
-                                  supportedCardNetworks:(CardNetwork)cardNetworks
+                                  supportedCardNetworks:(CardNetwork)networks
                                              completion:(JudoCompletionBlock)completion {
 
     JPTransactionService *transactionService;
@@ -50,7 +50,7 @@
     JPAddCardInteractorImpl *interactor;
     interactor = [[JPAddCardInteractorImpl alloc] initWithCardValidationService:cardValidationService
                                                              transactionService:transactionService
-                                                          supportedCardNetworks:cardNetworks
+                                                          supportedCardNetworks:networks
                                                                      completion:completion];
 
     JPAddCardViewController *viewController = [JPAddCardViewController new];

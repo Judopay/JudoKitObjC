@@ -40,7 +40,7 @@
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
  * @param reference - the reference for this transaction
- * @param cardNetworks   The supported card networks
+ * @param networks   The supported card networks
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
 - (JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(NSString *)judoId
@@ -48,7 +48,7 @@
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
                                                        reference:(JPReference *)reference
-                                           supportedCardNetworks:(CardNetwork)cardNetworks
+                                           supportedCardNetworks:(CardNetwork)networks
                                                completionHandler:(JudoCompletionBlock)completion;
 
 /**
@@ -59,7 +59,7 @@
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
  * @param reference - the reference for this transaction
- * @param cardNetworks   The supported card networks
+ * @param networks   The supported card networks
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
 - (JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(NSString *)judoId
@@ -67,7 +67,7 @@
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
                                                        reference:(JPReference *)reference
-                                           supportedCardNetworks:(CardNetwork)cardNetworks
+                                           supportedCardNetworks:(CardNetwork)networks
                                                completionHandler:(JudoCompletionBlock)completion;
 @end
 

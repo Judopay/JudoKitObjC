@@ -62,14 +62,14 @@
  *
  * @param lastFour - the last four digits of the credit card
  * @param expiryDate - the card's expiration date
- * @param cardNetwork - the card's network
+ * @param network - the card's network
  * @param cardToken - the card's token
  *
  * @return an instance of JPStoredCardDetails
  */
 - (instancetype)initWithLastFour:(NSString *)lastFour
                       expiryDate:(NSString *)expiryDate
-                     cardNetwork:(CardNetwork)cardNetwork
+                     cardNetwork:(CardNetwork)network
                        cardToken:(NSString *)cardToken;
 
 /**
@@ -86,14 +86,14 @@
  *
  * @param lastFour - the last four digits of the credit card
  * @param expiryDate - the card's expiration date
- * @param cardNetwork - the card's network
+ * @param network - the card's network
  * @param cardToken - the card's token
  *
  * @return an instance of JPStoredCardDetails
  */
 + (instancetype)cardDetailsWithLastFour:(NSString *)lastFour
                              expiryDate:(NSString *)expiryDate
-                            cardNetwork:(CardNetwork)cardNetwork
+                            cardNetwork:(CardNetwork)network
                               cardToken:(NSString *)cardToken;
 
 /**

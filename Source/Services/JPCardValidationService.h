@@ -36,12 +36,12 @@
  *  A method for validating the card number
  *
  *  @param input - an input string
- *  @param cardNetwork - the supported card networks
+ *  @param networks - the supported card networks
  *
  *  @return an instance of JPValidationResult that contains the validation status
  */
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input
-                           forSupportedNetworks:(CardNetwork)cardNetwork;
+                           forSupportedNetworks:(CardNetwork)networks;
 
 /**
  *  A method for validating the cardholder name

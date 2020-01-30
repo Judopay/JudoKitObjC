@@ -58,7 +58,7 @@
 }
 
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input
-                           forSupportedNetworks:(CardNetwork)cardNetworks {
+                           forSupportedNetworks:(CardNetwork)networks {
 
     NSError *error;
     NSString *presentationString = [input cardPresentationStringWithAcceptedNetworks:self.acceptedCardNetworks
@@ -74,7 +74,7 @@
         return self.lastCardNumberValidationResult;
     }
 
-    if (![self isInputSupported:input forSupportedNetworks:cardNetworks]) {
+    if (![self isInputSupported:input forSupportedNetworks:networks]) {
         error = [NSError judoUnsupportedCardNetwork:input.cardNetwork];
         self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:NO
                                                                           inputAllowed:YES

@@ -84,9 +84,9 @@
 
 #pragma mark - Public Methods
 
-- (void)setCardNetwork:(CardNetwork)cardNetwork {
+- (void)setCardNetwork:(CardNetwork)network {
 
-    UIImage *cardIcon = [UIImage imageForCardNetwork:cardNetwork];
+    UIImage *cardIcon = [UIImage imageForCardNetwork:network];
 
     if (cardIcon)
         self.cardLogoImageView.image = cardIcon;
