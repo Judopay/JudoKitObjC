@@ -58,7 +58,7 @@
     if (!_containerView) {
         _containerView = [UIView new];
         _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = UIColor.jpContentBackgroundColor;
+        _containerView.backgroundColor = UIColor.jpLightGrayColor;
         _containerView.layer.cornerRadius = 14.0f;
     }
     return _containerView;

@@ -142,6 +142,7 @@
 "no_internet_error_title" = "No internet connection!";
 "error_unsupported_card_network_desc" = "%@ is not supported";
 "error_unsupported_card_network_title" = "Card type is not supported";
+"error_token_missing" = "The card token could not be retrieved from the response";
 
 //NSString+Card
 "check_card_number" = "Check card number";

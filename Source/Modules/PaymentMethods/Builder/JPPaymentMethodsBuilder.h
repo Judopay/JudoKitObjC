@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardDetails.h"
+#import "JPReference.h"
 #import "JPSession.h"
 #import <Foundation/Foundation.h>
 
@@ -38,7 +39,7 @@
  * @param session - the current JudoKit session needed for creating transactions
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
- * @param consumerReference - the consumer's reference string
+ * @param reference - the reference for this transaction
  * @param cardNetworks   The supported card networks to be accepted
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
@@ -46,7 +47,7 @@
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)cardNetworks
                                                completionHandler:(JudoCompletionBlock)completion;
 
@@ -57,7 +58,7 @@
  * @param session - the current JudoKit session needed for creating transactions
  * @param transitioningDelegate - a transitioning delegate needed for the custom Add Card transition animation
  * @param amount - the amount of the transaction
- * @param consumerReference - the consumer's reference string
+ * @param reference - the reference for this transaction
  * @param cardNetworks   The supported card networks to be accepted
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
@@ -65,7 +66,7 @@
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)cardNetworks
                                                completionHandler:(JudoCompletionBlock)completion;
 @end

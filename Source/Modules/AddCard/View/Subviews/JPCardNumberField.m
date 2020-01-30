@@ -69,7 +69,7 @@
     [self setCardNetwork:viewModel.cardNetwork];
 
     [self placeholderWithText:viewModel.placeholder
-                        color:UIColor.jpSubtitleColor
+                        color:UIColor.jpDarkGrayColor
                       andFont:placeholderFont];
 
     self.text = viewModel.text;

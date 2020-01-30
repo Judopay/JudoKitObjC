@@ -99,7 +99,7 @@
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = UIFont.headline;
-        _titleLabel.textColor = UIColor.jpTextColor;
+        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -107,8 +107,8 @@
 - (UIButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
-        [_addCardButton setBorderWithColor:UIColor.jpTextColor width:1.0f andCornerRadius:4.0f];
-        [_addCardButton setTitleColor:UIColor.jpTextColor forState:UIControlStateNormal];
+        [_addCardButton setBorderWithColor:UIColor.jpBlackColor width:1.0f andCornerRadius:4.0f];
+        [_addCardButton setTitleColor:UIColor.jpBlackColor forState:UIControlStateNormal];
         _addCardButton.titleLabel.font = UIFont.bodyBold;
 
         [self.addCardButton addTarget:self

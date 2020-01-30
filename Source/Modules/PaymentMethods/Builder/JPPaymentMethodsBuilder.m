@@ -40,14 +40,14 @@
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)cardNetworks
                                                completionHandler:(JudoCompletionBlock)completion {
     return [self buildModuleWithJudoID:judoId
                                session:session
                  transitioningDelegate:transitioningDelegate
                                 amount:amount
-                     consumerReference:consumerReference
+                             reference:reference
                        transactionType:TransactionTypePayment
                  supportedCardNetworks:cardNetworks
                      completionHandler:completion];
@@ -57,14 +57,14 @@
                                                          session:(JudoKit *)session
                                            transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                           amount:(JPAmount *)amount
-                                               consumerReference:(NSString *)consumerReference
+                                                       reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)cardNetworks
                                                completionHandler:(JudoCompletionBlock)completion {
     return [self buildModuleWithJudoID:judoId
                                session:session
                  transitioningDelegate:transitioningDelegate
                                 amount:amount
-                     consumerReference:consumerReference
+                             reference:reference
                        transactionType:TransactionTypePreAuth
                  supportedCardNetworks:cardNetworks
                      completionHandler:completion];
@@ -74,15 +74,13 @@
                                                   session:(JudoKit *)session
                                     transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
                                                    amount:(JPAmount *)amount
-                                        consumerReference:(NSString *)consumerReference
+                                                reference:(JPReference *)reference
                                           transactionType:(TransactionType)transactionType
                                     supportedCardNetworks:(CardNetwork)cardNetworks
                                         completionHandler:(JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];
-
-    JPReference *reference = [JPReference consumerReference:consumerReference];
 
     JPTransaction *addCardTransaction = [session transactionForType:TransactionTypeSaveCard
                                                              judoId:judoId
@@ -103,7 +101,7 @@
 
     JPPaymentMethodsInteractorImpl *interactor;
     interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:transaction
-                                                           consumerReference:consumerReference
+                                                                   reference:reference
                                                                        theme:session.theme
                                                                    andAmount:amount];
 

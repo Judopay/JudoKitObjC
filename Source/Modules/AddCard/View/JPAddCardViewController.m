@@ -97,6 +97,7 @@
     [self.addCardView enableUserInterface:YES];
     [self.addCardView.addCardButton stopLoading];
     [self displayAlertWithError:error];
+    [self triggerNotificationFeedbackWithType:UINotificationFeedbackTypeError];
 }
 
 - (void)didFinishAddingCard {

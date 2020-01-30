@@ -338,7 +338,7 @@
 
 - (void)invokePaymentMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
-                   consumerReference:(nonnull NSString *)reference
+                           reference:(nonnull JPReference *)reference
                       paymentMethods:(PaymentMethods)methods
                supportedCardNetworks:(CardNetwork)cardNetworks
                           completion:(nonnull JudoCompletionBlock)completion {
@@ -348,7 +348,7 @@
                                                                              session:self
                                                                transitioningDelegate:self.transitioningDelegate
                                                                               amount:amount
-                                                                   consumerReference:reference
+                                                                           reference:reference
                                                                supportedCardNetworks:cardNetworks
                                                                    completionHandler:completion];
 
@@ -362,7 +362,7 @@
 
 - (void)invokePreAuthMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
-                   consumerReference:(nonnull NSString *)reference
+                           reference:(nonnull JPReference *)reference
                       paymentMethods:(PaymentMethods)methods
                supportedCardNetworks:(CardNetwork)cardNetworks
                           completion:(nonnull JudoCompletionBlock)completion {
@@ -372,7 +372,7 @@
                                                                              session:self
                                                                transitioningDelegate:self.transitioningDelegate
                                                                               amount:amount
-                                                                   consumerReference:reference
+                                                                           reference:reference
                                                                supportedCardNetworks:cardNetworks
                                                                    completionHandler:completion];
 

@@ -197,7 +197,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
         
     [self.judoKitSession invokePaymentMethodSelection:judoId
                                                amount:amount
-                                    consumerReference:self.reference
+                                            reference:[JPReference consumerReference:self.reference]
                                        paymentMethods:PaymentMethodsAll
                                 supportedCardNetworks:CardNetworksAll
                                            completion:^(JPResponse * response, NSError * error) {
@@ -210,7 +210,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
         
     [self.judoKitSession invokePreAuthMethodSelection:judoId
                                                amount:amount
-                                    consumerReference:self.reference
+                                            reference:[JPReference consumerReference:self.reference]
                                        paymentMethods:PaymentMethodsAll
                                 supportedCardNetworks:CardNetworksAll
                                            completion:^(JPResponse * response, NSError * error) {
