@@ -493,13 +493,17 @@ static NSString * const kCellIdentifier     = @"com.judo.judopaysample.tableview
                                                           amount:[NSDecimalNumber decimalNumberWithString:@"0.03"]]
                        ];
     
+    NSString *uniquePaymentReference = [NSString stringWithFormat:@"example-reference-%f", [NSDate new].timeIntervalSince1970];
+    JPReference *reference = [[JPReference alloc] initWithConsumerReference:self.reference
+                                                           paymentReference:uniquePaymentReference];
+    reference.metaData = @{@"example-key": @"example-value"};
+    
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
-                                                                               reference:self.reference
+                                                                               reference:reference
                                                                               merchantId:merchantId
                                                                                 currency:self.settings.currency
                                                                              countryCode:@"GB"
                                                                      paymentSummaryItems:items];
-    
     
     configuration.transactionType = transactionType;
     configuration.requiredShippingContactFields = ContactFieldAll;

@@ -34,7 +34,6 @@
 		302181CB23264C5300F6BE77 /* NSBundle+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 302181C923264C5300F6BE77 /* NSBundle+Additions.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
 		302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */; };
-		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
 		305D7AAB23681BF200C49DEA /* JPCheckCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 305D7AA923681BF200C49DEA /* JPCheckCard.h */; };
 		305D7AAC23681BF200C49DEA /* JPCheckCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D7AAA23681BF200C49DEA /* JPCheckCard.m */; };
 		30B851C4236C5AA6005DCA7C /* JudoKitCheckCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B851A4236C55E5005DCA7C /* JudoKitCheckCardTests.swift */; };
@@ -397,7 +396,6 @@
 		30DB511423100E5200B73D66 /* PaymentMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentMethods.h; path = Model/PaymentMethods.h; sourceTree = "<group>"; };
 		30DB511A23100E6B00B73D66 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		30DB511B23100E6B00B73D66 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
-		30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
 		30DB511F23100E6B00B73D66 /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
 		30DB512023100E6B00B73D66 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
 		30DB512723100EED00B73D66 /* CardLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardLogoView.m; path = View/CardLogoView.m; sourceTree = "<group>"; };
@@ -709,14 +707,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		30DB511C23100E6B00B73D66 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		30DB511E23100E6B00B73D66 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,7 +836,6 @@
 				3B678B731C6CE6500001DC2F /* Extensions */,
 				30DB511923100E6B00B73D66 /* Helpers */,
 				30DB511E23100E6B00B73D66 /* Managers */,
-				30DB511C23100E6B00B73D66 /* Mocks */,
 				3B678B701C6CE5F70001DC2F /* Model */,
 				3B6991531C8DD841006ED1FB /* Theme */,
 				3B678B741C6CE68D0001DC2F /* View */,
@@ -1514,7 +1503,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

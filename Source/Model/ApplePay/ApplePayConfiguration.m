@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "ApplePayConfiguration.h"
+#import "JPReference.h"
 
 @implementation ApplePayConfiguration
 
@@ -38,7 +39,7 @@
 }
 
 - (instancetype)initWithJudoId:(NSString *)judoId
-                     reference:(NSString *)reference
+                     reference:(JPReference *)reference
                     merchantId:(NSString *)merchantId
                       currency:(NSString *)currency
                    countryCode:(NSString *)countryCode
