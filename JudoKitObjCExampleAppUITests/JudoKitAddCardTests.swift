@@ -129,4 +129,20 @@ class JudoKitAddCardTests: XCTestCase {
         XCTAssertFalse(app.buttons["ADD CARD"].isEnabled)
     }
     
+    func test_cardTypeMaestro() {
+         let app = XCUIApplication()
+         app.tables.staticTexts["Save card"].tap()
+         app.textFields["Card Number"].tap()
+         app.textFields["Card Number"].typeText("6761 4922 2389 9415")
+        XCTAssert(app.images["CardNumberCardTypeIcon"].identifier == "card-maestro")
+     }
+    
+    func test_cardTypeVisa() {
+           let app = XCUIApplication()
+           app.tables.staticTexts["Save card"].tap()
+           app.textFields["Card Number"].tap()
+           app.textFields["Card Number"].typeText("41111 1111 1111 111")
+          XCTAssert(app.images["CardNumberCardTypeIcon"].identifier == "card-visa")
+       }
+    
 }

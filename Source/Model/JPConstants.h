@@ -39,7 +39,7 @@ static NSString *kInterPaymentPrefixes = @"636";
 static NSString *kChinaUnionPayPrefixes = @"62";
 static NSString *kAMEXPrefixes = @"34,37";
 
-static NSString *kMaestroPrefixes = @"50,56,57,58,59,60,61,62,63,64,65,66,67,68,69";
+static NSString *kMaestroPrefixes = @"5018,5020,5038,5893,6304,6759,6761,6762,6763";
 static NSString *kDinersClubPrefixes = @"36,38,39,309,300,301,302,303,304,305";
 static NSString *kInstaPaymentPrefixes = @"637,638,639";
 
