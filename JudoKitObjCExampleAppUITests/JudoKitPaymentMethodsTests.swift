@@ -77,14 +77,14 @@ class JudoKitPaymentMethodsTests: XCTestCase {
     func test_OnSuccessfulPayment_DismissPaymentMethodScreen() {
         
         let app = XCUIApplication();
-        app.tables.staticTexts["Payment Method"].tap();
-        app.buttons["ADD CARD"].tap();
+        app.tables.staticTexts["Payment Method"].tap()
+        app.buttons["ADD CARD"].tap()
         
         enterCardDetails(with: "4976 0000 0000 3436")
         
         app.cells.staticTexts["Card for shopping"].firstMatch.tap()
         app.buttons["PAY NOW"].tap();
-                
+        
         XCTAssertTrue(app.tables.staticTexts["Payment Method"].waitForExistence(timeout: 30))
     }
     
@@ -99,6 +99,63 @@ class JudoKitPaymentMethodsTests: XCTestCase {
         app.buttons["PAY NOW"].tap();
         
         XCTAssertTrue(app.alerts.firstMatch.waitForExistence(timeout: 30))
+    }
+    
+    
+    func test_swipeToDelete_card(){
+        let app = XCUIApplication();
+        app.tables.staticTexts["Payment Method"].tap()
+        app.buttons["ADD CARD"].tap()
+        enterCardDetails(with: "4976 0000 0000 3436")
+        
+        app.buttons["ADD CARD"].tap()
+        enterCardDetails(with: "4111 1111 1111 1111")
+        sleep(1)
+        app.cells.staticTexts["Card for shopping"].firstMatch.tap()
+        XCTAssert(app.tables.cells.count == 5, "table view has \(app.tables.cells.count)")
+        
+        let tablesQuery = app.tables.cells
+        sleep(1)
+        tablesQuery.element(boundBy: 3).swipeLeft()
+        tablesQuery.element(boundBy: 3).buttons["Delete"].tap()
+        sleep(1)
+        app.alerts.buttons["Delete"].tap()
+        sleep(1)
+        
+        XCTAssert(app.tables.children(matching: .cell).count == 4, "table view has \(app.tables.children(matching: .cell).count) cells")
+    }
+    
+    
+    
+    
+    func test_editToDelete_card(){
+        let app = XCUIApplication();
+        app.tables.staticTexts["Payment Method"].tap()
+        app.buttons["ADD CARD"].tap()
+        enterCardDetails(with: "4976 0000 0000 3436")
+        
+        app.buttons["ADD CARD"].tap()
+        enterCardDetails(with: "4111 1111 1111 1111")
+        sleep(1)
+        app.cells.staticTexts["Card for shopping"].firstMatch.tap()
+        XCTAssert(app.tables.cells.count == 5, "table view has \(app.tables.cells.count)")
+        
+        let tablesQuery = app.tables.cells
+        let editButton = tablesQuery/*@START_MENU_TOKEN@*/.buttons["EDIT"]/*[[".cells.buttons[\"EDIT\"]",".buttons[\"EDIT\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        editButton.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete Card for shopping, Visa Ending 3436"]/*[[".cells.buttons[\"Delete Card for shopping, Visa Ending 3436\"]",".buttons[\"Delete Card for shopping, Visa Ending 3436\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.buttons["trailing0"].tap()
+        sleep(1)
+        app.alerts.buttons["Delete"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["DONE"]/*[[".cells.buttons[\"DONE\"]",".buttons[\"DONE\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCTAssert(app.tables.children(matching: .cell).count == 4, "table view has \(app.tables.children(matching: .cell).count) cells")
+
+        
+        editButton.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete Card for shopping, Visa Ending 1111"]/*[[".cells.buttons[\"Delete Card for shopping, Visa Ending 1111\"]",".buttons[\"Delete Card for shopping, Visa Ending 1111\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.buttons["trailing0"].tap()
+        app.alerts.buttons["Delete"].tap()
+        XCTAssert(app.tables.children(matching: .cell).count == 2, "table view has \(app.tables.children(matching: .cell).count) cells")
     }
     
     func enterCardDetails(with number:String) {
