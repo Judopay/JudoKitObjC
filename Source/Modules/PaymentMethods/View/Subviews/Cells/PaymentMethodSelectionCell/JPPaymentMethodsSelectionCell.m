@@ -62,6 +62,9 @@
 #pragma mark - Layout setup
 
 - (void)setupLayout {
+
+    self.backgroundColor = UIColor.whiteColor;
+
     self.sectionView = [JPSectionView new];
     [self addSubview:self.sectionView];
 
