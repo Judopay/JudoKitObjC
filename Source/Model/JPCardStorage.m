@@ -44,10 +44,10 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+
         self.storedCards = [NSMutableArray new];
         NSArray *storedCardsArray = [JPKeychainService getObjectForKey:@"storedCards"];
-        
+
         for (NSDictionary *storedCardDictionary in storedCardsArray) {
             JPStoredCardDetails *storedCard = [JPStoredCardDetails cardDetailsFromDictionary:storedCardDictionary];
             [self.storedCards addObject:storedCard];

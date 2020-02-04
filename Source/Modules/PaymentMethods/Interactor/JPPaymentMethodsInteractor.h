@@ -65,7 +65,6 @@
 */
 - (void)deleteCardWithIndex:(NSInteger)index;
 
-
 @end
 
 @interface JPPaymentMethodsInteractorImpl : NSObject <JPPaymentMethodsInteractor>

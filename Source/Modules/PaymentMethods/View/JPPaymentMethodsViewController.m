@@ -74,20 +74,20 @@
                                                      barMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
-    
+
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageWithIconName:@"back-icon"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [backBarButton.customView.heightAnchor constraintEqualToConstant:22.0].active = YES;
     [backBarButton.customView.widthAnchor constraintEqualToConstant:22.0].active = YES;
     self.navigationItem.leftBarButtonItem = backBarButton;
-    
+
     [self.paymentMethodsView.headerView.payButton addTarget:self
                                                      action:@selector(onPayButtonTap)
                                            forControlEvents:UIControlEventTouchUpInside];
-    
+
     self.paymentMethodsView.tableView.delegate = self;
     self.paymentMethodsView.tableView.dataSource = self;
 }
@@ -96,17 +96,17 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
     self.viewModel = viewModel;
-    
+
     [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
-    
+
     self.paymentMethodsView.judoHeadlineImageView.hidden = !viewModel.shouldDisplayHeadline;
     self.paymentMethodsView.judoHeadlineHeightConstraint.constant = viewModel.shouldDisplayHeadline ? 20.0 : 0.0;
-    
+
     for (JPPaymentMethodsModel *item in viewModel.items) {
         [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)
                                   forCellReuseIdentifier:item.identifier];
     }
-    
+
     [self.paymentMethodsView.tableView reloadData];
 }
 
@@ -137,33 +137,33 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
     if ([self.viewModel.items[section] isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;
         cardListModel = (JPPaymentMethodsCardListModel *)self.viewModel.items[section];
         return cardListModel.cardModels.count;
     }
-    
+
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
     JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
                                                                  forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;
         cardListModel = (JPPaymentMethodsCardListModel *)model;
         [cell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
         return cell;
-    } else if ( [model isKindOfClass:JPPaymentMethodsCardHeaderModel.class]){
+    } else if ([model isKindOfClass:JPPaymentMethodsCardHeaderModel.class]) {
         JPPaymentMethodsCardListHeaderCell *headerCell = (JPPaymentMethodsCardListHeaderCell *)cell;
         headerCell.delegate = self;
     }
-    
+
     [cell configureWithViewModel:model];
     return cell;
 }
@@ -179,7 +179,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
     if (![model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         return;
@@ -187,40 +187,31 @@
     [self.presenter didSelectCardAtIndex:indexPath.row];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
-    if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
-        return YES;
-    } else {
-        return NO;
-    }
-    
+    return [model isKindOfClass:JPPaymentMethodsCardListModel.class];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"delete_card_alert_title".localized
                                                                              message:@"delete_card_alert_message".localized
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel".localized
                                                            style:UIAlertActionStyleDefault
                                                          handler:nil];
-    
+
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"delete".localized
                                                            style:UIAlertActionStyleDestructive
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-        [self.presenter deleteCardWithIndex:indexPath.row];
-        [self.presenter viewModelNeedsUpdate];
-    }];
-    
+                                                         handler:^(UIAlertAction *_Nonnull action) {
+                                                             [self.presenter deleteCardWithIndex:indexPath.row];
+                                                             [self.presenter viewModelNeedsUpdate];
+                                                         }];
+
     [alertController addAction:cancelAction];
     [alertController addAction:deleteAction];
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
-    
 }
-
 
 @end
 
@@ -234,27 +225,16 @@
 
 @end
 
-
 @implementation JPPaymentMethodsViewController (EditCardsDelegate)
 
 - (void)didTapActionButton {
-    if ( self.paymentMethodsView.tableView.isEditing == YES) {
-        [CATransaction begin];
-        [CATransaction setCompletionBlock: ^{
-            [self.presenter changeHeaderButtonTitle:NO];
-        }];
-        [self.paymentMethodsView.tableView setEditing:NO animated:YES];
-        [CATransaction commit];
-        
-    } else {
-        [CATransaction begin];
-        [CATransaction setCompletionBlock: ^{
-            [self.presenter changeHeaderButtonTitle:YES];
-        }];
-        [self.paymentMethodsView.tableView setEditing:YES animated:YES];
-        [CATransaction commit];
-        
-    }
+    BOOL isEditing = self.paymentMethodsView.tableView.isEditing == YES;
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        [self.presenter changeHeaderButtonTitle:!isEditing];
+    }];
+    [self.paymentMethodsView.tableView setEditing:!isEditing animated:YES];
+    [CATransaction commit];
 }
 
 @end

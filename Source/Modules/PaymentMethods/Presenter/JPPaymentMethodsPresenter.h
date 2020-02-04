@@ -24,7 +24,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JPPaymentMethodsView, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
+@protocol JPPaymentMethodsView
+, JPPaymentMethodsInteractor, JPPaymentMethodsRouter;
 @class JPPaymentMethodsCardModel;
 
 @protocol JPPaymentMethodsPresenter
@@ -57,14 +58,12 @@
 */
 - (void)deleteCardWithIndex:(NSInteger)index;
 
-
 /**
 * A method for chaging card header button title acording to edit status of the card list
 *
 * @param isEditing - card list edit status
 */
-- (void)changeHeaderButtonTitle: (BOOL)isEditing;
-
+- (void)changeHeaderButtonTitle:(BOOL)isEditing;
 
 @end
 

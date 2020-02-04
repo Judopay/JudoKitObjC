@@ -25,7 +25,13 @@
 #import "JPPaymentMethodsCell.h"
 #import <UIKit/UIKit.h>
 
+/**
+* A delegate protocol related action button logic
+*/
 @protocol JPPaymentMethodsCardListHeaderCellDelegate
+/**
+ * A delegate method to notify when the action button was tapped
+ */
 - (void)didTapActionButton;
 @end
 
@@ -40,5 +46,9 @@
  * The Edit button of the header above the card list
  */
 @property (nonatomic, strong) UIButton *actionButton;
+
+/**
+*  The delegate that will handle action button logic
+*/
 @property (nonatomic, weak) id<JPPaymentMethodsCardListHeaderCellDelegate> _Nullable delegate;
 @end

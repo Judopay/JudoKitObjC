@@ -98,12 +98,12 @@
     [self.view displayAlertWithTitle:@"card_transaction_unsuccesful_error".localized andError:error];
 }
 
-- (void)deleteCardWithIndex:(NSInteger) index {
-    [self.interactor deleteCardWithIndex: index];
+- (void)deleteCardWithIndex:(NSInteger)index {
+    [self.interactor deleteCardWithIndex:index];
     self.viewModel.headerModel.cardModel = nil;
 }
 
-- (void)changeHeaderButtonTitle: (BOOL)isEditing {
+- (void)changeHeaderButtonTitle:(BOOL)isEditing {
     if (isEditing) {
         self.cardHeaderModel.editButtonTitle = [@"done_capitalized" localized];
     } else {
