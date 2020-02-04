@@ -1,8 +1,8 @@
 //
-//  UIFont.m
+//  JPSectionView.h
 //  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,36 +22,36 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIFont+Additions.h"
+#import <UIKit/UIKit.h>
 
-@implementation UIFont (Additions)
+@class JPSectionView;
 
-+ (UIFont *)largeTitle {
-    return [UIFont systemFontOfSize:24.0 weight:UIFontWeightSemibold];
-}
+@protocol JPSectionViewDelegate
+/**
+ * The method that is triggered once the user selects one of the sections of the section view
+ *
+ * @param sectionView - a reference to the current instance of JPSectionView
+ * @param index - the index of the selected section
+ */
+- (void)sectionView:(JPSectionView *_Nonnull)sectionView didSelectSectionAtIndex:(int)index;
 
-+ (UIFont *)title {
-    return [UIFont systemFontOfSize:18.0 weight:UIFontWeightSemibold];
-}
+@end
 
-+ (UIFont *)headline {
-    return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
-}
+@interface JPSectionView : UIView
 
-+ (UIFont *)headlineLight {
-    return [UIFont systemFontOfSize:16.0];
-}
+@property (nonatomic, weak) id<JPSectionViewDelegate> _Nullable delegate;
+/**
+ * A method that adds a section to the section view.
+ *
+ * @param image - a UIImage instance that showcases the section's logo
+ * @param title - an NSString that is displayed next to the logo
+ */
+- (void)addSectionWithImage:(UIImage *_Nullable)image
+                   andTitle:(NSString *_Nullable)title;
 
-+ (UIFont *)body {
-    return [UIFont systemFontOfSize:14.0];
-}
-
-+ (UIFont *)bodyBold {
-    return [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)caption {
-    return [UIFont systemFontOfSize:10.0];
-}
+/**
+ * A method for removing all sections from the section view
+ */
+- (void)removeSections;
 
 @end

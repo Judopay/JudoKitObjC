@@ -23,45 +23,78 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsSelectionCell.h"
-#import "JPPaymentMethodsCell.h"
-#import "UIColor+Judo.h"
+#import "JPSectionView.h"
+#import "UIImage+Icons.h"
 #import "UIView+Additions.h"
 
 @interface JPPaymentMethodsSelectionCell ()
 
-@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) JPSectionView *sectionView;
 
 @end
 
 @implementation JPPaymentMethodsSelectionCell
 
-- (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
-    [self setupViews];
-    [self setupConstraints];
-}
+#pragma mark - Initializers
 
-- (void)setupViews {
-    //TODO: Implement custom Payment Method Selection view;
-    self.backgroundColor = UIColor.clearColor;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self addSubview:self.containerView];
-}
-
-- (void)setupConstraints {
-    [self.containerView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self withPadding:24.0];
-    [self.containerView pinToAnchors:AnchorTypeLeading forView:self withPadding:20.0];
-    [self.containerView pinToAnchors:AnchorTypeTrailing forView:self withPadding:-20.0];
-    [self.containerView.heightAnchor constraintEqualToConstant:64.0].active = YES;
-}
-
-- (UIView *)containerView {
-    if (!_containerView) {
-        _containerView = [UIView new];
-        _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = UIColor.jpLightGrayColor;
-        _containerView.layer.cornerRadius = 14.0f;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setupLayout];
     }
-    return _containerView;
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupLayout];
+    }
+    return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupLayout];
+    }
+    return self;
+}
+
+#pragma mark - Layout setup
+
+- (void)setupLayout {
+    self.sectionView = [JPSectionView new];
+    [self addSubview:self.sectionView];
+
+    self.sectionView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.sectionView.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                   constant:25.0f],
+        [self.sectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
+                                                      constant:-25.0f],
+        [self.sectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.sectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.sectionView.heightAnchor constraintEqualToConstant:64]
+    ]];
+}
+
+#pragma mark - View model configuration
+
+- (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
+
+    //TODO: Remove hard-coded values with real configuration
+
+    [self.sectionView removeSections];
+
+    UIImage *cardsImage = [UIImage imageWithIconName:@"cards-pay-icon"];
+    UIImage *idealImage = [UIImage imageWithIconName:@"ideal-pay-icon"];
+    UIImage *appleImage = [UIImage imageWithIconName:@"apple-pay-icon"];
+    UIImage *amazonImage = [UIImage imageWithIconName:@"amazon-pay-icon"];
+
+    [self.sectionView addSectionWithImage:cardsImage andTitle:@"Cards"];
+    [self.sectionView addSectionWithImage:idealImage andTitle:@"iDeal"];
+    [self.sectionView addSectionWithImage:appleImage andTitle:nil];
+    [self.sectionView addSectionWithImage:amazonImage andTitle:@"Amazon Pay"];
 }
 
 @end
