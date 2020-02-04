@@ -90,4 +90,9 @@
     [self.transaction sendWithCompletion:completion];
 }
 
+-(void)deleteCardWithIndex:(NSInteger)index {
+
+    [JPCardStorage.sharedInstance deleteCardWithIndex:index];
+}
+
 @end

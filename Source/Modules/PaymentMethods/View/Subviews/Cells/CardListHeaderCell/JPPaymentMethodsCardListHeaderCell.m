@@ -71,7 +71,6 @@
 
     JPPaymentMethodsCardHeaderModel *headerModel;
     headerModel = (JPPaymentMethodsCardHeaderModel *)viewModel;
-
     self.titleLabel.text = headerModel.title;
     [self.actionButton setTitle:headerModel.editButtonTitle forState:UIControlStateNormal];
 }
@@ -102,12 +101,17 @@
     return _titleLabel;
 }
 
+- (void)didPressActionButton:(UIButton *)button {
+    [self.delegate didTapActionButton];
+}
+
 - (UIButton *)actionButton {
     if (!_actionButton) {
         _actionButton = [UIButton new];
         _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
         _actionButton.titleLabel.font = UIFont.bodyBold;
         [_actionButton setTitleColor:UIColor.jpBlackColor forState:UIControlStateNormal];
+        [_actionButton addTarget:self action:@selector(didPressActionButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _actionButton;
 }

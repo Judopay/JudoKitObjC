@@ -25,6 +25,10 @@
 #import "JPPaymentMethodsCell.h"
 #import <UIKit/UIKit.h>
 
+@protocol JPPaymentMethodsCardListHeaderCellDelegate
+- (void)didTapActionButton;
+@end
+
 @interface JPPaymentMethodsCardListHeaderCell : JPPaymentMethodsCell
 
 /**
@@ -36,4 +40,5 @@
  * The Edit button of the header above the card list
  */
 @property (nonatomic, strong) UIButton *actionButton;
+@property (nonatomic, weak) id<JPPaymentMethodsCardListHeaderCellDelegate> _Nullable delegate;
 @end

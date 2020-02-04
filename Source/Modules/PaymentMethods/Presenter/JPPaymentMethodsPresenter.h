@@ -50,6 +50,22 @@
  */
 - (void)handlePayButtonTap;
 
+/**
+* A method for deleting a specific card details from the keychain by its index
+*
+* @param index - Card's index in cards list
+*/
+- (void)deleteCardWithIndex:(NSInteger)index;
+
+
+/**
+* A method for chaging card header button title acording to edit status of the card list
+*
+* @param isEditing - card list edit status
+*/
+- (void)changeHeaderButtonTitle: (BOOL)isEditing;
+
+
 @end
 
 @interface JPPaymentMethodsPresenterImpl : NSObject <JPPaymentMethodsPresenter>

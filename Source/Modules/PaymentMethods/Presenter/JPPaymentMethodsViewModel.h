@@ -31,6 +31,7 @@
 #pragma mark - JPPaymentMethodsModel
 
 typedef NS_ENUM(NSInteger, AnimationType) {
+    AnimationTypeNone,
     AnimationTypeSetup,
     AnimationTypeLeftToRight,
     AnimationTypeRightToLeft,

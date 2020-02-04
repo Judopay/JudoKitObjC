@@ -109,9 +109,9 @@
     [horizontalStackView addArrangedSubview:self.iconContainerView];
     [horizontalStackView addArrangedSubview:verticalStackView];
 
-    [self addSubview:horizontalStackView];
-    [horizontalStackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self withPadding:13.0f];
-    [horizontalStackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing forView:self withPadding:24.0f];
+    [self.contentView addSubview:horizontalStackView];
+    [horizontalStackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self.contentView withPadding:13.0f];
+    [horizontalStackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing forView:self.contentView withPadding:24.0f];
 }
 
 #pragma mark - Lazy instantiated properties

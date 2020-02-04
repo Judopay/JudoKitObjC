@@ -44,10 +44,10 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-
+        
         self.storedCards = [NSMutableArray new];
         NSArray *storedCardsArray = [JPKeychainService getObjectForKey:@"storedCards"];
-
+        
         for (NSDictionary *storedCardDictionary in storedCardsArray) {
             JPStoredCardDetails *storedCard = [JPStoredCardDetails cardDetailsFromDictionary:storedCardDictionary];
             [self.storedCards addObject:storedCard];
@@ -70,6 +70,12 @@
 
 - (void)addCardDetails:(JPStoredCardDetails *)cardDetails {
     [self.storedCards addObject:cardDetails];
+    NSArray *cardDetailsArray = [self convertStoredCardsToArray];
+    [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
+}
+
+- (void)deleteCardWithIndex:(NSInteger)index {
+    [self.storedCards removeObjectAtIndex:index];
     NSArray *cardDetailsArray = [self convertStoredCardsToArray];
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
 }

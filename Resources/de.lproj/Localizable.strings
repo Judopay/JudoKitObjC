@@ -26,6 +26,8 @@
 "ok" = "OK";
 "error" = "Error";
 "cancel" = "Cancel";
+"delete" = "Delete";
+
 
 //Add Card
 "scan_card" = "SCAN CARD";
@@ -56,11 +58,14 @@
 "no_connected_cards" = "You didn't connect any cards yet";
 "connected_cards" = "Connected cards";
 "edit_capitalized" = "EDIT";
+"done_capitalized" = "DONE";
 "pay_now_capitalized" = "PAY NOW";
 "choose_payment_method" = "Choose a Payment Method";
 "no_cards_added"  = "You didn’t add any cards yet.\nAdd one right now or use any of the payment methods below";
 "you_will_pay" = "You will pay";
 "card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
+"card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
+"delete_card_alert_title" = "Delete Card ?";
 
 //CardInputField
 "card_number_label" = "Card number";
