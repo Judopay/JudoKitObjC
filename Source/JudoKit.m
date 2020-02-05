@@ -339,7 +339,7 @@
 - (void)invokePaymentMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-                      paymentMethods:(PaymentMethods)methods
+                      paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
                supportedCardNetworks:(CardNetwork)networks
                           completion:(nonnull JudoCompletionBlock)completion {
 
@@ -350,6 +350,7 @@
                                                                               amount:amount
                                                                            reference:reference
                                                                supportedCardNetworks:networks
+                                                                      paymentMethods:methods
                                                                    completionHandler:completion];
 
     UINavigationController *navigationController;
@@ -363,7 +364,7 @@
 - (void)invokePreAuthMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-                      paymentMethods:(PaymentMethods)methods
+                      paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
                supportedCardNetworks:(CardNetwork)networks
                           completion:(nonnull JudoCompletionBlock)completion {
 
@@ -374,6 +375,7 @@
                                                                               amount:amount
                                                                            reference:reference
                                                                supportedCardNetworks:networks
+                                                                      paymentMethods:methods
                                                                    completionHandler:completion];
 
     UINavigationController *navigationController;

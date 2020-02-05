@@ -25,6 +25,7 @@
 #import "JPCardDetails.h"
 #import "JPReference.h"
 #import "JPSession.h"
+#import "JPPaymentMethod.h"
 #import <Foundation/Foundation.h>
 
 @class JPPaymentMethodsViewController;
@@ -41,15 +42,17 @@
  * @param amount - the amount of the transaction
  * @param reference - the reference for this transaction
  * @param networks   The supported card networks
+ * @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                                                                                 Setting nil will present the payment method screen with the default payment methods;
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
-- (JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(NSString *)judoId
-                                                         session:(JudoKit *)session
-                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                                                          amount:(JPAmount *)amount
-                                                       reference:(JPReference *)reference
+- (nonnull JPPaymentMethodsViewController *)buildPaymentModuleWithJudoID:(nonnull NSString *)judoId
+                                                         session:(nonnull JudoKit *)session
+                                           transitioningDelegate:(nonnull SliderTransitioningDelegate *)transitioningDelegate
+                                                          amount:(nonnull JPAmount *)amount
+                                                       reference:(nonnull JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)networks
-                                               completionHandler:(JudoCompletionBlock)completion;
+                                                  paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
+                                               completionHandler:(nonnull JudoCompletionBlock)completion;
 
 /**
  * A method that builds the configured JPPaymentMethodsViewController for a PreAuth transaction
@@ -60,15 +63,17 @@
  * @param amount - the amount of the transaction
  * @param reference - the reference for this transaction
  * @param networks   The supported card networks
+ * @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                                                                                 Setting nil will present the payment method screen with the default payment methods;
  * @param completionHandler - a response/error completion handler returned to the merchant
  */
-- (JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(NSString *)judoId
-                                                         session:(JudoKit *)session
-                                           transitioningDelegate:(SliderTransitioningDelegate *)transitioningDelegate
-                                                          amount:(JPAmount *)amount
-                                                       reference:(JPReference *)reference
-                                           supportedCardNetworks:(CardNetwork)networks
-                                               completionHandler:(JudoCompletionBlock)completion;
+- (nonnull JPPaymentMethodsViewController *)buildPreAuthModuleWithJudoID:(nonnull NSString *)judoId
+                                                                 session:(nonnull JudoKit *)session
+                                                   transitioningDelegate:(nonnull SliderTransitioningDelegate *)transitioningDelegate
+                                                                  amount:(nonnull JPAmount *)amount
+                                                               reference:(nonnull JPReference *)reference
+                                                   supportedCardNetworks:(CardNetwork)networks
+                                                          paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
+                                                       completionHandler:(nonnull JudoCompletionBlock)completion;
 @end
 
 @interface JPPaymentMethodsBuilderImpl : NSObject <JPPaymentMethodsBuilder>

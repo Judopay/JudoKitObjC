@@ -173,7 +173,7 @@
                                                                         formattedInput:input];
         return self.lastSecureCodeValidationResult;
     }
-    
+
     if (input.length > cardNetwork.securityCodeLength) {
         return self.lastSecureCodeValidationResult;
     }

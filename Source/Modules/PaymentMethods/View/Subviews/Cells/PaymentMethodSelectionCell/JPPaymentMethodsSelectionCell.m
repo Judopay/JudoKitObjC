@@ -24,6 +24,7 @@
 
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPSectionView.h"
+#import "JPPaymentMethodsViewModel.h"
 #import "UIImage+Icons.h"
 #import "UIView+Additions.h"
 
@@ -62,6 +63,9 @@
 #pragma mark - Layout setup
 
 - (void)setupLayout {
+
+    self.backgroundColor = UIColor.whiteColor;
+
     self.sectionView = [JPSectionView new];
     [self addSubview:self.sectionView];
 
@@ -82,19 +86,15 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
 
-    //TODO: Remove hard-coded values with real configuration
-
+    JPPaymentMethodsSelectionModel *selectionModel = (JPPaymentMethodsSelectionModel *)viewModel;
+    if (selectionModel == nil) return;
+    
     [self.sectionView removeSections];
-
-    UIImage *cardsImage = [UIImage imageWithIconName:@"cards-pay-icon"];
-    UIImage *idealImage = [UIImage imageWithIconName:@"ideal-pay-icon"];
-    UIImage *appleImage = [UIImage imageWithIconName:@"apple-pay-icon"];
-    UIImage *amazonImage = [UIImage imageWithIconName:@"amazon-pay-icon"];
-
-    [self.sectionView addSectionWithImage:cardsImage andTitle:@"Cards"];
-    [self.sectionView addSectionWithImage:idealImage andTitle:@"iDeal"];
-    [self.sectionView addSectionWithImage:appleImage andTitle:nil];
-    [self.sectionView addSectionWithImage:amazonImage andTitle:@"Amazon Pay"];
+    
+    for (JPPaymentMethod *paymentMethod in selectionModel.paymentMethods) {
+        UIImage *image = [UIImage imageWithIconName:paymentMethod.iconName];
+        [self.sectionView addSectionWithImage:image andTitle:paymentMethod.title];
+    }
 }
 
 @end

@@ -24,6 +24,7 @@
 
 #import "JPReference.h"
 #import "JPSession.h"
+#import "JPPaymentMethod.h"
 #import <Foundation/Foundation.h>
 
 @class JPStoredCardDetails, JPTheme, JPAmount, JPTransaction;
@@ -53,6 +54,11 @@
 - (JPAmount *)getAmount;
 
 /**
+ * A method that returns the available payment methods
+ */
+- (NSArray <JPPaymentMethod *> *)getPaymentMethods;
+
+/**
  * Sends a payment transaction based on a stored card token
  */
 - (void)paymentTransactionWithToken:(NSString *)token
@@ -68,6 +74,7 @@
  * @param transaction - an instance describing the JPTransaction details
  * @param reference - the reference needed for the transaction
  * @param theme - an instance of JPTheme that is used to configure the payment methods flow
+ * @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                                                                                 Setting nil will present the payment method screen with the default payment methods;
  * @param amount - the amount of the transaction
  *
  * @returns a configured instance of JPPaymentMethodsInteractor
@@ -75,6 +82,7 @@
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
                           reference:(JPReference *)reference
                               theme:(JPTheme *)theme
+                     paymentMethods:(NSArray <JPPaymentMethod *> *)methods
                           andAmount:(JPAmount *)amount;
 
 @end

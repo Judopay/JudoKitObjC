@@ -34,6 +34,7 @@
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JPAmount *amount;
+@property (nonatomic, strong) NSArray<JPPaymentMethod *> *paymentMethods;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
@@ -41,11 +42,13 @@
 - (instancetype)initWithTransaction:(JPTransaction *)transaction
                           reference:(JPReference *)reference
                               theme:(JPTheme *)theme
+                     paymentMethods:(NSArray <JPPaymentMethod *> *)methods
                           andAmount:(JPAmount *)amount {
     if (self = [super init]) {
         self.transaction = transaction;
         self.reference = reference;
         self.theme = theme;
+        self.paymentMethods = methods;
         self.amount = amount;
     }
     return self;
@@ -78,6 +81,11 @@
 
 - (JPAmount *)getAmount {
     return self.amount;
+}
+
+- (NSArray<JPPaymentMethod *> *)getPaymentMethods {
+    NSArray *defaultPaymentMethods = @[JPPaymentMethod.card, JPPaymentMethod.iDeal, JPPaymentMethod.applePay];
+    return (self.paymentMethods.count != 0) ? self.paymentMethods : defaultPaymentMethods;
 }
 
 - (void)paymentTransactionWithToken:(NSString *)token

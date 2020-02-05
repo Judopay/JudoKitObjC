@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardDetails.h"
+#import "JPPaymentMethod.h"
 #import <Foundation/Foundation.h>
 
 //TODO: Rename the button to a more generic type
@@ -49,6 +50,17 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 #pragma mark - JPPaymentMethodsSelectionModel
 
 @interface JPPaymentMethodsSelectionModel : JPPaymentMethodsModel
+
+/**
+ * The index of the currently selected payment method
+ */
+@property (nonatomic, assign) int selectedPaymentMethod;
+
+/**
+ * An array of available payment methods
+ */
+@property (nonatomic, strong) NSArray <JPPaymentMethod *> *paymentMethods;
+
 @end
 
 #pragma mark - JPPaymentMethodsEmptyListModel
