@@ -107,28 +107,28 @@
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title
                                                                         message:message
                                                                  preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"scan_card_confirm".localized
                                                             style:UIAlertActionStyleDefault
                                                           handler:nil];
-    
+
     [controller addAction:confirmAction];
     return controller;
 }
 
 - (void)displayCameraPermissionsAlert {
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleNameKey];
+    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
     UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_no_permission_title".localized
                                                         andMessage:[NSString stringWithFormat:@"scan_card_no_permission_message".localized, appName]];
-    
+
     UIAlertAction *goToSettingsAction = [UIAlertAction actionWithTitle:@"scan_card_go_to_settings".localized
                                                                  style:UIAlertActionStyleDefault
                                                                handler:^(UIAlertAction *_Nonnull action) {
-        [UIApplication.sharedApplication openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]
-                                         options:@{}
-                               completionHandler:nil];
-    }];
-    
+                                                                   [UIApplication.sharedApplication openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]
+                                                                                                    options:@{}
+                                                                                          completionHandler:nil];
+                                                               }];
+
     [controller addAction:goToSettingsAction];
     [self presentViewController:controller animated:YES completion:nil];
 }
@@ -136,14 +136,14 @@
 - (void)displayCameraRestrictionAlert {
     UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_restricted_title".localized
                                                         andMessage:@"scan_card_restricted_message".localized];
-    
+
     [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)displayCameraSimulatorAlert {
     UIAlertController *controller = [self alertControllerWithTitle:@"scan_card_simulator_title".localized
                                                         andMessage:nil];
-    
+
     [self presentViewController:controller animated:YES completion:nil];
 }
 
@@ -153,7 +153,7 @@
     [self connectButton:self.addCardView.cancelButton withSelector:@selector(onCancelButtonTap)];
     [self connectButton:self.addCardView.addCardButton withSelector:@selector(onAddCardButtonTap)];
     [self connectButton:self.addCardView.scanCardButton withSelector:@selector(onScanCardButtonTap)];
-    
+
     self.addCardView.cardNumberTextField.delegate = self;
     self.addCardView.cardHolderTextField.delegate = self;
     self.addCardView.cardExpiryTextField.delegate = self;
@@ -169,34 +169,34 @@
 #pragma mark - Keyboard handling logic
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    
+
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
+
     CGSize keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     self.addCardView.bottomSliderConstraint.constant = -keyboardSize.height;
-    
+
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:curve
                      animations:^{
-        [self.view layoutIfNeeded];
-    }
+                         [self.view layoutIfNeeded];
+                     }
                      completion:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
+
     self.addCardView.bottomSliderConstraint.constant = 0;
-    
+
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:curve
                      animations:^{
-        [self.view layoutIfNeeded];
-    }
+                         [self.view layoutIfNeeded];
+                     }
                      completion:nil];
 }
 
@@ -236,7 +236,7 @@
 - (BOOL)textField:(JPTextField *)inputField shouldChangeText:(NSString *)text {
     [self.presenter handleInputChange:text forType:inputField.type];
     if (inputField.type == JPInputTypeCardExpiryDate && text.length > 4) {
-            [self.addCardView.secureCodeTextField becomeFirstResponder];
+        [self.addCardView.secureCodeTextField becomeFirstResponder];
     }
     return NO;
 }
