@@ -45,7 +45,7 @@
 "scan_card_message_title" = "Position card in this frame";
 "scan_card_message_subtitle" = "We will automatically scan it";
 "scan_card_no_permission_title" = "Camera permissions not granted";
-"scan_card_no_permission_message" = "Permissions must be granted in order to use the scan card functionality. Please go to Settings and toggle Camera on";
+"scan_card_no_permission_message" = "In order to scan your card, please open settings and grant %@ access to your Camera";
 "scan_card_restricted_title" = "Camera access restricted";
 "scan_card_restricted_message" = "Scan camera functionality is not available due to restriction on your device";
 "scan_card_simulator_title" = "Camera not available on iOS simulators";
