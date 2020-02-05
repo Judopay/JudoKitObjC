@@ -146,7 +146,7 @@ static const CGFloat horizontalPadding = 24.0f;
     UIStackView *selectedStackView = self.mainStackView.arrangedSubviews[index];
     UILabel *selectedLabel = selectedStackView.subviews[1];
 
-    [self hideUnselectedLabelsForSelectedLabel:selectedLabel];
+    [self hideLabelsExceptLabel:selectedLabel];
     [self view:selectedLabel shouldHide:NO];
 
     [self.delegate sectionView:self didSelectSectionAtIndex:index];
@@ -175,7 +175,7 @@ static const CGFloat horizontalPadding = 24.0f;
                      }];
 }
 
-- (void)hideUnselectedLabelsForSelectedLabel:(UILabel *)selectedLabel {
+- (void)hideLabelsExceptLabel:(UILabel *)selectedLabel {
     for (UIStackView *stackView in self.mainStackView.arrangedSubviews) {
         UILabel *label = stackView.arrangedSubviews[1];
         if (!label.isHidden && label != selectedLabel) {

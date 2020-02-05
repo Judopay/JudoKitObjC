@@ -39,6 +39,9 @@
 
 @interface JPSectionView : UIView
 
+/**
+ * A reference to the instance that adopts the JPSectionViewDelegate protocol
+ */
 @property (nonatomic, weak) id<JPSectionViewDelegate> _Nullable delegate;
 /**
  * A method that adds a section to the section view.
