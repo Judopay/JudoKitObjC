@@ -212,10 +212,9 @@ static const CGFloat horizontalPadding = 24.0f;
 }
 
 - (void)view:(UIView *)view shouldHide:(BOOL)shouldHide {
-    [UIView animateWithDuration:0.3
-                     animations:^{
-                         view.hidden = shouldHide;
-                     }];
+    [UIView animateWithDuration:0.3 animations:^{
+        view.hidden = shouldHide;
+    }];
 }
 
 - (void)hideUnselectedLabelsForSelectedLabel:(UILabel *)selectedLabel {

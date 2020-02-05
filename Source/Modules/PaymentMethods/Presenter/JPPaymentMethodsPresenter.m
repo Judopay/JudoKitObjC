@@ -107,7 +107,12 @@
     [self prepareHeaderModel];
     self.viewModel.headerModel.animationType = animationType;
 
-    [self.viewModel.items addObject:self.paymentSelectionModel];
+    NSArray *paymentMethods = [self.interactor getPaymentMethods];
+    
+    if (paymentMethods.count > 1) {
+        self.paymentSelectionModel.paymentMethods = paymentMethods;
+        [self.viewModel.items addObject:self.paymentSelectionModel];
+    }
 
     NSArray<JPStoredCardDetails *> *cardDetailsArray = [self.interactor getStoredCardDetails];
 
