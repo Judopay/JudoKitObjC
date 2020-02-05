@@ -30,7 +30,7 @@
 #import "JPSession.h"
 #import "JPTransactionData.h"
 #import "JudoPaymentMethodsViewController.h"
-#import "PaymentMethods.h"
+#import "JPPaymentMethod.h"
 
 static NSString *__nonnull const JudoKitVersion = @"8.2.1";
 
@@ -259,14 +259,14 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *  @param judoId               The judoID of the merchant to receive the payment
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference         The reference for this transaction
- *  @param methods              The payment methods to be shown
- *  @param networks   The supported card networks
- *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
+ *  @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                              Setting nil will present the payment method screen with the default payment methods;
+ *  @param networks           The supported card networks
+ *  @param completion       The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePaymentMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-                      paymentMethods:(PaymentMethods)methods
+                      paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
                supportedCardNetworks:(CardNetwork)networks
                           completion:(nonnull JudoCompletionBlock)completion;
 
@@ -275,15 +275,15 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  *
  *  @param judoId               The judoID of the merchant to receive the payment
  *  @param amount               The amount and currency of the payment (default is GBP)
- *  @param reference            The reference for this transaction
- *  @param methods              The payment methods to be shown
- *  @param networks   The supported card networks
- *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
+ *  @param reference        The reference for this transaction
+ *  @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                              Setting nil will present the payment method screen with the default payment methods;
+ *  @param networks          The supported card networks
+ *  @param completion      The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePreAuthMethodSelection:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-                      paymentMethods:(PaymentMethods)methods
+                      paymentMethods:(nullable NSArray<JPPaymentMethod *> *)methods
                supportedCardNetworks:(CardNetwork)networks
                           completion:(nonnull JudoCompletionBlock)completion;
 

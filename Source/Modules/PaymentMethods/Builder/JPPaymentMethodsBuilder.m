@@ -42,6 +42,7 @@
                                                           amount:(JPAmount *)amount
                                                        reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)networks
+                                                  paymentMethods:(NSArray <JPPaymentMethod *> *)methods
                                                completionHandler:(JudoCompletionBlock)completion {
     return [self buildModuleWithJudoID:judoId
                                session:session
@@ -50,6 +51,7 @@
                              reference:reference
                        transactionType:TransactionTypePayment
                  supportedCardNetworks:networks
+                        paymentMethods:methods
                      completionHandler:completion];
 }
 
@@ -59,6 +61,7 @@
                                                           amount:(JPAmount *)amount
                                                        reference:(JPReference *)reference
                                            supportedCardNetworks:(CardNetwork)networks
+                                                  paymentMethods:(NSArray <JPPaymentMethod *> *)methods
                                                completionHandler:(JudoCompletionBlock)completion {
     return [self buildModuleWithJudoID:judoId
                                session:session
@@ -67,6 +70,7 @@
                              reference:reference
                        transactionType:TransactionTypePreAuth
                  supportedCardNetworks:networks
+                        paymentMethods:methods
                      completionHandler:completion];
 }
 
@@ -77,6 +81,7 @@
                                                 reference:(JPReference *)reference
                                           transactionType:(TransactionType)transactionType
                                     supportedCardNetworks:(CardNetwork)networks
+                                           paymentMethods:(NSArray <JPPaymentMethod *> *)methods
                                         completionHandler:(JudoCompletionBlock)completion {
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
@@ -103,6 +108,7 @@
     interactor = [[JPPaymentMethodsInteractorImpl alloc] initWithTransaction:transaction
                                                                    reference:reference
                                                                        theme:session.theme
+                                                              paymentMethods:methods
                                                                    andAmount:amount];
 
     presenter.view = viewController;
