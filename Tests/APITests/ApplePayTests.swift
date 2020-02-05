@@ -64,15 +64,15 @@ class ApplePayTests: JudoTestCase {
     func test_OnApplePayConfigurationInitialization_DefaultValuesAreRespected() {
         XCTAssertEqual(configuration.merchantCapabilities, MerchantCapability.capability3DS,
                        "Configuration's merchantCapabilities does not default to 3D Security")
-        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.visa.rawValue)),
+        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.networkVisa.rawValue)),
                        "Configuration's supportedCardNetworks does not contain Visa")
-        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.AMEX.rawValue)),
+        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.networkAMEX.rawValue)),
                       "Configuration's supportedCardNetworks does not contain AmEx")
-        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.masterCard.rawValue)),
+        XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.networkMasterCard.rawValue)),
                       "Configuration's supportedCardNetworks does not contain MasterCard")
 
         if #available(iOS 12.0, *) {
-            XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.maestro.rawValue)),
+            XCTAssertTrue(configuration.supportedCardNetworks.contains(NSNumber(value: CardNetwork.networkMaestro.rawValue)),
                           "Configuration's supportedCardNetworks does not contain Maestro")
         }
         
