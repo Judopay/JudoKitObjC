@@ -221,6 +221,8 @@
 
 - (void)didFinishAddingCard {
     [self.presenter viewModelNeedsUpdate];
+    [self.paymentMethodsView.tableView setEditing:NO animated:YES];
+    [self.presenter changeHeaderButtonTitle:self.paymentMethodsView.tableView.isEditing];
 }
 
 @end
