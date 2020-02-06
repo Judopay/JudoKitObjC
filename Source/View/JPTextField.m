@@ -125,18 +125,10 @@
         [_floatingTextField placeholderWithText:@""
                                           color:UIColor.jpGrayColor
                                         andFont:UIFont.headlineLight];
-
-        [_floatingTextField addTarget:self
-                               action:@selector(didChangeText)
-                     forControlEvents:UIControlEventEditingChanged];
-
+        
         _floatingTextField.delegate = self;
     }
     return _floatingTextField;
-}
-
-- (void)didChangeText {
-    [self.delegate textField:self didChangeText:self.floatingTextField.text];
 }
 
 - (UIStackView *)stackView {

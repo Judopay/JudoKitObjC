@@ -12,12 +12,7 @@
 @class JPTextField;
 
 @protocol JPTextFieldDelegate <NSObject>
-
 - (BOOL)textField:(JPTextField *)inputField shouldChangeText:(NSString *)text;
-
-@optional
-- (void)textField:(JPTextField *)inputField didChangeText:(NSString *)text;
-
 @end
 
 @interface JPTextField : UIView
