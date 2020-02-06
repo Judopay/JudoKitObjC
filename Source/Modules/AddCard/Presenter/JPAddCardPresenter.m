@@ -217,6 +217,10 @@
     self.addCardViewModel.expiryDateViewModel.errorText = result.errorMessage;
     self.isExpiryDateValid = result.isValid;
 
+    if (result.isValid && result.formattedInput.length > 4) {
+        [self.view changeFocusToSecurityCodeField];
+    }
+
     if (result.isInputAllowed) {
         self.addCardViewModel.expiryDateViewModel.text = result.formattedInput;
         return;

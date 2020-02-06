@@ -72,6 +72,11 @@
  */
 - (void)displayCameraSimulatorAlert;
 
+/**
+* A method that changes focus to the security code field
+*/
+- (void)changeFocusToSecurityCodeField;
+
 @end
 
 #pragma mark - JPAddCardViewController

@@ -147,6 +147,10 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+- (void)changeFocusToSecurityCodeField {
+    [self.addCardView.secureCodeTextField becomeFirstResponder];
+}
+
 #pragma mark - Layout setup
 
 - (void)addTargets {
@@ -235,9 +239,6 @@
 
 - (BOOL)textField:(JPTextField *)inputField shouldChangeText:(NSString *)text {
     [self.presenter handleInputChange:text forType:inputField.type];
-    if (inputField.type == JPInputTypeCardExpiryDate && text.length > 4) {
-        [self.addCardView.secureCodeTextField becomeFirstResponder];
-    }
     return NO;
 }
 
