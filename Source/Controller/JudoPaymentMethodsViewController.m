@@ -246,7 +246,7 @@
     __weak JudoPaymentMethodsViewController *weakSelf = self;
 
     [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
-                                               amount:self.viewModel.amount.amount.doubleValue
+                                               amount:self.viewModel.amount
                                             reference:self.viewModel.reference
                                    redirectCompletion:self.redirectCompletionBlock
                                            completion:^(JPResponse *response, NSError *error) {

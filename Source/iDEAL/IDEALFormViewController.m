@@ -80,7 +80,7 @@
 
 - (instancetype)initWithJudoId:(NSString *)judoId
                          theme:(JPTheme *)theme
-                        amount:(double)amount
+                        amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
