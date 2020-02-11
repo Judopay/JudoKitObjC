@@ -1661,7 +1661,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C22178235DC518000D6E3A /* icons.bundle in Resources */,
-				302291B0231012E000EC79CB /* (null) in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
