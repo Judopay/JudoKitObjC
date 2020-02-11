@@ -24,8 +24,8 @@
 
 #import "IDEALService.h"
 #import "IDEALBank.h"
-#import "JPOrderDetails.h"
 #import "JPAmount.h"
+#import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
 #import "JPSession.h"
@@ -147,7 +147,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
-    
+
     NSNumber *amount = [NSNumber numberWithDouble:self.amount.amount.doubleValue];
     NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
 

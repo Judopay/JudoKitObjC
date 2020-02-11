@@ -52,12 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (JPAmount *)jpAmount;
 
 /**
- * A helper getter that generates a JPReference object based on the consumer reference
- * defined in the ApplePayConfiguration. Needed as a parameter for JPTransaction.
- */
-- (JPReference *)jpReference;
-
-/**
  * A helper method that converts a PKContact object into a ContactInformation object
  * that is passed into JPResult to give merchants access to either billing or shipping
  * contact information.
