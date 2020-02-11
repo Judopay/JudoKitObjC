@@ -357,7 +357,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
         [self.threeDSWebView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
         [self.threeDSWebView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
-        [self.threeDSWebView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor],
+        [self.threeDSWebView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.threeDSWebView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
     ];
 
