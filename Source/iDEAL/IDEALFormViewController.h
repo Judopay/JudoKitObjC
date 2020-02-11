@@ -41,7 +41,7 @@
  *
  *  @param judoId                            The judoID of the merchant to receive the iDeal transaction
  *  @param theme                              An instance of a JPTheme object that defines the style of the form
- *  @param amount                            The amount expressed as a double value (currency is limited to EUR)
+ *  @param amount                            The amount and currency of the iDEAL transaction (currency is limited to EUR)
  *  @param reference                     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param session                          An instance of a JPSession object that is used for making API requests
  *  @param paymentMetadata        An optional parameter for additional metadata
@@ -52,7 +52,7 @@
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
                                  theme:(nonnull JPTheme *)theme
-                                amount:(double)amount
+                                amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata

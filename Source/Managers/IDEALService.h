@@ -50,14 +50,14 @@ typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable,
  * Creates an instance of an IDEALService object
  *
  * @param judoId           The Judo ID of the merchant to receive the iDeal transaction
- * @param amount           The amount expressed as a double value (currency is always EUR)
+ * @param amount           The amount and currency of the iDEAL transaction (currency is always EUR)
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  * @param session         An instance of JPSession that is used to make API requests
  * @param paymentMetadata                       Freeformat optional JSON metadata
  * @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
-                                amount:(double)amount
+                                amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata

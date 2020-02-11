@@ -25,6 +25,7 @@
 #import "IDEALService.h"
 #import "IDEALBank.h"
 #import "JPOrderDetails.h"
+#import "JPAmount.h"
 #import "JPReference.h"
 #import "JPResponse.h"
 #import "JPSession.h"
@@ -34,7 +35,7 @@
 @interface IDEALService ()
 
 @property (nonatomic, strong) NSString *judoId;
-@property (nonatomic, assign) double amount;
+@property (nonatomic, assign) JPAmount *amount;
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
@@ -50,7 +51,7 @@ static NSString *redirectEndpoint = @"order/bank/sale";
 static NSString *statusEndpoint = @"order/bank/statusrequest/";
 
 - (instancetype)initWithJudoId:(NSString *)judoId
-                        amount:(double)amount
+                        amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
@@ -146,8 +147,8 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
-
-    NSNumber *amount = [NSNumber numberWithDouble:self.amount];
+    
+    NSNumber *amount = [NSNumber numberWithDouble:self.amount.amount.doubleValue];
     NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
