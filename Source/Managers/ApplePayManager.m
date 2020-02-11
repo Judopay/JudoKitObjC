@@ -50,10 +50,6 @@
                                    currency:self.configuration.currency];
 }
 
-- (JPReference *)jpReference {
-    return [[JPReference alloc] initWithConsumerReference:self.configuration.reference];
-}
-
 - (PKPaymentAuthorizationViewController *)pkPaymentAuthorizationViewController {
 
     PKPaymentAuthorizationViewController *viewController;

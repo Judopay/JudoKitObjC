@@ -369,7 +369,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                                                         views:@{@"scrollView" : self.scrollView,
                                                                                 @"button" : self.paymentButton}]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[tdsecure]-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[tdsecure]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:@{@"tdsecure" : self.threeDSWebView}]];
@@ -975,7 +975,13 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [scriptContent appendString:@"head.appendChild(meta);"];
     [scriptContent appendString:@"meta.name"];
 
-    [_threeDSWebView evaluateJavaScript:scriptContent completionHandler:nil];
+    [_threeDSWebView evaluateJavaScript:scriptContent
+                      completionHandler:^(id response, NSError *error) {
+                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              NSString *metaSizingContent = @"meta.content = 'width=' + document.documentElement.scrollWidth + ', maximum-scale=1.0'";
+                              [self->_threeDSWebView evaluateJavaScript:metaSizingContent completionHandler:nil];
+                          });
+                      }];
 
     NSMutableString *removePaResFieldScript = [NSMutableString stringWithString:@"const paResField = document.getElementById('pnPaRESPanel');"];
     [removePaResFieldScript appendString:@"paResField.parentElement.removeChild(paResField);"];

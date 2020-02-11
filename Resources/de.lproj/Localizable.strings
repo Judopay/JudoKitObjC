@@ -32,7 +32,7 @@
 "authentication"                        = "Authentisierung";
 "verifying_card"                        = "Karte wird überprüft ...";
 "please_reenter_the_card_security_code" = "Bitte geben sie die Prüfnummer neu ein";
-"secure_server_transmission"            = "Sicherer Server: Die Details ihrer Kreditkarte werden verschlüsselt per SSL vor Übertragung an unseren Zahlungsanbieter. Ihrer Details werden nicht auf diesem Gerät und nicht auf unseren Servern gespeichert.";
+"secure_server_transmission"            = "Die Details ihrer Kreditkarte werden verschlüsselt per SSL vor Übertragung an unseren Zahlungsanbieter. Ihrer Details werden nicht auf diesem Gerät und nicht auf unseren Servern gespeichert.";
 "united_kingdom"                        = "Vereinigtes Königreich (no one really says this)";
 "united_states"                         = "Vereinigte Staaten ";
 "canada"                                = "Kanada ";
@@ -52,9 +52,15 @@
 "try_again"                             = "Retry";
 "close"                                 = "Close";
 "no_internet"                           = "Please check your internet connection and try again";
+<<<<<<< HEAD
 "there_is_a_delay"                      = "This is taking longer than expected. Please wait‚Ä¶";
 "something_went_wrong"                  = "Oops! Something went wrong.";
 "order_pending"                         = "Transaction pending‚Ä¶";
+=======
+"there_is_a_delay"                      = "This is taking longer than expected. Please wait...";
+"something_went_wrong"                  = "Oops! Something went wrong.";
+"order_pending"                         = "Transaction pending...";
+>>>>>>> e3ccfd7fb09ceac1410b4659076e60977f799c9e
 "payment_status"                        = "Payment status";
 "date_format"                           = "MM/yy";
 "ideal_transaction"                     = "iDEAL Transaction";

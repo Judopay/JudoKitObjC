@@ -85,13 +85,13 @@
 
 - (void)applyTheme {
     self.backgroundColor = self.theme.judoBackgroundColor;
-    
+
     self.titleLabel.textColor = self.theme.judoTextColor;
     self.titleLabel.font = self.theme.judoLabelFont;
-    
+
     self.subtitleLabel.textColor = self.theme.judoTextColor;
     self.subtitleLabel.font = self.theme.judoLabelFont;
-    
+
     self.activityIndicatorView.color = self.theme.judoActivityIndicatorColor;
     self.actionButton.backgroundColor = self.theme.judoButtonBackgroundColor;
     self.actionButton.titleLabel.font = self.theme.judoButtonTitleFont;

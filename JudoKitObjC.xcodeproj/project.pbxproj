@@ -44,7 +44,7 @@
 		30225D17237E8F2F005EB28C /* JPReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 30225D15237E8F2F005EB28C /* JPReachability.m */; };
 		302291AE23100F9E00EC79CB /* UIView+SafeAnchors.m in Sources */ = {isa = PBXBuildFile; fileRef = 302291AC23100F9E00EC79CB /* UIView+SafeAnchors.m */; };
 		302291AF23100F9E00EC79CB /* UIView+SafeAnchors.h in Headers */ = {isa = PBXBuildFile; fileRef = 302291AD23100F9E00EC79CB /* UIView+SafeAnchors.h */; };
-		302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */; };
+		302291B0231012E000EC79CB /* (null) in Resources */ = {isa = PBXBuildFile; };
 		306BCECD2355F0F7008540E7 /* IDEALBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 306BCECC2355F0F7008540E7 /* IDEALBank.m */; };
 		306BCECF2355FC9F008540E7 /* IDEALBank.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCECE2355FC9E008540E7 /* IDEALBank.h */; };
 		306BCF1D23570F86008540E7 /* IDEALBankSelectionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 306BCF1B23570F86008540E7 /* IDEALBankSelectionTableViewController.h */; };
@@ -484,7 +484,6 @@
 		30DB511423100E5200B73D66 /* PaymentMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentMethods.h; path = Model/PaymentMethods.h; sourceTree = "<group>"; };
 		30DB511A23100E6B00B73D66 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		30DB511B23100E6B00B73D66 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
-		30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockJPTransactionData.json; sourceTree = "<group>"; };
 		30DB511F23100E6B00B73D66 /* ApplePayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePayManager.m; sourceTree = "<group>"; };
 		30DB512023100E6B00B73D66 /* ApplePayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePayManager.h; sourceTree = "<group>"; };
 		30DB512723100EED00B73D66 /* CardLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardLogoView.m; path = View/CardLogoView.m; sourceTree = "<group>"; };
@@ -876,16 +875,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		30DB511C23100E6B00B73D66 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */,
-				300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */,
-				30DB511D23100E6B00B73D66 /* MockJPTransactionData.json */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		30DB511E23100E6B00B73D66 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,6 +982,7 @@
 				3B678B571C6CE5190001DC2F /* Products */,
 				15779454211085A9007BD3E1 /* Frameworks */,
 				2F7FAD88B3D56712F10B3DA5 /* Pods */,
+				5208E0E323F2E01200F21BE1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1019,7 +1009,6 @@
 				3B678B731C6CE6500001DC2F /* Extensions */,
 				30DB511923100E6B00B73D66 /* Helpers */,
 				30DB511E23100E6B00B73D66 /* Managers */,
-				30DB511C23100E6B00B73D66 /* Mocks */,
 				3B678B701C6CE5F70001DC2F /* Model */,
 				3B6991531C8DD841006ED1FB /* Theme */,
 				3B678B741C6CE68D0001DC2F /* View */,
@@ -1260,6 +1249,15 @@
 				44E3A10623498B770042C9EC /* Settings.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5208E0E323F2E01200F21BE1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				300654B1237AA92A00097955 /* JPPrimaryAccountDetails.m */,
+				300654B0237AA92A00097955 /* JPPrimaryAccountDetails.h */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		524B41DF23C677D600539556 /* Theming */ = {
@@ -1664,7 +1662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C22178235DC518000D6E3A /* icons.bundle in Resources */,
-				302291B0231012E000EC79CB /* MockJPTransactionData.json in Resources */,
+				302291B0231012E000EC79CB /* (null) in Resources */,
 				829330FC230AF0F900689DC4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
