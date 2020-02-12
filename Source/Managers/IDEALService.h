@@ -38,9 +38,6 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
 
 @interface IDEALService : NSObject
 
-typedef void (^IDEALRedirectCompletion)(JPResponse *_Nullable);
-typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable, NSError *_Nullable);
-
 /**
  * A string describing the account holder name
  */
@@ -54,14 +51,12 @@ typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable,
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  * @param session         An instance of JPSession that is used to make API requests
  * @param paymentMetadata                       Freeformat optional JSON metadata
- * @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  */
 - (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
                                 amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
-                       paymentMetadata:(nullable NSDictionary *)paymentMetadata
-                    redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion;
+                       paymentMetadata:(nullable NSDictionary *)paymentMetadata;
 
 /**
  * Method used for returning a redirect URL based on the specified iDEAL bank
@@ -70,7 +65,7 @@ typedef void (^JudoRedirectCompletion)(NSString *_Nullable, NSString *_Nullable,
  * @param completion  A completion block that either returns the redirect URL string or returns an error
  */
 - (void)redirectURLForIDEALBank:(nonnull IDEALBank *)iDealBank
-                     completion:(nonnull JudoRedirectCompletion)completion;
+                     completion:(nonnull JudoCompletionBlock)completion;
 
 /**
  * Method used for returning a redirect URL based on the specified iDEAL bank

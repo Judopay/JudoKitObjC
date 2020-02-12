@@ -64,6 +64,7 @@
 @property (nonatomic, strong) NSString *checksum;
 @property (nonatomic, strong) NSString *redirectUrl;
 @property (nonatomic, assign) BOOL shouldDismissWebView;
+@property (nonatomic, strong) JPResponse *redirectResponse;
 
 @property (nonatomic, strong) NSTimer *delayTimer;
 @property (nonatomic, strong) IDEALService *idealService;
@@ -84,7 +85,6 @@
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata
-            redirectCompletion:(IDEALRedirectCompletion)redirectCompletion
                     completion:(JudoCompletionBlock)completion {
 
     if (self = [super init]) {
@@ -94,8 +94,7 @@
                                                           amount:amount
                                                        reference:reference
                                                          session:session
-                                                 paymentMetadata:paymentMetadata
-                                              redirectCompletion:redirectCompletion];
+                                                 paymentMetadata:paymentMetadata];
     }
 
     return self;
@@ -144,17 +143,19 @@
     [self.view endEditing:YES];
     self.idealService.accountHolderName = self.nameInputField.textField.text;
     [self.idealService redirectURLForIDEALBank:self.selectedBank
-                                    completion:^(NSString *redirectUrl, NSString *orderId, NSError *error) {
+                                    completion:^(JPResponse *response, NSError *error) {
                                         if (error) {
                                             self.completionBlock(nil, error);
                                             return;
                                         }
 
-                                        self.orderId = orderId;
-                                        self.redirectUrl = redirectUrl;
+                                        JPTransactionData *transactionData = response.items.firstObject;
+                                        self.redirectUrl = transactionData.redirectUrl;
+                                        self.orderId = transactionData.orderDetails.orderId;
+                                        self.redirectResponse = response;
 
                                         self.navigationItem.rightBarButtonItem.enabled = NO;
-                                        [self loadWebViewWithURLString:redirectUrl];
+                                        [self loadWebViewWithURLString:self.redirectUrl];
                                     }];
 }
 
@@ -222,14 +223,14 @@
                                                 [self.delayTimer invalidate];
                                                 if (error && error.localizedDescription == NSError.judoRequestTimeoutError.localizedDescription) {
                                                     [self.transactionStatusView changeStatusTo:IDEALStatusTimeout andSubtitle:nil];
-                                                    self.completionBlock(nil, NSError.judoRequestTimeoutError);
+                                                    self.completionBlock(self.redirectResponse, NSError.judoRequestTimeoutError);
                                                     return;
                                                 }
 
                                                 if (error) {
                                                     [self.transactionStatusView changeStatusTo:IDEALStatusError
                                                                                    andSubtitle:error.localizedDescription];
-                                                    self.completionBlock(nil, error);
+                                                    self.completionBlock(self.redirectResponse, error);
                                                     return;
                                                 }
 
@@ -238,6 +239,7 @@
 
                                                 [self.transactionStatusView changeStatusTo:orderStatus
                                                                                andSubtitle:nil];
+                                                self.completionBlock(response, error);
                                             }];
 }
 
