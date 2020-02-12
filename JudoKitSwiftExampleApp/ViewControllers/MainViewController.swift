@@ -239,7 +239,7 @@ class MainViewController: UITableViewController {
         ]
 
         let configuration = ApplePayConfiguration(judoId: judoId,
-                                                  reference: "judopay-sample-app",
+                                                  reference: JPReference(consumerReference: "judo-sample-app"),
                                                   merchantId: merchantId,
                                                   currency: currency,
                                                   countryCode: "GB",
