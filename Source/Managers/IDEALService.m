@@ -35,7 +35,7 @@
 @interface IDEALService ()
 
 @property (nonatomic, strong) NSString *judoId;
-@property (nonatomic, assign) JPAmount *amount;
+@property (nonatomic, strong) JPAmount *amount;
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
 @property (nonatomic, strong) JPSession *session;
