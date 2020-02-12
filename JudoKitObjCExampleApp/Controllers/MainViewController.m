@@ -145,7 +145,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         [self presentErrorWithMessage:@"You must create a card token first"];
         return;
     }
-    
+
     [self.judoKitSession invokeTokenPayment:judoId
                                      amount:self.amount
                           consumerReference:kConsumerReference
@@ -161,7 +161,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         [self presentErrorWithMessage:@"You must create a card token first"];
         return;
     }
-    
+
     [self.judoKitSession invokeTokenPreAuth:judoId
                                      amount:self.amount
                           consumerReference:kConsumerReference
@@ -210,13 +210,13 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         [self handleError:error];
         return;
     }
-    
+
     [self handleResponse:response];
 }
 
 - (void)handleError:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
+
     if (error.code != JudoErrorUserDidCancel) {
         [self presentErrorWithMessage:error.localizedDescription];
     }
@@ -224,12 +224,12 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 
 - (void)handleResponse:(JPResponse *)response {
     JPTransactionData *transactionData = response.items.firstObject;
-    
+
     if (!transactionData) {
         [self presentErrorWithMessage:@"Callback returned empty response"];
         return;
     }
-    
+
     if (transactionData.cardDetails) {
         self.cardDetails = transactionData.cardDetails;
         self.payToken = transactionData.paymentToken;
@@ -249,44 +249,44 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-    
+
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                         style:UIAlertActionStyleCancel
                                                       handler:nil]];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (ApplePayConfiguration *)applePayConfigurationWithType:(TransactionType)transactionType {
-    
+
     NSDecimalNumber *itemOnePrice = [NSDecimalNumber decimalNumberWithString:@"0.01"];
     NSDecimalNumber *itemTwoPrice = [NSDecimalNumber decimalNumberWithString:@"0.02"];
     NSDecimalNumber *totalPrice = [NSDecimalNumber decimalNumberWithString:@"0.03"];
-    
+
     NSArray *items = @[[PaymentSummaryItem itemWithLabel:@"Item 1" amount:itemOnePrice],
                        [PaymentSummaryItem itemWithLabel:@"Item 2" amount:itemTwoPrice],
                        [PaymentSummaryItem itemWithLabel:@"Tim Apple" amount:totalPrice]];
-    
+
     NSTimeInterval timeInterval = [NSDate new].timeIntervalSince1970;
     NSString *uniquePaymentReference = [NSString stringWithFormat:@"example-reference-%f", timeInterval];
-    
+
     JPReference *reference = [[JPReference alloc] initWithConsumerReference:kConsumerReference
                                                            paymentReference:uniquePaymentReference];
-    
+
     reference.metaData = @{@"example-key": @"example-value"};
-    
+
     ApplePayConfiguration *configuration = [[ApplePayConfiguration alloc] initWithJudoId:judoId
                                                                                reference:reference
                                                                               merchantId:merchantId
                                                                                 currency:self.settings.currency
                                                                              countryCode:@"GB"
                                                                      paymentSummaryItems:items];
-    
+
     configuration.transactionType = transactionType;
     configuration.requiredShippingContactFields = ContactFieldAll;
     configuration.requiredBillingContactFields = ContactFieldAll;
     configuration.returnedContactInfo = ReturnedInfoAll;
-    
+
     return configuration;
 }
 
@@ -332,7 +332,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     DemoFeature *option = self.features[indexPath.row];
     cell.textLabel.text = option.title;
@@ -361,7 +361,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         case DemoFeatureTypeSaveCard:
             [self saveCardOperation];
             break;
-            
+
         case DemoFeatureTypeCheckCard:
             [self checkCardOperation];
             break;
@@ -385,7 +385,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         case DemoFeatureTypePaymentMethods:
             [self paymentMethodOption];
             break;
-            
+
         case DemoFeatureTypeIDEALTransaction:
             [self idealTransactionOperation];
             break;
