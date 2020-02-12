@@ -35,7 +35,7 @@ class StandaloneApplePayViewController: UIViewController {
         ]
 
         let configuration = ApplePayConfiguration(judoId: judoId,
-                                                  reference: "judopay-sample-app",
+                                                  reference: JPReference(consumerReference: "jp-sample-app"),
                                                   merchantId: merchantId,
                                                   currency: currency.rawValue,
                                                   countryCode: "GB",
