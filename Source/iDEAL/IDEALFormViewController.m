@@ -238,6 +238,7 @@
 
                                                 [self.transactionStatusView changeStatusTo:orderStatus
                                                                                andSubtitle:nil];
+                                                self.completionBlock(response, error);
                                             }];
 }
 
