@@ -45,7 +45,6 @@
  *  @param reference                     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param session                          An instance of a JPSession object that is used for making API requests
  *  @param paymentMetadata        An optional parameter for additional metadata
- *  @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  *  @param completion                   Completion block called when transaction has been finished
  *
  *  @return an initialized IDEALFormViewController object
@@ -56,7 +55,6 @@
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
                        paymentMetadata:(nullable NSDictionary *)paymentMetadata
-                    redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                             completion:(nonnull JudoCompletionBlock)completion;
 
 @end

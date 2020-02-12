@@ -87,7 +87,6 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                         paymentMethods:PaymentMethodsAll
                applePayConfiguratation:[self applePayConfigurationWithType:TransactionTypePayment]
                            cardDetails:nil
-                    redirectCompletion:nil
                             completion:^(JPResponse * response, NSError * error) {
         [self handleCallbackWithResponse:response andError:error];
     }];
@@ -185,7 +184,6 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
                                                amount:[JPAmount amount:@"0.01" currency:@"EUR"]
                                             reference:[JPReference consumerReference:kConsumerReference]
-                                   redirectCompletion:nil
                                            completion:^(JPResponse *response, NSError *error) {
         [self handleCallbackWithResponse:response andError:error];
     }];

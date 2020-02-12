@@ -28,7 +28,6 @@
 #import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
-#import "JPSession.h"
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
 
@@ -41,7 +40,6 @@
 @property (nonatomic, strong) JPSession *session;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) BOOL didTimeout;
-@property (nonatomic, strong) IDEALRedirectCompletion redirectCompletion;
 
 @end
 
@@ -54,8 +52,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
-               paymentMetadata:(NSDictionary *)paymentMetadata
-            redirectCompletion:(IDEALRedirectCompletion)redirectCompletion {
+               paymentMetadata:(NSDictionary *)paymentMetadata {
 
     if (self = [super init]) {
         self.judoId = judoId;
@@ -64,14 +61,13 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
         self.session = session;
         self.paymentMetadata = paymentMetadata;
         self.didTimeout = false;
-        self.redirectCompletion = redirectCompletion;
     }
 
     return self;
 }
 
 - (void)redirectURLForIDEALBank:(IDEALBank *)iDealBank
-                     completion:(JudoRedirectCompletion)completion {
+                     completion:(JudoCompletionBlock)completion {
 
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, redirectEndpoint];
 
@@ -81,16 +77,11 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
                 JPTransactionData *data = response.items.firstObject;
 
                 if (data.orderDetails.orderId && data.redirectUrl) {
-
-                    if (self.redirectCompletion) {
-                        self.redirectCompletion(response);
-                    }
-
-                    completion(data.redirectUrl, data.orderDetails.orderId, error);
+                    completion(response, error);
                     return;
                 }
 
-                completion(nil, nil, NSError.judoResponseParseError);
+                completion(nil, NSError.judoResponseParseError);
             }];
 }
 

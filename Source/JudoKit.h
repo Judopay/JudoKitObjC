@@ -260,7 +260,6 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
  *  @param cardDetails          The card details to present in the input fields
- *  @param redirectCompletion             An optional completion handler that, once implemented, will allow you to capture the IDEAL redirect response data
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
@@ -269,7 +268,6 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
              paymentMethods:(PaymentMethods)methods
     applePayConfiguratation:(nullable ApplePayConfiguration *)applePayConfigs
                 cardDetails:(nullable JPCardDetails *)cardDetails
-         redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
 
 /**
@@ -473,13 +471,11 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  @param judoId           The judoID of the merchant to receive the token pre-auth
  *  @param amount           The amount and currency of the iDEAL transaction (currency is limited to EUR)
  *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
- *  @param redirectCompletion        A completion block that can be optionally set to return back the redirect response for iDEAL transactions
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
-                  redirectCompletion:(nullable IDEALRedirectCompletion)redirectCompletion
                           completion:(nonnull JudoCompletionBlock)completion;
 
 @end
