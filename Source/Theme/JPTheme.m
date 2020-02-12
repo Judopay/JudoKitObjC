@@ -290,7 +290,7 @@
 
 - (UIColor *)judoNavigationButtonColor {
     if (!_judoNavigationButtonColor) {
-        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+        _judoNavigationButtonColor = [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
     return _judoNavigationButtonColor;
 }
@@ -304,7 +304,7 @@
 
 - (UIColor *)judoNavigationBarTitleColor {
     if (!_judoNavigationBarTitleColor) {
-        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+        _judoNavigationBarTitleColor = [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
     return _judoNavigationBarTitleColor;
 }
@@ -332,42 +332,42 @@
 
 - (UIColor *)judoPlaceholderColor {
     if (!_judoPlaceholderColor) {
-        return [self.tintColor isDarkColor] ? UIColor.magnesium : UIColor.magnesium.inverseColor;
+        _judoPlaceholderColor = [self.tintColor isDarkColor] ? UIColor.magnesium : UIColor.magnesium.inverseColor;
     }
     return _judoPlaceholderColor;
 }
 
 - (UIFont *)judoPlaceholderFont {
     if (!_judoPlaceholderFont) {
-        return [UIFont systemFontOfSize:16.0];
+        _judoPlaceholderFont = [UIFont systemFontOfSize:16.0];
     }
     return _judoPlaceholderFont;
 }
 
 - (UIColor *)judoFloatingLabelColor {
     if (!_judoFloatingLabelColor) {
-        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+        _judoFloatingLabelColor = [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
     return _judoFloatingLabelColor;
 }
 
 - (UIFont *)judoFloatingLabelFont {
     if (_judoFloatingLabelFont) {
-        return [UIFont systemFontOfSize:10.0 weight:UIFontWeightSemibold];
+        _judoFloatingLabelFont = [UIFont systemFontOfSize:10.0 weight:UIFontWeightSemibold];
     }
     return _judoFloatingLabelFont;
 }
 
 - (UIColor *)judoTextFieldColor {
     if (!_judoTextFieldColor) {
-        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+        _judoTextFieldColor = [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
     return _judoTextFieldColor;
 }
 
 - (UIFont *)judoTextFieldFont {
     if (!_judoTextFieldFont) {
-        return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+        _judoTextFieldFont = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
     }
     return _judoTextFieldFont;
 }
@@ -381,28 +381,28 @@
 
 - (UIColor *)judoButtonTitleColor {
     if (!_judoButtonTitleColor) {
-        return [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
+        _judoButtonTitleColor = [self.tintColor isDarkColor] ? [UIColor whiteColor] : [UIColor blackColor];
     }
     return _judoButtonTitleColor;
 }
 
 - (UIFont *)judoButtonTitleFont {
     if (!_judoButtonTitleFont) {
-        return [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];
+        _judoButtonTitleFont = [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];
     }
     return _judoButtonTitleFont;
 }
 
 - (UIColor *)judoLabelColor {
     if (!_judoLabelColor) {
-        return [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
+        _judoLabelColor = [self.tintColor isDarkColor] ? UIColor.thunder : UIColor.thunder.inverseColor;
     }
     return _judoLabelColor;
 }
 
 - (UIFont *)judoLabelFont {
     if (!_judoLabelFont) {
-        return [UIFont systemFontOfSize:16];
+        _judoLabelFont = [UIFont systemFontOfSize:16];
     }
     return _judoLabelFont;
 }

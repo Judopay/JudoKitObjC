@@ -339,7 +339,7 @@
         [self.nameInputField.heightAnchor constraintEqualToConstant:self.theme.inputFieldHeight],
         [self.bankSelectionCell.leftAnchor constraintEqualToAnchor:stackView.leftAnchor],
         [self.bankSelectionCell.rightAnchor constraintEqualToAnchor:stackView.rightAnchor],
-        [self.bankSelectionCell.heightAnchor constraintEqualToConstant:self.theme.buttonHeight],
+        [self.bankSelectionCell.heightAnchor constraintGreaterThanOrEqualToConstant:self.theme.buttonHeight],
     ];
 
     NSArray *stackViewConstraints = @[
