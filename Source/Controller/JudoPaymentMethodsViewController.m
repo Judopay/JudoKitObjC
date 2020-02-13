@@ -242,7 +242,7 @@
 - (void)onIDEALButtonTap:(id)sender {
     __weak JudoPaymentMethodsViewController *weakSelf = self;
 
-    [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
+    [self.judoKitSession invokeIDEALPaymentWithSiteId:self.viewModel.siteId
                                                amount:self.viewModel.amount
                                             reference:self.viewModel.reference
                                            completion:^(JPResponse *response, NSError *error) {

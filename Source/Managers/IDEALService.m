@@ -33,7 +33,7 @@
 
 @interface IDEALService ()
 
-@property (nonatomic, strong) NSString *judoId;
+@property (nonatomic, strong) NSString *siteId;
 @property (nonatomic, strong) JPAmount *amount;
 @property (nonatomic, strong) JPReference *reference;
 @property (nonatomic, strong) NSDictionary *paymentMetadata;
@@ -48,14 +48,14 @@
 static NSString *redirectEndpoint = @"order/bank/sale";
 static NSString *statusEndpoint = @"order/bank/statusrequest/";
 
-- (instancetype)initWithJudoId:(NSString *)judoId
+- (instancetype)initWithSiteId:(NSString *)siteId
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata {
 
     if (self = [super init]) {
-        self.judoId = judoId;
+        self.siteId = siteId;
         self.amount = amount;
         self.reference = reference;
         self.session = session;
@@ -69,7 +69,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 - (void)redirectURLForIDEALBank:(IDEALBank *)iDealBank
                      completion:(JudoCompletionBlock)completion {
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, redirectEndpoint];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.baseURL, redirectEndpoint];
 
     [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
@@ -107,7 +107,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
     if (self.didTimeout)
         return;
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", self.session.iDealEndpoint, statusEndpoint, orderId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", self.session.baseURL, statusEndpoint, orderId];
 
     [self.session GET:fullURL
            parameters:nil
@@ -151,7 +151,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
         @"merchantPaymentReference" : trimmedPaymentReference,
         @"bic" : iDEALBank.bankIdentifierCode,
         @"merchantConsumerReference" : self.reference.consumerReference,
-        @"siteId" : self.judoId
+        @"siteID" : self.siteId
     }];
 
     if (self.paymentMetadata) {

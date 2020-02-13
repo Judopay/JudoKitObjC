@@ -39,7 +39,7 @@
 /**
  *  Initializer that displays the iDEAL transaction form
  *
- *  @param judoId                            The judoID of the merchant to receive the iDeal transaction
+ *  @param siteId                            The siteId of the merchant to receive the iDeal transaction
  *  @param theme                              An instance of a JPTheme object that defines the style of the form
  *  @param amount                            The amount and currency of the iDEAL transaction (currency is limited to EUR)
  *  @param reference                     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
@@ -49,7 +49,7 @@
  *
  *  @return an initialized IDEALFormViewController object
  */
-- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
+- (nonnull instancetype)initWithSiteId:(nonnull NSString *)siteId
                                  theme:(nonnull JPTheme *)theme
                                 amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference

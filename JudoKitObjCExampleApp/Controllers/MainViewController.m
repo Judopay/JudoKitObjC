@@ -192,6 +192,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
     ApplePayConfiguration *configuration = [self applePayConfigurationWithType:TransactionTypePayment];
     
     [self.judoKitSession invokePayment:judoId
+                                siteId:sitetId
                                 amount:amount
                      consumerReference:self.reference
                         paymentMethods:PaymentMethodsAll
@@ -402,7 +403,7 @@ static NSString * const kCellIdentifier = @"com.judo.judopaysample.tableviewcell
 
 - (void)idealTransactionOperation {
     
-    [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
+    [self.judoKitSession invokeIDEALPaymentWithSiteId:sitetId
                                                amount:[JPAmount amount:@"0.01" currency:@"EUR"]
                                             reference:[JPReference consumerReference:self.reference]
                                            completion:^(JPResponse *response, NSError *error) {

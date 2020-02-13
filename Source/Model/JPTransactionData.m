@@ -74,8 +74,8 @@
 }
 
 - (void)setupJudoIDFromDictionary:(NSDictionary *)dictionary {
-    if (dictionary[@"siteId"]) {
-        self.judoId = dictionary[@"siteId"];
+    if (dictionary[@"siteID"]) {
+        self.judoId = dictionary[@"siteID"];
     } else {
         self.judoId = dictionary[@"judoId"];
     }

@@ -27,6 +27,7 @@
 @implementation JudoPaymentMethodsViewModel
 
 - (instancetype)initWithJudoId:(nonnull NSString *)judoId
+                        siteId:(NSString *)siteId
                         amount:(nonnull JPAmount *)amount
              consumerReference:(nonnull JPReference *)reference
                 paymentMethods:(PaymentMethods)methods
@@ -36,6 +37,7 @@
 
     if (self = [super init]) {
         _judoId = judoId;
+        _siteId = siteId;
         _amount = amount;
         _reference = reference;
         _paymentMethods = methods;

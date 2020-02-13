@@ -52,14 +52,14 @@
         path = [path stringByAppendingString:self.receiptId];
     }
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, path];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, path];
     [self.apiSession GET:fullURL parameters:nil completion:completion];
 }
 
 - (void)listWithPagination:(JPPagination *)pagination completion:(void (^)(JPResponse *, NSError *))completion {
     NSString *path = [NSString stringWithFormat:@"transactions?pageSize=%li&offset=%li&sort=%@", (long)pagination.pageSize, (long)pagination.offset, pagination.sort];
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, path];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, path];
     [self.apiSession GET:fullURL parameters:nil completion:completion];
 }
 

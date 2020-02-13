@@ -79,7 +79,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithJudoId:(NSString *)judoId
+- (instancetype)initWithSiteId:(NSString *)siteId
                          theme:(JPTheme *)theme
                         amount:(JPAmount *)amount
                      reference:(JPReference *)reference
@@ -90,7 +90,7 @@
     if (self = [super init]) {
         self.theme = theme;
         self.completionBlock = completion;
-        self.idealService = [[IDEALService alloc] initWithJudoId:judoId
+        self.idealService = [[IDEALService alloc] initWithSiteId:siteId
                                                           amount:amount
                                                        reference:reference
                                                          session:session

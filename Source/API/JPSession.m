@@ -30,6 +30,7 @@
 #import "JPTransactionData.h"
 #import "JudoKit.h"
 #import "NSError+Judo.h"
+#import "JPconstants.h"
 
 #import <TrustKit/TrustKit.h>
 
@@ -51,7 +52,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
 
 @interface JPSession () <NSURLSessionDelegate>
 
-@property (nonatomic, strong, readwrite) NSString *endpoint;
+@property (nonatomic, strong, readwrite) NSString *baseURL;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @property (nonatomic, strong, readwrite) TrustKit *trustKit;
 @property (nonatomic, strong, readwrite) JPReachability *reachability;
@@ -69,14 +70,7 @@ static NSString *const HTTPMethodPUT = @"PUT";
     NSDictionary *trustKitConfig =
         @{
             kTSKPinnedDomains : @{
-                @"judopay-sandbox.com" : @{
-                    kTSKPublicKeyHashes : @[
-                        @"mpCgFwbYmjH0jpQ3EruXVo+/S73NOAtPeqtGJE8OdZ0=",
-                        @"SRjoMmxuXogV8jKdDUKPgRrk9YihOLsrx7ila3iDns4="
-                    ],
-                    kTSKIncludeSubdomains : @YES
-                },
-                @"gw1.judopay.com" : @{
+                @"judopay.com" : @{
                     kTSKPublicKeyHashes : @[
                         @"SuY75QgkSNBlMtHNPeW9AayE7KNDAypMBHlJH9GEhXs=",
                         @"c4zbAoMygSbepJKqU3322FvFv5unm+TWZROW3FHU1o8=",
@@ -88,11 +82,8 @@ static NSString *const HTTPMethodPUT = @"PUT";
 
     self.trustKit = [[TrustKit alloc] initWithConfiguration:trustKitConfig];
 
-    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    NSURL *requestURL = [NSURL URLWithString:self.baseURL];
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
-
-    _iDealEndpoint = @"https://api.judopay.com/";
-
     return self;
 }
 
@@ -268,12 +259,11 @@ static NSString *const HTTPMethodPUT = @"PUT";
 
 #pragma mark - getters and setters
 
-- (NSString *)endpoint {
+- (NSString *)baseURL {
     if (self.sandboxed) {
-        return @"https://gw1.judopay-sandbox.com/";
+        return kJudoSandboxBaseURL;
     }
-
-    return @"https://gw1.judopay.com/";
+    return kJudoBaseURL;
 }
 
 @end
