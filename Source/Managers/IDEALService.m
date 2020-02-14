@@ -151,7 +151,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
         @"merchantPaymentReference" : trimmedPaymentReference,
         @"bic" : iDEALBank.bankIdentifierCode,
         @"merchantConsumerReference" : self.reference.consumerReference,
-        @"siteID" : self.siteId
+        @"siteId" : self.siteId
     }];
 
     if (self.paymentMetadata) {
