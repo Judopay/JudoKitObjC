@@ -4,6 +4,3 @@
 [submodule "TrustKit"]
 	path = TrustKit
 	url = https://github.com/datatheorem/TrustKit.git
-[submodule "CocoaDebug"]
-	path = CocoaDebug
-	url = git@github.com:CocoaDebug/CocoaDebug.git

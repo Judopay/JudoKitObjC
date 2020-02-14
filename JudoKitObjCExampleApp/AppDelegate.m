@@ -23,7 +23,6 @@
 //  SOFTWARE.
 
 #import "AppDelegate.h"
-@import CocoaDebug;
 
 
 @import JudoKitObjC;
@@ -35,7 +34,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [CocoaDebug enable];
     return YES;
 }
 
