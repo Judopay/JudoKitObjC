@@ -90,7 +90,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == 1")
 
         expectation(for: existsPredicate, evaluatedWith: navigation, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+         waitForExpectations(timeout: 20, handler: nil)
     }
 
     func testTappingOnPaymentMethodNavigatesToPaymentMethodScreenAndVISAPaymentSucceedes() {
@@ -115,7 +115,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == 1")
 
         expectation(for: existsPredicate, evaluatedWith: button, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+         waitForExpectations(timeout: 20, handler: nil)
 
         button.tap()
     }

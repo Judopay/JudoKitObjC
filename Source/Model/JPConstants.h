@@ -52,5 +52,4 @@ static NSString *kDiscoverPrefixes = @"65,6011,644,645,646,647,648,649,622126,62
 static NSString *kJudoBaseURL = @"https://api.judopay.com/";
 static NSString *kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/";
 
-
 #endif /* JPConstants_h */

@@ -30,6 +30,7 @@ static NSString * const judoId  = @"<#YOUR JUDOID#>";
 static NSString * const token   = @"<#YOUR TOKEN#>";
 static NSString * const secret  = @"<#YOUR SECRET#>";
 static NSString * const merchantId  = @"<#YOUR MERCHANT ID#>";
+static NSString * const siteId  = @"<#YOUR SITE ID#>";
 
 @interface ExampleAppCredentials : NSObject
 

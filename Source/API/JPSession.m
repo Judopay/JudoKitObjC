@@ -24,13 +24,13 @@
 
 #import "JPSession.h"
 #import "Functions.h"
+#import "JPConstants.h"
 #import "JPPagination.h"
 #import "JPReachability.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 #import "JudoKit.h"
 #import "NSError+Judo.h"
-#import "JPconstants.h"
 
 #import <TrustKit/TrustKit.h>
 
