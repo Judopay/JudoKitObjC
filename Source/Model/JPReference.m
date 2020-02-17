@@ -57,16 +57,11 @@
 }
 
 + (NSString *)generatePaymentReference {
-    static NSDateFormatter *dateFormatter;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [NSDateFormatter new];
-        [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
-    });
-
-    NSString *uuidString = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSCharacterSet *invalidCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"-+ :"];
-    return [[NSString stringWithFormat:@"%@%@", uuidString, [dateFormatter stringFromDate:[NSDate date]]] stringByReplacingCharactersInSet:invalidCharacterSet withString:@""];
+    NSMutableString *string = [NSMutableString stringWithCapacity:39];
+    for (int i = 0; i < 39; i++) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(26))];
+    }
+    return string;
 }
 
 @end

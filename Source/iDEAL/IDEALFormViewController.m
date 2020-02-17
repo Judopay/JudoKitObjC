@@ -228,8 +228,10 @@
                                                 }
 
                                                 if (error) {
-                                                    [self.transactionStatusView changeStatusTo:IDEALStatusError
-                                                                                   andSubtitle:error.localizedDescription];
+                                                    if (error.code != JudoErrorUserDidCancel) {
+                                                        [self.transactionStatusView changeStatusTo:IDEALStatusError
+                                                                                       andSubtitle:error.localizedDescription];
+                                                    }
                                                     self.completionBlock(self.redirectResponse, error);
                                                     return;
                                                 }

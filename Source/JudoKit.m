@@ -552,20 +552,24 @@
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
                           completion:(JudoCompletionBlock)completion {
+    if ([amount.currency isEqualToString:@"EUR"]) {
+        IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithSiteId:siteId
+                                                                                        theme:self.theme
+                                                                                       amount:amount
+                                                                                    reference:reference
+                                                                                      session:self.apiSession
+                                                                              paymentMetadata:self.paymentMetadata
+                                                                                   completion:completion];
 
-    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithSiteId:siteId
-                                                                                    theme:self.theme
-                                                                                   amount:amount
-                                                                                reference:reference
-                                                                                  session:self.apiSession
-                                                                          paymentMetadata:self.paymentMetadata
-                                                                               completion:completion];
+        controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    controller.modalPresentationStyle = UIModalPresentationFormSheet;
-
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    self.activeViewController = controller;
-    [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        self.activeViewController = controller;
+        [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
+    } else {
+        NSError *error = [NSError judoErrorCurrencyNotSupported];
+        completion(nil, error);
+    }
 }
 
 @end

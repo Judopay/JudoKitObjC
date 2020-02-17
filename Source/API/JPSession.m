@@ -211,6 +211,13 @@ static NSString *const HTTPMethodPUT = @"PUT";
                                  return;
                              }
 
+                             if ([responseJSON[@"orderDetails"][@"orderFailureReason"] isEqualToString:@"USER_ABORT"]) {
+                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                     completion(nil, [NSError judoUserDidCancelError]);
+                                 });
+                                 return;
+                             }
+
                              // check if 3DS was requested
                              if (responseJSON[@"acsUrl"] && responseJSON[@"paReq"]) {
                                  dispatch_async(dispatch_get_main_queue(), ^{

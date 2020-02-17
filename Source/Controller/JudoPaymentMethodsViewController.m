@@ -153,7 +153,7 @@
         [self.stackView addArrangedSubview:applePayButton];
     }
 
-    if (self.viewModel.paymentMethods & PaymentMethodIDEAL) {
+    if (self.viewModel.paymentMethods & PaymentMethodIDEAL && [self.viewModel.amount.currency isEqualToString:@"EUR"]) {
 
         UIButton *idealButton = [UIButton new];
         [idealButton setTag:PaymentMethodIDEAL];

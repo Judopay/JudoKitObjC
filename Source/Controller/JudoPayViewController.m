@@ -374,11 +374,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                                                       metrics:nil
                                                                         views:@{@"tdsecure" : self.threeDSWebView}]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(68)-[tdsecure]-(30)-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{@"tdsecure" : self.threeDSWebView}]];
-
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(-1)-[card]-(-1)-|" options:0 metrics:nil views:@{@"card" : self.cardInputField}]];
 
     [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:self.cardInputField

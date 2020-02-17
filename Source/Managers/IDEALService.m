@@ -140,15 +140,14 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
 
     NSNumber *amount = [NSNumber numberWithDouble:self.amount.amount.doubleValue];
-    NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
         @"paymentMethod" : @"IDEAL",
-        @"currency" : @"EUR",
+        @"currency" : self.amount.currency,
         @"amount" : amount,
         @"country" : @"NL",
         @"accountHolderName" : self.accountHolderName,
-        @"merchantPaymentReference" : trimmedPaymentReference,
+        @"merchantPaymentReference" : self.reference.paymentReference,
         @"bic" : iDEALBank.bankIdentifierCode,
         @"merchantConsumerReference" : self.reference.consumerReference,
         @"siteId" : self.siteId
