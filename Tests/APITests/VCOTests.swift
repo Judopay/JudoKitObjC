@@ -63,6 +63,6 @@ class VCOTests : JudoTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 30.0, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 }

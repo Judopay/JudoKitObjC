@@ -52,6 +52,7 @@
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
+#import "JPConstants.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -552,7 +553,7 @@
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
                           completion:(JudoCompletionBlock)completion {
-    if ([amount.currency isEqualToString:@"EUR"]) {
+    if ([amount.currency isEqualToString:kCurrencyEUR]) {
         IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithSiteId:siteId
                                                                                         theme:self.theme
                                                                                        amount:amount

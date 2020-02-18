@@ -40,6 +40,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+#import "JPConstants.h"
 
 @interface JudoPaymentMethodsViewController ()
 
@@ -153,7 +154,7 @@
         [self.stackView addArrangedSubview:applePayButton];
     }
 
-    if (self.viewModel.paymentMethods & PaymentMethodIDEAL && [self.viewModel.amount.currency isEqualToString:@"EUR"]) {
+    if (self.viewModel.paymentMethods & PaymentMethodIDEAL && [self.viewModel.amount.currency isEqualToString:kCurrencyEUR]) {
 
         UIButton *idealButton = [UIButton new];
         [idealButton setTag:PaymentMethodIDEAL];
