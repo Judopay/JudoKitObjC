@@ -74,11 +74,11 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
     [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
             completion:^(JPResponse *response, NSError *error) {
+        
         JPTransactionData *data = response.items.firstObject;
         
         if (data.orderDetails.orderId && data.redirectUrl) {
-            JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
-            completion(mappedResponse, error);
+            completion([self remapIdealResponseWithResponse:response], error);
             return;
         }
         
@@ -160,8 +160,8 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
     return parameters;
 }
 
--(JPResponse *)remapIdealResponseWithResponse:(JPResponse *) response{
-    response.items[0].receiptId = response.items[0].orderDetails.orderId;
+-(JPResponse *)remapIdealResponseWithResponse:(JPResponse *) response {
+    response.items.firstObject.receiptId = response.items.firstObject.orderDetails.orderId;
     return response;
 }
 
