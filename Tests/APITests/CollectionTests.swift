@@ -90,7 +90,7 @@ class CollectionTests: JudoTestCase {
             XCTAssertNotNil(collection)
         }
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -117,7 +117,7 @@ class CollectionTests: JudoTestCase {
             expectation.fulfill();
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
 }

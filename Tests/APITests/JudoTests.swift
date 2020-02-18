@@ -35,9 +35,9 @@ class JudoTests: JudoTestCase {
     
     func testJudoSandboxMode() {
         judo.apiSession.sandboxed = false
-        XCTAssertEqual(judo.apiSession.endpoint, "https://gw1.judopay.com/")
+        XCTAssertEqual(judo.apiSession.baseURL, "https://gw1.judopay.com/")
         judo.apiSession.sandboxed = true
-        XCTAssertEqual(judo.apiSession.endpoint, "https://gw1.judopay-sandbox.com/")
+        XCTAssertEqual(judo.apiSession.baseURL, "https://gw1.judopay-sandbox.com/")
     }
     
 }

@@ -256,6 +256,7 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  This method will invoke the Judo UI on the top UIViewController instance of the Application window. When the payment will finish or any errors encountered the completion block will be invoked with related details.
  *
  *  @param judoId               The judoID of the merchant to receive the payment
+ *  @param siteId               The siteId of the merchant to receive the payment
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
@@ -263,6 +264,7 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
+                     siteId:(NSString *_Nullable)siteId
                      amount:(nonnull JPAmount *)amount
           consumerReference:(nonnull NSString *)reference
              paymentMethods:(PaymentMethods)methods
@@ -473,7 +475,7 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
  */
-- (void)invokeIDEALPaymentWithJudoId:(nonnull NSString *)judoId
+- (void)invokeIDEALPaymentWithSiteId:(nonnull NSString *)siteId
                               amount:(nonnull JPAmount *)amount
                            reference:(nonnull JPReference *)reference
                           completion:(nonnull JudoCompletionBlock)completion;

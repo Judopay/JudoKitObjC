@@ -52,6 +52,7 @@
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
 #import "NSError+Judo.h"
+#import "JPConstants.h"
 
 @interface JPSession ()
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
@@ -327,6 +328,7 @@
 @implementation JudoKit (Invokers)
 
 - (void)invokePayment:(nonnull NSString *)judoId
+                     siteId:siteId
                      amount:(nonnull JPAmount *)amount
           consumerReference:(nonnull NSString *)reference
              paymentMethods:(PaymentMethods)methods
@@ -335,6 +337,7 @@
                  completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion {
 
     JudoPaymentMethodsViewModel *viewModel = [[JudoPaymentMethodsViewModel alloc] initWithJudoId:judoId
+                                                                                          siteId:siteId
                                                                                           amount:amount
                                                                                consumerReference:[[JPReference alloc] initWithConsumerReference:reference]
                                                                                   paymentMethods:methods
@@ -546,24 +549,28 @@
                                       completion:completion];
 }
 
-- (void)invokeIDEALPaymentWithJudoId:(NSString *)judoId
+- (void)invokeIDEALPaymentWithSiteId:(NSString *)siteId
                               amount:(JPAmount *)amount
                            reference:(JPReference *)reference
                           completion:(JudoCompletionBlock)completion {
+    if ([amount.currency isEqualToString:kCurrencyEUR]) {
+        IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithSiteId:siteId
+                                                                                        theme:self.theme
+                                                                                       amount:amount
+                                                                                    reference:reference
+                                                                                      session:self.apiSession
+                                                                              paymentMetadata:self.paymentMetadata
+                                                                                   completion:completion];
 
-    IDEALFormViewController *controller = [[IDEALFormViewController alloc] initWithJudoId:judoId
-                                                                                    theme:self.theme
-                                                                                   amount:amount
-                                                                                reference:reference
-                                                                                  session:self.apiSession
-                                                                          paymentMetadata:self.paymentMetadata
-                                                                               completion:completion];
+        controller.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    controller.modalPresentationStyle = UIModalPresentationFormSheet;
-
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    self.activeViewController = controller;
-    [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        self.activeViewController = controller;
+        [self.topMostViewController presentViewController:navigationController animated:YES completion:nil];
+    } else {
+        NSError *error = [NSError judoErrorCurrencyNotSupported];
+        completion(nil, error);
+    }
 }
 
 @end

@@ -98,3 +98,4 @@
 "refund"                                = "Rimborso";
 "check_card"                            = "Controllare carta";
 "verifying_payment"                     = "Verifica pagamento in corso";
+"error_currency_not_supported"          = "The currency specified by the merchant is not supported for iDeal payment";

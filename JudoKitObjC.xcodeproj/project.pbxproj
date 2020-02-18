@@ -77,7 +77,6 @@
 		30C22178235DC518000D6E3A /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */; };
 		30D088F7238D73A900480C9E /* PostCodeValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */; };
-		30D088F8238D73AF00480C9E /* IDEALManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D088F2238D735A00480C9E /* IDEALManagerTests.swift */; };
 		30D185542301B4A90097F85F /* ApplePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D185522301B3FD0097F85F /* ApplePayTests.swift */; };
 		30DB510123100E1C00B73D66 /* ContactInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50F923100E1C00B73D66 /* ContactInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30DB510223100E1C00B73D66 /* PostalAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB50FA23100E1C00B73D66 /* PostalAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -268,6 +267,8 @@
 		702804361CE9C96D00150B21 /* CardDetailsSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
 		703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */; };
+		82225C1523FBEFE80047394E /* TestsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82225C0A23FBEF690047394E /* TestsConstants.swift */; };
+		82225C1623FBEFF10047394E /* TestsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82225C0A23FBEF690047394E /* TestsConstants.swift */; };
 		829330FC230AF0F900689DC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829330FE230AF0F900689DC4 /* Localizable.strings */; };
 		82933102230AF3B300689DC4 /* NSString+Localize.h in Headers */ = {isa = PBXBuildFile; fileRef = 82933101230AF3B300689DC4 /* NSString+Localize.h */; };
 		82933104230AF4FB00689DC4 /* NSString+Localize.m in Sources */ = {isa = PBXBuildFile; fileRef = 82933103230AF4FB00689DC4 /* NSString+Localize.m */; };
@@ -466,7 +467,6 @@
 		30C2215323588D6E000D6E3A /* IDEALBankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDEALBankTableViewCell.m; sourceTree = "<group>"; };
 		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitIDEALTransactionTests.swift; sourceTree = "<group>"; };
-		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
 		30DB50F923100E1C00B73D66 /* ContactInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInformation.h; sourceTree = "<group>"; };
@@ -674,8 +674,8 @@
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
 		702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudoPayViewControllerTestable.h; sourceTree = "<group>"; };
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
-		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
+		82225C0A23FBEF690047394E /* TestsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsConstants.swift; sourceTree = "<group>"; };
 		82557F9F23B0DA2E00FFC502 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		829330FD230AF0F900689DC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		82933101230AF3B300689DC4 /* NSString+Localize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Localize.h"; path = "Extensions/NSString+Localize.h"; sourceTree = "<group>"; };
@@ -687,6 +687,7 @@
 		82933109230C3C9A00689DC4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8296A5E62302ED3E00E369C1 /* ApplePayButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplePayButtonViewController.h; sourceTree = "<group>"; };
 		8296A5E72302ED3E00E369C1 /* ApplePayButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplePayButtonViewController.m; sourceTree = "<group>"; };
+		82E25A6B23F57F3300A642C8 /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -891,7 +892,7 @@
 				44E3A10123498ACE0042C9EC /* Models */,
 				441B9AED23495050006BA543 /* Controllers */,
 				70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */,
-				70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */,
+				82E25A6B23F57F3300A642C8 /* ExampleAppCredentials.h */,
 				3B4EB39D1C981EA7006265A0 /* AppDelegate.h */,
 				3B4EB39E1C981EA7006265A0 /* AppDelegate.m */,
 				3B4EB3A61C981EA7006265A0 /* Main.storyboard */,
@@ -1019,6 +1020,7 @@
 		3B678B641C6CE5190001DC2F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				82225C0A23FBEF690047394E /* TestsConstants.swift */,
 				3B9711831C7618C000E9A347 /* APITests */,
 				3B678B671C6CE5190001DC2F /* Info.plist */,
 				702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */,
@@ -1181,7 +1183,6 @@
 		3B9711831C7618C000E9A347 /* APITests */ = {
 			isa = PBXGroup;
 			children = (
-				30D088F2238D735A00480C9E /* IDEALManagerTests.swift */,
 				30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */,
 				30D185522301B3FD0097F85F /* ApplePayTests.swift */,
 				3B4EB3E51C982A25006265A0 /* AuthenticationTests.swift */,
@@ -1753,6 +1754,7 @@
 				30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
 				44AA450C23469F2800F3FE09 /* JudoKitCardDetailsTests.swift in Sources */,
+				82225C1623FBEFF10047394E /* TestsConstants.swift in Sources */,
 				3B78361B1CA1638900A7DCDE /* JudoKitMaestroTests.swift in Sources */,
 				3B78361A1CA1638900A7DCDE /* JudoKitAVSPaymentTests.swift in Sources */,
 				447CBD6022DCAD0800C1C9E1 /* JudoKitPaymentMethodTests.swift in Sources */,
@@ -1867,7 +1869,7 @@
 				3B4EB3FC1C982A25006265A0 /* RefundTests.swift in Sources */,
 				3B4EB3F41C982A25006265A0 /* AuthenticationTests.swift in Sources */,
 				44FFE3A722F04FD100E42F2D /* TransactionEnricherTests.swift in Sources */,
-				30D088F8238D73AF00480C9E /* IDEALManagerTests.swift in Sources */,
+				82225C1523FBEFE80047394E /* TestsConstants.swift in Sources */,
 				703EDB981CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift in Sources */,
 				3BFD9A991CDA008E00B8385D /* DedupTestCase.swift in Sources */,
 				3B4EB3FD1C982A25006265A0 /* RegisterCardTests.swift in Sources */,

@@ -98,3 +98,4 @@
 "refund"                                = "Remboursement ";
 "check_card"                            = "Vérifier la care";
 "verifying_payment"                     = "Paiement en cours de vérification";
+"error_currency_not_supported"           = "The currency specified by the merchant is not supported for iDeal payment";

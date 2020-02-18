@@ -134,6 +134,11 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
 @property (nonatomic, strong) NSString *_Nonnull judoId;
 
 /**
+ *  The siteId (e.g. "123-456" or "654321") identifying the Merchant to whom payment has been made
+ */
+@property (nonatomic, strong) NSString *_Nonnull siteId;
+
+/**
  *  The trading name of the Merchant to whom payment has been made
  */
 @property (nonatomic, strong) NSString *_Nonnull merchantName;

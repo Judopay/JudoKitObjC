@@ -41,7 +41,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == 1")
 
         expectation(for: existsPredicate, evaluatedWith: navigation, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 
     func testPaymentMethodScreenPresentedWithDefaultSettingsContainsAllOptions() {
@@ -59,7 +59,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         expectation(for: existsPredicate, evaluatedWith: applePayButton, handler: nil)
         expectation(for: existsPredicate, evaluatedWith: headingLabel, handler: nil)
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 
     func testTappingOnCardPaymentButtonNavigatesToCardDetailsInputScreen() {
@@ -74,7 +74,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
 
         expectation(for: existsPredicate, evaluatedWith: navigation, handler: nil)
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 
     func testTappingBackButtonFromCardDetailsInputScreenUserGoBackToPaymentMethodScreen() {
@@ -90,7 +90,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == 1")
 
         expectation(for: existsPredicate, evaluatedWith: navigation, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+         waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 
     func testTappingOnPaymentMethodNavigatesToPaymentMethodScreenAndVISAPaymentSucceedes() {
@@ -115,7 +115,7 @@ class JudoKitPaymentMethodTests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == 1")
 
         expectation(for: existsPredicate, evaluatedWith: button, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+         waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
 
         button.tap()
     }
