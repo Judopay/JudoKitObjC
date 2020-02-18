@@ -30,6 +30,7 @@
 #import "JPResponse.h"
 #import "JPTransactionData.h"
 #import "NSError+Judo.h"
+#import "JPConsumer.h"
 
 @interface IDEALService ()
 
@@ -53,7 +54,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
                      reference:(JPReference *)reference
                        session:(JPSession *)session
                paymentMetadata:(NSDictionary *)paymentMetadata {
-
+    
     if (self = [super init]) {
         self.siteId = siteId;
         self.amount = amount;
@@ -62,74 +63,75 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
         self.paymentMetadata = paymentMetadata;
         self.didTimeout = false;
     }
-
+    
     return self;
 }
 
 - (void)redirectURLForIDEALBank:(IDEALBank *)iDealBank
                      completion:(JudoCompletionBlock)completion {
-
+    
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.baseURL, redirectEndpoint];
-
+    
     [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
             completion:^(JPResponse *response, NSError *error) {
-                JPTransactionData *data = response.items.firstObject;
-
-                if (data.orderDetails.orderId && data.redirectUrl) {
-                    completion(response, error);
-                    return;
-                }
-
-                completion(nil, NSError.judoResponseParseError);
-            }];
+        JPTransactionData *data = response.items.firstObject;
+        
+        if (data.orderDetails.orderId && data.redirectUrl) {
+            JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
+            completion(mappedResponse, error);
+            return;
+        }
+        
+        completion(nil, NSError.judoResponseParseError);
+    }];
 }
 
 - (void)pollTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
                              completion:(JudoCompletionBlock)completion {
-
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
-                                                       self.didTimeout = true;
-                                                       completion(nil, NSError.judoRequestTimeoutError);
-                                                       return;
-                                                   }];
-
+        self.didTimeout = true;
+        completion(nil, NSError.judoRequestTimeoutError);
+        return;
+    }];
+    
     [self getStatusForOrderId:orderId checksum:checksum completion:completion];
 }
 
 - (void)getStatusForOrderId:(NSString *)orderId
                    checksum:(NSString *)checksum
                  completion:(JudoCompletionBlock)completion {
-
+    
     if (self.didTimeout)
         return;
-
+    
     NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", self.session.baseURL, statusEndpoint, orderId];
-
+    
     [self.session GET:fullURL
            parameters:nil
            completion:^(JPResponse *response, NSError *error) {
-               if (error) {
-                   completion(nil, error);
-                   [self.timer invalidate];
-                   return;
-               }
-
-               if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
-
-                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
-                                  dispatch_get_main_queue(), ^{
-                                      [self getStatusForOrderId:orderId checksum:checksum completion:completion];
-                                  });
-                   return;
-               }
-
-               completion(response, error);
-               [self.timer invalidate];
-           }];
+        if (error) {
+            completion(nil, error);
+            [self.timer invalidate];
+            return;
+        }
+        
+        if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+            });
+            return;
+        }
+        JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
+        completion(mappedResponse, error);
+        [self.timer invalidate];
+    }];
 }
 
 - (void)stopPollingTransactionStatus {
@@ -138,9 +140,9 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
 }
 
 - (NSDictionary *)parametersForIDEALBank:(IDEALBank *)iDEALBank {
-
+    
     NSNumber *amount = [NSNumber numberWithDouble:self.amount.amount.doubleValue];
-
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
         @"paymentMethod" : @"IDEAL",
         @"currency" : self.amount.currency,
@@ -152,12 +154,17 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
         @"merchantConsumerReference" : self.reference.consumerReference,
         @"siteId" : self.siteId
     }];
-
+    
     if (self.paymentMetadata) {
         parameters[@"paymentMetadata"] = self.paymentMetadata;
     }
-
+    
     return parameters;
+}
+
+-(JPResponse *)remapIdealResponseWithResponse:(JPResponse *) response{
+    response.items[0].receiptId = response.items[0].orderDetails.orderId;
+    return response;
 }
 
 @end
