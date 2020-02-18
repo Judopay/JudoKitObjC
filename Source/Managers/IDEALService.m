@@ -71,7 +71,6 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
                      completion:(JudoCompletionBlock)completion {
     
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.baseURL, redirectEndpoint];
-    
     [self.session POST:fullURL
             parameters:[self parametersForIDEALBank:iDealBank]
             completion:^(JPResponse *response, NSError *error) {
@@ -108,7 +107,6 @@ static NSString *statusEndpoint = @"order/bank/statusrequest/";
     
     if (self.didTimeout)
         return;
-    
     NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", self.session.baseURL, statusEndpoint, orderId];
     
     [self.session GET:fullURL
