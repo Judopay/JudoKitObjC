@@ -28,6 +28,21 @@
 
 @implementation PaymentSummaryItem
 
++ (instancetype)itemWithLabel:(NSString *)label
+                       amount:(NSDecimalNumber *)amount
+                         type:(PaymentSummaryItemType)type {
+
+    return [[PaymentSummaryItem alloc] initWithLabel:label
+                                              amount:amount
+                                                type:type];
+}
+
++ (instancetype)itemWithLabel:(NSString *)label
+                       amount:(NSDecimalNumber *)amount {
+    return [[PaymentSummaryItem alloc] initWithLabel:label
+                                              amount:amount];
+}
+
 - (instancetype)initWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(PaymentSummaryItemType)type {
