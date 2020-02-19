@@ -65,7 +65,7 @@
     JPTransactionViewController *controller;
     controller = [JPTransactionBuilderImpl buildModuleWithTransactionService:self.transactionService
                                                                configuration:self.configuration
-                                                                  completion:self.completionHandler];
+                                                                  completion:nil];
 
     controller.delegate = self.viewController;
     controller.modalPresentationStyle = UIModalPresentationCustom;

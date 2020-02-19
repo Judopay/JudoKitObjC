@@ -34,7 +34,6 @@
 @implementation JPTransactionRouterImpl
 
 - (void)navigateToScanCamera {
-
     JPScanCardViewController *scanCardViewController = [[JPScanCardViewController alloc] initWithRecognizerDelegate:self];
     scanCardViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.viewController presentViewController:scanCardViewController animated:YES completion:nil];
