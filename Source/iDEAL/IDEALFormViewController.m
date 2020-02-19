@@ -210,9 +210,9 @@
 
 #pragma mark - Private methods
 
-- (void)isPaymentButtonEnabled:(BOOL)isUserInterfaceEnabled {
-    self.paymentButton.enabled = isUserInterfaceEnabled;
-    self.navigationItem.rightBarButtonItem.enabled = isUserInterfaceEnabled;
+- (void)isPaymentButtonEnabled:(BOOL)isEnabled {
+    self.paymentButton.enabled = isEnabled;
+    self.navigationItem.rightBarButtonItem.enabled = isEnabled;
 }
 
 - (void)startPollingStatus {
