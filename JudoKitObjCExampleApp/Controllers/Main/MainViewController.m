@@ -218,7 +218,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                                           amount:self.amount
                                                        reference:self.reference];
         
-        _configuration.paymentMethods = @[JPPaymentMethod.card, JPPaymentMethod.iDeal, JPPaymentMethod.applePay];
+        _configuration.paymentMethods = @[JPPaymentMethod.card, JPPaymentMethod.iDeal, JPPaymentMethod.applePay, JPPaymentMethod.amazonPay];
         _configuration.supportedCardNetworks = CardNetworkVisa | CardNetworkMasterCard | CardNetworkAMEX;
         _configuration.applePayConfiguration = self.applePayConfiguration;
     }

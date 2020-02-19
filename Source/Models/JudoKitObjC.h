@@ -73,3 +73,8 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPValidationResult.h>
 #import <JudoKitObjC/JudoKit.h>
 #import <JudoKitObjC/NSError+Additions.h>
+#import <JudoKitObjC/JPCardCustomizationBuilder.h>
+#import <JudoKitObjC/JPCardCustomizationRouter.h>
+#import <JudoKitObjC/JPCardCustomizationInteractor.h>
+#import <JudoKitObjC/JPCardCustomizationViewController.h>
+#import <JudoKitObjC/JPCardCustomizationPresenter.h>
