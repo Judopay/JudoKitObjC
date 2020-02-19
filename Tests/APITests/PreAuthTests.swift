@@ -72,7 +72,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -107,7 +107,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -135,7 +135,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -163,7 +163,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 
     /**
@@ -191,7 +191,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -222,7 +222,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -254,7 +254,7 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -286,6 +286,6 @@ class PreAuthTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 }

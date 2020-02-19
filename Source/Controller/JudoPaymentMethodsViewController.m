@@ -40,6 +40,7 @@
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+#import "JPConstants.h"
 
 @interface JudoPaymentMethodsViewController ()
 
@@ -153,7 +154,7 @@
         [self.stackView addArrangedSubview:applePayButton];
     }
 
-    if (self.viewModel.paymentMethods & PaymentMethodIDEAL) {
+    if (self.viewModel.paymentMethods & PaymentMethodIDEAL && [self.viewModel.amount.currency isEqualToString:kCurrencyEUR]) {
 
         UIButton *idealButton = [UIButton new];
         [idealButton setTag:PaymentMethodIDEAL];
@@ -242,7 +243,7 @@
 - (void)onIDEALButtonTap:(id)sender {
     __weak JudoPaymentMethodsViewController *weakSelf = self;
 
-    [self.judoKitSession invokeIDEALPaymentWithJudoId:self.viewModel.judoId
+    [self.judoKitSession invokeIDEALPaymentWithSiteId:self.viewModel.siteId
                                                amount:self.viewModel.amount
                                             reference:self.viewModel.reference
                                            completion:^(JPResponse *response, NSError *error) {

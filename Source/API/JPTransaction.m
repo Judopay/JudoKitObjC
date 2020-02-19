@@ -83,7 +83,7 @@
 
     self.currentTransactionReference = self.reference.paymentReference;
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, self.transactionPath];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, self.transactionPath];
 
     [self.enricher enrichTransaction:self
                       withCompletion:^{
@@ -117,7 +117,7 @@
 
 - (void)threeDSecureWithParameters:(NSDictionary *)parameters receiptId:(NSString *)receiptId completion:(JudoCompletionBlock)completion {
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.endpoint, receiptId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.baseURL, receiptId];
 
     [self.apiSession PUT:fullURL
               parameters:parameters
@@ -133,7 +133,7 @@
     if (pagination) {
         path = [path stringByAppendingFormat:@"?pageSize=%li&offset=%li&sort=%@", (long)pagination.pageSize, (long)pagination.offset, pagination.sort];
     }
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, path];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, path];
     [self.apiSession GET:fullURL parameters:nil completion:completion];
 }
 

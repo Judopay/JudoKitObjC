@@ -24,6 +24,7 @@
 
 #import "AppDelegate.h"
 
+
 @import JudoKitObjC;
 
 @interface AppDelegate ()
@@ -33,7 +34,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     return YES;
 }
 

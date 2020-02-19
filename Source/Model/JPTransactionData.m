@@ -49,7 +49,9 @@
     self.appearsOnStatementAs = dictionary[@"appearsOnStatementAs"];
     self.paymentMethod = dictionary[@"paymentMethod"];
 
-    [self setupJudoIDFromDictionary:dictionary];
+    self.judoId = dictionary[@"judoId"];
+    self.siteId = dictionary[@"siteId"];
+
     [self setupPaymentReferenceFromDictionary:dictionary];
     [self setupConsumerFromDictionary:dictionary];
     [self setupIDEALFromDictionary:dictionary];
@@ -71,14 +73,6 @@
     }
 
     self.rawData = dictionary;
-}
-
-- (void)setupJudoIDFromDictionary:(NSDictionary *)dictionary {
-    if (dictionary[@"siteId"]) {
-        self.judoId = dictionary[@"siteId"];
-    } else {
-        self.judoId = dictionary[@"judoId"];
-    }
 }
 
 - (void)setupPaymentReferenceFromDictionary:(NSDictionary *)dictionary {

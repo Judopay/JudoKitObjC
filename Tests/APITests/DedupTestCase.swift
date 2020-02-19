@@ -102,7 +102,7 @@ class DedupTestCase: JudoTestCase {
             
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     /**
@@ -137,6 +137,6 @@ class DedupTestCase: JudoTestCase {
             
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
 }

@@ -98,3 +98,4 @@
 "refund"                                = "Terug storting";
 "check_card"                            = "Check kaart";
 "verifying_payment"                     = "Betaal wijze verifieren";
+"error_currency_not_supported"           = "The currency specified by the merchant is not supported for iDeal payment";

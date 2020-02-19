@@ -82,6 +82,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 
 - (void)paymentMethodOption {
     [self.judoKitSession invokePayment:judoId
+                                siteId:siteId
                                 amount:self.amount
                      consumerReference:kConsumerReference
                         paymentMethods:PaymentMethodsAll
@@ -145,7 +146,6 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         [self presentErrorWithMessage:@"You must create a card token first"];
         return;
     }
-
     [self.judoKitSession invokeTokenPayment:judoId
                                      amount:self.amount
                           consumerReference:kConsumerReference
@@ -181,10 +181,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 }
 
 - (void)idealTransactionOperation {
-    [self.judoKitSession invokeIDEALPaymentWithJudoId:judoId
-                                               amount:[JPAmount amount:@"0.01" currency:@"EUR"]
-                                            reference:[JPReference consumerReference:kConsumerReference]
-                                           completion:^(JPResponse *response, NSError *error) {
+        [self.judoKitSession invokeIDEALPaymentWithSiteId:siteId
+                                                   amount:[JPAmount amount:@"1.0" currency:@"EUR"]
+                                                reference:[JPReference consumerReference:kConsumerReference]
+                                               completion:^(JPResponse *response, NSError *error) {
         [self handleCallbackWithResponse:response andError:error];
     }];
 }

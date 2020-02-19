@@ -37,7 +37,7 @@ class ListTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     func testJudoPaginatedListPayments() {
@@ -60,7 +60,7 @@ class ListTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
     
@@ -75,7 +75,7 @@ class ListTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
     }
     
 }

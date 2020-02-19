@@ -46,13 +46,13 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
 /**
  * Creates an instance of an IDEALService object
  *
- * @param judoId           The Judo ID of the merchant to receive the iDeal transaction
+ * @param siteId           The site ID of the merchant to receive the iDeal transaction
  * @param amount           The amount and currency of the iDEAL transaction (currency is always EUR)
  * @param reference    Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
  * @param session         An instance of JPSession that is used to make API requests
  * @param paymentMetadata                       Freeformat optional JSON metadata
  */
-- (nonnull instancetype)initWithJudoId:(nonnull NSString *)judoId
+- (nonnull instancetype)initWithSiteId:(nonnull NSString *)siteId
                                 amount:(nonnull JPAmount *)amount
                              reference:(nonnull JPReference *)reference
                                session:(nonnull JPSession *)session
