@@ -24,6 +24,6 @@
 
 #import "JPCardCustomizationViewController.h"
 
-@implementation JPCardCustomizationViewControllerImpl
+@implementation JPCardCustomizationViewController
 
 @end

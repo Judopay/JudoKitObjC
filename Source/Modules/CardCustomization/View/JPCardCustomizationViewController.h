@@ -30,7 +30,7 @@
 
 @end
 
-@interface JPCardCustomizationViewControllerImpl : UIViewController <JPCardCustomizationView>
+@interface JPCardCustomizationViewController : UIViewController <JPCardCustomizationView>
 
 /**
  * A strong reference to a presenter object that adopts the JPCardCustomizationPresenter protocol

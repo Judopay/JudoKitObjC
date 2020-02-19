@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPCardCustomizationViewControllerImpl;
+@class JPCardCustomizationViewController;
 
 @protocol JPCardCustomizationRouter
 
@@ -35,6 +35,6 @@
 /**
  * A weak reference to the JPCardCustomizationViewControllerImpl instance
  */
-@property (nonatomic, weak) JPCardCustomizationViewControllerImpl *viewController;
+@property (nonatomic, weak) JPCardCustomizationViewController *viewController;
 
 @end

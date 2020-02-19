@@ -30,9 +30,9 @@
 
 @implementation JPCardCustomizationBuilderImpl
 
-- (JPCardCustomizationViewControllerImpl *)buildModule {
+- (JPCardCustomizationViewController *)buildModule {
     
-    JPCardCustomizationViewControllerImpl *viewController = [JPCardCustomizationViewControllerImpl new];
+    JPCardCustomizationViewController *viewController = [JPCardCustomizationViewController new];
     JPCardCustomizationInteractorImpl *interactor = [JPCardCustomizationInteractorImpl new];
     JPCardCustomizationPresenterImpl *presenter = [JPCardCustomizationPresenterImpl new];
     JPCardCustomizationRouterImpl *router = [JPCardCustomizationRouterImpl new];
