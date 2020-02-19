@@ -26,11 +26,13 @@
 #import "UIView+Additions.h"
 #import "UIColor+Additions.h"
 #import "NSError+Additions.h"
+#import "JPLoadingView.h"
 
 @interface JP3DSViewController ()
 @property (nonatomic, strong) JP3DSConfiguration *configuration;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) JPLoadingView *loadingView;
 @end
 
 @implementation JP3DSViewController
@@ -57,7 +59,9 @@
 
 - (void)setupViews {
     [self.view addSubview:self.webView];
+    [self.view addSubview:self.loadingView];
     [self.webView pinToView:self.view withPadding:0.0];
+    [self.loadingView pinToView:self.view withPadding:0.0];
     [self setupNavigationItems];
 }
 
@@ -162,7 +166,8 @@
 - (void)handleRedirectForWebView:(WKWebView *)webView
                      redirectURL:(NSString *)redirectURL
                  decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-
+    
+    [self.loadingView startLoading];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSMutableString *javascriptCode = [NSMutableString new];
         [javascriptCode appendString:@"const paRes = document.getElementsByName('PaRes')[0].value;"];
@@ -187,6 +192,7 @@
                                           } else {
                                               decisionHandler(WKNavigationActionPolicyAllow);
                                           }
+                                          [self.loadingView stopLoading];
                                           [self dismissViewControllerAnimated:YES completion:nil];
                                           self.completionBlock(response, error);
                                       }];
@@ -213,6 +219,15 @@
         _webView.navigationDelegate = self;
     }
     return _webView;
+}
+
+- (JPLoadingView *)loadingView {
+    if (!_loadingView) {
+        _loadingView = [[JPLoadingView alloc] initWithTitle:@"Processing..."];
+        _loadingView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_loadingView stopLoading];
+    }
+    return _loadingView;
 }
 
 @end
