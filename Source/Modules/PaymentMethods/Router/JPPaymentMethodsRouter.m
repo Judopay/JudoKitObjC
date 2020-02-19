@@ -27,6 +27,8 @@
 #import "JPTransactionBuilder.h"
 #import "JPTransactionService.h"
 #import "JPTransactionViewController.h"
+#import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationBuilder.h"
 
 #import "JPConfiguration.h"
 #import "JPSliderTransitioningDelegate.h"
@@ -71,6 +73,11 @@
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
     [self.viewController presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)navigateToCardCustomization {
+    JPCardCustomizationViewController *viewController;
+    //TODO: ADD NAVIGATION
 }
 
 - (void)dismissViewController {
