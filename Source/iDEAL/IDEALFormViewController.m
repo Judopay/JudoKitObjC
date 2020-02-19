@@ -141,6 +141,7 @@
 
 - (void)onPayButtonTap:(id)sender {
     [self.view endEditing:YES];
+    [self isPaymentButtonEnabled:NO];
     self.idealService.accountHolderName = self.nameInputField.textField.text;
     [self.idealService redirectURLForIDEALBank:self.selectedBank
                                     completion:^(JPResponse *response, NSError *error) {
@@ -154,7 +155,6 @@
                                         self.orderId = transactionData.orderDetails.orderId;
                                         self.redirectResponse = response;
 
-                                        self.navigationItem.rightBarButtonItem.enabled = NO;
                                         [self loadWebViewWithURLString:self.redirectUrl];
                                     }];
 }
@@ -209,6 +209,11 @@
 }
 
 #pragma mark - Private methods
+
+- (void)isPaymentButtonEnabled:(BOOL)isEnabled {
+    self.paymentButton.enabled = isEnabled;
+    self.navigationItem.rightBarButtonItem.enabled = isEnabled;
+}
 
 - (void)startPollingStatus {
     self.delayTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
