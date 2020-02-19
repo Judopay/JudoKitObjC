@@ -109,29 +109,16 @@
 
     [self addSubview:mainStackView];
     [mainStackView pinToView:self withPadding:28.0 * getWidthAspectRatio()];
-    [self applyGradients];
 }
 
 #pragma mark - Lazy Properties
-
-- (void)applyGradients {
-    [self layoutIfNeeded];
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = CGRectMake(0, 0, 400, 250);
-    gradient.startPoint = CGPointZero;
-    gradient.endPoint = CGPointMake(1, 1);
-    UIColor *colorOne = [UIColor colorWithRed:34.0 / 255.0 green:211 / 255.0 blue:198 / 255.0 alpha:1.0];
-    UIColor *colorTwo = [UIColor colorWithRed:145 / 255.0 green:72.0 / 255.0 blue:203 / 255.0 alpha:1.0];
-    gradient.colors = @[ (id)colorOne.CGColor, (id)colorTwo.CGColor ];
-    [self.layer insertSublayer:gradient atIndex:0];
-}
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.whiteColor;
+        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -141,7 +128,7 @@
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _cardNumberLabel.font = UIFont.bodyBold;
-        _cardNumberLabel.textColor = UIColor.jpLightGrayColor;
+        _cardNumberLabel.textColor = UIColor.jpBlackColor;
     }
     return _cardNumberLabel;
 }
@@ -152,7 +139,7 @@
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
         _expiryDateLabel.font = UIFont.bodyBold;
-        _expiryDateLabel.textColor = UIColor.jpLightGrayColor;
+        _expiryDateLabel.textColor = UIColor.jpBlackColor;
     }
     return _expiryDateLabel;
 }
