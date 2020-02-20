@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationPresenter.h
+//  JPCardCustomizationView.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,34 +22,48 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPCardCustomizationView.h"
+#import "UIView+Additions.h"
 
-@protocol JPCardCustomizationView, JPCardCustomizationRouter, JPCardCustomizationInteractor;
+@implementation JPCardCustomizationView
 
-@protocol JPCardCustomizationPresenter
+#pragma mark - Initializers
 
-/**
- * A method that is used to update the Card customization view model, which in turn updates the UI
- */
-- (void)prepareViewModel;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setupViews];
+    }
+    return self;
+}
 
-@end
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+    }
+    return self;
+}
 
-@interface JPCardCustomizationPresenterImpl : NSObject <JPCardCustomizationPresenter>
+- (instancetype)init {
+    if (self = [super initWithFrame:CGRectZero]) {
+        [self setupViews];
+    }
+    return self;
+}
 
-/**
- * A weak reference to the view that adops the  JPCardCustomizationView protocol
- */
-@property (nonatomic, weak) id<JPCardCustomizationView> view;
+#pragma mark - Layout setup
 
-/**
- * A strong reference to the router that adops the  JPCardCustomizationRouter protocol
- */
-@property (nonatomic, strong) id<JPCardCustomizationRouter> router;
+- (void)setupViews {
+    [self addSubview:self.tableView];
+    [self.tableView pinToView:self withPadding:0.0];
+}
 
-/**
- * A strong reference to the interactor that adops the  JPCardCustomizationInteractor protocol
- */
-@property (nonatomic, strong) id<JPCardCustomizationInteractor> interactor;
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [UITableView new];
+        _tableView.backgroundColor = UIColor.whiteColor;
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _tableView;
+}
 
 @end

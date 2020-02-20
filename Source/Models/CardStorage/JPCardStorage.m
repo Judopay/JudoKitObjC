@@ -58,7 +58,7 @@
 
 #pragma mark - Public methods
 
-- (NSMutableArray<JPStoredCardDetails *> *)getStoredCardDetails {
+- (NSMutableArray<JPStoredCardDetails *> *)storedCardDetails {
     return self.storedCards.copy;
 }
 

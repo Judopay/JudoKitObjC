@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationPresenter.h
+//  JPCardCustomizationViewModel.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,34 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+
 #import <Foundation/Foundation.h>
 
-@protocol JPCardCustomizationView, JPCardCustomizationRouter, JPCardCustomizationInteractor;
-
-@protocol JPCardCustomizationPresenter
-
+@interface JPCardCustomizationViewModel : NSObject
 /**
- * A method that is used to update the Card customization view model, which in turn updates the UI
+ * A string that identifies the UITableViewCell that this view model applies to.
+ * Must match the exact name of the UITableViewCell so that it can be registered correctly.
  */
-- (void)prepareViewModel;
-
-@end
-
-@interface JPCardCustomizationPresenterImpl : NSObject <JPCardCustomizationPresenter>
-
-/**
- * A weak reference to the view that adops the  JPCardCustomizationView protocol
- */
-@property (nonatomic, weak) id<JPCardCustomizationView> view;
-
-/**
- * A strong reference to the router that adops the  JPCardCustomizationRouter protocol
- */
-@property (nonatomic, strong) id<JPCardCustomizationRouter> router;
-
-/**
- * A strong reference to the interactor that adops the  JPCardCustomizationInteractor protocol
- */
-@property (nonatomic, strong) id<JPCardCustomizationInteractor> interactor;
+@property (nonatomic, strong) NSString *_Nonnull identifier;
 
 @end

@@ -69,14 +69,14 @@
 
 #pragma mark - View Model Configuration
 
-- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+- (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel {
     [self clearContentViewSubviews];
 
     switch (viewModel.paymentMethodType) {
         case JPPaymentMethodTypeCard:
             [self.contentView addSubview:self.cardPaymentView];
             [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
-            [self.cardPaymentView configureWithViewModel:viewModel];
+            [self.cardPaymentView configureWithPaymentMethodModel:viewModel];
             break;
 
         default:
@@ -85,6 +85,12 @@
             [self.otherPaymentView configureWithViewModel:viewModel];
             break;
     }
+}
+
+- (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel {
+    [self.contentView addSubview:self.cardPaymentView];
+    [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
+    [self.cardPaymentView configureWithCustomizationModel:viewModel];
 }
 
 - (void)clearContentViewSubviews {

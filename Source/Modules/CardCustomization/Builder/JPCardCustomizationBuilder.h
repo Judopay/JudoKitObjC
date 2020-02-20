@@ -28,9 +28,13 @@
 @protocol JPCardCustomizationBuilder
 
 /**
- * A method that build the Card Customization module
+ * A method that build the Card Customization module based on the selected card index
+ *
+ * @param index - the index of the selected card in the payment method screen
+ *
+ * @returns a configured instance of JPCardCustomizationViewController
  */
-+ (JPCardCustomizationViewController *)buildModule;
++ (JPCardCustomizationViewController *)buildModuleWithCardIndex:(NSUInteger)index;
 
 @end
 

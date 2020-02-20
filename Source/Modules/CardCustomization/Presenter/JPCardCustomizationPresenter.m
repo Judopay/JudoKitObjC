@@ -23,7 +23,14 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationPresenter.h"
+#import "JPCardCustomizationInteractor.h"
+#import "JPStoredCardDetails.h"
 
 @implementation JPCardCustomizationPresenterImpl
+
+- (void)prepareViewModel {
+    JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
+    
+}
 
 @end

@@ -67,7 +67,7 @@
 
 #pragma mark - View Model Configuration
 
-- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+- (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel {
 
     self.titleLabel.text = viewModel.cardModel.cardTitle;
     self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
@@ -81,6 +81,12 @@
                                                            viewModel.cardModel.cardNumberLastFour];
 
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
+}
+
+- (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel {
+    
+    
+    
 }
 
 #pragma mark - Layout Setup

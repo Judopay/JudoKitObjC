@@ -77,7 +77,7 @@
 
 - (void)navigateToCardCustomizationWithIndex:(NSUInteger)index {
     JPCardCustomizationViewController *viewController;
-    viewController = [JPCardCustomizationBuilderImpl buildModule];
+    viewController = [JPCardCustomizationBuilderImpl buildModuleWithCardIndex:index];
 
     [self.viewController.navigationController pushViewController:viewController
                                                         animated:YES];

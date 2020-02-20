@@ -23,7 +23,76 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationView.h"
+#import "UIImage+Additions.h"
+#import "JPCardCustomizationPresenter.h"
 
 @implementation JPCardCustomizationViewController
 
+#pragma mark - View lifecycle
+
+- (void)loadView {
+    self.cardCustomizationView = [JPCardCustomizationView new];
+    self.view = self.cardCustomizationView;
+    [self configureView];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.presenter prepareViewModel];
+}
+
+#pragma mark - User actions
+
+- (void)onBackButtonTap {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Layout setup
+
+- (void)configureView {
+    [self configureNavigationBar];
+    self.cardCustomizationView.tableView.delegate = self;
+    self.cardCustomizationView.tableView.dataSource = self;
+}
+
+- (void)configureNavigationBar {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                 forBarPosition:UIBarPositionAny
+                                                     barMetrics:UIBarMetricsDefault];
+    
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageWithIconName:@"back-icon"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
+
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [backBarButton.customView.heightAnchor constraintEqualToConstant:22.0].active = YES;
+    [backBarButton.customView.widthAnchor constraintEqualToConstant:22.0].active = YES;
+    self.navigationItem.leftBarButtonItem = backBarButton;
+}
+
 @end
+
+@implementation JPCardCustomizationViewController (TableViewDataSource)
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [UITableViewCell new];
+}
+
+@end
+
+@implementation JPCardCustomizationViewController (TableViewDelegate)
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+@end
+

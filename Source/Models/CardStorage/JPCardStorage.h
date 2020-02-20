@@ -37,7 +37,7 @@
  *
  * @returns An array of JPStoredCardDetails objects
  */
-- (NSMutableArray<JPStoredCardDetails *> *)getStoredCardDetails;
+- (NSMutableArray<JPStoredCardDetails *> *)storedCardDetails;
 
 /**
  * A method for adding new card details objects into the keychain
