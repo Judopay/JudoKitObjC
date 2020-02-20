@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JP3DSViewController.h"
-#import "UIView+Additions.h"
-#import "UIColor+Additions.h"
-#import "NSError+Additions.h"
 #import "JPLoadingView.h"
+#import "NSError+Additions.h"
+#import "UIColor+Additions.h"
+#import "UIView+Additions.h"
 
 @interface JP3DSViewController ()
 @property (nonatomic, strong) JP3DSConfiguration *configuration;
@@ -71,8 +71,8 @@
                                                                              style:UIBarButtonItemStyleDone
                                                                             target:self
                                                                             action:@selector(onDismissTap)];
-    
-    NSDictionary *titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
+
+    NSDictionary *titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
     self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
     self.navigationItem.leftBarButtonItem.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.backgroundColor = UIColor.jpBlackColor;
@@ -166,7 +166,7 @@
 - (void)handleRedirectForWebView:(WKWebView *)webView
                      redirectURL:(NSString *)redirectURL
                  decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    
+
     [self.loadingView startLoading];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSMutableString *javascriptCode = [NSMutableString new];

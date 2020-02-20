@@ -24,6 +24,7 @@
 
 #import "JPPaymentMethodsSelectionCell.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSLayoutConstraint+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIView+Additions.h"
 
@@ -71,7 +72,8 @@
         [self.sectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.sectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.sectionView.heightAnchor constraintEqualToConstant:64]
-    ]];
+    ]
+                               withPriority:999];
 }
 
 #pragma mark - View model configuration
