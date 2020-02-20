@@ -77,7 +77,7 @@
 #pragma mark - Layout Setup
 
 - (void)configureView {
-        
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];

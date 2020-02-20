@@ -27,6 +27,7 @@
 #import "JPAmount.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "JPTransactionButton.h"
+#import "NSLayoutConstraint+Additions.h"
 #import "NSString+Additions.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
@@ -119,10 +120,12 @@ static const CGFloat bottomHeight = 86.0f;
         self.applePayButton = [self applePayButtonWithType:type];
 
         [self.paymentStackView addArrangedSubview:self.applePayButton];
+        [self.applePayButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
         return;
     }
 
     [self.paymentStackView addArrangedSubview:self.payButton];
+    [self.payButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
 }
 
@@ -206,13 +209,8 @@ static const CGFloat bottomHeight = 86.0f;
 }
 
 - (void)setupPaymentStackView {
-    self.paymentStackView.distribution = UIStackViewDistributionFillEqually;
+    self.paymentStackView.distribution = UIStackViewDistributionFill;
     [self.bottomView addSubview:self.paymentStackView];
-
-    [NSLayoutConstraint activateConstraints:@[
-        [self.payButton.widthAnchor constraintEqualToConstant:200.0f],
-        [self.applePayButton.widthAnchor constraintEqualToConstant:200.0f]
-    ]];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.paymentStackView.leadingAnchor constraintEqualToAnchor:self.bottomView.leadingAnchor
@@ -314,7 +312,7 @@ static const CGFloat bottomHeight = 86.0f;
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
         _payButton.layer.cornerRadius = 4.0f;
         _payButton.titleLabel.font = UIFont.headline;
-        [_payButton setBackgroundImage:UIColor.jpBlackColor.asImage forState:UIControlStateNormal];
+        [_payButton setBackgroundImage:UIColor.blackColor.asImage forState:UIControlStateNormal];
         [_payButton setClipsToBounds:YES];
     }
     return _payButton;

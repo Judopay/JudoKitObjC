@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsCardCell.h"
 #import "JPCardNetwork.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSLayoutConstraint+Additions.h"
 #import "NSString+Additions.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
@@ -110,8 +111,23 @@
     [horizontalStackView addArrangedSubview:verticalStackView];
 
     [self.contentView addSubview:horizontalStackView];
-    [horizontalStackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom forView:self.contentView withPadding:13.0f];
-    [horizontalStackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing forView:self.contentView withPadding:24.0f];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [horizontalStackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
+                                                      constant:13],
+        [horizontalStackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
+                                                         constant:-13],
+        [horizontalStackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
+                                                          constant:24],
+        [horizontalStackView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+                                                           constant:-24],
+    ]
+                               withPriority:999];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:36.0f],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:52.0f],
+    ]];
 }
 
 #pragma mark - Lazy instantiated properties
@@ -123,8 +139,6 @@
         _iconContainerView.layer.borderColor = [UIColor colorFromHex:0xF5F5F6].CGColor;
         _iconContainerView.layer.borderWidth = 1.0f;
         _iconContainerView.layer.cornerRadius = 2.4f;
-        [_iconContainerView.heightAnchor constraintEqualToConstant:36.0f].active = YES;
-        [_iconContainerView.widthAnchor constraintEqualToConstant:52.0f].active = YES;
     }
     return _iconContainerView;
 }

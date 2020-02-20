@@ -25,8 +25,8 @@
 #import "JPLoadingView.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
-#import "UIView+Additions.h"
 #import "UIStackView+Additions.h"
+#import "UIView+Additions.h"
 
 @interface JPLoadingView ()
 @property (nonatomic, strong) UIView *loadingContainerView;
@@ -57,16 +57,16 @@
     [self.activityIndicatorView stopAnimating];
 }
 
-# pragma mark - Layout setup
+#pragma mark - Layout setup
 
 - (void)setupViews {
     self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     [self addSubview:self.loadingContainerView];
-    
+
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:0.0];
     stackView.distribution = UIStackViewDistributionFillEqually;
     [self.loadingContainerView addSubview:stackView];
-    
+
     [NSLayoutConstraint activateConstraints:@[
         [self.loadingContainerView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.loadingContainerView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
@@ -74,13 +74,13 @@
         [self.loadingContainerView.widthAnchor constraintEqualToConstant:200.0]
     ]];
 
-    [stackView pinToAnchors:AnchorTypeLeading|AnchorTypeTrailing
+    [stackView pinToAnchors:AnchorTypeLeading | AnchorTypeTrailing
                     forView:self.loadingContainerView];
-    
-    [stackView pinToAnchors:AnchorTypeTop|AnchorTypeBottom
+
+    [stackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom
                     forView:self.loadingContainerView
                 withPadding:30.0];
-    
+
     [stackView addArrangedSubview:self.activityIndicatorView];
     [stackView addArrangedSubview:self.titleLabel];
 }

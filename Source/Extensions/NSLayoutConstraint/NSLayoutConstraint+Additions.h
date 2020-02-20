@@ -1,5 +1,5 @@
 //
-//  JP3DSService.m
+//  NSLayoutConstraint+Additions.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,28 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JP3DSService.h"
-#import "JP3DSConfiguration.h"
-#import "JP3DSViewController.h"
-#import "UIApplication+Additions.h"
+#import <UIKit/UIKit.h>
 
-@implementation JP3DSService
+@interface NSLayoutConstraint (Additions)
 
-- (void)invoke3DSecureViewControllerWithError:(NSError *)error
-                                   completion:(JudoCompletionBlock)completion {
-
-    JP3DSConfiguration *configuration = [JP3DSConfiguration configurationWithError:error];
-
-    JP3DSViewController *controller = [[JP3DSViewController alloc] initWithConfiguration:configuration
-                                                                              completion:completion];
-    controller.transaction = self.transaction;
-
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    navController.modalPresentationStyle = UIModalPresentationFullScreen;
-
-    [UIApplication.topMostViewController presentViewController:navController
-                                                      animated:YES
-                                                    completion:nil];
-}
+/**
+ * A method that activates an array of NSLayoutConstraints with a specified priority.
+ *
+ * @param constraints - an array of NSLayoutConstraints that are to be activated
+ * @param priority - a UILayoutPriority value that sets the priority of the constraints
+ */
++ (void)activateConstraints:(NSArray<NSLayoutConstraint *> *)constraints
+               withPriority:(UILayoutPriority)priority;
 
 @end

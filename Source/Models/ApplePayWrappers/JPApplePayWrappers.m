@@ -31,16 +31,16 @@
 + (instancetype)itemWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount {
     return [[JPPaymentSummaryItem alloc] initWithLabel:label
-                                              amount:amount];
+                                                amount:amount];
 }
 
 + (instancetype)itemWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(JPPaymentSummaryItemType)type {
-    
+
     return [[JPPaymentSummaryItem alloc] initWithLabel:label
-                                              amount:amount
-                                                type:type];
+                                                amount:amount
+                                                  type:type];
 }
 
 - (instancetype)initWithLabel:(NSString *)label

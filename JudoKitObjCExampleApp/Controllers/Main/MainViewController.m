@@ -238,6 +238,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 - (JPReference *)reference {
     if (!_reference) {
         _reference = [JPReference consumerReference:kConsumerReference];
+        _reference.metaData = @{@"exampleMetaKey": @"exampleMetaValue"};
     }
     return _reference;
 }
