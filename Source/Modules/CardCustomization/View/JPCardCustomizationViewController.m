@@ -23,9 +23,16 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationViewController.h"
-#import "JPCardCustomizationView.h"
-#import "UIImage+Additions.h"
+#import "JPCardCustomizationCell.h"
+#import "JPCardCustomizationHeaderCell.h"
 #import "JPCardCustomizationPresenter.h"
+#import "JPCardCustomizationView.h"
+#import "JPCardCustomizationViewModel.h"
+#import "UIImage+Additions.h"
+
+@interface JPCardCustomizationViewController ()
+@property (nonatomic, strong) NSArray<JPCardCustomizationViewModel *> *viewModels;
+@end
 
 @implementation JPCardCustomizationViewController
 
@@ -48,6 +55,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Protocol methods
+
+- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels {
+    self.viewModels = viewModels;
+    for (JPCardCustomizationViewModel *model in viewModels) {
+        [self.cardCustomizationView.tableView registerClass:NSClassFromString(model.identifier)
+                                     forCellReuseIdentifier:model.identifier];
+    }
+    [self.cardCustomizationView.tableView reloadData];
+}
+
 #pragma mark - Layout setup
 
 - (void)configureView {
@@ -60,7 +78,7 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
-    
+
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
 
@@ -79,11 +97,16 @@
 @implementation JPCardCustomizationViewController (TableViewDataSource)
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.viewModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell new];
+
+    JPCardCustomizationViewModel *selectedModel = self.viewModels[indexPath.row];
+    JPCardCustomizationCell *cell = [tableView dequeueReusableCellWithIdentifier:selectedModel.identifier
+                                                                    forIndexPath:indexPath];
+    [cell configureWithViewModel:selectedModel];
+    return cell;
 }
 
 @end
@@ -95,4 +118,3 @@
 }
 
 @end
-

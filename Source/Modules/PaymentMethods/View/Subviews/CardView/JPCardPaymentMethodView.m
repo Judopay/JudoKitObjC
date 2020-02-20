@@ -67,26 +67,23 @@
 
 #pragma mark - View Model Configuration
 
-- (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel {
+- (void)configureWithTitle:(NSString *)title
+                expiryDate:(NSString *)expiryDate
+                   network:(CardNetwork)cardNetwork
+              cardLastFour:(NSString *)cardLastFour {
 
-    self.titleLabel.text = viewModel.cardModel.cardTitle;
-    self.expiryDateLabel.text = viewModel.cardModel.cardExpiryDate;
+    self.titleLabel.text = title;
+    self.expiryDateLabel.text = expiryDate;
 
-    JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:viewModel.cardModel.cardNetwork];
+    JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:cardNetwork];
     NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
     NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
 
     self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
                                                            stylizedPattern,
-                                                           viewModel.cardModel.cardNumberLastFour];
+                                                           cardLastFour];
 
-    self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
-}
-
-- (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel {
-    
-    
-    
+    self.logoImageView.image = [UIImage imageForCardNetwork:cardNetwork];
 }
 
 #pragma mark - Layout Setup

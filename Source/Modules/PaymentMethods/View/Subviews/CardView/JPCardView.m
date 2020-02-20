@@ -24,6 +24,7 @@
 
 #import "JPCardView.h"
 #import "Functions.h"
+#import "JPCardCustomizationViewModel.h"
 #import "JPCardNetwork.h"
 #import "JPCardPaymentMethodView.h"
 #import "JPOtherPaymentMethodView.h"
@@ -70,13 +71,16 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self clearContentViewSubviews];
+    [self.contentView removeAllSubviews];
 
     switch (viewModel.paymentMethodType) {
         case JPPaymentMethodTypeCard:
             [self.contentView addSubview:self.cardPaymentView];
             [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
-            [self.cardPaymentView configureWithPaymentMethodModel:viewModel];
+            [self.cardPaymentView configureWithTitle:viewModel.cardModel.cardTitle
+                                          expiryDate:viewModel.cardModel.cardExpiryDate
+                                             network:viewModel.cardModel.cardNetwork
+                                        cardLastFour:viewModel.cardModel.cardNumberLastFour];
             break;
 
         default:
@@ -90,13 +94,10 @@
 - (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel {
     [self.contentView addSubview:self.cardPaymentView];
     [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
-    [self.cardPaymentView configureWithCustomizationModel:viewModel];
-}
-
-- (void)clearContentViewSubviews {
-    for (UIView *subview in self.contentView.subviews) {
-        [subview removeFromSuperview];
-    }
+    [self.cardPaymentView configureWithTitle:viewModel.cardTitle
+                                  expiryDate:viewModel.cardExpiryDate
+                                     network:viewModel.cardNetwork
+                                cardLastFour:viewModel.cardLastFour];
 }
 
 #pragma mark - Layout Setup

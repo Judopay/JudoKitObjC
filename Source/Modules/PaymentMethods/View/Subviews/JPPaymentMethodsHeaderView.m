@@ -105,10 +105,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (void)configureBottomHeaderWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
 
-    for (UIView *view in self.paymentStackView.subviews) {
-        [view removeFromSuperview];
-    }
-
+    [self.paymentStackView removeAllSubviews];
     [self.paymentStackView addArrangedSubview:self.amountStackView];
     [self configureAmountWithViewModel:viewModel];
 

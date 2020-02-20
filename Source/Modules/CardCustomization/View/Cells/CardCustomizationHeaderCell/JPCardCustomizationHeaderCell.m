@@ -23,7 +23,10 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationHeaderCell.h"
+#import "JPCardCustomizationViewModel.h"
 #import "JPCardView.h"
+#import "NSLayoutConstraint+Additions.h"
+#import "UIView+Additions.h"
 
 @interface JPCardCustomizationHeaderCell ()
 
@@ -33,57 +36,38 @@
 
 @implementation JPCardCustomizationHeaderCell
 
-#pragma mark - Initializers
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    if (self = [super initWithCoder:coder]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self setupViews];
-    }
-    return self;
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self setupViews];
-    }
-    return self;
-}
-
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
-    //
+    [self setupViews];
+    if (![viewModel isKindOfClass:JPCardCustomizationHeaderModel.class]) {
+        return;
+    }
+    JPCardCustomizationHeaderModel *headerModel = (JPCardCustomizationHeaderModel *)viewModel;
+    [self.cardView configureWithCustomizationModel:headerModel];
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
-    self.backgroundColor = UIColor.clearColor;
-    [self addSubview:self.cardView];
 
+    [self removeAllSubviews];
+
+    self.backgroundColor = UIColor.whiteColor;
+    [self addSubview:self.cardView];
     [NSLayoutConstraint activateConstraints:@[
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                constant:100],
+                                                constant:20],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:100],
-        [self.cardView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-        [self.cardView.widthAnchor constraintEqualToAnchor:self.cardView.heightAnchor
-                                                multiplier:1.715],
-    ]];
-}
-
-#pragma mark - Helper Methods
-
-- (void)prepareNewCardViewWithModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    [self.cardView configureWithPaymentMethodModel:viewModel];
-    [self setupViews];
+                                                   constant:-100],
+        [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                    constant:20.0],
+        [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
+                                                     constant:-20.0],
+        [self.cardView.heightAnchor constraintEqualToAnchor:self.cardView.widthAnchor
+                                                 multiplier:0.583],
+    ]
+                               withPriority:999];
 }
 
 #pragma mark - Lazy Properties

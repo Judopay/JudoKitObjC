@@ -61,6 +61,7 @@
     if (!_tableView) {
         _tableView = [UITableView new];
         _tableView.backgroundColor = UIColor.whiteColor;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _tableView;

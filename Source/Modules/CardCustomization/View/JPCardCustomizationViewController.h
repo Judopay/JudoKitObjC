@@ -25,9 +25,14 @@
 #import <UIKit/UIKit.h>
 
 @protocol JPCardCustomizationPresenter;
-@class JPCardCustomizationView;
+@class JPCardCustomizationView, JPCardCustomizationViewModel;
 
 @protocol JPCardCustomizationView
+
+/**
+ * A method for updating the view layout based on an array of view models
+ */
+- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels;
 
 @end
 

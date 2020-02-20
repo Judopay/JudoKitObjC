@@ -27,3 +27,7 @@
 @implementation JPCardCustomizationViewModel
 
 @end
+
+@implementation JPCardCustomizationHeaderModel
+
+@end

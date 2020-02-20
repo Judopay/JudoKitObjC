@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-
+#import "JPCardNetwork.h"
 #import <Foundation/Foundation.h>
 
 @interface JPCardCustomizationViewModel : NSObject
@@ -31,5 +31,29 @@
  * Must match the exact name of the UITableViewCell so that it can be registered correctly.
  */
 @property (nonatomic, strong) NSString *_Nonnull identifier;
+
+@end
+
+@interface JPCardCustomizationHeaderModel : JPCardCustomizationViewModel
+
+/**
+ * A string that represents the title of the selected card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardTitle;
+
+/**
+ * A string that represents the last four digits of the card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardLastFour;
+
+/**
+ * A string that represents thee expiration date of the card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardExpiryDate;
+
+/**
+ * A value that identifies the card network
+ */
+@property (nonatomic, assign) CardNetwork cardNetwork;
 
 @end

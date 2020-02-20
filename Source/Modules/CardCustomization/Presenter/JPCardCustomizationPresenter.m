@@ -24,13 +24,34 @@
 
 #import "JPCardCustomizationPresenter.h"
 #import "JPCardCustomizationInteractor.h"
+#import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationViewModel.h"
 #import "JPStoredCardDetails.h"
+
+@interface JPCardCustomizationPresenterImpl ()
+@property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
+@end
 
 @implementation JPCardCustomizationPresenterImpl
 
 - (void)prepareViewModel {
     JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
-    
+
+    self.headerModel.cardTitle = @"Card for shopping";
+    self.headerModel.cardLastFour = cardDetails.cardLastFour;
+    self.headerModel.cardExpiryDate = cardDetails.expiryDate;
+    self.headerModel.cardNetwork = cardDetails.cardNetwork;
+
+    NSArray *viewModels = @[ self.headerModel ];
+    [self.view updateViewWithViewModels:viewModels];
+}
+
+- (JPCardCustomizationHeaderModel *)headerModel {
+    if (!_headerModel) {
+        _headerModel = [JPCardCustomizationHeaderModel new];
+        _headerModel.identifier = @"JPCardCustomizationHeaderCell";
+    }
+    return _headerModel;
 }
 
 @end
