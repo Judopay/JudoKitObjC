@@ -27,8 +27,10 @@
 #import "JPCardCustomizationViewController.h"
 #import "JPCardCustomizationViewModel.h"
 #import "JPStoredCardDetails.h"
+#import "NSString+Additions.h"
 
 @interface JPCardCustomizationPresenterImpl ()
+@property (nonatomic, strong) JPCardCustomizationTitleModel *titleModel;
 @property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
 @end
 
@@ -37,13 +39,23 @@
 - (void)prepareViewModel {
     JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
 
+    self.titleModel.title = @"customize_card".localized;
+
     self.headerModel.cardTitle = @"Card for shopping";
     self.headerModel.cardLastFour = cardDetails.cardLastFour;
     self.headerModel.cardExpiryDate = cardDetails.expiryDate;
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
 
-    NSArray *viewModels = @[ self.headerModel ];
+    NSArray *viewModels = @[ self.titleModel, self.headerModel ];
     [self.view updateViewWithViewModels:viewModels];
+}
+
+- (JPCardCustomizationTitleModel *)titleModel {
+    if (!_titleModel) {
+        _titleModel = [JPCardCustomizationTitleModel new];
+        _titleModel.identifier = @"JPCardCustomizationTitleCell";
+    }
+    return _titleModel;
 }
 
 - (JPCardCustomizationHeaderModel *)headerModel {

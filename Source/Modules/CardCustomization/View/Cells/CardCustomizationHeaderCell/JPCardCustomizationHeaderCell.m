@@ -29,9 +29,7 @@
 #import "UIView+Additions.h"
 
 @interface JPCardCustomizationHeaderCell ()
-
 @property (nonatomic, strong) JPCardView *cardView;
-
 @end
 
 @implementation JPCardCustomizationHeaderCell
@@ -59,7 +57,7 @@
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
                                                 constant:20],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:-100],
+                                                   constant:-20],
         [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
                                                     constant:20.0],
         [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
