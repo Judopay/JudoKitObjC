@@ -39,6 +39,11 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPBillingCountry.h>
 #import <JudoKitObjC/JPBrowser.h>
 #import <JudoKitObjC/JPCard.h>
+#import <JudoKitObjC/JPCardCustomizationBuilder.h>
+#import <JudoKitObjC/JPCardCustomizationInteractor.h>
+#import <JudoKitObjC/JPCardCustomizationPresenter.h>
+#import <JudoKitObjC/JPCardCustomizationRouter.h>
+#import <JudoKitObjC/JPCardCustomizationViewController.h>
 #import <JudoKitObjC/JPCardDetails.h>
 #import <JudoKitObjC/JPCardNetwork.h>
 #import <JudoKitObjC/JPCardStorage.h>
@@ -73,8 +78,3 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPValidationResult.h>
 #import <JudoKitObjC/JudoKit.h>
 #import <JudoKitObjC/NSError+Additions.h>
-#import <JudoKitObjC/JPCardCustomizationBuilder.h>
-#import <JudoKitObjC/JPCardCustomizationRouter.h>
-#import <JudoKitObjC/JPCardCustomizationInteractor.h>
-#import <JudoKitObjC/JPCardCustomizationViewController.h>
-#import <JudoKitObjC/JPCardCustomizationPresenter.h>

@@ -22,18 +22,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPCardCustomizationViewController.h"
+#import <Foundation/Foundation.h>
 
 @protocol JPCardCustomizationBuilder
 
 /**
  * A method that build the Card Customization module
  */
-- (JPCardCustomizationViewController *)buildModule;
++ (JPCardCustomizationViewController *)buildModule;
+
 @end
 
 @interface JPCardCustomizationBuilderImpl : NSObject <JPCardCustomizationBuilder>
 
 @end
-

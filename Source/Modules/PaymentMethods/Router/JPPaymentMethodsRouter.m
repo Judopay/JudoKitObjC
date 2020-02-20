@@ -23,12 +23,12 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodsRouter.h"
+#import "JPCardCustomizationBuilder.h"
+#import "JPCardCustomizationViewController.h"
 #import "JPPaymentMethodsViewController.h"
 #import "JPTransactionBuilder.h"
 #import "JPTransactionService.h"
 #import "JPTransactionViewController.h"
-#import "JPCardCustomizationViewController.h"
-#import "JPCardCustomizationBuilder.h"
 
 #import "JPConfiguration.h"
 #import "JPSliderTransitioningDelegate.h"
@@ -75,9 +75,12 @@
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 
-- (void)navigateToCardCustomization {
+- (void)navigateToCardCustomizationWithIndex:(NSUInteger)index {
     JPCardCustomizationViewController *viewController;
-    //TODO: ADD NAVIGATION
+    viewController = [JPCardCustomizationBuilderImpl buildModule];
+
+    [self.viewController.navigationController pushViewController:viewController
+                                                        animated:YES];
 }
 
 - (void)dismissViewController {

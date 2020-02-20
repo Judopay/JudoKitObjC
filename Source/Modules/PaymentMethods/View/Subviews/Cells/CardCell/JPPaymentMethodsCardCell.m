@@ -98,21 +98,34 @@
 
 - (void)setupViews {
     self.backgroundColor = UIColor.clearColor;
+    [self setupIconView];
+    [self setupStackView];
+    [self setupDisclosureIndicator];
+}
+
+- (void)setupIconView {
+    [self.iconContainerView addSubview:self.iconImageView];
+    [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:36.0f],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:52.0f],
+    ]];
+}
+
+- (void)setupStackView {
     UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:8.0];
     UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:3.0];
 
     [verticalStackView addArrangedSubview:self.titleLabel];
     [verticalStackView addArrangedSubview:self.subtitleLabel];
 
-    [self.iconContainerView addSubview:self.iconImageView];
-    [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
-
     [horizontalStackView addArrangedSubview:self.iconContainerView];
     [horizontalStackView addArrangedSubview:verticalStackView];
 
     [self.contentView addSubview:horizontalStackView];
 
-    [NSLayoutConstraint activateConstraints:@[
+    NSArray *constraints = @[
         [horizontalStackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
                                                       constant:13],
         [horizontalStackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
@@ -120,14 +133,18 @@
         [horizontalStackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
                                                           constant:24],
         [horizontalStackView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                                           constant:-24],
-    ]
-                               withPriority:999];
+                                                           constant:-24]
+    ];
 
-    [NSLayoutConstraint activateConstraints:@[
-        [self.iconContainerView.heightAnchor constraintEqualToConstant:36.0f],
-        [self.iconContainerView.widthAnchor constraintEqualToConstant:52.0f],
-    ]];
+    [NSLayoutConstraint activateConstraints:constraints withPriority:999];
+}
+
+- (void)setupDisclosureIndicator {
+    UIImage *disclosureIcon = [UIImage imageWithIconName:@"disclosure-icon"];
+    UIImageView *disclosureImageView = [[UIImageView alloc] initWithImage:disclosureIcon];
+    disclosureImageView.contentMode = UIViewContentModeScaleAspectFit;
+    disclosureImageView.frame = CGRectMake(0, 0, 24, 24);
+    self.editingAccessoryView = disclosureImageView;
 }
 
 #pragma mark - Lazy instantiated properties

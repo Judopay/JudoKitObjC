@@ -61,7 +61,14 @@
     [self.view configureWithViewModel:self.viewModel];
 }
 
-- (void)didSelectCardAtIndex:(NSInteger)index {
+- (void)didSelectCardAtIndex:(NSInteger)index
+                  forEditing:(BOOL)isEditing {
+
+    if (isEditing) {
+        [self.router navigateToCardCustomizationWithIndex:index];
+        return;
+    }
+
     [self.interactor selectCardAtIndex:index];
     if (self.headerModel.cardModel) {
         [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop];

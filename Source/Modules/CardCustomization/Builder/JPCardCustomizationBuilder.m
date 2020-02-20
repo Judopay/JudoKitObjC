@@ -27,16 +27,15 @@
 #import "JPCardCustomizationPresenter.h"
 #import "JPCardCustomizationRouter.h"
 
-
 @implementation JPCardCustomizationBuilderImpl
 
-- (JPCardCustomizationViewController *)buildModule {
-    
++ (JPCardCustomizationViewController *)buildModule {
+
     JPCardCustomizationViewController *viewController = [JPCardCustomizationViewController new];
     JPCardCustomizationInteractorImpl *interactor = [JPCardCustomizationInteractorImpl new];
     JPCardCustomizationPresenterImpl *presenter = [JPCardCustomizationPresenterImpl new];
     JPCardCustomizationRouterImpl *router = [JPCardCustomizationRouterImpl new];
-    
+
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
@@ -44,7 +43,7 @@
     router.viewController = viewController;
 
     viewController.presenter = presenter;
-    
+
     return viewController;
 }
 

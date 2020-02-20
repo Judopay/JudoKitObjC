@@ -38,7 +38,7 @@
 /**
  * A method that opens the Card Customization view for customizing the card
  */
-- (void)navigateToCardCustomization;
+- (void)navigateToCardCustomizationWithIndex:(NSUInteger)index;
 
 /**
  * A method that dismisses the current view

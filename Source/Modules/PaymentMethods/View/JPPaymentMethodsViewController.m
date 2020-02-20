@@ -220,7 +220,9 @@
     if (![model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         return;
     }
-    [self.presenter didSelectCardAtIndex:indexPath.row];
+
+    [self.presenter didSelectCardAtIndex:indexPath.row
+                              forEditing:tableView.isEditing];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
