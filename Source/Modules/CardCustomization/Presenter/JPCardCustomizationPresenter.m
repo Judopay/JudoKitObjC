@@ -32,6 +32,7 @@
 @interface JPCardCustomizationPresenterImpl ()
 @property (nonatomic, strong) JPCardCustomizationTitleModel *titleModel;
 @property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
+@property (nonatomic, strong) JPCardCustomizationPatternPickerModel *patternPickerModel;
 @end
 
 @implementation JPCardCustomizationPresenterImpl
@@ -45,10 +46,25 @@
     self.headerModel.cardLastFour = cardDetails.cardLastFour;
     self.headerModel.cardExpiryDate = cardDetails.expiryDate;
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
+    self.headerModel.cardPatternType = cardDetails.patternType;
+    
+    for (JPCardCustomizationPatternModel *model in self.patternPickerModel.patternModels) {
+        model.isSelected = NO;
+        if (model.pattern.type == cardDetails.patternType) {
+            model.isSelected = YES;
+        }
+    }
 
-    NSArray *viewModels = @[ self.titleModel, self.headerModel ];
+    NSArray *viewModels = @[ self.titleModel, self.headerModel, self.patternPickerModel ];
     [self.view updateViewWithViewModels:viewModels];
 }
+
+- (void)handlePatternSelectionWithType:(JPCardPatternType)type {
+    [self.interactor updateStoredCardPatternWithType:type];
+    [self prepareViewModel];
+}
+
+#pragma mark - Lazy properties
 
 - (JPCardCustomizationTitleModel *)titleModel {
     if (!_titleModel) {
@@ -64,6 +80,42 @@
         _headerModel.identifier = @"JPCardCustomizationHeaderCell";
     }
     return _headerModel;
+}
+
+- (JPCardCustomizationPatternPickerModel *)patternPickerModel {
+    if (!_patternPickerModel) {
+        _patternPickerModel = [JPCardCustomizationPatternPickerModel new];
+        _patternPickerModel.identifier = @"JPCardCustomizationPatternPickerCell";
+        _patternPickerModel.patternModels = self.defaultPatternModels;
+    }
+    return _patternPickerModel;
+}
+
+- (NSArray *)defaultCardPatterns {
+    return @[JPCardPattern.black,
+             JPCardPattern.blue,
+             JPCardPattern.green,
+             JPCardPattern.red,
+             JPCardPattern.orange,
+             JPCardPattern.gold,
+             JPCardPattern.cyan,
+             JPCardPattern.olive];
+}
+
+- (NSArray *)defaultPatternModels {
+    NSMutableArray *models = [NSMutableArray new];
+    for (JPCardPattern *pattern in self.defaultCardPatterns) {
+        JPCardCustomizationPatternModel *model = [self patternModelForPattern:pattern];
+        [models addObject:model];
+    }
+    return models;
+}
+
+- (JPCardCustomizationPatternModel *)patternModelForPattern:(JPCardPattern *)pattern {
+    JPCardCustomizationPatternModel *model = [JPCardCustomizationPatternModel new];
+    model.pattern = pattern;
+    model.isSelected = NO;
+    return model;
 }
 
 @end

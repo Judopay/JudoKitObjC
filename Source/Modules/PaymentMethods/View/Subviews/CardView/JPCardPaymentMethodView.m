@@ -70,7 +70,8 @@
 - (void)configureWithTitle:(NSString *)title
                 expiryDate:(NSString *)expiryDate
                    network:(CardNetwork)cardNetwork
-              cardLastFour:(NSString *)cardLastFour {
+              cardLastFour:(NSString *)cardLastFour
+               patternType:(JPCardPatternType)patternType {
 
     self.titleLabel.text = title;
     self.expiryDateLabel.text = expiryDate;
@@ -84,6 +85,9 @@
                                                            cardLastFour];
 
     self.logoImageView.image = [UIImage imageForCardNetwork:cardNetwork];
+    
+    JPCardPattern *pattern = [JPCardPattern patternWithType:patternType];
+    self.backgroundColor = pattern.color;
 }
 
 #pragma mark - Layout Setup
@@ -121,7 +125,7 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.jpBlackColor;
+        _titleLabel.textColor = UIColor.whiteColor;
     }
     return _titleLabel;
 }
@@ -131,7 +135,7 @@
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _cardNumberLabel.font = UIFont.bodyBold;
-        _cardNumberLabel.textColor = UIColor.jpBlackColor;
+        _cardNumberLabel.textColor = UIColor.jpLightGrayColor;
     }
     return _cardNumberLabel;
 }
@@ -142,7 +146,7 @@
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
         _expiryDateLabel.font = UIFont.bodyBold;
-        _expiryDateLabel.textColor = UIColor.jpBlackColor;
+        _expiryDateLabel.textColor = UIColor.jpLightGrayColor;
     }
     return _expiryDateLabel;
 }

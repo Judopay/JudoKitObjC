@@ -76,6 +76,13 @@
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
 }
 
+- (void)insertCardDetails:(JPStoredCardDetails *)cardDetails
+                  atIndex:(NSInteger)index {
+    [self.storedCards insertObject:cardDetails atIndex:index];
+    NSArray *cardDetailsArray = [self convertStoredCardsToArray];
+    [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
+}
+
 - (void)deleteCardWithIndex:(NSInteger)index {
     [self.storedCards removeObjectAtIndex:index];
     NSArray *cardDetailsArray = [self convertStoredCardsToArray];

@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPCardPattern.h"
 
 @protocol JPCardCustomizationView, JPCardCustomizationRouter, JPCardCustomizationInteractor;
 
@@ -32,6 +33,13 @@
  * A method that is used to update the Card customization view model, which in turn updates the UI
  */
 - (void)prepareViewModel;
+
+/**
+ * A method that handles the card pattern changes based on a selected pattern type
+ *
+ * @param type - a JPCardPatternType value identifying the pattern
+ */
+- (void)handlePatternSelectionWithType:(JPCardPatternType)type;
 
 @end
 

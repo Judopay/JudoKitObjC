@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardNetwork.h"
+#import "JPCardPattern.h"
 #import <UIKit/UIKit.h>
 
 @class JPPaymentMethodsHeaderModel, JPCardCustomizationHeaderModel;
@@ -36,10 +37,12 @@
  * @param expiryDate - the expiration date of the card
  * @param network - the card network
  * @param cardLastFour - the last four digits of the card
+ * @param patternType - a JPCardPatternType value used to identify the card pattern
  */
 - (void)configureWithTitle:(NSString *)title
                 expiryDate:(NSString *)expiryDate
                    network:(CardNetwork)cardNetwork
-              cardLastFour:(NSString *)cardLastFour;
+              cardLastFour:(NSString *)cardLastFour
+               patternType:(JPCardPatternType)patternType;
 
 @end

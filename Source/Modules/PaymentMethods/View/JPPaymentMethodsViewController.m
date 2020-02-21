@@ -77,7 +77,6 @@
 #pragma mark - Layout Setup
 
 - (void)configureView {
-
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
@@ -109,7 +108,8 @@
 
 #pragma mark - Protocol Conformance
 
-- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel {
+- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel
+           shouldAnimateChange:(BOOL)shouldAnimate {
     self.viewModel = viewModel;
 
     [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
@@ -119,11 +119,19 @@
                                   forCellReuseIdentifier:item.identifier];
     }
 
-    [self handlePaymentMethodChangeBehaviorForViewModel:viewModel];
+    [self handlePaymentMethodChangeBehaviorForViewModel:viewModel
+                                    shouldAnimateChange:shouldAnimate];
     [self configureTargets];
 }
 
-- (void)handlePaymentMethodChangeBehaviorForViewModel:(JPPaymentMethodsViewModel *)viewModel {
+- (void)handlePaymentMethodChangeBehaviorForViewModel:(JPPaymentMethodsViewModel *)viewModel
+                                 shouldAnimateChange:(BOOL)shouldAnimate {
+    
+    if (!shouldAnimate) {
+        [self.paymentMethodsView.tableView reloadData];
+        return;
+    }
+    
     [self.paymentMethodsView.tableView beginUpdates];
 
     NSRange oldRange = NSMakeRange(1, self.paymentMethodsView.tableView.numberOfSections - 1);
@@ -135,7 +143,7 @@
     UITableViewRowAnimation fadeAnimation = UITableViewRowAnimationFade;
     [self.paymentMethodsView.tableView deleteSections:oldIndexSet withRowAnimation:fadeAnimation];
     [self.paymentMethodsView.tableView insertSections:newIndexSet withRowAnimation:fadeAnimation];
-
+    
     [self.paymentMethodsView.tableView endUpdates];
 }
 
@@ -243,7 +251,7 @@
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction *_Nonnull action) {
                                                              [self.presenter deleteCardWithIndex:indexPath.row];
-                                                             [self.presenter viewModelNeedsUpdate];
+
                                                          }];
 
     [alertController addAction:cancelAction];

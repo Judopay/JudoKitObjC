@@ -34,24 +34,29 @@
 
 @implementation JPCardCustomizationTitleCell
 
+#pragma mark - Initializers
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupViews];
+    }
+    return self;
+}
+
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
-    [self setupViews];
-    if (![viewModel isKindOfClass:JPCardCustomizationTitleModel.class]) {
-        return;
+    if ([viewModel isKindOfClass:JPCardCustomizationTitleModel.class]) {
+        JPCardCustomizationTitleModel *headerModel = (JPCardCustomizationTitleModel *)viewModel;
+        self.titleLabel.text = headerModel.title;
     }
-    JPCardCustomizationTitleModel *headerModel = (JPCardCustomizationTitleModel *)viewModel;
-    self.titleLabel.text = headerModel.title;
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
-
     self.backgroundColor = UIColor.whiteColor;
-
-    [self removeAllSubviews];
     [self addSubview:self.titleLabel];
 
     [NSLayoutConstraint activateConstraints:@[

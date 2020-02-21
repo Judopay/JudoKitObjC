@@ -101,10 +101,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     JPCardCustomizationViewModel *selectedModel = self.viewModels[indexPath.row];
     JPCardCustomizationCell *cell = [tableView dequeueReusableCellWithIdentifier:selectedModel.identifier
                                                                     forIndexPath:indexPath];
+
+    if ([cell isKindOfClass:JPCardCustomizationPatternPickerCell.class]) {
+        JPCardCustomizationPatternPickerCell *patternPickerCell;
+        patternPickerCell = (JPCardCustomizationPatternPickerCell *)cell;
+        patternPickerCell.delegate = self;
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell configureWithViewModel:selectedModel];
     return cell;
 }
@@ -115,6 +122,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
+}
+
+@end
+
+@implementation JPCardCustomizationViewController (PatternPickerDelegate)
+
+- (void)patternPickerCell:(JPCardCustomizationPatternPickerCell *)pickerCell didSelectPatternWithType:(JPCardPatternType)type {
+    
+    [self.presenter handlePatternSelectionWithType:type];
 }
 
 @end

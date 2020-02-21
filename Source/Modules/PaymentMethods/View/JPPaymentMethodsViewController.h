@@ -39,7 +39,8 @@
  *
  * @param viewModel - a view model detailing the layout details
  */
-- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel;
+- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel
+           shouldAnimateChange:(BOOL)shouldAnimate;
 
 /**
  * Convenience method for displaying alert controllers based on a specified error with an optional title

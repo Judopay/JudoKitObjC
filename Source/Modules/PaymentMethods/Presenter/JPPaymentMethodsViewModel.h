@@ -24,6 +24,7 @@
 
 #import "JPCardDetails.h"
 #import "JPPaymentMethod.h"
+#import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
 //TODO: Rename the button to a more generic type
@@ -150,6 +151,11 @@ typedef NS_ENUM(NSInteger, AnimationType) {
  * The card's expiration date string
  */
 @property (nonatomic, strong) NSString *_Nullable cardExpiryDate;
+
+/**
+ * The card's pattern type
+ */
+@property (nonatomic, assign) JPCardPatternType cardPatternType;
 
 /**
  * A value that specifies if the card is set as the default credit card of the user

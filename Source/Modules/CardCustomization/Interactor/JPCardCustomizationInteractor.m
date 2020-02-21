@@ -46,4 +46,11 @@
     return JPCardStorage.sharedInstance.storedCardDetails[self.cardIndex];
 }
 
+- (void)updateStoredCardPatternWithType:(JPCardPatternType)type {
+    JPStoredCardDetails *cardDetails = JPCardStorage.sharedInstance.storedCardDetails[self.cardIndex];
+    cardDetails.patternType = type;
+    [JPCardStorage.sharedInstance deleteCardWithIndex:self.cardIndex];
+    [JPCardStorage.sharedInstance insertCardDetails:cardDetails atIndex:self.cardIndex];
+}
+
 @end

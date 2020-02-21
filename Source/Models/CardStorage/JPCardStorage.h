@@ -47,6 +47,15 @@
 - (void)addCardDetails:(JPStoredCardDetails *)cardDetails;
 
 /**
+ * A method for inserting card details at a specified index
+ *
+ * @param cardDetails - an instance of JPStoredCardDetails containing card information
+ * @param index - the index where to insert the card details
+ */
+- (void)insertCardDetails:(JPStoredCardDetails *)cardDetails
+                  atIndex:(NSInteger)index;
+
+/**
  * A method for deleting the existing card details from the keychain
  *
  * @returns a boolean value describing if the cards have been succesfully deleted

@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPCardCustomizationPatternPickerCell.h"
 
 @protocol JPCardCustomizationPresenter;
 @class JPCardCustomizationView, JPCardCustomizationViewModel;
@@ -54,4 +55,7 @@
 @end
 
 @interface JPCardCustomizationViewController (TableViewDelegate) <UITableViewDelegate>
+@end
+
+@interface JPCardCustomizationViewController (PatternPickerDelegate) <JPCardCustomizationPatternPickerCellDelegate>
 @end

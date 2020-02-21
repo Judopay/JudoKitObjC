@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationInteractor.h
+//  JPCardCustomizationPatternPickerCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,38 +22,37 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPCardCustomizationCell.h"
 #import "JPCardPattern.h"
 
-@class JPStoredCardDetails;
+@class JPCardCustomizationPatternPickerCell;
 
-@protocol JPCardCustomizationInteractor
-
-/**
- * A method that returns the details about the selected card
- *
- * @returns a configured instance of JPStoredCardDetails
- */
-- (JPStoredCardDetails *)cardDetails;
+@protocol JPCardCustomizationPatternPickerCellDelegate
 
 /**
- * A method which updates the pattern type of the selected card in the JPCardStorage
+ * A method that triggers once the user selects one of the pattern options from the collection
  *
- * @param type - the JPCardPatternType value identifying the card
+ * @param pickerCell - a reference to the JPCardCustomizationPatternPickerCell instancee
+ * @param type - the type of a JPCardPattern used to identify the pattern
  */
-- (void)updateStoredCardPatternWithType:(JPCardPatternType)type;
+- (void)patternPickerCell:(JPCardCustomizationPatternPickerCell *)pickerCell
+ didSelectPatternWithType:(JPCardPatternType)type;
 
 @end
 
-@interface JPCardCustomizationInteractorImpl : NSObject <JPCardCustomizationInteractor>
+@interface JPCardCustomizationPatternPickerCell : JPCardCustomizationCell
 
 /**
- * Designated initializer that takes the card index to access it in the keychain storage
- *
- * @param index - the index of the card
- *
- * @returns a configured instance of JPCardCustomizationInteractorImpl
+ * A weak reference to the object that adopts the JPCardCustomizationPatternPickerCellDelegate protocol
  */
-- (instancetype)initWithCardIndex:(NSUInteger)index;
+@property (nonatomic, weak) id<JPCardCustomizationPatternPickerCellDelegate> delegate;
+
+@end
+
+@interface JPCardCustomizationPatternPickerCell (CollectionViewDataSource) <UICollectionViewDataSource>
+
+@end
+
+@interface JPCardCustomizationPatternPickerCell (FlowDelegate) <UICollectionViewDelegateFlowLayout>
 
 @end

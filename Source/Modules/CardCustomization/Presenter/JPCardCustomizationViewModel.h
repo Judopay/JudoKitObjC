@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardNetwork.h"
+#import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
 @interface JPCardCustomizationViewModel : NSObject
@@ -64,5 +65,33 @@
  * A value that identifies the card network
  */
 @property (nonatomic, assign) CardNetwork cardNetwork;
+
+/**
+ * A value for identifying the card's pattern
+ */
+@property (nonatomic, assign) JPCardPatternType cardPatternType;
+
+@end
+
+@interface JPCardCustomizationPatternModel : NSObject
+
+/**
+ * The card pattern that defines the background color and the shapes displayed on a card
+ */
+@property (nonatomic, strong) JPCardPattern *_Nonnull pattern;
+
+/**
+ * A boolean property that describes if the current pattern is selected or not
+ */
+@property (nonatomic, assign) BOOL isSelected;
+
+@end
+
+@interface JPCardCustomizationPatternPickerModel : JPCardCustomizationViewModel
+
+/**
+ * An array of JPCardCustomizationPatternModel objects that define the patterns selection in the Card Customization screen
+ */
+@property (nonatomic, strong) NSArray<JPCardCustomizationPatternModel *> *_Nonnull patternModels;
 
 @end

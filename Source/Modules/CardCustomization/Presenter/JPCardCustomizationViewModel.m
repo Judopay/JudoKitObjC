@@ -35,3 +35,11 @@
 @implementation JPCardCustomizationHeaderModel
 
 @end
+
+@implementation JPCardCustomizationPatternModel
+
+@end
+
+@implementation JPCardCustomizationPatternPickerModel
+
+@end
