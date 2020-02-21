@@ -44,6 +44,13 @@
 
 @implementation JPPaymentMethodsCardCell
 
+#pragma mark - Constants
+
+const float kHorizontalPadding = 24.0f;
+const float kVerticalPadding = 13.0f;
+const float kIconHeight = 36.0f;
+const float kIconWidth = 52.0f;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -90,7 +97,7 @@
     UIImage *accesoryImage = [UIImage imageWithIconName:iconName];
     UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:accesoryImage];
     accessoryImageView.contentMode = UIViewContentModeScaleAspectFit;
-    accessoryImageView.frame = CGRectMake(0, 0, 24, 24);
+    accessoryImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
     self.accessoryView = accessoryImageView;
 }
 
@@ -108,8 +115,8 @@
     [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.iconContainerView.heightAnchor constraintEqualToConstant:36.0f],
-        [self.iconContainerView.widthAnchor constraintEqualToConstant:52.0f],
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:kIconHeight],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:kIconWidth],
     ]];
 }
 
@@ -127,13 +134,13 @@
 
     NSArray *constraints = @[
         [horizontalStackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
-                                                      constant:13],
+                                                      constant:kVerticalPadding],
         [horizontalStackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                         constant:-13],
+                                                         constant:-kVerticalPadding],
         [horizontalStackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
-                                                          constant:24],
+                                                          constant:kHorizontalPadding],
         [horizontalStackView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                                           constant:-24]
+                                                           constant:-kHorizontalPadding]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
@@ -143,7 +150,7 @@
     UIImage *disclosureIcon = [UIImage imageWithIconName:@"disclosure-icon"];
     UIImageView *disclosureImageView = [[UIImageView alloc] initWithImage:disclosureIcon];
     disclosureImageView.contentMode = UIViewContentModeScaleAspectFit;
-    disclosureImageView.frame = CGRectMake(0, 0, 24, 24);
+    disclosureImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
     self.editingAccessoryView = disclosureImageView;
 }
 

@@ -62,7 +62,7 @@
 }
 
 - (void)didSelectCardAtIndex:(NSInteger)index
-                  forEditing:(BOOL)isEditing {
+               isEditingMode:(BOOL)isEditing {
 
     if (isEditing) {
         [self.router navigateToCardCustomizationWithIndex:index];

@@ -41,7 +41,8 @@
  * @param index - the index of the card that has been selected
  * @param isEditing - a boolean property that specifies if the card should be edited
  */
-- (void)didSelectCardAtIndex:(NSInteger)index forEditing:(BOOL)isEditing;
+- (void)didSelectCardAtIndex:(NSInteger)index
+               isEditingMode:(BOOL)isEditing;
 
 /**
  * A method that is called when the Back button is tapped. It handles the view dismissal flow
