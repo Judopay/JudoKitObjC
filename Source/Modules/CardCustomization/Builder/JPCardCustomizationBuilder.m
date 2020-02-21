@@ -27,7 +27,6 @@
 #import "JPCardCustomizationPresenter.h"
 #import "JPCardCustomizationRouter.h"
 
-
 @implementation JPCardCustomizationBuilderImpl
 
 - (JPCardCustomizationViewController *)buildModule {

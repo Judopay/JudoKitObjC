@@ -31,6 +31,7 @@
  * A method that build the Card Customization module
  */
 - (JPCardCustomizationViewController *)buildModule;
+
 @end
 
 @interface JPCardCustomizationBuilderImpl : NSObject <JPCardCustomizationBuilder>
