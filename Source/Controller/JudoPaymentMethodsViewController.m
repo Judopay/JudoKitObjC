@@ -25,6 +25,7 @@
 #import "JudoPaymentMethodsViewController.h"
 #import <PassKit/PassKit.h>
 
+#import "JPAmount.h"
 #import "JPResponse.h"
 #import "JPSession.h"
 #import "JPTheme.h"
@@ -32,12 +33,14 @@
 #import "JudoKit.h"
 #import "JudoPayViewController.h"
 #import "JudoPaymentMethodsViewModel.h"
+#import "NSBundle+Additions.h"
 #import "NSError+Judo.h"
 #import "NSString+Localize.h"
 #import "UIApplication+Additions.h"
 #import "UIColor+Judo.h"
 #import "UIView+SafeAnchors.h"
 #import "UIViewController+JPTheme.h"
+#import "JPConstants.h"
 
 @interface JudoPaymentMethodsViewController ()
 
@@ -150,6 +153,38 @@
         [[applePayButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight] setActive:YES];
         [self.stackView addArrangedSubview:applePayButton];
     }
+
+    if (self.viewModel.paymentMethods & PaymentMethodIDEAL && [self.viewModel.amount.currency isEqualToString:kCurrencyEUR]) {
+
+        UIButton *idealButton = [UIButton new];
+        [idealButton setTag:PaymentMethodIDEAL];
+
+        [idealButton addTarget:self
+                        action:@selector(onIDEALButtonTap:)
+              forControlEvents:UIControlEventTouchUpInside];
+
+        NSString *iconFilePath = [NSBundle.iconsBundle pathForResource:@"logo-ideal"
+                                                                ofType:@"png"];
+
+        [idealButton setImage:[UIImage imageWithContentsOfFile:iconFilePath]
+                     forState:UIControlStateNormal];
+
+        idealButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
+        [idealButton setTitle:@"iDEAL" forState:UIControlStateNormal];
+        [idealButton setTitleColor:self.theme.judoButtonTitleColor forState:UIControlStateNormal];
+        idealButton.titleLabel.font = self.theme.buttonFont;
+
+        idealButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 0);
+        idealButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
+
+        [idealButton setBackgroundColor:UIColor.idealPurple];
+        idealButton.layer.cornerRadius = 5.0f;
+
+        [[idealButton.heightAnchor constraintEqualToConstant:self.theme.buttonHeight] setActive:YES];
+
+        [self.stackView addArrangedSubview:idealButton];
+    }
 }
 
 - (void)paymentMethodButtonDidTap:(UIView *)button {
@@ -203,6 +238,20 @@
                                                   }
                                                   weakSelf.completionBlock(response, error);
                                               }];
+}
+
+- (void)onIDEALButtonTap:(id)sender {
+    __weak JudoPaymentMethodsViewController *weakSelf = self;
+
+    [self.judoKitSession invokeIDEALPaymentWithSiteId:self.viewModel.siteId
+                                               amount:self.viewModel.amount
+                                            reference:self.viewModel.reference
+                                           completion:^(JPResponse *response, NSError *error) {
+                                               if (error && error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
+                                                   [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                               }
+                                               weakSelf.completionBlock(response, error);
+                                           }];
 }
 
 - (void)backButtonAction:(id)sender {

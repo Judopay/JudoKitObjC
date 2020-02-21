@@ -24,6 +24,7 @@
 
 #import "DetailViewController.h"
 #import "ContactInformation.h"
+#import "JPOrderDetails.h"
 #import "DetailsTableViewController.h"
 
 @import JudoKitObjC;
@@ -40,12 +41,13 @@
 
 @property (nonatomic, strong) NSDateFormatter *inputDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *outputDateFormatter;
-
 @property (nonatomic, strong) NSNumberFormatter *numberFormatter;
 
 @end
 
 @implementation DetailViewController
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,12 +56,7 @@
     self.navigationItem.hidesBackButton = YES;
     
     if (self.transactionData) {
-        NSDate *createdAtDate = [self.inputDateFormatter dateFromString:self.transactionData.createdAt];
-        self.dateStampLabel.text = [self.outputDateFormatter stringFromDate:createdAtDate];
-        
-        self.numberFormatter.currencyCode = self.transactionData.amount.currency;
-        self.amountLabel.text = self.transactionData.amount.amount;
-        self.resolutionLabel.text = self.transactionData.message;
+        [self setupTransactionData];
     }
     
     if (self.billingInformation) {
@@ -73,50 +70,103 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.transactionData) {
-        self.numberFormatter.currencyCode = self.transactionData.amount.currency;
-        self.amountLabel.text = [self.numberFormatter stringFromNumber:@([self.transactionData.amount.amount floatValue])];
-        self.resolutionLabel.text = self.transactionData.message;
-    }
-}
+#pragma mark - User actions
 
 - (IBAction)homeButtonHandler:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)iDealButtonHandler:(id)sender {
+    JPOrderDetails *orderDetails = self.transactionData.orderDetails;
+    
+    if (!orderDetails) {
+        [self displayErrorWithMessage:@"No iDEAL order details to display"];
+        return;
+    }
+    
+    NSArray<DetailsRow *> *rows = [self rowsForOrderDetails:orderDetails];
+    [self navigateToDetailsPageWithTitle:@"iDeal Order Details" andRows:rows];
 }
 
 - (IBAction)presentCardDetailsData:(id)sender {
     JPCardDetails *cardDetails = self.transactionData.cardDetails;
     
     if (!cardDetails) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                 message:@"No card details data to display."
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:alertController animated:YES completion:nil];
+        [self displayErrorWithMessage:@"No card details to display"];
         return;
     }
 
-    NSArray<DetailsRow *> *rows = @[
-    [DetailsRow withTitle:@"Card last 4 digits" andValue: cardDetails.cardLastFour],
-    [DetailsRow withTitle:@"End date" andValue: cardDetails.endDate],
-    [DetailsRow withTitle:@"Card token" andValue: cardDetails.cardToken],
-    [DetailsRow withTitle:@"Card type" andValue: [NSString stringWithFormat:@"%lu", (unsigned long)cardDetails.cardNetwork]],
-    [DetailsRow withTitle:@"Bank" andValue: cardDetails.bank],
-    [DetailsRow withTitle:@"Card category" andValue: cardDetails.cardCategory],
-    [DetailsRow withTitle:@"Card country" andValue: cardDetails.cardCountry],
-    [DetailsRow withTitle:@"Card funding" andValue: cardDetails.cardFunding],
-    [DetailsRow withTitle:@"Card scheme" andValue: cardDetails.cardScheme]
-    ];
-    
-    NSArray<DetailsSection *> *sections = @[[[DetailsSection alloc] initWithTitle:@"Card Details" rows: rows]];
-    DetailsTableViewController *detailsViewController = [[DetailsTableViewController alloc] initWithData:sections andTitle:@"Details"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:detailsViewController];
-    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    NSArray<DetailsRow *> *rows = [self rowsForCardDetails:cardDetails];
+    [self navigateToDetailsPageWithTitle:@"Card Details" andRows:rows];
 }
 
-#pragma mark - Lazy Loading
+#pragma mark - Helper methods
+
+- (void)setupTransactionData {
+    NSDate *createdAtDate = [self.inputDateFormatter dateFromString:self.transactionData.createdAt];
+    self.dateStampLabel.text = [self.outputDateFormatter stringFromDate:createdAtDate];
+    self.numberFormatter.currencyCode = self.transactionData.amount.currency;
+    self.resolutionLabel.text = self.transactionData.message;
+    self.amountLabel.text = [self.numberFormatter stringFromNumber:@(self.transactionData.amount.amount.floatValue)];
+}
+
+- (void)navigateToDetailsPageWithTitle:(NSString *)title
+                               andRows:(NSArray<DetailsRow *> *)rows {
+    
+    NSArray<DetailsSection *> *sections = @[[[DetailsSection alloc] initWithTitle:title
+                                                                             rows:rows]];
+    
+    DetailsTableViewController *detailsViewController;
+    detailsViewController = [[DetailsTableViewController alloc] initWithData:sections
+                                                                    andTitle:@"Details"];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:detailsViewController];
+    
+    [self.navigationController presentViewController:navigationController
+                                            animated:YES
+                                          completion:nil];
+}
+
+- (void)displayErrorWithMessage:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirmationAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleCancel
+                                                               handler:nil];
+    [alertController addAction:confirmationAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - Lazy Loading & Getters
+
+- (NSArray <DetailsRow *> *)rowsForOrderDetails:(JPOrderDetails *)orderDetails {
+    NSDate *date = [self.inputDateFormatter dateFromString:orderDetails.timestamp];
+    NSString *formattedDate = [self.outputDateFormatter stringFromDate:date];
+    
+    return @[
+        [DetailsRow withTitle:@"Order ID" andValue:orderDetails.orderId],
+        [DetailsRow withTitle:@"Status" andValue:orderDetails.orderStatus],
+        [DetailsRow withTitle:@"Failure Reason" andValue:orderDetails.orderFailureReason],
+        [DetailsRow withTitle:@"Timestamp" andValue:formattedDate]
+    ];
+}
+
+- (NSArray <DetailsRow *> *)rowsForCardDetails:(JPCardDetails *)cardDetails {
+    NSString *network = [NSString stringWithFormat:@"%lu", (unsigned long)cardDetails.cardNetwork];
+    return @[
+        [DetailsRow withTitle:@"Card last 4 digits" andValue: cardDetails.cardLastFour],
+        [DetailsRow withTitle:@"End date" andValue: cardDetails.endDate],
+        [DetailsRow withTitle:@"Card token" andValue: cardDetails.cardToken],
+        [DetailsRow withTitle:@"Card type" andValue: network],
+        [DetailsRow withTitle:@"Bank" andValue: cardDetails.bank],
+        [DetailsRow withTitle:@"Card category" andValue: cardDetails.cardCategory],
+        [DetailsRow withTitle:@"Card country" andValue: cardDetails.cardCountry],
+        [DetailsRow withTitle:@"Card funding" andValue: cardDetails.cardFunding],
+        [DetailsRow withTitle:@"Card scheme" andValue: cardDetails.cardScheme]
+    ];
+}
 
 - (NSDateFormatter *)inputDateFormatter {
     if (_inputDateFormatter == nil) {

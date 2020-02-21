@@ -109,6 +109,26 @@ typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
  * @param amount - amount to be payed for this item
  * @param type   - payment type for this item (final / pending)
  */
++ (instancetype)itemWithLabel:(NSString *)label
+                       amount:(NSDecimalNumber *)amount
+                         type:(PaymentSummaryItemType)type;
+
+/**
+ * Designated initializer
+ *
+ * @param label  - title of the item
+ * @param amount - amount to be payed for this item
+ */
++ (instancetype)itemWithLabel:(NSString *)label
+                       amount:(NSDecimalNumber *)amount;
+
+/**
+ * Designated initializer
+ *
+ * @param label  - title of the item
+ * @param amount - amount to be payed for this item
+ * @param type   - payment type for this item (final / pending)
+ */
 - (instancetype)initWithLabel:(NSString *)label
                        amount:(NSDecimalNumber *)amount
                          type:(PaymentSummaryItemType)type;

@@ -354,6 +354,11 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
         [self.loadingView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
         [self.loadingView.topAnchor constraintEqualToAnchor:self.view.safeTopAnchor],
         [self.loadingView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+
+        [self.threeDSWebView.leftAnchor constraintEqualToAnchor:self.view.safeLeftAnchor],
+        [self.threeDSWebView.rightAnchor constraintEqualToAnchor:self.view.safeRightAnchor],
+        [self.threeDSWebView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.threeDSWebView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
@@ -365,11 +370,6 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                                                                                 @"button" : self.paymentButton}]];
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[tdsecure]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{@"tdsecure" : self.threeDSWebView}]];
-
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(68)-[tdsecure]-(30)-|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:@{@"tdsecure" : self.threeDSWebView}]];
@@ -970,19 +970,20 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [scriptContent appendString:@"head.appendChild(meta);"];
     [scriptContent appendString:@"meta.name"];
 
-    [_threeDSWebView evaluateJavaScript:scriptContent completionHandler:^(id response, NSError * error) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSString *metaSizingContent= @"meta.content = 'width=' + document.documentElement.scrollWidth + ', maximum-scale=1.0'";
-            [self->_threeDSWebView evaluateJavaScript:metaSizingContent completionHandler:nil];
-        });
-    }];
-    
+    [_threeDSWebView evaluateJavaScript:scriptContent
+                      completionHandler:^(id response, NSError *error) {
+                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              NSString *metaSizingContent = @"meta.content = 'width=' + document.documentElement.scrollWidth + ', maximum-scale=1.0'";
+                              [self->_threeDSWebView evaluateJavaScript:metaSizingContent completionHandler:nil];
+                          });
+                      }];
+
     NSMutableString *removePaResFieldScript = [NSMutableString stringWithString:@"const paResField = document.getElementById('pnPaRESPanel');"];
     [removePaResFieldScript appendString:@"paResField.parentElement.removeChild(paResField);"];
     [removePaResFieldScript appendString:@"paResField.name"];
 
     [_threeDSWebView evaluateJavaScript:removePaResFieldScript completionHandler:nil];
-    
+
     CGFloat alphaVal = 1.0f;
     if ([webView.URL.absoluteString isEqualToString:@"about:blank"]) {
         alphaVal = 0.0f;
@@ -1008,9 +1009,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 
 #pragma mark -  UIAdaptivePresentationControllerDelegate methods
 - (void)presentationControllerWillDismiss:(UIPresentationController *)presentationController {
-      if (self.completionBlock) {
-          self.completionBlock(nil, [NSError judoUserDidCancelError]);
-      }
+    if (self.completionBlock) {
+        self.completionBlock(nil, [NSError judoUserDidCancelError]);
+    }
 }
 
 @end

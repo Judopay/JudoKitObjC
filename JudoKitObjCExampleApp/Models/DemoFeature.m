@@ -23,6 +23,7 @@
         [DemoFeature featureWithType:DemoFeatureTypeApplePayPayment title:@"Apple Pay payment" details: @"with a wallet card"],
         [DemoFeature featureWithType:DemoFeatureTypeApplePayPreAuth title:@"Apple Pay preAuth" details: @"with a wallet card"],
         [DemoFeature featureWithType:DemoFeatureTypePaymentMethods title: @"Payment Method" details: @"with default payment methods"],
+        [DemoFeature featureWithType:DemoFeatureTypeIDEALTransaction title:@"iDEAL Transaction" details:@"for custom bank transactions"],
         [DemoFeature featureWithType:DemoFeatureTypeStandaloneApplePayButton title: @"Apple Pay Button" details: @"Standalone ApplePay Button"]
     ];
 }

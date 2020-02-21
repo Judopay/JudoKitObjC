@@ -42,11 +42,15 @@ extern NSString *const JudoErrorDomain;
 + (NSError *)judo3DSRequestFailedErrorWithUnderlyingError:(nullable NSError *)underlyingError;
 + (NSError *)judoUserDidCancelError;
 + (NSError *)judoParameterError;
++ (NSError *)judoInternetConnectionError;
 + (NSError *)judoApplePayConfigurationError;
 + (NSError *)judoResponseParseError;
++ (NSError *)judoMissingChecksumError;
++ (NSError *)judoRequestTimeoutError;
 + (NSError *)judoInvalidCardNumberError;
 + (NSError *)judoJailbrokenDeviceDisallowedError;
 + (NSError *)judoInputMismatchErrorWithMessage:(nullable NSString *)message;
++ (NSError *)judoErrorCurrencyNotSupported;
 
 + (NSError *)judoErrorFromTransactionData:(JPTransactionData *)data;
 + (NSError *)judoErrorFromDictionary:(NSDictionary *)dict;
@@ -76,6 +80,7 @@ typedef NS_ENUM(NSUInteger, JudoError) {
     JudoErrorInvalidApplePayConfiguration,
     JudoErrorInvalidCardNumberError,
     JudoErrorJailbrokenDeviceDisallowed,
+    JudoErrorCurrencyNotSupported,
 
     JudoErrorGeneral_Error = 0,
     JudoErrorGeneral_Model_Error = 1,

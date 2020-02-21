@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class JPAmount, JPCardDetails, JPConsumer, JPPaymentToken;
+@class JPAmount, JPCardDetails, JPConsumer, JPPaymentToken, JPOrderDetails;
 
 /**
  *  Type of Transaction
@@ -53,7 +53,11 @@ typedef NS_ENUM(NSUInteger, TransactionType) {
     /**
      *  Save a card
      */
-    TransactionTypeSaveCard
+    TransactionTypeSaveCard,
+    /**
+     *  Make an iDEAL transaction
+     */
+    TransactionTypeIDEAL
 };
 
 /**
@@ -95,6 +99,21 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
 @property (nonatomic, assign) TransactionType type;
 
 /**
+ *  A redirect URL used for iDEAL bank transactions
+ */
+@property (nonatomic, strong) NSString *_Nullable redirectUrl;
+
+/**
+*  An object describing the current payment method
+*/
+@property (nonatomic, strong) NSString *_Nullable paymentMethod;
+
+/**
+ *  An object containing information regarding the iDEAL transaction result
+ */
+@property (nonatomic, strong) JPOrderDetails *_Nullable orderDetails;
+
+/**
  *  Date and time of the Transaction including time zone offset
  */
 @property (nonatomic, strong) NSString *_Nonnull createdAt;
@@ -113,6 +132,11 @@ typedef NS_ENUM(NSUInteger, TransactionResult) {
  *  The number (e.g. "123-456" or "654321") identifying the Merchant to whom payment has been made
  */
 @property (nonatomic, strong) NSString *_Nonnull judoId;
+
+/**
+ *  The siteId (e.g. "123-456" or "654321") identifying the Merchant to whom payment has been made
+ */
+@property (nonatomic, strong) NSString *_Nonnull siteId;
 
 /**
  *  The trading name of the Merchant to whom payment has been made

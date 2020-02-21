@@ -83,9 +83,11 @@
 
     self.currentTransactionReference = self.reference.paymentReference;
 
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, self.transactionPath];
+
     [self.enricher enrichTransaction:self
                       withCompletion:^{
-                          [self.apiSession POST:self.transactionPath parameters:self.parameters completion:completion];
+                          [self.apiSession POST:fullURL parameters:self.parameters completion:completion];
                       }];
 }
 
@@ -114,7 +116,10 @@
 }
 
 - (void)threeDSecureWithParameters:(NSDictionary *)parameters receiptId:(NSString *)receiptId completion:(JudoCompletionBlock)completion {
-    [self.apiSession PUT:[NSString stringWithFormat:@"transactions/%@", receiptId]
+
+    NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.baseURL, receiptId];
+
+    [self.apiSession PUT:fullURL
               parameters:parameters
               completion:completion];
 }
@@ -128,7 +133,8 @@
     if (pagination) {
         path = [path stringByAppendingFormat:@"?pageSize=%li&offset=%li&sort=%@", (long)pagination.pageSize, (long)pagination.offset, pagination.sort];
     }
-    [self.apiSession GET:path parameters:nil completion:completion];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, path];
+    [self.apiSession GET:fullURL parameters:nil completion:completion];
 }
 
 #pragma mark - getters and setters

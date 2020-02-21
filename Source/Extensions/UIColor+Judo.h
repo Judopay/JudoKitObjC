@@ -46,6 +46,10 @@
 
 + (UIColor *_Nonnull)cgRed;
 
++ (UIColor *_Nonnull)errorRed;
+
++ (UIColor *_Nonnull)idealPurple;
+
 + (UIColor *_Nonnull)defaultTintColor;
 
 @end

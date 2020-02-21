@@ -48,7 +48,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             XCTAssertNotNil(payment.paymentDetail)
         }
     }
@@ -71,7 +71,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             XCTAssertNotNil(preAuth.paymentDetail)
         }
     }
@@ -93,7 +93,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             XCTAssertNotNil(registerCard.paymentDetail)
         }
     }
@@ -114,7 +114,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             XCTAssertNil(saveCard.paymentDetail)
         }
     }
@@ -137,7 +137,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             let dictionary = payment.paymentDetail!.toDictionary()["SDK_INFO"] as! [String: String]
             
             XCTAssertNotNil(dictionary)
@@ -164,7 +164,7 @@ class TransactionEnricherTests: JudoTestCase {
             expectation.fulfill()
         })
         
-        self.waitForExpectations(timeout: 30.0) { error in
+        self.waitForExpectations(timeout: kTestCaseTimeout) { error in
             let dictionary = payment.paymentDetail!.toDictionary()["ConsumerDevice"] as! [String: Any]
             
             XCTAssertNotNil(dictionary)

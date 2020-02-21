@@ -42,12 +42,21 @@ NSString *const ErrorUserDidCancel = @"error_user_did_cancel";
 NSString *const ErrorParameterError = @"error_parameter_error";
 NSString *const ErrorFailed3DSRequest = @"error_failed_3DS_request";
 NSString *const ErrorJailbrokenDeviceDisallowed = @"error_jailbroken_device_disallowed";
+NSString *const ErrorCurrencyNotSupported = @"error_currency_not_supported";
 
 NSString *const Error3DSRequest = @"error_3DS_request";
 NSString *const ErrorUnderlyingError = @"error_underlying_error";
 NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
 
 @implementation NSError (Judo)
+
++ (NSError *)judoErrorCurrencyNotSupported {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorCurrencyNotSupported
+                           userInfo:[self userDataDictWithDescription:ErrorCurrencyNotSupported.localized
+                                                        failureReason:ErrorCurrencyNotSupported.localized
+                                                                title:UnableToProcessRequestErrorTitle.localized]];
+}
 
 + (NSError *)judoJailbrokenDeviceDisallowedError {
     return [NSError errorWithDomain:JudoErrorDomain
@@ -63,6 +72,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                            userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc.localized
                                                         failureReason:ErrorRequestFailed.localized
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
+}
+
++ (NSError *)judoRequestTimeoutError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorRequestFailed
+                           userInfo:[self userDataDictWithDescription:@"error_timeout_description".localized
+                                                        failureReason:@"error_timeout_description".localized
+                                                                title:@"error_timeout_title".localized]];
 }
 
 + (NSError *)judoJSONSerializationFailedWithError:(nullable NSError *)error {
@@ -162,6 +179,14 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
 }
 
++ (NSError *)judoInternetConnectionError {
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorGeneral_Error
+                           userInfo:[self userDataDictWithDescription:@"no_internet_error_description".localized
+                                                        failureReason:@"no_internet_error_description".localized
+                                                                title:@"no_internet_error_title".localized]];
+}
+
 + (NSError *)judoApplePayConfigurationError {
     return [NSError errorWithDomain:JudoErrorDomain
                                code:JudoErrorInvalidApplePayConfiguration
@@ -180,6 +205,17 @@ NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
                            userInfo:[self userDataDictWithDescription:UnableToProcessRequestErrorDesc.localized
                                                         failureReason:ErrorResponseParseError.localized
                                                                 title:UnableToProcessRequestErrorTitle.localized]];
+}
+
++ (NSError *)judoMissingChecksumError {
+
+    NSDictionary *userInfo = [self userDataDictWithDescription:@"error_checksum_missing_description".localized
+                                                 failureReason:@"error_checksum_missing_description".localized
+                                                         title:@"error_checksum_missing_title".localized];
+
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorGeneral_Error
+                           userInfo:userInfo];
 }
 
 + (NSError *)judo3DSRequestWithPayload:(NSDictionary *)payload {

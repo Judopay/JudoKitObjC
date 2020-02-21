@@ -31,6 +31,7 @@
 @interface JudoPaymentMethodsViewModel : NSObject
 
 @property (nonatomic, strong, readonly) NSString *_Nonnull judoId;
+@property (nonatomic, strong, readonly) NSString *_Nullable siteId;
 @property (nonatomic, strong, readonly) JPAmount *_Nonnull amount;
 @property (nonatomic, strong, readonly) JPReference *_Nonnull reference;
 @property (nonatomic, strong, readonly) JPPrimaryAccountDetails *_Nullable primaryAccountDetails;
@@ -40,6 +41,7 @@
 @property (readonly) PaymentMethods paymentMethods;
 
 - (instancetype _Nonnull)initWithJudoId:(nonnull NSString *)judoId
+                                 siteId:(NSString *_Nullable)siteId
                                  amount:(nonnull JPAmount *)amount
                       consumerReference:(nonnull JPReference *)reference
                          paymentMethods:(PaymentMethods)methods

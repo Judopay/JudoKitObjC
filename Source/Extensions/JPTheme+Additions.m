@@ -36,6 +36,8 @@
             return self.registerCardTitle;
         case TransactionTypeRefund:
             return self.refundTitle;
+        case TransactionTypeIDEAL:
+            return self.iDEALTitle;
         case TransactionTypeCheckCard:
             return self.checkCardTitle;
     }

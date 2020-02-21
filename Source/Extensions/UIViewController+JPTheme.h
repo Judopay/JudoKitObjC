@@ -26,10 +26,6 @@
 
 @class JPTheme;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface UIViewController (JPTheme)
 - (void)applyTheme:(JPTheme *)theme;
 @end
-
-NS_ASSUME_NONNULL_END

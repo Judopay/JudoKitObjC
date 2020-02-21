@@ -76,7 +76,7 @@
 }
 
 - (NSAttributedString *)placeholder {
-    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : self.theme.judoPlaceholderTextColor}];
+    return [[NSAttributedString alloc] initWithString:self.title attributes:@{NSForegroundColorAttributeName : self.theme.judoPlaceholderColor}];
 }
 
 - (BOOL)containsLogo {

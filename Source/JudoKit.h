@@ -25,31 +25,20 @@
 #import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
 
+#import "IDEALService.h"
 #import "JPSession.h"
 #import "JPTransactionData.h"
 #import "JudoPaymentMethodsViewController.h"
 #import "PaymentMethods.h"
 
-static NSString *__nonnull const JudoKitVersion = @"9.0.0";
+static NSString *__nonnull const JudoKitVersion = @"10.0.0";
 
 @class JudoPayViewController;
 @class ApplePayConfiguration;
 
 @class JPPayment, JPPreAuth, JPRegisterCard, JPCheckCard, JPSaveCard, JPTransaction;
-@class JPCollection, JPVoid, JPRefund;
-@class JPReceipt;
-
-@class JPCardDetails;
-@class JPPaymentToken;
-
-@class JPTheme;
-
-@class JPAmount;
-@class JPReference;
-@class JPPagination;
-@class JPResponse;
-
-@class JPPrimaryAccountDetails;
+@class JPCollection, JPVoid, JPRefund, JPAmount, JPReference, JPPagination, JPResponse;
+@class JPCardDetails, JPReceipt, JPPrimaryAccountDetails, JPPaymentToken, JPTheme;
 
 /**
  *  Entry point for interacting with judoKit
@@ -65,6 +54,11 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  The theme of any judoSession
  */
 @property (nonatomic, strong) JPTheme *_Nonnull theme;
+
+/**
+ *  An optional property for additional payment metadata a merchant can provide
+ */
+@property (nonatomic, strong) NSDictionary *_Nullable paymentMetadata;
 
 /**
  * Optional primary account details, such as the name, account number, date of birth and post code
@@ -262,6 +256,7 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  This method will invoke the Judo UI on the top UIViewController instance of the Application window. When the payment will finish or any errors encountered the completion block will be invoked with related details.
  *
  *  @param judoId               The judoID of the merchant to receive the payment
+ *  @param siteId               The siteId of the merchant to receive the payment
  *  @param amount               The amount and currency of the payment (default is GBP)
  *  @param reference            The consumer reference for this transaction
  *  @param methods              The payment methods to be shown
@@ -269,6 +264,7 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
  *  @param completion           The completion handler which will respond with a JPResponse object or an NSError
  */
 - (void)invokePayment:(nonnull NSString *)judoId
+                     siteId:(NSString *_Nullable)siteId
                      amount:(nonnull JPAmount *)amount
           consumerReference:(nonnull NSString *)reference
              paymentMethods:(PaymentMethods)methods
@@ -469,6 +465,20 @@ static NSString *__nonnull const JudoKitVersion = @"9.0.0";
                cardDetails:(nonnull JPCardDetails *)cardDetails
               paymentToken:(nonnull JPPaymentToken *)paymentToken
                 completion:(nonnull void (^)(JPResponse *_Nullable, NSError *_Nullable))completion;
+
+/**
+ *  This method will invoke the iDEAL transaction form on the top UIViewController instance of the Applications window. The iDEAL transaction form allows the
+ *  merchant to set a name and select from one of the available iDEAL banks to complete the transaction.
+ *
+ *  @param judoId           The judoID of the merchant to receive the token pre-auth
+ *  @param amount           The amount and currency of the iDEAL transaction (currency is limited to EUR)
+ *  @param reference     Holds consumer and payment reference and a meta data dictionary which can hold any kind of JSON formatted information up to 1024 characters
+ *  @param completion   The completion handler which will respond with a JPResponse object or an NSError
+ */
+- (void)invokeIDEALPaymentWithSiteId:(nonnull NSString *)siteId
+                              amount:(nonnull JPAmount *)amount
+                           reference:(nonnull JPReference *)reference
+                          completion:(nonnull JudoCompletionBlock)completion;
 
 @end
 

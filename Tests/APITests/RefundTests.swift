@@ -81,7 +81,7 @@ class RefundTests: JudoTestCase {
             XCTAssertNotNil(refund)
         })
         
-        self.waitForExpectations(timeout: 30, handler: nil)
+        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
         
     }
     
