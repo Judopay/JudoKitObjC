@@ -28,7 +28,7 @@
 @protocol JPCardCustomizationBuilder
 
 /**
- * A method that build the Card Customization module
+ * A method that builds the Card Customization module
  */
 + (JPCardCustomizationViewController *)buildModule;
 
