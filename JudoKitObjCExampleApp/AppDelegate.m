@@ -24,7 +24,6 @@
 
 #import "AppDelegate.h"
 
-
 @import JudoKitObjC;
 
 @interface AppDelegate ()

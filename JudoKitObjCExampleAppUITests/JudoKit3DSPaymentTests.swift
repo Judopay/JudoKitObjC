@@ -24,7 +24,6 @@
 
 import XCTest
 
-
 class JudoKit3DSPaymentTests: XCTestCase {
     
     override func setUp() {
