@@ -23,9 +23,8 @@
 //  SOFTWARE.
 
 #import "JPCardNetwork.h"
+#import "JPPaymentMethodsViewModel.h"
 #import <UIKit/UIKit.h>
-
-@class JPPaymentMethodsHeaderModel, JPCardCustomizationHeaderModel;
 
 @interface JPCardPaymentMethodView : UIView
 
@@ -41,5 +40,12 @@
                 expiryDate:(NSString *)expiryDate
                    network:(CardNetwork)cardNetwork
               cardLastFour:(NSString *)cardLastFour;
+
+/**
+ * A method that configures the custom card view based on an expiration status
+ *
+ * @param expirationStatus - the expiration status of the card
+ */
+- (void)configureExpirationStatus:(CardExpirationStatus)expirationStatus;
 
 @end

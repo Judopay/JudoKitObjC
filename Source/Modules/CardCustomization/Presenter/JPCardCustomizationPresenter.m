@@ -24,6 +24,7 @@
 
 #import "JPCardCustomizationPresenter.h"
 #import "JPCardCustomizationInteractor.h"
+#import "JPCardCustomizationRouter.h"
 #import "JPCardCustomizationViewController.h"
 #import "JPCardCustomizationViewModel.h"
 #import "JPStoredCardDetails.h"
@@ -41,13 +42,16 @@
 
     self.titleModel.title = @"customize_card".localized;
 
-    self.headerModel.cardTitle = @"Card for shopping";
     self.headerModel.cardLastFour = cardDetails.cardLastFour;
     self.headerModel.cardExpiryDate = cardDetails.expiryDate;
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
 
     NSArray *viewModels = @[ self.titleModel, self.headerModel ];
     [self.view updateViewWithViewModels:viewModels];
+}
+
+- (void)handleBackButtonTap {
+    [self.router popViewController];
 }
 
 - (JPCardCustomizationTitleModel *)titleModel {

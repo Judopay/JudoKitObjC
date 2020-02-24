@@ -81,6 +81,8 @@
                                           expiryDate:viewModel.cardModel.cardExpiryDate
                                              network:viewModel.cardModel.cardNetwork
                                         cardLastFour:viewModel.cardModel.cardNumberLastFour];
+
+            [self.cardPaymentView configureExpirationStatus:viewModel.cardModel.cardExpirationStatus];
             break;
 
         default:

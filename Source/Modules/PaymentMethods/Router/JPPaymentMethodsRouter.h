@@ -37,6 +37,8 @@
 
 /**
  * A method that opens the Card Customization view for customizing the card
+ *
+ * @param index - the index of the selected card to be customized
  */
 - (void)navigateToCardCustomizationWithIndex:(NSUInteger)index;
 
@@ -57,8 +59,20 @@
 @end
 
 @interface JPPaymentMethodsRouterImpl : NSObject <JPPaymentMethodsRouter>
+
+/**
+ * A weak reference to the Payment Method's screen JPPaymentMethodsViewController instance
+ */
 @property (nonatomic, weak) JPPaymentMethodsViewController *_Nullable viewController;
 
+/**
+ * Designated initializer that creates a JPPaymentMethodsRouterImpl instance
+ *
+ * @param configuration - a JPConfiguration object used to configure the Payment Method screen flow
+ * @param transactionService - a JPTransactionService responsible for all Judo backend requests
+ * @param transitioningDelegate - a JPSliderTransitioningDelegate object used to customize the view controller transition.
+ * @param completion - an optional JPResponse and NSError completion block
+ */
 - (nonnull instancetype)initWithConfiguration:(nonnull JPConfiguration *)configuration
                            transactionService:(nonnull JPTransactionService *)transactionService
                         transitioningDelegate:(JPSliderTransitioningDelegate *_Nonnull)transitioningDelegate

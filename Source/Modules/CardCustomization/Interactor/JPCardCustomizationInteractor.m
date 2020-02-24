@@ -43,7 +43,7 @@
 #pragma mark - Protocol methods
 
 - (JPStoredCardDetails *)cardDetails {
-    return JPCardStorage.sharedInstance.storedCardDetails[self.cardIndex];
+    return [JPCardStorage.sharedInstance fetchStoredCardDetailsAtIndex:self.cardIndex];
 }
 
 @end

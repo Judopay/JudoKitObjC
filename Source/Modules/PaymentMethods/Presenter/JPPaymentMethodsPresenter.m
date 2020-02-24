@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsPresenter.h"
 #import "JPAmount.h"
 #import "JPCardNetwork.h"
+#import "JPConstants.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsViewController.h"
@@ -43,6 +44,8 @@
 @property (nonatomic, strong) JPPaymentMethodsCardFooterModel *cardFooterModel;
 @property (nonatomic, strong) JPPaymentMethodsCardListModel *cardListModel;
 @property (nonatomic, strong) JPTransactionButtonViewModel *paymentButtonModel;
+@property (nonatomic, strong) NSDateFormatter *dateFormater;
+@property (nonatomic, strong) NSDate *currentDate;
 
 @property (nonatomic, assign) int previousIndex;
 @end
@@ -62,7 +65,7 @@
 }
 
 - (void)didSelectCardAtIndex:(NSInteger)index
-                  forEditing:(BOOL)isEditing {
+               isEditingMode:(BOOL)isEditing {
 
     if (isEditing) {
         [self.router navigateToCardCustomizationWithIndex:index];
@@ -241,7 +244,8 @@
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         if (cardDetails.isSelected) {
             self.headerModel.cardModel = [self cardModelFromStoredCardDetails:cardDetails];
-            self.headerModel.payButtonModel.isEnabled = YES;
+            BOOL isCardExpired = self.headerModel.cardModel.cardExpirationStatus != CardExpired;
+            self.headerModel.payButtonModel.isEnabled = isCardExpired;
         }
     }
 
@@ -267,8 +271,21 @@
     cardModel.cardExpiryDate = cardDetails.expiryDate;
     cardModel.isDefaultCard = cardDetails.isDefault;
     cardModel.isSelected = cardDetails.isSelected;
-
+    cardModel.cardExpirationStatus = [self determineCardExpirationStatusWithDate:cardDetails.expiryDate];
     return cardModel;
+}
+
+- (CardExpirationStatus)determineCardExpirationStatusWithDate:(NSString *)expirationDate {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *cardExpirationDate = [self.dateFormater dateFromString:expirationDate];
+    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2 toDate:self.currentDate options:0];
+    if ([cardExpirationDate compare:dateInTwoMonths] == NSOrderedAscending) {
+        if ([cardExpirationDate compare:self.currentDate] == NSOrderedAscending) {
+            return CardExpired;
+        }
+        return CardExpiresSoon;
+    }
+    return CardNotExpired;
 }
 
 - (JPStoredCardDetails *)selectedCard {
@@ -368,6 +385,21 @@
         _paymentButtonModel.isEnabled = NO;
     }
     return _paymentButtonModel;
+}
+
+- (NSDateFormatter *)dateFormater {
+    if (!_dateFormater) {
+        _dateFormater = [[NSDateFormatter alloc] init];
+        [_dateFormater setDateFormat:kMonthYearDateFormat];
+    }
+    return _dateFormater;
+}
+
+- (NSDate *)currentDate {
+    if (!_currentDate) {
+        _currentDate = [NSDate date];
+    }
+    return _currentDate;
 }
 
 @end

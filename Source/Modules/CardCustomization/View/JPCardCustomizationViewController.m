@@ -36,6 +36,10 @@
 
 @implementation JPCardCustomizationViewController
 
+#pragma mark - Constants
+
+const double kBackButtonSize = 22.0;
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
@@ -52,7 +56,7 @@
 #pragma mark - User actions
 
 - (void)onBackButtonTap {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.presenter handleBackButtonTap];
 }
 
 #pragma mark - Protocol methods
@@ -87,8 +91,8 @@
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
 
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [backBarButton.customView.heightAnchor constraintEqualToConstant:22.0].active = YES;
-    [backBarButton.customView.widthAnchor constraintEqualToConstant:22.0].active = YES;
+    [backBarButton.customView.heightAnchor constraintEqualToConstant:kBackButtonSize].active = YES;
+    [backBarButton.customView.widthAnchor constraintEqualToConstant:kBackButtonSize].active = YES;
     self.navigationItem.leftBarButtonItem = backBarButton;
 }
 
