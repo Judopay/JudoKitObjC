@@ -27,8 +27,8 @@
 @interface JPPagination ()
 
 @property (nonatomic, strong, readwrite) NSString *sort;
-@property (nonatomic, assign, readwrite) NSInteger pageSize;
-@property (nonatomic, assign, readwrite) NSInteger offset;
+@property (nonatomic, assign, readwrite) NSUInteger pageSize;
+@property (nonatomic, assign, readwrite) NSUInteger offset;
 
 @end
 

@@ -24,7 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_OPTIONS(NSInteger, AnchorType) {
+typedef NS_OPTIONS(NSUInteger, AnchorType) {
     AnchorTypeNone = 0,
     AnchorTypeTop = 1 << 0,
     AnchorTypeBottom = 1 << 1,

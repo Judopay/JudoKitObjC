@@ -86,7 +86,7 @@
                                                            cardLastFour];
 
     self.logoImageView.image = [UIImage imageForCardNetwork:cardNetwork];
-    
+
     JPCardPattern *pattern = [JPCardPattern patternWithType:patternType];
     self.backgroundColor = pattern.color;
 }

@@ -27,12 +27,11 @@
 #import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
-//TODO: Rename the button to a more generic type
 @class JPAmount, JPTransactionButtonViewModel;
 
 #pragma mark - JPPaymentMethodsModel
 
-typedef NS_ENUM(NSInteger, AnimationType) {
+typedef NS_ENUM(NSUInteger, AnimationType) {
     AnimationTypeNone,
     AnimationTypeSetup,
     AnimationTypeLeftToRight,
@@ -40,7 +39,7 @@ typedef NS_ENUM(NSInteger, AnimationType) {
     AnimationTypeBottomToTop
 };
 
-typedef NS_ENUM(NSInteger, CardExpirationStatus) {
+typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
     CardNotExpired,
     CardExpired,
     CardExpiresSoon

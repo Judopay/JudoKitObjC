@@ -29,7 +29,7 @@
 @class JPResponse, JPPagination, JPSession, JPPaymentToken, JPCard, JPAmount, JPReference, JPVCOResult, JPEnhancedPaymentDetail,
     JPTransactionEnricher, JPPrimaryAccountDetails;
 
-typedef NS_ENUM(NSInteger, TransactionMode) {
+typedef NS_ENUM(NSUInteger, TransactionMode) {
     TransactionModePayment,
     TransactionModePreAuth,
 };

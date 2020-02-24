@@ -40,7 +40,7 @@
 /**
  * A method that updates the selected state of a card stored in the keychain
  */
-- (void)selectCardAtIndex:(NSInteger)index;
+- (void)selectCardAtIndex:(NSUInteger)index;
 
 /**
  * A method that returns the amount passed from the builder
@@ -68,12 +68,12 @@
  *
  * @param index - Card's index in cards list
  */
-- (void)deleteCardWithIndex:(NSInteger)index;
+- (void)deleteCardWithIndex:(NSUInteger)index;
 
 /**
  * A method that sets a card as selected based on an index
  */
-- (void)setCardAsSelectedAtInded:(NSInteger)index;
+- (void)setCardAsSelectedAtInded:(NSUInteger)index;
 
 /**
  * A boolean value that returns YES if Apple Pay is set up on the device
