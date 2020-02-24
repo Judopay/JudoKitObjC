@@ -73,6 +73,9 @@
 @property (nonatomic, strong) NSLayoutConstraint *paymentButtonBottomConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *safeAreaViewConstraints;
 
+@property (nonatomic, strong) JPResponse *response;
+@property (nonatomic, strong) NSError *error;
+
 @end
 
 @implementation IDEALFormViewController
@@ -228,7 +231,8 @@
                                                 [self.delayTimer invalidate];
                                                 if (error && error.localizedDescription == NSError.judoRequestTimeoutError.localizedDescription) {
                                                     [self.transactionStatusView changeStatusTo:IDEALStatusTimeout andSubtitle:nil];
-                                                    self.completionBlock(self.redirectResponse, NSError.judoRequestTimeoutError);
+                                                    self.response = self.redirectResponse;
+                                                    self.error = NSError.judoRequestTimeoutError;
                                                     return;
                                                 }
 
@@ -246,7 +250,8 @@
 
                                                 [self.transactionStatusView changeStatusTo:orderStatus
                                                                                andSubtitle:nil];
-                                                self.completionBlock(response, error);
+                                                self.response = response;
+                                                self.error = error;
                                             }];
 }
 
@@ -583,6 +588,7 @@
         return;
     }
 
+    self.completionBlock(self.response, self.error);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
