@@ -49,8 +49,8 @@
 }
 
 - (instancetype)initWithCardNumber:(NSString *)cardNumber
-                       expiryMonth:(NSInteger)month
-                        expiryYear:(NSInteger)year {
+                       expiryMonth:(NSUInteger)month
+                        expiryYear:(NSUInteger)year {
     if (self = [super init]) {
         NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *comp = [NSDateComponents new];

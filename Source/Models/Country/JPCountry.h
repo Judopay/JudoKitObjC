@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, JPCountryType) {
+typedef NS_ENUM(NSUInteger, JPCountryType) {
     JPCountryTypeUSA,
     JPCountryTypeUK,
     JPCountryTypeCanada,

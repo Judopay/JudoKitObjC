@@ -172,7 +172,7 @@
 		30221C3123FE6D9200BF2823 /* JPCardCustomizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221C1D23FE6D9200BF2823 /* JPCardCustomizationViewController.m */; };
 		30221C3223FE6D9200BF2823 /* JPCardCustomizationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30221C1E23FE6D9200BF2823 /* JPCardCustomizationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30221C3323FE6D9200BF2823 /* JPCardCustomizationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221C2023FE6D9200BF2823 /* JPCardCustomizationBuilder.m */; };
-		30221C3423FE6D9200BF2823 /* JPCardCustomizationBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30221C2123FE6D9200BF2823 /* JPCardCustomizationBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30221C3423FE6D9200BF2823 /* JPCardCustomizationBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30221C2123FE6D9200BF2823 /* JPCardCustomizationBuilder.h */; };
 		30221C3523FE6D9200BF2823 /* JPCardCustomizationInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221C2323FE6D9200BF2823 /* JPCardCustomizationInteractor.m */; };
 		30221C3623FE6D9200BF2823 /* JPCardCustomizationInteractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 30221C2423FE6D9200BF2823 /* JPCardCustomizationInteractor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30221C3723FE6D9200BF2823 /* JPCardCustomizationRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30221C2623FE6D9200BF2823 /* JPCardCustomizationRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };

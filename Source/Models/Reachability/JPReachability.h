@@ -47,7 +47,7 @@ FOUNDATION_EXPORT const unsigned char ReachabilityVersionString[];
 
 extern NSString *const kReachabilityChangedNotification;
 
-typedef NS_ENUM(NSInteger, NetworkStatus) {
+typedef NS_ENUM(NSUInteger, NetworkStatus) {
     // Apple NetworkStatus Compatible Names.
     NotReachable = 0,
     ReachableViaWiFi = 2,

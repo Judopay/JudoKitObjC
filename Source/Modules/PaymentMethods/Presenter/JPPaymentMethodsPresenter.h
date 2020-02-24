@@ -41,7 +41,7 @@
  * @param index - the index of the card that has been selected
  * @param isEditing - a boolean property that specifies if the card should be edited
  */
-- (void)didSelectCardAtIndex:(NSInteger)index
+- (void)didSelectCardAtIndex:(NSUInteger)index
                isEditingMode:(BOOL)isEditing;
 
 /**
@@ -64,7 +64,7 @@
  *
  * @param index - Card's index in cards list
  */
-- (void)deleteCardWithIndex:(NSInteger)index;
+- (void)deleteCardWithIndex:(NSUInteger)index;
 
 /**
  * A method for chaging card header button title acording to edit status of the card list

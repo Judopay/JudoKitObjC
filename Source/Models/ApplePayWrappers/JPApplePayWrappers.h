@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Lists the available merchant capabilities.
  * Default is MerchantCapability3DS.
  */
-typedef NS_ENUM(NSInteger, MerchantCapability) {
+typedef NS_ENUM(NSUInteger, MerchantCapability) {
     MerchantCapability3DS,
     MerchantCapabilityEMV,
     MerchantCapabilityCredit,
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, MerchantCapability) {
  * Lists the available payment summary item types.
  * Default is JPPaymentSummaryItemTypeFinal.
  */
-typedef NS_ENUM(NSInteger, JPPaymentSummaryItemType) {
+typedef NS_ENUM(NSUInteger, JPPaymentSummaryItemType) {
     JPPaymentSummaryItemTypeFinal,
     JPPaymentSummaryItemTypePending
 };
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, JPPaymentSummaryItemType) {
  * Lists the available payment shipping types.
  * Default is ShippingTypeShipping.
  */
-typedef NS_ENUM(NSInteger, PaymentShippingType) {
+typedef NS_ENUM(NSUInteger, PaymentShippingType) {
     ShippingTypeShipping,
     ShippingTypeDelivery,
     ShippingTypeStorePickup,
@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, PaymentShippingType) {
 /**
  * Lists the available contact fields required for ApplePay
  */
-typedef NS_OPTIONS(NSInteger, ContactField) {
+typedef NS_OPTIONS(NSUInteger, ContactField) {
     ContactFieldNone = 0,
     ContactFieldJPPostalAddress = 1 << 0,
     ContactFieldPhone = 1 << 1,
@@ -73,7 +73,7 @@ typedef NS_OPTIONS(NSInteger, ContactField) {
  * Lists the available options for the returned contact info after the transaction.
  * Default is ReturnedInfoBillingContacts.
  */
-typedef NS_OPTIONS(NSInteger, ReturnedInfo) {
+typedef NS_OPTIONS(NSUInteger, ReturnedInfo) {
     ReturnedInfoNone = 0,
     ReturnedInfoBillingContacts = 1 << 0,
     ReturnedInfoShippingContacts = 1 << 1,

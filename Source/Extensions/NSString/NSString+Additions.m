@@ -136,7 +136,7 @@
 - (nonnull NSString *)formatWithPattern:(nonnull NSString *)pattern {
     const char *patternString = pattern.UTF8String;
     NSString *returnString = @"";
-    NSInteger patternIndex = 0;
+    NSUInteger patternIndex = 0;
 
     for (int i = 0; i < self.length; i++) {
         const char element = patternString[patternIndex];

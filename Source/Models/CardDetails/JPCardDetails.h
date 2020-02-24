@@ -145,9 +145,12 @@ typedef NS_OPTIONS(NSUInteger, CardNetwork) {
  */
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary;
 
+/**
+ * Desgignated
+ */
 - (nonnull instancetype)initWithCardNumber:(nonnull NSString *)cardNumber
-                               expiryMonth:(NSInteger)month
-                                expiryYear:(NSInteger)year;
+                               expiryMonth:(NSUInteger)month
+                                expiryYear:(NSUInteger)year;
 
 /**
  *  Get a formatted string with the right whitespacing for a certain card type

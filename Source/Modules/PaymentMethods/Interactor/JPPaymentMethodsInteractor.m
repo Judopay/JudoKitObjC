@@ -68,7 +68,7 @@
 
 #pragma mark - Select card at index
 
-- (void)selectCardAtIndex:(NSInteger)index {
+- (void)selectCardAtIndex:(NSUInteger)index {
 
     NSArray<JPStoredCardDetails *> *storedCardDetails;
     storedCardDetails = [JPCardStorage.sharedInstance fetchStoredCardDetails];
@@ -87,7 +87,7 @@
 
 #pragma mark - Set card as selected at index
 
-- (void)setCardAsSelectedAtInded:(NSInteger)index {
+- (void)setCardAsSelectedAtInded:(NSUInteger)index {
     [JPCardStorage.sharedInstance setCardAsSelectedAtIndex:index];
 }
 
@@ -153,7 +153,7 @@
 
 #pragma mark - Delete card at index
 
-- (void)deleteCardWithIndex:(NSInteger)index {
+- (void)deleteCardWithIndex:(NSUInteger)index {
     [JPCardStorage.sharedInstance deleteCardWithIndex:index];
 }
 

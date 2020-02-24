@@ -28,7 +28,7 @@
 /**
  * An enum that defines the input field types present in the Add Card view
  */
-typedef NS_ENUM(NSInteger, JPInputType) {
+typedef NS_ENUM(NSUInteger, JPInputType) {
     JPInputTypeCardNumber,
     JPInputTypeCardholderName,
     JPInputTypeCardExpiryDate,

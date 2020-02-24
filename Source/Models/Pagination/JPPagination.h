@@ -37,12 +37,12 @@
 /**
  *  the page size of the paginated response
  */
-@property (nonatomic, assign, readonly) NSInteger pageSize;
+@property (nonatomic, assign, readonly) NSUInteger pageSize;
 
 /**
  *  the offset of the paginated response
  */
-@property (nonatomic, assign, readonly) NSInteger offset;
+@property (nonatomic, assign, readonly) NSUInteger offset;
 
 /**
  *  convenient initializer for a JPPagination object

@@ -65,11 +65,11 @@
  *
  * @param index - Card's index in cards list
  */
-- (void)deleteCardWithIndex:(NSInteger)index;
+- (void)deleteCardWithIndex:(NSUInteger)index;
 
 /**
  * A method that sets a card as selected based on an index
  */
-- (void)setCardAsSelectedAtIndex:(NSInteger)index;
+- (void)setCardAsSelectedAtIndex:(NSUInteger)index;
 
 @end

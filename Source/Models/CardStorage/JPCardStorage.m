@@ -80,7 +80,7 @@
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
 }
 
-- (void)deleteCardWithIndex:(NSInteger)index {
+- (void)deleteCardWithIndex:(NSUInteger)index {
     [self.storedCards removeObjectAtIndex:index];
     NSArray *cardDetailsArray = [self convertStoredCardsToArray];
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
@@ -91,7 +91,7 @@
     return [JPKeychainService deleteObjectForKey:@"storedCards"];
 }
 
-- (void)setCardAsSelectedAtIndex:(NSInteger)index {
+- (void)setCardAsSelectedAtIndex:(NSUInteger)index {
     for (JPStoredCardDetails *storedCard in self.storedCards) {
         storedCard.isSelected = NO;
     }

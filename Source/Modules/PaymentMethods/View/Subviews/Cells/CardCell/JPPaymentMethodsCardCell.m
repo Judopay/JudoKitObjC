@@ -50,6 +50,8 @@ const float kHorizontalPadding = 24.0f;
 const float kVerticalPadding = 13.0f;
 const float kIconHeight = 36.0f;
 const float kIconWidth = 52.0f;
+const float kDefaultPadding = 8.0f;
+const float kSmallPadding = 3.0f;
 
 #pragma mark - Initializers
 
@@ -123,7 +125,7 @@ const float kIconWidth = 52.0f;
 
 - (void)setupIconView {
     [self.iconContainerView addSubview:self.iconImageView];
-    [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
+    [self.iconImageView pinToView:self.iconContainerView withPadding:kDefaultPadding];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.iconContainerView.heightAnchor constraintEqualToConstant:kIconHeight],
@@ -132,8 +134,8 @@ const float kIconWidth = 52.0f;
 }
 
 - (void)setupStackView {
-    UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:8.0];
-    UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:3.0];
+    UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:kDefaultPadding];
+    UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:kSmallPadding];
 
     [verticalStackView addArrangedSubview:self.titleLabel];
     [verticalStackView addArrangedSubview:self.subtitleLabel];

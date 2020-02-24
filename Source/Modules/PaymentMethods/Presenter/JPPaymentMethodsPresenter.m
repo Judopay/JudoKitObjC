@@ -64,7 +64,7 @@
     [self.view configureWithViewModel:self.viewModel];
 }
 
-- (void)didSelectCardAtIndex:(NSInteger)index
+- (void)didSelectCardAtIndex:(NSUInteger)index
                isEditingMode:(BOOL)isEditing {
 
     if (isEditing) {
@@ -138,7 +138,7 @@
                                              }];
 }
 
-- (void)deleteCardWithIndex:(NSInteger)index {
+- (void)deleteCardWithIndex:(NSUInteger)index {
 
     NSArray *storedCards = [self.interactor getStoredCardDetails];
     JPStoredCardDetails *selectedCard = storedCards[index];
