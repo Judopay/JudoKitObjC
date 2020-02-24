@@ -65,6 +65,10 @@
 "card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
 "card_transaction_unsuccesful_error" = "Card transaction unsuccessful - please try again";
 "delete_card_alert_title" = "Delete Card ?";
+"expired" = "Expired";
+"is_expired" = "is Expired";
+"will_expire_soon" = "will expire soon";
+"expire_soon" = "expire soon";
 
 //CardInputField
 "card_number_label" = "Número de tarjeta";

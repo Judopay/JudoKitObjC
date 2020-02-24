@@ -77,4 +77,12 @@
  */
 - (nonnull NSString *)formatWithPattern:(nonnull NSString *)pattern;
 
+/**
+ * A method which makes a word in string bold
+ * @param substring - the substring to be made bold
+ * @return - a  NSMutableAttributedString where provided word is bold
+ *
+*/
+- (nonnull NSMutableAttributedString *)attributedStringWithBoldSubstring:(nonnull NSString *)substring;
+
 @end

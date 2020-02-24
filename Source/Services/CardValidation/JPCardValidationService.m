@@ -25,6 +25,7 @@
 #import "JPCardValidationService.h"
 #import "JPBillingCountry.h"
 #import "JPCardNetwork.h"
+#import "JPConstants.h"
 #import "JPValidationResult.h"
 #import "NSError+Additions.h"
 #import "NSString+Additions.h"
@@ -328,7 +329,7 @@
     }
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/yy"];
+    [formatter setDateFormat:kMonthYearDateFormat];
     NSString *currentDate = [formatter stringFromDate:NSDate.date];
 
     NSArray<NSString *> *currentDateComponents = [currentDate componentsSeparatedByString:@"/"];

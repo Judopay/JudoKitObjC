@@ -44,6 +44,13 @@
 
 @implementation JPPaymentMethodsCardCell
 
+#pragma mark - Constants
+
+const float kHorizontalPadding = 24.0f;
+const float kVerticalPadding = 13.0f;
+const float kIconHeight = 36.0f;
+const float kIconWidth = 52.0f;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -79,9 +86,18 @@
     JPPaymentMethodsCardModel *cardModel = (JPPaymentMethodsCardModel *)viewModel;
     self.titleLabel.text = cardModel.cardTitle;
 
-    self.subtitleLabel.text = [NSString stringWithFormat:@"card_subtitle".localized,
-                                                         [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
-                                                         cardModel.cardNumberLastFour];
+    NSString *subtitleText = [NSString stringWithFormat:@"card_subtitle".localized,
+                                                        [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
+                                                        cardModel.cardNumberLastFour];
+
+    NSMutableAttributedString *subtitleLabelText = [[NSMutableAttributedString alloc] initWithString:subtitleText];
+
+    if (subtitleText.length >= 4) {
+        NSRange range = NSMakeRange(subtitleText.length - 4, 4);
+        [subtitleLabelText addAttributes:@{NSFontAttributeName : UIFont.captionBold} range:range];
+    }
+
+    self.subtitleLabel.attributedText = subtitleLabelText;
 
     self.iconImageView.image = [UIImage imageForCardNetwork:cardModel.cardNetwork];
 
@@ -90,8 +106,10 @@
     UIImage *accesoryImage = [UIImage imageWithIconName:iconName];
     UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:accesoryImage];
     accessoryImageView.contentMode = UIViewContentModeScaleAspectFit;
-    accessoryImageView.frame = CGRectMake(0, 0, 24, 24);
+    accessoryImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
     self.accessoryView = accessoryImageView;
+
+    [self setSubtitleExpirationStatus:cardModel.cardExpirationStatus];
 }
 
 #pragma mark - Layout Setup
@@ -108,8 +126,8 @@
     [self.iconImageView pinToView:self.iconContainerView withPadding:8.0f];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.iconContainerView.heightAnchor constraintEqualToConstant:36.0f],
-        [self.iconContainerView.widthAnchor constraintEqualToConstant:52.0f],
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:kIconHeight],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:kIconWidth],
     ]];
 }
 
@@ -127,13 +145,13 @@
 
     NSArray *constraints = @[
         [horizontalStackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
-                                                      constant:13],
+                                                      constant:kVerticalPadding],
         [horizontalStackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                         constant:-13],
+                                                         constant:-kVerticalPadding],
         [horizontalStackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
-                                                          constant:24],
+                                                          constant:kHorizontalPadding],
         [horizontalStackView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                                           constant:-24]
+                                                           constant:-kHorizontalPadding]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
@@ -143,8 +161,34 @@
     UIImage *disclosureIcon = [UIImage imageWithIconName:@"disclosure-icon"];
     UIImageView *disclosureImageView = [[UIImageView alloc] initWithImage:disclosureIcon];
     disclosureImageView.contentMode = UIViewContentModeScaleAspectFit;
-    disclosureImageView.frame = CGRectMake(0, 0, 24, 24);
+    disclosureImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
     self.editingAccessoryView = disclosureImageView;
+}
+
+- (void)setSubtitleExpirationStatus:(CardExpirationStatus)status {
+    NSString *expirationStatus = @"";
+    NSString *boldWord = @"";
+
+    switch (status) {
+        case CardNotExpired:
+            break;
+        case CardExpired:
+            expirationStatus = @"is_expired".localized;
+            boldWord = @"expired".localized;
+            self.subtitleLabel.textColor = UIColor.jpRedColor;
+            break;
+        case CardExpiresSoon:
+            expirationStatus = @"will_expire_soon".localized;
+            boldWord = @"expire_soon".localized;
+            self.subtitleLabel.textColor = UIColor.jpDarkGrayColor;
+            break;
+    }
+
+    NSString *isExpiredString = [NSString stringWithFormat:@"%@%@", @" ", expirationStatus];
+    NSMutableAttributedString *isExpiredText = [isExpiredString attributedStringWithBoldSubstring:boldWord];
+    NSMutableAttributedString *subtitleText = [[NSMutableAttributedString alloc] initWithAttributedString:self.subtitleLabel.attributedText];
+    [subtitleText appendAttributedString:isExpiredText];
+    self.subtitleLabel.attributedText = subtitleText;
 }
 
 #pragma mark - Lazy instantiated properties
