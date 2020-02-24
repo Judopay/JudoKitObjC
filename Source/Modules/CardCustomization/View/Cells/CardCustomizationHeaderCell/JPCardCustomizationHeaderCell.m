@@ -59,7 +59,7 @@ const float kCardAspectRatio = 0.583;
 
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.cardView];
-    
+
     [self setupConstraints];
 }
 
@@ -76,7 +76,7 @@ const float kCardAspectRatio = 0.583;
         [self.cardView.heightAnchor constraintEqualToAnchor:self.cardView.widthAnchor
                                                  multiplier:kCardAspectRatio],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints
                                withPriority:999];
 }

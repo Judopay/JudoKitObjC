@@ -24,6 +24,7 @@
 
 #import "JPCardCustomizationPresenter.h"
 #import "JPCardCustomizationInteractor.h"
+#import "JPCardCustomizationRouter.h"
 #import "JPCardCustomizationViewController.h"
 #import "JPCardCustomizationViewModel.h"
 #import "JPStoredCardDetails.h"

@@ -39,7 +39,6 @@
  */
 - (NSMutableArray<JPStoredCardDetails *> *)fetchStoredCardDetails;
 
-
 /**
  * A method for fetching the stored card details from a specified index
  *
