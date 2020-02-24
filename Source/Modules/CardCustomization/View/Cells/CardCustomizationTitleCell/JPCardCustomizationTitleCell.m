@@ -34,6 +34,11 @@
 
 @implementation JPCardCustomizationTitleCell
 
+#pragma mark - Constants
+
+const float kTitleLabelHorizontalPadding = 20.0f;
+const float kTitleLabelVerticalPadding = 10.0f;
+
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
@@ -56,13 +61,13 @@
 
     [NSLayoutConstraint activateConstraints:@[
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                  constant:10],
+                                                  constant:kTitleLabelVerticalPadding],
         [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                     constant:-10],
+                                                     constant:-kTitleLabelVerticalPadding],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                      constant:20.0],
+                                                      constant:kTitleLabelHorizontalPadding],
         [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                       constant:-20.0]
+                                                       constant:-kTitleLabelHorizontalPadding]
     ]];
 }
 
