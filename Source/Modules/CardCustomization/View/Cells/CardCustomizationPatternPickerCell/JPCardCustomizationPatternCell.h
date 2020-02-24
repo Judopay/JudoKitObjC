@@ -6,8 +6,8 @@
 //  Copyright © 2020 Judo Payments. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "JPCardCustomizationViewModel.h"
+#import <UIKit/UIKit.h>
 
 @interface JPCardCustomizationPatternCell : UICollectionViewCell
 

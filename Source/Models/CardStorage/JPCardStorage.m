@@ -81,7 +81,7 @@
 }
 
 - (void)insertCardDetails:(JPStoredCardDetails *)cardDetails
-                  atIndex:(NSInteger)index {
+                  atIndex:(NSUInteger)index {
     [self.storedCards insertObject:cardDetails atIndex:index];
     NSArray *cardDetailsArray = [self convertStoredCardsToArray];
     [JPKeychainService saveObject:cardDetailsArray forKey:@"storedCards"];
@@ -97,6 +97,12 @@
     [self.storedCards removeAllObjects];
     return [JPKeychainService deleteObjectForKey:@"storedCards"];
 }
+
+- (void)updateCardDetails:(JPStoredCardDetails *)cardDetails
+                  atIndex:(NSUInteger)index {
+    [self deleteCardWithIndex:index];
+    [self insertCardDetails:cardDetails atIndex:index];
+}	
 
 - (void)setCardAsSelectedAtIndex:(NSUInteger)index {
     for (JPStoredCardDetails *storedCard in self.storedCards) {

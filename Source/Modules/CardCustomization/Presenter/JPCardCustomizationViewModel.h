@@ -95,3 +95,12 @@
 @property (nonatomic, strong) NSArray<JPCardCustomizationPatternModel *> *_Nonnull patternModels;
 
 @end
+
+@interface JPCardCustomizationTextInputModel : JPCardCustomizationViewModel
+
+/**
+ * The text inside the input field representing the card title
+ */
+@property (nonatomic, strong) NSString *_Nullable text;
+
+@end

@@ -168,3 +168,13 @@
 
 //Customize Card
 "customize_card" = "Customize Card";
+"enter_card_title" = "Enter a card title...";
+"card_title_length_warning" = "Card Name cannot be longer than 28 characters";
+"default_visa_card_title" = "My VISA Card";
+"default_mastercard_card_title" = "My MasterCard Card";
+"default_maestro_card_title" = "My Maestro Card";
+"default_amex_card_title" = "My American Express Card";
+"default_jcb_card_title" = "My JCB Card";
+"default_chinaunionpay_card_title" = "My China Union Pay Card";
+"default_discover_card_title" = "My Discover Card";
+"default_dinnersclub_card_title" = "My Dinners Club Card";

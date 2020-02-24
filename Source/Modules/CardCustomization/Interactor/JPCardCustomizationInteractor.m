@@ -47,10 +47,17 @@
 }
 
 - (void)updateStoredCardPatternWithType:(JPCardPatternType)type {
-    JPStoredCardDetails *cardDetails = [self cardDetails];
+    JPStoredCardDetails *cardDetails = self.cardDetails;
     cardDetails.patternType = type;
-    [JPCardStorage.sharedInstance deleteCardWithIndex:self.cardIndex];
-    [JPCardStorage.sharedInstance insertCardDetails:cardDetails atIndex:self.cardIndex];
+    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
+                                            atIndex:self.cardIndex];
+}
+
+- (void)updateStoredCardTitleWithInput:(NSString *)input {
+    JPStoredCardDetails *cardDetails = self.cardDetails;
+    cardDetails.cardTitle = input;
+    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
+                                            atIndex:self.cardIndex];
 }
 
 @end

@@ -29,6 +29,11 @@
 @interface JPStoredCardDetails : NSObject
 
 /**
+ * The title of the card
+ */
+@property (nonatomic, strong) NSString *cardTitle;
+
+/**
  * The last four digits of the credit card
  */
 @property (nonatomic, strong) NSString *cardLastFour;

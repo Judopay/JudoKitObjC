@@ -31,9 +31,11 @@
 #import "NSString+Additions.h"
 
 @interface JPCardCustomizationPresenterImpl ()
+@property (nonatomic, assign) BOOL shouldPreserveResponder;
 @property (nonatomic, strong) JPCardCustomizationTitleModel *titleModel;
 @property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
 @property (nonatomic, strong) JPCardCustomizationPatternPickerModel *patternPickerModel;
+@property (nonatomic, strong) JPCardCustomizationTextInputModel *textInputModel;
 @end
 
 @implementation JPCardCustomizationPresenterImpl
@@ -43,20 +45,12 @@
 
     self.titleModel.title = @"customize_card".localized;
 
-    self.headerModel.cardLastFour = cardDetails.cardLastFour;
-    self.headerModel.cardExpiryDate = cardDetails.expiryDate;
-    self.headerModel.cardNetwork = cardDetails.cardNetwork;
-    self.headerModel.cardPatternType = cardDetails.patternType;
-    
-    for (JPCardCustomizationPatternModel *model in self.patternPickerModel.patternModels) {
-        model.isSelected = NO;
-        if (model.pattern.type == cardDetails.patternType) {
-            model.isSelected = YES;
-        }
-    }
+    [self updateHeaderModelWithCardDetails:cardDetails];
+    [self updateTextInputModelWithCardDetails:cardDetails];
+    [self setSelectedPatternModelForCardDetails:cardDetails];
 
-    NSArray *viewModels = @[ self.titleModel, self.headerModel, self.patternPickerModel ];
-    [self.view updateViewWithViewModels:viewModels];
+    [self.view updateViewWithViewModels:self.viewModels
+                shouldPreserveResponder:self.shouldPreserveResponder];
 }
 
 - (void)handleBackButtonTap {
@@ -64,11 +58,50 @@
 }
 
 - (void)handlePatternSelectionWithType:(JPCardPatternType)type {
+    self.shouldPreserveResponder = NO;
     [self.interactor updateStoredCardPatternWithType:type];
     [self prepareViewModel];
 }
 
+- (void)handleCardInputFieldChangeWithInput:(NSString *)input {
+    [self.interactor updateStoredCardTitleWithInput:input];
+    self.shouldPreserveResponder = YES;
+    [self prepareViewModel];
+}
+
+#pragma mark - Helper methods
+
+- (void)updateHeaderModelWithCardDetails:(JPStoredCardDetails *)cardDetails {
+    self.headerModel.cardTitle = cardDetails.cardTitle;
+    self.headerModel.cardLastFour = cardDetails.cardLastFour;
+    self.headerModel.cardExpiryDate = cardDetails.expiryDate;
+    self.headerModel.cardNetwork = cardDetails.cardNetwork;
+    self.headerModel.cardPatternType = cardDetails.patternType;
+}
+
+- (void)updateTextInputModelWithCardDetails:(JPStoredCardDetails *)cardDetails {
+    self.textInputModel.text = cardDetails.cardTitle;
+}
+
+- (void)setSelectedPatternModelForCardDetails:(JPStoredCardDetails *)cardDetails {
+    for (JPCardCustomizationPatternModel *model in self.patternPickerModel.patternModels) {
+        model.isSelected = NO;
+        if (model.pattern.type == cardDetails.patternType) {
+            model.isSelected = YES;
+        }
+    }
+}
+
 #pragma mark - Lazy properties
+
+- (NSArray *)viewModels {
+    return @[
+        self.titleModel,
+        self.headerModel,
+        self.patternPickerModel,
+        self.textInputModel,
+    ];
+}
 
 - (JPCardCustomizationTitleModel *)titleModel {
     if (!_titleModel) {
@@ -95,15 +128,23 @@
     return _patternPickerModel;
 }
 
+- (JPCardCustomizationTextInputModel *)textInputModel {
+    if (!_textInputModel) {
+        _textInputModel = [JPCardCustomizationTextInputModel new];
+        _textInputModel.identifier = @"JPCardCustomizationTextInputCell";
+    }
+    return _textInputModel;
+}
+
 - (NSArray *)defaultCardPatterns {
-    return @[JPCardPattern.black,
-             JPCardPattern.blue,
-             JPCardPattern.green,
-             JPCardPattern.red,
-             JPCardPattern.orange,
-             JPCardPattern.gold,
-             JPCardPattern.cyan,
-             JPCardPattern.olive];
+    return @[ JPCardPattern.black,
+              JPCardPattern.blue,
+              JPCardPattern.green,
+              JPCardPattern.red,
+              JPCardPattern.orange,
+              JPCardPattern.gold,
+              JPCardPattern.cyan,
+              JPCardPattern.olive ];
 }
 
 - (NSArray *)defaultPatternModels {

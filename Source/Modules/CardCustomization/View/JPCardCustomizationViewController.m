@@ -26,8 +26,10 @@
 #import "JPCardCustomizationCell.h"
 #import "JPCardCustomizationHeaderCell.h"
 #import "JPCardCustomizationPresenter.h"
+#import "JPCardCustomizationTextInputCell.h"
 #import "JPCardCustomizationView.h"
 #import "JPCardCustomizationViewModel.h"
+#import "NSString+Additions.h"
 #import "UIImage+Additions.h"
 
 @interface JPCardCustomizationViewController ()
@@ -38,7 +40,8 @@
 
 #pragma mark - Constants
 
-const double kBackButtonSize = 22.0;
+const float kBackButtonSize = 22.0f;
+const int kMaxInputLength = 28;
 
 #pragma mark - View lifecycle
 
@@ -61,13 +64,31 @@ const double kBackButtonSize = 22.0;
 
 #pragma mark - Protocol methods
 
-- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels {
+- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels
+         shouldPreserveResponder:(BOOL)shouldPreserveResponder {
+
     self.viewModels = viewModels;
-    for (JPCardCustomizationViewModel *model in viewModels) {
+    [self registerReusableCells];
+
+    if (shouldPreserveResponder) {
+        [self reloadOnlyCardHeaderCell];
+        return;
+    }
+    
+    [self.cardCustomizationView.tableView reloadData];
+}
+
+- (void)registerReusableCells {
+    for (JPCardCustomizationViewModel *model in self.viewModels) {
         [self.cardCustomizationView.tableView registerClass:NSClassFromString(model.identifier)
                                      forCellReuseIdentifier:model.identifier];
     }
-    [self.cardCustomizationView.tableView reloadData];
+}
+
+- (void)reloadOnlyCardHeaderCell {
+    NSIndexPath *cardIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [self.cardCustomizationView.tableView reloadRowsAtIndexPaths:@[cardIndexPath]
+                                                withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Layout setup
@@ -114,7 +135,13 @@ const double kBackButtonSize = 22.0;
         patternPickerCell = (JPCardCustomizationPatternPickerCell *)cell;
         patternPickerCell.delegate = self;
     }
-    
+
+    if ([cell isKindOfClass:JPCardCustomizationTextInputCell.class]) {
+        JPCardCustomizationTextInputCell *textInputCell;
+        textInputCell = (JPCardCustomizationTextInputCell *)cell;
+        textInputCell.inputField.delegate = self;
+    }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell configureWithViewModel:selectedModel];
     return cell;
@@ -133,8 +160,22 @@ const double kBackButtonSize = 22.0;
 @implementation JPCardCustomizationViewController (PatternPickerDelegate)
 
 - (void)patternPickerCell:(JPCardCustomizationPatternPickerCell *)pickerCell didSelectPatternWithType:(JPCardPatternType)type {
-    
+
     [self.presenter handlePatternSelectionWithType:type];
+}
+
+@end
+
+@implementation JPCardCustomizationViewController (TextInputDelegate)
+
+- (BOOL)inputField:(JPInputField *)inputField shouldChangeText:(NSString *)text {
+    if (text.length > kMaxInputLength) {
+        [inputField displayErrorWithText:@"card_title_length_warning".localized];
+        return NO;
+    }
+    [inputField clearError];
+    [self.presenter handleCardInputFieldChangeWithInput:text];
+    return YES;
 }
 
 @end

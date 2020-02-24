@@ -125,13 +125,13 @@
 }
 
 - (void)handlePaymentMethodChangeBehaviorForViewModel:(JPPaymentMethodsViewModel *)viewModel
-                                 shouldAnimateChange:(BOOL)shouldAnimate {
-    
+                                  shouldAnimateChange:(BOOL)shouldAnimate {
+
     if (!shouldAnimate) {
         [self.paymentMethodsView.tableView reloadData];
         return;
     }
-    
+
     [self.paymentMethodsView.tableView beginUpdates];
 
     NSRange oldRange = NSMakeRange(1, self.paymentMethodsView.tableView.numberOfSections - 1);
@@ -143,7 +143,7 @@
     UITableViewRowAnimation fadeAnimation = UITableViewRowAnimationFade;
     [self.paymentMethodsView.tableView deleteSections:oldIndexSet withRowAnimation:fadeAnimation];
     [self.paymentMethodsView.tableView insertSections:newIndexSet withRowAnimation:fadeAnimation];
-    
+
     [self.paymentMethodsView.tableView endUpdates];
 }
 
@@ -231,6 +231,9 @@
 
     [self.presenter didSelectCardAtIndex:indexPath.row
                            isEditingMode:tableView.isEditing];
+
+    [self.presenter changeHeaderButtonTitle:NO];
+    [self.paymentMethodsView.tableView setEditing:NO animated:NO];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -251,7 +254,6 @@
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction *_Nonnull action) {
                                                              [self.presenter deleteCardWithIndex:indexPath.row];
-
                                                          }];
 
     [alertController addAction:cancelAction];

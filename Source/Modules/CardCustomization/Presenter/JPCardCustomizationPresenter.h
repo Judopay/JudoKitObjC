@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "JPCardPattern.h"
+#import <Foundation/Foundation.h>
 
 @protocol JPCardCustomizationView, JPCardCustomizationRouter, JPCardCustomizationInteractor;
 
@@ -41,10 +41,18 @@
  */
 - (void)handlePatternSelectionWithType:(JPCardPatternType)type;
 
-/*
+/**
  * A method that is used to handle the Back button tap action and trigger the pop navigation
  */
 - (void)handleBackButtonTap;
+
+/**
+ * A method that is triggered once an input has been detected on the card title input field.
+ * This method handles the input field validation and keychain updates
+ *
+ * @param input - the input string of the card title input field
+ */
+- (void)handleCardInputFieldChangeWithInput:(NSString *)input;
 
 @end
 

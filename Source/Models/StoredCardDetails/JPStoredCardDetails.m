@@ -40,6 +40,8 @@
 }
 
 - (instancetype)initFromDictionary:(NSDictionary *)dictionary {
+    NSString *cardTitle = dictionary[@"cardTitle"];
+    NSNumber *patternType = dictionary[@"cardPatternType"];
     NSString *cardLastFour = dictionary[@"cardLastFour"];
     NSString *expiryDate = dictionary[@"expiryDate"];
     NSNumber *cardNetwork = dictionary[@"cardNetwork"];
@@ -52,6 +54,8 @@
                                                         cardNetwork:cardNetwork.intValue
                                                           cardToken:cardToken];
 
+    storedCardDetails.cardTitle = cardTitle;
+    storedCardDetails.patternType = patternType.intValue;
     storedCardDetails.isDefault = isDefault.boolValue;
     storedCardDetails.isSelected = isSelected.boolValue;
 
@@ -75,6 +79,8 @@
 
 - (NSDictionary *)toDictionary {
     return @{
+        @"cardTitle" : self.cardTitle,
+        @"cardPatternType" : @(self.patternType),
         @"cardLastFour" : self.cardLastFour,
         @"expiryDate" : self.expiryDate,
         @"cardNetwork" : @(self.cardNetwork),

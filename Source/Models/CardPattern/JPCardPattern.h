@@ -107,6 +107,11 @@ typedef NS_ENUM(NSInteger, JPCardPatternType) {
 + (instancetype)olive;
 
 /**
+ * Convenience initializer that creates a JPCardPattern with a random type
+ */
++ (instancetype)random;
+
+/**
  * Convenience initializer that creates a JPCardPattern based on a provided type;
  *
  * @param type - the pattern type
