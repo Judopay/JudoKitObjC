@@ -34,6 +34,15 @@
 
 @end
 
+@interface JPCardCustomizationTitleModel : JPCardCustomizationViewModel
+
+/**
+ * The large title of the Card Customization screen
+ */
+@property (nonatomic, strong) NSString *_Nonnull title;
+
+@end
+
 @interface JPCardCustomizationHeaderModel : JPCardCustomizationViewModel
 
 /**

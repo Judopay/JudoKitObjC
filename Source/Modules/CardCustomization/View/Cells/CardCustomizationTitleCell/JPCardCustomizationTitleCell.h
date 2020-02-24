@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationViewModel.m
+//  JPCardCustomizationTitleCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,16 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationViewModel.h"
+#import "JPCardCustomizationCell.h"
 
-@implementation JPCardCustomizationViewModel
-
-@end
-
-@implementation JPCardCustomizationTitleModel
-
-@end
-
-@implementation JPCardCustomizationHeaderModel
+@interface JPCardCustomizationTitleCell : JPCardCustomizationCell
 
 @end
