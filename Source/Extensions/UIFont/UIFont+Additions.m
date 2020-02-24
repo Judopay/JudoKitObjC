@@ -54,4 +54,8 @@
     return [UIFont systemFontOfSize:10.0];
 }
 
++ (UIFont *)captionBold {
+    return [UIFont systemFontOfSize:10.0 weight:UIFontWeightSemibold];
+}
+
 @end

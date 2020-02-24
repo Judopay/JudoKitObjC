@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardDetails.h"
+#import "JPConstants.h"
 #import "NSString+Additions.h"
 
 @interface JPCardDetails ()
@@ -133,7 +134,7 @@
 - (NSDateFormatter *)expiryDateFormatter {
     if (!_expiryDateFormatter) {
         _expiryDateFormatter = [NSDateFormatter new];
-        _expiryDateFormatter.dateFormat = @"MM/yy";
+        _expiryDateFormatter.dateFormat = kMonthYearDateFormat;
     }
     return _expiryDateFormatter;
 }

@@ -82,6 +82,8 @@
                                              network:viewModel.cardModel.cardNetwork
                                         cardLastFour:viewModel.cardModel.cardNumberLastFour
                                          patternType:viewModel.cardModel.cardPatternType];
+
+            [self.cardPaymentView configureExpirationStatus:viewModel.cardModel.cardExpirationStatus];
             break;
 
         default:

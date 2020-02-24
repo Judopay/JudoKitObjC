@@ -230,7 +230,7 @@
     }
 
     [self.presenter didSelectCardAtIndex:indexPath.row
-                              forEditing:tableView.isEditing];
+                           isEditingMode:tableView.isEditing];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

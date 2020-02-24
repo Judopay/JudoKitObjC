@@ -43,11 +43,11 @@
 #pragma mark - Protocol methods
 
 - (JPStoredCardDetails *)cardDetails {
-    return JPCardStorage.sharedInstance.storedCardDetails[self.cardIndex];
+    return [JPCardStorage.sharedInstance fetchStoredCardDetailsAtIndex:self.cardIndex];
 }
 
 - (void)updateStoredCardPatternWithType:(JPCardPatternType)type {
-    JPStoredCardDetails *cardDetails = JPCardStorage.sharedInstance.storedCardDetails[self.cardIndex];
+    JPStoredCardDetails *cardDetails = [self cardDetails];
     cardDetails.patternType = type;
     [JPCardStorage.sharedInstance deleteCardWithIndex:self.cardIndex];
     [JPCardStorage.sharedInstance insertCardDetails:cardDetails atIndex:self.cardIndex];

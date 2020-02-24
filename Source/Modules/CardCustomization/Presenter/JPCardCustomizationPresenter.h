@@ -41,6 +41,11 @@
  */
 - (void)handlePatternSelectionWithType:(JPCardPatternType)type;
 
+/*
+ * A method that is used to handle the Back button tap action and trigger the pop navigation
+ */
+- (void)handleBackButtonTap;
+
 @end
 
 @interface JPCardCustomizationPresenterImpl : NSObject <JPCardCustomizationPresenter>
