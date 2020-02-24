@@ -2,9 +2,7 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import "JudoPayViewControllerTestable.h"
-#import "FloatingTextField.h"
-#import "DateInputField.h"
-#import "JPIDealService.h"
-#import "JPIDealBank.h"
-#import "PostCodeInputField.h"
+#import "JPPaymentMethodsPresenter.h";
+#import "JPPaymentMethodsViewController.h";
+#import "JPPaymentMethodsInteractor.h";
+#import "JPPaymentMethodsViewModel.h"

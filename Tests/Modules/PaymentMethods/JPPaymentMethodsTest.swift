@@ -1,8 +1,8 @@
 //
-//  UIFont.m
-//  JudoKitObjC
+//  JPPaymentMethodsTest.swift
+//  JudoKitObjCTests
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIFont+Additions.h"
+import XCTest
+@testable import JudoKitObjC
 
-@implementation UIFont (Additions)
-
-+ (UIFont *)largeTitle {
-    return [UIFont systemFontOfSize:24.0 weight:UIFontWeightSemibold];
+class JPPaymentMethodsTest: XCTestCase {
+    
+    func testExpirationDateHandling() {
+        let presenter = JPPaymentMethodsPresenterImpl()
+        let viewController = JPPaymentMethodsViewControllerMock()
+        let interactor = JPPaymentMethodsInteractorMock()
+        presenter.view = viewController
+        presenter.interactor = interactor
+        presenter.viewModelNeedsUpdate()
+        XCTAssert(viewController.cardsList[0].cardExpirationStatus == .CardNotExpired)
+        XCTAssert(viewController.cardsList[1].cardExpirationStatus == .CardExpiresSoon)
+        XCTAssert(viewController.cardsList[2].cardExpirationStatus == .CardExpired)
+    }
 }
-
-+ (UIFont *)title {
-    return [UIFont systemFontOfSize:18.0 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)headline {
-    return [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)headlineLight {
-    return [UIFont systemFontOfSize:16.0];
-}
-
-+ (UIFont *)body {
-    return [UIFont systemFontOfSize:14.0];
-}
-
-+ (UIFont *)bodyBold {
-    return [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)caption {
-    return [UIFont systemFontOfSize:10.0];
-}
-
-+ (UIFont *)captionBold {
-    return [UIFont systemFontOfSize:10.0 weight:UIFontWeightSemibold];
-}
-
-@end

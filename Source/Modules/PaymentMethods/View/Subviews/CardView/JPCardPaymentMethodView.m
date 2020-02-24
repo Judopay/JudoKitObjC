@@ -25,6 +25,7 @@
 #import "JPCardPaymentMethodView.h"
 #import "Functions.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSString+Additions.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
@@ -81,6 +82,9 @@
                                                            viewModel.cardModel.cardNumberLastFour];
 
     self.logoImageView.image = [UIImage imageForCardNetwork:viewModel.cardModel.cardNetwork];
+    if (viewModel.cardModel.cardExpirationStatus == CardExpired) {
+        [self setCardAsExpired];
+    }
 }
 
 #pragma mark - Layout Setup
@@ -111,6 +115,17 @@
     [mainStackView pinToView:self withPadding:28.0 * getWidthAspectRatio()];
 }
 
+- (void)setCardAsExpired {
+    self.backgroundColor = UIColor.jpGrayColor;
+    self.expiryDateLabel.textColor = UIColor.jpRedColor;
+    self.expiryDateLabel.numberOfLines = 2;
+    NSDictionary *attrDict = @{NSFontAttributeName : UIFont.caption};
+    NSString *expiredString = [NSString stringWithFormat:@"%@ %@", @"expired".localized, @"\r"];
+    NSMutableAttributedString *expiredText = [[NSMutableAttributedString alloc] initWithString:expiredString attributes:attrDict];
+    NSAttributedString *expiryDate = [[NSAttributedString alloc] initWithString:self.expiryDateLabel.text];
+    [expiredText appendAttributedString:expiryDate];
+    self.expiryDateLabel.attributedText = expiredText;
+}
 #pragma mark - Lazy Properties
 
 - (UILabel *)titleLabel {
