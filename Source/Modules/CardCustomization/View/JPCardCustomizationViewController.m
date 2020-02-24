@@ -52,7 +52,7 @@
 #pragma mark - User actions
 
 - (void)onBackButtonTap {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.presenter handleBackButtonTap];
 }
 
 #pragma mark - Protocol methods

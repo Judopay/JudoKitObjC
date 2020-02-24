@@ -23,7 +23,12 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationRouter.h"
+#import "JPCardCustomizationViewController.h"
 
 @implementation JPCardCustomizationRouterImpl
+
+- (void)popViewController {
+    [self.viewController.navigationController popViewControllerAnimated:YES];
+}
 
 @end

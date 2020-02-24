@@ -29,12 +29,16 @@
 #import "UIView+Additions.h"
 
 @interface JPCardCustomizationHeaderCell ()
-
 @property (nonatomic, strong) JPCardView *cardView;
-
 @end
 
 @implementation JPCardCustomizationHeaderCell
+
+#pragma mark - Constants
+
+const float kCardBottomAnchorConstant = 100.0f;
+const float kCardAnchorConstants = 20.0f;
+const float kCardAspectRatio = 0.583;
 
 #pragma mark - View Model Configuration
 
@@ -55,18 +59,25 @@
 
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.cardView];
-    [NSLayoutConstraint activateConstraints:@[
+    
+    [self setupConstraints];
+}
+
+- (void)setupConstraints {
+    NSArray *constraints = @[
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                constant:20],
+                                                constant:kCardAnchorConstants],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:-100],
+                                                   constant:-kCardBottomAnchorConstant],
         [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                    constant:20.0],
+                                                    constant:kCardAnchorConstants],
         [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                     constant:-20.0],
+                                                     constant:-kCardAnchorConstants],
         [self.cardView.heightAnchor constraintEqualToAnchor:self.cardView.widthAnchor
-                                                 multiplier:0.583],
-    ]
+                                                 multiplier:kCardAspectRatio],
+    ];
+    
+    [NSLayoutConstraint activateConstraints:constraints
                                withPriority:999];
 }
 

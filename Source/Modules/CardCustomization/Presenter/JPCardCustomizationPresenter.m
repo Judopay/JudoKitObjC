@@ -37,13 +37,16 @@
 - (void)prepareViewModel {
     JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
 
-    self.headerModel.cardTitle = @"Card for shopping";
     self.headerModel.cardLastFour = cardDetails.cardLastFour;
     self.headerModel.cardExpiryDate = cardDetails.expiryDate;
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
 
     NSArray *viewModels = @[ self.headerModel ];
     [self.view updateViewWithViewModels:viewModels];
+}
+
+- (void)handleBackButtonTap {
+    [self.router popViewController];
 }
 
 - (JPCardCustomizationHeaderModel *)headerModel {
