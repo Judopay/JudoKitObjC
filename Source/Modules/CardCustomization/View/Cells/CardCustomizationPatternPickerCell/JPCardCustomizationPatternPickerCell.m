@@ -36,6 +36,12 @@
 
 @implementation JPCardCustomizationPatternPickerCell
 
+#pragma mark - Constants
+
+const float kSelectedCellSize = 50.0f;
+const float kUnselectedCellSize = 36.0f;
+const float kCollectionViewPadding = 24.0f;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
@@ -69,7 +75,7 @@
     ];
     
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
-    [self.collectionView.heightAnchor constraintEqualToConstant:50.0].active = YES;
+    [self.collectionView.heightAnchor constraintEqualToConstant:kSelectedCellSize].active = YES;
 }
 
 #pragma mark - Lazy properties
@@ -83,7 +89,7 @@
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(0, 24, 0, 24);
+        _collectionView.contentInset = UIEdgeInsetsMake(0, kCollectionViewPadding, 0, kCollectionViewPadding);
         [_collectionView registerClass:JPCardCustomizationPatternCell.class
             forCellWithReuseIdentifier:JPCardCustomizationPatternCell.cellIdentifier];
     }
@@ -135,7 +141,9 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     JPCardCustomizationPatternModel *pattern = self.patternPickerModel.patternModels[indexPath.row];
-    return pattern.isSelected ? CGSizeMake(50, 50) : CGSizeMake(36, 36);
+    CGSize selectedCellSize = CGSizeMake(kSelectedCellSize, kSelectedCellSize);
+    CGSize unselectedCellSize = CGSizeMake(kUnselectedCellSize, kUnselectedCellSize);
+    return pattern.isSelected ? selectedCellSize : unselectedCellSize;
 }
 
 @end

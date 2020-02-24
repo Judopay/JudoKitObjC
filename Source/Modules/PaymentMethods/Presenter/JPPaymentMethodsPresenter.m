@@ -265,10 +265,6 @@
 
 - (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
-
-    //TODO: Replace with actual card name once card editing is available
-    cardModel.cardTitle = @"Card for shopping";
-    
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
     cardModel.cardExpiryDate = cardDetails.expiryDate;

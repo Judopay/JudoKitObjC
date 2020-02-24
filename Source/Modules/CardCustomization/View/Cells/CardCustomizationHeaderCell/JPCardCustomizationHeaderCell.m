@@ -36,7 +36,6 @@
 
 #pragma mark - Constants
 
-const float kCardBottomAnchorConstant = 100.0f;
 const float kCardAnchorConstants = 20.0f;
 const float kCardAspectRatio = 0.583;
 
@@ -73,7 +72,7 @@ const float kCardAspectRatio = 0.583;
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
                                                 constant:kCardAnchorConstants],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:-kCardBottomAnchorConstant],
+                                                   constant:-kCardAnchorConstants],
         [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
                                                     constant:kCardAnchorConstants],
         [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
