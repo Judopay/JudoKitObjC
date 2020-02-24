@@ -22,15 +22,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardNetwork.h"
+#import "JPPaymentMethodsViewModel.h"
 #import <UIKit/UIKit.h>
-
-@class JPPaymentMethodsHeaderModel;
 
 @interface JPCardPaymentMethodView : UIView
 
 /**
- * A method that configures the custom card view based on a view model
+ * A method that configures the custom card view
+ *
+ * @param title - the title of the card
+ * @param expiryDate - the expiration date of the card
+ * @param network - the card network
+ * @param cardLastFour - the last four digits of the card
  */
-- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
+- (void)configureWithTitle:(NSString *)title
+                expiryDate:(NSString *)expiryDate
+                   network:(CardNetwork)cardNetwork
+              cardLastFour:(NSString *)cardLastFour;
+
+/**
+ * A method that configures the custom card view based on an expiration status
+ *
+ * @param expirationStatus - the expiration status of the card
+ */
+- (void)configureExpirationStatus:(CardExpirationStatus)expirationStatus;
 
 @end

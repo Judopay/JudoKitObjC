@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsPresenter.h"
 #import "JPAmount.h"
 #import "JPCardNetwork.h"
+#import "JPConstants.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsViewController.h"
@@ -33,7 +34,6 @@
 #import "JPTransactionViewModel.h"
 #import "NSError+Additions.h"
 #import "NSString+Additions.h"
-#import "JPConstants.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -275,7 +275,7 @@
     return cardModel;
 }
 
-- (ExpirationStatus)determineCardExpirationStatusWithDate:(NSString *)expirationDate {
+- (CardExpirationStatus)determineCardExpirationStatusWithDate:(NSString *)expirationDate {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *cardExpirationDate = [self.dateFormater dateFromString:expirationDate];
     NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2 toDate:self.currentDate options:0];

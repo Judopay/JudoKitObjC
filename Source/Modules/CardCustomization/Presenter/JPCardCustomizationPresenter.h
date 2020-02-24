@@ -28,6 +28,16 @@
 
 @protocol JPCardCustomizationPresenter
 
+/**
+ * A method that is used to update the Card customization view model, which in turn updates the UI
+ */
+- (void)prepareViewModel;
+
+/**
+ * A method that is used to handle the Back button tap action and trigger the pop navigation
+ */
+- (void)handleBackButtonTap;
+
 @end
 
 @interface JPCardCustomizationPresenterImpl : NSObject <JPCardCustomizationPresenter>

@@ -24,13 +24,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class JPPaymentMethodsHeaderModel;
+@class JPPaymentMethodsHeaderModel, JPCardCustomizationHeaderModel;
 
 @interface JPCardView : UIView
 
 /**
- * A method that configures the custom card view based on a view model
+ * A method that configures the custom card view based on a Payment Method header model
  */
-- (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel;
+- (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel;
+
+/**
+ * A method that configures the custom card view based on a Card Customization header model
+ */
+- (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel;
 
 @end

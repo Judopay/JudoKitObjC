@@ -93,6 +93,12 @@
     }
 }
 
+- (void)removeAllSubviews {
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+}
+
 - (NSLayoutAnchor<NSLayoutYAxisAnchor *> *)safeTopAnchor {
     if (@available(iOS 11.0, *)) {
         return self.safeAreaLayoutGuide.topAnchor;

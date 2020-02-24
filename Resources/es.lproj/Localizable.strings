@@ -172,3 +172,5 @@
 "verifying_card" = "Verificando tarjeta";
 "secure_server_transmission" = " Los detalles de su tarjeta son encriptados usando SSL antes de su transmisión a nuestro procesador de pagos seguro. No se almacenarán en su dispositivo ni en nuestros servidores.";
 
+//Customize Card
+"customize_card" = "Customize Card";

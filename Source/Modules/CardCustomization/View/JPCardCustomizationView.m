@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.m
+//  JPCardCustomizationView.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,13 +22,49 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationRouter.h"
-#import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationView.h"
+#import "UIView+Additions.h"
 
-@implementation JPCardCustomizationRouterImpl
+@implementation JPCardCustomizationView
 
-- (void)popViewController {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
+#pragma mark - Initializers
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setupViews];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupViews];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [super initWithFrame:CGRectZero]) {
+        [self setupViews];
+    }
+    return self;
+}
+
+#pragma mark - Layout setup
+
+- (void)setupViews {
+    [self addSubview:self.tableView];
+    [self.tableView pinToView:self withPadding:0.0];
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [UITableView new];
+        _tableView.backgroundColor = UIColor.whiteColor;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _tableView;
 }
 
 @end

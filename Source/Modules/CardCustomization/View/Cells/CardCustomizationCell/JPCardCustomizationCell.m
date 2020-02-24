@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.m
+//  JPCardCustomizationCell.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,13 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationRouter.h"
-#import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationCell.h"
 
-@implementation JPCardCustomizationRouterImpl
+@implementation JPCardCustomizationCell
 
-- (void)popViewController {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
+- (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
+    //Override with custom implementation
 }
 
 @end

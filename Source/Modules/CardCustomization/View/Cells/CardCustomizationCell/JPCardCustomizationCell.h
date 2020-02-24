@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.m
+//  JPCardCustomizationCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,13 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationRouter.h"
-#import "JPCardCustomizationViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation JPCardCustomizationRouterImpl
+@class JPCardCustomizationViewModel;
 
-- (void)popViewController {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
-}
+@interface JPCardCustomizationCell : UITableViewCell
+
+/**
+ * A method that customizes the JPCardCustomizationCell with details from the view model
+ *
+ * @param viewModel - an instance of JPCardCustomizationViewModel containing the cell's data
+ */
+- (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel;
 
 @end

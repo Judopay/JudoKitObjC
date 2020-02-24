@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.m
+//  JPCardCustomizationView.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,13 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationRouter.h"
-#import "JPCardCustomizationViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation JPCardCustomizationRouterImpl
+@interface JPCardCustomizationView : UIView
 
-- (void)popViewController {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
-}
+/**
+ * A reference to the table view that will store the Card customization content.
+ */
+@property (nonatomic, strong) UITableView *_Nonnull tableView;
 
 @end

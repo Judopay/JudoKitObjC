@@ -97,7 +97,7 @@
             [self animateRightToLeftCardChangeWithViewModel:viewModel];
             break;
         case AnimationTypeSetup:
-            [self.cardView configureWithViewModel:viewModel];
+            [self.cardView configureWithPaymentMethodModel:viewModel];
             [self animateCardSetup];
         case AnimationTypeNone:
             break;
@@ -154,7 +154,7 @@
 
 - (void)prepareNewCardViewWithModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.cardView = [self createCardView];
-    [self.cardView configureWithViewModel:viewModel];
+    [self.cardView configureWithPaymentMethodModel:viewModel];
     [self setupViews];
 }
 

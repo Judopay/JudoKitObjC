@@ -24,10 +24,28 @@
 
 #import <Foundation/Foundation.h>
 
+@class JPStoredCardDetails;
+
 @protocol JPCardCustomizationInteractor
+
+/**
+ * A method that returns the details about the selected card
+ *
+ * @returns a configured instance of JPStoredCardDetails
+ */
+- (JPStoredCardDetails *)cardDetails;
 
 @end
 
 @interface JPCardCustomizationInteractorImpl : NSObject <JPCardCustomizationInteractor>
+
+/**
+ * Designated initializer that takes the card index to access it in the keychain storage
+ *
+ * @param index - the index of the card
+ *
+ * @returns a configured instance of JPCardCustomizationInteractorImpl
+ */
+- (instancetype)initWithCardIndex:(NSUInteger)index;
 
 @end

@@ -37,7 +37,14 @@
  *
  * @returns An array of JPStoredCardDetails objects
  */
-- (NSMutableArray<JPStoredCardDetails *> *)getStoredCardDetails;
+- (NSMutableArray<JPStoredCardDetails *> *)fetchStoredCardDetails;
+
+/**
+ * A method for fetching the stored card details from a specified index
+ *
+ * @param index - the index of the stored card details
+ */
+- (JPStoredCardDetails *)fetchStoredCardDetailsAtIndex:(NSUInteger)index;
 
 /**
  * A method for adding new card details objects into the keychain

@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, AnimationType) {
     AnimationTypeBottomToTop
 };
 
-typedef NS_ENUM(NSInteger, ExpirationStatus) {
+typedef NS_ENUM(NSInteger, CardExpirationStatus) {
     CardNotExpired,
     CardExpired,
     CardExpiresSoon
@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, ExpirationStatus) {
 /**
 * A value that specifies card expiration staus
 */
-@property (nonatomic, assign) ExpirationStatus cardExpirationStatus;
+@property (nonatomic, assign) CardExpirationStatus cardExpirationStatus;
 
 @end
 

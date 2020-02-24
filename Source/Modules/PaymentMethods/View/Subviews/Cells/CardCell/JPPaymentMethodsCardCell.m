@@ -87,16 +87,16 @@ const float kIconWidth = 52.0f;
     self.titleLabel.text = cardModel.cardTitle;
 
     NSString *subtitleText = [NSString stringWithFormat:@"card_subtitle".localized,
-                              [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
-                              cardModel.cardNumberLastFour];
-    
+                                                        [JPCardNetwork nameOfCardNetwork:cardModel.cardNetwork],
+                                                        cardModel.cardNumberLastFour];
+
     NSMutableAttributedString *subtitleLabelText = [[NSMutableAttributedString alloc] initWithString:subtitleText];
-    
-    if (subtitleText.length >=4) {
+
+    if (subtitleText.length >= 4) {
         NSRange range = NSMakeRange(subtitleText.length - 4, 4);
         [subtitleLabelText addAttributes:@{NSFontAttributeName : UIFont.captionBold} range:range];
     }
-    
+
     self.subtitleLabel.attributedText = subtitleLabelText;
 
     self.iconImageView.image = [UIImage imageForCardNetwork:cardModel.cardNetwork];
@@ -108,7 +108,7 @@ const float kIconWidth = 52.0f;
     accessoryImageView.contentMode = UIViewContentModeScaleAspectFit;
     accessoryImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
     self.accessoryView = accessoryImageView;
-    
+
     [self setSubtitleExpirationStatus:cardModel.cardExpirationStatus];
 }
 
@@ -165,10 +165,10 @@ const float kIconWidth = 52.0f;
     self.editingAccessoryView = disclosureImageView;
 }
 
--(void)setSubtitleExpirationStatus:(ExpirationStatus)status {
+- (void)setSubtitleExpirationStatus:(CardExpirationStatus)status {
     NSString *expirationStatus = @"";
     NSString *boldWord = @"";
-    
+
     switch (status) {
         case CardNotExpired:
             break;
@@ -178,12 +178,12 @@ const float kIconWidth = 52.0f;
             self.subtitleLabel.textColor = UIColor.jpRedColor;
             break;
         case CardExpiresSoon:
-             expirationStatus = @"will_expire_soon".localized;
-             boldWord = @"expire_soon".localized;
+            expirationStatus = @"will_expire_soon".localized;
+            boldWord = @"expire_soon".localized;
             self.subtitleLabel.textColor = UIColor.jpDarkGrayColor;
             break;
     }
-    
+
     NSString *isExpiredString = [NSString stringWithFormat:@"%@%@", @" ", expirationStatus];
     NSMutableAttributedString *isExpiredText = [isExpiredString attributedStringWithBoldSubstring:boldWord];
     NSMutableAttributedString *subtitleText = [[NSMutableAttributedString alloc] initWithAttributedString:self.subtitleLabel.attributedText];

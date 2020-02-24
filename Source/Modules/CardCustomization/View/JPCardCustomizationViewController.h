@@ -25,8 +25,14 @@
 #import <UIKit/UIKit.h>
 
 @protocol JPCardCustomizationPresenter;
+@class JPCardCustomizationView, JPCardCustomizationViewModel;
 
 @protocol JPCardCustomizationView
+
+/**
+ * A method for updating the view layout based on an array of view models
+ */
+- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels;
 
 @end
 
@@ -37,4 +43,15 @@
  */
 @property (nonatomic, strong) id<JPCardCustomizationPresenter> presenter;
 
+/**
+ * A reference to the JPCardCustomizationView instance which serves as the controller's main view
+ */
+@property (nonatomic, strong) JPCardCustomizationView *cardCustomizationView;
+
+@end
+
+@interface JPCardCustomizationViewController (TableViewDataSource) <UITableViewDataSource>
+@end
+
+@interface JPCardCustomizationViewController (TableViewDelegate) <UITableViewDelegate>
 @end

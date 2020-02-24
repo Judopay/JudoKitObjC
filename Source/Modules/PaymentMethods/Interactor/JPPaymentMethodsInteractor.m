@@ -63,7 +63,7 @@
 #pragma mark - Get stored cards
 
 - (NSArray<JPStoredCardDetails *> *)getStoredCardDetails {
-    return [JPCardStorage.sharedInstance getStoredCardDetails];
+    return [JPCardStorage.sharedInstance fetchStoredCardDetails];
 }
 
 #pragma mark - Select card at index
@@ -71,7 +71,7 @@
 - (void)selectCardAtIndex:(NSInteger)index {
 
     NSArray<JPStoredCardDetails *> *storedCardDetails;
-    storedCardDetails = [JPCardStorage.sharedInstance getStoredCardDetails];
+    storedCardDetails = [JPCardStorage.sharedInstance fetchStoredCardDetails];
 
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
         cardDetails.isSelected = NO;

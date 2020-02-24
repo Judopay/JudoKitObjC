@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.m
+//  JPCardCustomizationViewModel.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,13 +22,47 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationRouter.h"
-#import "JPCardCustomizationViewController.h"
+#import "JPCardNetwork.h"
+#import <Foundation/Foundation.h>
 
-@implementation JPCardCustomizationRouterImpl
+@interface JPCardCustomizationViewModel : NSObject
+/**
+ * A string that identifies the UITableViewCell that this view model applies to.
+ * Must match the exact name of the UITableViewCell so that it can be registered correctly.
+ */
+@property (nonatomic, strong) NSString *_Nonnull identifier;
 
-- (void)popViewController {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
-}
+@end
+
+@interface JPCardCustomizationTitleModel : JPCardCustomizationViewModel
+
+/**
+ * The large title of the Card Customization screen
+ */
+@property (nonatomic, strong) NSString *_Nonnull title;
+
+@end
+
+@interface JPCardCustomizationHeaderModel : JPCardCustomizationViewModel
+
+/**
+ * A string that represents the title of the selected card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardTitle;
+
+/**
+ * A string that represents the last four digits of the card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardLastFour;
+
+/**
+ * A string that represents thee expiration date of the card
+ */
+@property (nonatomic, strong) NSString *_Nonnull cardExpiryDate;
+
+/**
+ * A value that identifies the card network
+ */
+@property (nonatomic, assign) CardNetwork cardNetwork;
 
 @end

@@ -23,7 +23,51 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationPresenter.h"
+#import "JPCardCustomizationInteractor.h"
+#import "JPCardCustomizationRouter.h"
+#import "JPCardCustomizationViewController.h"
+#import "JPCardCustomizationViewModel.h"
+#import "JPStoredCardDetails.h"
+#import "NSString+Additions.h"
+
+@interface JPCardCustomizationPresenterImpl ()
+@property (nonatomic, strong) JPCardCustomizationTitleModel *titleModel;
+@property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
+@end
 
 @implementation JPCardCustomizationPresenterImpl
+
+- (void)prepareViewModel {
+    JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
+
+    self.titleModel.title = @"customize_card".localized;
+
+    self.headerModel.cardLastFour = cardDetails.cardLastFour;
+    self.headerModel.cardExpiryDate = cardDetails.expiryDate;
+    self.headerModel.cardNetwork = cardDetails.cardNetwork;
+
+    NSArray *viewModels = @[ self.titleModel, self.headerModel ];
+    [self.view updateViewWithViewModels:viewModels];
+}
+
+- (void)handleBackButtonTap {
+    [self.router popViewController];
+}
+
+- (JPCardCustomizationTitleModel *)titleModel {
+    if (!_titleModel) {
+        _titleModel = [JPCardCustomizationTitleModel new];
+        _titleModel.identifier = @"JPCardCustomizationTitleCell";
+    }
+    return _titleModel;
+}
+
+- (JPCardCustomizationHeaderModel *)headerModel {
+    if (!_headerModel) {
+        _headerModel = [JPCardCustomizationHeaderModel new];
+        _headerModel.identifier = @"JPCardCustomizationHeaderCell";
+    }
+    return _headerModel;
+}
 
 @end
