@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationViewModel.m
+//  JPCardCustomizationSubmitCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,36 +22,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationViewModel.h"
+#import "JPCardCustomizationCell.h"
 
-@implementation JPCardCustomizationViewModel
+@class JPCardCustomizationSubmitCell;
 
-@end
+@protocol JPCardCustomizationSubmitCellDelegate
 
-@implementation JPCardCustomizationTitleModel
+/**
+ * A method that is triggered once the user taps `Save` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
+ */
+- (void)didTapSaveForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
 
-@end
-
-@implementation JPCardCustomizationHeaderModel
-
-@end
-
-@implementation JPCardCustomizationPatternModel
-
-@end
-
-@implementation JPCardCustomizationPatternPickerModel
-
-@end
-
-@implementation JPCardCustomizationTextInputModel
+/**
+ * A method that is triggered once the user taps `Cancel` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
+ */
+- (void)didTapCancelForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
 
 @end
 
-@implementation JPCardCustomizationIsDefaultModel
+@interface JPCardCustomizationSubmitCell : JPCardCustomizationCell
 
-@end
-
-@implementation JPCardCustomizationSubmitModel
+/**
+ * A weak reference to the object that adopts the JPCardCustomizationSubmitCellDelegate protocol
+ */
+@property (nonatomic, weak) id<JPCardCustomizationSubmitCellDelegate> _Nullable delegate;
 
 @end

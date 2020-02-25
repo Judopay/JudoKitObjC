@@ -117,12 +117,12 @@ static const CGFloat bottomHeight = 86.0f;
         self.applePayButton = [self applePayButtonWithType:type];
 
         [self.paymentStackView addArrangedSubview:self.applePayButton];
-        [self.applePayButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
+        [self.applePayButton.widthAnchor constraintEqualToConstant:200.0 * getWidthAspectRatio()].active = YES;
         return;
     }
 
     [self.paymentStackView addArrangedSubview:self.payButton];
-    [self.payButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
+    [self.payButton.widthAnchor constraintEqualToConstant:200.0 * getWidthAspectRatio()].active = YES;
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
 }
 
@@ -285,6 +285,8 @@ static const CGFloat bottomHeight = 86.0f;
         _amountValueLabel.font = UIFont.largeTitle;
         _amountValueLabel.textColor = UIColor.jpBlackColor;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _amountValueLabel.adjustsFontSizeToFitWidth = YES;
+        _amountValueLabel.minimumScaleFactor = 0.5;
         _amountValueLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _amountValueLabel;
@@ -298,6 +300,7 @@ static const CGFloat bottomHeight = 86.0f;
         _amountPrefixLabel.font = UIFont.body;
         _amountPrefixLabel.textColor = UIColor.jpBlackColor;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _amountPrefixLabel.adjustsFontSizeToFitWidth = YES;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _amountPrefixLabel;

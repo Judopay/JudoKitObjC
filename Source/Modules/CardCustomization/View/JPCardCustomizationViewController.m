@@ -31,8 +31,10 @@
 #import "JPCardCustomizationViewModel.h"
 #import "NSString+Additions.h"
 #import "UIImage+Additions.h"
+#import "UIViewController+Additions.h"
 
 @interface JPCardCustomizationViewController ()
+@property (nonatomic, strong) UIView *fadedView;
 @property (nonatomic, strong) NSArray<JPCardCustomizationViewModel *> *viewModels;
 @end
 
@@ -40,8 +42,9 @@
 
 #pragma mark - Constants
 
-const float kBackButtonSize = 22.0f;
-const int kMaxInputLength = 28;
+const float kCustomizationViewTopBarPadding = 20.0f;
+const float kCustomizationViewBackButtonSize = 22.0f;
+const int kCustomizationViewMaxInputLength = 28;
 
 #pragma mark - View lifecycle
 
@@ -71,7 +74,7 @@ const int kMaxInputLength = 28;
     [self registerReusableCells];
 
     if (shouldPreserveResponder) {
-        [self reloadOnlyCardHeaderCell];
+        [self reloadOnlySpecificCells];
         return;
     }
 
@@ -85,9 +88,10 @@ const int kMaxInputLength = 28;
     }
 }
 
-- (void)reloadOnlyCardHeaderCell {
+- (void)reloadOnlySpecificCells {
     NSIndexPath *cardIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    [self.cardCustomizationView.tableView reloadRowsAtIndexPaths:@[ cardIndexPath ]
+    NSIndexPath *saveIndexPath = [NSIndexPath indexPathForRow:self.viewModels.count - 1 inSection:0];
+    [self.cardCustomizationView.tableView reloadRowsAtIndexPaths:@[ cardIndexPath, saveIndexPath ]
                                                 withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -95,6 +99,7 @@ const int kMaxInputLength = 28;
 
 - (void)configureView {
     [self configureNavigationBar];
+    [self configureFadedView];
     self.cardCustomizationView.tableView.delegate = self;
     self.cardCustomizationView.tableView.dataSource = self;
 }
@@ -112,9 +117,44 @@ const int kMaxInputLength = 28;
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
 
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [backBarButton.customView.heightAnchor constraintEqualToConstant:kBackButtonSize].active = YES;
-    [backBarButton.customView.widthAnchor constraintEqualToConstant:kBackButtonSize].active = YES;
+    [backBarButton.customView.heightAnchor constraintEqualToConstant:kCustomizationViewBackButtonSize].active = YES;
+    [backBarButton.customView.widthAnchor constraintEqualToConstant:kCustomizationViewBackButtonSize].active = YES;
     self.navigationItem.leftBarButtonItem = backBarButton;
+}
+
+- (void)configureFadedView {
+    [self.view addSubview:self.fadedView];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.fadedView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.fadedView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.fadedView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.fadedView.heightAnchor constraintEqualToConstant:self.topBarHeight + kCustomizationViewTopBarPadding],
+    ]];
+}
+
+#pragma mark - Lazy properties
+
+- (UIView *)fadedView {
+    if (!_fadedView) {
+        _fadedView = [UIView new];
+        _fadedView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_fadedView.layer insertSublayer:self.fadedViewGradient atIndex:0];
+    }
+    return _fadedView;
+}
+
+- (CAGradientLayer *)fadedViewGradient {
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
+    CGRect gradientFrame = CGRectMake(0, 0, screenWidth, self.topBarHeight + kCustomizationViewTopBarPadding);
+    gradient.frame = gradientFrame;
+    gradient.locations = @[ @0.8, @1.0 ];
+    gradient.colors = @[
+        (id)UIColor.whiteColor.CGColor,
+        (id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
+    ];
+    return gradient;
 }
 
 @end
@@ -142,6 +182,12 @@ const int kMaxInputLength = 28;
         textInputCell.inputField.delegate = self;
     }
 
+    if ([cell isKindOfClass:JPCardCustomizationSubmitCell.class]) {
+        JPCardCustomizationSubmitCell *submitCell;
+        submitCell = (JPCardCustomizationSubmitCell *)cell;
+        submitCell.delegate = self;
+    }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell configureWithViewModel:selectedModel];
     return cell;
@@ -160,7 +206,6 @@ const int kMaxInputLength = 28;
 @implementation JPCardCustomizationViewController (PatternPickerDelegate)
 
 - (void)patternPickerCell:(JPCardCustomizationPatternPickerCell *)pickerCell didSelectPatternWithType:(JPCardPatternType)type {
-
     [self.presenter handlePatternSelectionWithType:type];
 }
 
@@ -169,13 +214,25 @@ const int kMaxInputLength = 28;
 @implementation JPCardCustomizationViewController (TextInputDelegate)
 
 - (BOOL)inputField:(JPInputField *)inputField shouldChangeText:(NSString *)text {
-    if (text.length > kMaxInputLength) {
+    if (text.length > kCustomizationViewMaxInputLength) {
         [inputField displayErrorWithText:@"card_title_length_warning".localized];
         return NO;
     }
     [inputField clearError];
     [self.presenter handleCardInputFieldChangeWithInput:text];
     return YES;
+}
+
+@end
+
+@implementation JPCardCustomizationViewController (SubmitDelegate)
+
+- (void)didTapCancelForSubmitCell:(JPCardCustomizationSubmitCell *)cell {
+    [self.presenter handleCancelEvent];
+}
+
+- (void)didTapSaveForSubmitCell:(JPCardCustomizationSubmitCell *)cell {
+    [self.presenter handleSaveEvent];
 }
 
 @end

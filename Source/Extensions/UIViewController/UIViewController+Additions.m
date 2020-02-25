@@ -86,4 +86,10 @@
 - (void)keyboardWillHide:(NSNotification *)notification {
 }
 
+- (CGFloat)topBarHeight {
+    CGFloat statusBarHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    return statusBarHeight + navigationBarHeight;
+}
+
 @end

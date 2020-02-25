@@ -34,7 +34,8 @@
 
 #pragma mark - Constants
 
-const float kInputFieldVerticalPadding = 32.0f;
+const float kInputFieldTopPadding = 32.0f;
+const float kInputFieldBottomPadding = 16.0f;
 const float kInputFieldHorizontalPadding = 24.0f;
 const float kInputFieldHeight = 44.0f;
 
@@ -70,9 +71,9 @@ const float kInputFieldHeight = 44.0f;
 - (void)setupConstraints {
     NSArray *constraints = @[
         [self.inputField.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                  constant:kInputFieldVerticalPadding],
+                                                  constant:kInputFieldTopPadding],
         [self.inputField.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                     constant:-kInputFieldVerticalPadding],
+                                                     constant:-kInputFieldBottomPadding],
         [self.inputField.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
                                                       constant:kInputFieldHorizontalPadding],
         [self.inputField.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
