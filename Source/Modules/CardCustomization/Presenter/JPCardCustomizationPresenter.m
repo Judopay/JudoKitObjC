@@ -36,6 +36,7 @@
 @property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
 @property (nonatomic, strong) JPCardCustomizationPatternPickerModel *patternPickerModel;
 @property (nonatomic, strong) JPCardCustomizationTextInputModel *textInputModel;
+@property (nonatomic, strong) JPCardCustomizationIsDefaultModel *isDefaultModel;
 @end
 
 @implementation JPCardCustomizationPresenterImpl
@@ -48,6 +49,8 @@
     [self updateHeaderModelWithCardDetails:cardDetails];
     [self updateTextInputModelWithCardDetails:cardDetails];
     [self setSelectedPatternModelForCardDetails:cardDetails];
+
+    self.isDefaultModel.isDefault = cardDetails.isDefault;
 
     [self.view updateViewWithViewModels:self.viewModels
                 shouldPreserveResponder:self.shouldPreserveResponder];
@@ -100,6 +103,7 @@
         self.headerModel,
         self.patternPickerModel,
         self.textInputModel,
+        self.isDefaultModel,
     ];
 }
 
@@ -134,6 +138,14 @@
         _textInputModel.identifier = @"JPCardCustomizationTextInputCell";
     }
     return _textInputModel;
+}
+
+- (JPCardCustomizationIsDefaultModel *)isDefaultModel {
+    if (!_isDefaultModel) {
+        _isDefaultModel = [JPCardCustomizationIsDefaultModel new];
+        _isDefaultModel.identifier = @"JPCardCustomizationIsDefaultCell";
+    }
+    return _isDefaultModel;
 }
 
 - (NSArray *)defaultCardPatterns {

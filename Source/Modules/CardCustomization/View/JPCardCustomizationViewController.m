@@ -74,7 +74,7 @@ const int kMaxInputLength = 28;
         [self reloadOnlyCardHeaderCell];
         return;
     }
-    
+
     [self.cardCustomizationView.tableView reloadData];
 }
 
@@ -87,7 +87,7 @@ const int kMaxInputLength = 28;
 
 - (void)reloadOnlyCardHeaderCell {
     NSIndexPath *cardIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    [self.cardCustomizationView.tableView reloadRowsAtIndexPaths:@[cardIndexPath]
+    [self.cardCustomizationView.tableView reloadRowsAtIndexPaths:@[ cardIndexPath ]
                                                 withRowAnimation:UITableViewRowAnimationNone];
 }
 

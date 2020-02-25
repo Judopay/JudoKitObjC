@@ -104,3 +104,12 @@
 @property (nonatomic, strong) NSString *_Nullable text;
 
 @end
+
+@interface JPCardCustomizationIsDefaultModel : JPCardCustomizationViewModel
+
+/**
+ * A boolean property that, if set to YES, describes the card as the default one
+ */
+@property (nonatomic, assign) BOOL isDefault;
+
+@end
