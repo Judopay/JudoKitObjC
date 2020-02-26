@@ -53,20 +53,11 @@ class MainViewController: UITableViewController {
         return JPAmount("0.01", currency: settings.currency.rawValue)
     }
 
-    var testPaymentApplePayConfiguration: ApplePayConfiguration {
-        return applePayConfiguration(with: .payment, currency: settings.currency.rawValue)
-    }
-
-    var testPreAuthApplePayConfiguration: ApplePayConfiguration {
-        return applePayConfiguration(with: .preAuth, currency: settings.currency.rawValue)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = false
 
-        judoKit.apiSession.sandboxed = true
-        judoKit.theme.showSecurityMessage = true
+        judoKit?.isSandboxed = true
     }
 
     // MARK: Table view datasource
@@ -136,118 +127,43 @@ class MainViewController: UITableViewController {
 
     // MARK: Actions
     @objc func pay() {
-        judoKit.invokePayment(judoId,
-                              amount: testAmount,
-                              consumerReference: self.consumerReference,
-                              cardDetails: nil) { [weak self] response, error in
-                                self?.transactionData = self?.handle(response, error: error)
-        }
+        
     }
 
     @objc func preAuth() {
-        judoKit.invokePreAuth(judoId,
-                              amount: testAmount,
-                              consumerReference: self.consumerReference,
-                              cardDetails: nil) { [weak self] response, error in
-                                self?.transactionData = self?.handle(response, error: error)
-        }
+        
     }
 
     @objc func createCardToken() {
-        judoKit.invokeRegisterCard(judoId,
-                                   consumerReference: self.consumerReference,
-                                   cardDetails: nil) { [weak self] response, error in
-                                    self?.transactionData = self?.handle(response, error: error)
-        }
+        
     }
 
     @objc func saveCard() {
-        judoKit.invokeSaveCard(judoId,
-                               consumerReference: self.consumerReference,
-                               cardDetails: nil) { [weak self] response, error in
-                                self?.transactionData = self?.handle(response, error: error)
-        }
+        
     }
 
     @objc func repeatPayment() {
-        guard let cardDetails = transactionData?.cardDetails, let paymentToken = transactionData?.paymentToken else {
-            presentAlert(with: "Error",
-                         message: "Before you can make a pre-auth request, you need to register or save a card")
-            return
-        }
 
-        judoKit.invokeTokenPayment(judoId,
-                                   amount: testAmount,
-                                   consumerReference: self.consumerReference,
-                                   cardDetails: cardDetails,
-                                   paymentToken: paymentToken) { [weak self] response, error in
-                                    self?.transactionData = self?.handle(response, error: error)
-        }
     }
 
     @objc func tokenPreAuth() {
-        guard let cardDetails = transactionData?.cardDetails, let paymentToken = transactionData?.paymentToken else {
-            presentAlert(with: "Error",
-                         message: "Before you can make a pre-auth request, you need to register or save a card")
-            return
-        }
-
-        judoKit.invokeTokenPreAuth(judoId,
-                                   amount: testAmount,
-                                   consumerReference: self.consumerReference,
-                                   cardDetails: cardDetails,
-                                   paymentToken: paymentToken) { [weak self] response, error in
-                                    self?.transactionData = self?.handle(response, error: error)
-        }
+        
     }
 
     @objc func applePayPayment() {
-        judoKit.invokeApplePay(with: testPaymentApplePayConfiguration) { [weak self] response, error in
-            self?.transactionData = self?.handle(response, error: error)
-        }
+
     }
 
     @objc func applePayPreAuth() {
-        judoKit.invokeApplePay(with: testPreAuthApplePayConfiguration) { [weak self] response, error in
-            self?.transactionData = self?.handle(response, error: error)
-        }
+
     }
 
     @objc func navigateToPaymentMethods() {
-        judoKit.invokePayment(judoId,
-                              amount: testAmount,
-                              consumerReference: self.consumerReference,
-                              paymentMethods: .methodsAll,
-                              applePayConfiguratation: testPaymentApplePayConfiguration,
-                              cardDetails: nil) { [weak self] response, error in
-                                self?.transactionData = self?.handle(response, error: error)
-        }
+
     }
 
     @objc func navigateToStandaloneApplePayButton() {
         performSegue(withIdentifier: "toStandaloneApplePay", sender: self)
-    }
-
-    // MARK: Helpers
-    func applePayConfiguration(with transactionType: TransactionType, currency: String) -> ApplePayConfiguration {
-        let items = [
-            PaymentSummaryItem(label: "Item 1", amount: 0.01),
-            PaymentSummaryItem(label: "Item 2", amount: 0.02),
-            PaymentSummaryItem(label: "Item 3", amount: 0.03)
-        ]
-
-        let configuration = ApplePayConfiguration(judoId: judoId,
-                                                  reference: "judopay-sample-app",
-                                                  merchantId: merchantId,
-                                                  currency: currency,
-                                                  countryCode: "GB",
-                                                  paymentSummaryItems: items)
-        configuration.transactionType = transactionType
-        configuration.requiredShippingContactFields = .all
-        configuration.requiredBillingContactFields = .all
-        configuration.returnedContactInfo = .all
-
-        return configuration
     }
 
     func handle(_ response: JPResponse?, error: Error?) -> JPTransactionData? {

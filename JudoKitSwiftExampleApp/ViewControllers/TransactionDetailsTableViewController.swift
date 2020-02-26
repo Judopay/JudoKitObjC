@@ -129,7 +129,7 @@ class TransactionDetailsTableViewController: UITableViewController {
         return data
     }
 
-    private func contactDetailsRows(from contact: ContactInformation) -> [DetailsTableViewRow] {
+    private func contactDetailsRows(from contact: JPContactInformation) -> [DetailsTableViewRow] {
         var nameComponents: [String] = []
         var addressComponents: [String] = []
 

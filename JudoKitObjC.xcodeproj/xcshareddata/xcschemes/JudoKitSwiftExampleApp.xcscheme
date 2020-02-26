@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44E21C802355F79000A7DC66"
+               BlueprintIdentifier = "305836B82406779500B61167"
                BuildableName = "JudoKitSwiftExampleApp.app"
                BlueprintName = "JudoKitSwiftExampleApp"
                ReferencedContainer = "container:JudoKitObjC.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "44E21C802355F79000A7DC66"
+            BlueprintIdentifier = "305836B82406779500B61167"
             BuildableName = "JudoKitSwiftExampleApp.app"
             BlueprintName = "JudoKitSwiftExampleApp"
             ReferencedContainer = "container:JudoKitObjC.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "44E21C802355F79000A7DC66"
+            BlueprintIdentifier = "305836B82406779500B61167"
             BuildableName = "JudoKitSwiftExampleApp.app"
             BlueprintName = "JudoKitSwiftExampleApp"
             ReferencedContainer = "container:JudoKitObjC.xcodeproj">
