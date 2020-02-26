@@ -34,6 +34,7 @@
 
 @interface JPCardPaymentMethodView ()
 
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *logoImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *expiryDateLabel;
@@ -85,10 +86,11 @@
                                                            stylizedPattern,
                                                            cardLastFour];
 
-    self.logoImageView.image = [UIImage imageForCardNetwork:cardNetwork];
+    self.logoImageView.image = [UIImage headerImageForCardNetwork:cardNetwork];
 
     JPCardPattern *pattern = [JPCardPattern patternWithType:patternType];
     self.backgroundColor = pattern.color;
+    self.backgroundImageView.image = pattern.image;
 }
 
 - (void)configureExpirationStatus:(CardExpirationStatus)expirationStatus {
@@ -101,6 +103,9 @@
 
 - (void)setupViews {
 
+    [self addSubview:self.backgroundImageView];
+    [self.backgroundImageView pinToView:self withPadding:0.0];
+    
     UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0];
     [bottomStackView addArrangedSubview:self.cardNumberLabel];
     [bottomStackView addArrangedSubview:self.expiryDateLabel];
@@ -126,7 +131,8 @@
 }
 
 - (void)setCardAsExpired {
-    self.backgroundColor = UIColor.jpGrayColor;
+    self.backgroundColor = UIColor.jpDarkGrayColor;
+    self.backgroundImageView.image = self.backgroundImageView.image.grayscaled;
     self.expiryDateLabel.textColor = UIColor.jpRedColor;
     self.expiryDateLabel.numberOfLines = 2;
     NSDictionary *attrDict = @{NSFontAttributeName : UIFont.caption};
@@ -137,6 +143,15 @@
     self.expiryDateLabel.attributedText = expiredText;
 }
 #pragma mark - Lazy Properties
+
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        _backgroundImageView = [UIImageView new];
+        _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _backgroundImageView;
+}
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
@@ -172,6 +187,9 @@
 - (UIImageView *)logoImageView {
     if (!_logoImageView) {
         _logoImageView = [UIImageView new];
+        _logoImageView.layer.shadowColor = UIColor.blackColor.CGColor;
+        _logoImageView.layer.shadowOpacity = 0.1;
+        _logoImageView.layer.shadowOffset = CGSizeMake(0, 2);
         _logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
