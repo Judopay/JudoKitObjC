@@ -85,7 +85,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 }
 
 - (void)preAuthOperation {
-    [self.judoKitSession invokeTransactionWithType:TransactionTypePayment
+    [self.judoKitSession invokeTransactionWithType:TransactionTypePreAuth
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
         [self handleResponse:response];
@@ -93,7 +93,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 }
 
 - (void)createCardTokenOperation {
-    [self.judoKitSession invokeTransactionWithType:TransactionTypePayment
+    [self.judoKitSession invokeTransactionWithType:TransactionTypeRegisterCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
         [self handleResponse:response];
@@ -101,7 +101,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 }
 
 - (void)checkCardOperation {
-    [self.judoKitSession invokeTransactionWithType:TransactionTypePayment
+    [self.judoKitSession invokeTransactionWithType:TransactionTypeCheckCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
         [self handleResponse:response];
@@ -109,7 +109,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 }
 
 - (void)saveCardOperation {
-    [self.judoKitSession invokeTransactionWithType:TransactionTypePayment
+    [self.judoKitSession invokeTransactionWithType:TransactionTypeSaveCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
         [self handleResponse:response];

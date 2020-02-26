@@ -316,6 +316,12 @@
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
+		82007FBE24067AA1001CBA41 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
+		82007FBF24067AA1001CBA41 /* TrustKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82007FC024067B38001CBA41 /* PayCardsRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; };
+		82007FC124067B38001CBA41 /* PayCardsRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82007FC224067B46001CBA41 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
+		82007FC324067B46001CBA41 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		827AF51923FFD294009ECC9C /* JPPaymentMethodsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50D23FFD257009ECC9C /* JPPaymentMethodsTest.swift */; };
 		827AF51A23FFD299009ECC9C /* JPPaymentMethodsViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50A23FFD257009ECC9C /* JPPaymentMethodsViewControllerMock.swift */; };
 		827AF51B23FFD299009ECC9C /* JPPaymentMethodsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */; };
@@ -433,6 +439,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				82007FBF24067AA1001CBA41 /* TrustKit.framework in Embed Frameworks */,
+				82007FC124067B38001CBA41 /* PayCardsRecognizer.framework in Embed Frameworks */,
+				82007FC324067B46001CBA41 /* DeviceDNA.framework in Embed Frameworks */,
 				3058371C240678B700B61167 /* JudoKitObjC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -799,6 +808,7 @@
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
+		82007FB624067A80001CBA41 /* PayCardsRecognizerExample.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = PayCardsRecognizerExample.xcworkspace; path = PayCardsRecognizer/PayCardsRecognizerExample.xcworkspace; sourceTree = "<group>"; };
 		827AF50A23FFD257009ECC9C /* JPPaymentMethodsViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsViewControllerMock.swift; sourceTree = "<group>"; };
 		827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsInteractorMock.swift; sourceTree = "<group>"; };
 		827AF50D23FFD257009ECC9C /* JPPaymentMethodsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsTest.swift; sourceTree = "<group>"; };
@@ -816,6 +826,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82007FBE24067AA1001CBA41 /* TrustKit.framework in Frameworks */,
+				82007FC024067B38001CBA41 /* PayCardsRecognizer.framework in Frameworks */,
+				82007FC224067B46001CBA41 /* DeviceDNA.framework in Frameworks */,
 				3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -877,6 +890,7 @@
 		15779454211085A9007BD3E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82007FB624067A80001CBA41 /* PayCardsRecognizerExample.xcworkspace */,
 				52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -2047,7 +2061,6 @@
 		3B678B4C1C6CE5190001DC2F = {
 			isa = PBXGroup;
 			children = (
-				305836D4240677B000B61167 /* JudoKitSwiftExampleApp */,
 				BB43039323F1646400023736 /* PayCardsRecognizer.framework */,
 				701050B91E1E90D70001ED87 /* DeviceDNA */,
 				15779454211085A9007BD3E1 /* Frameworks */,
@@ -2057,6 +2070,7 @@
 				3B678B641C6CE5190001DC2F /* Tests */,
 				3B4EB3B61C981EA7006265A0 /* UITests */,
 				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
+				305836D4240677B000B61167 /* JudoKitSwiftExampleApp */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				3000736423FBEC590099F3C5 /* Recovered References */,
 			);
@@ -3109,6 +3123,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95V535S6TQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
+					"$(PROJECT_DIR)/DeviceDNA/Framework",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -3137,6 +3156,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95V535S6TQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
+					"$(PROJECT_DIR)/DeviceDNA/Framework",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
