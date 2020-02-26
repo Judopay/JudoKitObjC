@@ -54,8 +54,9 @@ class MainViewController: UITableViewController {
     }
     
     var configuration: JPConfiguration {
-        let configuration: JPConfiguration(judoID: judoId, amount: amount, reference: reference)
-        configuration.supportedCardNetworks = CardNetworkVisa | CardNetworkMasterCard | CardNetworkAMEX;
+        let configuration = JPConfiguration(judoID: judoId, amount: amount, reference: reference)
+        configuration.supportedCardNetworks = [.networkVisa, .networkMasterCard, .networkAMEX]
+        return configuration
     }
     
     var applePayConfigurations: JPApplePayConfiguration {

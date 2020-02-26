@@ -31,7 +31,7 @@
 /**
  * A method which pops the presented view controller from the navigation stack and returns the user to the Payment Method screen
  */
-- (void)popViewController;
+- (void)navigateBack;
 
 @end
 
