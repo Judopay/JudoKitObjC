@@ -40,11 +40,11 @@
 
 #pragma mark - Constants
 
-const float kStackViewSpacing = 4.0f;
-const float kStackViewVerticalPadding = 0.0f;
-const float kStackViewHorizontalPadding = 24.0f;
-const float kStackViewHeight = 23.0f;
-const float kCheckmarkImageWidth = 23.0f;
+const float kIsDefaultStackViewSpacing = 8.0f;
+const float kIsDefaultStackViewVerticalPadding = 0.0f;
+const float kIsDefaultStackViewHorizontalPadding = 24.0f;
+const float kIsDefaultStackViewHeight = 23.0f;
+const float kIsDefaultCheckmarkImageWidth = 23.0f;
 
 #pragma mark - Initializers
 
@@ -64,7 +64,7 @@ const float kCheckmarkImageWidth = 23.0f;
         isDefaultModel = (JPCardCustomizationIsDefaultModel *)viewModel;
 
         NSString *iconName = isDefaultModel.isDefault ? @"radio-on" : @"radio-off";
-        self.imageView.image = [UIImage imageWithIconName:iconName];
+        self.checkmarkImageView.image = [UIImage imageWithIconName:iconName];
     }
 }
 
@@ -81,15 +81,15 @@ const float kCheckmarkImageWidth = 23.0f;
 - (void)setupConstraints {
     NSArray *constraints = @[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                 constant:kStackViewVerticalPadding],
+                                                 constant:kIsDefaultStackViewVerticalPadding],
         [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                    constant:-kStackViewVerticalPadding],
+                                                    constant:-kIsDefaultStackViewVerticalPadding],
         [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                     constant:kStackViewHorizontalPadding],
+                                                     constant:kIsDefaultStackViewHorizontalPadding],
         [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                      constant:-kStackViewHorizontalPadding],
-        [self.stackView.heightAnchor constraintEqualToConstant:kStackViewHeight],
-        [self.checkmarkImageView.widthAnchor constraintEqualToConstant:kCheckmarkImageWidth],
+                                                      constant:-kIsDefaultStackViewHorizontalPadding],
+        [self.stackView.heightAnchor constraintEqualToConstant:kIsDefaultStackViewHeight],
+        [self.checkmarkImageView.widthAnchor constraintEqualToConstant:kIsDefaultCheckmarkImageWidth],
     ];
     [NSLayoutConstraint activateConstraints:constraints];
 }
@@ -98,7 +98,7 @@ const float kCheckmarkImageWidth = 23.0f;
 
 - (UIStackView *)stackView {
     if (!_stackView) {
-        _stackView = [UIStackView horizontalStackViewWithSpacing:kStackViewSpacing];
+        _stackView = [UIStackView horizontalStackViewWithSpacing:kIsDefaultStackViewSpacing];
         _stackView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _stackView;

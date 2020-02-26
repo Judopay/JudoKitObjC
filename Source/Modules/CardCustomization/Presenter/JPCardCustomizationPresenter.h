@@ -54,6 +54,18 @@
  */
 - (void)handleCardInputFieldChangeWithInput:(NSString *)input;
 
+/**
+ * A method that is triggered once the 'Cancel' button is tapped by a user.
+ * This method dismisses the Card Customization screen without applying any changes.
+ */
+- (void)handleCancelEvent;
+
+/**
+ * A method that is triggered once the 'Save' button is tapped by a user.
+ * This method saves the applied changes in the keychain and dismisses the Card Customization screen.
+ */
+- (void)handleSaveEvent;
+
 @end
 
 @interface JPCardCustomizationPresenterImpl : NSObject <JPCardCustomizationPresenter>

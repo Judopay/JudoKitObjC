@@ -113,3 +113,12 @@
 @property (nonatomic, assign) BOOL isDefault;
 
 @end
+
+@interface JPCardCustomizationSubmitModel : JPCardCustomizationViewModel
+
+/**
+ * A boolean property that, if set to YES, enables the Save button on the Card Customization screen
+ */
+@property (nonatomic, assign) BOOL isSaveEnabled;
+
+@end

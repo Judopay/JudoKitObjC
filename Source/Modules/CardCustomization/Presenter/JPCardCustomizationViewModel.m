@@ -51,3 +51,7 @@
 @implementation JPCardCustomizationIsDefaultModel
 
 @end
+
+@implementation JPCardCustomizationSubmitModel
+
+@end

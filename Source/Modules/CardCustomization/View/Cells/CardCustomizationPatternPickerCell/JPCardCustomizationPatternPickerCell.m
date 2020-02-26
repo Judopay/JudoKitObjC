@@ -38,9 +38,9 @@
 
 #pragma mark - Constants
 
-const float kSelectedCellSize = 50.0f;
-const float kUnselectedCellSize = 36.0f;
-const float kCollectionViewPadding = 24.0f;
+const float kPatternSelectedCellSize = 50.0f;
+const float kPatternUnselectedCellSize = 36.0f;
+const float kPatternCollectionViewPadding = 24.0f;
 
 #pragma mark - Initializers
 
@@ -75,7 +75,7 @@ const float kCollectionViewPadding = 24.0f;
     ];
 
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
-    [self.collectionView.heightAnchor constraintEqualToConstant:kSelectedCellSize].active = YES;
+    [self.collectionView.heightAnchor constraintEqualToConstant:kPatternSelectedCellSize].active = YES;
 }
 
 #pragma mark - Lazy properties
@@ -89,7 +89,7 @@ const float kCollectionViewPadding = 24.0f;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(0, kCollectionViewPadding, 0, kCollectionViewPadding);
+        _collectionView.contentInset = UIEdgeInsetsMake(0, kPatternCollectionViewPadding, 0, kPatternCollectionViewPadding);
         [_collectionView registerClass:JPCardCustomizationPatternCell.class
             forCellWithReuseIdentifier:JPCardCustomizationPatternCell.cellIdentifier];
     }
@@ -141,8 +141,8 @@ const float kCollectionViewPadding = 24.0f;
                     layout:(UICollectionViewLayout *)collectionViewLayout
     sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     JPCardCustomizationPatternModel *pattern = self.patternPickerModel.patternModels[indexPath.row];
-    CGSize selectedCellSize = CGSizeMake(kSelectedCellSize, kSelectedCellSize);
-    CGSize unselectedCellSize = CGSizeMake(kUnselectedCellSize, kUnselectedCellSize);
+    CGSize selectedCellSize = CGSizeMake(kPatternSelectedCellSize, kPatternSelectedCellSize);
+    CGSize unselectedCellSize = CGSizeMake(kPatternUnselectedCellSize, kPatternUnselectedCellSize);
     return pattern.isSelected ? selectedCellSize : unselectedCellSize;
 }
 

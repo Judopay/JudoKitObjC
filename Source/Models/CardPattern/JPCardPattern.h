@@ -24,8 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, JPCardPatternType) {
-    JPCardPatternTypeBlack,
+typedef NS_ENUM(NSUInteger, JPCardPatternType) {
+    JPCardPatternTypeBlack = 1,
     JPCardPatternTypeBlue,
     JPCardPatternTypeGreen,
     JPCardPatternTypeRed,
