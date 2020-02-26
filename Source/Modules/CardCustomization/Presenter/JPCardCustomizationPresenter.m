@@ -32,67 +32,104 @@
 
 @interface JPCardCustomizationPresenterImpl ()
 @property (nonatomic, assign) BOOL shouldPreserveResponder;
+@property (nonatomic, assign) JPCardPatternType selectedPatternType;
+@property (nonatomic, strong) NSString *selectedCardTitle;
 @property (nonatomic, strong) JPCardCustomizationTitleModel *titleModel;
 @property (nonatomic, strong) JPCardCustomizationHeaderModel *headerModel;
 @property (nonatomic, strong) JPCardCustomizationPatternPickerModel *patternPickerModel;
 @property (nonatomic, strong) JPCardCustomizationTextInputModel *textInputModel;
+@property (nonatomic, strong) JPCardCustomizationIsDefaultModel *isDefaultModel;
+@property (nonatomic, strong) JPCardCustomizationSubmitModel *submitModel;
 @end
 
 @implementation JPCardCustomizationPresenterImpl
+
+#pragma mark - Protocol methods
 
 - (void)prepareViewModel {
     JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
 
     self.titleModel.title = @"customize_card".localized;
+    self.textInputModel.text = self.selectedCardTitle;
+    self.isDefaultModel.isDefault = cardDetails.isDefault;
+    self.submitModel.isSaveEnabled = self.isSaveButtonEnabled;
 
     [self updateHeaderModelWithCardDetails:cardDetails];
-    [self updateTextInputModelWithCardDetails:cardDetails];
-    [self setSelectedPatternModelForCardDetails:cardDetails];
+    [self setSelectedPatternModelForPatternType:self.selectedPatternType];
 
     [self.view updateViewWithViewModels:self.viewModels
                 shouldPreserveResponder:self.shouldPreserveResponder];
 }
 
 - (void)handleBackButtonTap {
-    [self.router popViewController];
+    [self.router navigateBack];
 }
 
 - (void)handlePatternSelectionWithType:(JPCardPatternType)type {
     self.shouldPreserveResponder = NO;
-    [self.interactor updateStoredCardPatternWithType:type];
+    self.selectedPatternType = type;
     [self prepareViewModel];
 }
 
 - (void)handleCardInputFieldChangeWithInput:(NSString *)input {
-    [self.interactor updateStoredCardTitleWithInput:input];
     self.shouldPreserveResponder = YES;
+    self.selectedCardTitle = input;
     [self prepareViewModel];
+}
+
+- (void)handleCancelEvent {
+    [self.router navigateBack];
+}
+
+- (void)handleSaveEvent {
+    [self.interactor updateStoredCardTitleWithInput:self.selectedCardTitle];
+    [self.interactor updateStoredCardPatternWithType:self.selectedPatternType];
+    [self.router navigateBack];
 }
 
 #pragma mark - Helper methods
 
 - (void)updateHeaderModelWithCardDetails:(JPStoredCardDetails *)cardDetails {
-    self.headerModel.cardTitle = cardDetails.cardTitle;
     self.headerModel.cardLastFour = cardDetails.cardLastFour;
     self.headerModel.cardExpiryDate = cardDetails.expiryDate;
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
-    self.headerModel.cardPatternType = cardDetails.patternType;
+    self.headerModel.cardTitle = self.selectedCardTitle;
+    self.headerModel.cardPatternType = self.selectedPatternType;
 }
 
-- (void)updateTextInputModelWithCardDetails:(JPStoredCardDetails *)cardDetails {
-    self.textInputModel.text = cardDetails.cardTitle;
-}
-
-- (void)setSelectedPatternModelForCardDetails:(JPStoredCardDetails *)cardDetails {
+- (void)setSelectedPatternModelForPatternType:(JPCardPatternType)type {
     for (JPCardCustomizationPatternModel *model in self.patternPickerModel.patternModels) {
         model.isSelected = NO;
-        if (model.pattern.type == cardDetails.patternType) {
+        if (model.pattern.type == type) {
             model.isSelected = YES;
         }
     }
 }
 
+- (BOOL)isSaveButtonEnabled {
+    JPStoredCardDetails *cardDetails = self.interactor.cardDetails;
+    BOOL isSameTitle = ([self.selectedCardTitle isEqualToString:cardDetails.cardTitle]);
+    BOOL isSamePattern = (self.selectedPatternType == cardDetails.patternType);
+    BOOL isTitleEmpty = (self.selectedCardTitle.length == 0);
+
+    return !isTitleEmpty && (!isSameTitle || !isSamePattern);
+}
+
 #pragma mark - Lazy properties
+
+- (JPCardPatternType)selectedPatternType {
+    if (!_selectedPatternType) {
+        _selectedPatternType = self.interactor.cardDetails.patternType;
+    }
+    return _selectedPatternType;
+}
+
+- (NSString *)selectedCardTitle {
+    if (!_selectedCardTitle) {
+        _selectedCardTitle = self.interactor.cardDetails.cardTitle;
+    }
+    return _selectedCardTitle;
+}
 
 - (NSArray *)viewModels {
     return @[
@@ -100,6 +137,8 @@
         self.headerModel,
         self.patternPickerModel,
         self.textInputModel,
+        self.isDefaultModel,
+        self.submitModel
     ];
 }
 
@@ -134,6 +173,22 @@
         _textInputModel.identifier = @"JPCardCustomizationTextInputCell";
     }
     return _textInputModel;
+}
+
+- (JPCardCustomizationIsDefaultModel *)isDefaultModel {
+    if (!_isDefaultModel) {
+        _isDefaultModel = [JPCardCustomizationIsDefaultModel new];
+        _isDefaultModel.identifier = @"JPCardCustomizationIsDefaultCell";
+    }
+    return _isDefaultModel;
+}
+
+- (JPCardCustomizationSubmitModel *)submitModel {
+    if (!_submitModel) {
+        _submitModel = [JPCardCustomizationSubmitModel new];
+        _submitModel.identifier = @"JPCardCustomizationSubmitCell";
+    }
+    return _submitModel;
 }
 
 - (NSArray *)defaultCardPatterns {

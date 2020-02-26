@@ -36,6 +36,13 @@
     return [UIImage imageNamed:resourceName inBundle:NSBundle.resourcesBundle compatibleWithTraitCollection:nil];
 }
 
++ (UIImage *)headerImageForCardNetwork:(CardNetwork)network {
+    if (network == CardNetworkVisa) {
+        return [UIImage imageWithIconName:@"card-visa-white"];
+    }
+    return [UIImage imageForCardNetwork:network];
+}
+
 + (UIImage *)imageForCardNetwork:(CardNetwork)network {
     switch (network) {
         case CardNetworkAMEX:
@@ -57,6 +64,16 @@
         default:
             return nil;
     }
+}
+
+- (UIImage *)grayscaled {
+    CIContext *context = [CIContext new];
+    CIFilter *currentFilter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
+    CIImage *image = [[CIImage alloc] initWithImage:self];
+    [currentFilter setValue:image forKey:kCIInputImageKey];
+    CIImage *outputImage = currentFilter.outputImage;
+    CGImageRef imageRef = [context createCGImage:outputImage fromRect:outputImage.extent];
+    return [UIImage imageWithCGImage:imageRef];
 }
 
 @end

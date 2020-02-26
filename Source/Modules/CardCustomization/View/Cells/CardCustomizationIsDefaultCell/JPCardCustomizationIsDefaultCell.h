@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.h
+//  JPCardCustomizationIsDefaultCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,24 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPCardCustomizationCell.h"
 
-@class JPCardCustomizationViewController;
-
-@protocol JPCardCustomizationRouter
-
-/**
- * A method which pops the presented view controller from the navigation stack and returns the user to the Payment Method screen
- */
-- (void)navigateBack;
-
-@end
-
-@interface JPCardCustomizationRouterImpl : NSObject <JPCardCustomizationRouter>
-
-/**
- * A weak reference to the JPCardCustomizationViewControllerImpl instance
- */
-@property (nonatomic, weak) JPCardCustomizationViewController *viewController;
+@interface JPCardCustomizationIsDefaultCell : JPCardCustomizationCell
 
 @end

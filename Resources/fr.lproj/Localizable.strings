@@ -180,3 +180,5 @@
 "default_chinaunionpay_card_title" = "My China Union Pay Card";
 "default_discover_card_title" = "My Discover Card";
 "default_dinnersclub_card_title" = "My Dinners Club Card";
+"save_as_default" = "Save as default payment method";
+"save" = "Save";

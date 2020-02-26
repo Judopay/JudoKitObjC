@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.h
+//  JPCardCustomizationSubmitCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,24 +22,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPCardCustomizationCell.h"
 
-@class JPCardCustomizationViewController;
+@class JPCardCustomizationSubmitCell;
 
-@protocol JPCardCustomizationRouter
+@protocol JPCardCustomizationSubmitCellDelegate
 
 /**
- * A method which pops the presented view controller from the navigation stack and returns the user to the Payment Method screen
+ * A method that is triggered once the user taps `Save` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
  */
-- (void)navigateBack;
+- (void)didTapSaveForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
+
+/**
+ * A method that is triggered once the user taps `Cancel` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
+ */
+- (void)didTapCancelForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
 
 @end
 
-@interface JPCardCustomizationRouterImpl : NSObject <JPCardCustomizationRouter>
+@interface JPCardCustomizationSubmitCell : JPCardCustomizationCell
 
 /**
- * A weak reference to the JPCardCustomizationViewControllerImpl instance
+ * A weak reference to the object that adopts the JPCardCustomizationSubmitCellDelegate protocol
  */
-@property (nonatomic, weak) JPCardCustomizationViewController *viewController;
+@property (nonatomic, weak) id<JPCardCustomizationSubmitCellDelegate> _Nullable delegate;
 
 @end

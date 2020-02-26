@@ -46,12 +46,12 @@
 
 #pragma mark - Constants
 
-const float kHorizontalPadding = 24.0f;
-const float kVerticalPadding = 13.0f;
-const float kIconHeight = 36.0f;
-const float kIconWidth = 52.0f;
-const float kDefaultPadding = 8.0f;
-const float kSmallPadding = 3.0f;
+const float kCardHorizontalPadding = 24.0f;
+const float kCardVerticalPadding = 13.0f;
+const float kCardIconHeight = 36.0f;
+const float kCardIconWidth = 52.0f;
+const float kCardDefaultPadding = 8.0f;
+const float kCardSmallPadding = 3.0f;
 
 #pragma mark - Initializers
 
@@ -108,7 +108,7 @@ const float kSmallPadding = 3.0f;
     UIImage *accesoryImage = [UIImage imageWithIconName:iconName];
     UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:accesoryImage];
     accessoryImageView.contentMode = UIViewContentModeScaleAspectFit;
-    accessoryImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
+    accessoryImageView.frame = CGRectMake(0, 0, kCardHorizontalPadding, kCardHorizontalPadding);
     self.accessoryView = accessoryImageView;
 
     [self setSubtitleExpirationStatus:cardModel.cardExpirationStatus];
@@ -125,17 +125,17 @@ const float kSmallPadding = 3.0f;
 
 - (void)setupIconView {
     [self.iconContainerView addSubview:self.iconImageView];
-    [self.iconImageView pinToView:self.iconContainerView withPadding:kDefaultPadding];
+    [self.iconImageView pinToView:self.iconContainerView withPadding:kCardDefaultPadding];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.iconContainerView.heightAnchor constraintEqualToConstant:kIconHeight],
-        [self.iconContainerView.widthAnchor constraintEqualToConstant:kIconWidth],
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:kCardIconHeight],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:kCardIconWidth],
     ]];
 }
 
 - (void)setupStackView {
-    UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:kDefaultPadding];
-    UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:kSmallPadding];
+    UIStackView *horizontalStackView = [UIStackView horizontalStackViewWithSpacing:kCardDefaultPadding];
+    UIStackView *verticalStackView = [UIStackView verticalStackViewWithSpacing:kCardSmallPadding];
 
     [verticalStackView addArrangedSubview:self.titleLabel];
     [verticalStackView addArrangedSubview:self.subtitleLabel];
@@ -147,13 +147,13 @@ const float kSmallPadding = 3.0f;
 
     NSArray *constraints = @[
         [horizontalStackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
-                                                      constant:kVerticalPadding],
+                                                      constant:kCardVerticalPadding],
         [horizontalStackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                         constant:-kVerticalPadding],
+                                                         constant:-kCardVerticalPadding],
         [horizontalStackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
-                                                          constant:kHorizontalPadding],
+                                                          constant:kCardHorizontalPadding],
         [horizontalStackView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                                           constant:-kHorizontalPadding]
+                                                           constant:-kCardHorizontalPadding]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
@@ -163,7 +163,7 @@ const float kSmallPadding = 3.0f;
     UIImage *disclosureIcon = [UIImage imageWithIconName:@"disclosure-icon"];
     UIImageView *disclosureImageView = [[UIImageView alloc] initWithImage:disclosureIcon];
     disclosureImageView.contentMode = UIViewContentModeScaleAspectFit;
-    disclosureImageView.frame = CGRectMake(0, 0, kHorizontalPadding, kHorizontalPadding);
+    disclosureImageView.frame = CGRectMake(0, 0, kCardHorizontalPadding, kCardHorizontalPadding);
     self.editingAccessoryView = disclosureImageView;
 }
 

@@ -102,7 +102,7 @@
                   atIndex:(NSUInteger)index {
     [self deleteCardWithIndex:index];
     [self insertCardDetails:cardDetails atIndex:index];
-}	
+}
 
 - (void)setCardAsSelectedAtIndex:(NSUInteger)index {
     for (JPStoredCardDetails *storedCard in self.storedCards) {

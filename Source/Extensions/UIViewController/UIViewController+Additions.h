@@ -88,4 +88,9 @@
  */
 - (void)keyboardWillHide:(nonnull NSNotification *)notification;
 
+/**
+ * A method that returns the combined height of the status view and the navigation bar
+ */
+- (CGFloat)topBarHeight;
+
 @end

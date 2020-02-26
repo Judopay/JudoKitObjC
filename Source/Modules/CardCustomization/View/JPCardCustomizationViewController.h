@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationPatternPickerCell.h"
+#import "JPCardCustomizationSubmitCell.h"
 #import "JPInputField.h"
 #import <UIKit/UIKit.h>
 
@@ -66,4 +67,7 @@
 @end
 
 @interface JPCardCustomizationViewController (TextInputDelegate) <JPInputFieldDelegate>
+@end
+
+@interface JPCardCustomizationViewController (SubmitDelegate) <JPCardCustomizationSubmitCellDelegate>
 @end

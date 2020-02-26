@@ -58,7 +58,19 @@
 
 @implementation JPPaymentMethodsHeaderView
 
-static const CGFloat bottomHeight = 86.0f;
+#pragma mark - Constants
+
+const float kHeaderPayButtonCornerRadius = 4.0f;
+const float kHeaderBottomHeight = 86.0f;
+const float kHeaderAmountLabelMinScaleFactor = 0.5f;
+const float kHeaderDefaultStackViewSpacing = 0.0f;
+const float kHeaderDefaultPadding = 0.0f;
+const float kHeaderGradientClearColorLocation = 0.0f;
+const float kHeaderGradientWhiteColorLocation = 0.3f;
+const float kHeaderPaymentStackViewHorizontalPadding = 24.0f;
+const float kHeaderPaymentStackViewVerticalPadding = 20.0f;
+const float kHeaderPaymentButtonHeight = 200.0f;
+const float kHeaderEmptyHeaderViewYOffset = 100.0f;
 
 #pragma mark - Initializers
 
@@ -117,12 +129,12 @@ static const CGFloat bottomHeight = 86.0f;
         self.applePayButton = [self applePayButtonWithType:type];
 
         [self.paymentStackView addArrangedSubview:self.applePayButton];
-        [self.applePayButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
+        [self.applePayButton.widthAnchor constraintEqualToConstant:kHeaderPaymentButtonHeight * getWidthAspectRatio()].active = YES;
         return;
     }
 
     [self.paymentStackView addArrangedSubview:self.payButton];
-    [self.payButton.widthAnchor constraintEqualToConstant:200.0].active = YES;
+    [self.payButton.widthAnchor constraintEqualToConstant:kHeaderPaymentButtonHeight * getWidthAspectRatio()].active = YES;
     [self.payButton configureWithViewModel:viewModel.payButtonModel];
 }
 
@@ -135,7 +147,7 @@ static const CGFloat bottomHeight = 86.0f;
 #pragma mark - Helper methods
 
 - (void)removePreviousTopHeader {
-    self.emptyHeaderView.transform = CGAffineTransformMakeTranslation(0, 100);
+    self.emptyHeaderView.transform = CGAffineTransformMakeTranslation(0, kHeaderEmptyHeaderViewYOffset);
     self.emptyHeaderView.alpha = 0.0;
     self.backgroundImageView.alpha = 0.0;
 
@@ -145,7 +157,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (void)displayEmptyHeaderView {
     [self.topView addSubview:self.emptyHeaderView];
-    [self.emptyHeaderView pinToView:self.topView withPadding:0.0];
+    [self.emptyHeaderView pinToView:self.topView withPadding:kHeaderDefaultPadding];
     [UIView animateWithDuration:0.5
                      animations:^{
                          self.emptyHeaderView.transform = CGAffineTransformIdentity;
@@ -156,7 +168,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (void)displayCardHeaderViewWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     [self.topView addSubview:self.cardHeaderView];
-    [self.cardHeaderView pinToView:self.topView withPadding:0.0];
+    [self.cardHeaderView pinToView:self.topView withPadding:kHeaderDefaultPadding];
     [self.cardHeaderView configureWithViewModel:viewModel];
 
     [self insertSubview:self.bottomView aboveSubview:self.topView];
@@ -180,7 +192,7 @@ static const CGFloat bottomHeight = 86.0f;
         [self.bottomView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [self.bottomView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.bottomView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.bottomView.heightAnchor constraintEqualToConstant:bottomHeight]
+        [self.bottomView.heightAnchor constraintEqualToConstant:kHeaderBottomHeight]
     ]];
 }
 
@@ -196,7 +208,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (void)setupBackgroundImageView {
     [self addSubview:self.backgroundImageView];
-    [self.backgroundImageView pinToView:self withPadding:0.0];
+    [self.backgroundImageView pinToView:self withPadding:kHeaderDefaultPadding];
 }
 
 - (void)setupAmountStackView {
@@ -211,13 +223,13 @@ static const CGFloat bottomHeight = 86.0f;
 
     [NSLayoutConstraint activateConstraints:@[
         [self.paymentStackView.leadingAnchor constraintEqualToAnchor:self.bottomView.leadingAnchor
-                                                            constant:24.0],
+                                                            constant:kHeaderPaymentStackViewHorizontalPadding],
         [self.paymentStackView.trailingAnchor constraintEqualToAnchor:self.bottomView.trailingAnchor
-                                                             constant:-24.0],
+                                                             constant:-kHeaderPaymentStackViewHorizontalPadding],
         [self.paymentStackView.topAnchor constraintEqualToAnchor:self.bottomView.topAnchor
-                                                        constant:20.0],
+                                                        constant:kHeaderPaymentStackViewVerticalPadding],
         [self.paymentStackView.bottomAnchor constraintEqualToAnchor:self.bottomView.bottomAnchor
-                                                           constant:-20.0],
+                                                           constant:-kHeaderPaymentStackViewVerticalPadding],
     ]];
 }
 
@@ -236,11 +248,11 @@ static const CGFloat bottomHeight = 86.0f;
         _bottomView = [UIView new];
         _bottomView.translatesAutoresizingMaskIntoConstraints = NO;
         CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, bottomHeight);
+        gradient.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, kHeaderBottomHeight);
 
         UIColor *clearWhite = [UIColor.whiteColor colorWithAlphaComponent:0.0];
         gradient.colors = @[ (id)clearWhite.CGColor, (id)UIColor.whiteColor.CGColor ];
-        gradient.locations = @[ @0.0, @0.3 ];
+        gradient.locations = @[ @(kHeaderGradientClearColorLocation), @(kHeaderGradientWhiteColorLocation) ];
 
         [_bottomView.layer insertSublayer:gradient atIndex:0];
     }
@@ -249,7 +261,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (UIStackView *)amountStackView {
     if (!_amountStackView) {
-        _amountStackView = [UIStackView verticalStackViewWithSpacing:0.0];
+        _amountStackView = [UIStackView verticalStackViewWithSpacing:kHeaderDefaultStackViewSpacing];
         _amountStackView.alignment = NSLayoutAttributeLeading;
     }
     return _amountStackView;
@@ -257,7 +269,7 @@ static const CGFloat bottomHeight = 86.0f;
 
 - (UIStackView *)paymentStackView {
     if (!_paymentStackView) {
-        _paymentStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
+        _paymentStackView = [UIStackView horizontalStackViewWithSpacing:kHeaderDefaultStackViewSpacing];
     }
     return _paymentStackView;
 }
@@ -281,10 +293,11 @@ static const CGFloat bottomHeight = 86.0f;
 - (UILabel *)amountValueLabel {
     if (!_amountValueLabel) {
         _amountValueLabel = [UILabel new];
-        _amountValueLabel.numberOfLines = 0;
         _amountValueLabel.font = UIFont.largeTitle;
         _amountValueLabel.textColor = UIColor.jpBlackColor;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _amountValueLabel.adjustsFontSizeToFitWidth = YES;
+        _amountValueLabel.minimumScaleFactor = kHeaderAmountLabelMinScaleFactor;
         _amountValueLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _amountValueLabel;
@@ -293,11 +306,11 @@ static const CGFloat bottomHeight = 86.0f;
 - (UILabel *)amountPrefixLabel {
     if (!_amountPrefixLabel) {
         _amountPrefixLabel = [UILabel new];
-        _amountPrefixLabel.numberOfLines = 0;
         _amountPrefixLabel.text = @"you_will_pay".localized;
         _amountPrefixLabel.font = UIFont.body;
         _amountPrefixLabel.textColor = UIColor.jpBlackColor;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _amountPrefixLabel.adjustsFontSizeToFitWidth = YES;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _amountPrefixLabel;
@@ -307,7 +320,7 @@ static const CGFloat bottomHeight = 86.0f;
     if (!_payButton) {
         _payButton = [JPTransactionButton new];
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _payButton.layer.cornerRadius = 4.0f;
+        _payButton.layer.cornerRadius = kHeaderPayButtonCornerRadius;
         _payButton.titleLabel.font = UIFont.headline;
         [_payButton setBackgroundImage:UIColor.blackColor.asImage forState:UIControlStateNormal];
         [_payButton setClipsToBounds:YES];
