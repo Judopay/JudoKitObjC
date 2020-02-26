@@ -163,7 +163,7 @@
 
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input {
     return [self.cardValidationService validateCardNumberInput:input
-                                          forSupportedNetworks:self.configuration.supportedCardNetworks];
+                                          forSupportedNetworks:self.supportedNetworks];
 }
 
 - (JPValidationResult *)validateCardholderNameInput:(NSString *)input {
@@ -191,6 +191,13 @@
         _threeDSecureService = [JP3DSService new];
     }
     return _threeDSecureService;
+}
+
+- (CardNetwork)supportedNetworks {
+    if (self.configuration.supportedCardNetworks) {
+        return self.configuration.supportedCardNetworks;
+    }
+    return CardNetworkVisa | CardNetworkAMEX | CardNetworkMaestro | CardNetworkMasterCard;
 }
 
 @end
