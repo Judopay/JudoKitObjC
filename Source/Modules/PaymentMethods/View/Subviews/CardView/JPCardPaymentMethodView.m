@@ -34,6 +34,7 @@
 
 @interface JPCardPaymentMethodView ()
 
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *logoImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *expiryDateLabel;
@@ -42,6 +43,17 @@
 @end
 
 @implementation JPCardPaymentMethodView
+
+#pragma mark - Constants
+
+const float kCardLogoShadowOpacity = 0.2f;
+const float kCardLogoShadowOffset = 0.0f;
+const int kExpiryDateNumberOfLines = 2;
+const float kCardLogoSize = 50.0f;
+const float kCardMainStackViewPadding = 28.0f;
+const float kCardTitleStackViewSpacing = 24.0f;
+const float kCardDefaultStackViewsSpacing = 0.0f;
+const int kSubstringPatternOffset = 4;
 
 #pragma mark - Initializers
 
@@ -71,20 +83,25 @@
 - (void)configureWithTitle:(NSString *)title
                 expiryDate:(NSString *)expiryDate
                    network:(CardNetwork)cardNetwork
-              cardLastFour:(NSString *)cardLastFour {
+              cardLastFour:(NSString *)cardLastFour
+               patternType:(JPCardPatternType)patternType {
 
     self.titleLabel.text = title;
     self.expiryDateLabel.text = expiryDate;
 
     JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:cardNetwork];
-    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
+    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - kSubstringPatternOffset];
     NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
 
     self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
                                                            stylizedPattern,
                                                            cardLastFour];
 
-    self.logoImageView.image = [UIImage imageForCardNetwork:cardNetwork];
+    self.logoImageView.image = [UIImage headerImageForCardNetwork:cardNetwork];
+
+    JPCardPattern *pattern = [JPCardPattern patternWithType:patternType];
+    self.backgroundColor = pattern.color;
+    self.backgroundImageView.image = pattern.image;
 }
 
 - (void)configureExpirationStatus:(CardExpirationStatus)expirationStatus {
@@ -97,34 +114,38 @@
 
 - (void)setupViews {
 
-    UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0];
+    [self addSubview:self.backgroundImageView];
+    [self.backgroundImageView pinToView:self withPadding:kCardDefaultStackViewsSpacing];
+    
+    UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [bottomStackView addArrangedSubview:self.cardNumberLabel];
     [bottomStackView addArrangedSubview:self.expiryDateLabel];
 
-    UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:24 * getWidthAspectRatio()];
+    UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:kCardTitleStackViewSpacing * getWidthAspectRatio()];
     [cardTitleStackView addArrangedSubview:self.titleLabel];
     [cardTitleStackView addArrangedSubview:bottomStackView];
 
-    UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
+    UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [logoStackView addArrangedSubview:self.logoImageView];
     [logoStackView addArrangedSubview:[UIView new]];
 
-    UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
+    UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [mainStackView addArrangedSubview:logoStackView];
     [mainStackView addArrangedSubview:[UIView new]];
     [mainStackView addArrangedSubview:cardTitleStackView];
 
-    [self.logoImageView.widthAnchor constraintEqualToConstant:50.0 * getWidthAspectRatio()].active = YES;
-    [self.logoImageView.heightAnchor constraintEqualToConstant:30.0 * getWidthAspectRatio()].active = YES;
+    [self.logoImageView.widthAnchor constraintEqualToConstant:kCardLogoSize * getWidthAspectRatio()].active = YES;
+    [self.logoImageView.heightAnchor constraintEqualToConstant:kCardLogoSize * getWidthAspectRatio()].active = YES;
 
     [self addSubview:mainStackView];
-    [mainStackView pinToView:self withPadding:28.0 * getWidthAspectRatio()];
+    [mainStackView pinToView:self withPadding:kCardMainStackViewPadding * getWidthAspectRatio()];
 }
 
 - (void)setCardAsExpired {
-    self.backgroundColor = UIColor.jpGrayColor;
+    self.backgroundColor = UIColor.jpDarkGrayColor;
+    self.backgroundImageView.image = self.backgroundImageView.image.grayscaled;
     self.expiryDateLabel.textColor = UIColor.jpRedColor;
-    self.expiryDateLabel.numberOfLines = 2;
+    self.expiryDateLabel.numberOfLines = kExpiryDateNumberOfLines;
     NSDictionary *attrDict = @{NSFontAttributeName : UIFont.caption};
     NSString *expiredString = [NSString stringWithFormat:@"%@ %@", @"expired".localized, @"\r"];
     NSMutableAttributedString *expiredText = [[NSMutableAttributedString alloc] initWithString:expiredString attributes:attrDict];
@@ -134,12 +155,21 @@
 }
 #pragma mark - Lazy Properties
 
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        _backgroundImageView = [UIImageView new];
+        _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _backgroundImageView;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.jpBlackColor;
+        _titleLabel.textColor = UIColor.whiteColor;
     }
     return _titleLabel;
 }
@@ -149,7 +179,7 @@
         _cardNumberLabel = [UILabel new];
         _cardNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _cardNumberLabel.font = UIFont.bodyBold;
-        _cardNumberLabel.textColor = UIColor.jpBlackColor;
+        _cardNumberLabel.textColor = UIColor.jpLightGrayColor;
     }
     return _cardNumberLabel;
 }
@@ -160,7 +190,7 @@
         _expiryDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _expiryDateLabel.textAlignment = NSTextAlignmentRight;
         _expiryDateLabel.font = UIFont.bodyBold;
-        _expiryDateLabel.textColor = UIColor.jpBlackColor;
+        _expiryDateLabel.textColor = UIColor.jpLightGrayColor;
     }
     return _expiryDateLabel;
 }
@@ -168,6 +198,9 @@
 - (UIImageView *)logoImageView {
     if (!_logoImageView) {
         _logoImageView = [UIImageView new];
+        _logoImageView.layer.shadowColor = UIColor.blackColor.CGColor;
+        _logoImageView.layer.shadowOpacity = kCardLogoShadowOpacity;
+        _logoImageView.layer.shadowOffset = CGSizeMake(kCardLogoShadowOffset, kCardLogoShadowOffset);
         _logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     }

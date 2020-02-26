@@ -23,9 +23,15 @@
 //  SOFTWARE.
 
 #import "JPCardNetwork.h"
+#import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
 @interface JPStoredCardDetails : NSObject
+
+/**
+ * The title of the card
+ */
+@property (nonatomic, strong) NSString *cardTitle;
 
 /**
  * The last four digits of the credit card
@@ -46,6 +52,11 @@
  * The token associated with the card
  */
 @property (nonatomic, strong) NSString *cardToken;
+
+/**
+ * The card's pattern type
+ */
+@property (nonatomic, assign) JPCardPatternType patternType;
 
 /**
  * A boolean property describing if the card is set as the default card

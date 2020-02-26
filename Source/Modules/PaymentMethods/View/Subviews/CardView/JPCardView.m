@@ -80,7 +80,8 @@
             [self.cardPaymentView configureWithTitle:viewModel.cardModel.cardTitle
                                           expiryDate:viewModel.cardModel.cardExpiryDate
                                              network:viewModel.cardModel.cardNetwork
-                                        cardLastFour:viewModel.cardModel.cardNumberLastFour];
+                                        cardLastFour:viewModel.cardModel.cardNumberLastFour
+                                         patternType:viewModel.cardModel.cardPatternType];
 
             [self.cardPaymentView configureExpirationStatus:viewModel.cardModel.cardExpirationStatus];
             break;
@@ -99,7 +100,8 @@
     [self.cardPaymentView configureWithTitle:viewModel.cardTitle
                                   expiryDate:viewModel.cardExpiryDate
                                      network:viewModel.cardNetwork
-                                cardLastFour:viewModel.cardLastFour];
+                                cardLastFour:viewModel.cardLastFour
+                                 patternType:viewModel.cardPatternType];
 }
 
 #pragma mark - Layout Setup

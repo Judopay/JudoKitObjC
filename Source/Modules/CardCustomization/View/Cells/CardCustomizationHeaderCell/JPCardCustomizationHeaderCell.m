@@ -36,27 +36,31 @@
 
 #pragma mark - Constants
 
-const float kCardBottomAnchorConstant = 100.0f;
-const float kCardAnchorConstants = 20.0f;
-const float kCardAspectRatio = 0.583;
+const float kHeaderCardAnchorConstants = 20.0f;
+const float kHeaderCardAspectRatio = 0.583;
+
+#pragma mark - Initializers
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupViews];
+    }
+    return self;
+}
 
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
-    [self setupViews];
-    if (![viewModel isKindOfClass:JPCardCustomizationHeaderModel.class]) {
-        return;
+    if ([viewModel isKindOfClass:JPCardCustomizationHeaderModel.class]) {
+        JPCardCustomizationHeaderModel *headerModel = (JPCardCustomizationHeaderModel *)viewModel;
+        [self.cardView configureWithCustomizationModel:headerModel];
     }
-    JPCardCustomizationHeaderModel *headerModel = (JPCardCustomizationHeaderModel *)viewModel;
-    [self.cardView configureWithCustomizationModel:headerModel];
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
-
-    [self removeAllSubviews];
-
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.cardView];
 
@@ -66,15 +70,15 @@ const float kCardAspectRatio = 0.583;
 - (void)setupConstraints {
     NSArray *constraints = @[
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                constant:kCardAnchorConstants],
+                                                constant:kHeaderCardAnchorConstants],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:-kCardBottomAnchorConstant],
+                                                   constant:-kHeaderCardAnchorConstants],
         [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                    constant:kCardAnchorConstants],
+                                                    constant:kHeaderCardAnchorConstants],
         [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                     constant:-kCardAnchorConstants],
+                                                     constant:-kHeaderCardAnchorConstants],
         [self.cardView.heightAnchor constraintEqualToAnchor:self.cardView.widthAnchor
-                                                 multiplier:kCardAspectRatio],
+                                                 multiplier:kHeaderCardAspectRatio],
     ];
 
     [NSLayoutConstraint activateConstraints:constraints

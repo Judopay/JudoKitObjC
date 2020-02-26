@@ -46,4 +46,18 @@
     return [JPCardStorage.sharedInstance fetchStoredCardDetailsAtIndex:self.cardIndex];
 }
 
+- (void)updateStoredCardPatternWithType:(JPCardPatternType)type {
+    JPStoredCardDetails *cardDetails = self.cardDetails;
+    cardDetails.patternType = type;
+    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
+                                            atIndex:self.cardIndex];
+}
+
+- (void)updateStoredCardTitleWithInput:(NSString *)input {
+    JPStoredCardDetails *cardDetails = self.cardDetails;
+    cardDetails.cardTitle = input;
+    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
+                                            atIndex:self.cardIndex];
+}
+
 @end

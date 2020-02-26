@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
 @protocol JPCardCustomizationView, JPCardCustomizationRouter, JPCardCustomizationInteractor;
@@ -34,9 +35,36 @@
 - (void)prepareViewModel;
 
 /**
+ * A method that handles the card pattern changes based on a selected pattern type
+ *
+ * @param type - a JPCardPatternType value identifying the pattern
+ */
+- (void)handlePatternSelectionWithType:(JPCardPatternType)type;
+
+/**
  * A method that is used to handle the Back button tap action and trigger the pop navigation
  */
 - (void)handleBackButtonTap;
+
+/**
+ * A method that is triggered once an input has been detected on the card title input field.
+ * This method handles the input field validation and keychain updates
+ *
+ * @param input - the input string of the card title input field
+ */
+- (void)handleCardInputFieldChangeWithInput:(NSString *)input;
+
+/**
+ * A method that is triggered once the 'Cancel' button is tapped by a user.
+ * This method dismisses the Card Customization screen without applying any changes.
+ */
+- (void)handleCancelEvent;
+
+/**
+ * A method that is triggered once the 'Save' button is tapped by a user.
+ * This method saves the applied changes in the keychain and dismisses the Card Customization screen.
+ */
+- (void)handleSaveEvent;
 
 @end
 

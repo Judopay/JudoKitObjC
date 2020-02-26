@@ -27,7 +27,7 @@
 
 @implementation JPCardCustomizationRouterImpl
 
-- (void)popViewController {
+- (void)navigateBack {
     [self.viewController.navigationController popViewControllerAnimated:YES];
 }
 

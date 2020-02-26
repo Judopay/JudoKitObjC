@@ -22,6 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPCardCustomizationPatternPickerCell.h"
+#import "JPCardCustomizationSubmitCell.h"
+#import "JPInputField.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPCardCustomizationPresenter;
@@ -31,8 +34,12 @@
 
 /**
  * A method for updating the view layout based on an array of view models
+ *
+ * @param viewModels - an array of objects that subclass the JPCardCustomizationViewModel object.
+ * @param shouldPreserveResponder - a boolean property that, if set to YES, will not reload the card title input field as to preserve the first responder.
  */
-- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels;
+- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels
+         shouldPreserveResponder:(BOOL)shouldPreserveResponder;
 
 @end
 
@@ -54,4 +61,13 @@
 @end
 
 @interface JPCardCustomizationViewController (TableViewDelegate) <UITableViewDelegate>
+@end
+
+@interface JPCardCustomizationViewController (PatternPickerDelegate) <JPCardCustomizationPatternPickerCellDelegate>
+@end
+
+@interface JPCardCustomizationViewController (TextInputDelegate) <JPInputFieldDelegate>
+@end
+
+@interface JPCardCustomizationViewController (SubmitDelegate) <JPCardCustomizationSubmitCellDelegate>
 @end
