@@ -62,7 +62,7 @@
 }
 
 - (void)handleBackButtonTap {
-    [self.router popViewController];
+    [self.router navigateBack];
 }
 
 - (void)handlePatternSelectionWithType:(JPCardPatternType)type {
@@ -78,13 +78,13 @@
 }
 
 - (void)handleCancelEvent {
-    [self.router popViewController];
+    [self.router navigateBack];
 }
 
 - (void)handleSaveEvent {
     [self.interactor updateStoredCardTitleWithInput:self.selectedCardTitle];
     [self.interactor updateStoredCardPatternWithType:self.selectedPatternType];
-    [self.router popViewController];
+    [self.router navigateBack];
 }
 
 #pragma mark - Helper methods

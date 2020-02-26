@@ -45,6 +45,8 @@
 const float kCustomizationViewTopBarPadding = 20.0f;
 const float kCustomizationViewBackButtonSize = 22.0f;
 const int kCustomizationViewMaxInputLength = 28;
+const float kCustomizationViewWhiteGradientLocation = 0.8f;
+const float kCustomizationViewClearGradientLocation = 1.0f;
 
 #pragma mark - View lifecycle
 
@@ -149,7 +151,7 @@ const int kCustomizationViewMaxInputLength = 28;
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
     CGRect gradientFrame = CGRectMake(0, 0, screenWidth, self.topBarHeight + kCustomizationViewTopBarPadding);
     gradient.frame = gradientFrame;
-    gradient.locations = @[ @0.8, @1.0 ];
+    gradient.locations = @[ @(kCustomizationViewWhiteGradientLocation), @(kCustomizationViewClearGradientLocation) ];
     gradient.colors = @[
         (id)UIColor.whiteColor.CGColor,
         (id)[UIColor colorWithWhite:1.0 alpha:0.0].CGColor,
