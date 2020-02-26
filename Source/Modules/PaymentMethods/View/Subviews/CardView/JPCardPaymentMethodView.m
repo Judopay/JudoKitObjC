@@ -44,6 +44,17 @@
 
 @implementation JPCardPaymentMethodView
 
+#pragma mark - Constants
+
+const float kCardLogoShadowOpacity = 0.2f;
+const float kCardLogoShadowOffset = 0.0f;
+const int kExpiryDateNumberOfLines = 2;
+const float kCardLogoSize = 50.0f;
+const float kCardMainStackViewPadding = 28.0f;
+const float kCardTitleStackViewSpacing = 24.0f;
+const float kCardDefaultStackViewsSpacing = 0.0f;
+const int kSubstringPatternOffset = 4;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -79,7 +90,7 @@
     self.expiryDateLabel.text = expiryDate;
 
     JPCardNetwork *network = [JPCardNetwork cardNetworkWithType:cardNetwork];
-    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - 4];
+    NSString *substringPattern = [network.numberPattern substringToIndex:network.numberPattern.length - kSubstringPatternOffset];
     NSString *stylizedPattern = [substringPattern stringByReplacingOccurrencesOfString:@"X" withString:@"•"];
 
     self.cardNumberLabel.text = [NSString stringWithFormat:@"%@ %@",
@@ -104,37 +115,37 @@
 - (void)setupViews {
 
     [self addSubview:self.backgroundImageView];
-    [self.backgroundImageView pinToView:self withPadding:0.0];
+    [self.backgroundImageView pinToView:self withPadding:kCardDefaultStackViewsSpacing];
     
-    UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0];
+    UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [bottomStackView addArrangedSubview:self.cardNumberLabel];
     [bottomStackView addArrangedSubview:self.expiryDateLabel];
 
-    UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:24 * getWidthAspectRatio()];
+    UIStackView *cardTitleStackView = [UIStackView verticalStackViewWithSpacing:kCardTitleStackViewSpacing * getWidthAspectRatio()];
     [cardTitleStackView addArrangedSubview:self.titleLabel];
     [cardTitleStackView addArrangedSubview:bottomStackView];
 
-    UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
+    UIStackView *logoStackView = [UIStackView horizontalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [logoStackView addArrangedSubview:self.logoImageView];
     [logoStackView addArrangedSubview:[UIView new]];
 
-    UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
+    UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:kCardDefaultStackViewsSpacing];
     [mainStackView addArrangedSubview:logoStackView];
     [mainStackView addArrangedSubview:[UIView new]];
     [mainStackView addArrangedSubview:cardTitleStackView];
 
-    [self.logoImageView.widthAnchor constraintEqualToConstant:50.0 * getWidthAspectRatio()].active = YES;
-    [self.logoImageView.heightAnchor constraintEqualToConstant:30.0 * getWidthAspectRatio()].active = YES;
+    [self.logoImageView.widthAnchor constraintEqualToConstant:kCardLogoSize * getWidthAspectRatio()].active = YES;
+    [self.logoImageView.heightAnchor constraintEqualToConstant:kCardLogoSize * getWidthAspectRatio()].active = YES;
 
     [self addSubview:mainStackView];
-    [mainStackView pinToView:self withPadding:28.0 * getWidthAspectRatio()];
+    [mainStackView pinToView:self withPadding:kCardMainStackViewPadding * getWidthAspectRatio()];
 }
 
 - (void)setCardAsExpired {
     self.backgroundColor = UIColor.jpDarkGrayColor;
     self.backgroundImageView.image = self.backgroundImageView.image.grayscaled;
     self.expiryDateLabel.textColor = UIColor.jpRedColor;
-    self.expiryDateLabel.numberOfLines = 2;
+    self.expiryDateLabel.numberOfLines = kExpiryDateNumberOfLines;
     NSDictionary *attrDict = @{NSFontAttributeName : UIFont.caption};
     NSString *expiredString = [NSString stringWithFormat:@"%@ %@", @"expired".localized, @"\r"];
     NSMutableAttributedString *expiredText = [[NSMutableAttributedString alloc] initWithString:expiredString attributes:attrDict];
@@ -188,8 +199,8 @@
     if (!_logoImageView) {
         _logoImageView = [UIImageView new];
         _logoImageView.layer.shadowColor = UIColor.blackColor.CGColor;
-        _logoImageView.layer.shadowOpacity = 0.1;
-        _logoImageView.layer.shadowOffset = CGSizeMake(0, 2);
+        _logoImageView.layer.shadowOpacity = kCardLogoShadowOpacity;
+        _logoImageView.layer.shadowOffset = CGSizeMake(kCardLogoShadowOffset, kCardLogoShadowOffset);
         _logoImageView.translatesAutoresizingMaskIntoConstraints = NO;
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
