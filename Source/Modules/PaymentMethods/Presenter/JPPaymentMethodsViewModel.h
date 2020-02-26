@@ -23,8 +23,8 @@
 //  SOFTWARE.
 
 #import "JPCardDetails.h"
-#import "JPPaymentMethod.h"
 #import "JPCardPattern.h"
+#import "JPPaymentMethod.h"
 #import <Foundation/Foundation.h>
 
 @class JPAmount, JPTransactionButtonViewModel;

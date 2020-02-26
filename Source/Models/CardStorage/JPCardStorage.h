@@ -60,7 +60,7 @@
  * @param index - the index where to insert the card details
  */
 - (void)insertCardDetails:(JPStoredCardDetails *)cardDetails
-                  atIndex:(NSInteger)index;
+                  atIndex:(NSUInteger)index;
 
 /**
  * A method for deleting the existing card details from the keychain
@@ -72,9 +72,17 @@
 /**
  * A method for deleting a specific card details from the keychain by its index
  *
- * @param index - Card's index in cards list
+ * @param index - the card's index in the list
  */
 - (void)deleteCardWithIndex:(NSUInteger)index;
+
+/**
+ * A method for updating a card in the storage based on a provided index
+ *
+ * @param index - the index of the card in the list
+ */
+- (void)updateCardDetails:(JPStoredCardDetails *)cardDetails
+                  atIndex:(NSUInteger)index;
 
 /**
  * A method that sets a card as selected based on an index

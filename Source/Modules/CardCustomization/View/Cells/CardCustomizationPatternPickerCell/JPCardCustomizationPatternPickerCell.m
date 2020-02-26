@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationPatternPickerCell.h"
-#import "JPCardCustomizationViewModel.h"
-#import "UIView+Additions.h"
 #import "JPCardCustomizationPatternCell.h"
+#import "JPCardCustomizationViewModel.h"
 #import "NSLayoutConstraint+Additions.h"
+#import "UIView+Additions.h"
 
 @interface JPCardCustomizationPatternPickerCell ()
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -38,9 +38,9 @@
 
 #pragma mark - Constants
 
-const float kSelectedCellSize = 50.0f;
-const float kUnselectedCellSize = 36.0f;
-const float kCollectionViewPadding = 24.0f;
+const float kPatternSelectedCellSize = 50.0f;
+const float kPatternUnselectedCellSize = 36.0f;
+const float kPatternCollectionViewPadding = 24.0f;
 
 #pragma mark - Initializers
 
@@ -66,16 +66,16 @@ const float kCollectionViewPadding = 24.0f;
 - (void)setupViews {
     self.backgroundColor = UIColor.whiteColor;
     [self addSubview:self.collectionView];
-    
+
     NSArray *constraints = @[
         [self.collectionView.topAnchor constraintEqualToAnchor:self.topAnchor],
         [self.collectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [self.collectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.collectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
-    [self.collectionView.heightAnchor constraintEqualToConstant:kSelectedCellSize].active = YES;
+    [self.collectionView.heightAnchor constraintEqualToConstant:kPatternSelectedCellSize].active = YES;
 }
 
 #pragma mark - Lazy properties
@@ -89,7 +89,7 @@ const float kCollectionViewPadding = 24.0f;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(0, kCollectionViewPadding, 0, kCollectionViewPadding);
+        _collectionView.contentInset = UIEdgeInsetsMake(0, kPatternCollectionViewPadding, 0, kPatternCollectionViewPadding);
         [_collectionView registerClass:JPCardCustomizationPatternCell.class
             forCellWithReuseIdentifier:JPCardCustomizationPatternCell.cellIdentifier];
     }
@@ -113,7 +113,7 @@ const float kCollectionViewPadding = 24.0f;
     NSString *identifier = JPCardCustomizationPatternCell.cellIdentifier;
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier
                                                                            forIndexPath:indexPath];
-    
+
     if ([cell isKindOfClass:JPCardCustomizationPatternCell.class]) {
         JPCardCustomizationPatternCell *patternCell = (JPCardCustomizationPatternCell *)cell;
         [patternCell configureWithViewModel:self.patternPickerModel.patternModels[indexPath.row]];
@@ -138,11 +138,11 @@ const float kCollectionViewPadding = 24.0f;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+    sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     JPCardCustomizationPatternModel *pattern = self.patternPickerModel.patternModels[indexPath.row];
-    CGSize selectedCellSize = CGSizeMake(kSelectedCellSize, kSelectedCellSize);
-    CGSize unselectedCellSize = CGSizeMake(kUnselectedCellSize, kUnselectedCellSize);
+    CGSize selectedCellSize = CGSizeMake(kPatternSelectedCellSize, kPatternSelectedCellSize);
+    CGSize unselectedCellSize = CGSizeMake(kPatternUnselectedCellSize, kPatternUnselectedCellSize);
     return pattern.isSelected ? selectedCellSize : unselectedCellSize;
 }
 

@@ -24,8 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, JPCardPatternType) {
-    JPCardPatternTypeBlack,
+typedef NS_ENUM(NSUInteger, JPCardPatternType) {
+    JPCardPatternTypeBlack = 1,
     JPCardPatternTypeBlue,
     JPCardPatternTypeGreen,
     JPCardPatternTypeRed,
@@ -105,6 +105,11 @@ typedef NS_ENUM(NSInteger, JPCardPatternType) {
  * Convenience initializer that creates a JPCardPattern with a JPCardPatternTypeOlive type
  */
 + (instancetype)olive;
+
+/**
+ * Convenience initializer that creates a JPCardPattern with a random type
+ */
++ (instancetype)random;
 
 /**
  * Convenience initializer that creates a JPCardPattern based on a provided type;

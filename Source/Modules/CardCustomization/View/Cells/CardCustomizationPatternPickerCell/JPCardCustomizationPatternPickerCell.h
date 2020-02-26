@@ -36,7 +36,7 @@
  * @param type - the type of a JPCardPattern used to identify the pattern
  */
 - (void)patternPickerCell:(JPCardCustomizationPatternPickerCell *)pickerCell
- didSelectPatternWithType:(JPCardPatternType)type;
+    didSelectPatternWithType:(JPCardPatternType)type;
 
 @end
 

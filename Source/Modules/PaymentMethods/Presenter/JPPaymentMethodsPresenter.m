@@ -62,7 +62,7 @@
 
 - (void)viewModelNeedsUpdateWithAnimationType:(AnimationType)animationType
                           shouldAnimateChange:(BOOL)shouldAnimate {
-    
+
     [self updateViewModelWithAnimationType:animationType];
     [self.view configureWithViewModel:self.viewModel
                   shouldAnimateChange:shouldAnimate];
@@ -77,10 +77,10 @@
     }
 
     [self.interactor selectCardAtIndex:index];
-    
+
     AnimationType animationType;
     animationType = self.headerModel.cardModel ? AnimationTypeBottomToTop : AnimationTypeSetup;
-    
+
     [self viewModelNeedsUpdateWithAnimationType:animationType
                             shouldAnimateChange:YES];
 }
@@ -98,9 +98,9 @@
 - (void)handlePayButtonTap {
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
-        [self handleCallbackWithResponse:response
-                                andError:error];
-    }];
+                                       [self handleCallbackWithResponse:response
+                                                               andError:error];
+                                   }];
 }
 
 - (void)handleApplePayButtonTap {
@@ -152,7 +152,7 @@
 
     self.previousIndex = index;
     self.paymentSelectionModel.selectedPaymentMethod = index;
-    
+
     [self viewModelNeedsUpdateWithAnimationType:animationType
                             shouldAnimateChange:YES];
 }
@@ -187,9 +187,9 @@
 - (void)handle3DSecureTransactionWithError:(NSError *)error {
     [self.interactor handle3DSecureTransactionFromError:error
                                              completion:^(JPResponse *response, NSError *error) {
-        [self handleCallbackWithResponse:response
-                                andError:error];
-    }];
+                                                 [self handleCallbackWithResponse:response
+                                                                         andError:error];
+                                             }];
 }
 
 - (void)setLastAddedCardAsSelected {
@@ -265,6 +265,7 @@
 
 - (JPPaymentMethodsCardModel *)cardModelFromStoredCardDetails:(JPStoredCardDetails *)cardDetails {
     JPPaymentMethodsCardModel *cardModel = [JPPaymentMethodsCardModel new];
+    cardModel.cardTitle = cardDetails.cardTitle;
     cardModel.cardNetwork = cardDetails.cardNetwork;
     cardModel.cardNumberLastFour = cardDetails.cardLastFour;
     cardModel.cardExpiryDate = cardDetails.expiryDate;

@@ -36,8 +36,8 @@
 
 #pragma mark - Constants
 
-const float kCardAnchorConstants = 20.0f;
-const float kCardAspectRatio = 0.583;
+const float kHeaderCardAnchorConstants = 20.0f;
+const float kHeaderCardAspectRatio = 0.583;
 
 #pragma mark - Initializers
 
@@ -70,15 +70,15 @@ const float kCardAspectRatio = 0.583;
 - (void)setupConstraints {
     NSArray *constraints = @[
         [self.cardView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                constant:kCardAnchorConstants],
+                                                constant:kHeaderCardAnchorConstants],
         [self.cardView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor
-                                                   constant:-kCardAnchorConstants],
+                                                   constant:-kHeaderCardAnchorConstants],
         [self.cardView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                    constant:kCardAnchorConstants],
+                                                    constant:kHeaderCardAnchorConstants],
         [self.cardView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                     constant:-kCardAnchorConstants],
+                                                     constant:-kHeaderCardAnchorConstants],
         [self.cardView.heightAnchor constraintEqualToAnchor:self.cardView.widthAnchor
-                                                 multiplier:kCardAspectRatio],
+                                                 multiplier:kHeaderCardAspectRatio],
     ];
 
     [NSLayoutConstraint activateConstraints:constraints

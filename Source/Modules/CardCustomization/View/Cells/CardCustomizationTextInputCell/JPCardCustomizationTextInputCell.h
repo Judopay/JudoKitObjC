@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationRouter.h
+//  JPCardCustomizationTextInputCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,24 +22,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "JPCardCustomizationCell.h"
 
-@class JPCardCustomizationViewController;
+@class JPInputField;
 
-@protocol JPCardCustomizationRouter
-
-/**
- * A method which pops the presented view controller from the navigation stack and returns the user to the Payment Method screen
- */
-- (void)navigateBack;
-
-@end
-
-@interface JPCardCustomizationRouterImpl : NSObject <JPCardCustomizationRouter>
+@interface JPCardCustomizationTextInputCell : JPCardCustomizationCell
 
 /**
- * A weak reference to the JPCardCustomizationViewControllerImpl instance
+ * A custom input field that allows users to insert the card title string.
  */
-@property (nonatomic, weak) JPCardCustomizationViewController *viewController;
+@property (nonatomic, strong) JPInputField *inputField;
 
 @end

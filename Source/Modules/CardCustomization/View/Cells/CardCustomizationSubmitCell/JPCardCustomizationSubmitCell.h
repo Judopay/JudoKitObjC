@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationInteractor.m
+//  JPCardCustomizationSubmitCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,42 +22,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationInteractor.h"
-#import "JPCardStorage.h"
+#import "JPCardCustomizationCell.h"
 
-@interface JPCardCustomizationInteractorImpl ()
-@property (nonatomic, assign) NSUInteger cardIndex;
+@class JPCardCustomizationSubmitCell;
+
+@protocol JPCardCustomizationSubmitCellDelegate
+
+/**
+ * A method that is triggered once the user taps `Save` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
+ */
+- (void)didTapSaveForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
+
+/**
+ * A method that is triggered once the user taps `Cancel` on the Card Customization Screen
+ *
+ * @param cell - a reference to the JPCardCustomizationSubmitCell instance that calls the delegate method
+ */
+- (void)didTapCancelForSubmitCell:(nonnull JPCardCustomizationSubmitCell *)cell;
+
 @end
 
-@implementation JPCardCustomizationInteractorImpl
+@interface JPCardCustomizationSubmitCell : JPCardCustomizationCell
 
-#pragma mark - Initializers
-
-- (instancetype)initWithCardIndex:(NSUInteger)index {
-    if (self = [super init]) {
-        self.cardIndex = index;
-    }
-    return self;
-}
-
-#pragma mark - Protocol methods
-
-- (JPStoredCardDetails *)cardDetails {
-    return [JPCardStorage.sharedInstance fetchStoredCardDetailsAtIndex:self.cardIndex];
-}
-
-- (void)updateStoredCardPatternWithType:(JPCardPatternType)type {
-    JPStoredCardDetails *cardDetails = self.cardDetails;
-    cardDetails.patternType = type;
-    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
-                                            atIndex:self.cardIndex];
-}
-
-- (void)updateStoredCardTitleWithInput:(NSString *)input {
-    JPStoredCardDetails *cardDetails = self.cardDetails;
-    cardDetails.cardTitle = input;
-    [JPCardStorage.sharedInstance updateCardDetails:cardDetails
-                                            atIndex:self.cardIndex];
-}
+/**
+ * A weak reference to the object that adopts the JPCardCustomizationSubmitCellDelegate protocol
+ */
+@property (nonatomic, weak) id<JPCardCustomizationSubmitCellDelegate> _Nullable delegate;
 
 @end

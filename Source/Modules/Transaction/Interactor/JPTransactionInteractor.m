@@ -34,6 +34,7 @@
 #import "JPTransactionService.h"
 #import "JPTransactionViewModel.h"
 #import "NSError+Additions.h"
+#import "NSString+Additions.h"
 
 @interface JPTransactionInteractorImpl ()
 @property (nonatomic, strong) JudoCompletionBlock completionHandler;
@@ -109,8 +110,40 @@
                                                                                expiryDate:expiryDate
                                                                               cardNetwork:cardNetwork
                                                                                 cardToken:token];
-
+    storedCardDetails.cardTitle = [self defaultCardTitleForCardNetwork:cardNetwork];
+    storedCardDetails.patternType = JPCardPattern.random.type;
     [JPCardStorage.sharedInstance addCardDetails:storedCardDetails];
+}
+
+- (NSString *)defaultCardTitleForCardNetwork:(CardNetwork)network {
+    switch (network) {
+        case CardNetworkVisa:
+            return @"default_visa_card_title".localized;
+
+        case CardNetworkAMEX:
+            return @"default_amex_card_title".localized;
+
+        case CardNetworkMaestro:
+            return @"default_maestro_card_title".localized;
+
+        case CardNetworkMasterCard:
+            return @"default_mastercard_card_title".localized;
+
+        case CardNetworkChinaUnionPay:
+            return @"default_chinaunionpay_card_title".localized;
+
+        case CardNetworkJCB:
+            return @"default_jcb_card_title".localized;
+
+        case CardNetworkDiscover:
+            return @"default_discover_card_title".localized;
+
+        case CardNetworkDinersClub:
+            return @"default_dinnersclub_card_title".localized;
+
+        default:
+            return @"";
+    }
 }
 
 - (void)handle3DSecureTransactionFromError:(NSError *)error

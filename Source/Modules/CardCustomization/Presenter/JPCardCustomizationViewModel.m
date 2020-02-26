@@ -43,3 +43,15 @@
 @implementation JPCardCustomizationPatternPickerModel
 
 @end
+
+@implementation JPCardCustomizationTextInputModel
+
+@end
+
+@implementation JPCardCustomizationIsDefaultModel
+
+@end
+
+@implementation JPCardCustomizationSubmitModel
+
+@end

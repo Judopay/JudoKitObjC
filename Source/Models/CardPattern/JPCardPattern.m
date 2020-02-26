@@ -24,6 +24,7 @@
 
 #import "JPCardPattern.h"
 #import "UIColor+Additions.h"
+#import "UIImage+Additions.h"
 
 @implementation JPCardPattern
 
@@ -61,6 +62,11 @@
     return [JPCardPattern patternWithType:JPCardPatternTypeOlive];
 }
 
++ (instancetype)random {
+    JPCardPatternType randomType = (JPCardPatternType)(arc4random() % (int)JPCardPatternTypeOlive);
+    return [JPCardPattern patternWithType:randomType];
+}
+
 + (instancetype)patternWithType:(JPCardPatternType)type {
     return [[JPCardPattern alloc] initWithType:type];
 }
@@ -69,7 +75,7 @@
     if (self = [super init]) {
         _type = type;
         _color = [self backgroundColorForType:type];
-        //TODO: Add pattern image
+        _image = [self imageForType: type];
     }
     return self;
 }
@@ -96,6 +102,28 @@
             return [UIColor colorFromHex:0x808c12];
     }
     return UIColor.whiteColor;
+}
+
+- (UIImage *)imageForType:(JPCardPatternType)type {
+    switch (type) {
+        case JPCardPatternTypeBlack:
+            return [UIImage imageWithResourceName:@"black_pattern"];
+        case JPCardPatternTypeBlue:
+            return [UIImage imageWithResourceName:@"blue_pattern"];
+        case JPCardPatternTypeGreen:
+            return [UIImage imageWithResourceName:@"green_pattern"];
+        case JPCardPatternTypeRed:
+            return [UIImage imageWithResourceName:@"red_pattern"];
+        case JPCardPatternTypeOrange:
+            return [UIImage imageWithResourceName:@"orange_pattern"];
+        case JPCardPatternTypeGold:
+            return [UIImage imageWithResourceName:@"gold_pattern"];
+        case JPCardPatternTypeCyan:
+            return [UIImage imageWithResourceName:@"cyan_pattern"];
+        case JPCardPatternTypeOlive:
+            return [UIImage imageWithResourceName:@"olive_pattern"];
+    }
+    return [UIImage new];
 }
 
 @end

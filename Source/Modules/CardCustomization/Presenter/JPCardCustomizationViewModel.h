@@ -95,3 +95,30 @@
 @property (nonatomic, strong) NSArray<JPCardCustomizationPatternModel *> *_Nonnull patternModels;
 
 @end
+
+@interface JPCardCustomizationTextInputModel : JPCardCustomizationViewModel
+
+/**
+ * The text inside the input field representing the card title
+ */
+@property (nonatomic, strong) NSString *_Nullable text;
+
+@end
+
+@interface JPCardCustomizationIsDefaultModel : JPCardCustomizationViewModel
+
+/**
+ * A boolean property that, if set to YES, describes the card as the default one
+ */
+@property (nonatomic, assign) BOOL isDefault;
+
+@end
+
+@interface JPCardCustomizationSubmitModel : JPCardCustomizationViewModel
+
+/**
+ * A boolean property that, if set to YES, enables the Save button on the Card Customization screen
+ */
+@property (nonatomic, assign) BOOL isSaveEnabled;
+
+@end
