@@ -55,4 +55,19 @@
  */
 + (nonnull UIImage *)imageForCardNetwork:(CardNetwork)network;
 
+/**
+ * Initializes an UIImage to be displayed on top of a card.
+ * It returns the same images as the previous method, while providing white alternatives for dark logo's
+ *
+ * @param network - a value describing the Card Network
+ *
+ * @return a configured UIImage instance
+ */
++ (nonnull UIImage *)headerImageForCardNetwork:(CardNetwork)network;
+
+/**
+ * A method which returns a grayscaled instance of the UIImage by applying a Tonal filter on the image.
+ */
+- (nonnull instancetype)grayscaled;
+
 @end
