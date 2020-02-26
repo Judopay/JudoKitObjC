@@ -8,10 +8,13 @@ class MainViewController: UITableViewController {
     var locationManager = CLLocationManager()
     var transactionData: JPTransactionData?
     let consumerReference = "judoPay-sample-app"
+    lazy var amount = JPAmount("0.01", currency: settings.currency.rawValue)
+    lazy var reference = JPReference(consumerReference: consumerReference)
+    
     let defaultFeatures = [
         DemoFeature(type: .payment,
                     title: "Pay with card",
-                    details: "bby entering card details"),
+                    details: "by entering card details"),
         
         DemoFeature(type: .preAuth,
                     title: "PreAuth with card",
@@ -45,13 +48,6 @@ class MainViewController: UITableViewController {
                     details: "with default preauth methods")
     ]
     
-    var amount: JPAmount {
-        return JPAmount("0.01", currency: settings.currency.rawValue)
-    }
-    
-    var reference: JPReference {
-        return JPReference(consumerReference: consumerReference)
-    }
     
     var configuration: JPConfiguration {
         let configuration = JPConfiguration(judoID: judoId, amount: amount, reference: reference)
@@ -143,92 +139,83 @@ class MainViewController: UITableViewController {
     // MARK: Actions
     @objc func pay() {
         self.judoKit?.invokeTransaction(with: .payment,
-                                        configuration: configuration, completion: { (response, error) in
-                                            _  = self.handle(response, error: error)
+                                        configuration: configuration,
+                                        completion: { (response, error) in
+                                            self.handle(response: response)
         })
     }
     
     @objc func preAuth() {
         self.judoKit?.invokeTransaction(with: .preAuth,
-                                        configuration: configuration, completion: { (response, error) in
-                                            _  = self.handle(response, error: error)
+                                        configuration: configuration,
+                                        completion: { (response, error) in
+                                            self.handle(response: response)
         })
     }
     
     @objc func createCardToken() {
         self.judoKit?.invokeTransaction(with: .registerCard,
-                                        configuration: configuration, completion: { (response, error) in
-                                            _  = self.handle(response, error: error)
+                                        configuration: configuration,
+                                        completion: { (response, error) in
+                                            self.handle(response: response)
         })
     }
     
     @objc func saveCard() {
         self.judoKit?.invokeTransaction(with: .saveCard,
-                                        configuration: configuration, completion: { (response, error) in
-                                            _  = self.handle(response, error: error)
+                                        configuration: configuration,
+                                        completion: { (response, error) in
+                                            self.handle(response: response)
         })
     }
     
     @objc func checkCard() {
         self.judoKit?.invokeTransaction(with: .checkCard,
-                                        configuration: configuration, completion: { (response, error) in
-                                            _  = self.handle(response, error: error)
+                                        configuration: configuration,
+                                        completion: { (response, error) in
+                                            self.handle(response: response)
         })
     }
     
     
     @objc func applePayPayment() {
-        self.judoKit?.invokeApplePay(with: .payment, configuration: applePayConfigurations, completion: { (response, error) in
-            _  = self.handle(response, error: error)
+        self.judoKit?.invokeApplePay(with: .payment,
+                                     configuration: applePayConfigurations,
+                                     completion: { (response, error) in
+                                        self.handle(response: response)
         })
     }
     
     @objc func applePayPreAuth() {
-        self.judoKit?.invokeApplePay(with: .preAuth, configuration: applePayConfigurations, completion: { (response, error) in
-            _  = self.handle(response, error: error)
+        self.judoKit?.invokeApplePay(with: .preAuth,
+                                     configuration: applePayConfigurations,
+                                     completion: { (response, error) in
+                                        self.handle(response: response)
         })
     }
     
     @objc func navigateToPaymentMethods() {
         self.judoKit?.invokePaymentMethodScreen(with: .payment,
-                                                configuration: configuration, completion: { (response, error) in
-                                                    _  = self.handle(response, error: error)
+                                                configuration: configuration,
+                                                completion: { (response, error) in
+                                                    self.handle(response: response)
         })
     }
     
     @objc func navigateToPreAuthMethods() {
         self.judoKit?.invokePaymentMethodScreen(with: .preAuth,
-                                                configuration: configuration, completion: { (response, error) in
-                                                    _  = self.handle(response, error: error)
+                                                configuration: configuration,
+                                                completion: { (response, error) in
+                                                    self.handle(response: response)
         })
     }
     
     // MARK: - Helper methods
-    func handle(_ response: JPResponse?, error: Error?) -> JPTransactionData? {
-        if let judoError = error as NSError? {
-            self.handle(error: judoError)
-        }
-        
-        if let response = response, let items = response.items, items.count > 0 {
-            self.handle(response: response)
-            return response.items?.first
-        }
-        
-        return nil
-    }
     
-    func handle(error: NSError) {
-        if error.userDidCancelOperation {
-            dismiss(animated: true, completion: nil)
+    func handle(response: JPResponse?) {
+        guard let response = response else {
             return
         }
-        
-        dismiss(animated: true) {
-            self.presentAlert(with: "Error", message: error.judoMessage)
-        }
-    }
-    
-    func handle(response: JPResponse) {
         let detailsViewController = TransactionDetailsTableViewController(title: "Payment receipt",
                                                                           response: response)
         dismiss(animated: true) {
