@@ -212,7 +212,6 @@
 		305836F9240677B000B61167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305836E1240677B000B61167 /* Main.storyboard */; };
 		305836FA240677B000B61167 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E4240677B000B61167 /* NSError.swift */; };
 		305836FB240677B000B61167 /* HalfSizePresentationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E6240677B000B61167 /* HalfSizePresentationSegue.swift */; };
-		305836FC240677B000B61167 /* StandaloneApplePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E8240677B000B61167 /* StandaloneApplePayViewController.swift */; };
 		305836FD240677B000B61167 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E9240677B000B61167 /* SettingsTableViewController.swift */; };
 		305836FE240677B000B61167 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836EA240677B000B61167 /* MainViewController.swift */; };
 		305836FF240677B000B61167 /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */; };
@@ -666,7 +665,6 @@
 		305836E2240677B000B61167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		305836E4240677B000B61167 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		305836E6240677B000B61167 /* HalfSizePresentationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationSegue.swift; sourceTree = "<group>"; };
-		305836E8240677B000B61167 /* StandaloneApplePayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandaloneApplePayViewController.swift; sourceTree = "<group>"; };
 		305836E9240677B000B61167 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		305836EA240677B000B61167 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -1826,7 +1824,6 @@
 		305836E7240677B000B61167 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				305836E8240677B000B61167 /* StandaloneApplePayViewController.swift */,
 				305836E9240677B000B61167 /* SettingsTableViewController.swift */,
 				305836EA240677B000B61167 /* MainViewController.swift */,
 				305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */,
@@ -2847,7 +2844,6 @@
 				305836F4240677B000B61167 /* DemoFeature.swift in Sources */,
 				305836FE240677B000B61167 /* MainViewController.swift in Sources */,
 				305836FD240677B000B61167 /* SettingsTableViewController.swift in Sources */,
-				305836FC240677B000B61167 /* StandaloneApplePayViewController.swift in Sources */,
 				305836FA240677B000B61167 /* NSError.swift in Sources */,
 				305836F2240677B000B61167 /* DetailsTableViewSection.swift in Sources */,
 				305836F6240677B000B61167 /* DetailsTableViewRow.swift in Sources */,

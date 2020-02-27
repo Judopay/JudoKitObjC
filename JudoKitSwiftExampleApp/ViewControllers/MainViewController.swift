@@ -2,13 +2,11 @@ import UIKit
 import JudoKitObjC
 
 class MainViewController: UITableViewController {
-    
     var settings = Settings(isAVSEnabled: false, currency: .GBP)
     var judoKit = JudoKit(token: token, secret: secret)
     var locationManager = CLLocationManager()
     var transactionData: JPTransactionData?
     let consumerReference = "judoPay-sample-app"
-    lazy var amount = JPAmount("0.01", currency: settings.currency.rawValue)
     lazy var reference = JPReference(consumerReference: consumerReference)
     
     let defaultFeatures = [
@@ -48,10 +46,14 @@ class MainViewController: UITableViewController {
                     details: "with default preauth methods")
     ]
     
+    var amout: JPAmount {
+        return  JPAmount("0.01", currency: settings.currency.rawValue)
+    }
     
     var configuration: JPConfiguration {
-        let configuration = JPConfiguration(judoID: judoId, amount: amount, reference: reference)
+        let configuration = JPConfiguration(judoID: judoId, amount: self.amout, reference: reference)
         configuration.supportedCardNetworks = [.networkVisa, .networkMasterCard, .networkAMEX]
+        configuration.uiConfiguration.isAVSEnabled = settings.isAVSEnabled
         return configuration
     }
     
@@ -72,7 +74,7 @@ class MainViewController: UITableViewController {
         judoKit?.isSandboxed = true
         locationManager.requestWhenInUseAuthorization()
     }
-        
+    
     // MARK: Table view datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return defaultFeatures.count

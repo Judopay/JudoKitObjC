@@ -330,7 +330,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     self.settings = settings;
    self.configuration.uiConfiguration.isAVSEnabled = settings.isAVSEnabled;
 }
-
+ 
 - (IBAction)settingsButtonHandler:(id)sender {
     SettingsViewController *svc = [[SettingsViewController alloc] initWithSettings:self.settings];
     svc.delegate = self;
