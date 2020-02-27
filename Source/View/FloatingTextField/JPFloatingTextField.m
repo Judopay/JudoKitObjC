@@ -71,10 +71,13 @@
 
 - (void)setupViews {
     [self addSubview:self.floatingLabel];
-    [self.floatingLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor].active = YES;
-    [self.floatingLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor].active = YES;
-    self.floatingLabelCenterYConstraint = [self.floatingLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor];
-    self.floatingLabelCenterYConstraint.active = YES;
+    NSArray *constraints = @[
+        [self.floatingLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.floatingLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        self.floatingLabelCenterYConstraint,
+    ];
+
+    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 #pragma mark - Internal logic
@@ -102,7 +105,6 @@
     CGPoint newOrigin = self.frame.origin;
     self.frame = CGRectMake(oldOrigin.x, oldOrigin.y + frameOffset, self.frame.size.width, self.frame.size.height);
 
-    [self setNeedsUpdateConstraints];
     self.floatingLabelCenterYConstraint.constant = constant;
 
     CGFloat yOffset = (scale > 1) ? 5.0 : -5.0;
@@ -132,4 +134,12 @@
     }
     return _floatingLabel;
 }
+
+- (NSLayoutConstraint *)floatingLabelCenterYConstraint {
+    if (!_floatingLabelCenterYConstraint) {
+        _floatingLabelCenterYConstraint = [self.floatingLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor];
+    }
+    return _floatingLabelCenterYConstraint;
+}
+
 @end
