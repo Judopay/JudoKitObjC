@@ -210,14 +210,16 @@ const int kSubstringPatternOffset = 4;
 }
 
 - (double)deviceAwareSpacing {
+    double ratio = getWidthAspectRatio();
+    
     if (UIScreen.mainScreen.bounds.size.width > 375) {
-        return kCardTitleLargeStackViewSpacing * getWidthAspectRatio();
+        return kCardTitleLargeStackViewSpacing * ratio;
     }
     
     if (UIScreen.mainScreen.bounds.size.width > 320) {
-        return kCardTitleMediumStackViewSpacing * getWidthAspectRatio();
+        return kCardTitleMediumStackViewSpacing * ratio;
     }
-    return kCardTitleSmallStackViewSpacing * getWidthAspectRatio();
+    return kCardTitleSmallStackViewSpacing * ratio;
 }
 
 - (UIFont *)deviceAwareTitleFont {
