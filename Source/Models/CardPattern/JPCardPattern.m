@@ -63,7 +63,7 @@
 }
 
 + (instancetype)random {
-    JPCardPatternType randomType = (JPCardPatternType)(arc4random() % (int)JPCardPatternTypeOlive);
+    JPCardPatternType randomType = (JPCardPatternType)(arc4random_uniform((int)JPCardPatternTypeOlive) + 1);
     return [JPCardPattern patternWithType:randomType];
 }
 

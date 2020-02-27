@@ -66,4 +66,9 @@
  */
 + (nonnull UIFont *)captionBold;
 
+/**
+ * Returns the weight of the font
+ */
+- (UIFontWeight)weight;
+
 @end
