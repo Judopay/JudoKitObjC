@@ -223,13 +223,15 @@ const int kSubstringPatternOffset = 4;
 }
 
 - (UIFont *)deviceAwareTitleFont {
-    return [UIFont systemFontOfSize:UIFont.title.pointSize * getWidthAspectRatio()
-                             weight:UIFont.title.weight * getWidthAspectRatio()];
+    double ratio = getWidthAspectRatio();
+    return [UIFont systemFontOfSize:UIFont.title.pointSize * ratio
+                             weight:UIFont.title.weight * ratio];
 }
 
 - (UIFont *)deviceAwareBodyFont {
-    return [UIFont systemFontOfSize:UIFont.bodyBold.pointSize * getWidthAspectRatio()
-                             weight:UIFont.bodyBold.weight * getWidthAspectRatio()];
+    double ratio = getWidthAspectRatio();
+    return [UIFont systemFontOfSize:UIFont.bodyBold.pointSize * ratio
+                             weight:UIFont.bodyBold.weight * ratio];
 }
 
 @end
