@@ -214,7 +214,7 @@
 
     NSMutableArray<PKPaymentSummaryItem *> *pkJPPaymentSummaryItems = [NSMutableArray new];
 
-    for (JPPaymentSummaryItem *item in self.configuration.JPPaymentSummaryItems) {
+    for (JPPaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
         PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType:item.type];
         [pkJPPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
                                                                                amount:item.amount

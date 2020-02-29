@@ -34,7 +34,7 @@
  *
  * @param title - the title of the card
  * @param expiryDate - the expiration date of the card
- * @param network - the card network
+ * @param cardNetwork - the card network
  * @param cardLastFour - the last four digits of the card
  * @param patternType - a JPCardPatternType value used to identify the card pattern
  */

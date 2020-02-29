@@ -76,7 +76,7 @@
 /**
  * Designated initializer that returns a configured JPCardNetwork based on a type
  *
- * @param type - the card network type.
+ * @param networkType - the card network type.
  *
  * @returns a configured instance of JPCardNetwork
  */
