@@ -46,12 +46,12 @@ class MainViewController: UITableViewController {
                     details: "with default preauth methods")
     ]
     
-    var amout: JPAmount {
+    var amount: JPAmount {
         return  JPAmount("0.01", currency: settings.currency.rawValue)
     }
     
     var configuration: JPConfiguration {
-        let configuration = JPConfiguration(judoID: judoId, amount: self.amout, reference: reference)
+        let configuration = JPConfiguration(judoID: judoId, amount: self.amount, reference: reference)
         configuration.supportedCardNetworks = [.networkVisa, .networkMasterCard, .networkAMEX]
         configuration.uiConfiguration.isAVSEnabled = settings.isAVSEnabled
         return configuration
