@@ -114,9 +114,9 @@
                      httpMethod:(HTTPMethod)httpMethod
                      parameters:(NSDictionary *)parameters
                      completion:(JudoCompletionBlock)completion {
-    
+
     NSString *url = [NSString stringWithFormat:@"%@%@", self.session.baseURL, endpoint];
-    
+
     if (httpMethod == HTTPMethodPOST) {
         [self.session POST:url parameters:parameters completion:completion];
         return;

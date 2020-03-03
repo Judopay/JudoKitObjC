@@ -193,11 +193,10 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
 
     return [urlSession dataTaskWithRequest:request
                          completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-        
                              if (!completion) {
                                  return;
                              }
-        
+
                              if (error || !data) {
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      completion(nil, error ? error : NSError.judoRequestFailedError);

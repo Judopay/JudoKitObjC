@@ -23,11 +23,11 @@
 //  SOFTWARE.
 
 #import "JPIDEALService.h"
+#import "JPAmount.h"
+#import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
-#import "JPOrderDetails.h"
-#import "JPAmount.h"
 #import "NSError+Additions.h"
 
 @interface JPIDealService ()
@@ -64,29 +64,28 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
                                           httpMethod:HTTPMethodPOST
                                           parameters:[self parametersForIDEALBank:iDealBank]
                                           completion:^(JPResponse *response, NSError *error) {
-        
-        JPTransactionData *data = response.items.firstObject;
-        
-        if (data.orderDetails.orderId && data.redirectUrl) {
-            completion([self remapIdealResponseWithResponse:response], error);
-            return;
-        }
+                                              JPTransactionData *data = response.items.firstObject;
 
-        completion(nil, NSError.judoResponseParseError);
-    }];
+                                              if (data.orderDetails.orderId && data.redirectUrl) {
+                                                  completion([self remapIdealResponseWithResponse:response], error);
+                                                  return;
+                                              }
+
+                                              completion(nil, NSError.judoResponseParseError);
+                                          }];
 }
 
 - (void)pollTransactionStatusForOrderId:(NSString *)orderId
                                checksum:(NSString *)checksum
                              completion:(JudoCompletionBlock)completion {
-    
+
     self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
-        self.didTimeout = true;
-        completion(nil, NSError.judoRequestTimeoutError);
-        return;
-    }];
+                                                       self.didTimeout = true;
+                                                       completion(nil, NSError.judoRequestTimeoutError);
+                                                       return;
+                                                   }];
 
     [self getStatusForOrderId:orderId checksum:checksum completion:completion];
 }
@@ -94,33 +93,32 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
 - (void)getStatusForOrderId:(NSString *)orderId
                    checksum:(NSString *)checksum
                  completion:(JudoCompletionBlock)completion {
-    
+
     if (self.didTimeout) {
         return;
     }
-    
+
     [self.transactionService sendRequestWithEndpoint:kStatusRequestEndpoint
                                           httpMethod:HTTPMethodGET
                                           parameters:nil
                                           completion:^(JPResponse *response, NSError *error) {
-        if (error) {
-            completion(nil, error);
-            [self.timer invalidate];
-            return;
-        }
-        
-        if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
-            dispatch_time_t timeInterval = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
-                    dispatch_after(timeInterval, dispatch_get_main_queue(), ^{
-                        [self getStatusForOrderId:orderId checksum:checksum completion:completion];
-                    });
-                    return;
-                }
-                JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
-                completion(mappedResponse, error);
-                [self.timer invalidate];
-    }];
-    
+                                              if (error) {
+                                                  completion(nil, error);
+                                                  [self.timer invalidate];
+                                                  return;
+                                              }
+
+                                              if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
+                                                  dispatch_time_t timeInterval = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+                                                  dispatch_after(timeInterval, dispatch_get_main_queue(), ^{
+                                                      [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+                                                  });
+                                                  return;
+                                              }
+                                              JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
+                                              completion(mappedResponse, error);
+                                              [self.timer invalidate];
+                                          }];
 }
 
 - (void)stopPollingTransactionStatus {
@@ -132,7 +130,7 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
 
     JPAmount *amount = self.configuration.amount;
     JPReference *reference = self.configuration.reference;
-    
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{
         @"paymentMethod" : @"IDEAL",
         @"currency" : amount.currency,
@@ -144,11 +142,11 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
         @"merchantConsumerReference" : reference.consumerReference,
         @"siteId" : self.configuration.siteId
     }];
-    
+
     return parameters;
 }
 
--(JPResponse *)remapIdealResponseWithResponse:(JPResponse *) response {
+- (JPResponse *)remapIdealResponseWithResponse:(JPResponse *)response {
     response.items.firstObject.receiptId = response.items.firstObject.orderDetails.orderId;
     return response;
 }
