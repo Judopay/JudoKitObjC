@@ -35,7 +35,6 @@
 
 @interface JPSession () <NSURLSessionDelegate>
 
-@property (nonatomic, strong, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @property (nonatomic, strong, readwrite) TrustKit *trustKit;
 @property (nonatomic, strong, readwrite) JPReachability *reachability;
@@ -107,7 +106,7 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
 }
 
 - (void)setupReachability {
-    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    NSURL *requestURL = [NSURL URLWithString:self.baseURL];
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
 }
 
