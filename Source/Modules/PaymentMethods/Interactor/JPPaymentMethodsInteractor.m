@@ -31,6 +31,7 @@
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
 #import "JPReference.h"
+#import "JPIDEALService.h"
 #import "JPTransactionService.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) JudoCompletionBlock completion;
 @property (nonatomic, strong) JPApplePayService *applePayService;
 @property (nonatomic, strong) JP3DSService *threeDSecureService;
+@property (nonatomic, strong) JPIDEALService *iDealService;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
@@ -56,6 +58,8 @@
         self.configuration = configuration;
         self.transactionService = transactionService;
         self.completion = completion;
+        self.iDealService = [[JPIDEALService alloc] initWithConfiguration:configuration
+                                                       transactionService:transactionService];
     }
     return self;
 }
@@ -101,6 +105,10 @@
 
 - (void)orderCards {
     [JPCardStorage.sharedInstance orderCards];
+}
+
+- (NSArray *)getIDEALBankTypes {
+    return @[@(JPIDEALBankING), @(JPIDEALBankABN), @(JPIDEALBankVanLanschotBankiers), @(JPIDEALBankTriodos), @(JPIDEALBankRabobank), @(JPIDEALBankSNS), @(JPIDEALBankASN), @(JPIDEALBankRegio), @(JPIDEALBankKnab), @(JPIDEALBankBunq), @(JPIDEALBankMoneyou), @(JPIDEALBankHandelsbanken)];
 }
 
 #pragma mark - Set card last card used to maek a successfull payment at index

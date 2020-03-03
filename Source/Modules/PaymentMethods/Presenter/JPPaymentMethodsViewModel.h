@@ -173,8 +173,8 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
 @property (nonatomic, assign) BOOL isSelected;
 
 /**
-* A value that specifies card expiration staus
-*/
+ * A value that specifies card expiration staus
+ */
 @property (nonatomic, assign) CardExpirationStatus cardExpirationStatus;
 
 @end
@@ -182,6 +182,7 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
 #pragma mark - JPPaymentMethodsCardListModel
 
 @interface JPPaymentMethodsCardListModel : JPPaymentMethodsModel
+
 /**
  * An array of JPPaymentMethodsCardModel objects that describe the added cards
  */
@@ -222,6 +223,38 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
  * A boolean value that returns YES if Apple Pay is set up
  */
 @property (nonatomic, assign) bool isApplePaySetUp;
+
+@end
+
+#pragma mark - IDEAL Bank Model
+
+@interface JPPaymentMethodsIDEALBankModel: NSObject
+
+/**
+ * The iDEAL bank's title
+ */
+@property (nonatomic, strong) NSString *_Nonnull bankTitle;
+
+/**
+ * The iDEAL bank's icon name
+ */
+@property (nonatomic, strong) NSString *_Nonnull bankIconName;
+
+/**
+ * A boolean value that describes if the bank is the currently selected one
+ */
+@property (nonatomic, assign) BOOL isSelected;
+
+@end
+
+#pragma mark - IDEAL Bank List Model
+
+@interface JPPaymentMethodsIDEALBankListModel: JPPaymentMethodsModel
+
+/**
+ * An array of JPPaymentMethodIDEALBankModel objects that describe the iDEAL banks
+ */
+@property (nonatomic, strong) NSMutableArray<JPPaymentMethodsIDEALBankModel *> *_Nullable bankModels;
 
 @end
 

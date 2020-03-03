@@ -1,5 +1,5 @@
 //
-//  JPIDealService.h
+//  JPIDEALService.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
     IDEALStatusError
 };
 
-@interface JPIDealService : NSObject
+@interface JPIDEALService : NSObject
 
 /**
  * A string describing the account holder name

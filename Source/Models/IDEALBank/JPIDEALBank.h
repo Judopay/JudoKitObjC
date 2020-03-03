@@ -28,7 +28,6 @@
  *  Enumeration of all available iDEAL banks
  */
 typedef NS_ENUM(NSUInteger, JPIDEALBankType) {
-    JPIDEALBankNone,
     JPIDEALBankRabobank,
     JPIDEALBankABN,
     JPIDEALBankVanLanschotBankiers,
@@ -57,6 +56,11 @@ typedef NS_ENUM(NSUInteger, JPIDEALBankType) {
  *  The title of the iDEAL bank
  */
 @property (nonatomic, strong) NSString *_Nonnull title;
+
+/**
+ * The icon name of the iDEAL bank
+ */
+@property (nonatomic, strong) NSString *_Nonnull iconName;
 
 /**
  *  The bank identifier code for the iDEAL bank

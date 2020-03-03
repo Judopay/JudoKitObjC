@@ -91,13 +91,24 @@
  */
 - (bool)isApplePaySetUp;
 
+/**
+ * A method that handles 3D Secure transactions
+ *
+ * @param error - the NSError object that triggers a 3D Secure transaction
+ * @param completion - the JPResponse / NSError completion block
+ */
 - (void)handle3DSecureTransactionFromError:(NSError *)error
                                 completion:(JudoCompletionBlock)completion;
 
 /**
  * A method that reorders cards so that the default card is always on top
-*/
+ */
 - (void)orderCards;
+
+/**
+ * A method which returns all the iDEAL bank types available
+ */
+- (NSArray *)getIDEALBankTypes;
 
 @end
 

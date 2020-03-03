@@ -48,5 +48,11 @@
 @implementation JPPaymentMethodsHeaderModel
 @end
 
+@implementation JPPaymentMethodsIDEALBankModel
+@end
+
+@implementation JPPaymentMethodsIDEALBankListModel
+@end
+
 @implementation JPPaymentMethodsViewModel
 @end

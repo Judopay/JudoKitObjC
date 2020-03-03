@@ -34,6 +34,7 @@
 #import "JPTransactionViewModel.h"
 #import "NSError+Additions.h"
 #import "NSString+Additions.h"
+#import "JPIDEALBank.h"
 
 @interface JPPaymentMethodsPresenterImpl ()
 @property (nonatomic, strong) JPPaymentMethodsViewModel *viewModel;
@@ -43,6 +44,7 @@
 @property (nonatomic, strong) JPPaymentMethodsCardHeaderModel *cardHeaderModel;
 @property (nonatomic, strong) JPPaymentMethodsCardFooterModel *cardFooterModel;
 @property (nonatomic, strong) JPPaymentMethodsCardListModel *cardListModel;
+@property (nonatomic, strong) JPPaymentMethodsIDEALBankListModel *bankListModel;
 @property (nonatomic, strong) JPTransactionButtonViewModel *paymentButtonModel;
 @property (nonatomic, strong) NSDateFormatter *dateFormater;
 @property (nonatomic, strong) NSDate *currentDate;
@@ -231,8 +233,16 @@
     self.viewModel.headerModel.paymentMethodType = selectedPaymentMethod.type;
     self.viewModel.headerModel.isApplePaySetUp = [self.interactor isApplePaySetUp];
     
-    if (selectedPaymentMethod.type == JPPaymentMethodTypeCard) {
-        [self prepareCardListModels];
+    
+    switch (selectedPaymentMethod.type) {
+        case JPPaymentMethodTypeCard:
+            [self prepareCardListModels];
+            break;
+        case JPPaymentMethodTypeApplePay:
+            break;
+        case JPPaymentMethodTypeIDeal:
+            [self prepareIDEALBankListModel];
+            break;
     }
 }
 
@@ -246,6 +256,14 @@
         [self.viewModel.items addObject:self.cardHeaderModel];
         [self.viewModel.items addObject:self.cardListModel];
         [self.viewModel.items addObject:self.cardFooterModel];
+    }
+}
+
+- (void)prepareIDEALBankListModel {
+    NSArray *iDEALBankTypes = [self.interactor getIDEALBankTypes];
+    for (NSNumber *type in iDEALBankTypes) {
+        JPPaymentMethodsIDEALBankModel *bankModel = [self iDEALBankModelForType:type.intValue];
+        [self.bankListModel.bankModels addObject:bankModel];
     }
 }
 
@@ -318,6 +336,14 @@
         cardIndex++;
     }
     return -1;
+}
+
+- (JPPaymentMethodsIDEALBankModel *)iDEALBankModelForType:(JPIDEALBankType)type {
+    JPIDEALBank *bank = [JPIDEALBank bankWithType:type];
+    JPPaymentMethodsIDEALBankModel *bankModel = [JPPaymentMethodsIDEALBankModel new];
+    bankModel.bankTitle = bank.title;
+    bankModel.bankIconName = bank.iconName;
+    return bankModel;
 }
 
 #pragma mark - Lazy properties
@@ -408,6 +434,15 @@
         _paymentButtonModel.isEnabled = NO;
     }
     return _paymentButtonModel;
+}
+
+- (JPPaymentMethodsIDEALBankListModel *)bankListModel {
+    if (!_bankListModel) {
+        _bankListModel = [JPPaymentMethodsIDEALBankListModel new];
+        _bankListModel.bankModels = [NSMutableArray new];
+        _bankListModel.identifier = @"JPPaymentMethodsIDEALBankCell";
+    }
+    return _bankListModel;
 }
 
 - (NSDateFormatter *)dateFormater {

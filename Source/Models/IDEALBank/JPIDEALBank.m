@@ -34,6 +34,7 @@
 - (instancetype)initWithType:(JPIDEALBankType)type {
     if (self = [super init]) {
         self.title = [self titleForType:type];
+        self.iconName = [self iconNameForType:type];
         self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
         self.type = type;
     }
@@ -42,7 +43,7 @@
 
 - (NSString *)titleForType:(JPIDEALBankType)type {
     NSArray *bankNames = @[
-        @"None", @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
+        @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
         @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
         @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
     ];
@@ -50,9 +51,19 @@
     return bankNames[type];
 }
 
+- (NSString *)iconNameForType:(JPIDEALBankType)type {
+    NSArray *iconNames = @[
+        @"logo-ing", @"logo-abn", @"logo-vanlanschot",
+        @"logo-triodos", @"logo-rabobank", @"logo-sns", @"logo-asn", @"logo-regiobank",
+        @"logo-knab", @"logo-bunq", @"logo-moneyou", @"logo-handelsbanken"
+    ];
+
+    return iconNames[type];
+}
+
 - (NSString *)bankIdentifierCodeForType:(JPIDEALBankType)type {
     NSArray *bankIdentifierCodes = @[
-        @"None", @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
+        @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
         @"INGBNL2A", @"SNSBNL2A", @"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
         @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
     ];
