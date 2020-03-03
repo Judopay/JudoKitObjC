@@ -34,9 +34,9 @@ typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
 @interface JPSession : NSObject
 
 /**
- *  The endpoint for REST API calls to the judo API
+ *  The base URL for REST API calls to the judo API
  */
-@property (nonatomic, strong, readonly) NSString *_Nonnull endpoint;
+@property (nonatomic, strong, readonly) NSString *_Nonnull baseURL;
 
 /**
  *  The endpoint for REST API calls to the judo API related to iDEAL transactions

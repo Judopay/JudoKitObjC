@@ -115,7 +115,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  * @param completion - a completion block with an optional JPResponse object or an NSError.
  */
 - (void)listTransactionsOfType:(TransactionType)type
-                     paginated:(nonnull JPPagination *)pagination
+                     paginated:(nullable JPPagination *)pagination
                     completion:(nullable JudoCompletionBlock)completion;
 
 /**

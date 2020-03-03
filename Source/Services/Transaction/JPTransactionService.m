@@ -110,6 +110,20 @@
     [transaction listWithPagination:pagination completion:completion];
 }
 
+- (void)sendRequestWithEndpoint:(NSString *)endpoint
+                     httpMethod:(HTTPMethod)httpMethod
+                     parameters:(NSDictionary *)parameters
+                     completion:(JudoCompletionBlock)completion {
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", self.session.baseURL, endpoint];
+    
+    if (httpMethod == HTTPMethodPOST) {
+        [self.session POST:url parameters:parameters completion:completion];
+        return;
+    }
+    [self.session GET:url parameters:parameters completion:completion];
+}
+
 #pragma mark - Setters
 
 - (void)setIsSandboxed:(BOOL)isSandboxed {

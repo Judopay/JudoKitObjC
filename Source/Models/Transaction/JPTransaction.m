@@ -152,7 +152,7 @@ static NSString *const kRefundPathKey = @"/transactions/refunds";
 
     self.currentTransactionReference = self.reference.paymentReference;
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, self.transactionPath];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, self.transactionPath];
 
     [self.enricher enrichTransaction:self
                       withCompletion:^{
@@ -162,7 +162,7 @@ static NSString *const kRefundPathKey = @"/transactions/refunds";
 
 - (void)threeDSecureWithParameters:(NSDictionary *)parameters receiptId:(NSString *)receiptId completion:(JudoCompletionBlock)completion {
 
-    NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.endpoint, receiptId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@transactions/%@", self.apiSession.baseURL, receiptId];
 
     [self.apiSession PUT:fullURL
               parameters:parameters
@@ -178,7 +178,7 @@ static NSString *const kRefundPathKey = @"/transactions/refunds";
     if (pagination) {
         path = [path stringByAppendingFormat:@"?pageSize=%li&offset=%li&sort=%@", (long)pagination.pageSize, (long)pagination.offset, pagination.sort];
     }
-    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.endpoint, path];
+    NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.apiSession.baseURL, path];
     [self.apiSession GET:fullURL parameters:nil completion:completion];
 }
 
@@ -215,6 +215,14 @@ static NSString *const kRefundPathKey = @"/transactions/refunds";
 
 - (void)setJudoId:(NSString *)judoId {
     self.parameters[@"judoId"] = judoId;
+}
+
+- (NSString *)siteId {
+    return self.parameters[@"siteId"];
+}
+
+- (void)setSiteId:(NSString *)siteId {
+    self.parameters[@"siteId"] = siteId;
 }
 
 - (JPAmount *)amount {

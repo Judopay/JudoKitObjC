@@ -23,11 +23,15 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
 #import "JPConfiguration.h"
 #import "JPReceipt.h"
 #import "JPSession.h"
 #import "JPTransaction.h"
+
+typedef NS_ENUM(NSUInteger, HTTPMethod) {
+    HTTPMethodGET,
+    HTTPMethodPOST,
+};
 
 @interface JPTransactionService : NSObject
 
@@ -49,8 +53,8 @@
  *
  * @returns - a configured instance of JPTransactionService
  */
-- (instancetype)initWithToken:(NSString *)token
-                    andSecret:(NSString *)secret;
+- (nonnull instancetype)initWithToken:(nonnull NSString *)token
+                            andSecret:(nonnull NSString *)secret;
 
 /**
  * A method which returns a JPTransaction based on a provided configuration
@@ -59,7 +63,20 @@
  *
  * @returns - a configured instance of JPTransaction;
  */
-- (JPTransaction *)transactionWithConfiguration:(JPConfiguration *)configuration;
+- (nonnull JPTransaction *)transactionWithConfiguration:(nonnull JPConfiguration *)configuration;
+
+/**
+ * A method for sending REST API requests to a provided URL with optional parameters
+ *
+ * @param endpoint - the destination URL endpoint for REST requests
+ * @param httpMethod - an NS_ENUM value that describes the HTTP method
+ * @param parameters - optional NSDictionary that should be send with the request
+ * @param completion - a completion block that returns an optional JPResponse or NSError
+ */
+- (void)sendRequestWithEndpoint:(nonnull NSString *)endpoint
+                     httpMethod:(HTTPMethod)httpMethod
+                     parameters:(nullable NSDictionary *)parameters
+                     completion:(nullable JudoCompletionBlock)completion;
 
 /**
  * A method which returns a list of transactions based on a specified type.
@@ -69,8 +86,8 @@
  * @param completion - a completion block with an optinal JPResponse or NSError
  */
 - (void)listTransactionsOfType:(TransactionType)type
-                     paginated:(JPPagination *)pagination
-                    completion:(JudoCompletionBlock)completion;
+                     paginated:(nullable JPPagination *)pagination
+                    completion:(nullable JudoCompletionBlock)completion;
 
 /**
  * A method which returns a instance of JPReceipt based on a specified receipt ID.
@@ -79,6 +96,6 @@
  *
  * @returns - a configured instance of JPReceipt.
  */
-- (JPReceipt *)receiptForReceiptId:(NSString *)receiptId;
+- (nonnull JPReceipt *)receiptForReceiptId:(nonnull NSString *)receiptId;
 
 @end
