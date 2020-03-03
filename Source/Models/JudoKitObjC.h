@@ -49,8 +49,8 @@ FOUNDATION_EXPORT const unsigned char JudoKitObjCVersionString[];
 #import <JudoKitObjC/JPContactInformation.h>
 #import <JudoKitObjC/JPCountry.h>
 #import <JudoKitObjC/JPEnhancedPaymentDetail.h>
-#import <JudoKitObjC/JPIDealBank.h>
-#import <JudoKitObjC/JPIDealService.h>
+#import <JudoKitObjC/JPIDEALBank.h>
+#import <JudoKitObjC/JPIDEALService.h>
 #import <JudoKitObjC/JPOrderDetails.h>
 #import <JudoKitObjC/JPPagination.h>
 #import <JudoKitObjC/JPPaymentMethods.h>

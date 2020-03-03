@@ -33,6 +33,19 @@
 
 #import <TrustKit/TrustKit.h>
 
+@interface JPSession () <NSURLSessionDelegate>
+
+@property (nonatomic, strong, readwrite) NSString *endpoint;
+@property (nonatomic, strong, readwrite) NSString *authorizationHeader;
+@property (nonatomic, strong, readwrite) TrustKit *trustKit;
+@property (nonatomic, strong, readwrite) JPReachability *reachability;
+
+@end
+
+@implementation JPSession
+
+#pragma mark - Constants
+
 static NSString *const JPAPIVersion = @"5.6.0";
 static NSString *const JPContentTypeJSON = @"application/json";
 static NSString *const JPJudoSDK = @"Judo-SDK";
@@ -49,16 +62,10 @@ static NSString *const HTTPMethodGET = @"GET";
 static NSString *const HTTPMethodPOST = @"POST";
 static NSString *const HTTPMethodPUT = @"PUT";
 
-@interface JPSession () <NSURLSessionDelegate>
+static NSString *const kJudoBaseURL = @"https://api.judopay.com/";
+static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/";
 
-@property (nonatomic, strong, readwrite) NSString *endpoint;
-@property (nonatomic, strong, readwrite) NSString *authorizationHeader;
-@property (nonatomic, strong, readwrite) TrustKit *trustKit;
-@property (nonatomic, strong, readwrite) JPReachability *reachability;
-
-@end
-
-@implementation JPSession
+#pragma mark - Initializers
 
 + (instancetype)sessionWithAuthorizationHeader:(NSString *)header {
     return [[JPSession alloc] initWithAuthorizationHeader:header];
@@ -72,6 +79,8 @@ static NSString *const HTTPMethodPUT = @"PUT";
     }
     return self;
 }
+
+#pragma mark - Setup methods
 
 - (void)setupTrustKit {
     NSDictionary *trustKitConfig =
@@ -102,7 +111,19 @@ static NSString *const HTTPMethodPUT = @"PUT";
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
 }
 
-#pragma mark - REST API
+#pragma mark - REST API methods
+
+- (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
+    [self apiCall:HTTPMethodPOST path:path parameters:parameters completion:completion];
+}
+
+- (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
+    [self apiCall:HTTPMethodPUT path:path parameters:parameters completion:completion];
+}
+
+- (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
+    [self apiCall:HTTPMethodGET path:path parameters:parameters completion:completion];
+}
 
 - (void)apiCall:(NSString *)HTTPMethod
            path:(NSString *)path
@@ -125,7 +146,6 @@ static NSString *const HTTPMethodPUT = @"PUT";
                       completion:(JudoCompletionBlock)completion {
 
     NSMutableURLRequest *request = [self judoRequest:path];
-
     request.HTTPMethod = HTTPMethod;
 
     if (parameters) {
@@ -142,30 +162,15 @@ static NSString *const HTTPMethodPUT = @"PUT";
     }
 
     NSURLSessionDataTask *task = [self task:request completion:completion];
-
     [task resume];
 }
 
-- (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:HTTPMethodPOST path:path parameters:parameters completion:completion];
-}
-
-- (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:HTTPMethodPUT path:path parameters:parameters completion:completion];
-}
-
-- (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(JudoCompletionBlock)completion {
-    [self apiCall:HTTPMethodGET path:path parameters:parameters completion:completion];
-}
-
 - (NSMutableURLRequest *)judoRequest:(NSString *)url {
-    // create request and configure headers
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request addValue:JPContentTypeJSON forHTTPHeaderField:HTTPHeaderFieldContentType];
     [request addValue:JPContentTypeJSON forHTTPHeaderField:HTTPHeaderFieldAccept];
     [request addValue:JPAPIVersion forHTTPHeaderField:HTTPHeaderFieldAPIVersion];
 
-    // Adds the version and lang of the SDK to the header
     [request addValue:getUserAgent() forHTTPHeaderField:HTTPHeaderFieldUserAgent];
     NSString *uiClientModeString = JPJudoSDK;
 
@@ -174,36 +179,33 @@ static NSString *const HTTPMethodPUT = @"PUT";
     }
 
     [request addValue:uiClientModeString forHTTPHeaderField:HTTPHeaderFieldClientMode];
-
-    // Check if token and secret have been set
     NSAssert(self.authorizationHeader, @"token and secret not set");
 
-    // Set auth header
     [request addValue:self.authorizationHeader forHTTPHeaderField:HTTPHeaderFieldAuthorization];
     return request;
 }
 
-- (NSURLSessionDataTask *)task:(NSURLRequest *)request completion:(JudoCompletionBlock)completion { //!OCLINT
+- (NSURLSessionDataTask *)task:(NSURLRequest *)request
+                    completion:(JudoCompletionBlock)completion {
 
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
 
     return [urlSession dataTaskWithRequest:request
                          completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+        
                              if (!completion) {
                                  return;
                              }
-                             // check if an error occurred
+        
                              if (error || !data) {
                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                     completion(nil, error ? error : [NSError judoRequestFailedError]);
+                                     completion(nil, error ? error : NSError.judoRequestFailedError);
                                  });
                                  return;
                              }
 
-                             // serialize json
                              __block NSError *jsonError = nil;
-
                              NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:data
                                                                                           options:NSJSONReadingAllowFragments
                                                                                             error:&jsonError];
@@ -218,7 +220,6 @@ static NSString *const HTTPMethodPUT = @"PUT";
                                  return;
                              }
 
-                             // check if API Error was returned
                              if (responseJSON[@"code"]) {
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      completion(nil, [NSError judoErrorFromDictionary:responseJSON]);
@@ -226,7 +227,6 @@ static NSString *const HTTPMethodPUT = @"PUT";
                                  return;
                              }
 
-                             // check if 3DS was requested
                              if (responseJSON[@"acsUrl"] && responseJSON[@"paReq"]) {
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      completion(nil, [NSError judo3DSRequestWithPayload:responseJSON]);
@@ -263,27 +263,20 @@ static NSString *const HTTPMethodPUT = @"PUT";
 #pragma mark - URLSession SSL pinning
 
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler {
-    TSKPinningValidator *pinningValidator = [self.trustKit pinningValidator];
-    // Pass the authentication challenge to the validator; if the validation fails, the connection will be blocked
+    TSKPinningValidator *pinningValidator = self.trustKit.pinningValidator;
     if (![pinningValidator handleChallenge:challenge completionHandler:completionHandler]) {
-        // TrustKit did not handle this challenge: perhaps it was not for server trust
-        // or the domain was not pinned. Fall back to the default behavior
         completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
     }
 }
 
-#pragma mark - getters and setters
+#pragma mark - Getters
 
-- (NSString *)endpoint {
+- (NSString *)baseURL {
     if (self.sandboxed) {
-        return @"https://gw1.judopay-sandbox.com/";
+        return kJudoSandboxBaseURL;
     }
 
-    return @"https://gw1.judopay.com/";
-}
-
-- (NSString *)iDealEndpoint {
-    return @"https://api.judopay.com/";
+    return kJudoBaseURL;
 }
 
 @end

@@ -269,7 +269,7 @@
 
     if (@available(iOS 11.0, *)) {
 
-        if (contactFields & ContactFieldJPPostalAddress) {
+        if (contactFields & ContactFieldPostalAddress) {
             [pkContactFields addObject:PKContactFieldPostalAddress];
         }
 

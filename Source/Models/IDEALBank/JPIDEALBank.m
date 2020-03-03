@@ -1,5 +1,5 @@
 //
-//  JPIDealBank.m
+//  JPIDEALBank.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -22,16 +22,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPIDealBank.h"
+#import "JPIDEALBank.h"
 #import <Foundation/Foundation.h>
 
-@implementation JPIDealBank
+@implementation JPIDEALBank
 
-+ (instancetype)bankWithType:(JPIDealBankType)type {
-    return [[JPIDealBank alloc] initWithType:type];
++ (instancetype)bankWithType:(JPIDEALBankType)type {
+    return [[JPIDEALBank alloc] initWithType:type];
 }
 
-- (instancetype)initWithType:(JPIDealBankType)type {
+- (instancetype)initWithType:(JPIDEALBankType)type {
     if (self = [super init]) {
         self.title = [self titleForType:type];
         self.bankIdentifierCode = [self bankIdentifierCodeForType:type];
@@ -40,7 +40,7 @@
     return self;
 }
 
-- (NSString *)titleForType:(JPIDealBankType)type {
+- (NSString *)titleForType:(JPIDEALBankType)type {
     NSArray *bankNames = @[
         @"None", @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
         @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
@@ -50,7 +50,7 @@
     return bankNames[type];
 }
 
-- (NSString *)bankIdentifierCodeForType:(JPIDealBankType)type {
+- (NSString *)bankIdentifierCodeForType:(JPIDEALBankType)type {
     NSArray *bankIdentifierCodes = @[
         @"None", @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
         @"INGBNL2A", @"SNSBNL2A", @"ASNBNL21", @"RBRBNL21", @"KNABNL2H",

@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPIDealService.h"
-#import "JPIDealBank.h"
+#import "JPIDEALService.h"
+#import "JPIDEALBank.h"
 #import "JPOrderDetails.h"
 #import "JPReference.h"
 #import "JPResponse.h"
@@ -69,7 +69,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
     return self;
 }
 
-- (void)redirectURLForJPIDealBank:(JPIDealBank *)iDealBank
+- (void)redirectURLForJPIDealBank:(JPIDEALBank *)iDealBank
                        completion:(JudoRedirectCompletion)completion {
 
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", self.session.iDealEndpoint, redirectEndpoint];
@@ -145,7 +145,7 @@ static NSString *statusEndpoint = @"order/bank/statusrequest";
     [self.timer invalidate];
 }
 
-- (NSDictionary *)parametersForJPIDealBank:(JPIDealBank *)iDEALBank {
+- (NSDictionary *)parametersForJPIDealBank:(JPIDEALBank *)iDEALBank {
 
     NSNumber *amount = [NSNumber numberWithDouble:self.amount];
     NSString *trimmedPaymentReference = [self.reference.paymentReference substringToIndex:39];

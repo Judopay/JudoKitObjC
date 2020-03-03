@@ -1,5 +1,5 @@
 //
-//  JPIDealBank.h
+//  JPIDEALBank.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2019 Alternative Payments Ltd
@@ -27,31 +27,31 @@
 /**
  *  Enumeration of all available iDEAL banks
  */
-typedef NS_ENUM(NSUInteger, JPIDealBankType) {
-    JPIDealBankNone,
-    JPIDealBankRabobank,
-    JPIDealBankABN,
-    JPIDealBankVanLanschotBankiers,
-    JPIDealBankTriodos,
-    JPIDealBankING,
-    JPIDealBankSNS,
-    JPIDealBankASN,
-    JPIDealBankRegio,
-    JPIDealBankKnab,
-    JPIDealBankBunq,
-    JPIDealBankMoneyou,
-    JPIDealBankHandelsbanken
+typedef NS_ENUM(NSUInteger, JPIDEALBankType) {
+    JPIDEALBankNone,
+    JPIDEALBankRabobank,
+    JPIDEALBankABN,
+    JPIDEALBankVanLanschotBankiers,
+    JPIDEALBankTriodos,
+    JPIDEALBankING,
+    JPIDEALBankSNS,
+    JPIDEALBankASN,
+    JPIDEALBankRegio,
+    JPIDEALBankKnab,
+    JPIDEALBankBunq,
+    JPIDEALBankMoneyou,
+    JPIDEALBankHandelsbanken
 };
 
 /**
- *  An JPIDealBank object responsible for obtaining iDEAL bank information
+ *  An JPIDEALBank object responsible for obtaining iDEAL bank information
  */
-@interface JPIDealBank : NSObject
+@interface JPIDEALBank : NSObject
 
 /**
  *  The type of the iDEAL bank
  */
-@property JPIDealBankType type;
+@property JPIDEALBankType type;
 
 /**
  *  The title of the iDEAL bank
@@ -64,21 +64,21 @@ typedef NS_ENUM(NSUInteger, JPIDealBankType) {
 @property (nonatomic, strong) NSString *_Nonnull bankIdentifierCode;
 
 /**
- *  Create an JPIDealBank instance based on a specified type
+ *  Create an JPIDEALBank instance based on a specified type
  *
  *  @param type - one of the predefined iDEALBank types
  *
- *  @return an JPIDealBank instance
+ *  @return an JPIDEALBank instance
  */
-+ (nonnull instancetype)bankWithType:(JPIDealBankType)type;
++ (nonnull instancetype)bankWithType:(JPIDEALBankType)type;
 
 /**
- *  Create an JPIDealBank instance based on a specified type
+ *  Create an JPIDEALBank instance based on a specified type
  *
  *  @param type - one of the predefined iDEALBank types
  *
- *  @return an JPIDealBank instance
+ *  @return an JPIDEALBank instance
  */
-- (nonnull instancetype)initWithType:(JPIDealBankType)type;
+- (nonnull instancetype)initWithType:(JPIDEALBankType)type;
 
 @end

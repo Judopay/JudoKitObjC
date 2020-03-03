@@ -62,11 +62,11 @@ typedef NS_ENUM(NSUInteger, PaymentShippingType) {
  */
 typedef NS_OPTIONS(NSUInteger, ContactField) {
     ContactFieldNone = 0,
-    ContactFieldJPPostalAddress = 1 << 0,
+    ContactFieldPostalAddress = 1 << 0,
     ContactFieldPhone = 1 << 1,
     ContactFieldEmail = 1 << 2,
     ContactFieldName = 1 << 3,
-    ContactFieldAll = (ContactFieldJPPostalAddress | ContactFieldPhone | ContactFieldEmail | ContactFieldName)
+    ContactFieldAll = (ContactFieldPostalAddress | ContactFieldPhone | ContactFieldEmail | ContactFieldName)
 };
 
 /**

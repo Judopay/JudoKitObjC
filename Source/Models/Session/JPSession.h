@@ -33,10 +33,6 @@ typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
  */
 @interface JPSession : NSObject
 
-+ (nonnull instancetype)sessionWithAuthorizationHeader:(nonnull NSString *)header;
-
-- (nonnull instancetype)initWithAuthorizationHeader:(nonnull NSString *)header;
-
 /**
  *  The endpoint for REST API calls to the judo API
  */
@@ -61,6 +57,24 @@ typedef void (^JudoCompletionBlock)(JPResponse *_Nullable, NSError *_Nullable);
  *  Set the app to sandboxed mode
  */
 @property (nonatomic, assign) BOOL sandboxed;
+
+/**
+ * A designated initializer that creates a JPSession instance with a provided authorization header
+ *
+ * @param header - the authorization header string
+ *
+ * @returns a configured instance of JPSession
+ */
++ (nonnull instancetype)sessionWithAuthorizationHeader:(nonnull NSString *)header;
+
+/**
+ * A designated initializer that creates a JPSession instance with a provided authorization header
+ *
+ * @param header - the authorization header string
+ *
+ * @returns a configured instance of JPSession
+ */
+- (nonnull instancetype)initWithAuthorizationHeader:(nonnull NSString *)header;
 
 /**
  *  POST Helper Method for accessing the judo REST API
