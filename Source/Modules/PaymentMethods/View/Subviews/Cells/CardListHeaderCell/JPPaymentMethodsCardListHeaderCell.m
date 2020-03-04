@@ -87,17 +87,21 @@ const float kCardListHeaderCenterOffset = 10.0f;
     [self addSubview:self.titleLabel];
     [self addSubview:self.actionButton];
 
-    [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self
+    [self.titleLabel pinToAnchors:AnchorTypeLeading
+                          forView:self
                       withPadding:kCardListHeaderHorizontalPadding];
-    
-    [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self
+
+    [self.actionButton pinToAnchors:AnchorTypeTrailing
+                            forView:self
                         withPadding:kCardListHeaderHorizontalPadding];
-    
+
     [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor
-                                                  constant:kCardListHeaderCenterOffset].active = YES;
+                                                  constant:kCardListHeaderCenterOffset]
+        .active = YES;
 
     [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor
-                                                    constant:kCardListHeaderCenterOffset].active = YES;
+                                                    constant:kCardListHeaderCenterOffset]
+        .active = YES;
 }
 
 #pragma mark - Lazy instantiated properties

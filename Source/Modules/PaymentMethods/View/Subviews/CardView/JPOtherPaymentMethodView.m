@@ -72,13 +72,13 @@
         self.leadingImageView.image = [UIImage imageWithIconName:@"apple-pay-icon"];
         self.titleLabel.text = @"Apple Pay";
     }
-    
+
     if (viewModel.paymentMethodType == JPPaymentMethodTypeIDeal) {
         self.titleLabel.text = viewModel.bankModel.bankTitle;
         self.leadingImageView.image = [UIImage imageWithIconName:viewModel.bankModel.bankIconName];
         self.trailingImageView.image = [UIImage imageWithIconName:@"ideal-pay-icon"];
     }
-    
+
     CGSize imageSize = self.leadingImageView.image.size;
     self.widthConstraint.constant = imageSize.width * (31 / imageSize.height);
 }
@@ -88,7 +88,7 @@
 - (void)setupViews {
 
     self.widthConstraint = [self.leadingImageView.widthAnchor constraintLessThanOrEqualToConstant:109];
-    
+
     [NSLayoutConstraint activateConstraints:@[
         [self.leadingImageView.heightAnchor constraintEqualToConstant:31.0],
         self.widthConstraint,
@@ -99,7 +99,6 @@
     [bottomStackView addArrangedSubview:self.leadingImageView];
     [bottomStackView addArrangedSubview:[UIView new]];
     [bottomStackView addArrangedSubview:self.trailingImageView];
-    
 
     UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
     [mainStackView addArrangedSubview:self.titleLabel];

@@ -272,10 +272,10 @@
         JPPaymentMethodsIDEALBankModel *bankModel = [self iDEALBankModelForType:type.intValue];
         [self.bankListModel.bankModels addObject:bankModel];
     }
-    
+
     JPPaymentMethodsIDEALBankModel *bankModel = self.bankListModel.bankModels[self.selectedBankIndex];
     bankModel.isSelected = YES;
-    
+
     [self.viewModel.items addObject:self.bankListModel];
     self.headerModel.bankModel = bankModel;
 }

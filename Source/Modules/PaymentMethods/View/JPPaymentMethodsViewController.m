@@ -249,7 +249,7 @@
         [self.presenter changeHeaderButtonTitle:NO];
         [self.paymentMethodsView.tableView setEditing:NO animated:NO];
     }
-    
+
     if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
         [self.presenter didSelectBankAtIndex:indexPath.row];
     }
