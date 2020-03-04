@@ -43,8 +43,8 @@
 
 - (NSString *)titleForType:(JPIDEALBankType)type {
     NSArray *bankNames = @[
-        @"Rabobank", @"ABN AMRO", @"Van Lanschot Bankiers",
-        @"Triodos Bank", @"ING Bank", @"SNS Bank", @"ASN", @"RegioBank",
+        @"ING Bank", @"ABN AMRO", @"Van Lanschot Bankiers",
+        @"Triodos Bank", @"Rabobank", @"SNS Bank", @"ASN", @"RegioBank",
         @"Knab", @"Bunq", @"Moneyou", @"Handelsbanken"
     ];
 
@@ -63,8 +63,8 @@
 
 - (NSString *)bankIdentifierCodeForType:(JPIDEALBankType)type {
     NSArray *bankIdentifierCodes = @[
-        @"RABONL2U", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
-        @"INGBNL2A", @"SNSBNL2A", @"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
+        @"INGBNL2A", @"ABNANL2A", @"FVLBNL22", @"TRIONL2U",
+        @"RABONL2U", @"SNSBNL2A", @"ASNBNL21", @"RBRBNL21", @"KNABNL2H",
         @"BUNQNL2A", @"MOYONL21", @"HANDNL2A"
     ];
 

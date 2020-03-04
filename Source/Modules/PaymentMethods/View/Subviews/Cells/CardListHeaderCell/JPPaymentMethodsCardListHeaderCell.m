@@ -83,10 +83,10 @@
     [self addSubview:self.actionButton];
 
     [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self withPadding:24.0];
-    [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+    [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:10].active = YES;
 
     [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
-    [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
+    [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:10].active = YES;
 }
 
 #pragma mark - Lazy instantiated properties

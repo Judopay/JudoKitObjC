@@ -28,11 +28,11 @@
  *  Enumeration of all available iDEAL banks
  */
 typedef NS_ENUM(NSUInteger, JPIDEALBankType) {
-    JPIDEALBankRabobank,
+    JPIDEALBankING,
     JPIDEALBankABN,
     JPIDEALBankVanLanschotBankiers,
     JPIDEALBankTriodos,
-    JPIDEALBankING,
+    JPIDEALBankRabobank,
     JPIDEALBankSNS,
     JPIDEALBankASN,
     JPIDEALBankRegio,

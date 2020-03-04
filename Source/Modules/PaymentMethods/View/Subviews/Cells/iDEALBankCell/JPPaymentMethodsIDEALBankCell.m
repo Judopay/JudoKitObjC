@@ -34,8 +34,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *checkmarkImageView;
 @property (nonatomic, strong) UIView *separatorView;
-@property (nonatomic, strong) UIStackView *horizontalStackView;
-@property (nonatomic, strong) UIStackView *verticalStackView;
+@property (nonatomic, strong) UIStackView *stackView;
 @end
 
 @implementation JPPaymentMethodsIDEALBankCell
@@ -51,35 +50,39 @@
 
 - (void)setupLayout {
     
-    [self.horizontalStackView addArrangedSubview:self.iconImageView];
-    [self.horizontalStackView addArrangedSubview:self.titleLabel];
-    [self.horizontalStackView addArrangedSubview:self.checkmarkImageView];
+    [self.stackView addArrangedSubview:self.iconImageView];
+    [self.stackView addArrangedSubview:self.titleLabel];
+    [self.stackView addArrangedSubview:self.checkmarkImageView];
     
-    [self.verticalStackView addArrangedSubview:self.horizontalStackView];
-    [self.verticalStackView addArrangedSubview:self.separatorView];
-    
-    [self addSubview:self.verticalStackView];
+    [self addSubview:self.stackView];
+    [self addSubview:self.separatorView];
 }
 
 - (void)setupConstraints {
-    
+        
     NSArray *stackViewConstraints = @[
-        [self.verticalStackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:17.0],
-        [self.verticalStackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-        [self.verticalStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:27.0],
-        [self.verticalStackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-27.0],
-        [self.verticalStackView.heightAnchor constraintEqualToConstant:57.0f],
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:18.0],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:27.0],
+        [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-27.0],
+        [self.stackView.heightAnchor constraintEqualToConstant:24.0f],
     ];
     
     NSArray *constraints = @[
         [self.iconImageView.widthAnchor constraintEqualToConstant:60.0],
         [self.checkmarkImageView.widthAnchor constraintEqualToConstant:34.0],
+    ];
+    
+    NSArray *separatorConstraints = @[
         [self.separatorView.heightAnchor constraintEqualToConstant:1.0],
-//        [self.separatorView.leadingAnchor constraintEqualToAnchor:self.titleLabel.leadingAnchor]
+        [self.separatorView.leadingAnchor constraintEqualToAnchor:self.titleLabel.leadingAnchor],
+        [self.separatorView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.separatorView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:18.0],
+        [self.separatorView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
     ];
     
     [NSLayoutConstraint activateConstraints:stackViewConstraints];
     [NSLayoutConstraint activateConstraints:constraints];
+    [NSLayoutConstraint activateConstraints:separatorConstraints];
 }
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
@@ -88,6 +91,9 @@
         bankModel = (JPPaymentMethodsIDEALBankModel *)viewModel;
         self.iconImageView.image = [UIImage imageWithIconName:bankModel.bankIconName];
         self.titleLabel.text = bankModel.bankTitle;
+        
+        NSString *checkmarkIconName = bankModel.isSelected ? @"radio-on" : @"radio-off";
+        self.checkmarkImageView.image = [UIImage imageWithIconName:checkmarkIconName];
     }
 }
 
@@ -128,18 +134,11 @@
     return _separatorView;
 }
 
-- (UIStackView *)horizontalStackView {
-    if (!_horizontalStackView) {
-        _horizontalStackView = [UIStackView horizontalStackViewWithSpacing:10.0];
+- (UIStackView *)stackView {
+    if (!_stackView) {
+        _stackView = [UIStackView horizontalStackViewWithSpacing:10.0];
     }
-    return _horizontalStackView;
-}
-
-- (UIStackView *)verticalStackView {
-    if (!_verticalStackView) {
-        _verticalStackView = [UIStackView verticalStackViewWithSpacing:18.0];
-    }
-    return _verticalStackView;
+    return _stackView;
 }
 
 @end
