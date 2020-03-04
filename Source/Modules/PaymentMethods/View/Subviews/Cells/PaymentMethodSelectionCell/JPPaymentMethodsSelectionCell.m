@@ -89,8 +89,9 @@
         UIImage *image = [UIImage imageWithIconName:paymentMethod.iconName];
         [self.sectionView addSectionWithImage:image andTitle:paymentMethod.title];
     }
-    
-    if (selectionModel.selectedPaymentMethod == 0) return;
+
+    if (selectionModel.selectedPaymentMethod == 0)
+        return;
     [self.sectionView changeSelectedSectionToIndex:selectionModel.selectedPaymentMethod];
 }
 

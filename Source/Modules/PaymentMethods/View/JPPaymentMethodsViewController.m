@@ -185,7 +185,7 @@
         cardListModel = (JPPaymentMethodsCardListModel *)self.viewModel.items[section];
         return cardListModel.cardModels.count;
     }
-    
+
     if ([self.viewModel.items[section] isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
         JPPaymentMethodsIDEALBankListModel *bankListModel;
         bankListModel = (JPPaymentMethodsIDEALBankListModel *)self.viewModel.items[section];
@@ -208,7 +208,7 @@
         [cell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
         return cell;
     }
-    
+
     if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
         JPPaymentMethodsIDEALBankListModel *bankListModel;
         bankListModel = (JPPaymentMethodsIDEALBankListModel *)model;

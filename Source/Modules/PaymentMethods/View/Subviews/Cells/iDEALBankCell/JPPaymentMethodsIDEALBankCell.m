@@ -24,10 +24,10 @@
 
 #import "JPPaymentMethodsIDEALBankCell.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIFont+Additions.h"
 #import "UIColor+Additions.h"
-#import "UIStackView+Additions.h"
+#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
+#import "UIStackView+Additions.h"
 
 @interface JPPaymentMethodsIDEALBankCell ()
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -39,6 +39,19 @@
 
 @implementation JPPaymentMethodsIDEALBankCell
 
+#pragma mark - Constants
+
+const float kiDEALBankVerticalPadding = 18.0f;
+const float kiDEALBankStackViewHorizontalPadding = 27.0f;
+const float kiDEALBankStackViewHeight = 24.0f;
+const float kiDEALBankIconWidth = 60.0f;
+const float kiDEALBankCheckmarkWidth = 34.0f;
+const float kiDEALBankSeparatorHeight = 1.0f;
+const float kiDEALBankStackViewSpacing = 10.0f;
+
+
+#pragma mark - Initializers
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -48,42 +61,50 @@
     return self;
 }
 
+#pragma mark - Layout setup
+
 - (void)setupLayout {
-    
+
     [self.stackView addArrangedSubview:self.iconImageView];
     [self.stackView addArrangedSubview:self.titleLabel];
     [self.stackView addArrangedSubview:self.checkmarkImageView];
-    
+
     [self addSubview:self.stackView];
     [self addSubview:self.separatorView];
 }
 
 - (void)setupConstraints {
-        
+
     NSArray *stackViewConstraints = @[
-        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:18.0],
-        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:27.0],
-        [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-27.0],
-        [self.stackView.heightAnchor constraintEqualToConstant:24.0f],
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                 constant:kiDEALBankVerticalPadding],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                     constant:kiDEALBankStackViewHorizontalPadding],
+        [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
+                                                      constant:-kiDEALBankStackViewHorizontalPadding],
+        [self.stackView.heightAnchor constraintEqualToConstant:kiDEALBankStackViewHeight],
     ];
-    
+
     NSArray *constraints = @[
-        [self.iconImageView.widthAnchor constraintEqualToConstant:60.0],
-        [self.checkmarkImageView.widthAnchor constraintEqualToConstant:34.0],
+        [self.iconImageView.widthAnchor constraintEqualToConstant:kiDEALBankIconWidth],
+        [self.checkmarkImageView.widthAnchor constraintEqualToConstant:kiDEALBankCheckmarkWidth],
     ];
-    
+
     NSArray *separatorConstraints = @[
-        [self.separatorView.heightAnchor constraintEqualToConstant:1.0],
+        [self.separatorView.heightAnchor constraintEqualToConstant:kiDEALBankSeparatorHeight],
         [self.separatorView.leadingAnchor constraintEqualToAnchor:self.titleLabel.leadingAnchor],
         [self.separatorView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.separatorView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:18.0],
+        [self.separatorView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor
+                                                     constant:kiDEALBankVerticalPadding],
         [self.separatorView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:stackViewConstraints];
     [NSLayoutConstraint activateConstraints:constraints];
     [NSLayoutConstraint activateConstraints:separatorConstraints];
 }
+
+#pragma mark - View Model configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
     if ([viewModel isKindOfClass:JPPaymentMethodsIDEALBankModel.class]) {
@@ -91,11 +112,13 @@
         bankModel = (JPPaymentMethodsIDEALBankModel *)viewModel;
         self.iconImageView.image = [UIImage imageWithIconName:bankModel.bankIconName];
         self.titleLabel.text = bankModel.bankTitle;
-        
+
         NSString *checkmarkIconName = bankModel.isSelected ? @"radio-on" : @"radio-off";
         self.checkmarkImageView.image = [UIImage imageWithIconName:checkmarkIconName];
     }
 }
+
+#pragma mark - Lazy properties
 
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {
@@ -136,7 +159,7 @@
 
 - (UIStackView *)stackView {
     if (!_stackView) {
-        _stackView = [UIStackView horizontalStackViewWithSpacing:10.0];
+        _stackView = [UIStackView horizontalStackViewWithSpacing:kiDEALBankStackViewSpacing];
     }
     return _stackView;
 }

@@ -28,10 +28,10 @@
 #import "JPApplePayService.h"
 #import "JPCardStorage.h"
 #import "JPConfiguration.h"
+#import "JPIDEALService.h"
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
 #import "JPReference.h"
-#import "JPIDEALService.h"
 #import "JPTransactionService.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
@@ -108,7 +108,12 @@
 }
 
 - (NSArray *)getIDEALBankTypes {
-    return @[@(JPIDEALBankING), @(JPIDEALBankABN), @(JPIDEALBankVanLanschotBankiers), @(JPIDEALBankTriodos), @(JPIDEALBankRabobank), @(JPIDEALBankSNS), @(JPIDEALBankASN), @(JPIDEALBankRegio), @(JPIDEALBankKnab), @(JPIDEALBankBunq), @(JPIDEALBankMoneyou), @(JPIDEALBankHandelsbanken)];
+    return @[
+        @(JPIDEALBankING), @(JPIDEALBankABN), @(JPIDEALBankVanLanschotBankiers),
+        @(JPIDEALBankTriodos), @(JPIDEALBankRabobank), @(JPIDEALBankSNS),
+        @(JPIDEALBankASN), @(JPIDEALBankRegio), @(JPIDEALBankKnab),
+        @(JPIDEALBankBunq), @(JPIDEALBankMoneyou), @(JPIDEALBankHandelsbanken)
+    ];
 }
 
 #pragma mark - Set card last card used to maek a successfull payment at index

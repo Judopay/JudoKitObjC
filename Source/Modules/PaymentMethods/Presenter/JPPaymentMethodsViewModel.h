@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
 
 #pragma mark - IDEAL Bank Model
 
-@interface JPPaymentMethodsIDEALBankModel: NSObject
+@interface JPPaymentMethodsIDEALBankModel : NSObject
 
 /**
  * The iDEAL bank's title
@@ -249,7 +249,7 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
 
 #pragma mark - IDEAL Bank List Model
 
-@interface JPPaymentMethodsIDEALBankListModel: JPPaymentMethodsModel
+@interface JPPaymentMethodsIDEALBankListModel : JPPaymentMethodsModel
 
 /**
  * An array of JPPaymentMethodIDEALBankModel objects that describe the iDEAL banks
