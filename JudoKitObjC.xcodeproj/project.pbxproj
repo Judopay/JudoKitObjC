@@ -2194,8 +2194,8 @@
 		52B74D8D23F98B4C009FE38C /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				52B74D8E23F98B4C009FE38C /* JPTransactionRouter.m */,
 				52B74D8F23F98B4C009FE38C /* JPTransactionRouter.h */,
+				52B74D8E23F98B4C009FE38C /* JPTransactionRouter.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
