@@ -30,6 +30,11 @@
 
 @implementation JPPaymentMethodsCardListHeaderCell
 
+#pragma mark - Constants
+
+const float kCardListHeaderHorizontalPadding = 24.0f;
+const float kCardListHeaderCenterOffset = 10.0f;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -82,11 +87,17 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.actionButton];
 
-    [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self withPadding:24.0];
-    [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:10].active = YES;
+    [self.titleLabel pinToAnchors:AnchorTypeLeading forView:self
+                      withPadding:kCardListHeaderHorizontalPadding];
+    
+    [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self
+                        withPadding:kCardListHeaderHorizontalPadding];
+    
+    [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor
+                                                  constant:kCardListHeaderCenterOffset].active = YES;
 
-    [self.actionButton pinToAnchors:AnchorTypeTrailing forView:self withPadding:24.0];
-    [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:10].active = YES;
+    [self.actionButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor
+                                                    constant:kCardListHeaderCenterOffset].active = YES;
 }
 
 #pragma mark - Lazy instantiated properties

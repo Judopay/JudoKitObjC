@@ -36,10 +36,13 @@
 
 @implementation JPSectionView
 
-static const CGFloat imageHeight = 25.0f;
-static const CGFloat selectorPadding = 4.0f;
-static const CGFloat sectionHeight = 64.0f;
-static const CGFloat horizontalPadding = 24.0f;
+#pragma mark - Constants
+
+const float kSectionViewAnimationDuration = 0.3f;
+const float kSectionViewImageHeight = 25.0f;
+const float kSectionViewSelectorPadding = 4.0f;
+const float kSectionViewSectionHeight = 64.0f;
+const float kSectionViewHorizontalPadding = 24.0f;
 
 #pragma mark - Initializers
 
@@ -107,13 +110,13 @@ static const CGFloat horizontalPadding = 24.0f;
         return;
     };
 
-    index = [self identifyIndexForGestureRecognizer:sender withOffset:horizontalPadding];
+    index = [self identifyIndexForGestureRecognizer:sender withOffset:kSectionViewHorizontalPadding];
     if (index != -1) {
         [self handleSelectedSectionAtIndex:index];
         return;
     };
 
-    index = [self identifyIndexForGestureRecognizer:sender withOffset:-horizontalPadding];
+    index = [self identifyIndexForGestureRecognizer:sender withOffset:-kSectionViewHorizontalPadding];
     if (index != -1)
         [self handleSelectedSectionAtIndex:index];
 }
@@ -129,23 +132,23 @@ static const CGFloat horizontalPadding = 24.0f;
 
     if (!label.isHidden) {
         CGFloat labelWidth = [self labelWidthFromString:label.text];
-        width += labelWidth - horizontalPadding;
+        width += labelWidth - kSectionViewHorizontalPadding;
     }
 
-    CGFloat height = sectionHeight - (selectorPadding * 2);
+    CGFloat height = kSectionViewSectionHeight - (kSectionViewSelectorPadding * 2);
 
-    CGFloat xPosition = selectorPadding;
+    CGFloat xPosition = kSectionViewSelectorPadding;
 
     if (self.contentWidth <= UIScreen.mainScreen.bounds.size.width) {
-        xPosition += horizontalPadding;
+        xPosition += kSectionViewHorizontalPadding;
     }
 
     if (self.mainStackView.subviews.count == 2) {
-        xPosition += horizontalPadding;
-        width += horizontalPadding * 2 + selectorPadding / 2;
+        xPosition += kSectionViewHorizontalPadding;
+        width += kSectionViewHorizontalPadding * 2 + kSectionViewSelectorPadding / 2;
     }
 
-    self.selectorView.frame = CGRectMake(xPosition, selectorPadding, width, height);
+    self.selectorView.frame = CGRectMake(xPosition, kSectionViewSelectorPadding, width, height);
 }
 
 - (int)identifyIndexForGestureRecognizer:(UITapGestureRecognizer *)recognizer
@@ -168,8 +171,8 @@ static const CGFloat horizontalPadding = 24.0f;
     UIStackView *selectedStackView = self.mainStackView.arrangedSubviews[index];
     UILabel *selectedLabel = selectedStackView.subviews[1];
 
-    [self hideLabelsExceptLabel:selectedLabel withDuration:0.3];
-    [self view:selectedLabel shouldHide:NO withDuration:0.3];
+    [self hideLabelsExceptLabel:selectedLabel withDuration:kSectionViewAnimationDuration];
+    [self view:selectedLabel shouldHide:NO withDuration:kSectionViewAnimationDuration];
 
     [self.delegate sectionView:self didSelectSectionAtIndex:index];
 
@@ -185,7 +188,7 @@ static const CGFloat horizontalPadding = 24.0f;
 
     if (!label.isHidden) {
         CGFloat labelWidth = [self labelWidthFromString:label.text];
-        contentWidth += labelWidth - horizontalPadding;
+        contentWidth += labelWidth - kSectionViewHorizontalPadding;
     }
 
     return contentWidth;
@@ -201,22 +204,22 @@ static const CGFloat horizontalPadding = 24.0f;
         }
     }
 
-    CGFloat xPosition = view.frame.origin.x + selectorPadding;
-    CGFloat yPosition = selectorPadding;
-    CGFloat width = view.bounds.size.width + horizontalPadding * 2 - selectorPadding * 2;
-    CGFloat height = sectionHeight - (selectorPadding * 2);
+    CGFloat xPosition = view.frame.origin.x + kSectionViewSelectorPadding;
+    CGFloat yPosition = kSectionViewSelectorPadding;
+    CGFloat width = view.bounds.size.width + kSectionViewHorizontalPadding * 2 - kSectionViewSelectorPadding * 2;
+    CGFloat height = kSectionViewSectionHeight - (kSectionViewSelectorPadding * 2);
 
     if (self.scrollView.contentSize.width <= UIScreen.mainScreen.bounds.size.width) {
-        xPosition += horizontalPadding;
+        xPosition += kSectionViewHorizontalPadding;
     }
 
     if (self.mainStackView.subviews.count == 2) {
-        xPosition += horizontalPadding;
-        width += horizontalPadding * 2 + selectorPadding / 2;
-        xPosition -= horizontalPadding / 2 * longCharacterStrings;
+        xPosition += kSectionViewHorizontalPadding;
+        width += kSectionViewHorizontalPadding * 2 + kSectionViewSelectorPadding / 2;
+        xPosition -= kSectionViewHorizontalPadding / 2 * longCharacterStrings;
     }
 
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:kSectionViewAnimationDuration
                      animations:^{
                          self.selectorView.frame = CGRectMake(xPosition, yPosition, width, height);
                      }];
@@ -245,7 +248,7 @@ static const CGFloat horizontalPadding = 24.0f;
     CGFloat aspectRatio = imageView.image.size.width / imageView.image.size.height;
 
     [NSLayoutConstraint activateConstraints:@[
-        [imageView.heightAnchor constraintEqualToConstant:imageHeight],
+        [imageView.heightAnchor constraintEqualToConstant:kSectionViewImageHeight],
         [imageView.widthAnchor constraintEqualToAnchor:imageView.heightAnchor
                                             multiplier:aspectRatio],
     ]];
@@ -318,10 +321,10 @@ static const CGFloat horizontalPadding = 24.0f;
 
 - (CGFloat)calculateBackgroundWidth {
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
-    CGFloat backgroundViewWidth = screenWidth - (horizontalPadding * 2);
+    CGFloat backgroundViewWidth = screenWidth - (kSectionViewHorizontalPadding * 2);
 
     if (self.mainStackView.subviews.count == 2) {
-        backgroundViewWidth = screenWidth - (horizontalPadding * 4);
+        backgroundViewWidth = screenWidth - (kSectionViewHorizontalPadding * 4);
         [self appendLongTextWidthForContentWidth:backgroundViewWidth];
     }
     return backgroundViewWidth;
@@ -329,10 +332,10 @@ static const CGFloat horizontalPadding = 24.0f;
 
 - (CGFloat)calculateMainStackViewWidth {
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
-    CGFloat mainStackViewWidth = screenWidth - (horizontalPadding * 2) - 50;
+    CGFloat mainStackViewWidth = screenWidth - (kSectionViewHorizontalPadding * 2) - 50;
 
     if (self.mainStackView.subviews.count == 2) {
-        mainStackViewWidth = screenWidth - (horizontalPadding * 6) - 50;
+        mainStackViewWidth = screenWidth - (kSectionViewHorizontalPadding * 6) - 50;
         [self appendLongTextWidthForContentWidth:mainStackViewWidth];
     }
     return mainStackViewWidth;
@@ -342,7 +345,7 @@ static const CGFloat horizontalPadding = 24.0f;
     for (UIView *view in self.mainStackView.subviews) {
         UILabel *label = view.subviews[1];
         if (label.text.length > 5) {
-            contentWidth += horizontalPadding;
+            contentWidth += kSectionViewHorizontalPadding;
         }
     }
 }
@@ -350,16 +353,16 @@ static const CGFloat horizontalPadding = 24.0f;
 - (void)layoutUnscrollableContent {
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
 
-    self.scrollView.contentSize = CGSizeMake(screenWidth, sectionHeight);
+    self.scrollView.contentSize = CGSizeMake(screenWidth, kSectionViewSectionHeight);
     self.scrollView.contentInset = UIEdgeInsetsZero;
 
     CGFloat mainStackViewWidth = [self calculateMainStackViewWidth];
     CGFloat backgroundViewWidth = [self calculateBackgroundWidth];
 
-    self.backgroundView.frame = CGRectMake(0, 0, backgroundViewWidth, sectionHeight);
+    self.backgroundView.frame = CGRectMake(0, 0, backgroundViewWidth, kSectionViewSectionHeight);
     self.backgroundView.center = CGPointMake(screenWidth / 2, self.backgroundView.center.y);
 
-    self.mainStackView.frame = CGRectMake(0, 0, mainStackViewWidth, sectionHeight);
+    self.mainStackView.frame = CGRectMake(0, 0, mainStackViewWidth, kSectionViewSectionHeight);
     self.mainStackView.center = CGPointMake(screenWidth / 2, self.backgroundView.center.y);
 
     [self setInitialSelectorPosition];
@@ -367,14 +370,14 @@ static const CGFloat horizontalPadding = 24.0f;
 
 - (void)layoutScrollableContent {
 
-    self.scrollView.contentSize = CGSizeMake(self.contentWidth, sectionHeight);
-    self.scrollView.contentOffset = CGPointMake(-horizontalPadding, 0);
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, horizontalPadding, 0, horizontalPadding);
+    self.scrollView.contentSize = CGSizeMake(self.contentWidth, kSectionViewSectionHeight);
+    self.scrollView.contentOffset = CGPointMake(-kSectionViewHorizontalPadding, 0);
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, kSectionViewHorizontalPadding, 0, kSectionViewHorizontalPadding);
 
-    self.backgroundView.frame = CGRectMake(0, 0, self.contentWidth, sectionHeight);
+    self.backgroundView.frame = CGRectMake(0, 0, self.contentWidth, kSectionViewSectionHeight);
 
-    CGFloat mainStackViewWidth = self.contentWidth - (horizontalPadding * 2);
-    self.mainStackView.frame = CGRectMake(horizontalPadding, 0, mainStackViewWidth, sectionHeight);
+    CGFloat mainStackViewWidth = self.contentWidth - (kSectionViewHorizontalPadding * 2);
+    self.mainStackView.frame = CGRectMake(kSectionViewHorizontalPadding, 0, mainStackViewWidth, kSectionViewSectionHeight);
 
     [self setInitialSelectorPosition];
 }
@@ -410,7 +413,7 @@ static const CGFloat horizontalPadding = 24.0f;
 - (UIView *)selectorView {
     if (!_selectorView) {
         _selectorView = [UIView new];
-        _selectorView.frame = CGRectMake(0, 0, 100, sectionHeight);
+        _selectorView.frame = CGRectMake(0, 0, 100, kSectionViewSectionHeight);
         _selectorView.backgroundColor = UIColor.whiteColor;
         _selectorView.layer.cornerRadius = 10.0f;
         _selectorView.layer.shadowRadius = 1.0f;
