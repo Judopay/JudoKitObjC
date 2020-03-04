@@ -59,7 +59,7 @@
 }
 
 - (UIFontWeight)weight {
-    NSDictionary *traits = [self.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];;
+    NSDictionary *traits = [self.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];
     NSNumber *weightNumber = traits[UIFontWeightTrait];
     return weightNumber.doubleValue;
 }

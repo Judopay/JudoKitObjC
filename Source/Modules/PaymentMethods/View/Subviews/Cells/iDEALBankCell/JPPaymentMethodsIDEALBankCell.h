@@ -1,5 +1,5 @@
 //
-//  JPSectionView.h
+//  JPPaymentMethodsIDEALBankCell.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,46 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPPaymentMethodsCell.h"
 #import <UIKit/UIKit.h>
 
-@class JPSectionView;
-
-@protocol JPSectionViewDelegate
-/**
- * The method that is triggered once the user selects one of the sections of the section view
- *
- * @param sectionView - a reference to the current instance of JPSectionView
- * @param index - the index of the selected section
- */
-- (void)sectionView:(JPSectionView *_Nonnull)sectionView didSelectSectionAtIndex:(int)index;
-
-@end
-
-@interface JPSectionView : UIView
-
-/**
- * A reference to the instance that adopts the JPSectionViewDelegate protocol
- */
-@property (nonatomic, weak) id<JPSectionViewDelegate> _Nullable delegate;
-/**
- * A method that adds a section to the section view.
- *
- * @param image - a UIImage instance that showcases the section's logo
- * @param title - an NSString that is displayed next to the logo
- */
-- (void)addSectionWithImage:(UIImage *_Nullable)image
-                   andTitle:(NSString *_Nullable)title;
-
-/**
- * A method for removing all sections from the section view
- */
-- (void)removeSections;
-
-/**
- * Method that forces a section change to a specified index
- *
- * @param index - the index of the selected section
- */
-- (void)changeSelectedSectionToIndex:(NSUInteger)index;
+@interface JPPaymentMethodsIDEALBankCell : JPPaymentMethodsCell
 
 @end

@@ -87,6 +87,16 @@ static const CGFloat horizontalPadding = 24.0f;
     }
 }
 
+- (void)changeSelectedSectionToIndex:(NSUInteger)index {
+    UIStackView *selectedStackView = self.mainStackView.arrangedSubviews[index];
+    UILabel *selectedLabel = selectedStackView.subviews[1];
+
+    [self hideLabelsExceptLabel:selectedLabel withDuration:0.0];
+    [self view:selectedLabel shouldHide:NO withDuration:0.0];
+
+    [self moveSelectorToView:selectedStackView];
+}
+
 #pragma mark - User action handlers
 
 - (void)onTapHandler:(UITapGestureRecognizer *)sender {
@@ -158,8 +168,8 @@ static const CGFloat horizontalPadding = 24.0f;
     UIStackView *selectedStackView = self.mainStackView.arrangedSubviews[index];
     UILabel *selectedLabel = selectedStackView.subviews[1];
 
-    [self hideLabelsExceptLabel:selectedLabel];
-    [self view:selectedLabel shouldHide:NO];
+    [self hideLabelsExceptLabel:selectedLabel withDuration:0.3];
+    [self view:selectedLabel shouldHide:NO withDuration:0.3];
 
     [self.delegate sectionView:self didSelectSectionAtIndex:index];
 
@@ -212,18 +222,18 @@ static const CGFloat horizontalPadding = 24.0f;
                      }];
 }
 
-- (void)view:(UIView *)view shouldHide:(BOOL)shouldHide {
-    [UIView animateWithDuration:0.3
+- (void)view:(UIView *)view shouldHide:(BOOL)shouldHide withDuration:(double)duration {
+    [UIView animateWithDuration:duration
                      animations:^{
                          view.hidden = shouldHide;
                      }];
 }
 
-- (void)hideLabelsExceptLabel:(UILabel *)selectedLabel {
+- (void)hideLabelsExceptLabel:(UILabel *)selectedLabel withDuration:(double)duration {
     for (UIStackView *stackView in self.mainStackView.arrangedSubviews) {
         UILabel *label = stackView.arrangedSubviews[1];
         if (!label.isHidden && label != selectedLabel) {
-            [self view:label shouldHide:YES];
+            [self view:label shouldHide:YES withDuration:duration];
         }
     }
 }

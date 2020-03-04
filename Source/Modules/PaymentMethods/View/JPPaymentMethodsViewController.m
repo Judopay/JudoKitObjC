@@ -185,6 +185,12 @@
         cardListModel = (JPPaymentMethodsCardListModel *)self.viewModel.items[section];
         return cardListModel.cardModels.count;
     }
+    
+    if ([self.viewModel.items[section] isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
+        JPPaymentMethodsIDEALBankListModel *bankListModel;
+        bankListModel = (JPPaymentMethodsIDEALBankListModel *)self.viewModel.items[section];
+        return bankListModel.bankModels.count;
+    }
 
     return 1;
 }
@@ -200,6 +206,13 @@
         JPPaymentMethodsCardListModel *cardListModel;
         cardListModel = (JPPaymentMethodsCardListModel *)model;
         [cell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
+        return cell;
+    }
+    
+    if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
+        JPPaymentMethodsIDEALBankListModel *bankListModel;
+        bankListModel = (JPPaymentMethodsIDEALBankListModel *)model;
+        [cell configureWithViewModel:(JPPaymentMethodsModel *)bankListModel.bankModels[indexPath.row]];
         return cell;
     }
 

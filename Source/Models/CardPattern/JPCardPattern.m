@@ -75,7 +75,7 @@
     if (self = [super init]) {
         _type = type;
         _color = [self backgroundColorForType:type];
-        _image = [self imageForType: type];
+        _image = [self imageForType:type];
     }
     return self;
 }

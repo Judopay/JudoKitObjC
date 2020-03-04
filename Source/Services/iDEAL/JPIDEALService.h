@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPIDEALBank.h"
 #import "JPConfiguration.h"
+#import "JPIDEALBank.h"
 #import "JPTransactionService.h"
 #import <Foundation/Foundation.h>
 

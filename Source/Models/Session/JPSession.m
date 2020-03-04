@@ -35,7 +35,6 @@
 
 @interface JPSession () <NSURLSessionDelegate>
 
-@property (nonatomic, strong, readwrite) NSString *endpoint;
 @property (nonatomic, strong, readwrite) NSString *authorizationHeader;
 @property (nonatomic, strong, readwrite) TrustKit *trustKit;
 @property (nonatomic, strong, readwrite) JPReachability *reachability;
@@ -107,7 +106,7 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
 }
 
 - (void)setupReachability {
-    NSURL *requestURL = [NSURL URLWithString:self.endpoint];
+    NSURL *requestURL = [NSURL URLWithString:self.baseURL];
     self.reachability = [JPReachability reachabilityWithURL:requestURL];
 }
 
@@ -193,11 +192,10 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
 
     return [urlSession dataTaskWithRequest:request
                          completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-        
                              if (!completion) {
                                  return;
                              }
-        
+
                              if (error || !data) {
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      completion(nil, error ? error : NSError.judoRequestFailedError);
