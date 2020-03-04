@@ -60,7 +60,7 @@ class MainViewController: UITableViewController {
     var applePayConfigurations: JPApplePayConfiguration {
         let items = [JPPaymentSummaryItem(label: "item 1", amount: 0.01),
                      JPPaymentSummaryItem(label: "item 2", amount: 0.02),
-                     JPPaymentSummaryItem(label: "item 3", amount: 0.03)]
+                     JPPaymentSummaryItem(label: "Judo Pay", amount: 0.03)]
         let configurations = JPApplePayConfiguration(merchantId: merchantId,
                                                      currency: self.settings.currency.rawValue,
                                                      countryCode: "GB",
