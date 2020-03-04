@@ -50,6 +50,7 @@
 @property (nonatomic, strong) NSDate *currentDate;
 
 @property (nonatomic, assign) int previousIndex;
+@property (nonatomic, assign) NSUInteger selectedBankIndex;
 @end
 
 @implementation JPPaymentMethodsPresenterImpl
@@ -84,6 +85,12 @@
     animationType = self.headerModel.cardModel ? AnimationTypeBottomToTop : AnimationTypeSetup;
 
     [self viewModelNeedsUpdateWithAnimationType:animationType
+                            shouldAnimateChange:YES];
+}
+
+- (void)didSelectBankAtIndex:(NSUInteger)index {
+    self.selectedBankIndex = index;
+    [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop
                             shouldAnimateChange:YES];
 }
 
@@ -152,7 +159,7 @@
     self.viewModel.headerModel.cardModel = nil;
 
     if (selectedCard.isSelected && storedCards.count - 1 > 0) {
-        [self.interactor setCardAsSelectedAtInded:0];
+        [self.interactor setCardAsSelectedAtIndex:0];
     }
     [self viewModelNeedsUpdateWithAnimationType:AnimationTypeBottomToTop
                             shouldAnimateChange:YES];
@@ -207,7 +214,7 @@
 
 - (void)setLastAddedCardAsSelected {
     NSArray *cards = [self.interactor getStoredCardDetails];
-    [self.interactor setCardAsSelectedAtInded:cards.count - 1];
+    [self.interactor setCardAsSelectedAtIndex:cards.count - 1];
 }
 
 - (void)updateViewModelWithAnimationType:(AnimationType)animationType {
@@ -265,7 +272,12 @@
         JPPaymentMethodsIDEALBankModel *bankModel = [self iDEALBankModelForType:type.intValue];
         [self.bankListModel.bankModels addObject:bankModel];
     }
+    
+    JPPaymentMethodsIDEALBankModel *bankModel = self.bankListModel.bankModels[self.selectedBankIndex];
+    bankModel.isSelected = YES;
+    
     [self.viewModel.items addObject:self.bankListModel];
+    self.headerModel.bankModel = bankModel;
 }
 
 - (void)prepareHeaderModel {

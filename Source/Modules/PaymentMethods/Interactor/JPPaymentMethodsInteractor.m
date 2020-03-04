@@ -97,7 +97,7 @@
 
 #pragma mark - Set card as selected at index
 
-- (void)setCardAsSelectedAtInded:(NSUInteger)index {
+- (void)setCardAsSelectedAtIndex:(NSUInteger)index {
     [JPCardStorage.sharedInstance setCardAsSelectedAtIndex:index];
 }
 

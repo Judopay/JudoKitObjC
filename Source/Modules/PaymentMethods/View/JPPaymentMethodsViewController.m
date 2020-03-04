@@ -243,15 +243,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
-    if (![model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
-        return;
+    if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
+        [self.presenter didSelectCardAtIndex:indexPath.row
+                               isEditingMode:tableView.isEditing];
+        [self.presenter changeHeaderButtonTitle:NO];
+        [self.paymentMethodsView.tableView setEditing:NO animated:NO];
     }
-
-    [self.presenter didSelectCardAtIndex:indexPath.row
-                           isEditingMode:tableView.isEditing];
-
-    [self.presenter changeHeaderButtonTitle:NO];
-    [self.paymentMethodsView.tableView setEditing:NO animated:NO];
+    
+    if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
+        [self.presenter didSelectBankAtIndex:indexPath.row];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

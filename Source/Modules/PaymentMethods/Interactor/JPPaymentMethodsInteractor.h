@@ -73,7 +73,7 @@
 /**
  * A method that sets a card as selected based on an index
  */
-- (void)setCardAsSelectedAtInded:(NSUInteger)index;
+- (void)setCardAsSelectedAtIndex:(NSUInteger)index;
 
 /**
  * A method that sets a card as last used card to make a successfull payment

@@ -33,8 +33,10 @@
 
 @interface JPOtherPaymentMethodView ()
 
-@property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UIImageView *leadingImageView;
+@property (nonatomic, strong) UIImageView *trailingImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) NSLayoutConstraint *widthConstraint;
 
 @end
 
@@ -67,23 +69,37 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
     if (viewModel.paymentMethodType == JPPaymentMethodTypeApplePay) {
-        self.logoImageView.image = [UIImage imageWithIconName:@"apple-pay-icon"];
+        self.leadingImageView.image = [UIImage imageWithIconName:@"apple-pay-icon"];
         self.titleLabel.text = @"Apple Pay";
     }
+    
+    if (viewModel.paymentMethodType == JPPaymentMethodTypeIDeal) {
+        self.titleLabel.text = viewModel.bankModel.bankTitle;
+        self.leadingImageView.image = [UIImage imageWithIconName:viewModel.bankModel.bankIconName];
+        self.trailingImageView.image = [UIImage imageWithIconName:@"ideal-pay-icon"];
+    }
+    
+    CGSize imageSize = self.leadingImageView.image.size;
+    self.widthConstraint.constant = imageSize.width * (31 / imageSize.height);
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
 
+    self.widthConstraint = [self.leadingImageView.widthAnchor constraintLessThanOrEqualToConstant:109];
+    
     [NSLayoutConstraint activateConstraints:@[
-        [self.logoImageView.heightAnchor constraintEqualToConstant:31.0],
-        [self.logoImageView.widthAnchor constraintEqualToConstant:74.0],
+        [self.leadingImageView.heightAnchor constraintEqualToConstant:31.0],
+        self.widthConstraint,
+        [self.trailingImageView.widthAnchor constraintEqualToConstant:30],
     ]];
 
     UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
-    [bottomStackView addArrangedSubview:self.logoImageView];
+    [bottomStackView addArrangedSubview:self.leadingImageView];
     [bottomStackView addArrangedSubview:[UIView new]];
+    [bottomStackView addArrangedSubview:self.trailingImageView];
+    
 
     UIStackView *mainStackView = [UIStackView verticalStackViewWithSpacing:0.0];
     [mainStackView addArrangedSubview:self.titleLabel];
@@ -106,12 +122,20 @@
     return _titleLabel;
 }
 
-- (UIImageView *)logoImageView {
-    if (!_logoImageView) {
-        _logoImageView = [UIImageView new];
-        _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+- (UIImageView *)leadingImageView {
+    if (!_leadingImageView) {
+        _leadingImageView = [UIImageView new];
+        _leadingImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
-    return _logoImageView;
+    return _leadingImageView;
+}
+
+- (UIImageView *)trailingImageView {
+    if (!_trailingImageView) {
+        _trailingImageView = [UIImageView new];
+        _trailingImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _trailingImageView;
 }
 
 @end
