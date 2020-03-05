@@ -59,11 +59,20 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
 
 - (void)redirectURLForIDEALBank:(JPIDEALBank *)iDealBank
                      completion:(JudoCompletionBlock)completion {
-
+    
+    NSDictionary *parameters = [self parametersForIDEALBank:iDealBank];
+    
+    if (!parameters) {
+        //TODO: SITE ID MISSING ERROR
+        completion(nil, NSError.judoParameterError);
+        return;
+    }
+    
     [self.transactionService sendRequestWithEndpoint:kRedirectEndpoint
                                           httpMethod:HTTPMethodPOST
-                                          parameters:[self parametersForIDEALBank:iDealBank]
+                                          parameters:parameters
                                           completion:^(JPResponse *response, NSError *error) {
+        
                                               JPTransactionData *data = response.items.firstObject;
 
                                               if (data.orderDetails.orderId && data.redirectUrl) {
@@ -128,6 +137,10 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
 
 - (NSDictionary *)parametersForIDEALBank:(JPIDEALBank *)iDEALBank {
 
+    if (!self.configuration.siteId) {
+        return nil;
+    }
+    
     JPAmount *amount = self.configuration.amount;
     JPReference *reference = self.configuration.reference;
 

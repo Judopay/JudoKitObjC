@@ -67,9 +67,9 @@
 - (void)handleSaveEvent;
 
 /**
-* A method that is triggered  once the cell  with default card radio button is tapped by a user
-* This method changes selection state in viewModel and reloads the view with the new values.
-*/
+ * A method that is triggered  once the cell  with default card radio button is tapped by a user
+ * This method changes selection state in viewModel and reloads the view with the new values.
+ */
 - (void)handleToggleDefaultCardEvent;
 
 @end

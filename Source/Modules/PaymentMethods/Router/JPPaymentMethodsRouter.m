@@ -29,6 +29,8 @@
 #import "JPTransactionBuilder.h"
 #import "JPTransactionService.h"
 #import "JPTransactionViewController.h"
+#import "JPIDEALViewController.h"
+#import "NSError+Additions.h"
 
 #import "JPConfiguration.h"
 #import "JPSliderTransitioningDelegate.h"
@@ -72,6 +74,24 @@
     controller.delegate = self.viewController;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.transitioningDelegate = self.transitioningDelegate;
+    [self.viewController presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)navigateToIDEALModuleWithBank:(JPIDEALBank *)bank
+                        andCompletion:(JudoCompletionBlock)completion {
+    
+    if (!self.configuration.siteId) {
+        completion(nil, NSError.judoParameterError);
+        return;
+    }
+    
+    JPIDEALViewController *controller;
+    controller = [[JPIDEALViewController alloc] initWithIDEALBank:bank
+                                                    configuration:self.configuration
+                                               transactionService:self.transactionService
+                                                completionHandler:completion];
+    
+    controller.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 

@@ -202,6 +202,8 @@
 		305835242406586C00B61167 /* JPCardCustomizationIsDefaultCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 305835222406586C00B61167 /* JPCardCustomizationIsDefaultCell.h */; };
 		30583770240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3058376E240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.h */; };
 		30583771240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3058376F240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.m */; };
+		3058379B2411180200B61167 /* JPIDEALViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 305837992411180200B61167 /* JPIDEALViewController.h */; };
+		3058379C2411180200B61167 /* JPIDEALViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3058379A2411180200B61167 /* JPIDEALViewController.m */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D61D5423BB741A004E5CEE /* JPPaymentMethodsPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61D3323BB741A004E5CEE /* JPPaymentMethodsPresenter.h */; };
 		30D61D5523BB741A004E5CEE /* JPPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D61D3423BB741A004E5CEE /* JPPaymentMethodsViewModel.m */; };
@@ -608,6 +610,8 @@
 		305835222406586C00B61167 /* JPCardCustomizationIsDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardCustomizationIsDefaultCell.h; sourceTree = "<group>"; };
 		3058376E240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPPaymentMethodsIDEALBankCell.h; sourceTree = "<group>"; };
 		3058376F240EAB8F00B61167 /* JPPaymentMethodsIDEALBankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPPaymentMethodsIDEALBankCell.m; sourceTree = "<group>"; };
+		305837992411180200B61167 /* JPIDEALViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPIDEALViewController.h; sourceTree = "<group>"; };
+		3058379A2411180200B61167 /* JPIDEALViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPIDEALViewController.m; sourceTree = "<group>"; };
 		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
@@ -1703,9 +1707,19 @@
 			path = iDEALBankCell;
 			sourceTree = "<group>";
 		};
+		30583791241117E000B61167 /* IDEALViewController */ = {
+			isa = PBXGroup;
+			children = (
+				305837992411180200B61167 /* JPIDEALViewController.h */,
+				3058379A2411180200B61167 /* JPIDEALViewController.m */,
+			);
+			path = IDEALViewController;
+			sourceTree = "<group>";
+		};
 		30D08910238FB4CD00480C9E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				30583791241117E000B61167 /* IDEALViewController */,
 				30221C1823FE6D9200BF2823 /* CardCustomization */,
 				3000737E23FBED640099F3C5 /* 3DSViewController */,
 				52B74D7423F98B4C009FE38C /* Transaction */,
@@ -2348,6 +2362,7 @@
 				300072C123F6AB560099F3C5 /* JPThreeDSecure.h in Headers */,
 				30006F5D23F698A20099F3C5 /* JPSectionView.h in Headers */,
 				3000733123FA9C1C0099F3C5 /* JPTransaction.h in Headers */,
+				3058379B2411180200B61167 /* JPIDEALViewController.h in Headers */,
 				30006F8F23F6993A0099F3C5 /* UIColor+Additions.h in Headers */,
 				300072F923F6AB560099F3C5 /* JPStoredCardDetails.h in Headers */,
 				52B74D9523F98B4C009FE38C /* JPTransactionViewController.h in Headers */,
@@ -2737,6 +2752,7 @@
 				300072DF23F6AB560099F3C5 /* JPCountry.m in Sources */,
 				30006F9B23F6993A0099F3C5 /* UIApplication+Additions.m in Sources */,
 				30221C3523FE6D9200BF2823 /* JPCardCustomizationInteractor.m in Sources */,
+				3058379C2411180200B61167 /* JPIDEALViewController.m in Sources */,
 				300072F823F6AB560099F3C5 /* JPReference.m in Sources */,
 				305835232406586C00B61167 /* JPCardCustomizationIsDefaultCell.m in Sources */,
 				30006F8A23F6993A0099F3C5 /* UIView+Additions.m in Sources */,

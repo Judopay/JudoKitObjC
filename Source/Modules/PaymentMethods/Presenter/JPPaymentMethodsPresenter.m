@@ -27,6 +27,7 @@
 #import "JPCardNetwork.h"
 #import "JPConstants.h"
 #import "JPIDEALBank.h"
+#import "JPIDEALService.h"
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsViewController.h"
@@ -46,6 +47,7 @@
 @property (nonatomic, strong) JPPaymentMethodsCardListModel *cardListModel;
 @property (nonatomic, strong) JPPaymentMethodsIDEALBankListModel *bankListModel;
 @property (nonatomic, strong) JPTransactionButtonViewModel *paymentButtonModel;
+
 @property (nonatomic, strong) NSDateFormatter *dateFormater;
 @property (nonatomic, strong) NSDate *currentDate;
 
@@ -105,6 +107,21 @@
 }
 
 - (void)handlePayButtonTap {
+    
+    if (self.paymentSelectionModel.selectedPaymentMethod == JPPaymentMethodTypeIDeal) {
+        
+        NSArray *bankTypes = [self.interactor getIDEALBankTypes];
+        NSNumber *numberValue = bankTypes[self.selectedBankIndex];
+        JPIDEALBankType bankType = (JPIDEALBankType)numberValue.intValue;
+        JPIDEALBank *iDEALBank = [JPIDEALBank bankWithType:bankType];
+
+        [self.router navigateToIDEALModuleWithBank:iDEALBank
+                                     andCompletion:^(JPResponse *response, NSError *error) {
+            [self handleIDEALCallbackWithResponse:response andError:error];
+        }];
+        return;
+    }
+    
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
                                        [self handleCallbackWithResponse:response
@@ -203,6 +220,16 @@
 
 #pragma mark - Helper methods
 
+- (void)handleIDEALCallbackWithResponse:(JPResponse *)response
+                               andError:(NSError *)error {
+    if (error) {
+        [self handlePaymentError:error];
+        return;
+    }
+    [self.router completeTransactionWithResponse:response andError:nil];
+    [self.router dismissViewController];
+}
+
 - (void)handleCallbackWithResponse:(JPResponse *)response
                           andError:(NSError *)error {
     if (error) {
@@ -292,6 +319,10 @@
             BOOL isCardExpired = self.headerModel.cardModel.cardExpirationStatus != CardExpired;
             self.headerModel.payButtonModel.isEnabled = isCardExpired;
         }
+    }
+    
+    if (self.paymentSelectionModel.selectedPaymentMethod == JPPaymentMethodTypeIDeal) {
+        self.headerModel.payButtonModel.isEnabled = YES;
     }
 
     self.viewModel.headerModel = self.headerModel;

@@ -28,11 +28,11 @@
 #import "JPApplePayService.h"
 #import "JPCardStorage.h"
 #import "JPConfiguration.h"
-#import "JPIDEALService.h"
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
 #import "JPReference.h"
 #import "JPTransactionService.h"
+#import "JPIDEALBank.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -41,7 +41,6 @@
 @property (nonatomic, strong) JudoCompletionBlock completion;
 @property (nonatomic, strong) JPApplePayService *applePayService;
 @property (nonatomic, strong) JP3DSService *threeDSecureService;
-@property (nonatomic, strong) JPIDEALService *iDealService;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
@@ -58,8 +57,6 @@
         self.configuration = configuration;
         self.transactionService = transactionService;
         self.completion = completion;
-        self.iDealService = [[JPIDEALService alloc] initWithConfiguration:configuration
-                                                       transactionService:transactionService];
     }
     return self;
 }
