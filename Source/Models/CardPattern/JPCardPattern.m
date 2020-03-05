@@ -107,21 +107,21 @@
 - (UIImage *)imageForType:(JPCardPatternType)type {
     switch (type) {
         case JPCardPatternTypeBlack:
-            return [UIImage imageWithResourceName:@"black_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-lines"];
         case JPCardPatternTypeBlue:
-            return [UIImage imageWithResourceName:@"blue_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-waves"];
         case JPCardPatternTypeGreen:
-            return [UIImage imageWithResourceName:@"green_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-triangles"];
         case JPCardPatternTypeRed:
-            return [UIImage imageWithResourceName:@"red_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-lines"];
         case JPCardPatternTypeOrange:
-            return [UIImage imageWithResourceName:@"orange_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-bubbles"];
         case JPCardPatternTypeGold:
-            return [UIImage imageWithResourceName:@"gold_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-erratic"];
         case JPCardPatternTypeCyan:
-            return [UIImage imageWithResourceName:@"cyan_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-triangles"];
         case JPCardPatternTypeOlive:
-            return [UIImage imageWithResourceName:@"olive_pattern"];
+            return [UIImage imageWithResourceName:@"pattern-erratic"];
     }
     return [UIImage new];
 }
