@@ -180,7 +180,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-8O-Edw">
-                    <rect key="frame" x="114" y="607" width="147" height="30"/>
+                    <rect key="frame" x="56" y="607" width="263" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWu-ea-bHu">
                             <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
@@ -198,6 +198,13 @@
                             </state>
                             <connections>
                                 <action selector="presentCardDetailsData:" destination="-1" eventType="touchUpInside" id="mKC-3f-FzF"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGR-Yc-WRc">
+                            <rect key="frame" x="171" y="0.0" width="92" height="30"/>
+                            <state key="normal" title="iDEAL Details"/>
+                            <connections>
+                                <action selector="iDealButtonHandler:" destination="-1" eventType="touchUpInside" id="CHJ-j4-gG3"/>
                             </connections>
                         </button>
                     </subviews>

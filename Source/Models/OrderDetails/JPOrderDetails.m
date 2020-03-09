@@ -32,6 +32,8 @@
         _orderStatus = dictionary[@"orderStatus"];
         _orderFailureReason = dictionary[@"orderFailureReason"];
         _timestamp = dictionary[@"timestamp"];
+        NSNumber *amount = dictionary[@"amount"];
+        _amount = amount.doubleValue;
     }
 
     return self;

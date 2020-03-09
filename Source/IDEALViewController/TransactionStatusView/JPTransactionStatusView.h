@@ -1,8 +1,8 @@
 //
-//  ExampleAppCredentials.m
-//  JudoKitObjCExample
+//  JPTransactionStatusView.h
+//  JudoKitObjC
 //
-//  Copyright (c) 2016 Alternative Payments Ltd
+//  Copyright (c) 2020 Alternative Payments Ltd
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,15 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#pragma warning "set your own token and secret to see testing results"
+typedef NS_ENUM(NSUInteger, JPTransactionStatus) {
+    JPTransactionStatusPending,
+    JPTransactionStatusPendingDelayed,
+    JPTransactionStatusTimeout
+};
 
-static NSString * const judoId  = @"<#YOUR JUDOID#>";
-static NSString * const token   = @"<#YOUR TOKEN#>";
-static NSString * const secret  = @"<#YOUR SECRET#>";
-static NSString * const merchantId  = @"<#YOUR MERCHANT ID#>";
+@interface JPTransactionStatusView : UIView
 
-@interface ExampleAppCredentials : NSObject
+/**
+ * A method for changing the transaction status view based on a provided status
+ *
+ * @param status - one of the pre-defined JPTransactionStatus values;
+ */
+- (void)changeToTransactionStatus:(JPTransactionStatus)status;
 
 @end

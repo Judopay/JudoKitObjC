@@ -50,6 +50,11 @@
 @property (nonatomic, strong, readonly) NSString *_Nullable timestamp;
 
 /**
+ * The amount of the iDEAL transaction
+ */
+@property (nonatomic, assign, readonly) double amount;
+
+/**
  *  Designated initializer
  *
  *  @param dictionary The JSON dictionary returned from the server

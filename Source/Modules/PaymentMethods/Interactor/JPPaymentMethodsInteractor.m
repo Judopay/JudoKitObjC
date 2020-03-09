@@ -24,15 +24,16 @@
 
 #import "JPPaymentMethodsInteractor.h"
 #import "JP3DSService.h"
+#import "JPAmount.h"
 #import "JPApplePayConfiguration.h"
 #import "JPApplePayService.h"
 #import "JPCardStorage.h"
 #import "JPConfiguration.h"
+#import "JPIDEALBank.h"
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
 #import "JPReference.h"
 #import "JPTransactionService.h"
-#import "JPIDEALBank.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -131,10 +132,14 @@
     NSMutableArray *defaultPaymentMethods;
     defaultPaymentMethods = [NSMutableArray arrayWithArray:@[ JPPaymentMethod.card ]];
 
-    if ([self.applePayService isApplePaySupported]) {
+    if ([JPApplePayService isApplePaySupported]) {
         [defaultPaymentMethods addObject:JPPaymentMethod.applePay];
     } else {
-        [self removeApplePayFromPaymentMethods];
+        [self removePaymentMethodWithType:JPPaymentMethodTypeApplePay];
+    }
+
+    if (![self.configuration.amount.currency isEqualToString:@"EUR"]) {
+        [self removePaymentMethodWithType:JPPaymentMethodTypeIDeal];
     }
 
     return (self.configuration.paymentMethods.count != 0) ? self.configuration.paymentMethods : defaultPaymentMethods;
@@ -142,14 +147,14 @@
 
 #pragma mark - Remove Apple Pay from payment methods
 
-- (void)removeApplePayFromPaymentMethods {
+- (void)removePaymentMethodWithType:(JPPaymentMethodType)type {
     if (self.configuration.paymentMethods.count == 0)
         return;
 
     NSMutableArray *tempArray = [self.configuration.paymentMethods mutableCopy];
 
     for (JPPaymentMethod *method in self.configuration.paymentMethods) {
-        if (method.type == JPPaymentMethodTypeApplePay) {
+        if (method.type == type) {
             [tempArray removeObject:method];
         }
     }

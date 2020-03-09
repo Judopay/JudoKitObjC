@@ -63,7 +63,7 @@
 
 #pragma mark - Apple Pay setup methods
 
-- (bool)isApplePaySupported {
++ (bool)isApplePaySupported {
     return [PKPaymentAuthorizationController canMakePayments];
 }
 

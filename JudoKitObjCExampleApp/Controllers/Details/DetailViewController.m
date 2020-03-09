@@ -76,6 +76,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)iDealButtonHandler:(id)sender {
+    JPOrderDetails *orderDetails = self.transactionData.orderDetails;
+    
+    if (!orderDetails) {
+        [self displayErrorWithMessage:@"No iDEAL order details to display"];
+        return;
+    }
+    
+    NSArray<DetailsRow *> *rows = [self rowsForOrderDetails:orderDetails];
+    [self navigateToDetailsPageWithTitle:@"iDeal Order Details" andRows:rows];
+}
+
+
 - (IBAction)presentCardDetailsData:(id)sender {
     JPCardDetails *cardDetails = self.transactionData.cardDetails;
     
@@ -128,6 +141,18 @@
 }
 
 #pragma mark - Lazy Loading & Getters
+
+- (NSArray <DetailsRow *> *)rowsForOrderDetails:(JPOrderDetails *)orderDetails {
+    NSDate *date = [self.inputDateFormatter dateFromString:orderDetails.timestamp];
+    NSString *formattedDate = [self.outputDateFormatter stringFromDate:date];
+    
+    return @[
+        [DetailsRow withTitle:@"Order ID" andValue:orderDetails.orderId],
+        [DetailsRow withTitle:@"Status" andValue:orderDetails.orderStatus],
+        [DetailsRow withTitle:@"Failure Reason" andValue:orderDetails.orderFailureReason],
+        [DetailsRow withTitle:@"Timestamp" andValue:formattedDate]
+    ];
+}
 
 - (NSArray <DetailsRow *> *)rowsForCardDetails:(JPCardDetails *)cardDetails {
     NSString *network = [NSString stringWithFormat:@"%lu", (unsigned long)cardDetails.cardNetwork];

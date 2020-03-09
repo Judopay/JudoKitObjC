@@ -25,8 +25,8 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-#import "JPIDEALService.h"
 #import "JPConfiguration.h"
+#import "JPIDEALService.h"
 #import "JPTransactionService.h"
 
 @interface JPIDEALViewController : UIViewController

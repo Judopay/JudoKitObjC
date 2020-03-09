@@ -33,8 +33,9 @@
 #import "JPPaymentMethodsPresenter.h"
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsViewController.h"
+#import "NSError+Additions.h"
 
-#import "JPApplePayConfiguration.h"
+#import "JPApplePayService.h"
 
 @implementation JPPaymentMethodsBuilderImpl
 
@@ -43,6 +44,26 @@
                                      transactionService:(JPTransactionService *)transactionService
                                   transitioningDelegate:(JPSliderTransitioningDelegate *)transitioningDelegate
                                       completionHandler:(JudoCompletionBlock)completion {
+
+    for (JPPaymentMethod *paymentMethod in configuration.paymentMethods) {
+        BOOL isIDEALPresent = (paymentMethod.type == JPPaymentMethodTypeIDeal);
+        BOOL isApplePayPresent = (paymentMethod.type == JPPaymentMethodTypeApplePay);
+        BOOL isCurrencyEUR = [configuration.amount.currency isEqualToString:@"EUR"];
+        BOOL isOnlyPaymentMethod = (configuration.paymentMethods.count == 1);
+        BOOL isApplePaySupported = [JPApplePayService isApplePaySupported];
+
+        if (isIDEALPresent && isOnlyPaymentMethod && !isCurrencyEUR) {
+            //TODO: Add custom error
+            completion(nil, NSError.judoAmountMissingError);
+            return nil;
+        }
+
+        if (isApplePayPresent && isOnlyPaymentMethod && !isApplePaySupported) {
+            //TODO: Add custom error
+            completion(nil, NSError.judoJPApplePayConfigurationError);
+            return nil;
+        }
+    }
 
     JPPaymentMethodsViewController *viewController = [JPPaymentMethodsViewController new];
     JPPaymentMethodsPresenterImpl *presenter = [JPPaymentMethodsPresenterImpl new];

@@ -59,20 +59,19 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
 
 - (void)redirectURLForIDEALBank:(JPIDEALBank *)iDealBank
                      completion:(JudoCompletionBlock)completion {
-    
+
     NSDictionary *parameters = [self parametersForIDEALBank:iDealBank];
-    
+
     if (!parameters) {
         //TODO: SITE ID MISSING ERROR
         completion(nil, NSError.judoParameterError);
         return;
     }
-    
+
     [self.transactionService sendRequestWithEndpoint:kRedirectEndpoint
                                           httpMethod:HTTPMethodPOST
                                           parameters:parameters
                                           completion:^(JPResponse *response, NSError *error) {
-        
                                               JPTransactionData *data = response.items.firstObject;
 
                                               if (data.orderDetails.orderId && data.redirectUrl) {
@@ -95,7 +94,6 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
                                                        completion(nil, NSError.judoRequestTimeoutError);
                                                        return;
                                                    }];
-
     [self getStatusForOrderId:orderId checksum:checksum completion:completion];
 }
 
@@ -107,7 +105,8 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
         return;
     }
 
-    [self.transactionService sendRequestWithEndpoint:kStatusRequestEndpoint
+    NSString *statusEndpoint = [NSString stringWithFormat:@"%@/%@", kStatusRequestEndpoint, orderId];
+    [self.transactionService sendRequestWithEndpoint:statusEndpoint
                                           httpMethod:HTTPMethodGET
                                           parameters:nil
                                           completion:^(JPResponse *response, NSError *error) {
@@ -140,7 +139,7 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
     if (!self.configuration.siteId) {
         return nil;
     }
-    
+
     JPAmount *amount = self.configuration.amount;
     JPReference *reference = self.configuration.reference;
 

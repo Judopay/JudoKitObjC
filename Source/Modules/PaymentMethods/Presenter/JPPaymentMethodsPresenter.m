@@ -107,9 +107,9 @@
 }
 
 - (void)handlePayButtonTap {
-    
+
     if (self.paymentSelectionModel.selectedPaymentMethod == JPPaymentMethodTypeIDeal) {
-        
+
         NSArray *bankTypes = [self.interactor getIDEALBankTypes];
         NSNumber *numberValue = bankTypes[self.selectedBankIndex];
         JPIDEALBankType bankType = (JPIDEALBankType)numberValue.intValue;
@@ -117,11 +117,11 @@
 
         [self.router navigateToIDEALModuleWithBank:iDEALBank
                                      andCompletion:^(JPResponse *response, NSError *error) {
-            [self handleIDEALCallbackWithResponse:response andError:error];
-        }];
+                                         [self handleIDEALCallbackWithResponse:response andError:error];
+                                     }];
         return;
     }
-    
+
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
                                        [self handleCallbackWithResponse:response
@@ -320,7 +320,7 @@
             self.headerModel.payButtonModel.isEnabled = isCardExpired;
         }
     }
-    
+
     if (self.paymentSelectionModel.selectedPaymentMethod == JPPaymentMethodTypeIDeal) {
         self.headerModel.payButtonModel.isEnabled = YES;
     }

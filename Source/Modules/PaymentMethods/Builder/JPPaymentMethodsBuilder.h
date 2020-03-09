@@ -34,11 +34,11 @@
 
 @protocol JPPaymentMethodsBuilder
 
-+ (nonnull JPPaymentMethodsViewController *)buildModuleWithMode:(TransactionMode)mode
-                                                  configuration:(nonnull JPConfiguration *)configuration
-                                             transactionService:(nonnull JPTransactionService *)transactionService
-                                          transitioningDelegate:(nonnull JPSliderTransitioningDelegate *)transitioningDelegate
-                                              completionHandler:(nullable JudoCompletionBlock)completion;
++ (nullable JPPaymentMethodsViewController *)buildModuleWithMode:(TransactionMode)mode
+                                                   configuration:(nonnull JPConfiguration *)configuration
+                                              transactionService:(nonnull JPTransactionService *)transactionService
+                                           transitioningDelegate:(nonnull JPSliderTransitioningDelegate *)transitioningDelegate
+                                               completionHandler:(nullable JudoCompletionBlock)completion;
 @end
 
 @interface JPPaymentMethodsBuilderImpl : NSObject <JPPaymentMethodsBuilder>

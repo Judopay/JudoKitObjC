@@ -88,7 +88,8 @@
     heightConstraint.priority = 999;
     heightConstraint.active = YES;
 
-    [self.stackView pinToView:self withPadding:0.0f];
+    [self.stackView pinToAnchors:AnchorTypeTop forView:self withPadding:60.0];
+    [self.stackView pinToAnchors:AnchorTypeBottom | AnchorTypeLeading | AnchorTypeTrailing forView:self];
 }
 
 #pragma mark - Lazy properties

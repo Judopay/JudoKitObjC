@@ -115,6 +115,10 @@
                                             transitioningDelegate:self.transitioningDelegate
                                                 completionHandler:completion];
 
+    if (!controller) {
+        return;
+    }
+
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     navController.modalPresentationStyle = UIModalPresentationFullScreen;
 

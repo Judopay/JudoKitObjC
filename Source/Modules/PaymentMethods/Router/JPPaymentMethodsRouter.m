@@ -25,11 +25,11 @@
 #import "JPPaymentMethodsRouter.h"
 #import "JPCardCustomizationBuilder.h"
 #import "JPCardCustomizationViewController.h"
+#import "JPIDEALViewController.h"
 #import "JPPaymentMethodsViewController.h"
 #import "JPTransactionBuilder.h"
 #import "JPTransactionService.h"
 #import "JPTransactionViewController.h"
-#import "JPIDEALViewController.h"
 #import "NSError+Additions.h"
 
 #import "JPConfiguration.h"
@@ -79,18 +79,18 @@
 
 - (void)navigateToIDEALModuleWithBank:(JPIDEALBank *)bank
                         andCompletion:(JudoCompletionBlock)completion {
-    
+
     if (!self.configuration.siteId) {
         completion(nil, NSError.judoParameterError);
         return;
     }
-    
+
     JPIDEALViewController *controller;
     controller = [[JPIDEALViewController alloc] initWithIDEALBank:bank
                                                     configuration:self.configuration
                                                transactionService:self.transactionService
                                                 completionHandler:completion];
-    
+
     controller.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }

@@ -45,7 +45,7 @@
 /**
  * A boolean method which returns YES if the device supports Apple pay.
  */
-- (bool)isApplePaySupported;
++ (bool)isApplePaySupported;
 
 /**
  * A boolean method which returns YES if the user can make transactions via Apple Pay.
