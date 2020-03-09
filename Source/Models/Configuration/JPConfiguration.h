@@ -51,12 +51,12 @@
 /**
  * An object describing the amount of the transaction
  */
-@property (nonatomic, strong, readonly) JPAmount *_Nonnull amount;
+@property (nonatomic, strong) JPAmount *_Nonnull amount;
 
 /**
  * An object containing transaction-related references
  */
-@property (nonatomic, strong, readonly) JPReference *_Nonnull reference;
+@property (nonatomic, strong) JPReference *_Nonnull reference;
 
 /**
  * An object responsible for handling UI-related configurations

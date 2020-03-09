@@ -26,6 +26,7 @@
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIStackView+Additions.h"
+#import "NSString+Additions.h"
 
 @interface JPTransactionStatusView ()
 
@@ -70,13 +71,13 @@
 
     switch (status) {
         case JPTransactionStatusPending:
-            self.titleLabel.text = @"Transaction pending...";
+            self.titleLabel.text = @"transaction_pending".localized;
             break;
         case JPTransactionStatusPendingDelayed:
-            self.titleLabel.text = @"This is taking longer than expected...";
+            self.titleLabel.text = @"transaction_delayed".localized;
             break;
         case JPTransactionStatusTimeout:
-            self.titleLabel.text = @"Transaction timeout!";
+            self.titleLabel.text = @"transaction_timeout".localized;
             break;
     }
 }
@@ -125,7 +126,6 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.text = @"This is taking longer than expected...";
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.font = UIFont.headline;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -163,7 +163,7 @@
         _retryButton.backgroundColor = UIColor.jpBlackColor;
         _retryButton.titleLabel.font = UIFont.title;
         _retryButton.layer.cornerRadius = 4.0f;
-        [_retryButton setTitle:@"Retry" forState:UIControlStateNormal];
+        [_retryButton setTitle:@"retry".localized forState:UIControlStateNormal];
         [_retryButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     }
     return _retryButton;

@@ -46,8 +46,32 @@ NSString *const ErrorJailbrokenDeviceDisallowed = @"error_jailbroken_device_disa
 NSString *const Error3DSRequest = @"error_3DS_request";
 NSString *const ErrorUnderlyingError = @"error_underlying_error";
 NSString *const ErrorTransactionDeclined = @"error_transaction_declined";
+NSString *const ErrorInvalidIDEALCurrency = @"error_invalid_ideal_currency";
+NSString *const ErrorApplePayNotSupported = @"error_apple_pay_unsupported";
 
 @implementation NSError (Additions)
+
++ (NSError *)judoInvalidIDEALCurrencyError {
+    
+    NSDictionary *userInfo = [self userDataDictWithDescription:ErrorInvalidIDEALCurrency.localized
+                                                 failureReason:nil
+                                                         title:nil];
+    
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorParameterError
+                           userInfo:userInfo];
+}
+
++ (NSError *)judoApplePayNotSupportedError {
+    
+    NSDictionary *userInfo = [self userDataDictWithDescription:ErrorApplePayNotSupported.localized
+                                                 failureReason:nil
+                                                         title:nil];
+    
+    return [NSError errorWithDomain:JudoErrorDomain
+                               code:JudoErrorGeneral_Error
+                           userInfo:userInfo];
+}
 
 + (NSError *)judoJailbrokenDeviceDisallowedError {
     return [NSError errorWithDomain:JudoErrorDomain

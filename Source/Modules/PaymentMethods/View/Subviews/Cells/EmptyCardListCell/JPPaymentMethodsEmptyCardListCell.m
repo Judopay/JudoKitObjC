@@ -29,6 +29,7 @@
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
+#import "NSLayoutConstraint+Additions.h"
 
 @interface JPPaymentMethodsEmptyCardListCell ()
 @property (nonatomic, strong) UIStackView *stackView;
@@ -84,12 +85,15 @@
 }
 
 - (void)setupConstraints {
-    NSLayoutConstraint *heightConstraint = [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f];
-    heightConstraint.priority = 999;
-    heightConstraint.active = YES;
-
-    [self.stackView pinToAnchors:AnchorTypeTop forView:self withPadding:60.0];
-    [self.stackView pinToAnchors:AnchorTypeBottom | AnchorTypeLeading | AnchorTypeTrailing forView:self];
+    NSArray *constraints = @[
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:60.0],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f],
+    ];
+    
+    [NSLayoutConstraint activateConstraints:constraints withPriority:999];
 }
 
 #pragma mark - Lazy properties

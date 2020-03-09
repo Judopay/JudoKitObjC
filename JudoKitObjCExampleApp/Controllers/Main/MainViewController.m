@@ -330,7 +330,9 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 - (void)settingsViewController:(SettingsViewController *)viewController
              didUpdateSettings:(Settings *)settings {
     self.settings = settings;
-   self.configuration.uiConfiguration.isAVSEnabled = settings.isAVSEnabled;
+    self.configuration.uiConfiguration.isAVSEnabled = settings.isAVSEnabled;
+    self.configuration.amount = [JPAmount amount:self.configuration.amount.amount
+                                        currency:settings.currency];
 }
 
 - (IBAction)settingsButtonHandler:(id)sender {

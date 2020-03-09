@@ -53,14 +53,12 @@
         BOOL isApplePaySupported = [JPApplePayService isApplePaySupported];
 
         if (isIDEALPresent && isOnlyPaymentMethod && !isCurrencyEUR) {
-            //TODO: Add custom error
-            completion(nil, NSError.judoAmountMissingError);
+            completion(nil, NSError.judoInvalidIDEALCurrencyError);
             return nil;
         }
 
         if (isApplePayPresent && isOnlyPaymentMethod && !isApplePaySupported) {
-            //TODO: Add custom error
-            completion(nil, NSError.judoJPApplePayConfigurationError);
+            completion(nil, NSError.judoApplePayNotSupportedError);
             return nil;
         }
     }

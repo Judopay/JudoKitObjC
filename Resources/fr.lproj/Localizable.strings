@@ -119,6 +119,11 @@
 "retry" = "Retry";
 "close" = "Close";
 
+//Transaction Status View
+"transaction_pending" = "Transaction pending...";
+"transaction_delayed" = "This is taking longer than expected...";
+"transaction_timeout" = "Transaction timed out!";
+
 //JudoPayViewController
 "secure_server" = "Secure server: ";
 "pay" = "Pay";
@@ -149,6 +154,8 @@
 "error_unsupported_card_network_desc" = "%@ is not supported";
 "error_unsupported_card_network_title" = "Card type is not supported";
 "error_token_missing" = "The card token could not be retrieved from the response";
+"error_invalid_ideal_currency" = "Cannot make iDEAL transactions with currencies different than EUR";
+"error_apple_pay_unsupported" = "Apple Pay is not supported on your device";
 
 //NSString+Card
 "check_card_number" = "Check card number";

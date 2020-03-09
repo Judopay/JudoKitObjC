@@ -42,6 +42,7 @@
 @property (nonatomic, strong) JudoCompletionBlock completion;
 @property (nonatomic, strong) JPApplePayService *applePayService;
 @property (nonatomic, strong) JP3DSService *threeDSecureService;
+@property (nonatomic, strong) NSArray<JPPaymentMethod *> *paymentMethods;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
@@ -58,6 +59,7 @@
         self.configuration = configuration;
         self.transactionService = transactionService;
         self.completion = completion;
+        self.paymentMethods = configuration.paymentMethods;
     }
     return self;
 }
@@ -142,24 +144,24 @@
         [self removePaymentMethodWithType:JPPaymentMethodTypeIDeal];
     }
 
-    return (self.configuration.paymentMethods.count != 0) ? self.configuration.paymentMethods : defaultPaymentMethods;
+    return (self.paymentMethods.count != 0) ? self.paymentMethods : defaultPaymentMethods;
 }
 
 #pragma mark - Remove Apple Pay from payment methods
 
 - (void)removePaymentMethodWithType:(JPPaymentMethodType)type {
-    if (self.configuration.paymentMethods.count == 0)
+    if (self.paymentMethods.count == 0)
         return;
 
-    NSMutableArray *tempArray = [self.configuration.paymentMethods mutableCopy];
+    NSMutableArray *tempArray = [self.paymentMethods mutableCopy];
 
-    for (JPPaymentMethod *method in self.configuration.paymentMethods) {
+    for (JPPaymentMethod *method in self.paymentMethods) {
         if (method.type == type) {
             [tempArray removeObject:method];
         }
     }
 
-    self.configuration.paymentMethods = tempArray;
+    self.paymentMethods = tempArray;
 }
 
 #pragma mark - Payment transaction

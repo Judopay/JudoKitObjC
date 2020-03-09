@@ -31,8 +31,6 @@
 @interface JPConfiguration ()
 @property (nonatomic, strong) NSString *_Nullable judoId;
 @property (nonatomic, strong) NSString *_Nullable receiptId;
-@property (nonatomic, strong) JPAmount *_Nonnull amount;
-@property (nonatomic, strong) JPReference *_Nonnull reference;
 @end
 
 @implementation JPConfiguration
