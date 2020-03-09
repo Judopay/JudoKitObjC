@@ -1969,7 +1969,6 @@
 				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				3000736423FBEC590099F3C5 /* Recovered References */,
-				C2CC999FB7DD9E4CAE85496C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2282,13 +2281,6 @@
 				827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		C2CC999FB7DD9E4CAE85496C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

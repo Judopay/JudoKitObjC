@@ -31,6 +31,14 @@
 
 @interface JPIDEALViewController : UIViewController
 
+/**
+ * Initializer that creates a configured instance of JPIDEALViewController
+ *
+ * @param iDEALBank - the iDEAL bank that is selected to complete the transaction
+ * @param configuration - the JPConfiguration that configures the payment flow
+ * @param transactionService - the service responsible for Judo backend calls
+ * @param completionHandler - the JPResponse / NSError completion block
+ */
 - (instancetype)initWithIDEALBank:(JPIDEALBank *)iDEALBank
                     configuration:(JPConfiguration *)configuration
                transactionService:(JPTransactionService *)transactionService

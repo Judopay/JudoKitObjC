@@ -50,6 +50,10 @@
 
 @implementation JPIDEALViewController
 
+#pragma mark - Constants
+
+const float kPollingDelayTimer = 30.0;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithIDEALBank:(JPIDEALBank *)iDEALBank
@@ -171,7 +175,7 @@
 }
 
 - (void)startPolling {
-    self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:30.0
+    self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:kPollingDelayTimer
                                                         repeats:NO
                                                           block:^(NSTimer *_Nonnull timer) {
                                                               [self.transactionStatusView changeToTransactionStatus:JPTransactionStatusPendingDelayed];
@@ -182,33 +186,42 @@
                                             completion:^(JPResponse *response, NSError *error) {
                                                 [self.pollingTimer invalidate];
 
-                                                if (error && error.localizedDescription == NSError.judoRequestTimeoutError.localizedDescription) {
-                                                    [self.transactionStatusView changeToTransactionStatus:JPTransactionStatusTimeout];
-                                                    self.completionBlock(self.redirectResponse, NSError.judoRequestTimeoutError);
-                                                    return;
-                                                }
-
                                                 if (error) {
-                                                    [self dismissViewControllerAnimated:YES completion:nil];
-                                                    self.completionBlock(self.redirectResponse, error);
+                                                    [self handleError:error];
                                                     return;
                                                 }
 
-                                                JPOrderDetails *orderDetails = response.items.firstObject.orderDetails;
-                                                if (orderDetails && [orderDetails.orderFailureReason isEqualToString:@"USER_ABORT"]) {
-                                                    [self dismissViewControllerAnimated:YES completion:nil];
-                                                    self.completionBlock(response, NSError.judoUserDidCancelError);
-                                                    return;
-                                                }
-
-                                                NSString *amountString = [NSString stringWithFormat:@"%.2f", orderDetails.amount];
-                                                response.items.firstObject.amount = [JPAmount amount:amountString currency:@"EUR"];
-                                                response.items.firstObject.createdAt = orderDetails.timestamp;
-                                                response.items.firstObject.message = orderDetails.orderStatus;
-
-                                                [self dismissViewControllerAnimated:YES completion:nil];
-                                                self.completionBlock(response, error);
+                                                [self handleResponse:response];
                                             }];
+}
+
+- (void)handleError:(NSError *)error {
+    if (error.localizedDescription == NSError.judoRequestTimeoutError.localizedDescription) {
+        [self.transactionStatusView changeToTransactionStatus:JPTransactionStatusTimeout];
+        self.completionBlock(self.redirectResponse, NSError.judoRequestTimeoutError);
+        return;
+    }
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.completionBlock(self.redirectResponse, error);
+    return;
+}
+
+- (void)handleResponse:(JPResponse *)response {
+    JPOrderDetails *orderDetails = response.items.firstObject.orderDetails;
+    if (orderDetails && [orderDetails.orderFailureReason isEqualToString:@"USER_ABORT"]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.completionBlock(response, NSError.judoUserDidCancelError);
+        return;
+    }
+
+    NSString *amountString = [NSString stringWithFormat:@"%.2f", orderDetails.amount];
+    response.items.firstObject.amount = [JPAmount amount:amountString currency:@"EUR"];
+    response.items.firstObject.createdAt = orderDetails.timestamp;
+    response.items.firstObject.message = orderDetails.orderStatus;
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.completionBlock(response, nil);
 }
 
 @end

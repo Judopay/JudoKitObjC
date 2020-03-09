@@ -23,10 +23,10 @@
 //  SOFTWARE.
 
 #import "JPTransactionStatusView.h"
+#import "NSString+Additions.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIStackView+Additions.h"
-#import "NSString+Additions.h"
 
 @interface JPTransactionStatusView ()
 
@@ -38,6 +38,17 @@
 @end
 
 @implementation JPTransactionStatusView
+
+#pragma mark - Constants
+
+const float kStatusViewContainerHorizontalPadding = 60.0f;
+const float kStatusViewContainerHeight = 170.0f;
+const float kStatusViewContainerRadius = 20.0f;
+const float kStatusViewStackSpacing = 20.0f;
+const float kStatusViewStackHorizontalPadding = 35.0f;
+const float kStatusViewRetryButtonWidth = 200.0f;
+const float kStatusViewRetryButtonHeight = 45.0f;
+const float kStatusViewRetryButtonRadius = 4.0f;
 
 #pragma mark - Initializers
 
@@ -91,16 +102,16 @@
 
     NSArray *containerConstraints = @[
         [self.containerView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                         constant:60.0],
+                                                         constant:kStatusViewContainerHorizontalPadding],
         [self.containerView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor
-                                                          constant:-60.0],
+                                                          constant:-kStatusViewContainerHorizontalPadding],
         [self.containerView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
-        [self.containerView.heightAnchor constraintEqualToConstant:170],
+        [self.containerView.heightAnchor constraintEqualToConstant:kStatusViewContainerHeight],
     ];
 
     [NSLayoutConstraint activateConstraints:containerConstraints];
 
-    UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:20.0];
+    UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:kStatusViewStackSpacing];
     stackView.alignment = UIStackViewAlignmentCenter;
     [stackView addArrangedSubview:self.activityIndicatorView];
     [stackView addArrangedSubview:self.titleLabel];
@@ -109,13 +120,13 @@
     [self.containerView addSubview:stackView];
 
     NSArray *constraints = @[
-        [self.retryButton.widthAnchor constraintEqualToConstant:200.0],
-        [self.retryButton.heightAnchor constraintEqualToConstant:45.0],
+        [self.retryButton.widthAnchor constraintEqualToConstant:kStatusViewRetryButtonWidth],
+        [self.retryButton.heightAnchor constraintEqualToConstant:kStatusViewRetryButtonHeight],
         [stackView.centerYAnchor constraintEqualToAnchor:self.containerView.centerYAnchor],
         [stackView.leadingAnchor constraintEqualToAnchor:self.containerView.leadingAnchor
-                                                constant:35.0],
+                                                constant:kStatusViewStackHorizontalPadding],
         [stackView.trailingAnchor constraintEqualToAnchor:self.containerView.trailingAnchor
-                                                 constant:-35.0],
+                                                 constant:-kStatusViewStackHorizontalPadding],
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];
@@ -140,7 +151,7 @@
         _containerView = [UIView new];
         _containerView.translatesAutoresizingMaskIntoConstraints = NO;
         _containerView.backgroundColor = [UIColor colorFromHex:0xE4E4E4];
-        _containerView.layer.cornerRadius = 20.0f;
+        _containerView.layer.cornerRadius = kStatusViewContainerRadius;
     }
     return _containerView;
 }
@@ -162,7 +173,7 @@
         _retryButton.translatesAutoresizingMaskIntoConstraints = NO;
         _retryButton.backgroundColor = UIColor.jpBlackColor;
         _retryButton.titleLabel.font = UIFont.title;
-        _retryButton.layer.cornerRadius = 4.0f;
+        _retryButton.layer.cornerRadius = kStatusViewRetryButtonRadius;
         [_retryButton setTitle:@"retry".localized forState:UIControlStateNormal];
         [_retryButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     }

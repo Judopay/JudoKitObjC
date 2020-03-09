@@ -24,12 +24,12 @@
 
 #import "JPPaymentMethodsEmptyCardListCell.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSLayoutConstraint+Additions.h"
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
-#import "NSLayoutConstraint+Additions.h"
 
 @interface JPPaymentMethodsEmptyCardListCell ()
 @property (nonatomic, strong) UIStackView *stackView;
@@ -86,13 +86,14 @@
 
 - (void)setupConstraints {
     NSArray *constraints = @[
-        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:60.0],
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                 constant:60.0],
         [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f],
     ];
-    
+
     [NSLayoutConstraint activateConstraints:constraints withPriority:999];
 }
 

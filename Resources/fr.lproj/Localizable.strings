@@ -156,6 +156,7 @@
 "error_token_missing" = "The card token could not be retrieved from the response";
 "error_invalid_ideal_currency" = "Cannot make iDEAL transactions with currencies different than EUR";
 "error_apple_pay_unsupported" = "Apple Pay is not supported on your device";
+"error_site_id_missing" = "Site ID is missing";
 
 //NSString+Card
 "check_card_number" = "Check card number";

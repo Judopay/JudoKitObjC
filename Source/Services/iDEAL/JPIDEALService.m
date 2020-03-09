@@ -63,8 +63,7 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
     NSDictionary *parameters = [self parametersForIDEALBank:iDealBank];
 
     if (!parameters) {
-        //TODO: SITE ID MISSING ERROR
-        completion(nil, NSError.judoParameterError);
+        completion(nil, NSError.judoSiteIDMissingError);
         return;
     }
 
