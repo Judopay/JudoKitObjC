@@ -74,4 +74,34 @@
  */
 @property (nonatomic, strong) UIFont *captionBold;
 
+/**
+ * The black color value used for most text elements
+ * Defaults to 0x262626
+ */
+@property (nonatomic, strong) UIColor *jpBlackColor;
+
+/**
+ * The dark gray color value often used for disableed elements
+ * Defaults to 0x999999
+ */
+@property (nonatomic, strong) UIColor *jpDarkGrayColor;
+
+/**
+ * The gray color value often used for placeholder colors
+ * Defaults to 0xE5E5E5
+ */
+@property (nonatomic, strong) UIColor *jpGrayColor;
+
+/**
+ * The light gray color value often used for input field / selector backgrounds
+ * Defaults to 0xF6F6F6
+ */
+@property (nonatomic, strong) UIColor *jpLightGrayColor;
+
+/**
+ * The red color value used for displaying error messages
+ * Defaults to 0xE21900
+ */
+@property (nonatomic, strong) UIColor *jpRedColor;
+
 @end

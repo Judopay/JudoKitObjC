@@ -24,8 +24,6 @@
 
 #import "JPPaymentMethodsIDEALBankCell.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 
@@ -58,6 +56,14 @@ const float kiDEALBankStackViewSpacing = 10.0f;
         [self setupConstraints];
     }
     return self;
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.bodyBold;
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.separatorView.backgroundColor = theme.jpLightGrayColor;
 }
 
 #pragma mark - Layout setup
@@ -132,8 +138,6 @@ const float kiDEALBankStackViewSpacing = 10.0f;
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = UIFont.bodyBold;
-        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -151,7 +155,6 @@ const float kiDEALBankStackViewSpacing = 10.0f;
     if (!_separatorView) {
         _separatorView = [UIView new];
         _separatorView.translatesAutoresizingMaskIntoConstraints = NO;
-        _separatorView.backgroundColor = UIColor.jpLightGrayColor;
     }
     return _separatorView;
 }

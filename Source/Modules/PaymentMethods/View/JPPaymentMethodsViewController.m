@@ -201,6 +201,8 @@
     JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
                                                                  forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [cell applyTheme:self.theme];
 
     if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;

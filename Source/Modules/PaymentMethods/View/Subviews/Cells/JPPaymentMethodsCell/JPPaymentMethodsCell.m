@@ -28,7 +28,11 @@
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
     self.backgroundColor = UIColor.whiteColor;
-    //TODO: Implement custom payment methods logic
+    //Implement custom payment methods logic
+}
+
+- (void)applyTheme:(JPTheme *)theme {
+    //Override with custom implementation
 }
 
 @end

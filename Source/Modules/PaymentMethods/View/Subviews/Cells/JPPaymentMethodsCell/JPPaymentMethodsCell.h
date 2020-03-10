@@ -23,10 +23,18 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPTheme.h"
 
 @class JPPaymentMethodsModel;
 
 @interface JPPaymentMethodsCell : UITableViewCell
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 /**
  * A method for configuring the view with a JPPaymentMethodsModel object

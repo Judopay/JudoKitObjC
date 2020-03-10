@@ -81,8 +81,11 @@
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
+    
     router.viewController = viewController;
+    
     viewController.presenter = presenter;
+    viewController.theme = configuration.uiConfiguration.theme;
 
     return viewController;
 }

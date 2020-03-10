@@ -24,8 +24,11 @@
 
 #import "JPTheme.h"
 #import "UIFont+Additions.h"
+#import "UIColor+Additions.h"
 
 @implementation JPTheme
+
+#pragma mark - Fonts
 
 - (UIFont *)largeTitle {
     if (!_largeTitle) {
@@ -81,6 +84,43 @@
         _captionBold = UIFont.captionBold;
     }
     return _captionBold;
+}
+
+#pragma mark - Colors
+
+- (UIColor *)jpBlackColor {
+    if (!_jpBlackColor) {
+        _jpBlackColor = UIColor.jpBlackColor;
+    }
+    return _jpBlackColor;
+}
+
+- (UIColor *)jpDarkGrayColor {
+    if (!_jpDarkGrayColor) {
+        _jpDarkGrayColor = UIColor.jpDarkGrayColor;
+    }
+    return _jpDarkGrayColor;
+}
+
+- (UIColor *)jpGrayColor {
+    if (!_jpGrayColor) {
+        _jpGrayColor = UIColor.jpGrayColor;
+    }
+    return _jpGrayColor;
+}
+
+- (UIColor *)jpLightGrayColor {
+    if (!_jpLightGrayColor) {
+        _jpLightGrayColor = UIColor.jpLightGrayColor;
+    }
+    return _jpLightGrayColor;
+}
+
+- (UIColor *)jpRedColor {
+    if (!_jpRedColor) {
+        _jpRedColor = UIColor.jpRedColor;
+    }
+    return _jpRedColor;
 }
 
 @end

@@ -25,6 +25,7 @@
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPSectionView.h"
 #import "JPTransactionViewController.h"
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPPaymentMethodsPresenter;
@@ -39,7 +40,7 @@
  *
  * @param viewModel - a view model detailing the layout details
  */
-- (void)configureWithViewModel:(JPPaymentMethodsViewModel *)viewModel
+- (void)configureWithViewModel:(nonnull JPPaymentMethodsViewModel *)viewModel
            shouldAnimateChange:(BOOL)shouldAnimate;
 
 /**
@@ -48,7 +49,8 @@
  * @param title - an optional NSString that defines the title of the alert
  * @param error - an NSError instance describing the current error
  */
-- (void)displayAlertWithTitle:(NSString *)title andError:(NSError *)error;
+- (void)displayAlertWithTitle:(nullable NSString *)title
+                     andError:(nonnull NSError *)error;
 
 @end
 
@@ -57,9 +59,14 @@
 @interface JPPaymentMethodsViewController : UIViewController <JPPaymentMethodsView>
 
 /**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
  * A strong reference to a presenter object that adopts the JPTransactionPresenter protocol
  */
-@property (nonatomic, strong) id<JPPaymentMethodsPresenter> presenter;
+@property (nonatomic, strong) id<JPPaymentMethodsPresenter> _Nonnull presenter;
 
 @end
 
