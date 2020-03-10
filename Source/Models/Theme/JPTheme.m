@@ -23,7 +23,64 @@
 //  SOFTWARE.
 
 #import "JPTheme.h"
+#import "UIFont+Additions.h"
 
 @implementation JPTheme
+
+- (UIFont *)largeTitle {
+    if (!_largeTitle) {
+        _largeTitle = UIFont.largeTitle;
+    }
+    return _largeTitle;
+}
+
+- (UIFont *)title {
+    if (!_title) {
+        _title = UIFont.title;
+    }
+    return _title;
+}
+
+- (UIFont *)headline {
+    if (!_headline) {
+        _headline = UIFont.headline;
+    }
+    return _headline;
+}
+
+- (UIFont *)headlineLight {
+    if (!_headlineLight) {
+        _headlineLight = UIFont.headlineLight;
+    }
+    return _headlineLight;
+}
+
+- (UIFont *)body {
+    if (!_body) {
+        _body = UIFont.body;
+    }
+    return _body;
+}
+
+- (UIFont *)bodyBold {
+    if (!_bodyBold) {
+        _bodyBold = UIFont.bodyBold;
+    }
+    return _bodyBold;
+}
+
+- (UIFont *)caption {
+    if (!_caption) {
+        _caption = UIFont.caption;
+    }
+    return _caption;
+}
+
+- (UIFont *)captionBold {
+    if (!_captionBold) {
+        _captionBold = UIFont.captionBold;
+    }
+    return _captionBold;
+}
 
 @end

@@ -23,7 +23,18 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "JPTheme.h"
 
 @interface JPUIConfiguration : NSObject
+
+/**
+ * A boolean property that defines if AVS should be enabled during the payment flow
+ */
 @property (nonatomic, assign) BOOL isAVSEnabled;
+
+/**
+ * A reference to the JPTheme object that customizes the user interface
+ */
+@property (nonatomic, strong) JPTheme *theme;
+
 @end

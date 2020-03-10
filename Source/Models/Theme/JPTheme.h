@@ -24,19 +24,54 @@
 
 @import UIKit;
 
-/**
- *  A class which can be used to easily customize the SDKs view
- */
 @interface JPTheme : NSObject
 
 /**
- *  Set the address verification service to true to prompt the user to input his country and post code information
+ * The large title font used to represent header elements, such as screen titles.
+ * Defaults to San Francisco 24 - Semibold.
  */
-@property (nonatomic, assign) BOOL avsEnabled;
+@property (nonatomic, strong) UIFont *largeTitle;
 
 /**
- * A boolean property indicating whether the 'Powered by Judo' headline must be displayed
+ * The title font used to represent prominent elements, such as card titles or subheaders.
+ * Defaults to San Francisco 18 - Semibold.
  */
-@property (nonatomic, assign) BOOL displayJudoHeadline;
+@property (nonatomic, strong) UIFont *title;
+
+/**
+ * The headline font is used to represent most prominent buttons.
+ * Defaults to San Francisco 16 - Semibold.
+ */
+@property (nonatomic, strong) UIFont *headline;
+
+/**
+ * A lighter version of the headline font, used to represent the text inside input fields.
+ * Defaults to San Francisco 16 - Regular.
+ */
+@property (nonatomic, strong) UIFont *headlineLight;
+
+/**
+ * A body font is used to represent basic text elements.
+ * Defaults to San Francisco 14 - Regular.
+ */
+@property (nonatomic, strong) UIFont *body;
+
+/**
+ * The bold version of the body font used to display bold text, such as card titles in a list or smaller flat buttons.
+ * Defaults to San Francisco 14 - Semibold.
+ */
+@property (nonatomic, strong) UIFont *bodyBold;
+
+/**
+ * The caption font is used to represent all small text elements, whether a subtitle or a superscript.
+ * Defaults to San Francisco 10 - Regular.
+ */
+@property (nonatomic, strong) UIFont *caption;
+
+/**
+ * The bold version of the caption font used to highlight certain text elements in a subtitle
+ * Defaults to San Francisco 10 - Semibold.
+ */
+@property (nonatomic, strong) UIFont *captionBold;
 
 @end

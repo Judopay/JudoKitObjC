@@ -26,4 +26,11 @@
 
 @implementation JPUIConfiguration
 
+- (JPTheme *)theme {
+    if (!_theme) {
+        _theme = [JPTheme new];
+    }
+    return _theme;
+}
+
 @end

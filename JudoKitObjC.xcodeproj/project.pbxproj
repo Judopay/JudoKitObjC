@@ -1222,8 +1222,8 @@
 		3000727323F6AB540099F3C5 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				3000727423F6AB540099F3C5 /* JPTheme.m */,
 				3000727523F6AB540099F3C5 /* JPTheme.h */,
+				3000727423F6AB540099F3C5 /* JPTheme.m */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -1490,8 +1490,8 @@
 		3000734E23FACF540099F3C5 /* UIConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				3000734F23FACF540099F3C5 /* JPUIConfiguration.m */,
 				3000735023FACF540099F3C5 /* JPUIConfiguration.h */,
+				3000734F23FACF540099F3C5 /* JPUIConfiguration.m */,
 			);
 			path = UIConfiguration;
 			sourceTree = "<group>";
