@@ -24,8 +24,6 @@
 
 #import "JPPaymentMethodsCardListFooterCell.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIView+Additions.h"
 
@@ -95,6 +93,13 @@
     self.onTransactionButtonTapHandler();
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    [self.addCardButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
+    self.addCardButton.titleLabel.font = theme.bodyBold;
+}
+
 #pragma mark - Layout Setup
 
 - (void)setupViews {
@@ -110,12 +115,9 @@
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_addCardButton setTitleColor:UIColor.jpBlackColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.bodyBold;
-
-        [self.addCardButton addTarget:self
-                               action:@selector(onTransactionButtonTap)
-                     forControlEvents:UIControlEventTouchUpInside];
+        [_addCardButton addTarget:self
+                           action:@selector(onTransactionButtonTap)
+                 forControlEvents:UIControlEventTouchUpInside];
     }
     return _addCardButton;
 }

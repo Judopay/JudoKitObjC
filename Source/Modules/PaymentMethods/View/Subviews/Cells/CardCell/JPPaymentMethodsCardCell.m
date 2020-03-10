@@ -27,8 +27,6 @@
 #import "JPPaymentMethodsViewModel.h"
 #import "NSLayoutConstraint+Additions.h"
 #import "NSString+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -39,6 +37,7 @@
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
+@property (nonatomic, strong) JPTheme *theme;
 
 @end
 
@@ -96,7 +95,7 @@ const float kCardSmallPadding = 3.0f;
 
     if (subtitleText.length >= 4) {
         NSRange range = NSMakeRange(subtitleText.length - 4, 4);
-        [subtitleLabelText addAttributes:@{NSFontAttributeName : UIFont.captionBold} range:range];
+        [subtitleLabelText addAttributes:@{NSFontAttributeName : self.theme.captionBold} range:range];
     }
 
     self.subtitleLabel.attributedText = subtitleLabelText;
@@ -112,6 +111,17 @@ const float kCardSmallPadding = 3.0f;
     self.accessoryView = accessoryImageView;
 
     [self setSubtitleExpirationStatus:cardModel.cardExpirationStatus];
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+    self.titleLabel.font = theme.bodyBold;
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.iconContainerView.layer.borderColor = theme.jpLightGrayColor.CGColor;
+    self.subtitleLabel.font = theme.caption;
+    self.subtitleLabel.textColor = theme.jpDarkGrayColor;
 }
 
 #pragma mark - Layout Setup
@@ -173,17 +183,17 @@ const float kCardSmallPadding = 3.0f;
 
     switch (status) {
         case CardNotExpired:
-            self.subtitleLabel.textColor = UIColor.jpDarkGrayColor;
+            self.subtitleLabel.textColor = self.theme.jpDarkGrayColor;
             break;
         case CardExpired:
             expirationStatus = @"is_expired".localized;
             boldWord = @"expired".localized;
-            self.subtitleLabel.textColor = UIColor.jpRedColor;
+            self.subtitleLabel.textColor = self.theme.jpRedColor;
             break;
         case CardExpiresSoon:
             expirationStatus = @"will_expire_soon".localized;
             boldWord = @"expire_soon".localized;
-            self.subtitleLabel.textColor = UIColor.jpDarkGrayColor;
+            self.subtitleLabel.textColor = self.theme.jpDarkGrayColor;
             break;
     }
 
@@ -200,7 +210,6 @@ const float kCardSmallPadding = 3.0f;
     if (!_iconContainerView) {
         _iconContainerView = [UIView new];
         _iconContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _iconContainerView.layer.borderColor = [UIColor colorFromHex:0xF5F5F6].CGColor;
         _iconContainerView.layer.borderWidth = 1.0f;
         _iconContainerView.layer.cornerRadius = 2.4f;
     }
@@ -220,8 +229,6 @@ const float kCardSmallPadding = 3.0f;
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = UIFont.bodyBold;
-        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -230,8 +237,6 @@ const float kCardSmallPadding = 3.0f;
     if (!_subtitleLabel) {
         _subtitleLabel = [UILabel new];
         _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _subtitleLabel.font = UIFont.caption;
-        _subtitleLabel.textColor = UIColor.jpDarkGrayColor;
     }
     return _subtitleLabel;
 }

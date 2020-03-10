@@ -54,6 +54,12 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    //Customize Section view
+}
+
 #pragma mark - Layout setup
 
 - (void)setupLayout {

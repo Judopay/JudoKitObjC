@@ -24,8 +24,6 @@
 
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIView+Additions.h"
 
 @implementation JPPaymentMethodsCardListHeaderCell
@@ -80,6 +78,15 @@ const float kCardListHeaderCenterOffset = 10.0f;
     [self.actionButton setTitle:headerModel.editButtonTitle forState:UIControlStateNormal];
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.titleLabel.font = theme.headline;
+    self.actionButton.titleLabel.font = theme.bodyBold;
+    [self.actionButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
+}
+
 #pragma mark - Layout Setup
 
 - (void)setupViews {
@@ -110,8 +117,6 @@ const float kCardListHeaderCenterOffset = 10.0f;
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.textColor = UIColor.jpBlackColor;
-        _titleLabel.font = UIFont.headline;
     }
     return _titleLabel;
 }
@@ -124,9 +129,8 @@ const float kCardListHeaderCenterOffset = 10.0f;
     if (!_actionButton) {
         _actionButton = [UIButton new];
         _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _actionButton.titleLabel.font = UIFont.bodyBold;
-        [_actionButton setTitleColor:UIColor.jpBlackColor forState:UIControlStateNormal];
-        [_actionButton addTarget:self action:@selector(didPressActionButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_actionButton addTarget:self action:@selector(didPressActionButton:)
+                forControlEvents:UIControlEventTouchUpInside];
     }
     return _actionButton;
 }

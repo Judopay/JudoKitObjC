@@ -25,8 +25,6 @@
 #import "JPPaymentMethodsEmptyCardListCell.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "NSLayoutConstraint+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -73,6 +71,16 @@
     self.onTransactionButtonTapHandler();
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.headline;
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.addCardButton.titleLabel.font = theme.bodyBold;
+    [self.addCardButton setBorderWithColor:theme.jpBlackColor width:1.0f andCornerRadius:4.0f];
+    [self.addCardButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
+}
+
 #pragma mark - Layout setup
 
 - (void)setupViews {
@@ -104,8 +112,6 @@
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = UIFont.headline;
-        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -113,13 +119,9 @@
 - (UIButton *)addCardButton {
     if (!_addCardButton) {
         _addCardButton = [UIButton new];
-        [_addCardButton setBorderWithColor:UIColor.jpBlackColor width:1.0f andCornerRadius:4.0f];
-        [_addCardButton setTitleColor:UIColor.jpBlackColor forState:UIControlStateNormal];
-        _addCardButton.titleLabel.font = UIFont.bodyBold;
-
-        [self.addCardButton addTarget:self
-                               action:@selector(onTransactionButtonTap)
-                     forControlEvents:UIControlEventTouchUpInside];
+        [_addCardButton addTarget:self
+                           action:@selector(onTransactionButtonTap)
+                 forControlEvents:UIControlEventTouchUpInside];
     }
     return _addCardButton;
 }
