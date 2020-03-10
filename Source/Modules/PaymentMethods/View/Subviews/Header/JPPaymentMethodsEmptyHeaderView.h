@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPTheme.h"
 
 @class JPPaymentMethodsHeaderModel;
 
@@ -30,4 +31,12 @@
  * A view that describes the header when no card is being selected
  */
 @interface JPPaymentMethodsEmptyHeaderView : UIView
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
+
 @end

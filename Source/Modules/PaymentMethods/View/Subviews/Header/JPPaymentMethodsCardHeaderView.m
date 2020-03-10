@@ -29,6 +29,7 @@
 
 @interface JPPaymentMethodsCardHeaderView ()
 @property (nonatomic, strong) JPCardView *cardView;
+@property (nonatomic, strong) JPTheme *theme;
 
 @end
 
@@ -55,6 +56,12 @@
         [self setupViews];
     }
     return self;
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
 }
 
 #pragma mark - View Model Configuration

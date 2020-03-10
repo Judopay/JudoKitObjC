@@ -25,8 +25,6 @@
 #import "JPPaymentMethodsEmptyHeaderView.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "NSString+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIStackView+Additions.h"
 
 @interface JPPaymentMethodsEmptyHeaderView ()
@@ -59,6 +57,15 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.title;
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.textLabel.font = theme.body;
+    self.textLabel.textColor = theme.jpBlackColor;
+}
+
 #pragma mark - Layout Setup
 
 - (void)setupViews {
@@ -79,8 +86,6 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.jpBlackColor;
         _titleLabel.text = @"choose_payment_method".localized;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -91,8 +96,6 @@
     if (!_textLabel) {
         _textLabel = [UILabel new];
         _textLabel.numberOfLines = 0;
-        _textLabel.font = UIFont.body;
-        _textLabel.textColor = UIColor.jpBlackColor;
         _textLabel.text = @"no_cards_added".localized;
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }

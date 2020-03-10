@@ -29,11 +29,10 @@
 #import "JPTransactionButton.h"
 #import "NSLayoutConstraint+Additions.h"
 #import "NSString+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
+#import "UIColor+Additions.h"
 
 #import "JPPaymentMethodsCardHeaderView.h"
 #import "JPPaymentMethodsEmptyHeaderView.h"
@@ -93,6 +92,17 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
         [self setupViews];
     }
     return self;
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.amountPrefixLabel.font = theme.body;
+    self.amountPrefixLabel.textColor = theme.jpBlackColor;
+    self.amountValueLabel.font = theme.largeTitle;
+    self.amountValueLabel.textColor = theme.jpBlackColor;
+    self.payButton.titleLabel.font = theme.headline;
+    [self.payButton setBackgroundImage:theme.jpBlackColor.asImage forState:UIControlStateNormal];
 }
 
 #pragma mark - View Model Configuration
@@ -293,8 +303,6 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
 - (UILabel *)amountValueLabel {
     if (!_amountValueLabel) {
         _amountValueLabel = [UILabel new];
-        _amountValueLabel.font = UIFont.largeTitle;
-        _amountValueLabel.textColor = UIColor.jpBlackColor;
         _amountValueLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountValueLabel.adjustsFontSizeToFitWidth = YES;
         _amountValueLabel.minimumScaleFactor = kHeaderAmountLabelMinScaleFactor;
@@ -307,8 +315,6 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
     if (!_amountPrefixLabel) {
         _amountPrefixLabel = [UILabel new];
         _amountPrefixLabel.text = @"you_will_pay".localized;
-        _amountPrefixLabel.font = UIFont.body;
-        _amountPrefixLabel.textColor = UIColor.jpBlackColor;
         _amountPrefixLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _amountPrefixLabel.adjustsFontSizeToFitWidth = YES;
         _amountPrefixLabel.textAlignment = NSTextAlignmentCenter;
@@ -321,8 +327,6 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
         _payButton = [JPTransactionButton new];
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
         _payButton.layer.cornerRadius = kHeaderPayButtonCornerRadius;
-        _payButton.titleLabel.font = UIFont.headline;
-        [_payButton setBackgroundImage:UIColor.blackColor.asImage forState:UIControlStateNormal];
         [_payButton setClipsToBounds:YES];
     }
     return _payButton;

@@ -118,6 +118,7 @@
     self.viewModel = viewModel;
 
     [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
+    [self.paymentMethodsView.headerView applyTheme:self.theme];
 
     for (JPPaymentMethodsModel *item in viewModel.items) {
         [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)
