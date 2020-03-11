@@ -1696,8 +1696,8 @@
 		305835202406586C00B61167 /* CardCustomizationIsDefaultCell */ = {
 			isa = PBXGroup;
 			children = (
-				305835212406586C00B61167 /* JPCardCustomizationIsDefaultCell.m */,
 				305835222406586C00B61167 /* JPCardCustomizationIsDefaultCell.h */,
+				305835212406586C00B61167 /* JPCardCustomizationIsDefaultCell.m */,
 			);
 			path = CardCustomizationIsDefaultCell;
 			sourceTree = "<group>";

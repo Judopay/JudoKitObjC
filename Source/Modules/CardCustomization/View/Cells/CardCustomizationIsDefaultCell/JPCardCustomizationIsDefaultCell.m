@@ -25,8 +25,6 @@
 #import "JPCardCustomizationIsDefaultCell.h"
 #import "JPCardCustomizationViewModel.h"
 #import "NSString+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 
@@ -45,6 +43,13 @@ const float kIsDefaultStackViewVerticalPadding = 0.0f;
 const float kIsDefaultStackViewHorizontalPadding = 24.0f;
 const float kIsDefaultStackViewHeight = 23.0f;
 const float kIsDefaultCheckmarkImageWidth = 23.0f;
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.titleLabel.font = theme.body;
+}
 
 #pragma mark - Initializers
 
@@ -118,8 +123,6 @@ const float kIsDefaultCheckmarkImageWidth = 23.0f;
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.text = @"save_as_default".localized;
-        _titleLabel.textColor = UIColor.jpBlackColor;
-        _titleLabel.font = UIFont.body;
     }
     return _titleLabel;
 }

@@ -103,6 +103,7 @@
 
 - (void)configureWithCustomizationModel:(JPCardCustomizationHeaderModel *)viewModel {
     [self.contentView addSubview:self.cardPaymentView];
+    [self.cardPaymentView applyTheme:self.theme];
     [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
     [self.cardPaymentView configureWithTitle:viewModel.cardTitle
                                   expiryDate:viewModel.cardExpiryDate

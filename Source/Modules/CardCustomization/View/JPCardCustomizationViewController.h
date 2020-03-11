@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import "JPCardCustomizationPatternPickerCell.h"
 #import "JPCardCustomizationSubmitCell.h"
 #import "JPInputField.h"
@@ -38,7 +39,7 @@
  * @param viewModels - an array of objects that subclass the JPCardCustomizationViewModel object.
  * @param shouldPreserveResponder - a boolean property that, if set to YES, will not reload the card title input field as to preserve the first responder.
  */
-- (void)updateViewWithViewModels:(NSArray<JPCardCustomizationViewModel *> *)viewModels
+- (void)updateViewWithViewModels:(nonnull NSArray<JPCardCustomizationViewModel *> *)viewModels
          shouldPreserveResponder:(BOOL)shouldPreserveResponder;
 
 @end
@@ -46,14 +47,19 @@
 @interface JPCardCustomizationViewController : UIViewController <JPCardCustomizationView>
 
 /**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
  * A strong reference to a presenter object that adopts the JPCardCustomizationPresenter protocol
  */
-@property (nonatomic, strong) id<JPCardCustomizationPresenter> presenter;
+@property (nonatomic, strong) id<JPCardCustomizationPresenter> _Nonnull presenter;
 
 /**
  * A reference to the JPCardCustomizationView instance which serves as the controller's main view
  */
-@property (nonatomic, strong) JPCardCustomizationView *cardCustomizationView;
+@property (nonatomic, strong) JPCardCustomizationView *_Nonnull cardCustomizationView;
 
 @end
 

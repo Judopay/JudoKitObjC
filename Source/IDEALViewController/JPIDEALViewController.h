@@ -25,11 +25,17 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+#import "JPTheme.h"
 #import "JPConfiguration.h"
 #import "JPIDEALService.h"
 #import "JPTransactionService.h"
 
 @interface JPIDEALViewController : UIViewController
+
+/**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
 
 /**
  * Initializer that creates a configured instance of JPIDEALViewController
@@ -39,10 +45,10 @@
  * @param transactionService - the service responsible for Judo backend calls
  * @param completionHandler - the JPResponse / NSError completion block
  */
-- (instancetype)initWithIDEALBank:(JPIDEALBank *)iDEALBank
-                    configuration:(JPConfiguration *)configuration
-               transactionService:(JPTransactionService *)transactionService
-                completionHandler:(JudoCompletionBlock)completion;
+- (nonnull instancetype)initWithIDEALBank:(nonnull JPIDEALBank *)iDEALBank
+                            configuration:(nonnull JPConfiguration *)configuration
+                       transactionService:(nonnull JPTransactionService *)transactionService
+                        completionHandler:(nullable JudoCompletionBlock)completion;
 
 @end
 

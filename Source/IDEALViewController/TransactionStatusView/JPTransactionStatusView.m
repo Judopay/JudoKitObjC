@@ -24,8 +24,6 @@
 
 #import "JPTransactionStatusView.h"
 #import "NSString+Additions.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIStackView+Additions.h"
 
 @interface JPTransactionStatusView ()
@@ -71,6 +69,17 @@ const float kStatusViewRetryButtonRadius = 4.0f;
         [self setupViews];
     }
     return self;
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.headline;
+    self.titleLabel.textColor = theme.jpBlackColor;
+    self.containerView.backgroundColor = theme.jpWhiteColor;
+    self.activityIndicatorView.color = theme.jpBlackColor;
+    self.retryButton.backgroundColor = theme.jpBlackColor;
+    self.retryButton.titleLabel.font = theme.title;
 }
 
 #pragma mark - Public methods
@@ -138,10 +147,8 @@ const float kStatusViewRetryButtonRadius = 4.0f;
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = UIFont.headline;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }
@@ -150,7 +157,6 @@ const float kStatusViewRetryButtonRadius = 4.0f;
     if (!_containerView) {
         _containerView = [UIView new];
         _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = [UIColor colorFromHex:0xE4E4E4];
         _containerView.layer.cornerRadius = kStatusViewContainerRadius;
     }
     return _containerView;
@@ -160,7 +166,6 @@ const float kStatusViewRetryButtonRadius = 4.0f;
     if (!_activityIndicatorView) {
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         _activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
-        _activityIndicatorView.color = UIColor.jpBlackColor;
         _activityIndicatorView.hidesWhenStopped = YES;
         [_activityIndicatorView startAnimating];
     }
@@ -171,8 +176,6 @@ const float kStatusViewRetryButtonRadius = 4.0f;
     if (!_retryButton) {
         _retryButton = [UIButton new];
         _retryButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _retryButton.backgroundColor = UIColor.jpBlackColor;
-        _retryButton.titleLabel.font = UIFont.title;
         _retryButton.layer.cornerRadius = kStatusViewRetryButtonRadius;
         [_retryButton setTitle:@"retry".localized forState:UIControlStateNormal];
         [_retryButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];

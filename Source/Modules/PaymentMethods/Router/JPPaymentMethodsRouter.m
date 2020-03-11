@@ -90,14 +90,17 @@
                                                     configuration:self.configuration
                                                transactionService:self.transactionService
                                                 completionHandler:completion];
-
+    
+    controller.theme = self.configuration.uiConfiguration.theme;
     controller.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)navigateToCardCustomizationWithIndex:(NSUInteger)index {
     JPCardCustomizationViewController *viewController;
-    viewController = [JPCardCustomizationBuilderImpl buildModuleWithCardIndex:index];
+    JPTheme *theme = self.configuration.uiConfiguration.theme;
+    viewController = [JPCardCustomizationBuilderImpl buildModuleWithCardIndex:index
+                                                                     andTheme:theme];
 
     [self.viewController.navigationController pushViewController:viewController
                                                         animated:YES];

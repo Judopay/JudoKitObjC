@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import "JPCardCustomizationViewController.h"
 #import <Foundation/Foundation.h>
 
@@ -34,7 +35,8 @@
  *
  * @returns a configured instance of JPCardCustomizationViewController
  */
-+ (JPCardCustomizationViewController *)buildModuleWithCardIndex:(NSUInteger)index;
++ (JPCardCustomizationViewController *)buildModuleWithCardIndex:(NSUInteger)index
+                                                       andTheme:(JPTheme *)theme;
 
 @end
 

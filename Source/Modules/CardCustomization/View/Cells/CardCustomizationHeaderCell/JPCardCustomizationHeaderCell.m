@@ -30,6 +30,7 @@
 
 @interface JPCardCustomizationHeaderCell ()
 @property (nonatomic, strong) JPCardView *cardView;
+@property (nonatomic, strong) JPTheme *theme;
 @end
 
 @implementation JPCardCustomizationHeaderCell
@@ -38,6 +39,12 @@
 
 const float kHeaderCardAnchorConstants = 20.0f;
 const float kHeaderCardAspectRatio = 0.583;
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+}
 
 #pragma mark - Initializers
 
@@ -54,6 +61,7 @@ const float kHeaderCardAspectRatio = 0.583;
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
     if ([viewModel isKindOfClass:JPCardCustomizationHeaderModel.class]) {
         JPCardCustomizationHeaderModel *headerModel = (JPCardCustomizationHeaderModel *)viewModel;
+        [self.cardView applyTheme:self.theme];
         [self.cardView configureWithCustomizationModel:headerModel];
     }
 }

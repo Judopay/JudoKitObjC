@@ -26,6 +26,10 @@
 
 @implementation JPCardCustomizationCell
 
+- (void)applyTheme:(JPTheme *)theme {
+    //Override with custom theming
+}
+
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
     //Override with custom implementation
 }

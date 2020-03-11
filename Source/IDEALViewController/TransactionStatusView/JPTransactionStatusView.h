@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, JPTransactionStatus) {
@@ -31,6 +32,13 @@ typedef NS_ENUM(NSUInteger, JPTransactionStatus) {
 };
 
 @interface JPTransactionStatusView : UIView
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 /**
  * A method for changing the transaction status view based on a provided status

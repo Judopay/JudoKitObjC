@@ -29,7 +29,8 @@
 
 @implementation JPCardCustomizationBuilderImpl
 
-+ (JPCardCustomizationViewController *)buildModuleWithCardIndex:(NSUInteger)index {
++ (JPCardCustomizationViewController *)buildModuleWithCardIndex:(NSUInteger)index
+                                                       andTheme:(JPTheme *)theme {
 
     JPCardCustomizationViewController *viewController = [JPCardCustomizationViewController new];
     JPCardCustomizationInteractorImpl *interactor = [[JPCardCustomizationInteractorImpl alloc] initWithCardIndex:index];
@@ -43,6 +44,7 @@
     router.viewController = viewController;
 
     viewController.presenter = presenter;
+    viewController.theme = theme;
 
     return viewController;
 }
