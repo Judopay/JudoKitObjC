@@ -24,13 +24,14 @@
 
 #import "JPScanCardViewController.h"
 #import "NSString+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
 
 @interface JPScanCardViewController ()
 @property (nonatomic, strong) PayCardsRecognizer *recognizer;
+@property (nonatomic, assign) id<PayCardsRecognizerPlatformDelegate> delegate;
+@property (nonatomic, strong) JPTheme *theme;
 @end
 
 @implementation JPScanCardViewController
@@ -39,16 +40,21 @@
 
 - (instancetype)initWithRecognizerDelegate:(id<PayCardsRecognizerPlatformDelegate>)delegate {
     if (self = [super init]) {
-        [self setupViews];
-        self.recognizer = [[PayCardsRecognizer alloc] initWithDelegate:delegate
-                                                            resultMode:PayCardsRecognizerResultModeAsync
-                                                             container:self.containerView
-                                                            frameColor:UIColor.whiteColor];
+        self.delegate = delegate;
     }
     return self;
 }
 
 #pragma mark - View Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.recognizer = [[PayCardsRecognizer alloc] initWithDelegate:self.delegate
+                                                        resultMode:PayCardsRecognizerResultModeAsync
+                                                         container:self.containerView
+                                                        frameColor:self.theme.jpWhiteColor];
+    [self setupViews];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -69,6 +75,17 @@
 
 - (void)onBackButtonTap {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+    self.titleLabel.font = theme.largeTitle;
+    self.subtitleLabel.font = theme.body;
+    self.titleLabel.textColor = theme.jpWhiteColor;
+    self.subtitleLabel.textColor = theme.jpWhiteColor;
+    [self.backButton setTintColor:theme.jpWhiteColor];
 }
 
 #pragma mark - Layout Setup
@@ -120,8 +137,6 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.text = @"scan_card_message_title".localized;
-        _titleLabel.textColor = UIColor.whiteColor;
-        _titleLabel.font = UIFont.largeTitle;
     }
     return _titleLabel;
 }
@@ -130,8 +145,6 @@
     if (!_subtitleLabel) {
         _subtitleLabel = [UILabel new];
         _subtitleLabel.text = @"scan_card_message_subtitle".localized;
-        _subtitleLabel.textColor = UIColor.whiteColor;
-        _subtitleLabel.font = UIFont.body;
     }
     return _subtitleLabel;
 }
@@ -142,7 +155,6 @@
         UIImage *backIcon = [UIImage imageWithIconName:@"back-icon"];
         UIImage *templatedIcon = [backIcon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_backButton setImage:templatedIcon forState:UIControlStateNormal];
-        [_backButton setTintColor:UIColor.whiteColor];
         [_backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;

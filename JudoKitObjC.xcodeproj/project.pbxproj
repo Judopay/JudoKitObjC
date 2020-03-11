@@ -2509,7 +2509,7 @@
 				TargetAttributes = {
 					3B4EB3971C981EA7006265A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = ZPX8K2P3Z7;
+						DevelopmentTeam = 95V535S6TQ;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
 								enabled = 0;
@@ -2940,7 +2940,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
@@ -2963,7 +2963,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",

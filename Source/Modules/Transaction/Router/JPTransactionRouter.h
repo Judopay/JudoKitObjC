@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import <Foundation/Foundation.h>
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
 
@@ -45,14 +46,19 @@
 @interface JPTransactionRouterImpl : NSObject <JPTransactionRouter>
 
 /**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
  * A weak reference to the JPTransactionViewController instance
  */
-@property (nonatomic, weak) JPTransactionViewController *viewController;
+@property (nonatomic, weak) JPTransactionViewController *_Nullable viewController;
 
 /**
  * A weak reference to a JPTransactionPresenter-conforming instance
  */
-@property (nonatomic, weak) id<JPTransactionPresenter> presenter;
+@property (nonatomic, weak) id<JPTransactionPresenter> _Nullable presenter;
 
 @end
 

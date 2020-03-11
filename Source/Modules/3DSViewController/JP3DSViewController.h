@@ -24,6 +24,7 @@
 
 #import "JP3DSConfiguration.h"
 #import "JPSession.h"
+#import "JPTheme.h"
 #import "JPTransaction.h"
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
@@ -31,9 +32,14 @@
 @interface JP3DSViewController : UIViewController <WKNavigationDelegate>
 
 /**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
  * An instance of JPTransaction that is used to send a 3D Secure transaction to the Judo backend
  */
-@property (nonatomic, strong) JPTransaction *transaction;
+@property (nonatomic, strong) JPTransaction *_Nonnull transaction;
 
 /**
  * Designated initializer that creates a configured instance of JP3DSViewController based on configuration provided
@@ -41,7 +47,7 @@
  * @param configuration - an instance of JP3DSConfiguration that contains the necessary 3D Secure parameters (PaRes, MD, ACS URL, Receipt ID)
  * @param completion - a completion handler with an optional JPResponse / NSError
  */
-- (instancetype)initWithConfiguration:(JP3DSConfiguration *)configuration
-                           completion:(JudoCompletionBlock)completion;
+- (nonnull instancetype)initWithConfiguration:(nonnull JP3DSConfiguration *)configuration
+                           completion:(nullable JudoCompletionBlock)completion;
 
 @end

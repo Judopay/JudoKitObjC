@@ -69,7 +69,7 @@ const float kiDEALBankStackViewSpacing = 10.0f;
 #pragma mark - Layout setup
 
 - (void)setupLayout {
-
+    self.backgroundColor = UIColor.whiteColor;
     [self.stackView addArrangedSubview:self.iconImageView];
     [self.stackView addArrangedSubview:self.titleLabel];
     [self.stackView addArrangedSubview:self.checkmarkImageView];

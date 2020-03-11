@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import <PayCardsRecognizer/PayCardsRecognizer.h>
 #import <UIKit/UIKit.h>
 
@@ -53,5 +54,12 @@
  * The subtitle displayed on top of the scan card camera view
  */
 @property (nonatomic, strong) UILabel *subtitleLabel;
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 @end

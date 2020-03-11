@@ -36,6 +36,7 @@
 - (void)navigateToScanCamera {
     JPScanCardViewController *scanCardViewController = [[JPScanCardViewController alloc] initWithRecognizerDelegate:self];
     scanCardViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [scanCardViewController applyTheme:self.theme];
     [self.viewController presentViewController:scanCardViewController animated:YES completion:nil];
 }
 
