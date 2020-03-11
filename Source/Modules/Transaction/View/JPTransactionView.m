@@ -34,6 +34,7 @@
 #import "UIStackView+Additions.h"
 #import "UITextField+Additions.h"
 #import "UIView+Additions.h"
+#import "UIColor+Additions.h"
 
 @interface JPTransactionView ()
 
@@ -79,11 +80,16 @@
 - (void)applyTheme:(JPTheme *)theme {
     self.cancelButton.titleLabel.font = theme.bodyBold;
     [self.cancelButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
+    
     [self.scanCardButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
     [self.scanCardButton setBorderWithColor:theme.jpBlackColor width:1.0f andCornerRadius:4.0f];
     self.scanCardButton.titleLabel.font = theme.bodyBold;
+    
     self.addCardButton.titleLabel.font = theme.headline;
-    self.addCardButton.backgroundColor = theme.jpBlackColor;
+    self.addCardButton.layer.cornerRadius = theme.buttonCornerRadius;
+    [self.addCardButton setBackgroundImage:theme.buttonColor.asImage forState:UIControlStateNormal];
+    [self.addCardButton setTitleColor:theme.buttonTitleColor forState:UIControlStateNormal];
+    
     self.securityMessageLabel.font = theme.caption;
     self.securityMessageLabel.textColor = theme.jpDarkGrayColor;
 }
@@ -280,7 +286,7 @@
     if (!_addCardButton) {
         _addCardButton = [JPTransactionButton new];
         _addCardButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _addCardButton.layer.cornerRadius = 4.0f;
+        _addCardButton.clipsToBounds = YES;
     }
     return _addCardButton;
 }

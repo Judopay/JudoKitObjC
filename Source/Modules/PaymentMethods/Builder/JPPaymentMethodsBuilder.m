@@ -44,7 +44,7 @@
                                      transactionService:(JPTransactionService *)transactionService
                                   transitioningDelegate:(JPSliderTransitioningDelegate *)transitioningDelegate
                                       completionHandler:(JudoCompletionBlock)completion {
-
+    
     for (JPPaymentMethod *paymentMethod in configuration.paymentMethods) {
         BOOL isIDEALPresent = (paymentMethod.type == JPPaymentMethodTypeIDeal);
         BOOL isApplePayPresent = (paymentMethod.type == JPPaymentMethodTypeApplePay);

@@ -61,7 +61,6 @@
 
 #pragma mark - Constants
 
-const float kHeaderPayButtonCornerRadius = 4.0f;
 const float kHeaderBottomHeight = 86.0f;
 const float kHeaderAmountLabelMinScaleFactor = 0.5f;
 const float kHeaderDefaultStackViewSpacing = 0.0f;
@@ -105,7 +104,9 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
     self.amountValueLabel.font = theme.largeTitle;
     self.amountValueLabel.textColor = theme.jpBlackColor;
     self.payButton.titleLabel.font = theme.headline;
-    [self.payButton setBackgroundImage:theme.jpBlackColor.asImage forState:UIControlStateNormal];
+    [self.payButton setBackgroundImage:theme.buttonColor.asImage forState:UIControlStateNormal];
+    [self.payButton setTitleColor:theme.buttonTitleColor forState:UIControlStateNormal];
+    self.payButton.layer.cornerRadius = theme.buttonCornerRadius;
     [self.cardHeaderView applyTheme:theme];
     [self.emptyHeaderView applyTheme:theme];
 }
@@ -331,7 +332,6 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
     if (!_payButton) {
         _payButton = [JPTransactionButton new];
         _payButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _payButton.layer.cornerRadius = kHeaderPayButtonCornerRadius;
         [_payButton setClipsToBounds:YES];
     }
     return _payButton;

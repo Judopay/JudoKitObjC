@@ -87,6 +87,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.text = @"choose_payment_method".localized;
+        _titleLabel.numberOfLines = 0;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _titleLabel;

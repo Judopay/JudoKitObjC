@@ -110,4 +110,22 @@
  */
 @property (nonatomic, strong) UIColor *jpWhiteColor;
 
+/**
+ * The background color of the prominent Judo buttons.
+ * If not set, will match the value set for the [ jpBlackColor ] property.
+ */
+@property (nonatomic, strong) UIColor *buttonColor;
+
+/**
+ * The title color of the prominent Judo buttons.
+ * If not set, will match the value set for the [ jpWhiteColor ] property.
+ */
+@property (nonatomic, strong) UIColor *buttonTitleColor;
+
+/**
+ * The corner radius of the prominent Judo buttons.
+ * Defaults to 4.0
+ */
+@property (nonatomic, assign) CGFloat buttonCornerRadius;
+
 @end

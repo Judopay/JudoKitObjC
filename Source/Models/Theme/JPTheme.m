@@ -130,4 +130,27 @@
     return _jpWhiteColor;
 }
 
+#pragma mark - Button Configuration
+
+- (UIColor *)buttonColor {
+    if (!_buttonColor) {
+        _buttonColor = self.jpBlackColor;
+    }
+    return _buttonColor;
+}
+
+- (UIColor *)buttonTitleColor {
+    if (!_buttonTitleColor) {
+        _buttonTitleColor = self.jpWhiteColor;
+    }
+    return _buttonTitleColor;
+}
+
+- (CGFloat)buttonCornerRadius {
+    if (!_buttonCornerRadius) {
+        _buttonCornerRadius = 4.0f;
+    }
+    return _buttonCornerRadius;
+}
+
 @end

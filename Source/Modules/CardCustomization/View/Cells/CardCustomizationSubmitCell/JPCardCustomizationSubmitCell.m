@@ -48,7 +48,6 @@ const float kSubmitStackViewLeading = 0.0f;
 const float kSubmitStackViewTrailing = 24.0f;
 const float kSubmitStackViewHeight = 46.0f;
 const float kSubmitSaveButtonWidth = 200.0f;
-const float kSubmitSaveButtonCornerRadius = 4.0f;
 
 #pragma mark - Theming
 
@@ -57,10 +56,11 @@ const float kSubmitSaveButtonCornerRadius = 4.0f;
     [self.cancelButton setTitleColor:theme.jpBlackColor
                             forState:UIControlStateNormal];
     self.saveButton.titleLabel.font = theme.headline;
-    [self.saveButton setBackgroundImage:theme.jpBlackColor.asImage
+    [self.saveButton setBackgroundImage:theme.buttonColor.asImage
                                forState:UIControlStateNormal];
-    [self.saveButton setTitleColor:theme.jpWhiteColor
+    [self.saveButton setTitleColor:theme.buttonTitleColor
                           forState:UIControlStateNormal];
+    self.saveButton.layer.cornerRadius = theme.buttonCornerRadius;
 }
 
 #pragma mark - Initializers
@@ -147,7 +147,6 @@ const float kSubmitSaveButtonCornerRadius = 4.0f;
     if (!_saveButton) {
         _saveButton = [UIButton new];
         _saveButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _saveButton.layer.cornerRadius = kSubmitSaveButtonCornerRadius;
         _saveButton.layer.masksToBounds = YES;
         [_saveButton setTitle:@"save".localized.uppercaseString
                      forState:UIControlStateNormal];
