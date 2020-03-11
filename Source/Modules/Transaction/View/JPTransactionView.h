@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPTheme.h"
 
 @class JPTransactionViewModel;
 @class JPLoadingButton, JPInputField, JPCardNumberField, JPCardInputField, JPTransactionButton;
@@ -88,6 +89,13 @@
  * The Add Card view's bottom constraint that is used to move the view when the keyboard animates
  */
 @property (nonatomic, strong) NSLayoutConstraint *bottomSliderConstraint;
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 /**
  * A method that configures the view based on a view model

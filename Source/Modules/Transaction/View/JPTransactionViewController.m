@@ -43,6 +43,7 @@
 
 - (void)loadView {
     self.addCardView = [JPTransactionView new];
+    [self.addCardView applyTheme:self.theme];
     [self.presenter prepareInitialViewModel];
     self.view = self.addCardView;
     [self addTargets];

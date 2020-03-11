@@ -24,6 +24,7 @@
 
 #import "JPInputField.h"
 #import "JPTransactionViewModel.h"
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPTransactionPresenter;
@@ -45,12 +46,12 @@
 /**
  * A method that updates the view based on the provided view model
  */
-- (void)updateViewWithViewModel:(JPTransactionViewModel *)viewModel;
+- (void)updateViewWithViewModel:(nonnull JPTransactionViewModel *)viewModel;
 
 /**
  * A method that updates the view with an error
  */
-- (void)updateViewWithError:(NSError *)error;
+- (void)updateViewWithError:(nonnull NSError *)error;
 
 /**
  * A method that signals that the Add Card flow is completed and the view should dismiss
@@ -84,14 +85,19 @@
 @interface JPTransactionViewController : UIViewController <JPTransactionView>
 
 /**
+ * A reference to the JPTheme instance responsible for customizing the user interface
+ */
+@property (nonatomic, strong) JPTheme *_Nullable theme;
+
+/**
  * An object conforming to the JPTransactionViewDelegate protocol
  */
-@property (nonatomic, strong) id<JPTransactionViewDelegate> delegate;
+@property (nonatomic, strong) id<JPTransactionViewDelegate> _Nullable delegate;
 
 /**
  * A strong reference to a presenter object that adopts the JPTransactionPresenter protocol
  */
-@property (nonatomic, strong) id<JPTransactionPresenter> presenter;
+@property (nonatomic, strong) id<JPTransactionPresenter> _Nonnull presenter;
 
 @end
 
