@@ -117,8 +117,8 @@
            shouldAnimateChange:(BOOL)shouldAnimate {
     self.viewModel = viewModel;
 
-    [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
     [self.paymentMethodsView.headerView applyTheme:self.theme];
+    [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
 
     for (JPPaymentMethodsModel *item in viewModel.items) {
         [self.paymentMethodsView.tableView registerClass:NSClassFromString(item.identifier)

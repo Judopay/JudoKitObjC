@@ -53,6 +53,8 @@
 @property (nonatomic, strong) UIStackView *amountStackView;
 @property (nonatomic, strong) UIStackView *paymentStackView;
 
+@property (nonatomic, strong) JPTheme *theme;
+
 @end
 
 @implementation JPPaymentMethodsHeaderView
@@ -97,12 +99,15 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
 #pragma mark - Theming
 
 - (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
     self.amountPrefixLabel.font = theme.body;
     self.amountPrefixLabel.textColor = theme.jpBlackColor;
     self.amountValueLabel.font = theme.largeTitle;
     self.amountValueLabel.textColor = theme.jpBlackColor;
     self.payButton.titleLabel.font = theme.headline;
     [self.payButton setBackgroundImage:theme.jpBlackColor.asImage forState:UIControlStateNormal];
+    [self.cardHeaderView applyTheme:theme];
+    [self.emptyHeaderView applyTheme:theme];
 }
 
 #pragma mark - View Model Configuration

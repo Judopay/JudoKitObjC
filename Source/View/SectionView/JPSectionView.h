@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @class JPSectionView;
@@ -43,6 +44,14 @@
  * A reference to the instance that adopts the JPSectionViewDelegate protocol
  */
 @property (nonatomic, weak) id<JPSectionViewDelegate> _Nullable delegate;
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(nonnull JPTheme *)theme;
+
 /**
  * A method that adds a section to the section view.
  *

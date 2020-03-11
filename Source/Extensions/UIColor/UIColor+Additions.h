@@ -66,4 +66,9 @@
  */
 + (UIColor *_Nonnull)jpRedColor;
 
+/**
+ * The white color value (0xFFFFFF) usef  in the application
+ */
++ (UIColor *_Nonnull)jpWhiteColor;
+
 @end

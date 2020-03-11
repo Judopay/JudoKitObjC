@@ -67,6 +67,7 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
+    [self.cardView applyTheme:self.theme];
     [self animateCardChangeTransitionWithViewModel:viewModel];
 }
 
@@ -161,6 +162,7 @@
 
 - (void)prepareNewCardViewWithModel:(JPPaymentMethodsHeaderModel *)viewModel {
     self.cardView = [self createCardView];
+    [self.cardView applyTheme:self.theme];
     [self.cardView configureWithPaymentMethodModel:viewModel];
     [self setupViews];
 }

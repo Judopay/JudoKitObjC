@@ -29,8 +29,6 @@
 #import "JPCardPaymentMethodView.h"
 #import "JPOtherPaymentMethodView.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -40,6 +38,7 @@
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) JPCardPaymentMethodView *cardPaymentView;
 @property (nonatomic, strong) JPOtherPaymentMethodView *otherPaymentView;
+@property (nonatomic, strong) JPTheme *theme;
 
 @end
 
@@ -68,6 +67,12 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+}
+
 #pragma mark - View Model Configuration
 
 - (void)configureWithPaymentMethodModel:(JPPaymentMethodsHeaderModel *)viewModel {
@@ -77,6 +82,7 @@
         case JPPaymentMethodTypeCard:
             [self.contentView addSubview:self.cardPaymentView];
             [self.cardPaymentView pinToView:self.contentView withPadding:0.0];
+            [self.cardPaymentView applyTheme:self.theme];
             [self.cardPaymentView configureWithTitle:viewModel.cardModel.cardTitle
                                           expiryDate:viewModel.cardModel.cardExpiryDate
                                              network:viewModel.cardModel.cardNetwork
@@ -89,6 +95,7 @@
         default:
             [self.contentView addSubview:self.otherPaymentView];
             [self.otherPaymentView pinToView:self.contentView withPadding:0.0];
+            [self.otherPaymentView applyTheme:self.theme];
             [self.otherPaymentView configureWithViewModel:viewModel];
             break;
     }

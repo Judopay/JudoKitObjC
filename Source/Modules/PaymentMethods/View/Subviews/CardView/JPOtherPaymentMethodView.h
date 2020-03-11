@@ -23,10 +23,18 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "JPTheme.h"
 
 @class JPPaymentMethodsHeaderModel;
 
 @interface JPOtherPaymentMethodView : UIView
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 /**
  * A method that configures the custom card view based on a view model

@@ -25,8 +25,6 @@
 #import "JPOtherPaymentMethodView.h"
 #import "Functions.h"
 #import "JPPaymentMethodsViewModel.h"
-#import "UIColor+Additions.h"
-#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -63,6 +61,13 @@
         [self setupViews];
     }
     return self;
+}
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.titleLabel.font = theme.title;
+    self.titleLabel.textColor = theme.jpBlackColor;
 }
 
 #pragma mark - View Model Configuration
@@ -115,8 +120,6 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = UIFont.title;
-        _titleLabel.textColor = UIColor.jpBlackColor;
     }
     return _titleLabel;
 }

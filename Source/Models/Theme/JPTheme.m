@@ -123,4 +123,11 @@
     return _jpRedColor;
 }
 
+- (UIColor *)jpWhiteColor {
+    if (!_jpWhiteColor) {
+        _jpWhiteColor = UIColor.jpWhiteColor;
+    }
+    return _jpWhiteColor;
+}
+
 @end

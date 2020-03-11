@@ -104,4 +104,10 @@
  */
 @property (nonatomic, strong) UIColor *jpRedColor;
 
+/**
+ * The white color value used for displaying backgrounds or card titles
+ * Defaults to 0xFFFFFF
+ */
+@property (nonatomic, strong) UIColor *jpWhiteColor;
+
 @end

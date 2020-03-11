@@ -57,7 +57,7 @@
 #pragma mark - Theming
 
 - (void)applyTheme:(JPTheme *)theme {
-    //Customize Section view
+    [self.sectionView applyTheme:theme];
 }
 
 #pragma mark - Layout setup

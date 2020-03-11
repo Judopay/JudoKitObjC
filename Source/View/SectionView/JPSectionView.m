@@ -32,6 +32,7 @@
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIStackView *mainStackView;
 @property (nonatomic, strong) UIView *selectorView;
+@property (nonatomic, strong) JPTheme *theme;
 @end
 
 @implementation JPSectionView
@@ -65,6 +66,10 @@ const float kSectionViewHorizontalPadding = 24.0f;
 }
 
 #pragma mark - Public methods
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+}
 
 - (void)addSectionWithImage:(UIImage *)image
                    andTitle:(NSString *)title {
@@ -259,8 +264,8 @@ const float kSectionViewHorizontalPadding = 24.0f;
 - (UILabel *)configuredLabelWithText:(NSString *)text {
     UILabel *label = [UILabel new];
     label.text = text;
-    label.textColor = UIColor.jpBlackColor;
-    label.font = UIFont.headline;
+    label.textColor = self.theme.jpBlackColor;
+    label.font = self.theme.headline;
     label.contentMode = UIViewContentModeScaleAspectFit;
     return label;
 }

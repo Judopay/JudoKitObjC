@@ -74,4 +74,8 @@
     return [UIColor colorFromHex:0xE21900];
 }
 
++ (UIColor *)jpWhiteColor {
+    return [UIColor colorFromHex:0xFFFFFF];
+}
+
 @end
