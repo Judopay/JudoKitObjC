@@ -86,6 +86,11 @@
     self.titleLabel.textColor = theme.jpWhiteColor;
     self.subtitleLabel.textColor = theme.jpWhiteColor;
     [self.backButton setTintColor:theme.jpWhiteColor];
+    
+    UIImage *defaultIcon = [UIImage imageWithIconName:@"back-icon"];
+    UIImage *backButtonImage = theme.backButtonImage ? theme.backButtonImage : defaultIcon;
+    UIImage *templatedIcon = [backButtonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_backButton setImage:templatedIcon forState:UIControlStateNormal];
 }
 
 #pragma mark - Layout Setup
@@ -152,9 +157,7 @@
 - (UIButton *)backButton {
     if (!_backButton) {
         _backButton = [[UIButton alloc] initWithFrame:CGRectMake(25, 25, 22, 22)];
-        UIImage *backIcon = [UIImage imageWithIconName:@"back-icon"];
-        UIImage *templatedIcon = [backIcon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [_backButton setImage:templatedIcon forState:UIControlStateNormal];
+        _backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [_backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;

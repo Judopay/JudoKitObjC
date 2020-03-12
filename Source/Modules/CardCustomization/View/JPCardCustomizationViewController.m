@@ -117,7 +117,10 @@ const float kCustomizationViewClearGradientLocation = 1.0f;
     self.navigationController.navigationBar.translucent = YES;
 
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageWithIconName:@"back-icon"] forState:UIControlStateNormal];
+    UIImage *defaultIcon = [UIImage imageWithIconName:@"back-icon"];
+    UIImage *backButtonImage = self.theme.backButtonImage ? self.theme.backButtonImage : defaultIcon;
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
 
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];

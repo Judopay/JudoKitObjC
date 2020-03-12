@@ -89,7 +89,13 @@
     self.navigationController.navigationBar.translucent = YES;
 
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageWithIconName:@"back-icon"] forState:UIControlStateNormal];
+    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    UIImage *defaultIcon = [UIImage imageWithIconName:@"back-icon"];
+    UIImage *customImage = self.uiConfiguration.theme.backButtonImage;
+    UIImage *backButtonImage = customImage ? customImage : defaultIcon;
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
 
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];

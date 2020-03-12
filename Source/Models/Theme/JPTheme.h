@@ -128,4 +128,9 @@
  */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
+/**
+ * A custom UIImage that, if set, will override the default back button image
+ */
+@property (nonatomic, strong) UIImage *backButtonImage;
+
 @end
