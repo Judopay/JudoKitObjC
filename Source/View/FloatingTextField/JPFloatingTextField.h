@@ -22,18 +22,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @interface JPFloatingTextField : UITextField
 
 /**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
+
+/**
  * A method that displays the floating label above the text field's input text.
  *
  * @param text - the text of the floating label.
- * @param color - the color of the floating label.
  */
-- (void)displayFloatingLabelWithText:(NSString *)text
-                               color:(UIColor *)color;
+- (void)displayFloatingLabelWithText:(NSString *)text;
 
 /**
  * A method which hides the floating label above the text field's input text.

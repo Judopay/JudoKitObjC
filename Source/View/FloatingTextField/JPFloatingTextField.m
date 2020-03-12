@@ -55,11 +55,17 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.floatingLabel.textColor = theme.jpRedColor;
+    self.floatingLabel.font = theme.caption;
+}
+
 #pragma mark - Methods
 
-- (void)displayFloatingLabelWithText:(NSString *)text color:(UIColor *)color {
+- (void)displayFloatingLabelWithText:(NSString *)text {
     self.floatingLabel.text = text;
-    self.floatingLabel.textColor = color;
     [self transformToNewFontSize:14.0 frameOffset:-4 alphaValue:1.0 andConstraintConstant:-15.0];
 }
 
@@ -125,12 +131,7 @@
     if (!_floatingLabel) {
         _floatingLabel = [UILabel new];
         _floatingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _floatingLabel.font = UIFont.caption;
         _floatingLabel.alpha = 0.0f;
-        _floatingLabel.textColor = [UIColor colorWithRed:226 / 255.0
-                                                   green:25 / 255.0
-                                                    blue:0 / 255.0
-                                                   alpha:1.0];
     }
     return _floatingLabel;
 }

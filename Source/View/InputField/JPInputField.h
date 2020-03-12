@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPTransactionViewModel.h"
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @class JPInputField;
@@ -86,6 +87,13 @@
  * A reference to the object that adopts the JPInputFieldDelegate protocol
  */
 @property (nonatomic, weak) id<JPInputFieldDelegate> delegate;
+
+/**
+ * A method used to apply a theme to the view
+ *
+ * @param theme - the JPTheme object used to configure the user interface
+ */
+- (void)applyTheme:(JPTheme *)theme;
 
 /**
  * Convenience method for setting an attributed placeholder

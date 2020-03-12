@@ -58,6 +58,14 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.textColor = theme.jpBlackColor;
+    self.font = theme.headlineLight;
+    [self.floatingTextField applyTheme:theme];
+}
+
 #pragma mark - Property setters
 
 - (void)setText:(NSString *)text {
@@ -103,8 +111,7 @@
 
 - (void)displayErrorWithText:(NSString *)text {
     self.floatingTextField.textColor = UIColor.jpRedColor;
-    [self.floatingTextField displayFloatingLabelWithText:text
-                                                   color:UIColor.jpRedColor];
+    [self.floatingTextField displayFloatingLabelWithText:text];
 }
 
 - (void)clearError {
@@ -142,11 +149,6 @@
         _floatingTextField = [JPFloatingTextField new];
         _floatingTextField.translatesAutoresizingMaskIntoConstraints = NO;
         _floatingTextField.font = UIFont.headlineLight;
-        _floatingTextField.textColor = UIColor.jpBlackColor;
-        [_floatingTextField placeholderWithText:@""
-                                          color:UIColor.jpGrayColor
-                                        andFont:UIFont.headlineLight];
-
         _floatingTextField.delegate = self;
     }
     return _floatingTextField;

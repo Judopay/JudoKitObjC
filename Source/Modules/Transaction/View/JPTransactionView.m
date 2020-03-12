@@ -92,6 +92,14 @@
     
     self.securityMessageLabel.font = theme.caption;
     self.securityMessageLabel.textColor = theme.jpDarkGrayColor;
+    
+    [self.cardNumberTextField applyTheme:theme];
+    [self.cardHolderTextField applyTheme:theme];
+    [self.cardExpiryTextField applyTheme:theme];
+    [self.secureCodeTextField applyTheme:theme];
+    [self.countryTextField applyTheme:theme];
+    [self.postcodeTextField applyTheme:theme];
+    
 }
 
 #pragma mark - View model configuration
