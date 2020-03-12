@@ -32,6 +32,7 @@
  * A method that build the Card Customization module based on the selected card index
  *
  * @param index - the index of the selected card in the payment method screen
+ * @param theme - a reference to JPTheme used to configure the user interface
  *
  * @returns a configured instance of JPCardCustomizationViewController
  */

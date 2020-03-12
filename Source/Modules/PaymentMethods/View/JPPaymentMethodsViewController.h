@@ -39,6 +39,7 @@
  * A method that configures the view based on a passed view model
  *
  * @param viewModel - a view model detailing the layout details
+ * @param shouldAnimate - if set to NO, will propmt the table view to reloadData instead of animating insertions/deletions
  */
 - (void)configureWithViewModel:(nonnull JPPaymentMethodsViewModel *)viewModel
            shouldAnimateChange:(BOOL)shouldAnimate;
