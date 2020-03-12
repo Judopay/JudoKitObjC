@@ -117,12 +117,10 @@
 /**
  * A designated initializer that sets up the JPTheme object needed for view customization
  *
- * @param transaction - an instance describing the JPTransaction details
- * @param reference - the reference needed for the transaction
- * @param session - the current instance of the JudoKit session
- * @param methods             An optional array of selected payment methods. Payment methods will show according to the order in which they have been added.                                                                                                 Setting nil will present the payment method screen with the default payment methods;
- * @param configuration - an instance of JPApplePayConfiguration that describes the Apple Pay flow
- * @param amount - the amount of the transaction
+ * @param mode - the transaction mode value that can be set to either Payment or PreAuth
+ * @param configuration - reference to the JPConfiguration object used to configure the payment flow
+ * @param transactionService - the service used to handle Judo backend calls
+ * @param completion - a JPResponse / NSError completion block
  *
  * @returns a configured instance of JPPaymentMethodsInteractor
  */

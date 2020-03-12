@@ -43,7 +43,7 @@ class ApplePayTests: JudoTestCase {
                                               merchantId: "",
                                               currency: "GBP",
                                               countryCode: "GB",
-                                              JPPaymentSummaryItems: items)
+                                              paymentSummaryItems: items)
         
         manager = JPApplePayService(configuration: configuration)
     }
@@ -104,7 +104,7 @@ class ApplePayTests: JudoTestCase {
      *         its "pkPaymentAuthorizationViewController" instance method
      */
     func test_OnInvalidConfiguration_ManagerReturnsNilPKAuthorizationViewController() {
-        configuration.JPPaymentSummaryItems = [];
+        configuration.paymentSummaryItems = [];
         XCTAssertNil(manager.pkPaymentAuthorizationViewController(),
                     "PKPaymentAuthorizationViewController must be nil on invalid configuration")
     }

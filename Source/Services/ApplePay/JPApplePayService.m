@@ -212,16 +212,16 @@
 
 - (NSArray<PKPaymentSummaryItem *> *)pkPaymentSummaryItems {
 
-    NSMutableArray<PKPaymentSummaryItem *> *pkJPPaymentSummaryItems = [NSMutableArray new];
+    NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
 
-    for (JPPaymentSummaryItem *item in self.configuration.JPPaymentSummaryItems) {
+    for (JPPaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
         PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType:item.type];
-        [pkJPPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
-                                                                               amount:item.amount
-                                                                                 type:summaryItemType]];
+        [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
+                                                                             amount:item.amount
+                                                                               type:summaryItemType]];
     }
 
-    return pkJPPaymentSummaryItems;
+    return pkPaymentSummaryItems;
 }
 
 - (NSArray<PKPaymentNetwork> *)pkPaymentNetworks {
