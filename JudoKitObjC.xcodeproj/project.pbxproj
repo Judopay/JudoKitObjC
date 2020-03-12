@@ -237,7 +237,7 @@
 		30DB512123100E6B00B73D66 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB511A23100E6B00B73D66 /* Functions.m */; };
 		30DB512223100E6B00B73D66 /* Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511B23100E6B00B73D66 /* Functions.h */; };
 		30E764FD23C31E1A00CA9C25 /* JudoKitPaymentMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */; };
-		30F77E52241A5F6500D68BF9 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F77E51241A5F6500D68BF9 /* UITextField+Additions.m */; };
+		30F77E54241A650800D68BF9 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F77E53241A650800D68BF9 /* UITextField+Additions.m */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB39C1C981EA7006265A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39B1C981EA7006265A0 /* main.m */; };
 		3B4EB39F1C981EA7006265A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39E1C981EA7006265A0 /* AppDelegate.m */; };
@@ -650,7 +650,7 @@
 		30DB511A23100E6B00B73D66 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		30DB511B23100E6B00B73D66 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
 		30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitPaymentMethodsTests.swift; sourceTree = "<group>"; };
-		30F77E51241A5F6500D68BF9 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Additions.m"; path = "../../../../UITextField+Additions.m"; sourceTree = "<group>"; };
+		30F77E53241A650800D68BF9 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Additions.m"; sourceTree = "<group>"; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitObjCExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4EB39B1C981EA7006265A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -944,7 +944,7 @@
 			isa = PBXGroup;
 			children = (
 				30006F6723F699390099F3C5 /* UITextField+Additions.h */,
-				30F77E51241A5F6500D68BF9 /* UITextField+Additions.m */,
+				30F77E53241A650800D68BF9 /* UITextField+Additions.m */,
 			);
 			name = UITextField;
 			path = Extensions/UITextField;
@@ -2764,8 +2764,8 @@
 				30006F9023F6993A0099F3C5 /* NSString+Additions.m in Sources */,
 				30DB512123100E6B00B73D66 /* Functions.m in Sources */,
 				300072EF23F6AB560099F3C5 /* JPCardNetwork.m in Sources */,
+				30F77E54241A650800D68BF9 /* UITextField+Additions.m in Sources */,
 				300072DF23F6AB560099F3C5 /* JPCountry.m in Sources */,
-				30F77E52241A5F6500D68BF9 /* UITextField+Additions.m in Sources */,
 				30006F9B23F6993A0099F3C5 /* UIApplication+Additions.m in Sources */,
 				30221C3523FE6D9200BF2823 /* JPCardCustomizationInteractor.m in Sources */,
 				3058379C2411180200B61167 /* JPIDEALViewController.m in Sources */,
