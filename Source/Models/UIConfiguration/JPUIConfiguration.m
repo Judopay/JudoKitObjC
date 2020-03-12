@@ -26,6 +26,14 @@
 
 @implementation JPUIConfiguration
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.shouldDisplayAmount = YES;
+        self.isAVSEnabled = NO;
+    }
+    return self;
+}
+
 - (JPTheme *)theme {
     if (!_theme) {
         _theme = [JPTheme new];

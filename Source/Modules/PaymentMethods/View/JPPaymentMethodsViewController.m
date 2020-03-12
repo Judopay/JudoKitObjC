@@ -117,7 +117,7 @@
            shouldAnimateChange:(BOOL)shouldAnimate {
     self.viewModel = viewModel;
 
-    [self.paymentMethodsView.headerView applyTheme:self.theme];
+    [self.paymentMethodsView.headerView applyUIConfiguration:self.uiConfiguration];
     [self.paymentMethodsView.headerView configureWithViewModel:viewModel.headerModel];
 
     for (JPPaymentMethodsModel *item in viewModel.items) {
@@ -203,7 +203,7 @@
                                                                  forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell applyTheme:self.theme];
+    [cell applyTheme:self.uiConfiguration.theme];
 
     if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
         JPPaymentMethodsCardListModel *cardListModel;

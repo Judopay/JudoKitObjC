@@ -97,18 +97,19 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
 
 #pragma mark - Theming
 
-- (void)applyTheme:(JPTheme *)theme {
-    self.theme = theme;
-    self.amountPrefixLabel.font = theme.body;
-    self.amountPrefixLabel.textColor = theme.jpBlackColor;
-    self.amountValueLabel.font = theme.largeTitle;
-    self.amountValueLabel.textColor = theme.jpBlackColor;
-    self.payButton.titleLabel.font = theme.headline;
-    [self.payButton setBackgroundImage:theme.buttonColor.asImage forState:UIControlStateNormal];
-    [self.payButton setTitleColor:theme.buttonTitleColor forState:UIControlStateNormal];
-    self.payButton.layer.cornerRadius = theme.buttonCornerRadius;
-    [self.cardHeaderView applyTheme:theme];
-    [self.emptyHeaderView applyTheme:theme];
+- (void)applyUIConfiguration:(JPUIConfiguration *)uiConfiguration {
+    self.theme = uiConfiguration.theme;
+    self.amountPrefixLabel.font = uiConfiguration.theme.body;
+    self.amountPrefixLabel.textColor = uiConfiguration.theme.jpBlackColor;
+    self.amountValueLabel.font = uiConfiguration.theme.largeTitle;
+    self.amountValueLabel.textColor = uiConfiguration.theme.jpBlackColor;
+    self.payButton.titleLabel.font = uiConfiguration.theme.headline;
+    [self.payButton setBackgroundImage:uiConfiguration.theme.buttonColor.asImage forState:UIControlStateNormal];
+    [self.payButton setTitleColor:uiConfiguration.theme.buttonTitleColor forState:UIControlStateNormal];
+    self.payButton.layer.cornerRadius = uiConfiguration.theme.buttonCornerRadius;
+    [self.cardHeaderView applyTheme:uiConfiguration.theme];
+    [self.emptyHeaderView applyTheme:uiConfiguration.theme];
+    self.amountStackView.hidden = !uiConfiguration.shouldDisplayAmount;
 }
 
 #pragma mark - View Model Configuration
@@ -135,6 +136,7 @@ const float kHeaderEmptyHeaderViewYOffset = 100.0f;
 
     [self.paymentStackView removeAllSubviews];
     [self.paymentStackView addArrangedSubview:self.amountStackView];
+    [self.paymentStackView addArrangedSubview:[UIView new]];
     [self configureAmountWithViewModel:viewModel];
 
     if (viewModel.paymentMethodType == JPPaymentMethodTypeApplePay) {

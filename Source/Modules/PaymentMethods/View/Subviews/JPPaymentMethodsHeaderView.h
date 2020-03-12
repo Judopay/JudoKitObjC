@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme.h"
+#import "JPUIConfiguration.h"
 #import <PassKit/PassKit.h>
 #import <UIKit/UIKit.h>
 
@@ -43,9 +43,9 @@
 /**
  * A method used to apply a theme to the view
  *
- * @param theme - the JPTheme object used to configure the user interface
+ * @param uiConfiguration - the JPUIConfiguration object used to configure the user interface
  */
-- (void)applyTheme:(JPTheme *)theme;
+- (void)applyUIConfiguration:(JPUIConfiguration *)uiConfiguration;
 
 /**
  * A method that configures the header of the payment method screen based on a view model

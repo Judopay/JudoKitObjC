@@ -25,7 +25,7 @@
 #import "JPPaymentMethodsCardListHeaderCell.h"
 #import "JPSectionView.h"
 #import "JPTransactionViewController.h"
-#import "JPTheme.h"
+#import "JPUIConfiguration.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPPaymentMethodsPresenter;
@@ -59,9 +59,9 @@
 @interface JPPaymentMethodsViewController : UIViewController <JPPaymentMethodsView>
 
 /**
- * A reference to the JPTheme instance responsible for customizing the user interface
+ * A reference to the JPUIConfiguration instance responsible for customizing the user interface
  */
-@property (nonatomic, strong) JPTheme *_Nullable theme;
+@property (nonatomic, strong) JPUIConfiguration *_Nullable uiConfiguration;
 
 /**
  * A strong reference to a presenter object that adopts the JPTransactionPresenter protocol

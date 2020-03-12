@@ -28,6 +28,11 @@
 @interface JPUIConfiguration : NSObject
 
 /**
+ * A boolean property that defines if the amount should be displayed on the payment method screen
+ */
+@property (nonatomic, assign) BOOL shouldDisplayAmount;
+
+/**
  * A boolean property that defines if AVS should be enabled during the payment flow
  */
 @property (nonatomic, assign) BOOL isAVSEnabled;
