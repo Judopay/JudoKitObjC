@@ -63,6 +63,21 @@
 @property (nonatomic, strong) UIFont *font;
 
 /**
+ * A property that sets the color of the placeholder
+ */
+@property (nonatomic, strong) UIColor *placeholderColor;
+
+/**
+ * A property that sets the font of the placeholder
+ */
+@property (nonatomic, strong) UIFont *placeholderFont;
+
+/**
+ * A property that sets the placeholder
+ */
+@property (nonatomic, strong) NSString *placeholder;
+
+/**
  * The input view of the input field.
  * Defaults to a keyboard, but can be set to any other type of UIView instance.
  */
@@ -94,17 +109,6 @@
  * @param theme - the JPTheme object used to configure the user interface
  */
 - (void)applyTheme:(JPTheme *)theme;
-
-/**
- * Convenience method for setting an attributed placeholder
- *
- * @param text - the string contents of the placeholder
- * @param color - the color of the placeholder
- * @param font - the font of the placeholder
- */
-- (void)placeholderWithText:(NSString *)text
-                      color:(UIColor *)color
-                    andFont:(UIFont *)font;
 
 /**
  * A method that displays an inline error above the input text.

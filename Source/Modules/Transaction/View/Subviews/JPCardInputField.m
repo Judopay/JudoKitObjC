@@ -26,7 +26,18 @@
 #import "UIColor+Additions.h"
 #import "UIFont+Additions.h"
 
+@interface JPCardInputField ()
+@property (nonatomic, strong) JPTheme *theme;
+@end
+
 @implementation JPCardInputField
+
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+    [super applyTheme:theme];
+}
 
 #pragma mark - View model configuration
 
@@ -35,11 +46,8 @@
     self.type = viewModel.type;
     self.text = viewModel.text;
 
-    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.body : UIFont.headlineLight;
-
-    [self placeholderWithText:viewModel.placeholder
-                        color:UIColor.jpDarkGrayColor
-                      andFont:placeholderFont];
+    self.placeholderFont = (viewModel.errorText) ? self.theme.body : self.theme.headlineLight;
+    self.placeholder = viewModel.placeholder;
 
     if (viewModel.errorText) {
         [self displayErrorWithText:viewModel.errorText];

@@ -30,6 +30,7 @@
 @interface JPCardNumberField ()
 @property (nonatomic, strong) UIImageView *cardLogoImageView;
 @property (nonatomic, strong) UIStackView *stackView;
+@property (nonatomic, strong) JPTheme *theme;
 @end
 
 @implementation JPCardNumberField
@@ -59,18 +60,23 @@
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
+    [super applyTheme:theme];
+}
+
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPTransactionNumberInputViewModel *)viewModel {
 
     self.type = viewModel.type;
 
-    UIFont *placeholderFont = (viewModel.errorText) ? UIFont.body : UIFont.headlineLight;
     [self setCardNetwork:viewModel.cardNetwork];
 
-    [self placeholderWithText:viewModel.placeholder
-                        color:UIColor.jpDarkGrayColor
-                      andFont:placeholderFont];
+    self.placeholderFont = (viewModel.errorText) ? self.theme.body : self.theme.headlineLight;
+    self.placeholder = viewModel.placeholder;
 
     self.text = viewModel.text;
 

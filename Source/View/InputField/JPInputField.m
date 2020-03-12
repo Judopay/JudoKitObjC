@@ -29,6 +29,7 @@
 #import "UITextField+Additions.h"
 
 @interface JPInputField ()
+@property (nonatomic, strong) JPTheme *theme;
 @property (nonatomic, strong) JPFloatingTextField *floatingTextField;
 @property (nonatomic, strong) UIStackView *stackView;
 @end
@@ -61,8 +62,11 @@
 #pragma mark - Theming
 
 - (void)applyTheme:(JPTheme *)theme {
+    self.theme = theme;
     self.textColor = theme.jpBlackColor;
     self.font = theme.headlineLight;
+    self.placeholderFont = theme.headlineLight;
+    self.placeholderColor = theme.jpDarkGrayColor;
     [self.floatingTextField applyTheme:theme];
 }
 
@@ -83,8 +87,21 @@
     self.floatingTextField.font = font;
 }
 
-- (void)placeholderWithText:(NSString *)text color:(UIColor *)color andFont:(UIFont *)font {
-    [self.floatingTextField placeholderWithText:text color:color andFont:font];
+- (void)setPlaceholderFont:(UIFont *)placeholderFont {
+    _placeholderFont = placeholderFont;
+    self.floatingTextField.placeholderFont = placeholderFont;
+}
+
+- (void)setPlaceholderColor:(UIColor *)placeholderColor {
+    _placeholderColor = placeholderColor;
+    self.floatingTextField.placeholderColor = placeholderColor;
+}
+
+- (void)setPlaceholder:(NSString *)placeholder {
+    _placeholder = placeholder;
+    UIColor *color = self.placeholderColor ? self.placeholderColor : UIColor.jpRedColor;
+    UIFont *font = self.placeholderFont ? self.placeholderFont : UIFont.caption;
+    [self.floatingTextField placeholderWithText:placeholder color:color andFont:font];
 }
 
 - (void)setInputView:(UIView *)inputView {
@@ -110,7 +127,7 @@
 #pragma mark - User Actions
 
 - (void)displayErrorWithText:(NSString *)text {
-    self.floatingTextField.textColor = UIColor.jpRedColor;
+    self.floatingTextField.textColor = self.theme.jpRedColor;
     [self.floatingTextField displayFloatingLabelWithText:text];
 }
 

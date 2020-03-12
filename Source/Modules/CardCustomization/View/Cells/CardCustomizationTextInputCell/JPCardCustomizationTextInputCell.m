@@ -49,6 +49,13 @@ const float kInputFieldHeight = 44.0f;
     return self;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    [self.inputField applyTheme:theme];
+    self.inputField.placeholder = @"enter_card_title".localized;
+}
+
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
@@ -90,12 +97,7 @@ const float kInputFieldHeight = 44.0f;
     if (!_inputField) {
         _inputField = [JPInputField new];
         _inputField.translatesAutoresizingMaskIntoConstraints = NO;
-        _inputField.font = UIFont.headlineLight;
-        _inputField.textColor = UIColor.jpBlackColor;
         _inputField.returnType = UIReturnKeyDone;
-        [_inputField placeholderWithText:@"enter_card_title".localized
-                                   color:UIColor.jpDarkGrayColor
-                                 andFont:UIFont.headlineLight];
     }
     return _inputField;
 }

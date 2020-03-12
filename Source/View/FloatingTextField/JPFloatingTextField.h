@@ -28,6 +28,16 @@
 @interface JPFloatingTextField : UITextField
 
 /**
+ * A property that sets the color of the placeholder
+ */
+@property (nonatomic, strong) UIColor *placeholderColor;
+
+/**
+ * A property that sets the font of the placeholder
+ */
+@property (nonatomic, strong) UIFont *placeholderFont;
+
+/**
  * A method used to apply a theme to the view
  *
  * @param theme - the JPTheme object used to configure the user interface
