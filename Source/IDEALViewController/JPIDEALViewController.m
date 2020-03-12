@@ -118,10 +118,10 @@ const float kPollingDelayTimer = 30.0;
 
 - (void)setupViews {
     [self.view addSubview:self.webView];
-    
+
     [self.view addSubview:self.transactionStatusView];
     [self.transactionStatusView applyTheme:self.theme];
-    
+
     [self.webView pinToView:self.view withPadding:0.0];
     [self.transactionStatusView pinToView:self.view withPadding:0.0];
     self.transactionStatusView.hidden = YES;

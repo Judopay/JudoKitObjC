@@ -23,8 +23,8 @@
 //  SOFTWARE.
 
 #import "JPInputField.h"
-#import "JPTransactionViewModel.h"
 #import "JPTheme.h"
+#import "JPTransactionViewModel.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPTransactionPresenter;

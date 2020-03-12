@@ -29,10 +29,10 @@
 #import "JPTransactionButton.h"
 #import "NSLayoutConstraint+Additions.h"
 #import "NSString+Additions.h"
+#import "UIColor+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
-#import "UIColor+Additions.h"
 
 #import "JPPaymentMethodsCardHeaderView.h"
 #import "JPPaymentMethodsEmptyHeaderView.h"

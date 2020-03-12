@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme.h"
 #import "JPCardCustomizationViewController.h"
+#import "JPTheme.h"
 #import <Foundation/Foundation.h>
 
 @protocol JPCardCustomizationBuilder

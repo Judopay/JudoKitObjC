@@ -44,7 +44,7 @@
                                      transactionService:(JPTransactionService *)transactionService
                                   transitioningDelegate:(JPSliderTransitioningDelegate *)transitioningDelegate
                                       completionHandler:(JudoCompletionBlock)completion {
-    
+
     for (JPPaymentMethod *paymentMethod in configuration.paymentMethods) {
         BOOL isIDEALPresent = (paymentMethod.type == JPPaymentMethodTypeIDeal);
         BOOL isApplePayPresent = (paymentMethod.type == JPPaymentMethodTypeApplePay);
@@ -81,9 +81,9 @@
     presenter.view = viewController;
     presenter.interactor = interactor;
     presenter.router = router;
-    
+
     router.viewController = viewController;
-    
+
     viewController.presenter = presenter;
     viewController.uiConfiguration = configuration.uiConfiguration;
 

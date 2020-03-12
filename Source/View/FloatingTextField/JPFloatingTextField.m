@@ -66,11 +66,11 @@
 
 - (void)displayFloatingLabelWithText:(NSString *)text {
     self.floatingLabel.text = text;
-    [self transformToNewFontSize:14.0 frameOffset:-4 alphaValue:1.0 andConstraintConstant:-15.0];
+    [self transformToNewFontSize:self.placeholderFont.pointSize - 2 frameOffset:-4 alphaValue:1.0 andConstraintConstant:-15.0];
 }
 
 - (void)hideFloatingLabel {
-    [self transformToNewFontSize:16.0 frameOffset:3 alphaValue:0.0 andConstraintConstant:0.0];
+    [self transformToNewFontSize:self.placeholderFont.pointSize frameOffset:3 alphaValue:0.0 andConstraintConstant:0.0];
 }
 
 #pragma mark - View layout
@@ -94,7 +94,7 @@
          andConstraintConstant:(CGFloat)constant {
 
     UIFont *oldFont = self.font;
-    self.font = [UIFont systemFontOfSize:fontSize];
+    self.font = [UIFont fontWithName:self.placeholderFont.familyName size:fontSize];
     CGFloat scale = oldFont.pointSize / self.font.pointSize;
 
     if (scale == 1) {

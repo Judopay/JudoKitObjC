@@ -26,8 +26,8 @@
 #import "Functions.h"
 #import "JPCardCustomizationViewModel.h"
 #import "NSString+Additions.h"
-#import "UIStackView+Additions.h"
 #import "UIColor+Additions.h"
+#import "UIStackView+Additions.h"
 
 @interface JPCardCustomizationSubmitCell ()
 

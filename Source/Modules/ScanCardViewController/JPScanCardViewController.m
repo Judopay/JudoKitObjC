@@ -86,7 +86,7 @@
     self.titleLabel.textColor = theme.jpWhiteColor;
     self.subtitleLabel.textColor = theme.jpWhiteColor;
     [self.backButton setTintColor:theme.jpWhiteColor];
-    
+
     UIImage *defaultIcon = [UIImage imageWithIconName:@"back-icon"];
     UIImage *backButtonImage = theme.backButtonImage ? theme.backButtonImage : defaultIcon;
     UIImage *templatedIcon = [backButtonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

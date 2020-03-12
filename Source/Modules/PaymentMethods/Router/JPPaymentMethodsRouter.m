@@ -90,7 +90,7 @@
                                                     configuration:self.configuration
                                                transactionService:self.transactionService
                                                 completionHandler:completion];
-    
+
     controller.theme = self.configuration.uiConfiguration.theme;
     controller.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.viewController presentViewController:controller animated:YES completion:nil];

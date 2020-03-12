@@ -48,6 +48,6 @@
  * @param completion - a completion handler with an optional JPResponse / NSError
  */
 - (nonnull instancetype)initWithConfiguration:(nonnull JP3DSConfiguration *)configuration
-                           completion:(nullable JudoCompletionBlock)completion;
+                                   completion:(nullable JudoCompletionBlock)completion;
 
 @end

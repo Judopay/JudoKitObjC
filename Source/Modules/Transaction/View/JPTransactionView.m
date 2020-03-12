@@ -30,11 +30,11 @@
 #import "JPTransactionButton.h"
 #import "JPTransactionViewModel.h"
 #import "NSString+Additions.h"
+#import "UIColor+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UITextField+Additions.h"
 #import "UIView+Additions.h"
-#import "UIColor+Additions.h"
 
 @interface JPTransactionView ()
 
@@ -80,26 +80,25 @@
 - (void)applyTheme:(JPTheme *)theme {
     self.cancelButton.titleLabel.font = theme.bodyBold;
     [self.cancelButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
-    
+
     [self.scanCardButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
     [self.scanCardButton setBorderWithColor:theme.jpBlackColor width:1.0f andCornerRadius:4.0f];
     self.scanCardButton.titleLabel.font = theme.bodyBold;
-    
+
     self.addCardButton.titleLabel.font = theme.headline;
     self.addCardButton.layer.cornerRadius = theme.buttonCornerRadius;
     [self.addCardButton setBackgroundImage:theme.buttonColor.asImage forState:UIControlStateNormal];
     [self.addCardButton setTitleColor:theme.buttonTitleColor forState:UIControlStateNormal];
-    
+
     self.securityMessageLabel.font = theme.caption;
     self.securityMessageLabel.textColor = theme.jpDarkGrayColor;
-    
+
     [self.cardNumberTextField applyTheme:theme];
     [self.cardHolderTextField applyTheme:theme];
     [self.cardExpiryTextField applyTheme:theme];
     [self.secureCodeTextField applyTheme:theme];
     [self.countryTextField applyTheme:theme];
     [self.postcodeTextField applyTheme:theme];
-    
 }
 
 #pragma mark - View model configuration
@@ -354,7 +353,7 @@
 
 - (UIStackView *)inputFieldsStackView {
     UIStackView *stackView = [UIStackView verticalStackViewWithSpacing:8.0];
-    
+
     [stackView addArrangedSubview:self.cardNumberTextField];
     [stackView addArrangedSubview:self.cardHolderTextField];
     [stackView addArrangedSubview:self.additionalInputFieldsStackView];

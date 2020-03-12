@@ -178,7 +178,7 @@ const float kCustomizationViewClearGradientLocation = 1.0f;
                                                                     forIndexPath:indexPath];
 
     [cell applyTheme:self.theme];
-    
+
     if ([cell isKindOfClass:JPCardCustomizationPatternPickerCell.class]) {
         JPCardCustomizationPatternPickerCell *patternPickerCell;
         patternPickerCell = (JPCardCustomizationPatternPickerCell *)cell;

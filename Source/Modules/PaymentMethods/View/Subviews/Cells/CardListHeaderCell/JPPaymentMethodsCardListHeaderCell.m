@@ -129,7 +129,8 @@ const float kCardListHeaderCenterOffset = 10.0f;
     if (!_actionButton) {
         _actionButton = [UIButton new];
         _actionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [_actionButton addTarget:self action:@selector(didPressActionButton:)
+        [_actionButton addTarget:self
+                          action:@selector(didPressActionButton:)
                 forControlEvents:UIControlEventTouchUpInside];
     }
     return _actionButton;

@@ -22,10 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme.h"
 #import "JPCardCustomizationPatternPickerCell.h"
 #import "JPCardCustomizationSubmitCell.h"
 #import "JPInputField.h"
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @protocol JPCardCustomizationPresenter;

@@ -90,12 +90,12 @@
 
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
+
     UIImage *defaultIcon = [UIImage imageWithIconName:@"back-icon"];
     UIImage *customImage = self.uiConfiguration.theme.backButtonImage;
     UIImage *backButtonImage = customImage ? customImage : defaultIcon;
     [backButton setImage:backButtonImage forState:UIControlStateNormal];
-    
+
     [backButton addTarget:self action:@selector(onBackButtonTap) forControlEvents:UIControlEventTouchUpInside];
 
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -208,7 +208,7 @@
     JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
                                                                  forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     [cell applyTheme:self.uiConfiguration.theme];
 
     if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {

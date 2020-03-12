@@ -23,8 +23,8 @@
 //  SOFTWARE.
 
 #import "JPTheme.h"
-#import "UIFont+Additions.h"
 #import "UIColor+Additions.h"
+#import "UIFont+Additions.h"
 
 @implementation JPTheme
 
