@@ -5,10 +5,9 @@ enum DemoFeatureType {
     case preAuth
     case createCardToken
     case saveCard
-    case repeatPayment
-    case tokenPreAuth
+    case checkCard
     case applePayPayment
     case applePayPreAuth
     case paymentMethods
-    case standaloneApplePayButton
+    case preAuthMethods
 }

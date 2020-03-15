@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
  * [REQUIRED] An array of summary items that summarize the amount of the payment (total, shipping, tax, etc.)
  *            The last summary item must specify the total amount to be payed.
  */
-@property (nonatomic, strong) NSArray<JPPaymentSummaryItem *> *_Nonnull JPPaymentSummaryItems;
+@property (nonatomic, strong) NSArray<JPPaymentSummaryItem *> *_Nonnull paymentSummaryItems;
 
 /**
  * [DEFAULT] An array of supported card networks.
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithMerchantId:(NSString *)merchantId
                           currency:(NSString *)currency
                        countryCode:(NSString *)countryCode
-               paymentSummaryItems:(NSArray<JPPaymentSummaryItem *> *)JPPaymentSummaryItems;
+               paymentSummaryItems:(NSArray<JPPaymentSummaryItem *> *)paymentSummaryItems;
 
 @end
 

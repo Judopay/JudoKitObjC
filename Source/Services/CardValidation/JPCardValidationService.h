@@ -33,6 +33,11 @@
 @interface JPCardValidationService : NSObject
 
 /**
+ * A method for resetting the card validation results
+ */
+- (void)resetCardValidationResults;
+
+/**
  *  A method for validating the card number
  *
  *  @param input - an input string

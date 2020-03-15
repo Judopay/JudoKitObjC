@@ -81,7 +81,6 @@
         cardDetails.isSelected = NO;
     }
     storedCardDetails[index].isSelected = YES;
-
     [JPCardStorage.sharedInstance deleteCardDetails];
 
     for (JPStoredCardDetails *cardDetails in storedCardDetails) {
