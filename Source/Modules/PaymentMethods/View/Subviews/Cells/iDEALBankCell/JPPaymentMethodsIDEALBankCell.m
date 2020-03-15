@@ -49,7 +49,6 @@ const float kiDEALBankCheckmarkWidth = 34.0f;
 const float kiDEALBankSeparatorHeight = 1.0f;
 const float kiDEALBankStackViewSpacing = 10.0f;
 
-
 #pragma mark - Initializers
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
