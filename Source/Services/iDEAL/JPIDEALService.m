@@ -41,8 +41,9 @@
 
 #pragma mark - Constants
 
-static NSString *kRedirectEndpoint = @"order/bank/sale";
-static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
+static NSString * const kRedirectEndpoint = @"order/bank/sale";
+static NSString * const kStatusRequestEndpoint = @"order/bank/statusrequest";
+static const float kTimerDuration = 60.0f;
 
 #pragma mark - Initializers
 
@@ -53,6 +54,10 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
         self.transactionService = transactionService;
     }
     return self;
+}
+
+- (void)dealloc {
+    [self.timer invalidate];
 }
 
 #pragma mark - Public methods
@@ -79,7 +84,7 @@ static NSString *kStatusRequestEndpoint = @"order/bank/statusrequest";
                                checksum:(NSString *)checksum
                              completion:(JudoCompletionBlock)completion {
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerDuration
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
                                                        self.didTimeout = true;
