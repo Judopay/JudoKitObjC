@@ -150,7 +150,7 @@ const float kStatusViewRetryButtonRadius = 4.0f;
     if (!_containerView) {
         _containerView = [UIView new];
         _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = [UIColor colorFromHex:0xE4E4E4];
+        _containerView.backgroundColor = UIColor.jpGrayColor;
         _containerView.layer.cornerRadius = kStatusViewContainerRadius;
     }
     return _containerView;

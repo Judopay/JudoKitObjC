@@ -88,7 +88,6 @@
     [self navigateToDetailsPageWithTitle:@"iDeal Order Details" andRows:rows];
 }
 
-
 - (IBAction)presentCardDetailsData:(id)sender {
     JPCardDetails *cardDetails = self.transactionData.cardDetails;
     
