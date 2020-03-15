@@ -28,36 +28,7 @@ class StandaloneApplePayViewController: UIViewController {
     }
 
     @objc func performApplePay() {
-        let items = [
-            PaymentSummaryItem(label: "Item 1", amount: 0.01),
-            PaymentSummaryItem(label: "Item 2", amount: 0.02),
-            PaymentSummaryItem(label: "Item 3", amount: 0.03)
-        ]
-
-        let configuration = ApplePayConfiguration(judoId: judoId,
-                                                  reference: "judopay-sample-app",
-                                                  merchantId: merchantId,
-                                                  currency: currency.rawValue,
-                                                  countryCode: "GB",
-                                                  paymentSummaryItems: items)
-
-        configuration.transactionType = .payment
-        configuration.requiredShippingContactFields = .all
-        configuration.requiredBillingContactFields = .all
-        configuration.returnedContactInfo = .all
-
-        judoKit?.invokeApplePay(with: configuration, completion: { (response, error) in
-            if let judoError = error as NSError? {
-                self.handle(error: judoError)
-                return
-            }
-
-            if let response = response, let items = response.items, items.count > 0 {
-                let detailsViewController = TransactionDetailsTableViewController(title: "Transaction details",
-                                                                                  response: response)
-                self.navigationController?.pushViewController(detailsViewController, animated: true)
-            }
-        })
+        
     }
 
     func handle(error: NSError) {

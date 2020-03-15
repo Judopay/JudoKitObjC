@@ -43,6 +43,13 @@
 
 #pragma mark - Public Methods
 
+- (void)resetCardValidationResults {
+    self.lastCardNumberValidationResult = nil;
+    self.lastExpiryDateValidationResult = nil;
+    self.lastSecureCodeValidationResult = nil;
+    self.lastPostalCodeValidationResult = nil;
+}
+
 - (BOOL)isInputSupported:(NSString *)input
     forSupportedNetworks:(CardNetwork)supportedCardNetworks {
 

@@ -203,7 +203,8 @@
 #pragma mark - Helper methods
 
 - (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
-
+    
+    [self.interactor resetCardValidationResults];
     if (result.recognizedNumber != nil) {
         [self updateCardNumberViewModelForInput:result.recognizedNumber];
     }
