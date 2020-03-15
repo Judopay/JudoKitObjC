@@ -48,7 +48,6 @@ typedef NS_ENUM(NSUInteger, IDEALStatus) {
  *
  * @param configuration - an instance of JPConfiguration used to configure the iDEAL flow
  * @param transactionService - an instance of JPTransactionService responsible for Judo backend calls
- * @param completion - a completion block with an optional JPResponse and NSError object
  */
 - (nonnull instancetype)initWithConfiguration:(nonnull JPConfiguration *)configuration
                            transactionService:(nonnull JPTransactionService *)transactionService;
