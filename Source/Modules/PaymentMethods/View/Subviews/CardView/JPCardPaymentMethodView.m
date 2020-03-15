@@ -143,7 +143,6 @@ const int kSubstringPatternOffset = 4;
 
 - (void)setCardAsExpired {
     self.backgroundColor = UIColor.jpDarkGrayColor;
-    self.backgroundImageView.image = self.backgroundImageView.image.grayscaled;
     self.expiryDateLabel.textColor = UIColor.jpRedColor;
     self.expiryDateLabel.numberOfLines = kExpiryDateNumberOfLines;
     NSDictionary *attrDict = @{NSFontAttributeName : UIFont.caption};

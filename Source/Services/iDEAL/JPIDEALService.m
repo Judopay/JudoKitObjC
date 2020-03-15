@@ -30,14 +30,14 @@
 #import "JPTransactionData.h"
 #import "NSError+Additions.h"
 
-@interface JPIDealService ()
+@interface JPIDEALService ()
 @property (nonatomic, strong) JPConfiguration *configuration;
 @property (nonatomic, strong) JPTransactionService *transactionService;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) BOOL didTimeout;
 @end
 
-@implementation JPIDealService
+@implementation JPIDEALService
 
 #pragma mark - Constants
 

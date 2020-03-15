@@ -133,7 +133,7 @@
     NSString *network = [NSString stringWithFormat:@"%lu", (unsigned long)cardDetails.cardNetwork];
     return @[
         [DetailsRow withTitle:@"Card last 4 digits" andValue: cardDetails.cardLastFour],
-        [DetailsRow withTitle:@"End date" andValue: cardDetails.endDate],
+        [DetailsRow withTitle:@"Expiry date" andValue: [self formattedExpiryDate:cardDetails.endDate]],
         [DetailsRow withTitle:@"Card token" andValue: cardDetails.cardToken],
         [DetailsRow withTitle:@"Card type" andValue: network],
         [DetailsRow withTitle:@"Bank" andValue: cardDetails.bank],
@@ -168,6 +168,18 @@
         _numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     }
     return _numberFormatter;
+}
+
+- (nullable NSString *)formattedExpiryDate:(NSString *)date {
+    if (!date) {
+        return nil;
+    }
+    if (date.length == 4) {
+        NSString *prefix = [date substringToIndex:2];
+        NSString *suffix = [date substringFromIndex:2];
+        return [NSString stringWithFormat:@"%@/%@", prefix, suffix];
+    }
+    return date;
 }
 
 @end

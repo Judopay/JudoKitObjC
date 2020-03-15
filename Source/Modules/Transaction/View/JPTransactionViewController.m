@@ -49,13 +49,16 @@
     [self addGestureRecognizers];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self registerKeyboardObservers];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)dealloc {
     [self removeKeyboardObservers];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
     [self.addCardView endEditing:YES];
     [super viewWillDisappear:animated];
 }

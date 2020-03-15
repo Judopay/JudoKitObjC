@@ -34,7 +34,7 @@
 		30006F3523F697B60099F3C5 /* JPKeychainService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F2823F697B60099F3C5 /* JPKeychainService.m */; };
 		30006F3623F697B60099F3C5 /* JPCardValidationService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F2A23F697B60099F3C5 /* JPCardValidationService.h */; };
 		30006F3723F697B60099F3C5 /* JPCardValidationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F2B23F697B60099F3C5 /* JPCardValidationService.m */; };
-		30006F3823F697B60099F3C5 /* JPIDEALService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F2D23F697B60099F3C5 /* JPIDEALService.m */; };
+		30006F3823F697B60099F3C5 /* JPIDealService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F2D23F697B60099F3C5 /* JPIDealService.m */; };
 		30006F3923F697B60099F3C5 /* JPIDEALService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F2E23F697B60099F3C5 /* JPIDEALService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30006F3A23F697B60099F3C5 /* JPTransactionService.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F3023F697B60099F3C5 /* JPTransactionService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30006F3B23F697B60099F3C5 /* JPTransactionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F3123F697B60099F3C5 /* JPTransactionService.m */; };
@@ -200,6 +200,26 @@
 		3058351F2406583400B61167 /* JPCardCustomizationSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305835162406583400B61167 /* JPCardCustomizationSubmitCell.m */; };
 		305835232406586C00B61167 /* JPCardCustomizationIsDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305835212406586C00B61167 /* JPCardCustomizationIsDefaultCell.m */; };
 		305835242406586C00B61167 /* JPCardCustomizationIsDefaultCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 305835222406586C00B61167 /* JPCardCustomizationIsDefaultCell.h */; };
+		305836F0240677B000B61167 /* ExampleAppCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836D5240677B000B61167 /* ExampleAppCredentials.swift */; };
+		305836F1240677B000B61167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 305836D6240677B000B61167 /* Assets.xcassets */; };
+		305836F2240677B000B61167 /* DetailsTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836D9240677B000B61167 /* DetailsTableViewSection.swift */; };
+		305836F3240677B000B61167 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836DA240677B000B61167 /* Currency.swift */; };
+		305836F4240677B000B61167 /* DemoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836DB240677B000B61167 /* DemoFeature.swift */; };
+		305836F5240677B000B61167 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836DC240677B000B61167 /* Settings.swift */; };
+		305836F6240677B000B61167 /* DetailsTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836DD240677B000B61167 /* DetailsTableViewRow.swift */; };
+		305836F7240677B000B61167 /* DemoFeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836DE240677B000B61167 /* DemoFeatureType.swift */; };
+		305836F8240677B000B61167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305836DF240677B000B61167 /* LaunchScreen.storyboard */; };
+		305836F9240677B000B61167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 305836E1240677B000B61167 /* Main.storyboard */; };
+		305836FA240677B000B61167 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E4240677B000B61167 /* NSError.swift */; };
+		305836FB240677B000B61167 /* HalfSizePresentationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E6240677B000B61167 /* HalfSizePresentationSegue.swift */; };
+		305836FD240677B000B61167 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836E9240677B000B61167 /* SettingsTableViewController.swift */; };
+		305836FE240677B000B61167 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836EA240677B000B61167 /* MainViewController.swift */; };
+		305836FF240677B000B61167 /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */; };
+		30583700240677B000B61167 /* HalfHeightPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836EC240677B000B61167 /* HalfHeightPresentationController.swift */; };
+		30583701240677B000B61167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836ED240677B000B61167 /* AppDelegate.swift */; };
+		3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; };
+		3058371C240678B700B61167 /* JudoKitObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D61D5423BB741A004E5CEE /* JPPaymentMethodsPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61D3323BB741A004E5CEE /* JPPaymentMethodsPresenter.h */; };
 		30D61D5523BB741A004E5CEE /* JPPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D61D3423BB741A004E5CEE /* JPPaymentMethodsViewModel.m */; };
@@ -295,6 +315,12 @@
 		701050BC1E1E91040001ED87 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
 		701050BD1E1E91040001ED87 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
+		82007FBE24067AA1001CBA41 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
+		82007FBF24067AA1001CBA41 /* TrustKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82007FC024067B38001CBA41 /* PayCardsRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; };
+		82007FC124067B38001CBA41 /* PayCardsRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82007FC224067B46001CBA41 /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
+		82007FC324067B46001CBA41 /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		827AF51923FFD294009ECC9C /* JPPaymentMethodsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50D23FFD257009ECC9C /* JPPaymentMethodsTest.swift */; };
 		827AF51A23FFD299009ECC9C /* JPPaymentMethodsViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50A23FFD257009ECC9C /* JPPaymentMethodsViewControllerMock.swift */; };
 		827AF51B23FFD299009ECC9C /* JPPaymentMethodsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */; };
@@ -368,6 +394,13 @@
 			remoteGlobalIDString = 8C8480461A896EE30017C155;
 			remoteInfo = TrustKit;
 		};
+		3058371D240678B700B61167 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B678B4D1C6CE5190001DC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B678B551C6CE5190001DC2F;
+			remoteInfo = JudoKitObjC;
+		};
 		3B4EB3B41C981EA7006265A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3B678B4D1C6CE5190001DC2F /* Project object */;
@@ -399,6 +432,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3058371F240678B700B61167 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				82007FBF24067AA1001CBA41 /* TrustKit.framework in Embed Frameworks */,
+				82007FC124067B38001CBA41 /* PayCardsRecognizer.framework in Embed Frameworks */,
+				82007FC324067B46001CBA41 /* DeviceDNA.framework in Embed Frameworks */,
+				3058371C240678B700B61167 /* JudoKitObjC.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B4EB3C61C981ED2006265A0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,7 +485,7 @@
 		30006F2823F697B60099F3C5 /* JPKeychainService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPKeychainService.m; sourceTree = "<group>"; };
 		30006F2A23F697B60099F3C5 /* JPCardValidationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardValidationService.h; sourceTree = "<group>"; };
 		30006F2B23F697B60099F3C5 /* JPCardValidationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCardValidationService.m; sourceTree = "<group>"; };
-		30006F2D23F697B60099F3C5 /* JPIDEALService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPIDEALService.m; sourceTree = "<group>"; };
+		30006F2D23F697B60099F3C5 /* JPIDealService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPIDealService.m; sourceTree = "<group>"; };
 		30006F2E23F697B60099F3C5 /* JPIDEALService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPIDEALService.h; sourceTree = "<group>"; };
 		30006F3023F697B60099F3C5 /* JPTransactionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionService.h; sourceTree = "<group>"; };
 		30006F3123F697B60099F3C5 /* JPTransactionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionService.m; sourceTree = "<group>"; };
@@ -604,7 +651,29 @@
 		305835162406583400B61167 /* JPCardCustomizationSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCardCustomizationSubmitCell.m; sourceTree = "<group>"; };
 		305835212406586C00B61167 /* JPCardCustomizationIsDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCardCustomizationIsDefaultCell.m; sourceTree = "<group>"; };
 		305835222406586C00B61167 /* JPCardCustomizationIsDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCardCustomizationIsDefaultCell.h; sourceTree = "<group>"; };
+		305836B92406779500B61167 /* JudoKitSwiftExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitSwiftExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		305836D5240677B000B61167 /* ExampleAppCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleAppCredentials.swift; sourceTree = "<group>"; };
+		305836D6240677B000B61167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		305836D7240677B000B61167 /* JudoKitSwiftExampleApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JudoKitSwiftExampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		305836D9240677B000B61167 /* DetailsTableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewSection.swift; sourceTree = "<group>"; };
+		305836DA240677B000B61167 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		305836DB240677B000B61167 /* DemoFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoFeature.swift; sourceTree = "<group>"; };
+		305836DC240677B000B61167 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		305836DD240677B000B61167 /* DetailsTableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewRow.swift; sourceTree = "<group>"; };
+		305836DE240677B000B61167 /* DemoFeatureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoFeatureType.swift; sourceTree = "<group>"; };
+		305836E0240677B000B61167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		305836E2240677B000B61167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		305836E4240677B000B61167 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		305836E6240677B000B61167 /* HalfSizePresentationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationSegue.swift; sourceTree = "<group>"; };
+		305836E9240677B000B61167 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		305836EA240677B000B61167 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
+		305836EC240677B000B61167 /* HalfHeightPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfHeightPresentationController.swift; sourceTree = "<group>"; };
+		305836ED240677B000B61167 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		305836EE240677B000B61167 /* JudoKitSwiftExample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = JudoKitSwiftExample.entitlements; sourceTree = "<group>"; };
+		305836EF240677B000B61167 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
+		30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitIDEALTransactionTests.swift; sourceTree = "<group>"; };
 		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -737,6 +806,7 @@
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
+		82007FB624067A80001CBA41 /* PayCardsRecognizerExample.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = PayCardsRecognizerExample.xcworkspace; path = PayCardsRecognizer/PayCardsRecognizerExample.xcworkspace; sourceTree = "<group>"; };
 		827AF50A23FFD257009ECC9C /* JPPaymentMethodsViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsViewControllerMock.swift; sourceTree = "<group>"; };
 		827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsInteractorMock.swift; sourceTree = "<group>"; };
 		827AF50D23FFD257009ECC9C /* JPPaymentMethodsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPPaymentMethodsTest.swift; sourceTree = "<group>"; };
@@ -750,6 +820,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		305836B62406779500B61167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82007FBE24067AA1001CBA41 /* TrustKit.framework in Frameworks */,
+				82007FC024067B38001CBA41 /* PayCardsRecognizer.framework in Frameworks */,
+				82007FC224067B46001CBA41 /* DeviceDNA.framework in Frameworks */,
+				3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B4EB3951C981EA7006265A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -807,6 +888,7 @@
 		15779454211085A9007BD3E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82007FB624067A80001CBA41 /* PayCardsRecognizerExample.xcworkspace */,
 				52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -854,7 +936,7 @@
 			isa = PBXGroup;
 			children = (
 				30006F2E23F697B60099F3C5 /* JPIDEALService.h */,
-				30006F2D23F697B60099F3C5 /* JPIDEALService.m */,
+				30006F2D23F697B60099F3C5 /* JPIDealService.m */,
 			);
 			path = iDEAL;
 			sourceTree = "<group>";
@@ -1690,6 +1772,65 @@
 			path = CardCustomizationIsDefaultCell;
 			sourceTree = "<group>";
 		};
+		305836D4240677B000B61167 /* JudoKitSwiftExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				305836D5240677B000B61167 /* ExampleAppCredentials.swift */,
+				305836D6240677B000B61167 /* Assets.xcassets */,
+				305836D7240677B000B61167 /* JudoKitSwiftExampleApp-Bridging-Header.h */,
+				305836D8240677B000B61167 /* Models */,
+				305836DF240677B000B61167 /* LaunchScreen.storyboard */,
+				305836E1240677B000B61167 /* Main.storyboard */,
+				305836E3240677B000B61167 /* Extensions */,
+				305836E5240677B000B61167 /* Segues */,
+				305836E7240677B000B61167 /* ViewControllers */,
+				305836EC240677B000B61167 /* HalfHeightPresentationController.swift */,
+				305836ED240677B000B61167 /* AppDelegate.swift */,
+				305836EE240677B000B61167 /* JudoKitSwiftExample.entitlements */,
+				305836EF240677B000B61167 /* Info.plist */,
+			);
+			path = JudoKitSwiftExampleApp;
+			sourceTree = "<group>";
+		};
+		305836D8240677B000B61167 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				305836D9240677B000B61167 /* DetailsTableViewSection.swift */,
+				305836DA240677B000B61167 /* Currency.swift */,
+				305836DB240677B000B61167 /* DemoFeature.swift */,
+				305836DC240677B000B61167 /* Settings.swift */,
+				305836DD240677B000B61167 /* DetailsTableViewRow.swift */,
+				305836DE240677B000B61167 /* DemoFeatureType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		305836E3240677B000B61167 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				305836E4240677B000B61167 /* NSError.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		305836E5240677B000B61167 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				305836E6240677B000B61167 /* HalfSizePresentationSegue.swift */,
+			);
+			path = Segues;
+			sourceTree = "<group>";
+		};
+		305836E7240677B000B61167 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				305836E9240677B000B61167 /* SettingsTableViewController.swift */,
+				305836EA240677B000B61167 /* MainViewController.swift */,
+				305836EB240677B000B61167 /* TransactionDetailsTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		30D08910238FB4CD00480C9E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1906,6 +2047,7 @@
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
 				447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */,
 				44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */,
+				30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */,
 				30472A10239E886500279A87 /* JudoKitAddCardTests.swift */,
 				30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */,
 			);
@@ -1925,6 +2067,7 @@
 				3B678B641C6CE5190001DC2F /* Tests */,
 				3B4EB3B61C981EA7006265A0 /* UITests */,
 				3B4EB3991C981EA7006265A0 /* JudoKitObjCExampleApp */,
+				305836D4240677B000B61167 /* JudoKitSwiftExampleApp */,
 				1577943921108303007BD3E1 /* TrustKit.xcodeproj */,
 				3000736423FBEC590099F3C5 /* Recovered References */,
 			);
@@ -1937,6 +2080,7 @@
 				3B678B601C6CE5190001DC2F /* JudoKitObjCTests.xctest */,
 				3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */,
 				3B4EB3B31C981EA7006265A0 /* JudoKitObjCExampleAppUITests.xctest */,
+				305836B92406779500B61167 /* JudoKitSwiftExampleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2191,8 +2335,8 @@
 		52B74D8D23F98B4C009FE38C /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				52B74D8E23F98B4C009FE38C /* JPTransactionRouter.m */,
 				52B74D8F23F98B4C009FE38C /* JPTransactionRouter.h */,
+				52B74D8E23F98B4C009FE38C /* JPTransactionRouter.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -2375,6 +2519,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		305836B82406779500B61167 /* JudoKitSwiftExampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 305836D32406779700B61167 /* Build configuration list for PBXNativeTarget "JudoKitSwiftExampleApp" */;
+			buildPhases = (
+				305836B52406779500B61167 /* Sources */,
+				305836B62406779500B61167 /* Frameworks */,
+				305836B72406779500B61167 /* Resources */,
+				3058371F240678B700B61167 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3058371E240678B700B61167 /* PBXTargetDependency */,
+			);
+			name = JudoKitSwiftExampleApp;
+			productName = SwiftSampleApp;
+			productReference = 305836B92406779500B61167 /* JudoKitSwiftExampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3B4EB3971C981EA7006265A0 /* JudoKitObjCExampleApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B4EB3BA1C981EA7006265A0 /* Build configuration list for PBXNativeTarget "JudoKitObjCExampleApp" */;
@@ -2458,10 +2621,15 @@
 		3B678B4D1C6CE5190001DC2F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Judo Payments";
 				TargetAttributes = {
+					305836B82406779500B61167 = {
+						CreatedOnToolsVersion = 11.3.1;
+						DevelopmentTeam = 95V535S6TQ;
+						ProvisioningStyle = Automatic;
+					};
 					3B4EB3971C981EA7006265A0 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = ZPX8K2P3Z7;
@@ -2521,6 +2689,7 @@
 				3B678B5F1C6CE5190001DC2F /* JudoKitObjCTests */,
 				3B4EB3971C981EA7006265A0 /* JudoKitObjCExampleApp */,
 				3B4EB3B21C981EA7006265A0 /* JudoKitObjCExampleAppUITests */,
+				305836B82406779500B61167 /* JudoKitSwiftExampleApp */,
 				700523F31CC7882800CC916D /* Documentation */,
 			);
 		};
@@ -2586,6 +2755,16 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		305836B72406779500B61167 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				305836F9240677B000B61167 /* Main.storyboard in Resources */,
+				305836F1240677B000B61167 /* Assets.xcassets in Resources */,
+				305836F8240677B000B61167 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B4EB3961C981EA7006265A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2654,6 +2833,27 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		305836B52406779500B61167 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				305836F7240677B000B61167 /* DemoFeatureType.swift in Sources */,
+				305836FF240677B000B61167 /* TransactionDetailsTableViewController.swift in Sources */,
+				305836F3240677B000B61167 /* Currency.swift in Sources */,
+				30583701240677B000B61167 /* AppDelegate.swift in Sources */,
+				305836F4240677B000B61167 /* DemoFeature.swift in Sources */,
+				305836FE240677B000B61167 /* MainViewController.swift in Sources */,
+				305836FD240677B000B61167 /* SettingsTableViewController.swift in Sources */,
+				305836FA240677B000B61167 /* NSError.swift in Sources */,
+				305836F2240677B000B61167 /* DetailsTableViewSection.swift in Sources */,
+				305836F6240677B000B61167 /* DetailsTableViewRow.swift in Sources */,
+				305836F0240677B000B61167 /* ExampleAppCredentials.swift in Sources */,
+				305836FB240677B000B61167 /* HalfSizePresentationSegue.swift in Sources */,
+				305836F5240677B000B61167 /* Settings.swift in Sources */,
+				30583700240677B000B61167 /* HalfHeightPresentationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B4EB3941C981EA7006265A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2677,6 +2877,7 @@
 				3B78361C1CA1638900A7DCDE /* JudoKitPaymentDeclinedTests.swift in Sources */,
 				3B78361D1CA1638900A7DCDE /* JudoKitPaymentTests.swift in Sources */,
 				3B78361E1CA1638900A7DCDE /* JudoKitTokenPaymentTests.swift in Sources */,
+				30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */,
 				30E764FD23C31E1A00CA9C25 /* JudoKitPaymentMethodsTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
 				44AA450C23469F2800F3FE09 /* JudoKitCardDetailsTests.swift in Sources */,
@@ -2737,7 +2938,7 @@
 				30006F9423F6993A0099F3C5 /* NSError+Additions.m in Sources */,
 				30D61D5923BB741A004E5CEE /* JPPaymentMethodsViewController.m in Sources */,
 				30D61D6323BB741A004E5CEE /* JPPaymentMethodsCardListHeaderCell.m in Sources */,
-				30006F3823F697B60099F3C5 /* JPIDEALService.m in Sources */,
+				30006F3823F697B60099F3C5 /* JPIDealService.m in Sources */,
 				3000733423FA9C1C0099F3C5 /* JPSession.m in Sources */,
 				300072C823F6AB560099F3C5 /* JPBrowser.m in Sources */,
 				30221C1023FE617300BF2823 /* NSLayoutConstraint+Additions.m in Sources */,
@@ -2830,6 +3031,11 @@
 			name = TrustKit;
 			targetProxy = 1577945821108B90007BD3E1 /* PBXContainerItemProxy */;
 		};
+		3058371E240678B700B61167 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B678B551C6CE5190001DC2F /* JudoKitObjC */;
+			targetProxy = 3058371D240678B700B61167 /* PBXContainerItemProxy */;
+		};
 		3B4EB3B51C981EA7006265A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3B4EB3971C981EA7006265A0 /* JudoKitObjCExampleApp */;
@@ -2853,6 +3059,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		305836DF240677B000B61167 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				305836E0240677B000B61167 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		305836E1240677B000B61167 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				305836E2240677B000B61167 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		3B4EB3A61C981EA7006265A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2885,6 +3107,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		305836CA2406779700B61167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
+					"$(PROJECT_DIR)/DeviceDNA/Framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitSwiftExampleApp;
+				PRODUCT_NAME = JudoKitSwiftExampleApp;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		305836CB2406779700B61167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
+					"$(PROJECT_DIR)/DeviceDNA/Framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitSwiftExampleApp;
+				PRODUCT_NAME = JudoKitSwiftExampleApp;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3B4EB3BB1C981EA7006265A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2980,6 +3265,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -3038,6 +3324,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -3187,6 +3474,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		305836D32406779700B61167 /* Build configuration list for PBXNativeTarget "JudoKitSwiftExampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				305836CA2406779700B61167 /* Debug */,
+				305836CB2406779700B61167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3B4EB3BA1C981EA7006265A0 /* Build configuration list for PBXNativeTarget "JudoKitObjCExampleApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
