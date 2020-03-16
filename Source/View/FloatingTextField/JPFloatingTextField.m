@@ -32,6 +32,15 @@
 
 @implementation JPFloatingTextField
 
+#pragma mark - Constants
+
+static const float kAnimationDuration = 0.3f;
+static const float kFontDecreaseValue = 2.0f;
+static const float kErrorFrameOffset = -4.0f;
+static const float kErrorTextOffset = 5.0f;
+static const float kStandardFrameOffset = 3.0f;
+static const float kErrorConstraintOffset = -15.0f;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -66,11 +75,17 @@
 
 - (void)displayFloatingLabelWithText:(NSString *)text {
     self.floatingLabel.text = text;
-    [self transformToNewFontSize:self.placeholderFont.pointSize - 2 frameOffset:-4 alphaValue:1.0 andConstraintConstant:-15.0];
+    [self transformToNewFontSize:self.placeholderFont.pointSize - kFontDecreaseValue
+                     frameOffset:kErrorFrameOffset
+                      alphaValue:1.0
+           andConstraintConstant:kErrorConstraintOffset];
 }
 
 - (void)hideFloatingLabel {
-    [self transformToNewFontSize:self.placeholderFont.pointSize frameOffset:3 alphaValue:0.0 andConstraintConstant:0.0];
+    [self transformToNewFontSize:self.placeholderFont.pointSize
+                     frameOffset:kStandardFrameOffset
+                      alphaValue:0.0
+           andConstraintConstant:0.0];
 }
 
 #pragma mark - View layout
@@ -113,10 +128,10 @@
 
     self.floatingLabelCenterYConstraint.constant = constant;
 
-    CGFloat yOffset = (scale > 1) ? 5.0 : -5.0;
+    CGFloat yOffset = (scale > 1) ? kErrorTextOffset : -kErrorTextOffset;
     CGFloat yOrigin = newOrigin.y + yOffset;
 
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:kAnimationDuration
                      animations:^{
                          self.frame = CGRectMake(newOrigin.x, yOrigin, self.frame.size.width, self.frame.size.height);
                          self.transform = oldTransform;

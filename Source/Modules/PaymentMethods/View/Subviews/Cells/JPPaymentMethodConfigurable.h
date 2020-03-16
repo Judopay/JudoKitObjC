@@ -1,5 +1,5 @@
 //
-//  JPCardCustomizationCell.m
+//  JPPaymentMethodConfigurable.h
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd
@@ -22,16 +22,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationCell.h"
+#import "JPTheme.h"
+#import <UIKit/UIKit.h>
 
-@implementation JPCardCustomizationCell
+@class JPPaymentMethodsModel;
 
-- (void)applyTheme:(JPTheme *)theme {
-    //Override with custom theming
-}
+@protocol JPPaymentMethodConfigurable
 
-- (void)configureWithViewModel:(JPCardCustomizationViewModel *)viewModel {
-    //Override with custom implementation
-}
+/**
+ * A method for configuring the view with a JPPaymentMethodsModel object
+ */
+- (void)configureWithViewModel:(nonnull JPPaymentMethodsModel *)viewModel;
 
 @end

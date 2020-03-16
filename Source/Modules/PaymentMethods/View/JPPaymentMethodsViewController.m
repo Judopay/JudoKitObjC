@@ -205,27 +205,37 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     JPPaymentMethodsModel *model = self.viewModel.items[indexPath.section];
-    JPPaymentMethodsCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
-                                                                 forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.identifier
+                                                            forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    [cell applyTheme:self.uiConfiguration.theme];
+    if ([cell conformsToProtocol:@protocol(JPThemable)]) {
+        UITableViewCell <JPThemable> *themableCell;
+        themableCell = (UITableViewCell <JPThemable> *)cell;
 
-    if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
-        JPPaymentMethodsCardListModel *cardListModel;
-        cardListModel = (JPPaymentMethodsCardListModel *)model;
-        [cell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
-        return cell;
+        [themableCell applyTheme:self.uiConfiguration.theme];
     }
 
-    if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
-        JPPaymentMethodsIDEALBankListModel *bankListModel;
-        bankListModel = (JPPaymentMethodsIDEALBankListModel *)model;
-        [cell configureWithViewModel:(JPPaymentMethodsModel *)bankListModel.bankModels[indexPath.row]];
-        return cell;
-    }
+    if ([cell conformsToProtocol:@protocol(JPPaymentMethodConfigurable)]) {
+        UITableViewCell <JPPaymentMethodConfigurable> *paymentMethodCell;
+        paymentMethodCell = (UITableViewCell <JPPaymentMethodConfigurable> *)cell;
 
-    [cell configureWithViewModel:model];
+        if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
+            JPPaymentMethodsCardListModel *cardListModel;
+            cardListModel = (JPPaymentMethodsCardListModel *)model;
+            [paymentMethodCell configureWithViewModel:(JPPaymentMethodsModel *)cardListModel.cardModels[indexPath.row]];
+            return cell;
+        }
+
+        if ([model isKindOfClass:JPPaymentMethodsIDEALBankListModel.class]) {
+            JPPaymentMethodsIDEALBankListModel *bankListModel;
+            bankListModel = (JPPaymentMethodsIDEALBankListModel *)model;
+            [paymentMethodCell configureWithViewModel:(JPPaymentMethodsModel *)bankListModel.bankModels[indexPath.row]];
+            return cell;
+        }
+
+        [paymentMethodCell configureWithViewModel:model];
+    }
 
     if ([model isKindOfClass:JPPaymentMethodsCardHeaderModel.class]) {
         JPPaymentMethodsCardListHeaderCell *headerCell = (JPPaymentMethodsCardListHeaderCell *)cell;

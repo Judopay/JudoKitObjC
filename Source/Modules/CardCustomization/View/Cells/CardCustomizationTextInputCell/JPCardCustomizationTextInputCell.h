@@ -22,11 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationCell.h"
+#import "JPCardCustomizable.h"
+#import "JPThemable.h"
 
 @class JPInputField;
 
-@interface JPCardCustomizationTextInputCell : JPCardCustomizationCell
+@interface JPCardCustomizationTextInputCell : UITableViewCell <JPCardCustomizable, JPThemable>
 
 /**
  * A custom input field that allows users to insert the card title string.

@@ -22,8 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCell.h"
+#import "JPPaymentMethodConfigurable.h"
+#import "JPThemable.h"
+
 #import <UIKit/UIKit.h>
 
-@interface JPPaymentMethodsEmptyCardListCell : JPPaymentMethodsCell
+@interface JPPaymentMethodsEmptyCardListCell : UITableViewCell <JPPaymentMethodConfigurable, JPThemable>
 @end
