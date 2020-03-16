@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.frameworks            = 'CoreLocation', 'Security', 'CoreTelephony'
   s.pod_target_xcconfig   = { 'FRAMEWORK_SEARCH_PATHS'   => '$(inherited) ${PODS_ROOT}/DeviceDNA/Source' }
   s.resource_bundles = { "JudoKitObjC" => ["Resources/*.lproj/*.strings"] }
-  s.resources = ['Resources/icons.bundle']
+  s.resources = ['Resources/icons.bundle', 'Resources/resources.bundle']
 end

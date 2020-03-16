@@ -38,6 +38,17 @@
 
 @implementation JPPaymentMethodsEmptyCardListCell
 
+#pragma mark - Constants
+
+static const float kHorizontalImageEdgeInsets = 12.0f;
+static const float kLeadingTitleEdgeInset = -10.0f;
+static const float kStackViewSpacing = 16.0f;
+static const float kStackViewTopPadding = 60.0f;
+static const float kAddCardButtonHeight = 36.0f;
+static const float kAddCardBorderWidth = 1.0f;
+static const float kAddCardCornerRadius = 4.0f;
+static const int kConstraintPriority = 999;
+
 #pragma mark - View model configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
@@ -59,8 +70,9 @@
     [self.addCardButton setImage:buttonImage forState:UIControlStateNormal];
     self.addCardButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
 
-    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 0);
-    self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    CGFloat leadingInsets = kHorizontalImageEdgeInsets;
+    self.addCardButton.imageEdgeInsets = UIEdgeInsetsMake(leadingInsets, 0, leadingInsets, 0);
+    self.addCardButton.titleEdgeInsets = UIEdgeInsetsMake(0, kLeadingTitleEdgeInset, 0, 0);
 
     self.onTransactionButtonTapHandler = emptyViewModel.onTransactionButtonTapHandler;
 }
@@ -77,15 +89,18 @@
     self.titleLabel.font = theme.headline;
     self.titleLabel.textColor = theme.jpBlackColor;
     self.addCardButton.titleLabel.font = theme.bodyBold;
-    [self.addCardButton setBorderWithColor:theme.jpBlackColor width:1.0f andCornerRadius:4.0f];
-    [self.addCardButton setTitleColor:theme.jpBlackColor forState:UIControlStateNormal];
+    [self.addCardButton setBorderWithColor:theme.jpBlackColor
+                                     width:kAddCardBorderWidth
+                           andCornerRadius:kAddCardCornerRadius];
+    [self.addCardButton setTitleColor:theme.jpBlackColor
+                             forState:UIControlStateNormal];
 }
 
 #pragma mark - Layout setup
 
 - (void)setupViews {
     self.backgroundColor = UIColor.clearColor;
-    self.stackView = [UIStackView verticalStackViewWithSpacing:16.0f];
+    self.stackView = [UIStackView verticalStackViewWithSpacing:kStackViewSpacing];
     self.stackView.alignment = UIStackViewAlignmentCenter;
     [self.stackView addArrangedSubview:self.titleLabel];
     [self.stackView addArrangedSubview:self.addCardButton];
@@ -95,14 +110,14 @@
 - (void)setupConstraints {
     NSArray *constraints = @[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor
-                                                 constant:60.0],
+                                                 constant:kStackViewTopPadding],
         [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-        [self.addCardButton.heightAnchor constraintEqualToConstant:36.0f],
+        [self.addCardButton.heightAnchor constraintEqualToConstant:kAddCardButtonHeight],
     ];
 
-    [NSLayoutConstraint activateConstraints:constraints withPriority:999];
+    [NSLayoutConstraint activateConstraints:constraints withPriority:kConstraintPriority];
 }
 
 #pragma mark - Lazy properties

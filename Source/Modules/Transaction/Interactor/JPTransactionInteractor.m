@@ -146,6 +146,10 @@
     }
 }
 
+- (void)resetCardValidationResults {
+    [self.cardValidationService resetCardValidationResults];
+}
+
 - (void)handle3DSecureTransactionFromError:(NSError *)error
                                 completion:(JudoCompletionBlock)completion {
     [self.threeDSecureService invoke3DSecureViewControllerWithError:error

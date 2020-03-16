@@ -65,9 +65,4 @@
  */
 + (nonnull UIImage *)headerImageForCardNetwork:(CardNetwork)network;
 
-/**
- * A method which returns a grayscaled instance of the UIImage by applying a Tonal filter on the image.
- */
-- (nonnull instancetype)grayscaled;
-
 @end

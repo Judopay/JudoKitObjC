@@ -22,9 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPOtherPaymentMethodView.h"
 #import "Functions.h"
+#import "JPOtherPaymentMethodView.h"
 #import "JPPaymentMethodsViewModel.h"
+#import "NSString+Additions.h"
+#import "UIColor+Additions.h"
+#import "UIFont+Additions.h"
 #import "UIImage+Additions.h"
 #import "UIStackView+Additions.h"
 #import "UIView+Additions.h"
@@ -39,6 +42,14 @@
 @end
 
 @implementation JPOtherPaymentMethodView
+
+#pragma mark - Constants
+
+static const float kLeadingImageViewWidth = 109.0f;
+static const float kLeadingImageViewHeight = 31.0f;
+static const float kTrailingImageViewWidth = 30.0f;
+static const float kContentPadding = 28.0f;
+
 
 #pragma mark - Initializers
 
@@ -73,31 +84,37 @@
 #pragma mark - View Model Configuration
 
 - (void)configureWithViewModel:(JPPaymentMethodsHeaderModel *)viewModel {
-    if (viewModel.paymentMethodType == JPPaymentMethodTypeApplePay) {
-        self.leadingImageView.image = [UIImage imageWithIconName:@"apple-pay-icon"];
-        self.titleLabel.text = @"Apple Pay";
-    }
 
-    if (viewModel.paymentMethodType == JPPaymentMethodTypeIDeal) {
-        self.titleLabel.text = viewModel.bankModel.bankTitle;
-        self.leadingImageView.image = [UIImage imageWithIconName:viewModel.bankModel.bankIconName];
-        self.trailingImageView.image = [UIImage imageWithIconName:@"ideal-pay-icon"];
+    switch (viewModel.paymentMethodType) {
+        case JPPaymentMethodTypeApplePay:
+            self.leadingImageView.image = [UIImage imageWithIconName:@"apple-pay-icon"];
+            self.titleLabel.text = @"apple-pay".localized;
+            break;
+
+        case JPPaymentMethodTypeIDeal:
+            self.titleLabel.text = viewModel.bankModel.bankTitle;
+            self.leadingImageView.image = [UIImage imageWithIconName:viewModel.bankModel.bankIconName];
+            self.trailingImageView.image = [UIImage imageWithIconName:@"ideal-pay-icon"];
+            break;
+
+        default:
+            break;
     }
 
     CGSize imageSize = self.leadingImageView.image.size;
-    self.widthConstraint.constant = imageSize.width * (31 / imageSize.height);
+    self.widthConstraint.constant = imageSize.width * (kLeadingImageViewHeight / imageSize.height);
 }
 
 #pragma mark - Layout Setup
 
 - (void)setupViews {
 
-    self.widthConstraint = [self.leadingImageView.widthAnchor constraintLessThanOrEqualToConstant:109];
+    self.widthConstraint = [self.leadingImageView.widthAnchor constraintLessThanOrEqualToConstant:kLeadingImageViewWidth];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.leadingImageView.heightAnchor constraintEqualToConstant:31.0],
+        [self.leadingImageView.heightAnchor constraintEqualToConstant:kLeadingImageViewHeight],
         self.widthConstraint,
-        [self.trailingImageView.widthAnchor constraintEqualToConstant:30],
+        [self.trailingImageView.widthAnchor constraintEqualToConstant:kTrailingImageViewWidth],
     ]];
 
     UIStackView *bottomStackView = [UIStackView horizontalStackViewWithSpacing:0.0];
@@ -111,7 +128,7 @@
     [mainStackView addArrangedSubview:bottomStackView];
 
     [self addSubview:mainStackView];
-    [mainStackView pinToView:self withPadding:28.0 * getWidthAspectRatio()];
+    [mainStackView pinToView:self withPadding:kContentPadding * getWidthAspectRatio()];
 }
 
 #pragma mark - Lazy Properties

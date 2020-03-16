@@ -193,3 +193,6 @@
 "default_dinnersclub_card_title" = "My Dinners Club Card";
 "save_as_default" = "Save as default payment method";
 "save" = "Save";
+
+//Payment Methods
+"apple_pay" = "Apple Pay";
