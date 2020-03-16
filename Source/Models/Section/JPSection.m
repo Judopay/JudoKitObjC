@@ -1,5 +1,5 @@
 //
-//  JPSection.h
+//  JPSection.m
 //  JudoKitObjC
 //
 //  Copyright (c) 2020 Alternative Payments Ltd

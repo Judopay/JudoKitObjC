@@ -2289,8 +2289,8 @@
 		52B4CAD8241FB93D009C28DC /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				52B4CAD9241FB93D009C28DC /* JPSection.m */,
 				52B4CADA241FB93D009C28DC /* JPSection.h */,
+				52B4CAD9241FB93D009C28DC /* JPSection.m */,
 			);
 			path = Section;
 			sourceTree = "<group>";
