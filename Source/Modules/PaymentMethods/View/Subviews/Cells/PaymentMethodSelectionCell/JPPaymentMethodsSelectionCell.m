@@ -48,6 +48,12 @@ static const int kConstraintPriority = 999;
     self.backgroundColor = UIColor.whiteColor;
 }
 
+#pragma mark - Theming
+
+- (void)applyTheme:(JPTheme *)theme {
+    [self.sectionView applyTheme:theme];
+}
+
 #pragma mark - Layout setup
 
 - (void)setupSectionViewWithSections:(NSArray *)sections {
@@ -92,6 +98,10 @@ static const int kConstraintPriority = 999;
     if (selectionModel.selectedPaymentMethod != 0) {
         [self.sectionView switchToSectionAtIndex:selectionModel.selectedPaymentMethod];
     }
+
+    if (selectionModel.selectedPaymentMethod == 0)
+        return;
+    [self.sectionView changeSelectedSectionToIndex:selectionModel.selectedPaymentMethod];
 }
 
 @end
