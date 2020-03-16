@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
 /**
  * The index of the currently selected payment method
  */
-@property (nonatomic, assign) int selectedPaymentMethod;
+@property (nonatomic, assign) NSUInteger selectedPaymentMethod;
 
 /**
  * An array of available payment methods

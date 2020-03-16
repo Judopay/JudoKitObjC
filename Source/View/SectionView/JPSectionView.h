@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPTheme.h"
+#import "JPSection.h"
 #import <UIKit/UIKit.h>
 
 @class JPSectionView;
@@ -34,7 +35,7 @@
  * @param sectionView - a reference to the current instance of JPSectionView
  * @param index - the index of the selected section
  */
-- (void)sectionView:(JPSectionView *_Nonnull)sectionView didSelectSectionAtIndex:(int)index;
+- (void)sectionView:(JPSectionView *_Nonnull)sectionView didSelectSectionAtIndex:(NSUInteger)index;
 
 @end
 
@@ -46,31 +47,21 @@
 @property (nonatomic, weak) id<JPSectionViewDelegate> _Nullable delegate;
 
 /**
- * A method used to apply a theme to the view
+ * Designated initializer that creates a JPSectionView based on the provided sections
  *
- * @param theme - the JPTheme object used to configure the user interface
+ * @param sections - an array of JPSection objects that contain the images and titles of the sections
+ * @param theme - the JPTheme reference that is used to configure the user interface
+ *
+ * @returns a configured instance of JPSectionView
  */
-- (void)applyTheme:(nonnull JPTheme *)theme;
+- (nonnull instancetype)initWithSections:(nonnull NSArray <JPSection *> *)sections
+                                andTheme:(nonnull JPTheme *)theme;
 
 /**
- * A method that adds a section to the section view.
+ * A method used to programmatically switch to a different section
  *
- * @param image - a UIImage instance that showcases the section's logo
- * @param title - an NSString that is displayed next to the logo
+ * @param index - the index of the section
  */
-- (void)addSectionWithImage:(UIImage *_Nullable)image
-                   andTitle:(NSString *_Nullable)title;
-
-/**
- * A method for removing all sections from the section view
- */
-- (void)removeSections;
-
-/**
- * Method that forces a section change to a specified index
- *
- * @param index - the index of the selected section
- */
-- (void)changeSelectedSectionToIndex:(NSUInteger)index;
+- (void)switchToSectionAtIndex:(NSUInteger)index;
 
 @end

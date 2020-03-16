@@ -51,7 +51,7 @@
 @property (nonatomic, strong) NSDateFormatter *dateFormater;
 @property (nonatomic, strong) NSDate *currentDate;
 
-@property (nonatomic, assign) int previousIndex;
+@property (nonatomic, assign) NSUInteger previousIndex;
 @property (nonatomic, assign) NSUInteger selectedBankIndex;
 @end
 
@@ -190,7 +190,7 @@
                             shouldAnimateChange:NO];
 }
 
-- (void)changePaymentMethodToIndex:(int)index {
+- (void)changePaymentMethodToIndex:(NSUInteger)index {
 
     if (index == self.previousIndex) {
         return;
@@ -261,7 +261,7 @@
         [self.viewModel.items addObject:self.paymentSelectionModel];
     }
 
-    int selectedPaymentIndex = self.paymentSelectionModel.selectedPaymentMethod;
+    NSUInteger selectedPaymentIndex = self.paymentSelectionModel.selectedPaymentMethod;
     JPPaymentMethod *selectedPaymentMethod = self.paymentSelectionModel.paymentMethods[selectedPaymentIndex];
 
     self.viewModel.headerModel.paymentMethodType = selectedPaymentMethod.type;

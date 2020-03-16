@@ -297,6 +297,8 @@
 		52B4CA45241EF7AA009C28DC /* JPTransactionStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B4CA3A241EF7AA009C28DC /* JPTransactionStatusView.m */; };
 		52B4CA46241EF7AA009C28DC /* JPTransactionStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = 52B4CA3B241EF7AA009C28DC /* JPTransactionStatusView.h */; };
 		52B4CA47241EF7AA009C28DC /* JPIDEALViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52B4CA3C241EF7AA009C28DC /* JPIDEALViewController.h */; };
+		52B4CAC0241F9393009C28DC /* JPSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B4CAB7241F9393009C28DC /* JPSection.m */; };
+		52B4CAC1241F9393009C28DC /* JPSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 52B4CAB8241F9393009C28DC /* JPSection.h */; };
 		52B74D9023F98B4C009FE38C /* JPTransactionPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B74D7623F98B4C009FE38C /* JPTransactionPresenter.m */; };
 		52B74D9123F98B4C009FE38C /* JPTransactionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 52B74D7823F98B4C009FE38C /* JPTransactionViewModel.h */; };
 		52B74D9223F98B4C009FE38C /* JPTransactionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B74D7923F98B4C009FE38C /* JPTransactionViewModel.m */; };
@@ -790,6 +792,8 @@
 		52B4CA3A241EF7AA009C28DC /* JPTransactionStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionStatusView.m; sourceTree = "<group>"; };
 		52B4CA3B241EF7AA009C28DC /* JPTransactionStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionStatusView.h; sourceTree = "<group>"; };
 		52B4CA3C241EF7AA009C28DC /* JPIDEALViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPIDEALViewController.h; sourceTree = "<group>"; };
+		52B4CAB7241F9393009C28DC /* JPSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSection.m; sourceTree = "<group>"; };
+		52B4CAB8241F9393009C28DC /* JPSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSection.h; sourceTree = "<group>"; };
 		52B74D7623F98B4C009FE38C /* JPTransactionPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionPresenter.m; sourceTree = "<group>"; };
 		52B74D7823F98B4C009FE38C /* JPTransactionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionViewModel.h; sourceTree = "<group>"; };
 		52B74D7923F98B4C009FE38C /* JPTransactionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionViewModel.m; sourceTree = "<group>"; };
@@ -1156,7 +1160,6 @@
 			isa = PBXGroup;
 			children = (
 				300072AA23F6AB550099F3C5 /* JudoKitObjC.h */,
-				30221C9223FFC53D00BF2823 /* CardPattern */,
 				3000737923FBECCE0099F3C5 /* 3DSConfiguration */,
 				3000728F23F6AB550099F3C5 /* Address */,
 				3000726223F6AB540099F3C5 /* Amount */,
@@ -1167,6 +1170,7 @@
 				3000727023F6AB540099F3C5 /* Card */,
 				300072AB23F6AB560099F3C5 /* CardDetails */,
 				300072A123F6AB550099F3C5 /* CardNetwork */,
+				30221C9223FFC53D00BF2823 /* CardPattern */,
 				3000725C23F6AB540099F3C5 /* CardStorage */,
 				300072A723F6AB550099F3C5 /* ClientDetails */,
 				3000726B23F6AB540099F3C5 /* Configuration */,
@@ -1190,6 +1194,7 @@
 				300072AE23F6AB560099F3C5 /* Reference */,
 				3000729223F6AB550099F3C5 /* Response */,
 				3000725623F6AB540099F3C5 /* SDKInfo */,
+				52B4CAB6241F9393009C28DC /* Section */,
 				3000732823FA9C1C0099F3C5 /* Session */,
 				300072B123F6AB560099F3C5 /* StoredCardDetails */,
 				3000727323F6AB540099F3C5 /* Theme */,
@@ -2300,6 +2305,15 @@
 			path = TransactionStatusView;
 			sourceTree = "<group>";
 		};
+		52B4CAB6241F9393009C28DC /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				52B4CAB8241F9393009C28DC /* JPSection.h */,
+				52B4CAB7241F9393009C28DC /* JPSection.m */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
 		52B74D7423F98B4C009FE38C /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -2513,6 +2527,7 @@
 				30D61D5C23BB741A004E5CEE /* JPPaymentMethodsEmptyCardListCell.h in Headers */,
 				529CCB9523BE91CA00A8DBDD /* JPCardView.h in Headers */,
 				3000733323FA9C1C0099F3C5 /* JPSession.h in Headers */,
+				52B4CAC1241F9393009C28DC /* JPSection.h in Headers */,
 				300072F723F6AB560099F3C5 /* JPReference.h in Headers */,
 				30DB512223100E6B00B73D66 /* Functions.h in Headers */,
 				30006F9123F6993A0099F3C5 /* NSString+Additions.h in Headers */,
@@ -2992,6 +3007,7 @@
 				52B74D9023F98B4C009FE38C /* JPTransactionPresenter.m in Sources */,
 				52B4CA32241EF6C8009C28DC /* JPIDEALService.m in Sources */,
 				30221C7023FEC87900BF2823 /* JPCardCustomizationTitleCell.m in Sources */,
+				52B4CAC0241F9393009C28DC /* JPSection.m in Sources */,
 				30006FA023F6993A0099F3C5 /* UIFont+Additions.m in Sources */,
 				300072C223F6AB560099F3C5 /* JPThreeDSecure.m in Sources */,
 				30221C3323FE6D9200BF2823 /* JPCardCustomizationBuilder.m in Sources */,

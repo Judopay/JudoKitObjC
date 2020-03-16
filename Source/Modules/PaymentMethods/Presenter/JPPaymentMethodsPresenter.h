@@ -86,7 +86,7 @@
  *
  * @param index - the index of the newly selected payment method
  */
-- (void)changePaymentMethodToIndex:(int)index;
+- (void)changePaymentMethodToIndex:(NSUInteger)index;
 
 /**
  * A method that sets the latest added card as selected

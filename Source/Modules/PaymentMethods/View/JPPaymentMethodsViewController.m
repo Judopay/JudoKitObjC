@@ -225,6 +225,8 @@
         return cell;
     }
 
+    [cell configureWithViewModel:model];
+
     if ([model isKindOfClass:JPPaymentMethodsCardHeaderModel.class]) {
         JPPaymentMethodsCardListHeaderCell *headerCell = (JPPaymentMethodsCardListHeaderCell *)cell;
         headerCell.delegate = self;
@@ -235,7 +237,6 @@
         selectionCell.sectionView.delegate = self;
     }
 
-    [cell configureWithViewModel:model];
     return cell;
 }
 
@@ -320,7 +321,7 @@
 
 @implementation JPPaymentMethodsViewController (JPSectionViewDelegate)
 
-- (void)sectionView:(JPSectionView *)sectionView didSelectSectionAtIndex:(int)index {
+- (void)sectionView:(JPSectionView *)sectionView didSelectSectionAtIndex:(NSUInteger)index {
     [self.presenter changePaymentMethodToIndex:index];
 }
 

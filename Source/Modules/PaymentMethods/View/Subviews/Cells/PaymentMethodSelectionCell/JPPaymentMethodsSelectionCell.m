@@ -28,57 +28,50 @@
 #import "UIImage+Additions.h"
 #import "UIView+Additions.h"
 
+@interface JPPaymentMethodsSelectionCell ()
+
+@property (nonatomic, strong) JPTheme *theme;
+
+@end
+
 @implementation JPPaymentMethodsSelectionCell
 
-#pragma mark - Initializers
+#pragma mark - Constants
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    if (self = [super initWithCoder:coder]) {
-        [self setupLayout];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self setupLayout];
-    }
-    return self;
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self setupLayout];
-    }
-    return self;
-}
+static const float kSectionViewHeight = 64.0f;
+static const int kConstraintPriority = 999;
 
 #pragma mark - Theming
 
 - (void)applyTheme:(JPTheme *)theme {
-    [self.sectionView applyTheme:theme];
+    self.theme = theme;
+    self.backgroundColor = UIColor.whiteColor;
 }
 
 #pragma mark - Layout setup
 
-- (void)setupLayout {
+- (void)setupSectionViewWithSections:(NSArray *)sections {
+    [self removeAllSubviews];
 
-    self.backgroundColor = UIColor.whiteColor;
-
-    self.sectionView = [JPSectionView new];
-    [self addSubview:self.sectionView];
-
+    self.sectionView = [[JPSectionView alloc] initWithSections:sections
+                                                      andTheme:self.theme];
     self.sectionView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [NSLayoutConstraint activateConstraints:@[
+    [self addSubview:self.sectionView];
+    [self setupSectionViewConstraints];
+}
+
+- (void)setupSectionViewConstraints {
+    NSArray *constraints = @[
         [self.sectionView.topAnchor constraintEqualToAnchor:self.topAnchor],
         [self.sectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [self.sectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.sectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.sectionView.heightAnchor constraintEqualToConstant:64]
-    ]
-                               withPriority:999];
+        [self.sectionView.heightAnchor constraintEqualToConstant:kSectionViewHeight],
+    ];
+
+    [NSLayoutConstraint activateConstraints:constraints
+                               withPriority:kConstraintPriority];
 }
 
 #pragma mark - View model configuration
@@ -86,19 +79,19 @@
 - (void)configureWithViewModel:(JPPaymentMethodsModel *)viewModel {
 
     JPPaymentMethodsSelectionModel *selectionModel = (JPPaymentMethodsSelectionModel *)viewModel;
-    if (!selectionModel)
-        return;
-
-    [self.sectionView removeSections];
+    NSMutableArray *sections = [NSMutableArray new];
 
     for (JPPaymentMethod *paymentMethod in selectionModel.paymentMethods) {
         UIImage *image = [UIImage imageWithIconName:paymentMethod.iconName];
-        [self.sectionView addSectionWithImage:image andTitle:paymentMethod.title];
+        JPSection *section = [JPSection sectionWithImage:image andTitle:paymentMethod.title];
+        [sections addObject:section];
     }
 
-    if (selectionModel.selectedPaymentMethod == 0)
-        return;
-    [self.sectionView changeSelectedSectionToIndex:selectionModel.selectedPaymentMethod];
+    [self setupSectionViewWithSections:sections];
+
+    if (selectionModel.selectedPaymentMethod != 0) {
+        [self.sectionView switchToSectionAtIndex:selectionModel.selectedPaymentMethod];
+    }
 }
 
 @end
