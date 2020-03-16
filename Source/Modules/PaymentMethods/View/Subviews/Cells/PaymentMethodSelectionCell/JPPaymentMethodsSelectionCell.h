@@ -22,11 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCell.h"
+#import "JPPaymentMethodConfigurable.h"
+#import "JPThemable.h"
 #import "JPSectionView.h"
+
 #import <UIKit/UIKit.h>
 
-@interface JPPaymentMethodsSelectionCell : JPPaymentMethodsCell
+@interface JPPaymentMethodsSelectionCell : UITableViewCell <JPPaymentMethodConfigurable, JPThemable>
 
 /**
  * The JPSectionView instance that handles the payment method switching logic

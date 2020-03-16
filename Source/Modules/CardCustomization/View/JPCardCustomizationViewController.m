@@ -23,7 +23,6 @@
 //  SOFTWARE.
 
 #import "JPCardCustomizationViewController.h"
-#import "JPCardCustomizationCell.h"
 #import "JPCardCustomizationHeaderCell.h"
 #import "JPCardCustomizationIsDefaultCell.h"
 #import "JPCardCustomizationPresenter.h"
@@ -173,11 +172,10 @@ const float kCustomizationViewClearGradientLocation = 1.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JPCardCustomizationViewModel *selectedModel = self.viewModels[indexPath.row];
-    JPCardCustomizationCell *cell = [tableView dequeueReusableCellWithIdentifier:selectedModel.identifier
-                                                                    forIndexPath:indexPath];
 
-    [cell applyTheme:self.theme];
+    JPCardCustomizationViewModel *selectedModel = self.viewModels[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:selectedModel.identifier
+                                                            forIndexPath:indexPath];
 
     if ([cell isKindOfClass:JPCardCustomizationPatternPickerCell.class]) {
         JPCardCustomizationPatternPickerCell *patternPickerCell;
@@ -197,8 +195,19 @@ const float kCustomizationViewClearGradientLocation = 1.0f;
         submitCell.delegate = self;
     }
 
+    if ([cell conformsToProtocol:@protocol(JPThemable)]) {
+        UITableViewCell <JPThemable> *themableCell;
+        themableCell = (UITableViewCell <JPThemable> *)cell;
+        [themableCell applyTheme:self.theme];
+    }
+
+    if ([cell conformsToProtocol:@protocol(JPCardCustomizable)]) {
+        UITableViewCell <JPCardCustomizable> *customizableCell;
+        customizableCell = (UITableViewCell <JPCardCustomizable> *)cell;
+        [customizableCell configureWithViewModel:selectedModel];
+    }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell configureWithViewModel:selectedModel];
     return cell;
 }
 

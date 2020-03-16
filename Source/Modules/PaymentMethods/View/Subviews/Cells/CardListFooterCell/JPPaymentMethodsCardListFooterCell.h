@@ -22,10 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCell.h"
+#import "JPPaymentMethodConfigurable.h"
+#import "JPThemable.h"
+
 #import <UIKit/UIKit.h>
 
-@interface JPPaymentMethodsCardListFooterCell : JPPaymentMethodsCell
+@interface JPPaymentMethodsCardListFooterCell : UITableViewCell <JPPaymentMethodConfigurable, JPThemable>
 
 /**
  * The Add Card button of the footer displayed below the card list

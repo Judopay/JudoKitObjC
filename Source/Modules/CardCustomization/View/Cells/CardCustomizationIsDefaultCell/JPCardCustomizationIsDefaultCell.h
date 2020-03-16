@@ -22,8 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationCell.h"
+#import "JPCardCustomizable.h"
+#import "JPThemable.h"
 
-@interface JPCardCustomizationIsDefaultCell : JPCardCustomizationCell
+@interface JPCardCustomizationIsDefaultCell : UITableViewCell <JPCardCustomizable, JPThemable>
 
 @end

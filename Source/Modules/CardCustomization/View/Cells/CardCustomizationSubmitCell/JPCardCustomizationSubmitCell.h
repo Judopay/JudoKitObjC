@@ -22,7 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationCell.h"
+#import "JPCardCustomizable.h"
+#import "JPThemable.h"
 
 @class JPCardCustomizationSubmitCell;
 
@@ -44,7 +45,7 @@
 
 @end
 
-@interface JPCardCustomizationSubmitCell : JPCardCustomizationCell
+@interface JPCardCustomizationSubmitCell : UITableViewCell <JPCardCustomizable, JPThemable>
 
 /**
  * A weak reference to the object that adopts the JPCardCustomizationSubmitCellDelegate protocol

@@ -22,20 +22,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPPaymentMethodsCell.h"
+#import "JPPaymentMethodConfigurable.h"
+#import "JPThemable.h"
+
 #import <UIKit/UIKit.h>
 
 /**
-* A delegate protocol related action button logic
-*/
+ * A delegate protocol related action button logic
+ */
 @protocol JPPaymentMethodsCardListHeaderCellDelegate
+
 /**
  * A delegate method to notify when the action button was tapped
  */
 - (void)didTapActionButton;
+
 @end
 
-@interface JPPaymentMethodsCardListHeaderCell : JPPaymentMethodsCell
+@interface JPPaymentMethodsCardListHeaderCell : UITableViewCell <JPPaymentMethodConfigurable, JPThemable>
 
 /**
  * The title label of the header above the card list

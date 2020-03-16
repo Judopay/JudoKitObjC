@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardCustomizationCell.h"
+#import "JPCardCustomizable.h"
 #import "JPCardPattern.h"
 
 @class JPCardCustomizationPatternPickerCell;
@@ -40,7 +40,7 @@
 
 @end
 
-@interface JPCardCustomizationPatternPickerCell : JPCardCustomizationCell
+@interface JPCardCustomizationPatternPickerCell : UITableViewCell <JPCardCustomizable>
 
 /**
  * A weak reference to the object that adopts the JPCardCustomizationPatternPickerCellDelegate protocol
