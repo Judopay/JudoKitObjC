@@ -1035,8 +1035,8 @@
 		30006F6923F6993A0099F3C5 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				30006F6A23F6993A0099F3C5 /* UIColor+Additions.m */,
 				30006F6B23F6993A0099F3C5 /* UIColor+Additions.h */,
+				30006F6A23F6993A0099F3C5 /* UIColor+Additions.m */,
 			);
 			name = UIColor;
 			path = Extensions/UIColor;
