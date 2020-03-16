@@ -27,21 +27,15 @@
 #import "JPAmount.h"
 #import "JPCardStorage.h"
 #import "JPReference.h"
-#import "JudoKit.h"
-
 #import "JPPaymentMethodsInteractor.h"
 #import "JPPaymentMethodsPresenter.h"
 #import "JPPaymentMethodsRouter.h"
 #import "JPPaymentMethodsViewController.h"
 #import "NSError+Additions.h"
-
+#import "JPConstants.h"
 #import "JPApplePayService.h"
 
 @implementation JPPaymentMethodsBuilderImpl
-
-#pragma mark - Constants
-
-static NSString * const kEuroCurrency = @"EUR";
 
 #pragma mark - Public methods
 
@@ -54,7 +48,7 @@ static NSString * const kEuroCurrency = @"EUR";
     for (JPPaymentMethod *paymentMethod in configuration.paymentMethods) {
         BOOL isIDEALPresent = (paymentMethod.type == JPPaymentMethodTypeIDeal);
         BOOL isApplePayPresent = (paymentMethod.type == JPPaymentMethodTypeApplePay);
-        BOOL isCurrencyEUR = [configuration.amount.currency isEqualToString:kEuroCurrency];
+        BOOL isCurrencyEUR = [configuration.amount.currency isEqualToString:kCurrencyEuro];
         BOOL isOnlyPaymentMethod = (configuration.paymentMethods.count == 1);
         BOOL isApplePaySupported = [JPApplePayService isApplePaySupported];
 

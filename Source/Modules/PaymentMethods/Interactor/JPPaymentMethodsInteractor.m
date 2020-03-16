@@ -34,6 +34,7 @@
 #import "JPPaymentToken.h"
 #import "JPReference.h"
 #import "JPTransactionService.h"
+#import "JPConstants.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -139,7 +140,7 @@
         [self removePaymentMethodWithType:JPPaymentMethodTypeApplePay];
     }
 
-    if (![self.configuration.amount.currency isEqualToString:@"EUR"]) {
+    if (![self.configuration.amount.currency isEqualToString:kCurrencyEuro]) {
         [self removePaymentMethodWithType:JPPaymentMethodTypeIDeal];
     }
 

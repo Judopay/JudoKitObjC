@@ -2678,7 +2678,7 @@
 					};
 					3B4EB3971C981EA7006265A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = ZPX8K2P3Z7;
+						DevelopmentTeam = 95V535S6TQ;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
 								enabled = 0;
@@ -2698,7 +2698,7 @@
 					};
 					3B678B5F1C6CE5190001DC2F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 2354U295GD;
+						DevelopmentTeam = 95V535S6TQ;
 						LastSwiftMigration = 0910;
 						TestTargetID = 3B4EB3971C981EA7006265A0;
 					};
@@ -3175,7 +3175,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -3185,7 +3185,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3208,14 +3208,14 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/JudoKitSwiftExampleApp/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitSwiftExampleApp;
 				PRODUCT_NAME = JudoKitSwiftExampleApp;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -3226,14 +3226,14 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
 					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
 				);
 				INFOPLIST_FILE = JudoKitObjCExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3249,14 +3249,14 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZPX8K2P3Z7;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DeviceDNA/Framework",
 					"$(PROJECT_DIR)/PayCardsRecognizer/Source",
 				);
 				INFOPLIST_FILE = JudoKitObjCExampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3272,7 +3272,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = JudoKitObjCExampleAppUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3289,7 +3289,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = JudoKitObjCExampleAppUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judo.JudoKitObjCExampleAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3431,7 +3431,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/DeviceDNA/Framework";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3462,7 +3462,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/DeviceDNA/Framework";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3478,7 +3478,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 2354U295GD;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitObjCTests;
@@ -3495,7 +3495,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 2354U295GD;
+				DEVELOPMENT_TEAM = 95V535S6TQ;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.JudoKitObjCTests;
