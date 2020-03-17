@@ -72,6 +72,10 @@
     return self.transactionService.transactionType;
 }
 
+- (JPAddress *)getConfiguredCardAddress {
+    return self.configuration.cardAddress.copy;
+}
+
 - (void)handleCameraPermissionsWithCompletion:(void (^)(AVAuthorizationStatus))completion {
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 
@@ -89,6 +93,7 @@
               completionHandler:(JudoCompletionBlock)completionHandler {
     JPTransaction *transaction = [self.transactionService transactionWithConfiguration:self.configuration];
     transaction.card = card;
+    
     self.threeDSecureService.transaction = transaction;
     [transaction sendWithCompletion:completionHandler];
 }

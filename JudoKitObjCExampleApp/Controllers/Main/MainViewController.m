@@ -201,6 +201,12 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                                        reference:self.reference];
         
         _configuration.siteId = siteId;
+        _configuration.cardAddress = [[JPAddress alloc] initWithLine1:@"myAddress1"
+                                                                line2:@"myAddress2"
+                                                                line3:@"myAddress3"
+                                                                 town:@"myTown"
+                                                       billingCountry:@"myCountry"
+                                                             postCode:@"myPostalCode"];
         
         _configuration.paymentMethods = @[JPPaymentMethod.card, JPPaymentMethod.iDeal, JPPaymentMethod.applePay];
         _configuration.supportedCardNetworks = CardNetworkVisa | CardNetworkMasterCard | CardNetworkAMEX;

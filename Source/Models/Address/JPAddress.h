@@ -67,19 +67,21 @@
 /**
  *  Designated Initializer
  *
- *  @param line1    line one
- *  @param line2    line two
- *  @param line3    line three
- *  @param postCode post code
- *  @param town     town
+ *  @param line1 - the primary card address line
+ *  @param line2 - an optional secondary address line
+ *  @param line3 - an optional third address line
+ *  @param town - a string that represents the town name
+ *  @param billingCountry - the billing country of the card
+ *  @param postCode the postal code of the card
  *
  *  @return a JPAddress object
  */
 - (nonnull instancetype)initWithLine1:(nullable NSString *)line1
                                 line2:(nullable NSString *)line2
                                 line3:(nullable NSString *)line3
-                             postCode:(nullable NSString *)postCode
-                                 town:(nullable NSString *)town;
+                                 town:(nullable NSString *)town
+                       billingCountry:(nullable NSString *)billingCountry
+                             postCode:(nullable NSString *)postCode;
 
 /**
  *  Initializer

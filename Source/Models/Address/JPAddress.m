@@ -29,15 +29,17 @@
 - (instancetype)initWithLine1:(NSString *)line1
                         line2:(NSString *)line2
                         line3:(NSString *)line3
-                     postCode:(NSString *)postCode
-                         town:(NSString *)town {
-    self = [super init];
-    if (self) {
+                         town:(NSString *)town
+               billingCountry:(NSString *)billingCountry
+                     postCode:(NSString *)postCode {
+
+    if (self = [super init]) {
         self.line1 = line1;
         self.line2 = line2;
         self.line3 = line3;
         self.postCode = postCode;
         self.town = town;
+        self.billingCountry = billingCountry;
     }
     return self;
 }
@@ -47,6 +49,16 @@
         [self populateWith:dictionary];
     }
     return self;
+}
+
+- (id)copy {
+    return [[JPAddress alloc] initWithLine1:self.line1
+                                      line2:self.line2
+                                      line3:self.line3
+                                       town:self.town
+                             billingCountry:self.billingCountry
+                                   postCode:self.postCode];;
+
 }
 
 - (void)populateWith:(NSDictionary *)dictionary {
