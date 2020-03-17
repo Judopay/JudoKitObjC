@@ -422,11 +422,11 @@
 
 - (JPValidationResult *)validateCanadaPostalCodeInput:(NSString *)input {
 
-    if (input.length > 6) {
+    if (input.length > 8) {
         return self.lastPostalCodeValidationResult;
     }
 
-    NSString *canadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
+    NSString *canadaRegexString =  @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][\\s][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]";
     NSRegularExpression *canadaRegex = [NSRegularExpression regularExpressionWithPattern:canadaRegexString
                                                                                  options:NSRegularExpressionAnchorsMatchLines
                                                                                    error:nil];
@@ -435,10 +435,10 @@
                                                 options:NSMatchingWithoutAnchoringBounds
                                                   range:NSMakeRange(0, input.uppercaseString.length)] > 0;
 
-    NSString *errorMessage = (input.length == 6 && !isValid) ? @"invalid_postcode".localized : nil;
+    NSString *errorMessage = (input.length == 8 && !isValid) ? @"invalid_postcode".localized : nil;
 
     self.lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
-                                                                      inputAllowed:input.length < 7
+                                                                      inputAllowed:input.length < 9
                                                                       errorMessage:errorMessage
                                                                     formattedInput:input.uppercaseString];
 

@@ -25,6 +25,14 @@
 import Foundation
 
 class JPPaymentMethodsInteractorMock: JPPaymentMethodsInteractor {
+    func setCardAsSelectedAt(_ index: UInt) {
+        
+    }
+    
+    func getIDEALBankTypes() -> [Any]! {
+        return [] 
+    }
+    
     func orderCards() {
         
     }

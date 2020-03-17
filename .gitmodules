@@ -1,9 +1,3 @@
-[submodule "DeviceDNA"]
-	path = DeviceDNA
-	url = https://github.com/JudoPay/DeviceDNA-iOS.git
 [submodule "TrustKit"]
 	path = TrustKit
 	url = https://github.com/datatheorem/TrustKit.git
-[submodule "PayCardsRecognizer"]
-	path = PayCardsRecognizer
-	url = https://github.com/faceterteam/PayCards_iOS.git
