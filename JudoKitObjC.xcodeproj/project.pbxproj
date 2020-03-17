@@ -1549,8 +1549,8 @@
 		3000732B23FA9C1C0099F3C5 /* TransactionEnricher */ = {
 			isa = PBXGroup;
 			children = (
-				3000732C23FA9C1C0099F3C5 /* JPTransactionEnricher.m */,
 				3000732D23FA9C1C0099F3C5 /* JPTransactionEnricher.h */,
+				3000732C23FA9C1C0099F3C5 /* JPTransactionEnricher.m */,
 			);
 			path = TransactionEnricher;
 			sourceTree = "<group>";

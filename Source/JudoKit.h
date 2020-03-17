@@ -30,6 +30,7 @@
 #import <Foundation/Foundation.h>
 #import <PassKit/PassKit.h>
 
+static NSString *__nonnull const JudoKitName = @"iOS-ObjC";
 static NSString *__nonnull const JudoKitVersion = @"8.2.1";
 
 @interface JudoKit : NSObject

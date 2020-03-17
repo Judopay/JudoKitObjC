@@ -73,7 +73,6 @@
     }
 
     JPTransaction *transaction = [JPTransaction transactionWithType:self.transactionType];
-
     transaction.judoId = configuration.judoId;
     transaction.amount = configuration.amount;
     transaction.reference = configuration.reference;
