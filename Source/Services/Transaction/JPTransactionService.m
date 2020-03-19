@@ -25,6 +25,7 @@
 #import "JPTransactionService.h"
 #import "JPCard.h"
 #import "JPTransactionEnricher.h"
+#import "JPReference.h"
 #import "NSError+Additions.h"
 
 @interface JPTransactionService ()
@@ -80,6 +81,10 @@
     transaction.primaryAccountDetails = configuration.primaryAccountDetails;
     transaction.apiSession = self.session;
     transaction.enricher = self.enricher;
+
+#if DEBUG
+    transaction.reference = [JPReference consumerReference:NSUUID.UUID.UUIDString];
+#endif
 
     return transaction;
 }

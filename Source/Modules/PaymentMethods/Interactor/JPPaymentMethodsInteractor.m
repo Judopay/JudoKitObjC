@@ -139,7 +139,9 @@
         [self removePaymentMethodWithType:JPPaymentMethodTypeApplePay];
     }
 
-    if (![self.configuration.amount.currency isEqualToString:@"EUR"]) {
+    if ([self.configuration.amount.currency isEqualToString:@"EUR"]) {
+        [defaultPaymentMethods addObject:JPPaymentMethod.iDeal];
+    } else {
         [self removePaymentMethodWithType:JPPaymentMethodTypeIDeal];
     }
 

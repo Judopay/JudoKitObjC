@@ -71,6 +71,11 @@
  */
 @property (nonatomic, assign) JPCardPatternType cardPatternType;
 
+/**
+ * A value that sets the expiration state of the card
+ */
+@property (nonatomic, assign) CardExpirationStatus expirationStatus;
+
 @end
 
 @interface JPCardCustomizationPatternModel : NSObject

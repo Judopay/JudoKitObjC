@@ -39,12 +39,6 @@ typedef NS_ENUM(NSUInteger, AnimationType) {
     AnimationTypeBottomToTop
 };
 
-typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
-    CardNotExpired,
-    CardExpired,
-    CardExpiresSoon
-};
-
 @interface JPPaymentMethodsModel : NSObject
 /**
  * A string that identifies the UITableViewCell that this view model applies to.

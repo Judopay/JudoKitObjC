@@ -110,6 +110,8 @@
                                      network:viewModel.cardNetwork
                                 cardLastFour:viewModel.cardLastFour
                                  patternType:viewModel.cardPatternType];
+
+    [self.cardPaymentView configureExpirationStatus:viewModel.expirationStatus];
 }
 
 #pragma mark - Layout Setup

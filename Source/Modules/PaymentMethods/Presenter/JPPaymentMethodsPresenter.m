@@ -48,7 +48,7 @@
 @property (nonatomic, strong) JPPaymentMethodsIDEALBankListModel *bankListModel;
 @property (nonatomic, strong) JPTransactionButtonViewModel *paymentButtonModel;
 
-@property (nonatomic, strong) NSDateFormatter *dateFormater;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSDate *currentDate;
 
 @property (nonatomic, assign) NSUInteger previousIndex;
@@ -351,14 +351,23 @@
 
 - (CardExpirationStatus)determineCardExpirationStatusWithDate:(NSString *)expirationDate {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *cardExpirationDate = [self.dateFormater dateFromString:expirationDate];
-    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2 toDate:self.currentDate options:0];
+    NSDate *cardExpirationDate = [self.dateFormatter dateFromString:expirationDate];
+    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2
+                                                  toDate:self.currentDate
+                                                 options:0];
+
+    NSDate *datePreviousMonth = [calendar dateByAddingUnit:NSCalendarUnitMonth value:-1
+                                                    toDate:self.currentDate
+                                                   options:0];
+
+    if ([cardExpirationDate compare:datePreviousMonth] == NSOrderedAscending) {
+        return CardExpired;
+    }
+
     if ([cardExpirationDate compare:dateInTwoMonths] == NSOrderedAscending) {
-        if ([cardExpirationDate compare:self.currentDate] == NSOrderedAscending) {
-            return CardExpired;
-        }
         return CardExpiresSoon;
     }
+
     return CardNotExpired;
 }
 
@@ -489,12 +498,12 @@
     return _bankListModel;
 }
 
-- (NSDateFormatter *)dateFormater {
-    if (!_dateFormater) {
-        _dateFormater = [[NSDateFormatter alloc] init];
-        [_dateFormater setDateFormat:kMonthYearDateFormat];
+- (NSDateFormatter *)dateFormatter {
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:kMonthYearDateFormat];
     }
-    return _dateFormater;
+    return _dateFormatter;
 }
 
 - (NSDate *)currentDate {

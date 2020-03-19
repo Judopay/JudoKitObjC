@@ -25,6 +25,24 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * The expiration status of the card
+ */
+typedef NS_ENUM(NSUInteger, CardExpirationStatus) {
+    /**
+     * Card is not expired
+     */
+    CardNotExpired,
+    /**
+     * Card is expired
+     */
+    CardExpired,
+    /**
+     * Card will expire in the next 2 months
+     */
+    CardExpiresSoon
+};
+
+/**
  *  The CardNetwork enum depicts the Card Network type of a given Card object
  */
 typedef NS_OPTIONS(NSUInteger, CardNetwork) {
