@@ -82,10 +82,6 @@
     transaction.apiSession = self.session;
     transaction.enricher = self.enricher;
 
-#if DEBUG
-    transaction.reference = [JPReference consumerReference:NSUUID.UUID.UUIDString];
-#endif
-
     return transaction;
 }
 

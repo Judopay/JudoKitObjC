@@ -29,6 +29,7 @@
 #import "JPCardValidationService.h"
 #import "JPCountry.h"
 #import "JPKeychainService.h"
+#import "JPReference.h"
 #import "JPSession.h"
 #import "JPStoredCardDetails.h"
 #import "JPTransactionService.h"
@@ -87,6 +88,19 @@
 
 - (void)sendTransactionWithCard:(JPCard *)card
               completionHandler:(JudoCompletionBlock)completionHandler {
+
+    #if DEBUG
+    // TODO: Temporary duplicate transaction solution
+    // Generates a new consumer reference for each Payment/PreAuth transaction
+
+    BOOL isPayment = (self.transactionService.transactionType == TransactionTypePayment);
+    BOOL isPreAuth = (self.transactionService.transactionType == TransactionTypePreAuth);
+
+    if (isPayment || isPreAuth) {
+        self.configuration.reference = [JPReference consumerReference:NSUUID.UUID.UUIDString];
+    }
+    #endif
+
     JPTransaction *transaction = [self.transactionService transactionWithConfiguration:self.configuration];
     transaction.card = card;
     self.threeDSecureService.transaction = transaction;
