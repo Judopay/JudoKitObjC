@@ -24,6 +24,7 @@
 
 #import "JPApplePayConfiguration.h"
 #import "JPCardNetwork.h"
+#import "JPAddress.h"
 #import "JPSession.h"
 #import "JPTransaction.h"
 #import "JPUIConfiguration.h"
@@ -57,6 +58,12 @@
  * An object containing transaction-related references
  */
 @property (nonatomic, strong) JPReference *_Nonnull reference;
+
+/**
+ * An object containing information about the card address.
+ * If set, will be sent to the Judo backend as part of the card details
+ */
+@property (nonatomic, strong) JPAddress *_Nullable cardAddress;
 
 /**
  * An object responsible for handling UI-related configurations

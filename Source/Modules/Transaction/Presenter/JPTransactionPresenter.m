@@ -333,8 +333,10 @@
                                            expiryDate:viewModel.expiryDateViewModel.text
                                            secureCode:viewModel.secureCodeViewModel.text];
 
+    JPAddress *configuredAddress = [self.interactor getConfiguredCardAddress];
+    card.cardAddress = configuredAddress ? configuredAddress : [JPAddress new];
+
     if ([self.interactor isAVSEnabled]) {
-        card.cardAddress = [JPAddress new];
         card.cardAddress.billingCountry = viewModel.countryPickerViewModel.text;
         card.cardAddress.postCode = viewModel.postalCodeInputViewModel.text;
     }

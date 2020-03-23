@@ -1396,8 +1396,8 @@
 		3000728F23F6AB550099F3C5 /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				3000729023F6AB550099F3C5 /* JPAddress.m */,
 				3000729123F6AB550099F3C5 /* JPAddress.h */,
+				3000729023F6AB550099F3C5 /* JPAddress.m */,
 			);
 			path = Address;
 			sourceTree = "<group>";

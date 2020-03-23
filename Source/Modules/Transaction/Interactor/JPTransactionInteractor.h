@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPAddress.h"
 #import "JPSession.h"
 #import "JPTransaction.h"
 #import "JPValidationResult.h"
@@ -55,6 +56,11 @@
  * A method which returns the countries which the user can select in the country picker
  */
 - (NSArray<NSString *> *)getSelectableCountryNames;
+
+/**
+ * A method for returning merchant-set card address details
+ */
+- (JPAddress *)getConfiguredCardAddress;
 
 /**
  * A method for handling 3D Secure transactions
