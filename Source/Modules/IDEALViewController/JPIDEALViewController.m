@@ -24,6 +24,7 @@
 
 #import "JPIDEALViewController.h"
 #import "JPAmount.h"
+#import "JPConstants.h"
 #import "JPOrderDetails.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
@@ -212,14 +213,14 @@ const float kPollingDelayTimer = 30.0;
 
 - (void)handleResponse:(JPResponse *)response {
     JPOrderDetails *orderDetails = response.items.firstObject.orderDetails;
-    if (orderDetails && [orderDetails.orderFailureReason isEqualToString:@"USER_ABORT"]) {
+    if (orderDetails && [orderDetails.orderFailureReason isEqualToString:kFailureReasonUserAbort]) {
         [self dismissViewControllerAnimated:YES completion:nil];
         self.completionBlock(response, NSError.judoUserDidCancelError);
         return;
     }
 
     NSString *amountString = [NSString stringWithFormat:@"%.2f", orderDetails.amount];
-    response.items.firstObject.amount = [JPAmount amount:amountString currency:@"EUR"];
+    response.items.firstObject.amount = [JPAmount amount:amountString currency:kCurrencyEuro];
     response.items.firstObject.createdAt = orderDetails.timestamp;
     response.items.firstObject.message = orderDetails.orderStatus;
 

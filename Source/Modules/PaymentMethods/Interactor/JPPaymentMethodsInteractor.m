@@ -29,6 +29,7 @@
 #import "JPApplePayService.h"
 #import "JPCardStorage.h"
 #import "JPConfiguration.h"
+#import "JPConstants.h"
 #import "JPIDEALBank.h"
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
@@ -139,7 +140,7 @@
         [self removePaymentMethodWithType:JPPaymentMethodTypeApplePay];
     }
 
-    if ([self.configuration.amount.currency isEqualToString:@"EUR"]) {
+    if ([self.configuration.amount.currency isEqualToString:kCurrencyEuro]) {
         [defaultPaymentMethods addObject:JPPaymentMethod.iDeal];
     } else {
         [self removePaymentMethodWithType:JPPaymentMethodTypeIDeal];
