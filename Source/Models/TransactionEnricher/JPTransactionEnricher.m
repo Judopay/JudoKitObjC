@@ -85,7 +85,8 @@
            withCompletion:(nonnull void (^)(void))completion {
 
     if (![self shouldEnrichTransaction:transaction]) {
-        return completion();
+        completion();
+        return;
     }
 
     self.completionBlock = completion;
