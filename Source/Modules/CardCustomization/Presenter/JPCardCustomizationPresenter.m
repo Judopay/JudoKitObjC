@@ -41,8 +41,6 @@
 @property (nonatomic, strong) JPCardCustomizationTextInputModel *textInputModel;
 @property (nonatomic, strong) JPCardCustomizationIsDefaultModel *isDefaultModel;
 @property (nonatomic, strong) JPCardCustomizationSubmitModel *submitModel;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (nonatomic, strong) NSDate *currentDate;
 @end
 
 @implementation JPCardCustomizationPresenterImpl
@@ -105,7 +103,7 @@
     self.headerModel.cardNetwork = cardDetails.cardNetwork;
     self.headerModel.cardTitle = self.selectedCardTitle;
     self.headerModel.cardPatternType = self.selectedPatternType;
-    self.headerModel.expirationStatus = [self determineCardExpirationStatusWithDate:cardDetails.expiryDate];
+    self.headerModel.expirationStatus = cardDetails.expirationStatus;
 }
 
 - (void)setSelectedPatternModelForPatternType:(JPCardPatternType)type {
@@ -124,28 +122,6 @@
     BOOL isTitleEmpty = (self.selectedCardTitle.length == 0);
 
     return !isTitleEmpty && (!isSameTitle || !isSamePattern);
-}
-
-- (CardExpirationStatus)determineCardExpirationStatusWithDate:(NSString *)expirationDate {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *cardExpirationDate = [self.dateFormatter dateFromString:expirationDate];
-    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2
-                                                  toDate:self.currentDate
-                                                 options:0];
-
-    NSDate *datePreviousMonth = [calendar dateByAddingUnit:NSCalendarUnitMonth value:-1
-                                                    toDate:self.currentDate
-                                                   options:0];
-
-    if ([cardExpirationDate compare:datePreviousMonth] == NSOrderedAscending) {
-        return CardExpired;
-    }
-
-    if ([cardExpirationDate compare:dateInTwoMonths] == NSOrderedAscending) {
-        return CardExpiresSoon;
-    }
-
-    return CardNotExpired;
 }
 
 #pragma mark - Lazy properties
@@ -250,21 +226,6 @@
     model.pattern = pattern;
     model.isSelected = NO;
     return model;
-}
-
-- (NSDateFormatter *)dateFormatter {
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:kMonthYearDateFormat];
-    }
-    return _dateFormatter;
-}
-
-- (NSDate *)currentDate {
-    if (!_currentDate) {
-        _currentDate = [NSDate date];
-    }
-    return _currentDate;
 }
 
 @end

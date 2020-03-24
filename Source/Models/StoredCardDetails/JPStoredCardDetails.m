@@ -23,6 +23,14 @@
 //  SOFTWARE.
 
 #import "JPStoredCardDetails.h"
+#import "JPConstants.h"
+
+@interface JPStoredCardDetails ()
+
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDate *currentDate;
+
+@end
 
 @implementation JPStoredCardDetails
 
@@ -35,6 +43,7 @@
         self.expiryDate = expiryDate;
         self.cardNetwork = network;
         self.cardToken = cardToken;
+        self.expirationStatus = [self determineCardExpirationStatus];
     }
     return self;
 }
@@ -88,6 +97,44 @@
         @"isDefault" : @(self.isDefault),
         @"isSelected" : @(self.isSelected)
     };
+}
+
+- (CardExpirationStatus)determineCardExpirationStatus {
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *cardExpirationDate = [self.dateFormatter dateFromString:self.expiryDate];
+    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2
+                                                  toDate:self.currentDate
+                                                 options:0];
+
+    NSDate *datePreviousMonth = [calendar dateByAddingUnit:NSCalendarUnitMonth value:-1
+                                                    toDate:self.currentDate
+                                                   options:0];
+
+    if ([cardExpirationDate compare:datePreviousMonth] == NSOrderedAscending) {
+        return CardExpired;
+    }
+
+    if ([cardExpirationDate compare:dateInTwoMonths] == NSOrderedAscending) {
+        return CardExpiresSoon;
+    }
+
+    return CardNotExpired;
+}
+
+- (NSDateFormatter *)dateFormatter {
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:kMonthYearDateFormat];
+    }
+    return _dateFormatter;
+}
+
+- (NSDate *)currentDate {
+    if (!_currentDate) {
+        _currentDate = [NSDate date];
+    }
+    return _currentDate;
 }
 
 @end

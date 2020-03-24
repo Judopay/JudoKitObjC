@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPCardNetwork.h"
+#import "JPCardDetails.h"
 #import "JPCardPattern.h"
 #import <Foundation/Foundation.h>
 
@@ -71,6 +71,11 @@
  * A boolean property describing if the card is the one used in last successful card payment
  */
 @property (nonatomic, assign) BOOL isLastUsed;
+
+/**
+ * A property that showcases the card's expiration status
+ */
+@property (nonatomic, assign) CardExpirationStatus expirationStatus;
 
 /**
  * The designated initializer that creates a new instance with the last four digits, expiry date and card network set
