@@ -59,9 +59,10 @@
 
 - (IBAction)didTapCloseButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        if ([self.delegate respondsToSelector:@selector(settingsViewController:didUpdateSettings:)]) {
-            [self.delegate settingsViewController:self
-                                didUpdateSettings:self.settings];
+        __weak typeof(self) weakSelf = self;
+        if ([weakSelf.delegate respondsToSelector:@selector(settingsViewController:didUpdateSettings:)]) {
+            [weakSelf.delegate settingsViewController:self
+                                    didUpdateSettings:self.settings];
         }
     }];
 }

@@ -175,8 +175,10 @@
         [javascriptCode appendString:@"[paRes, md]"];
         [webView evaluateJavaScript:javascriptCode
                   completionHandler:^(NSArray *response, NSError *error) {
-                      NSDictionary *responseDictionary = [self mapToDictionaryWithResponse:response];
-                      [self handleACSFormWithResponse:responseDictionary decisionHandler:decisionHandler];
+                      __weak typeof(self) weakSelf = self;
+
+                      NSDictionary *responseDictionary = [weakSelf mapToDictionaryWithResponse:response];
+                      [weakSelf handleACSFormWithResponse:responseDictionary decisionHandler:decisionHandler];
                   }];
     });
 }
@@ -187,14 +189,16 @@
     [self.transaction threeDSecureWithParameters:response
                                        receiptId:self.configuration.receiptId
                                       completion:^(JPResponse *response, NSError *error) {
+                                          __weak typeof(self) weakSelf = self;
+
                                           if (error) {
                                               decisionHandler(WKNavigationActionPolicyCancel);
                                           } else {
                                               decisionHandler(WKNavigationActionPolicyAllow);
                                           }
-                                          [self.loadingView stopLoading];
-                                          [self dismissViewControllerAnimated:YES completion:nil];
-                                          self.completionBlock(response, error);
+                                          [weakSelf.loadingView stopLoading];
+                                          [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                          weakSelf.completionBlock(response, error);
                                       }];
 }
 

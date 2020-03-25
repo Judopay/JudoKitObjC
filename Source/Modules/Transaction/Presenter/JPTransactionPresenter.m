@@ -184,17 +184,18 @@
 - (void)handleCameraPermissions {
     [self.interactor handleCameraPermissionsWithCompletion:^(AVAuthorizationStatus authorizationStatus) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            __weak typeof(self) weakSelf = self;
             switch (authorizationStatus) {
                 case AVAuthorizationStatusDenied:
-                    [self.view displayCameraPermissionsAlert];
+                    [weakSelf.view displayCameraPermissionsAlert];
                     break;
 
                 case AVAuthorizationStatusAuthorized:
-                    [self.router navigateToScanCamera];
+                    [weakSelf.router navigateToScanCamera];
                     break;
 
                 default:
-                    [self.view displayCameraRestrictionAlert];
+                    [weakSelf.view displayCameraRestrictionAlert];
             }
         });
     }];
@@ -203,7 +204,7 @@
 #pragma mark - Helper methods
 
 - (void)updateViewModelWithScanCardResult:(PayCardsRecognizerResult *)result {
-    
+
     [self.interactor resetCardValidationResults];
     if (result.recognizedNumber != nil) {
         [self updateCardNumberViewModelForInput:result.recognizedNumber];

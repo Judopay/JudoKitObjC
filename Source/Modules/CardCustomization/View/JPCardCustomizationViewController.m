@@ -196,14 +196,14 @@ const float kCustomizationViewClearGradientLocation = 1.0f;
     }
 
     if ([cell conformsToProtocol:@protocol(JPThemable)]) {
-        UITableViewCell <JPThemable> *themableCell;
-        themableCell = (UITableViewCell <JPThemable> *)cell;
+        UITableViewCell<JPThemable> *themableCell;
+        themableCell = (UITableViewCell<JPThemable> *)cell;
         [themableCell applyTheme:self.theme];
     }
 
     if ([cell conformsToProtocol:@protocol(JPCardCustomizable)]) {
-        UITableViewCell <JPCardCustomizable> *customizableCell;
-        customizableCell = (UITableViewCell <JPCardCustomizable> *)cell;
+        UITableViewCell<JPCardCustomizable> *customizableCell;
+        customizableCell = (UITableViewCell<JPCardCustomizable> *)cell;
         [customizableCell configureWithViewModel:selectedModel];
     }
 

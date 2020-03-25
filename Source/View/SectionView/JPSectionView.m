@@ -28,7 +28,7 @@
 @interface JPSectionView ()
 
 @property (nonatomic, strong) JPTheme *theme;
-@property (nonatomic, strong) NSArray <JPSection *> *sections;
+@property (nonatomic, strong) NSArray<JPSection *> *sections;
 @property (nonatomic, assign) CGFloat contentWidth;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -157,9 +157,11 @@ static const float kSliderCornerRadius = 10.0f;
     CGFloat width = self.adaptiveSectionWidth - kContentPadding * 2;
     CGFloat height = kSectionHeight - kContentPadding * 2;
 
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.sliderView.frame = CGRectMake(xPosition, yPosition, width, height);
-    }];
+    [UIView animateWithDuration:kAnimationDuration
+                     animations:^{
+                         __weak typeof(self) weakSelf = self;
+                         weakSelf.sliderView.frame = CGRectMake(xPosition, yPosition, width, height);
+                     }];
 }
 
 - (void)revealSectionTitleAtIndex:(NSUInteger)index {
@@ -170,9 +172,10 @@ static const float kSliderCornerRadius = 10.0f;
         BOOL shouldHideLabel = (currentIndex != index);
 
         if (label.isHidden != shouldHideLabel) {
-            [UIView animateWithDuration:kAnimationDuration animations:^{
-                label.hidden = shouldHideLabel;
-            }];
+            [UIView animateWithDuration:kAnimationDuration
+                             animations:^{
+                                 label.hidden = shouldHideLabel;
+                             }];
         }
         currentIndex++;
     }
@@ -198,7 +201,8 @@ static const float kSliderCornerRadius = 10.0f;
 
     NSArray *constraints = @[
         [imageView.heightAnchor constraintEqualToConstant:kContentHeight],
-        [imageView.widthAnchor constraintEqualToAnchor:imageView.heightAnchor multiplier:aspectRatio]
+        [imageView.widthAnchor constraintEqualToAnchor:imageView.heightAnchor
+                                            multiplier:aspectRatio]
     ];
 
     [NSLayoutConstraint activateConstraints:constraints];

@@ -184,7 +184,7 @@ static const float kLooseContentSpacing = 16.0;
 
 - (void)setupMainStackViewConstraints {
 
-    [self.mainStackView pinToAnchors:AnchorTypeTop|AnchorTypeBottom
+    [self.mainStackView pinToAnchors:AnchorTypeTop | AnchorTypeBottom
                              forView:self.bottomSlider
                          withPadding:kContentVerticalPadding];
 

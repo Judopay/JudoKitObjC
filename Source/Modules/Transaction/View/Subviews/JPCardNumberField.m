@@ -97,13 +97,14 @@
     if (cardIcon)
         self.cardLogoImageView.image = cardIcon;
 
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3
         animations:^{
-            self.cardLogoImageView.alpha = (cardIcon) ? 1.0 : 0.0;
+            weakSelf.cardLogoImageView.alpha = (cardIcon) ? 1.0 : 0.0;
         }
         completion:^(BOOL finished) {
             if (!cardIcon)
-                self.cardLogoImageView.image = cardIcon;
+                weakSelf.cardLogoImageView.image = cardIcon;
         }];
 }
 

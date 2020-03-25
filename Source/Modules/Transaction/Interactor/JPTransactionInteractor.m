@@ -93,7 +93,7 @@
 - (void)sendTransactionWithCard:(JPCard *)card
               completionHandler:(JudoCompletionBlock)completionHandler {
 
-    #if DEBUG
+#if DEBUG
     // TODO: Temporary duplicate transaction solution
     // Generates a new consumer reference for each Payment/PreAuth transaction
 
@@ -103,11 +103,11 @@
     if (isPayment || isPreAuth) {
         self.configuration.reference = [JPReference consumerReference:NSUUID.UUID.UUIDString];
     }
-    #endif
+#endif
 
     JPTransaction *transaction = [self.transactionService transactionWithConfiguration:self.configuration];
     transaction.card = card;
-    
+
     self.threeDSecureService.transaction = transaction;
     [transaction sendWithCompletion:completionHandler];
 }

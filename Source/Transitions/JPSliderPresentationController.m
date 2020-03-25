@@ -38,7 +38,8 @@
 
     [presentedCoordinator
         animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-            self.dimmingView.alpha = 1.0;
+            __weak typeof(self) weakSelf = self;
+            weakSelf.dimmingView.alpha = 1.0;
         }
                         completion:nil];
 }
@@ -49,7 +50,8 @@
 
     [presentedCoordinator
         animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-            self.dimmingView.alpha = 0.0;
+            __weak typeof(self) weakSelf = self;
+            weakSelf.dimmingView.alpha = 0.0;
         }
                         completion:nil];
 }

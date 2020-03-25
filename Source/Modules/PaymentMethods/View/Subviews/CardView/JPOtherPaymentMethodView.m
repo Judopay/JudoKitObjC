@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "Functions.h"
 #import "JPOtherPaymentMethodView.h"
+#import "Functions.h"
 #import "JPPaymentMethodsViewModel.h"
 #import "NSString+Additions.h"
 #import "UIColor+Additions.h"
@@ -49,7 +49,6 @@ static const float kLeadingImageViewWidth = 109.0f;
 static const float kLeadingImageViewHeight = 31.0f;
 static const float kTrailingImageViewWidth = 30.0f;
 static const float kContentPadding = 28.0f;
-
 
 #pragma mark - Initializers
 

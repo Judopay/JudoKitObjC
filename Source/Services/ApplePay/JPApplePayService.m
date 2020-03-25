@@ -94,23 +94,25 @@
     }
 
     [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
+        __weak typeof(self) weakSelf = self;
+
         if (error || response.items.count == 0) {
-            if (self.completionBlock)
-                self.completionBlock(response, error);
+            if (weakSelf.completionBlock)
+                weakSelf.completionBlock(response, error);
             completion(PKPaymentAuthorizationStatusFailure);
             return;
         }
 
-        if (self.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
-            response.billingInfo = [self contactInformationFromPaymentContact:payment.billingContact];
+        if (weakSelf.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+            response.billingInfo = [weakSelf contactInformationFromPaymentContact:payment.billingContact];
         }
 
-        if (self.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
-            response.shippingInfo = [self contactInformationFromPaymentContact:payment.shippingContact];
+        if (weakSelf.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+            response.shippingInfo = [weakSelf contactInformationFromPaymentContact:payment.shippingContact];
         }
 
-        if (self.completionBlock)
-            self.completionBlock(response, error);
+        if (weakSelf.completionBlock)
+            weakSelf.completionBlock(response, error);
         completion(PKPaymentAuthorizationStatusSuccess);
     }];
 }

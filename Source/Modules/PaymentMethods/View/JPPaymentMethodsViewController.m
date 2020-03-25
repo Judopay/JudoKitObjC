@@ -210,15 +210,15 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if ([cell conformsToProtocol:@protocol(JPThemable)]) {
-        UITableViewCell <JPThemable> *themableCell;
-        themableCell = (UITableViewCell <JPThemable> *)cell;
+        UITableViewCell<JPThemable> *themableCell;
+        themableCell = (UITableViewCell<JPThemable> *)cell;
 
         [themableCell applyTheme:self.uiConfiguration.theme];
     }
 
     if ([cell conformsToProtocol:@protocol(JPPaymentMethodConfigurable)]) {
-        UITableViewCell <JPPaymentMethodConfigurable> *paymentMethodCell;
-        paymentMethodCell = (UITableViewCell <JPPaymentMethodConfigurable> *)cell;
+        UITableViewCell<JPPaymentMethodConfigurable> *paymentMethodCell;
+        paymentMethodCell = (UITableViewCell<JPPaymentMethodConfigurable> *)cell;
 
         if ([model isKindOfClass:JPPaymentMethodsCardListModel.class]) {
             JPPaymentMethodsCardListModel *cardListModel;
@@ -292,7 +292,8 @@
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"delete".localized
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction *_Nonnull action) {
-                                                             [self.presenter deleteCardWithIndex:indexPath.row];
+                                                             __weak typeof(self) weakSelf = self;
+                                                             [weakSelf.presenter deleteCardWithIndex:indexPath.row];
                                                          }];
 
     [alertController addAction:cancelAction];
@@ -321,7 +322,8 @@
     BOOL isEditing = self.paymentMethodsView.tableView.isEditing == YES;
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
-        [self.presenter changeHeaderButtonTitle:!isEditing];
+        __weak typeof(self) weakSelf = self;
+        [weakSelf.presenter changeHeaderButtonTitle:!isEditing];
     }];
     [self.paymentMethodsView.tableView setEditing:!isEditing animated:YES];
     [CATransaction commit];

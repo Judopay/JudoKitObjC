@@ -24,8 +24,8 @@
 
 #import "JPTransactionService.h"
 #import "JPCard.h"
-#import "JPTransactionEnricher.h"
 #import "JPReference.h"
+#import "JPTransactionEnricher.h"
 #import "NSError+Additions.h"
 
 @interface JPTransactionService ()
@@ -121,6 +121,7 @@
         [self.session POST:url parameters:parameters completion:completion];
         return;
     }
+
     [self.session GET:url parameters:parameters completion:completion];
 }
 

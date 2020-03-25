@@ -22,9 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "JPAddress.h"
 #import "JPApplePayConfiguration.h"
 #import "JPCardNetwork.h"
-#import "JPAddress.h"
 #import "JPSession.h"
 #import "JPTransaction.h"
 #import "JPUIConfiguration.h"

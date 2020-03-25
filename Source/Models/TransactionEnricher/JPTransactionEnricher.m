@@ -84,30 +84,33 @@
 - (void)enrichTransaction:(nonnull JPTransaction *)transaction
            withCompletion:(nonnull void (^)(void))completion {
 
-    if (![self shouldEnrichTransaction:transaction]) {
+    __weak typeof(self) weakSelf = self;
+
+    if (![weakSelf shouldEnrichTransaction:transaction]) {
         completion();
         return;
     }
 
-    self.completionBlock = completion;
-    self.transaction = transaction;
+    weakSelf.completionBlock = completion;
+    weakSelf.transaction = transaction;
 
-    [self enrichWithLocation:self.lastKnownLocation];
+    [weakSelf enrichWithLocation:weakSelf.lastKnownLocation];
 }
 
 #pragma mark - Helper methods
 
 - (void)enrichWithLocation:(CLLocation *)location {
 
+    __weak typeof(self) weakSelf = self;
+
     [self.deviceDNA getDeviceSignals:^(NSDictionary *device, NSError *error) {
-
         JPEnhancedPaymentDetail *detail;
-        detail = [self buildEnhancedPaymentDetail:device
-                                      andLocation:location];
+        detail = [weakSelf buildEnhancedPaymentDetail:device
+                                          andLocation:location];
 
-        [self.transaction setPaymentDetail:detail];
-        [self.transaction setDeviceSignal:device];
-        self.completionBlock();
+        [weakSelf.transaction setPaymentDetail:detail];
+        [weakSelf.transaction setDeviceSignal:device];
+        weakSelf.completionBlock();
     }];
 }
 
@@ -120,9 +123,9 @@
 
     JPConsumerDevice *consumerDevice;
     consumerDevice = [JPConsumerDevice deviceWithIpAddress:getIPAddress()
-                                                               clientDetails:clientDetails
-                                                                 geoLocation:location
-                                                                threeDSecure:threeDSecure];
+                                             clientDetails:clientDetails
+                                               geoLocation:location
+                                              threeDSecure:threeDSecure];
 
     JPSDKInfo *sdkInfo = [JPSDKInfo infoWithVersion:JudoKitVersion
                                                name:JudoKitName];

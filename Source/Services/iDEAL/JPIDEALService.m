@@ -41,8 +41,8 @@
 
 #pragma mark - Constants
 
-static NSString * const kRedirectEndpoint = @"order/bank/sale";
-static NSString * const kStatusRequestEndpoint = @"order/bank/statusrequest";
+static NSString *const kRedirectEndpoint = @"order/bank/sale";
+static NSString *const kStatusRequestEndpoint = @"order/bank/statusrequest";
 static const float kTimerDuration = 60.0f;
 
 #pragma mark - Initializers
@@ -78,8 +78,10 @@ static const float kTimerDuration = 60.0f;
                                           completion:^(JPResponse *response, NSError *error) {
                                               JPTransactionData *data = response.items.firstObject;
 
+                                              __weak typeof(self) weakSelf = self;
+
                                               if (data.orderDetails.orderId && data.redirectUrl) {
-                                                  completion([self remapIdealResponseWithResponse:response], error);
+                                                  completion([weakSelf remapIdealResponseWithResponse:response], error);
                                                   return;
                                               }
 
@@ -94,7 +96,9 @@ static const float kTimerDuration = 60.0f;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerDuration
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
-                                                       self.didTimeout = true;
+                                                       __weak typeof(self) weakSelf = self;
+
+                                                       weakSelf.didTimeout = true;
                                                        completion(nil, NSError.judoRequestTimeoutError);
                                                        return;
                                                    }];
@@ -114,22 +118,24 @@ static const float kTimerDuration = 60.0f;
                                           httpMethod:HTTPMethodGET
                                           parameters:nil
                                           completion:^(JPResponse *response, NSError *error) {
+                                              __weak typeof(self) weakSelf = self;
+
                                               if (error) {
                                                   completion(nil, error);
-                                                  [self.timer invalidate];
+                                                  [weakSelf.timer invalidate];
                                                   return;
                                               }
 
                                               if ([response.items.firstObject.orderDetails.orderStatus isEqual:@"PENDING"]) {
                                                   dispatch_time_t timeInterval = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
                                                   dispatch_after(timeInterval, dispatch_get_main_queue(), ^{
-                                                      [self getStatusForOrderId:orderId checksum:checksum completion:completion];
+                                                      [weakSelf getStatusForOrderId:orderId checksum:checksum completion:completion];
                                                   });
                                                   return;
                                               }
-                                              JPResponse *mappedResponse = [self remapIdealResponseWithResponse:response];
+                                              JPResponse *mappedResponse = [weakSelf remapIdealResponseWithResponse:response];
                                               completion(mappedResponse, error);
-                                              [self.timer invalidate];
+                                              [weakSelf.timer invalidate];
                                           }];
 }
 

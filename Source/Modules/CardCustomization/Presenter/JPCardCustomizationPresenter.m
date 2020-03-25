@@ -27,9 +27,9 @@
 #import "JPCardCustomizationRouter.h"
 #import "JPCardCustomizationViewController.h"
 #import "JPCardCustomizationViewModel.h"
+#import "JPConstants.h"
 #import "JPStoredCardDetails.h"
 #import "NSString+Additions.h"
-#import "JPConstants.h"
 
 @interface JPCardCustomizationPresenterImpl ()
 @property (nonatomic, assign) BOOL shouldPreserveResponder;

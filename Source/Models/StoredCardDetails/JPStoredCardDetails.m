@@ -103,11 +103,13 @@
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *cardExpirationDate = [self.dateFormatter dateFromString:self.expiryDate];
-    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth value:2
+    NSDate *dateInTwoMonths = [calendar dateByAddingUnit:NSCalendarUnitMonth
+                                                   value:2
                                                   toDate:self.currentDate
                                                  options:0];
 
-    NSDate *datePreviousMonth = [calendar dateByAddingUnit:NSCalendarUnitMonth value:-1
+    NSDate *datePreviousMonth = [calendar dateByAddingUnit:NSCalendarUnitMonth
+                                                     value:-1
                                                     toDate:self.currentDate
                                                    options:0];
 

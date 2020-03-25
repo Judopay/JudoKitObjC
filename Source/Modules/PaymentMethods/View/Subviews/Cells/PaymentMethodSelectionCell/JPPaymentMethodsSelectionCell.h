@@ -23,8 +23,8 @@
 //  SOFTWARE.
 
 #import "JPPaymentMethodConfigurable.h"
-#import "JPThemable.h"
 #import "JPSectionView.h"
+#import "JPThemable.h"
 
 #import <UIKit/UIKit.h>
 

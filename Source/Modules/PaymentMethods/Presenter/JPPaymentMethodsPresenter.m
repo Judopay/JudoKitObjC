@@ -114,22 +114,25 @@
 
         [self.router navigateToIDEALModuleWithBank:iDEALBank
                                      andCompletion:^(JPResponse *response, NSError *error) {
-                                         [self handleIDEALCallbackWithResponse:response andError:error];
+                                         __weak typeof(self) weakSelf = self;
+                                         [weakSelf handleIDEALCallbackWithResponse:response andError:error];
                                      }];
         return;
     }
 
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
-                                       [self handleCallbackWithResponse:response
-                                                               andError:error];
+                                       __weak typeof(self) weakSelf = self;
+                                       [weakSelf handleCallbackWithResponse:response
+                                                                   andError:error];
                                    }];
 }
 
 - (void)handleApplePayButtonTap {
     [self.interactor startApplePayWithCompletion:^(JPResponse *response, NSError *error) {
-        [self handleCallbackWithResponse:response
-                                andError:error];
+        __weak typeof(self) weakSelf = self;
+        [weakSelf handleCallbackWithResponse:response
+                                    andError:error];
     }];
 }
 
@@ -156,11 +159,13 @@
 - (void)handle3DSecureTransactionWithError:(NSError *)error {
     [self.interactor handle3DSecureTransactionFromError:error
                                              completion:^(JPResponse *response, NSError *error) {
+                                                 __weak typeof(self) weakSelf = self;
+
                                                  if (error) {
-                                                     [self handlePaymentError:error];
+                                                     [weakSelf handlePaymentError:error];
                                                      return;
                                                  }
-                                                 [self handlePaymentResponse:response];
+                                                 [weakSelf handlePaymentResponse:response];
                                              }];
 }
 

@@ -133,10 +133,11 @@ static const float kErrorConstraintOffset = -15.0f;
 
     [UIView animateWithDuration:kAnimationDuration
                      animations:^{
-                         self.frame = CGRectMake(newOrigin.x, yOrigin, self.frame.size.width, self.frame.size.height);
-                         self.transform = oldTransform;
-                         self.floatingLabel.alpha = alphaValue;
-                         [self layoutIfNeeded];
+                         __weak typeof(self) weakSelf = self;
+                         weakSelf.frame = CGRectMake(newOrigin.x, yOrigin, self.frame.size.width, self.frame.size.height);
+                         weakSelf.transform = oldTransform;
+                         weakSelf.floatingLabel.alpha = alphaValue;
+                         [weakSelf layoutIfNeeded];
                      }];
 }
 

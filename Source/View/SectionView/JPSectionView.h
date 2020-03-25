@@ -22,8 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JPTheme.h"
 #import "JPSection.h"
+#import "JPTheme.h"
 #import <UIKit/UIKit.h>
 
 @class JPSectionView;
@@ -54,7 +54,7 @@
  *
  * @returns a configured instance of JPSectionView
  */
-- (nonnull instancetype)initWithSections:(nonnull NSArray <JPSection *> *)sections
+- (nonnull instancetype)initWithSections:(nonnull NSArray<JPSection *> *)sections
                                 andTheme:(nonnull JPTheme *)theme;
 
 /**

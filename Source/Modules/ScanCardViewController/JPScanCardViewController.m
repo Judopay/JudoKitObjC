@@ -60,9 +60,10 @@
     [super viewWillAppear:animated];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.recognizer startCamera];
-        [self.containerView bringSubviewToFront:self.labelStackView];
-        [self.containerView bringSubviewToFront:self.backButton];
+        __weak typeof(self) weakSelf = self;
+        [weakSelf.recognizer startCamera];
+        [weakSelf.containerView bringSubviewToFront:self.labelStackView];
+        [weakSelf.containerView bringSubviewToFront:self.backButton];
     });
 }
 

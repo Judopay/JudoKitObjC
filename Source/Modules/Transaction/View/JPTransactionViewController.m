@@ -188,7 +188,8 @@
                           delay:0.0
                         options:curve
                      animations:^{
-                         [self.view layoutIfNeeded];
+                         __weak typeof(self) weakSelf = self;
+                         [weakSelf.view layoutIfNeeded];
                      }
                      completion:nil];
 }
@@ -203,7 +204,8 @@
                           delay:0.0
                         options:curve
                      animations:^{
-                         [self.view layoutIfNeeded];
+                         __weak typeof(self) weakSelf = self;
+                         [weakSelf.view layoutIfNeeded];
                      }
                      completion:nil];
 }

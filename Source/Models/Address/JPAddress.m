@@ -57,8 +57,7 @@
                                       line3:self.line3
                                        town:self.town
                              billingCountry:self.billingCountry
-                                   postCode:self.postCode];;
-
+                                   postCode:self.postCode];
 }
 
 - (void)populateWith:(NSDictionary *)dictionary {
