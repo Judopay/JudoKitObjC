@@ -118,7 +118,18 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                           consumerReference:kConsumerReference
                                 cardDetails:nil
                                  completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+        if (error) {
+            [self handleError:error];
+            return;
+        }
+        
+        JPTransactionData *transactionData = response.items.firstObject;
+        if (transactionData.cardDetails) {
+            self.cardDetails = transactionData.cardDetails;
+            self.payToken = transactionData.paymentToken;
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
@@ -137,7 +148,18 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                       consumerReference:kConsumerReference
                             cardDetails:nil
                              completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+        if (error) {
+            [self handleError:error];
+            return;
+        }
+        
+        JPTransactionData *transactionData = response.items.firstObject;
+        if (transactionData.cardDetails) {
+            self.cardDetails = transactionData.cardDetails;
+            self.payToken = transactionData.paymentToken;
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 

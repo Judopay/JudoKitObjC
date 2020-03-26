@@ -131,7 +131,7 @@ typedef NS_ENUM(NSUInteger, JudoError) {
     JudoErrorUnableToRouteTransaction = 72,
     JudoErrorCardTypeNotSupported = 73,
     JudoErrorCardCv2Invalid = 74,
-    JudoErrorCardTokenDoesntMatchConsumer = 75,
+    JudoErrorCardTokenDoesntMatchConsumer = 154,
     JudoErrorWebPaymentReferenceInvalid = 76,
     JudoErrorWebPaymentAccountLocationNotFound = 77,
     JudoErrorRegisterCardWithWrongTransactionType = 78,

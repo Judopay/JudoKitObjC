@@ -28,7 +28,7 @@ import XCTest
 class TransactionEnricherTests: JudoTestCase {
     
     /**
-     * GIVEN: I have an enriched JPPayment object
+     *  GIVEN: I have an enriched JPPayment object
      *
      *  WHEN: I make a payment with the enriched object
      *

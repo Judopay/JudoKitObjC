@@ -48,13 +48,14 @@ class JudoKitTokenPaymentTests: XCTestCase {
         
         app.buttons["Add card"].tap()
         
-        let tableQuery = tablesQuery.staticTexts["Token payment"]
-        let tableQueryExistsPredicate = NSPredicate(format: "exists == 1")
+        let addCardLabel = app.staticTexts["Adding card..."]
+        let addCardLabelQueryExistsPredicate = NSPredicate(format: "exists == 0")
         
-        expectation(for: tableQueryExistsPredicate, evaluatedWith: tableQuery, handler: nil)
+        expectation(for: addCardLabelQueryExistsPredicate, evaluatedWith: addCardLabel, handler: nil)
         waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
         
-        tableQuery.tap()
+        
+        app.staticTexts["Token payment"].tap()
         
         let cvv2TextField2 = elementsQuery.secureTextFields["CVV"]
         cvv2TextField2.typeText("452")
@@ -80,28 +81,28 @@ class JudoKitTokenPaymentTests: XCTestCase {
         
         let startDateTextField = elementsQuery.textFields["Start date"]
         startDateTextField.tap()
-        startDateTextField.typeText("0110")
+        startDateTextField.typeText("0120")
         
         let expiryDateTextField = elementsQuery.textFields["Expiry date"]
         expiryDateTextField.tap()
-        expiryDateTextField.typeText("1220")
+        expiryDateTextField.typeText("0130")
         
         let cvvTextField = elementsQuery.secureTextFields["CVV"]
         cvvTextField.typeText("789")
         
         app.buttons["Add card"].tap()
         
-        let tableQuery = tablesQuery.staticTexts["Token payment"]
-        let tableQueryExistsPredicate = NSPredicate(format: "exists == 1")
+        let addCardLabel = app.staticTexts["Adding card..."]
+        let addCardLabelQueryExistsPredicate = NSPredicate(format: "exists == 0")
         
-        expectation(for: tableQueryExistsPredicate, evaluatedWith: tableQuery, handler: nil)
+        expectation(for: addCardLabelQueryExistsPredicate, evaluatedWith: addCardLabel, handler: nil)
         waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
         
-        tableQuery.tap()
+        app.staticTexts["Token payment"].tap()
         
         let startDateTextField2 = elementsQuery.textFields["Start date"]
         startDateTextField2.tap()
-        startDateTextField2.typeText("0110")
+        startDateTextField2.typeText("0120")
         
         let cvvTextField2 = elementsQuery.secureTextFields["CVV"]
         cvvTextField2.tap()
@@ -134,13 +135,13 @@ class JudoKitTokenPaymentTests: XCTestCase {
 
         app.buttons["Add card"].tap()
 
-        let tableQuery = tablesQuery.staticTexts["Token payment"]
-        let tableQueryExistsPredicate = NSPredicate(format: "exists == 1")
-
-        expectation(for: tableQueryExistsPredicate, evaluatedWith: tableQuery, handler: nil)
-        waitForExpectations(timeout: 15, handler: nil)
-
-        tableQuery.tap()
+        let addCardLabel = app.staticTexts["Adding card..."]
+        let addCardLabelQueryExistsPredicate = NSPredicate(format: "exists == 0")
+        
+        expectation(for: addCardLabelQueryExistsPredicate, evaluatedWith: addCardLabel, handler: nil)
+        waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
+        
+        app.staticTexts["Token payment"].tap()
 
         let cvv2TextField2 = elementsQuery.secureTextFields["CVV"]
         cvv2TextField2.typeText("452")
@@ -166,28 +167,28 @@ class JudoKitTokenPaymentTests: XCTestCase {
 
         let startDateTextField = elementsQuery.textFields["Start date"]
         startDateTextField.tap()
-        startDateTextField.typeText("0110")
+        startDateTextField.typeText("0120")
 
         let expiryDateTextField = elementsQuery.textFields["Expiry date"]
         expiryDateTextField.tap()
-        expiryDateTextField.typeText("1220")
+        expiryDateTextField.typeText("0130")
 
         let cvvTextField = elementsQuery.secureTextFields["CVV"]
         cvvTextField.typeText("789")
 
         app.buttons["Add card"].tap()
 
-        let tableQuery = tablesQuery.staticTexts["Token payment"]
-        let tableQueryExistsPredicate = NSPredicate(format: "exists == 1")
-
-        expectation(for: tableQueryExistsPredicate, evaluatedWith: tableQuery, handler: nil)
+        let addCardLabel = app.staticTexts["Adding card..."]
+        let addCardLabelQueryExistsPredicate = NSPredicate(format: "exists == 0")
+        
+        expectation(for: addCardLabelQueryExistsPredicate, evaluatedWith: addCardLabel, handler: nil)
         waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
-
-        tableQuery.tap()
+        
+        app.staticTexts["Token payment"].tap()
 
         let startDateTextField2 = elementsQuery.textFields["Start date"]
         startDateTextField2.tap()
-        startDateTextField2.typeText("0110")
+        startDateTextField2.typeText("0120")
 
         let cvvTextField2 = elementsQuery.secureTextFields["CVV"]
         cvvTextField2.tap()

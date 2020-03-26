@@ -23,4 +23,4 @@
 //  SOFTWARE.
 
 import Foundation
-let kTestCaseTimeout = 20.0
+let kTestCaseTimeout = 60.0
