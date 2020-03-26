@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		15779455211085A9007BD3E1 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
 		30006F1F23F6971B0099F3C5 /* JPSliderPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1B23F6971B0099F3C5 /* JPSliderPresentationController.m */; };
 		30006F2023F6971B0099F3C5 /* JPSliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1C23F6971B0099F3C5 /* JPSliderTransitioningDelegate.m */; };
 		30006F2123F6971B0099F3C5 /* JPSliderPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F1D23F6971B0099F3C5 /* JPSliderPresentationController.h */; };
@@ -247,6 +246,19 @@
 		30DB512223100E6B00B73D66 /* Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511B23100E6B00B73D66 /* Functions.h */; };
 		30E764FD23C31E1A00CA9C25 /* JudoKitPaymentMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */; };
 		30F77E54241A650800D68BF9 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F77E53241A650800D68BF9 /* UITextField+Additions.m */; };
+		30FABFE8242CDFE500E9A9CE /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
+		30FABFF2242CE01000E9A9CE /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
+		30FABFF3242CE01000E9A9CE /* TrustKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30FABFF4242CE06000E9A9CE /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
+		30FABFF5242CE06000E9A9CE /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30FABFF6242CE06C00E9A9CE /* PayCardsRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; };
+		30FABFF7242CE06C00E9A9CE /* PayCardsRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30FABFF8242CE09F00E9A9CE /* PayCardsRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; };
+		30FABFF9242CE09F00E9A9CE /* PayCardsRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30FABFFA242CE0BB00E9A9CE /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; };
+		30FABFFB242CE0BB00E9A9CE /* TrustKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1577944521108303007BD3E1 /* TrustKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30FABFFC242CE0C900E9A9CE /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
+		30FABFFD242CE0C900E9A9CE /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB39C1C981EA7006265A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39B1C981EA7006265A0 /* main.m */; };
 		3B4EB39F1C981EA7006265A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39E1C981EA7006265A0 /* AppDelegate.m */; };
@@ -276,9 +288,7 @@
 		44E3A10723498B770042C9EC /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10623498B770042C9EC /* Settings.m */; };
 		44E3A10A23498D150042C9EC /* HalfHeightPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */; };
 		524B24AA242BC1A2007F01ED /* DeviceDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; };
-		524B24AB242BC1A2007F01ED /* DeviceDNA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 701050BA1E1E90FB0001ED87 /* DeviceDNA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		524B24AD242BC1F2007F01ED /* PayCardsRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; };
-		524B24AE242BC1F2007F01ED /* PayCardsRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB43039323F1646400023736 /* PayCardsRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5273AF1423F30730008C6D89 /* JPCardPaymentMethodView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5273AF1223F30730008C6D89 /* JPCardPaymentMethodView.h */; };
 		5273AF1523F30730008C6D89 /* JPCardPaymentMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5273AF1323F30730008C6D89 /* JPCardPaymentMethodView.m */; };
 		5273AF1923F31027008C6D89 /* JPOtherPaymentMethodView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5273AF1723F31027008C6D89 /* JPOtherPaymentMethodView.h */; };
@@ -430,6 +440,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3058371C240678B700B61167 /* JudoKitObjC.framework in Embed Frameworks */,
+				30FABFFB242CE0BB00E9A9CE /* TrustKit.framework in Embed Frameworks */,
+				30FABFFD242CE0C900E9A9CE /* DeviceDNA.framework in Embed Frameworks */,
+				30FABFF9242CE09F00E9A9CE /* PayCardsRecognizer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,19 +453,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				30FABFF3242CE01000E9A9CE /* TrustKit.framework in Embed Frameworks */,
+				30FABFF5242CE06000E9A9CE /* DeviceDNA.framework in Embed Frameworks */,
 				3B4EB3C51C981ED2006265A0 /* JudoKitObjC.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		524B24AC242BC1A2007F01ED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				524B24AB242BC1A2007F01ED /* DeviceDNA.framework in Embed Frameworks */,
-				524B24AE242BC1F2007F01ED /* PayCardsRecognizer.framework in Embed Frameworks */,
+				30FABFF7242CE06C00E9A9CE /* PayCardsRecognizer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,6 +833,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */,
+				30FABFFA242CE0BB00E9A9CE /* TrustKit.framework in Frameworks */,
+				30FABFFC242CE0C900E9A9CE /* DeviceDNA.framework in Frameworks */,
+				30FABFF8242CE09F00E9A9CE /* PayCardsRecognizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +843,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FABFF2242CE01000E9A9CE /* TrustKit.framework in Frameworks */,
+				30FABFF4242CE06000E9A9CE /* DeviceDNA.framework in Frameworks */,
 				3B4EB3C41C981ED2006265A0 /* JudoKitObjC.framework in Frameworks */,
+				30FABFF6242CE06C00E9A9CE /* PayCardsRecognizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,8 +861,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FABFE8242CDFE500E9A9CE /* TrustKit.framework in Frameworks */,
 				52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */,
-				15779455211085A9007BD3E1 /* TrustKit.framework in Frameworks */,
 				524B24AA242BC1A2007F01ED /* DeviceDNA.framework in Frameworks */,
 				524B24AD242BC1F2007F01ED /* PayCardsRecognizer.framework in Frameworks */,
 			);
@@ -2612,7 +2622,6 @@
 				3B678B521C6CE5190001DC2F /* Frameworks */,
 				3B678B531C6CE5190001DC2F /* Headers */,
 				3B678B541C6CE5190001DC2F /* Resources */,
-				524B24AC242BC1A2007F01ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
