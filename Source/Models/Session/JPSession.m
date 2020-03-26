@@ -188,7 +188,9 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
                     completion:(JudoCompletionBlock)completion {
 
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                             delegate:self
+                                                        delegateQueue:nil];
 
     return [urlSession dataTaskWithRequest:request
                          completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
@@ -265,6 +267,8 @@ static NSString *const kJudoSandboxBaseURL = @"https://api-sandbox.judopay.com/"
     if (![pinningValidator handleChallenge:challenge completionHandler:completionHandler]) {
         completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
     }
+
+    [session finishTasksAndInvalidate];
 }
 
 #pragma mark - Getters
