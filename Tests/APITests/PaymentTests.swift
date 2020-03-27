@@ -77,41 +77,6 @@ class PaymentTests: JudoTestCase {
     }
     
     /**
-     * GIVEN: I initialize JPPayment with Singapore dollars
-     *
-     * WHEN:  I call JPPayment's 'send' method
-     *
-     * THEN:  A JPResponse object and no error must be returned
-     */
-    func test_OnPaymentWithSingaporeDollars_ReturnResponse() {
-
-        let payment = judo.payment(withJudoId: myJudoId,
-                                   amount: JPAmount(amount: "17.72", currency: "SGD"),
-                                   reference: JPReference(consumerReference: UUID().uuidString))
-        
-        payment.card = validVisaTestCard
-        
-        let expectation = self.expectation(description: "testSingaporeDollars")
-        
-        payment.send(completion: { (response, error) -> () in
-            
-            if let error = error {
-                XCTFail("API call failed with error: \(error)")
-            }
-            
-            XCTAssertNotNil(response,
-                            "Response must not be nil on valid JPPayment configuration")
-            
-            XCTAssertNotNil(response?.items?.first,
-                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
-            
-            expectation.fulfill()
-        })
-        
-        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
-    }
-    
-    /**
      * GIVEN: I initialize JPPayment with an invalid amount
      *
      * WHEN:  I call JPPayment's 'send' method

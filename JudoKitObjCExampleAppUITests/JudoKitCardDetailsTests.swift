@@ -58,13 +58,13 @@ class JudoKitCardDetailsTests: XCTestCase {
         let tableView = app.tables.matching(identifier: "Details")
         XCTAssertEqual(tableView.cells.count, 9)
         
-        XCTAssertEqual(tableView.cells["CardLastFour"].staticTexts.element(boundBy: 1).label, "3436")
-        XCTAssertEqual(tableView.cells["EndDate"].staticTexts.element(boundBy: 1).label, "1220")
-        XCTAssertEqual(tableView.cells["CardType"].staticTexts.element(boundBy: 1).label, "11")
+        XCTAssertEqual(tableView.cells["Card last 4 digits"].staticTexts.element(boundBy: 1).label, "3436")
+        XCTAssertEqual(tableView.cells["End date"].staticTexts.element(boundBy: 1).label, "1220")
+        XCTAssertEqual(tableView.cells["Card type"].staticTexts.element(boundBy: 1).label, "11")
         XCTAssertEqual(tableView.cells["Bank"].staticTexts.element(boundBy: 1).label, "Credit Industriel Et Commercial")
-        XCTAssertEqual(tableView.cells["CardCategory"].staticTexts.element(boundBy: 1).label, "Classic")
-        XCTAssertEqual(tableView.cells["CardCountry"].staticTexts.element(boundBy: 1).label, "FR")
-        XCTAssertEqual(tableView.cells["CardFunding"].staticTexts.element(boundBy: 1).label, "Debit")
-        XCTAssertEqual(tableView.cells["CardScheme"].staticTexts.element(boundBy: 1).label, "Visa")
+        XCTAssertEqual(tableView.cells["Card category"].staticTexts.element(boundBy: 1).label, "Classic")
+        XCTAssertEqual(tableView.cells["Card country"].staticTexts.element(boundBy: 1).label, "FR")
+        XCTAssertEqual(tableView.cells["Card funding"].staticTexts.element(boundBy: 1).label, "Debit")
+        XCTAssertEqual(tableView.cells["Card scheme"].staticTexts.element(boundBy: 1).label, "Visa")
     }
 }

@@ -8,7 +8,7 @@
 
 The Judopay Objective-C SDK is a framework for integrating easy, fast and secure payments inside your app with Judopay. It contains an exhaustive in-app payments and security toolkit that makes integration simple and quick. If you are integrating your app in swift, we highly recommend using [JudoKit](https://github.com/Judopay/JudoKit).
 
-Use our UI components for a seamless user experience for card data capture. Minimise your [PCI scope](https://www.pcisecuritystandards.org/pci_security/completing_self_assessment) with a UI that can be themed or customised to match the look and feel of your app.
+Use our UI components for a seamless user experience for card data capture. Minimize your [PCI scope](https://www.pcisecuritystandards.org/pci_security/completing_self_assessment) with a UI that can be themed or customized to match the look and feel of your app.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ $ gem install cocoapods
 ```ruby
 platform :ios, '10.0'
 
-pod 'JudoKitObjC', '~> 7.1'
+pod 'JudoKitObjC', '~> 10.0.2'
 ```
 
 - Then, run the following command:
@@ -65,7 +65,7 @@ self.judoKitSession = [[JudoKit alloc] initWithToken:token secret:secret];
 To instruct the SDK to communicate with the Sandbox, include the following lines in the ViewController where the payment should be initiated:
 
 ```objc
-// setting the SDK to Sandbox Mode - once this is set, the SDK wil stay in Sandbox mode until the process is killed
+// setting the SDK to Sandbox Mode - once this is set, the SDK will stay in Sandbox mode until the process is killed
 self.judoKitSession.apiSession.sandboxed = YES;
 ```
 
@@ -75,7 +75,7 @@ When you are ready to go live you can remove this line.
 
 ```objc
     JPAmount *amount = [[JPAmount alloc] initWithAmount:@"25.0" currency:@"GBP"];
-    
+
     [self.judoKitSession invokePayment:judoID amount:amount consumerReference:@"consRef" cardDetails:nil completion:^(JPResponse * response, NSError * error) {
         if (error || response.items.count == 0) {
             if (error.domain == JudoErrorDomain && error.code == JudoErrorUserDidCancel) {
@@ -92,4 +92,4 @@ When you are ready to go live you can remove this line.
 
 ## Next steps
 
-Judo's Objective-C SDK supports a range of customization options. For more information on using Judopay for iOS see our [wiki documentation](https://github.com/JudoPay/JudoKitObjC/wiki/) or [API reference](https://judopay.github.io/JudoKitObjC).
+Judo's Objective-C SDK supports a range of customization options. For more information on using Judopay for iOS see our [documentation](https://docs.judopay.com/#ios).
