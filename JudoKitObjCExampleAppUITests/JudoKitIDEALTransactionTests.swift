@@ -32,6 +32,33 @@ class JudoKitIDEALTransactionTests: XCTestCase {
         XCUIApplication().launch()
     }
     
+    override func tearDown() {
+        deleteApp();
+        super.tearDown();
+    }
+    
+    func deleteApp() {
+        XCUIApplication().terminate()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let icon = springboard.icons["JudoKitObjCExampleApp"]
+        if icon.exists {
+            let iconFrame = icon.frame
+            let springboardFrame = springboard.frame
+            icon.press(forDuration: 4)
+
+            springboard.coordinate(withNormalizedOffset: CGVector(dx: (iconFrame.minX + 3) / springboardFrame.maxX, dy: (iconFrame.minY + 3) / springboardFrame.maxY)).tap()
+
+            
+            let deleteButton = springboard.alerts.buttons["Delete"]
+            let existsPredicate = NSPredicate(format: "exists == 1")
+            
+            expectation(for: existsPredicate, evaluatedWith: deleteButton, handler: nil)
+            waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
+            
+            deleteButton.tap()
+        }
+    }
+    
     func test_OnLoad_DisplayIDEALOptions() {
         let app = XCUIApplication();
         XCTAssert(app.tables.staticTexts["iDEAL Transaction"].exists)
@@ -40,7 +67,7 @@ class JudoKitIDEALTransactionTests: XCTestCase {
     func test_OnNoBankSelected_DoNotDisplayPayButton() {
         let app = XCUIApplication()
         app.tables.staticTexts["iDEAL Transaction"].tap()
-        
+                
         XCTAssertTrue(app.staticTexts["Select iDEAL bank"].exists)
         XCTAssertFalse(app.staticTexts["Selected bank:"].exists)
         XCTAssertTrue(app.navigationBars.buttons["Pay"].exists)
@@ -58,11 +85,19 @@ class JudoKitIDEALTransactionTests: XCTestCase {
     func test_OnBankSelection_EnablePayButton() {
         let app = XCUIApplication()
         app.tables.staticTexts["iDEAL Transaction"].tap()
-        app.staticTexts["Select iDEAL bank"].tap()
-        app.cells.firstMatch.tap()
+        
+        
+        if (app.staticTexts["Select iDEAL bank"].exists) {
+            app.staticTexts["Select iDEAL bank"].tap()
+            let idealCells = app.tables.cells.containing(.cell, identifier: "IDEALBankCell")
+            idealCells.firstMatch.tap()
+        }
         
         XCTAssertTrue(app.staticTexts["Selected bank:"].exists)
         XCTAssertFalse(app.staticTexts["Select iDEAL bank"].exists)
+        
+        app.textFields.firstMatch.tap()
+        app.textFields.firstMatch.typeText("iDEAL Bank")
         
         XCTAssertTrue(app.navigationBars.buttons["Pay"].exists)
         XCTAssertTrue(app.navigationBars.buttons["Pay"].isEnabled)

@@ -76,41 +76,6 @@ class PreAuthTests: JudoTestCase {
     }
     
     /**
-     * GIVEN: I initialize JPPreAuth with Singapore dollars
-     *
-     * WHEN:  I call JPPreAuth 'send' method
-     *
-     * THEN:  A JPResponse object and no error must be returned
-     */
-    func test_OnPreAuthWithSingaporeDollars_ReturnResponse() {
-        
-        let preAuth = judo.preAuth(withJudoId: myJudoId,
-                                   amount: JPAmount(amount: "17.72", currency: "SGD"),
-                                   reference: JPReference(consumerReference: UUID().uuidString))
-        
-        preAuth.card = validVisaTestCard
-        
-        let expectation = self.expectation(description: "testSingaporeDollars")
-        
-        preAuth.send(completion: { (response, error) -> () in
-            
-            if let error = error {
-                XCTFail("API call failed with error: \(error)")
-            }
-            
-            XCTAssertNotNil(response,
-                            "Response must not be nil on valid JPPreAuth configuration")
-            
-            XCTAssertNotNil(response?.items?.first,
-                            "Response must contain at least one JPTransactionData object on valid Collection configuration")
-            
-            expectation.fulfill()
-        })
-        
-        self.waitForExpectations(timeout: kTestCaseTimeout, handler: nil)
-    }
-    
-    /**
      * GIVEN: I initialize JPPreAuth with an invalid amount
      *
      * WHEN:  I call JPPreAuth 'send' method

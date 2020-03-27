@@ -112,7 +112,7 @@ class CollectionTests: JudoTestCase {
             XCTAssertNil(response,
                             "Response must be nil on invalid Collection configuration")
             
-            self?.assert(error: error, as: .errorUncaught_Error)
+            self?.assert(error: error, as: .errorGeneral_Error)
             
             expectation.fulfill();
         })
