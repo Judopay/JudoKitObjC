@@ -93,8 +93,8 @@
         return;
     }
 
+    __weak typeof(self) weakSelf = self;
     [transaction sendWithCompletion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
 
         if (error || response.items.count == 0) {
             if (weakSelf.completionBlock)

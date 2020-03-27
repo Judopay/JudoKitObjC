@@ -72,13 +72,12 @@ static const float kTimerDuration = 60.0f;
         return;
     }
 
+    __weak typeof(self) weakSelf = self;
     [self.transactionService sendRequestWithEndpoint:kRedirectEndpoint
                                           httpMethod:HTTPMethodPOST
                                           parameters:parameters
                                           completion:^(JPResponse *response, NSError *error) {
                                               JPTransactionData *data = response.items.firstObject;
-
-                                              __weak typeof(self) weakSelf = self;
 
                                               if (data.orderDetails.orderId && data.redirectUrl) {
                                                   completion([weakSelf remapIdealResponseWithResponse:response], error);
@@ -93,10 +92,10 @@ static const float kTimerDuration = 60.0f;
                                checksum:(NSString *)checksum
                              completion:(JudoCompletionBlock)completion {
 
+    __weak typeof(self) weakSelf = self;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerDuration
                                                  repeats:NO
                                                    block:^(NSTimer *_Nonnull timer) {
-                                                       __weak typeof(self) weakSelf = self;
 
                                                        weakSelf.didTimeout = true;
                                                        completion(nil, NSError.judoRequestTimeoutError);
@@ -114,11 +113,12 @@ static const float kTimerDuration = 60.0f;
     }
 
     NSString *statusEndpoint = [NSString stringWithFormat:@"%@/%@", kStatusRequestEndpoint, orderId];
+
+    __weak typeof(self) weakSelf = self;
     [self.transactionService sendRequestWithEndpoint:statusEndpoint
                                           httpMethod:HTTPMethodGET
                                           parameters:nil
                                           completion:^(JPResponse *response, NSError *error) {
-                                              __weak typeof(self) weakSelf = self;
 
                                               if (error) {
                                                   completion(nil, error);

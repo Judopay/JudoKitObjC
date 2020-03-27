@@ -182,9 +182,9 @@
 }
 
 - (void)handleCameraPermissions {
+    __weak typeof(self) weakSelf = self;
     [self.interactor handleCameraPermissionsWithCompletion:^(AVAuthorizationStatus authorizationStatus) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            __weak typeof(self) weakSelf = self;
             switch (authorizationStatus) {
                 case AVAuthorizationStatusDenied:
                     [weakSelf.view displayCameraPermissionsAlert];

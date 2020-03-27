@@ -84,17 +84,15 @@
 - (void)enrichTransaction:(nonnull JPTransaction *)transaction
            withCompletion:(nonnull void (^)(void))completion {
 
-    __weak typeof(self) weakSelf = self;
-
-    if (![weakSelf shouldEnrichTransaction:transaction]) {
+    if (![self shouldEnrichTransaction:transaction]) {
         completion();
         return;
     }
 
-    weakSelf.completionBlock = completion;
-    weakSelf.transaction = transaction;
+    self.completionBlock = completion;
+    self.transaction = transaction;
 
-    [weakSelf enrichWithLocation:weakSelf.lastKnownLocation];
+    [self enrichWithLocation:self.lastKnownLocation];
 }
 
 #pragma mark - Helper methods
@@ -102,7 +100,6 @@
 - (void)enrichWithLocation:(CLLocation *)location {
 
     __weak typeof(self) weakSelf = self;
-
     [self.deviceDNA getDeviceSignals:^(NSDictionary *device, NSError *error) {
         JPEnhancedPaymentDetail *detail;
         detail = [weakSelf buildEnhancedPaymentDetail:device
@@ -110,6 +107,7 @@
 
         [weakSelf.transaction setPaymentDetail:detail];
         [weakSelf.transaction setDeviceSignal:device];
+
         weakSelf.completionBlock();
     }];
 }

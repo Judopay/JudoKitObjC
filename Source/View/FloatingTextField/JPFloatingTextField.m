@@ -131,9 +131,9 @@ static const float kErrorConstraintOffset = -15.0f;
     CGFloat yOffset = (scale > 1) ? kErrorTextOffset : -kErrorTextOffset;
     CGFloat yOrigin = newOrigin.y + yOffset;
 
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:kAnimationDuration
                      animations:^{
-                         __weak typeof(self) weakSelf = self;
                          weakSelf.frame = CGRectMake(newOrigin.x, yOrigin, self.frame.size.width, self.frame.size.height);
                          weakSelf.transform = oldTransform;
                          weakSelf.floatingLabel.alpha = alphaValue;

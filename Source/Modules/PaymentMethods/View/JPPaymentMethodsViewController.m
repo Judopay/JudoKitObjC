@@ -289,10 +289,10 @@
                                                            style:UIAlertActionStyleDefault
                                                          handler:nil];
 
+    __weak typeof(self) weakSelf = self;
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"delete".localized
                                                            style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction *_Nonnull action) {
-                                                             __weak typeof(self) weakSelf = self;
                                                              [weakSelf.presenter deleteCardWithIndex:indexPath.row];
                                                          }];
 
@@ -321,10 +321,12 @@
 - (void)didTapActionButton {
     BOOL isEditing = self.paymentMethodsView.tableView.isEditing == YES;
     [CATransaction begin];
+
+    __weak typeof(self) weakSelf = self;
     [CATransaction setCompletionBlock:^{
-        __weak typeof(self) weakSelf = self;
         [weakSelf.presenter changeHeaderButtonTitle:!isEditing];
     }];
+
     [self.paymentMethodsView.tableView setEditing:!isEditing animated:YES];
     [CATransaction commit];
 }

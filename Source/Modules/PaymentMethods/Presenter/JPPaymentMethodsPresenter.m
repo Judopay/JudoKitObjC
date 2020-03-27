@@ -105,6 +105,8 @@
 
 - (void)handlePayButtonTap {
 
+    __weak typeof(self) weakSelf = self;
+    
     if (self.paymentSelectionModel.selectedPaymentMethod == JPPaymentMethodTypeIDeal) {
 
         NSArray *bankTypes = [self.interactor getIDEALBankTypes];
@@ -114,7 +116,6 @@
 
         [self.router navigateToIDEALModuleWithBank:iDEALBank
                                      andCompletion:^(JPResponse *response, NSError *error) {
-                                         __weak typeof(self) weakSelf = self;
                                          [weakSelf handleIDEALCallbackWithResponse:response andError:error];
                                      }];
         return;
@@ -122,15 +123,14 @@
 
     [self.interactor paymentTransactionWithToken:self.selectedCard.cardToken
                                    andCompletion:^(JPResponse *response, NSError *error) {
-                                       __weak typeof(self) weakSelf = self;
                                        [weakSelf handleCallbackWithResponse:response
                                                                    andError:error];
                                    }];
 }
 
 - (void)handleApplePayButtonTap {
+    __weak typeof(self) weakSelf = self;
     [self.interactor startApplePayWithCompletion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleCallbackWithResponse:response
                                     andError:error];
     }];
@@ -157,9 +157,10 @@
 }
 
 - (void)handle3DSecureTransactionWithError:(NSError *)error {
+
+    __weak typeof(self) weakSelf = self;
     [self.interactor handle3DSecureTransactionFromError:error
                                              completion:^(JPResponse *response, NSError *error) {
-                                                 __weak typeof(self) weakSelf = self;
 
                                                  if (error) {
                                                      [weakSelf handlePaymentError:error];

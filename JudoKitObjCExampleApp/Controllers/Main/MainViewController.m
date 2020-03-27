@@ -77,82 +77,82 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 #pragma mark - SDK Features
 
 - (void)paymentOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeTransactionWithType:TransactionTypePayment
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)preAuthOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeTransactionWithType:TransactionTypePreAuth
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)createCardTokenOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeTransactionWithType:TransactionTypeRegisterCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)checkCardOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeTransactionWithType:TransactionTypeCheckCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)saveCardOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeTransactionWithType:TransactionTypeSaveCard
                                      configuration:self.configuration
                                         completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)applePayPaymentOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeApplePayWithMode:TransactionModePayment
                                   configuration:self.applePayConfiguration
                                      completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)applePayPreAuthOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeApplePayWithMode:TransactionModePreAuth
                                   configuration:self.applePayConfiguration
                                      completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)paymentMethodOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokePaymentMethodScreenWithMode:TransactionModePayment
                                              configuration:self.configuration
                                                 completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
 
 - (void)preAuthMethodOperation {
+    __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokePaymentMethodScreenWithMode:TransactionModePreAuth
                                              configuration:self.configuration
                                                 completion:^(JPResponse *response, NSError *error) {
-        __weak typeof(self) weakSelf = self;
         [weakSelf handleResponse:response];
     }];
 }
@@ -171,8 +171,9 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         self.cardDetails = transactionData.cardDetails;
         self.payToken = transactionData.paymentToken;
     }
+
+    __weak typeof(self) weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        __weak typeof(self) weakSelf = self;
         [weakSelf presentDetailsViewControllerWithTransactionData:transactionData];
     }];
 }

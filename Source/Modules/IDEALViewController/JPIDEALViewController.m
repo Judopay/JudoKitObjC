@@ -85,9 +85,11 @@ const float kPollingDelayTimer = 30.0;
 #pragma mark - iDEAL Logic
 
 - (void)redirectURLForIDEALBank:(JPIDEALBank *)iDEALBank {
+
+    __weak typeof(self) weakSelf = self;
     [self.idealService redirectURLForIDEALBank:iDEALBank
                                     completion:^(JPResponse *response, NSError *error) {
-                                        __weak typeof(self) weakSelf = self;
+
                                         if (error) {
                                             [weakSelf dismissViewControllerAnimated:YES
                                                                          completion:^{
@@ -180,17 +182,16 @@ const float kPollingDelayTimer = 30.0;
 }
 
 - (void)startPolling {
+    __weak typeof(self) weakSelf = self;
     self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:kPollingDelayTimer
                                                         repeats:NO
                                                           block:^(NSTimer *_Nonnull timer) {
-                                                              __weak typeof(self) weakSelf = self;
                                                               [weakSelf.transactionStatusView changeToTransactionStatus:JPTransactionStatusPendingDelayed];
                                                           }];
 
     [self.idealService pollTransactionStatusForOrderId:self.orderID
                                               checksum:self.checksum
                                             completion:^(JPResponse *response, NSError *error) {
-                                                __weak typeof(self) weakSelf = self;
 
                                                 [weakSelf.pollingTimer invalidate];
 

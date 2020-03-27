@@ -184,11 +184,11 @@
     CGSize keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     self.addCardView.bottomSliderConstraint.constant = -keyboardSize.height;
 
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:curve
                      animations:^{
-                         __weak typeof(self) weakSelf = self;
                          [weakSelf.view layoutIfNeeded];
                      }
                      completion:nil];
@@ -200,11 +200,11 @@
 
     self.addCardView.bottomSliderConstraint.constant = 0;
 
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:curve
                      animations:^{
-                         __weak typeof(self) weakSelf = self;
                          [weakSelf.view layoutIfNeeded];
                      }
                      completion:nil];

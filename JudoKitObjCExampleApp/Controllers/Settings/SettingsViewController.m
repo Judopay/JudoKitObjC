@@ -58,11 +58,11 @@
 }
 
 - (IBAction)didTapCloseButton:(id)sender {
+    __weak typeof(self) weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        __weak typeof(self) weakSelf = self;
         if ([weakSelf.delegate respondsToSelector:@selector(settingsViewController:didUpdateSettings:)]) {
-            [weakSelf.delegate settingsViewController:self
-                                    didUpdateSettings:self.settings];
+            [weakSelf.delegate settingsViewController:weakSelf
+                                    didUpdateSettings:weakSelf.settings];
         }
     }];
 }

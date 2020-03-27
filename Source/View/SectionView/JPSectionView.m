@@ -157,9 +157,9 @@ static const float kSliderCornerRadius = 10.0f;
     CGFloat width = self.adaptiveSectionWidth - kContentPadding * 2;
     CGFloat height = kSectionHeight - kContentPadding * 2;
 
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:kAnimationDuration
                      animations:^{
-                         __weak typeof(self) weakSelf = self;
                          weakSelf.sliderView.frame = CGRectMake(xPosition, yPosition, width, height);
                      }];
 }
