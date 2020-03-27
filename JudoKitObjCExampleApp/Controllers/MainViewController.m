@@ -89,7 +89,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                applePayConfiguratation:[self applePayConfigurationWithType:TransactionTypePayment]
                            cardDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -99,7 +102,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                      consumerReference:kConsumerReference
                            cardDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -109,7 +115,9 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                      consumerReference:kConsumerReference
                            cardDetails:nil
                             completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -118,7 +126,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                           consumerReference:kConsumerReference
                                 cardDetails:nil
                                  completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:NO];
     }];
 }
 
@@ -128,7 +139,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                reference:[[JPReference alloc] initWithConsumerReference:kConsumerReference]
                              cardDetails:nil
                               completion:^(JPResponse *response, NSError *error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -137,7 +151,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                       consumerReference:kConsumerReference
                             cardDetails:nil
                              completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:NO];
     }];
 }
 
@@ -152,7 +169,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                 cardDetails:self.cardDetails
                                paymentToken:self.payToken
                                  completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -168,7 +188,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                 cardDetails:self.cardDetails
                                paymentToken:self.payToken
                                  completion:^(JPResponse * response, NSError * error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -185,7 +208,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
                                                    amount:[JPAmount amount:@"1.0" currency:@"EUR"]
                                                 reference:[JPReference consumerReference:kConsumerReference]
                                                completion:^(JPResponse *response, NSError *error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -193,7 +219,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     ApplePayConfiguration *configuration = [self applePayConfigurationWithType:transactionType];
     [self.judoKitSession invokeApplePayWithConfiguration:configuration
                                               completion:^(JPResponse *_Nullable response, NSError *_Nullable error) {
-        [self handleCallbackWithResponse:response andError:error];
+
+        [self handleCallbackWithResponse:response
+                                andError:error
+                          displayResults:YES];
     }];
 }
 
@@ -205,13 +234,15 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 #pragma mark - Helper methods
 
 - (void)handleCallbackWithResponse:(JPResponse *)response
-                          andError:(NSError *)error {
+                          andError:(NSError *)error
+                    displayResults:(BOOL)displayResults {
     if (error) {
         [self handleError:error];
         return;
     }
 
-    [self handleResponse:response];
+    [self handleResponse:response
+       andDisplayResults:displayResults];
 }
 
 - (void)handleError:(NSError *)error {
@@ -222,7 +253,9 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     }
 }
 
-- (void)handleResponse:(JPResponse *)response {
+- (void)handleResponse:(JPResponse *)response
+     andDisplayResults:(BOOL)displayResults {
+
     JPTransactionData *transactionData = response.items.firstObject;
 
     if (!transactionData) {
@@ -234,8 +267,11 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
         self.cardDetails = transactionData.cardDetails;
         self.payToken = transactionData.paymentToken;
     }
+
     [self dismissViewControllerAnimated:YES completion:^{
-        [self presentDetailsViewControllerWithTransactionData:transactionData];
+        if (displayResults) {
+            [self presentDetailsViewControllerWithTransactionData:transactionData];
+        }
     }];
 }
 
