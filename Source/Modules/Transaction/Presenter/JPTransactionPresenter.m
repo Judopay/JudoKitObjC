@@ -41,7 +41,6 @@
 @property (nonatomic, assign) BOOL isCardholderNameValid;
 @property (nonatomic, assign) BOOL isExpiryDateValid;
 @property (nonatomic, assign) BOOL isSecureCodeValid;
-@property (nonatomic, assign) BOOL isCountryValid;
 @property (nonatomic, assign) BOOL isPostalCodeValid;
 @end
 
@@ -55,7 +54,6 @@
         self.isCardholderNameValid = NO;
         self.isExpiryDateValid = NO;
         self.isSecureCodeValid = NO;
-        self.isCountryValid = NO;
         self.isPostalCodeValid = NO;
     }
     return self;
@@ -73,9 +71,14 @@
     self.addCardViewModel.cardholderNameViewModel.placeholder = @"cardholder_name".localized;
     self.addCardViewModel.expiryDateViewModel.placeholder = @"expiry_date".localized;
     self.addCardViewModel.secureCodeViewModel.placeholder = @"secure_code".localized;
+
+    NSArray *selectableCountryNames = [self.interactor getSelectableCountryNames];
     self.addCardViewModel.countryPickerViewModel.placeholder = @"country".localized;
-    self.addCardViewModel.countryPickerViewModel.pickerTitles = [self.interactor getSelectableCountryNames];
+    self.addCardViewModel.countryPickerViewModel.pickerTitles = selectableCountryNames;
+    self.addCardViewModel.countryPickerViewModel.text = selectableCountryNames.firstObject;
+
     self.addCardViewModel.postalCodeInputViewModel.placeholder = @"postal_code".localized;
+
     self.addCardViewModel.addCardButtonViewModel.title = buttonTitle.uppercaseString;
     self.addCardViewModel.addCardButtonViewModel.isEnabled = false;
 
@@ -246,12 +249,11 @@
 
     BOOL firstCheck = self.isCardNumberValid && self.isCardholderNameValid;
     BOOL secondCheck = self.isExpiryDateValid && self.isSecureCodeValid;
-    BOOL thirdCheck = self.isCountryValid && self.isPostalCodeValid;
 
     BOOL isCardValid = firstCheck && secondCheck;
 
     if ([self.interactor isAVSEnabled]) {
-        isCardValid = isCardValid && thirdCheck;
+        isCardValid = isCardValid && self.isPostalCodeValid;
     }
 
     self.addCardViewModel.addCardButtonViewModel.isEnabled = isCardValid;
@@ -309,7 +311,6 @@
 - (void)updateCountryViewModelForInput:(NSString *)input {
     JPValidationResult *result = [self.interactor validateCountryInput:input];
     self.addCardViewModel.countryPickerViewModel.errorText = result.errorMessage;
-    self.isCountryValid = result.isValid;
 
     if (result.isInputAllowed) {
         self.addCardViewModel.countryPickerViewModel.text = result.formattedInput;

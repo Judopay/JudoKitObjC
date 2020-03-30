@@ -453,4 +453,11 @@
     return self.lastPostalCodeValidationResult;
 }
 
+- (NSString *)selectedJPBillingCountry {
+    if (!_selectedJPBillingCountry) {
+        _selectedJPBillingCountry = @"country_uk".localized;
+    }
+    return _selectedJPBillingCountry;
+}
+
 @end
