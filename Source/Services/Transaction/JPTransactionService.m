@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "JPTransactionService.h"
+#import "JPAmount.h"
 #import "JPCard.h"
 #import "JPReference.h"
 #import "JPTransactionEnricher.h"
@@ -80,6 +81,15 @@
     transaction.primaryAccountDetails = configuration.primaryAccountDetails;
     transaction.apiSession = self.session;
     transaction.enricher = self.enricher;
+
+    BOOL isRegisterCard = (self.transactionType == TransactionTypeRegisterCard);
+    BOOL isSaveCard = (self.transactionType == TransactionTypeSaveCard);
+    BOOL isCheckCard = (self.transactionType == TransactionTypeCheckCard);
+
+    if (isRegisterCard || isSaveCard || isCheckCard) {
+        transaction.amount = [JPAmount amount:@"0.0"
+                                     currency:configuration.amount.currency];
+    }
 
     return transaction;
 }
