@@ -48,8 +48,12 @@
 @property (nonatomic, strong) JPPaymentMethodsIDEALBankListModel *bankListModel;
 @property (nonatomic, strong) JPTransactionButtonViewModel *paymentButtonModel;
 
-@property (nonatomic, assign) NSUInteger previousIndex;
+@property (nonatomic, assign) NSUInteger previousSectionIndex;
+@property (nonatomic, assign) NSUInteger selectedSectionIndex;
+
 @property (nonatomic, assign) NSUInteger selectedBankIndex;
+@property (nonatomic, strong) NSArray<JPPaymentMethod *> *paymentMethods;
+
 @end
 
 @implementation JPPaymentMethodsPresenterImpl
@@ -195,23 +199,25 @@
 
 - (void)changePaymentMethodToIndex:(NSUInteger)index {
 
-    if (index == self.previousIndex) {
+    if (index == self.previousSectionIndex) {
         return;
     }
 
     AnimationType animationType = AnimationTypeLeftToRight;
 
-    if (index < self.previousIndex) {
+    if (index < self.previousSectionIndex) {
         animationType = AnimationTypeRightToLeft;
     }
 
-    JPPaymentMethod *previousMethod = self.paymentSelectionModel.paymentMethods[self.previousIndex];
+    JPPaymentMethod *previousMethod = self.paymentSelectionModel.paymentMethods[self.previousSectionIndex];
     if (previousMethod.type == JPPaymentMethodTypeCard && self.cardListModel.cardModels.count == 0) {
         animationType = AnimationTypeSetup;
     }
 
-    self.previousIndex = index;
-    self.paymentSelectionModel.selectedPaymentMethod = index;
+    self.previousSectionIndex = index;
+    self.selectedSectionIndex = index;
+    
+    self.paymentSelectionModel.selectedPaymentMethod = self.paymentMethods[index].type;
 
     [self viewModelNeedsUpdateWithAnimationType:animationType
                             shouldAnimateChange:YES];
@@ -257,20 +263,16 @@
 
 - (void)preparePaymentMethodModels {
 
-    NSArray *paymentMethods = [self.interactor getPaymentMethods];
-    self.paymentSelectionModel.paymentMethods = paymentMethods;
+    self.paymentSelectionModel.paymentMethods = self.paymentMethods;
 
     if (paymentMethods.count > 1) {
         [self.viewModel.items addObject:self.paymentSelectionModel];
     }
 
-    NSUInteger selectedPaymentIndex = self.paymentSelectionModel.selectedPaymentMethod;
-    JPPaymentMethod *selectedPaymentMethod = self.paymentSelectionModel.paymentMethods[selectedPaymentIndex];
-
-    self.viewModel.headerModel.paymentMethodType = selectedPaymentMethod.type;
+    self.viewModel.headerModel.paymentMethodType = self.paymentSelectionModel.selectedPaymentMethod;
     self.viewModel.headerModel.isApplePaySetUp = [self.interactor isApplePaySetUp];
 
-    switch (selectedPaymentMethod.type) {
+    switch (self.paymentSelectionModel.selectedPaymentMethod) {
         case JPPaymentMethodTypeCard:
             [self prepareCardListModels];
             break;
@@ -402,6 +404,7 @@
     if (!_paymentSelectionModel) {
         _paymentSelectionModel = [JPPaymentMethodsSelectionModel new];
         _paymentSelectionModel.identifier = @"JPPaymentMethodsSelectionCell";
+        _paymentSelectionModel.selectedPaymentMethod = self.paymentMethods.firstObject.type;
     }
     return _paymentSelectionModel;
 }
@@ -477,6 +480,13 @@
         _bankListModel.identifier = @"JPPaymentMethodsIDEALBankCell";
     }
     return _bankListModel;
+}
+
+- (NSArray<JPPaymentMethod *> *)paymentMethods {
+    if (!_paymentMethods) {
+        _paymentMethods = [self.interactor getPaymentMethods];
+    }
+    return _paymentMethods;
 }
 
 @end
