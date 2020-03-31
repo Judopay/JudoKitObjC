@@ -55,7 +55,12 @@ typedef NS_ENUM(NSUInteger, AnimationType) {
 /**
  * The index of the currently selected payment method
  */
-@property (nonatomic, assign) NSUInteger selectedPaymentMethod;
+@property (nonatomic, assign) NSUInteger selectedIndex;
+
+/**
+ * The type of the currently selected payment method
+ */
+@property (nonatomic, assign) JPPaymentMethodType selectedPaymentMethod;
 
 /**
  * An array of available payment methods

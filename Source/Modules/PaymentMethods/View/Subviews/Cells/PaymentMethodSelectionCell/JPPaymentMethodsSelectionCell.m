@@ -90,7 +90,7 @@ static const int kConstraintPriority = 999;
     [self setupSectionViewWithSections:sections];
 
     if (selectionModel.selectedPaymentMethod != 0) {
-        [self.sectionView switchToSectionAtIndex:selectionModel.selectedPaymentMethod];
+        [self.sectionView switchToSectionAtIndex:selectionModel.selectedIndex];
     }
 }
 

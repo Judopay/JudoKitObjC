@@ -216,7 +216,8 @@
 
     self.previousSectionIndex = index;
     self.selectedSectionIndex = index;
-    
+
+    self.paymentSelectionModel.selectedIndex = index;
     self.paymentSelectionModel.selectedPaymentMethod = self.paymentMethods[index].type;
 
     [self viewModelNeedsUpdateWithAnimationType:animationType
@@ -265,7 +266,7 @@
 
     self.paymentSelectionModel.paymentMethods = self.paymentMethods;
 
-    if (paymentMethods.count > 1) {
+    if (self.paymentMethods.count > 1) {
         [self.viewModel.items addObject:self.paymentSelectionModel];
     }
 
