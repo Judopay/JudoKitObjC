@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		12FE6DAE29E3EF59BBBC4FA7 /* Pods_JudoKitSwiftExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9437CE256BA5076C032651 /* Pods_JudoKitSwiftExampleApp.framework */; };
 		30006F1F23F6971B0099F3C5 /* JPSliderPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1B23F6971B0099F3C5 /* JPSliderPresentationController.m */; };
 		30006F2023F6971B0099F3C5 /* JPSliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1C23F6971B0099F3C5 /* JPSliderTransitioningDelegate.m */; };
 		30006F2123F6971B0099F3C5 /* JPSliderPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F1D23F6971B0099F3C5 /* JPSliderPresentationController.h */; };
@@ -213,7 +214,6 @@
 		30583701240677B000B61167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305836ED240677B000B61167 /* AppDelegate.swift */; };
 		3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; };
 		3058371C240678B700B61167 /* JudoKitObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B678B561C6CE5190001DC2F /* JudoKitObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */; };
 		30D0894023901F1F00480C9E /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C22170235DC518000D6E3A /* icons.bundle */; };
 		30D61D5423BB741A004E5CEE /* JPPaymentMethodsPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D61D3323BB741A004E5CEE /* JPPaymentMethodsPresenter.h */; };
 		30D61D5523BB741A004E5CEE /* JPPaymentMethodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D61D3423BB741A004E5CEE /* JPPaymentMethodsViewModel.m */; };
@@ -246,6 +246,7 @@
 		30DB512223100E6B00B73D66 /* Functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30DB511B23100E6B00B73D66 /* Functions.h */; };
 		30E764FD23C31E1A00CA9C25 /* JudoKitPaymentMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */; };
 		30F77E54241A650800D68BF9 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F77E53241A650800D68BF9 /* UITextField+Additions.m */; };
+		310A74F15EA4982D460FB896 /* Pods_JudoKitObjCExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4B9BB1980B6E88D86E54DB /* Pods_JudoKitObjCExampleApp.framework */; };
 		3B35F6401C98626400DBAF59 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B35F63F1C98626400DBAF59 /* DetailViewController.xib */; };
 		3B4EB39C1C981EA7006265A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39B1C981EA7006265A0 /* main.m */; };
 		3B4EB39F1C981EA7006265A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EB39E1C981EA7006265A0 /* AppDelegate.m */; };
@@ -274,6 +275,7 @@
 		44E3A10423498ADB0042C9EC /* DemoFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10323498ADB0042C9EC /* DemoFeature.m */; };
 		44E3A10723498B770042C9EC /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10623498B770042C9EC /* Settings.m */; };
 		44E3A10A23498D150042C9EC /* HalfHeightPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */; };
+		4D22BEBE63561BDDC3AA6A1A /* Pods_JudoKitObjCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67A723BC96F47240D5263F5 /* Pods_JudoKitObjCTests.framework */; };
 		5273AF1423F30730008C6D89 /* JPCardPaymentMethodView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5273AF1223F30730008C6D89 /* JPCardPaymentMethodView.h */; };
 		5273AF1523F30730008C6D89 /* JPCardPaymentMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5273AF1323F30730008C6D89 /* JPCardPaymentMethodView.m */; };
 		5273AF1923F31027008C6D89 /* JPOtherPaymentMethodView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5273AF1723F31027008C6D89 /* JPOtherPaymentMethodView.h */; };
@@ -317,6 +319,7 @@
 		52B74DA323F98B4C009FE38C /* JPTransactionRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 52B74D8F23F98B4C009FE38C /* JPTransactionRouter.h */; };
 		52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */; };
 		702804381CE9F9AC00150B21 /* JudoTestCaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */; };
+		70910809A8FF88098065DC24 /* Pods_JudoKitObjCExampleAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068989198DE40B75F697B3EE /* Pods_JudoKitObjCExampleAppUITests.framework */; };
 		827AF51923FFD294009ECC9C /* JPPaymentMethodsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50D23FFD257009ECC9C /* JPPaymentMethodsTest.swift */; };
 		827AF51A23FFD299009ECC9C /* JPPaymentMethodsViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50A23FFD257009ECC9C /* JPPaymentMethodsViewControllerMock.swift */; };
 		827AF51B23FFD299009ECC9C /* JPPaymentMethodsInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827AF50C23FFD257009ECC9C /* JPPaymentMethodsInteractorMock.swift */; };
@@ -325,11 +328,7 @@
 		82A3CA452420D8E800C6BA71 /* CardStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823B0FA22420D873000BFAED /* CardStorageTest.swift */; };
 		82A3CA462420D8F100C6BA71 /* JPCardValidationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823B0F942420D868000BFAED /* JPCardValidationServiceTest.swift */; };
 		82A3CA472420D95700C6BA71 /* JPTransactionServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823B0F952420D868000BFAED /* JPTransactionServiceTest.swift */; };
-		976A6D8A3F0ADF0FAD583385 /* Pods_JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CA48AAD825149523923951 /* Pods_JudoKitObjC.framework */; };
-		9F4832533D545C852B4F0C91 /* Pods_JudoKitObjCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370CCA3FBFEB64997FB1648B /* Pods_JudoKitObjCTests.framework */; };
-		AE3D5C9A7B95FE514BC9F3FD /* Pods_JudoKitSwiftExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7727B3937A0BC9BD92CF5C74 /* Pods_JudoKitSwiftExampleApp.framework */; };
-		AF84ABD036C03ABD15CD282A /* Pods_JudoKitObjCExampleAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D95197B44019DD28BD6196 /* Pods_JudoKitObjCExampleAppUITests.framework */; };
-		DA2520AB3FE2FA110BEC4DD4 /* Pods_JudoKitObjCExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AAABA1E51E1C511095BE16 /* Pods_JudoKitObjCExampleApp.framework */; };
+		D64A691DC5F5EFD058C3613F /* Pods_JudoKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1491A1C06D6EF2998B4002 /* Pods_JudoKitObjC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -405,9 +404,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E31AAAC5066F7D45579D050 /* Pods-JudoKitObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		068989198DE40B75F697B3EE /* Pods_JudoKitObjCExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1577946021121FFA007BD3E1 /* SaveCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardTests.swift; sourceTree = "<group>"; };
 		15CFC9EC1FB74A4200430D31 /* VCOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCOTests.swift; sourceTree = "<group>"; };
+		2A239082A24AB9575439D0A7 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		30006F1B23F6971B0099F3C5 /* JPSliderPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSliderPresentationController.m; sourceTree = "<group>"; };
 		30006F1C23F6971B0099F3C5 /* JPSliderTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSliderTransitioningDelegate.m; sourceTree = "<group>"; };
 		30006F1D23F6971B0099F3C5 /* JPSliderPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSliderPresentationController.h; sourceTree = "<group>"; };
@@ -604,7 +604,6 @@
 		305836EE240677B000B61167 /* JudoKitSwiftExample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = JudoKitSwiftExample.entitlements; sourceTree = "<group>"; };
 		305836EF240677B000B61167 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C22170235DC518000D6E3A /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
-		30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitIDEALTransactionTests.swift; sourceTree = "<group>"; };
 		30D088F2238D735A00480C9E /* IDEALManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEALManagerTests.swift; sourceTree = "<group>"; };
 		30D088F3238D735A00480C9E /* PostCodeValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCodeValidationTests.swift; sourceTree = "<group>"; };
 		30D185522301B3FD0097F85F /* ApplePayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayTests.swift; sourceTree = "<group>"; };
@@ -639,7 +638,6 @@
 		30DB511B23100E6B00B73D66 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
 		30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudoKitPaymentMethodsTests.swift; sourceTree = "<group>"; };
 		30F77E53241A650800D68BF9 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Additions.m"; sourceTree = "<group>"; };
-		370CCA3FBFEB64997FB1648B /* Pods_JudoKitObjCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B35F63F1C98626400DBAF59 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3B4EB3981C981EA7006265A0 /* JudoKitObjCExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudoKitObjCExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4EB39B1C981EA7006265A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -699,8 +697,6 @@
 		44E3A10823498D150042C9EC /* HalfHeightPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfHeightPresentationController.h; sourceTree = "<group>"; };
 		44E3A10923498D150042C9EC /* HalfHeightPresentationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfHeightPresentationController.m; sourceTree = "<group>"; };
 		44FFE3A622F04FD000E42F2D /* TransactionEnricherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEnricherTests.swift; sourceTree = "<group>"; };
-		492429BCEF5CFA62AC00E50F /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitSwiftExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitSwiftExampleApp/Pods-JudoKitSwiftExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		51217B3049FB7907156D2154 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5273AF1223F30730008C6D89 /* JPCardPaymentMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCardPaymentMethodView.h; sourceTree = "<group>"; };
 		5273AF1323F30730008C6D89 /* JPCardPaymentMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPCardPaymentMethodView.m; sourceTree = "<group>"; };
 		5273AF1723F31027008C6D89 /* JPOtherPaymentMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPOtherPaymentMethodView.h; sourceTree = "<group>"; };
@@ -742,17 +738,13 @@
 		52B74D8E23F98B4C009FE38C /* JPTransactionRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransactionRouter.m; sourceTree = "<group>"; };
 		52B74D8F23F98B4C009FE38C /* JPTransactionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransactionRouter.h; sourceTree = "<group>"; };
 		52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		5B1C4324265053C759FCF3C9 /* Pods-JudoKitSwiftExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitSwiftExampleApp.release.xcconfig"; path = "Target Support Files/Pods-JudoKitSwiftExampleApp/Pods-JudoKitSwiftExampleApp.release.xcconfig"; sourceTree = "<group>"; };
-		63A551558BE416AB06A61EDF /* Pods-JudoKitObjCExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleApp.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp.release.xcconfig"; sourceTree = "<group>"; };
-		65AAABA1E51E1C511095BE16 /* Pods_JudoKitObjCExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4B9BB1980B6E88D86E54DB /* Pods_JudoKitObjCExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		702804271CE3873A00150B21 /* JudoTestCaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudoTestCaseConfig.swift; sourceTree = "<group>"; };
 		702804351CE9C96D00150B21 /* CardDetailsSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailsSetTests.swift; sourceTree = "<group>"; };
 		702804371CE9F7A100150B21 /* JudoPayViewControllerTestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudoPayViewControllerTestable.h; sourceTree = "<group>"; };
 		703EDB971CB7FD5F00ACF0B5 /* ErrorMessageContentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessageContentsTests.swift; sourceTree = "<group>"; };
 		70ADDC911D5B54410043D55F /* ExampleAppCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppCredentials.h; sourceTree = "<group>"; };
 		70D7F4D81DC10121002C0EC1 /* JudoKitObjCExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JudoKitObjCExampleApp.entitlements; sourceTree = "<group>"; };
-		7727B3937A0BC9BD92CF5C74 /* Pods_JudoKitSwiftExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitSwiftExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		81B25ACC1094548A9E4E3175 /* Pods-JudoKitObjCExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		823B0F932420D868000BFAED /* JPApplePayServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPApplePayServiceTest.swift; sourceTree = "<group>"; };
 		823B0F942420D868000BFAED /* JPCardValidationServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPCardValidationServiceTest.swift; sourceTree = "<group>"; };
 		823B0F952420D868000BFAED /* JPTransactionServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPTransactionServiceTest.swift; sourceTree = "<group>"; };
@@ -766,12 +758,18 @@
 		82933107230C3C8800689DC4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		82933108230C3C9200689DC4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		82933109230C3C9A00689DC4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9761622168567C7C26779D78 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9A6951A8CFA5142959F3EC76 /* Pods-JudoKitObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCTests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCTests/Pods-JudoKitObjCTests.release.xcconfig"; sourceTree = "<group>"; };
-		A9CA48AAD825149523923951 /* Pods_JudoKitObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4D95197B44019DD28BD6196 /* Pods_JudoKitObjCExampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCExampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D286A671E311DF76D14590A6 /* Pods-JudoKitObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCTests/Pods-JudoKitObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FF48991B5D0832D2A289ADCA /* Pods-JudoKitObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.release.xcconfig"; sourceTree = "<group>"; };
+		931FD1260411E03905BF7F00 /* Pods-JudoKitObjCExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleApp.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		9A1491A1C06D6EF2998B4002 /* Pods_JudoKitObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBAF3A036E2C7628C9AA4DFA /* Pods-JudoKitObjCExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BD79368E754B7618AC0786B9 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C60E0AACE1EBAF8444908344 /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitSwiftExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitSwiftExampleApp/Pods-JudoKitSwiftExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D5E21ED82C581871017A154B /* Pods-JudoKitObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCTests/Pods-JudoKitObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC62DFDE73EF6E42617EAEBF /* Pods-JudoKitObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.release.xcconfig"; sourceTree = "<group>"; };
+		DCE85A003EB71553F40755DE /* Pods-JudoKitSwiftExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitSwiftExampleApp.release.xcconfig"; path = "Target Support Files/Pods-JudoKitSwiftExampleApp/Pods-JudoKitSwiftExampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		E67A723BC96F47240D5263F5 /* Pods_JudoKitObjCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitObjCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECD9FF37FA6F925E6255B365 /* Pods-JudoKitObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		F5664A98FA190FE54C198BB7 /* Pods-JudoKitObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCTests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCTests/Pods-JudoKitObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+		FC9437CE256BA5076C032651 /* Pods_JudoKitSwiftExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JudoKitSwiftExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -780,7 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3058371B240678B700B61167 /* JudoKitObjC.framework in Frameworks */,
-				AE3D5C9A7B95FE514BC9F3FD /* Pods_JudoKitSwiftExampleApp.framework in Frameworks */,
+				12FE6DAE29E3EF59BBBC4FA7 /* Pods_JudoKitSwiftExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,7 +787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4EB3C41C981ED2006265A0 /* JudoKitObjC.framework in Frameworks */,
-				DA2520AB3FE2FA110BEC4DD4 /* Pods_JudoKitObjCExampleApp.framework in Frameworks */,
+				310A74F15EA4982D460FB896 /* Pods_JudoKitObjCExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,7 +795,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF84ABD036C03ABD15CD282A /* Pods_JudoKitObjCExampleAppUITests.framework in Frameworks */,
+				70910809A8FF88098065DC24 /* Pods_JudoKitObjCExampleAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,7 +804,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EDC2E62371BC2B00FEC9C1 /* WebKit.framework in Frameworks */,
-				976A6D8A3F0ADF0FAD583385 /* Pods_JudoKitObjC.framework in Frameworks */,
+				D64A691DC5F5EFD058C3613F /* Pods_JudoKitObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,7 +813,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B678B611C6CE5190001DC2F /* JudoKitObjC.framework in Frameworks */,
-				9F4832533D545C852B4F0C91 /* Pods_JudoKitObjCTests.framework in Frameworks */,
+				4D22BEBE63561BDDC3AA6A1A /* Pods_JudoKitObjCTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,11 +824,11 @@
 			isa = PBXGroup;
 			children = (
 				52EDC2DE2371BC2A00FEC9C1 /* WebKit.framework */,
-				A9CA48AAD825149523923951 /* Pods_JudoKitObjC.framework */,
-				65AAABA1E51E1C511095BE16 /* Pods_JudoKitObjCExampleApp.framework */,
-				C4D95197B44019DD28BD6196 /* Pods_JudoKitObjCExampleAppUITests.framework */,
-				370CCA3FBFEB64997FB1648B /* Pods_JudoKitObjCTests.framework */,
-				7727B3937A0BC9BD92CF5C74 /* Pods_JudoKitSwiftExampleApp.framework */,
+				9A1491A1C06D6EF2998B4002 /* Pods_JudoKitObjC.framework */,
+				6D4B9BB1980B6E88D86E54DB /* Pods_JudoKitObjCExampleApp.framework */,
+				068989198DE40B75F697B3EE /* Pods_JudoKitObjCExampleAppUITests.framework */,
+				E67A723BC96F47240D5263F5 /* Pods_JudoKitObjCTests.framework */,
+				FC9437CE256BA5076C032651 /* Pods_JudoKitSwiftExampleApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1974,7 +1972,6 @@
 				3B7836121CA1638900A7DCDE /* JudoKitObjCExampleAppUITests-Bridging-Header.h */,
 				447CBD5E22DCAC6300C1C9E1 /* JudoKitPaymentMethodTests.swift */,
 				44AA450A23469D7000F3FE09 /* JudoKitCardDetailsTests.swift */,
-				30C22190235EF754000D6E3A /* JudoKitIDEALTransactionTests.swift */,
 				30472A10239E886500279A87 /* JudoKitAddCardTests.swift */,
 				30E764FB23C31DF300CA9C25 /* JudoKitPaymentMethodsTests.swift */,
 			);
@@ -2129,16 +2126,16 @@
 		4ACE840763C4C29E6DEB1CB1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0E31AAAC5066F7D45579D050 /* Pods-JudoKitObjC.debug.xcconfig */,
-				FF48991B5D0832D2A289ADCA /* Pods-JudoKitObjC.release.xcconfig */,
-				81B25ACC1094548A9E4E3175 /* Pods-JudoKitObjCExampleApp.debug.xcconfig */,
-				63A551558BE416AB06A61EDF /* Pods-JudoKitObjCExampleApp.release.xcconfig */,
-				9761622168567C7C26779D78 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */,
-				51217B3049FB7907156D2154 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */,
-				D286A671E311DF76D14590A6 /* Pods-JudoKitObjCTests.debug.xcconfig */,
-				9A6951A8CFA5142959F3EC76 /* Pods-JudoKitObjCTests.release.xcconfig */,
-				492429BCEF5CFA62AC00E50F /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */,
-				5B1C4324265053C759FCF3C9 /* Pods-JudoKitSwiftExampleApp.release.xcconfig */,
+				ECD9FF37FA6F925E6255B365 /* Pods-JudoKitObjC.debug.xcconfig */,
+				DC62DFDE73EF6E42617EAEBF /* Pods-JudoKitObjC.release.xcconfig */,
+				BBAF3A036E2C7628C9AA4DFA /* Pods-JudoKitObjCExampleApp.debug.xcconfig */,
+				931FD1260411E03905BF7F00 /* Pods-JudoKitObjCExampleApp.release.xcconfig */,
+				2A239082A24AB9575439D0A7 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */,
+				BD79368E754B7618AC0786B9 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */,
+				D5E21ED82C581871017A154B /* Pods-JudoKitObjCTests.debug.xcconfig */,
+				F5664A98FA190FE54C198BB7 /* Pods-JudoKitObjCTests.release.xcconfig */,
+				C60E0AACE1EBAF8444908344 /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */,
+				DCE85A003EB71553F40755DE /* Pods-JudoKitSwiftExampleApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2520,12 +2517,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 305836D32406779700B61167 /* Build configuration list for PBXNativeTarget "JudoKitSwiftExampleApp" */;
 			buildPhases = (
-				3118BD01AF6CFB22093D45F3 /* [CP] Check Pods Manifest.lock */,
+				8EFAD6E4C5BFF3FB1855FBE4 /* [CP] Check Pods Manifest.lock */,
 				305836B52406779500B61167 /* Sources */,
 				305836B62406779500B61167 /* Frameworks */,
 				305836B72406779500B61167 /* Resources */,
 				3058371F240678B700B61167 /* Embed Frameworks */,
-				147798891ABEC6824159B0B5 /* [CP] Embed Pods Frameworks */,
+				7B8768F93824BBFEBCE3BD66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2541,12 +2538,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B4EB3BA1C981EA7006265A0 /* Build configuration list for PBXNativeTarget "JudoKitObjCExampleApp" */;
 			buildPhases = (
-				D17DB0CEC88B84B74B5D1BB2 /* [CP] Check Pods Manifest.lock */,
+				903F92118335CFFD406541F1 /* [CP] Check Pods Manifest.lock */,
 				3B4EB3941C981EA7006265A0 /* Sources */,
 				3B4EB3951C981EA7006265A0 /* Frameworks */,
 				3B4EB3961C981EA7006265A0 /* Resources */,
 				3B4EB3C61C981ED2006265A0 /* Embed Frameworks */,
-				1C839085E3C1DB9CAEC4C04B /* [CP] Embed Pods Frameworks */,
+				8F3986DB7B6E624BAF099BBA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2562,7 +2559,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B4EB3BD1C981EA7006265A0 /* Build configuration list for PBXNativeTarget "JudoKitObjCExampleAppUITests" */;
 			buildPhases = (
-				C995A895266E4CE6AC952B69 /* [CP] Check Pods Manifest.lock */,
+				B397EC77DCCFFB23FC73BB9A /* [CP] Check Pods Manifest.lock */,
 				3B4EB3AF1C981EA7006265A0 /* Sources */,
 				3B4EB3B01C981EA7006265A0 /* Frameworks */,
 				3B4EB3B11C981EA7006265A0 /* Resources */,
@@ -2581,7 +2578,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B678B6A1C6CE5190001DC2F /* Build configuration list for PBXNativeTarget "JudoKitObjC" */;
 			buildPhases = (
-				1E5D160D673DF4644095EAD6 /* [CP] Check Pods Manifest.lock */,
+				E28178DB8104ACB6DC0C899E /* [CP] Check Pods Manifest.lock */,
 				3B6912DB1C96BA3800367660 /* ShellScript */,
 				3B678B511C6CE5190001DC2F /* Sources */,
 				3B678B521C6CE5190001DC2F /* Frameworks */,
@@ -2601,12 +2598,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B678B6D1C6CE5190001DC2F /* Build configuration list for PBXNativeTarget "JudoKitObjCTests" */;
 			buildPhases = (
-				777CF31EDB8A5808E3D0D575 /* [CP] Check Pods Manifest.lock */,
+				9E8DA01D3E9ECAA7F196F871 /* [CP] Check Pods Manifest.lock */,
 				3B678B5C1C6CE5190001DC2F /* Sources */,
 				3B678B5D1C6CE5190001DC2F /* Frameworks */,
 				3B678B5E1C6CE5190001DC2F /* Resources */,
 				709F325E1D9983230096DE81 /* CopyFiles */,
-				F0456D1D54C94B9DF73D94C2 /* [CP] Embed Pods Frameworks */,
+				F119CF4BE534DE7067CE6245 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2743,7 +2740,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		147798891ABEC6824159B0B5 /* [CP] Embed Pods Frameworks */ = {
+		3B6912DB1C96BA3800367660 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n";
+		};
+		700523F71CC7884500CC916D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"JudoPayments\";\ncompanyID=\"com.judopayments\";\ncompanyURL=\"http://judopay.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"${PROJECT_DIR}/Documentation\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--ignore \"JudoShield\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
+		7B8768F93824BBFEBCE3BD66 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2765,51 +2788,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JudoKitSwiftExampleApp/Pods-JudoKitSwiftExampleApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1C839085E3C1DB9CAEC4C04B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp-frameworks.sh",
-				"${PODS_ROOT}/DeviceDNA/Framework/DeviceDNA.framework",
-				"${PODS_ROOT}/PayCardsRecognizer/Source/PayCardsRecognizer.framework",
-				"${BUILT_PRODUCTS_DIR}/TrustKit/TrustKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceDNA.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayCardsRecognizer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1E5D160D673DF4644095EAD6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjC-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3118BD01AF6CFB22093D45F3 /* [CP] Check Pods Manifest.lock */ = {
+		8EFAD6E4C5BFF3FB1855FBE4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2831,78 +2810,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B6912DB1C96BA3800367660 /* ShellScript */ = {
+		8F3986DB7B6E624BAF099BBA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp-frameworks.sh",
+				"${PODS_ROOT}/DeviceDNA/Framework/DeviceDNA.framework",
+				"${PODS_ROOT}/PayCardsRecognizer/Source/PayCardsRecognizer.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustKit/TrustKit.framework",
 			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceDNA.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayCardsRecognizer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
-		700523F71CC7884500CC916D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"JudoPayments\";\ncompanyID=\"com.judopayments\";\ncompanyURL=\"http://judopay.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"${PROJECT_DIR}/Documentation\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--ignore \"JudoShield\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
-		};
-		777CF31EDB8A5808E3D0D575 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjCTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JudoKitObjCExampleApp/Pods-JudoKitObjCExampleApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C995A895266E4CE6AC952B69 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjCExampleAppUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D17DB0CEC88B84B74B5D1BB2 /* [CP] Check Pods Manifest.lock */ = {
+		903F92118335CFFD406541F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2924,7 +2854,73 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F0456D1D54C94B9DF73D94C2 /* [CP] Embed Pods Frameworks */ = {
+		9E8DA01D3E9ECAA7F196F871 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjCTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B397EC77DCCFFB23FC73BB9A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjCExampleAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E28178DB8104ACB6DC0C899E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JudoKitObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F119CF4BE534DE7067CE6245 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2991,7 +2987,6 @@
 				3B78361C1CA1638900A7DCDE /* JudoKitPaymentDeclinedTests.swift in Sources */,
 				3B78361D1CA1638900A7DCDE /* JudoKitPaymentTests.swift in Sources */,
 				3B78361E1CA1638900A7DCDE /* JudoKitTokenPaymentTests.swift in Sources */,
-				30C22199235EF771000D6E3A /* JudoKitIDEALTransactionTests.swift in Sources */,
 				30E764FD23C31E1A00CA9C25 /* JudoKitPaymentMethodsTests.swift in Sources */,
 				3BFD9A971CD9FFDC00B8385D /* JudoKitUIDedupTests.swift in Sources */,
 				44AA450C23469F2800F3FE09 /* JudoKitCardDetailsTests.swift in Sources */,
@@ -3224,7 +3219,7 @@
 /* Begin XCBuildConfiguration section */
 		305836CA2406779700B61167 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 492429BCEF5CFA62AC00E50F /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */;
+			baseConfigurationReference = C60E0AACE1EBAF8444908344 /* Pods-JudoKitSwiftExampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3258,7 +3253,7 @@
 		};
 		305836CB2406779700B61167 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B1C4324265053C759FCF3C9 /* Pods-JudoKitSwiftExampleApp.release.xcconfig */;
+			baseConfigurationReference = DCE85A003EB71553F40755DE /* Pods-JudoKitSwiftExampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3289,7 +3284,7 @@
 		};
 		3B4EB3BB1C981EA7006265A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81B25ACC1094548A9E4E3175 /* Pods-JudoKitObjCExampleApp.debug.xcconfig */;
+			baseConfigurationReference = BBAF3A036E2C7628C9AA4DFA /* Pods-JudoKitObjCExampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3309,7 +3304,7 @@
 		};
 		3B4EB3BC1C981EA7006265A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63A551558BE416AB06A61EDF /* Pods-JudoKitObjCExampleApp.release.xcconfig */;
+			baseConfigurationReference = 931FD1260411E03905BF7F00 /* Pods-JudoKitObjCExampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3329,7 +3324,7 @@
 		};
 		3B4EB3BE1C981EA7006265A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9761622168567C7C26779D78 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */;
+			baseConfigurationReference = 2A239082A24AB9575439D0A7 /* Pods-JudoKitObjCExampleAppUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3348,7 +3343,7 @@
 		};
 		3B4EB3BF1C981EA7006265A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51217B3049FB7907156D2154 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */;
+			baseConfigurationReference = BD79368E754B7618AC0786B9 /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3478,7 +3473,7 @@
 		};
 		3B678B6B1C6CE5190001DC2F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E31AAAC5066F7D45579D050 /* Pods-JudoKitObjC.debug.xcconfig */;
+			baseConfigurationReference = ECD9FF37FA6F925E6255B365 /* Pods-JudoKitObjC.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -3506,7 +3501,7 @@
 		};
 		3B678B6C1C6CE5190001DC2F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF48991B5D0832D2A289ADCA /* Pods-JudoKitObjC.release.xcconfig */;
+			baseConfigurationReference = DC62DFDE73EF6E42617EAEBF /* Pods-JudoKitObjC.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -3533,7 +3528,7 @@
 		};
 		3B678B6E1C6CE5190001DC2F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D286A671E311DF76D14590A6 /* Pods-JudoKitObjCTests.debug.xcconfig */;
+			baseConfigurationReference = D5E21ED82C581871017A154B /* Pods-JudoKitObjCTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3551,7 +3546,7 @@
 		};
 		3B678B6F1C6CE5190001DC2F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A6951A8CFA5142959F3EC76 /* Pods-JudoKitObjCTests.release.xcconfig */;
+			baseConfigurationReference = F5664A98FA190FE54C198BB7 /* Pods-JudoKitObjCTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;

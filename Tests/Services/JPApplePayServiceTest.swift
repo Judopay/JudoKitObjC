@@ -26,7 +26,6 @@ import XCTest
 import Mockingjay
 @testable import JudoKitObjC
 
-
 class JPApplePayServiceTest: XCTestCase {
     
     var appleService: JPApplePayService?
@@ -38,7 +37,7 @@ class JPApplePayServiceTest: XCTestCase {
         
         let applePayConfigurations = JPApplePayConfiguration(merchantId: "merchantId",
                                                              currency: "EUR",
-                                                             countryCode: "GB{",
+                                                             countryCode: "GB",
                                                              paymentSummaryItems: paymentSummaryItems)
         
         let transactionService = JPTransactionService(token: "TransactionServiceTokem",
@@ -46,9 +45,7 @@ class JPApplePayServiceTest: XCTestCase {
         
         self.appleService = JPApplePayService(configuration: applePayConfigurations,
                                               transactionService: transactionService)
-            
     }
-    
     
     func testIsApplePaySupported() {
         let isApplePaySupported = JPApplePayService.isApplePaySupported()

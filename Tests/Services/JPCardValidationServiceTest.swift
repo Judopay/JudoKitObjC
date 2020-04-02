@@ -59,7 +59,6 @@ class JPCardValidationServiceTest: XCTestCase {
         XCTAssertEqual(validationResult!.formattedInput, "1234567890987654")
     }
     
-    
     func testValidateCarholderNameInputValid(){
         let validationResult = self.cardValidationService.validateCarholderNameInput("John Doe")
         XCTAssertTrue(validationResult!.isValid)
@@ -105,7 +104,6 @@ class JPCardValidationServiceTest: XCTestCase {
     func testValidateCountryInputValid() {
         let validationResult = self.cardValidationService.validateCountryInput("US")
         XCTAssertTrue(validationResult!.isValid)
-        
     }
     
     func testValidateCountryInputInvalid() {
@@ -138,7 +136,6 @@ class JPCardValidationServiceTest: XCTestCase {
         XCTAssertTrue(validationResult!.isValid)
     }
     
-    
     func testValidatePostalCodeInputCanadaInvalid() {
         self.cardValidationService.validateCountryInput("Canada")
         let validationResult = cardValidationService.validatePostalCodeInput("ND310")
@@ -156,5 +153,5 @@ class JPCardValidationServiceTest: XCTestCase {
         let validationResult = cardValidationService.validatePostalCodeInput("MD3100")
         XCTAssertTrue(validationResult!.isValid)
     }
-
+    
 }

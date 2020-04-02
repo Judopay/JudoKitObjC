@@ -42,10 +42,10 @@ class CardStorageTest: XCTestCase {
         let thirdStoredCard = JPStoredCardDetails(lastFour: "3333", expiryDate: "23/23", cardNetwork: .networkJCB, cardToken: "cardToken3")
         let forthStoredCard = JPStoredCardDetails(lastFour: "4444", expiryDate: "24/24", cardNetwork: .networkAMEX, cardToken: "cardToken4")
         
-        firstStoredCard!.cardTitle = "fistCard"
-        secondStoredCard!.cardTitle = "fistCard"
-        thirdStoredCard!.cardTitle = "fistCard"
-        forthStoredCard!.cardTitle = "fistCard"
+        firstStoredCard!.cardTitle = "firstCard"
+        secondStoredCard!.cardTitle = "firstCard"
+        thirdStoredCard!.cardTitle = "firstCard"
+        forthStoredCard!.cardTitle = "firstCard"
 
         JPCardStorage.sharedInstance()?.deleteCardDetails()
         JPCardStorage.sharedInstance()!.add(firstStoredCard)

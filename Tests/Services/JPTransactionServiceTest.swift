@@ -33,9 +33,7 @@ class JPTransactionServiceTest: XCTestCase {
     lazy var transactionConfigurations = JPConfiguration(judoID: "JUDAID",
                                                          amount: self.transactionAmmount,
                                                          reference: self.transactionReference)
-    
-    
-    
+
     func testTransactionWithConfigurations() {
         let transaction = transactionService.transaction(with: self.transactionConfigurations)
         XCTAssertEqual(transaction.amount!.amount, self.transactionAmmount.amount)

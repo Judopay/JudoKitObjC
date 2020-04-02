@@ -10,12 +10,6 @@ pod 'DeviceDNA'
 pod 'TrustKit'
 pod 'PayCardsRecognizer'
 
-
-  target 'JudoKitObjCExampleAppUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
   target 'JudoKitObjCTests' do
     inherit! :search_paths
     # Pods for testing
@@ -30,6 +24,10 @@ target 'JudoKitObjCExampleApp' do
   use_frameworks!
 
   # Pods for JudoKitObjCExampleApp
+  target 'JudoKitObjCExampleAppUITests' do
+     inherit! :search_paths
+     # Pods for testing
+   end
 
 end
 
