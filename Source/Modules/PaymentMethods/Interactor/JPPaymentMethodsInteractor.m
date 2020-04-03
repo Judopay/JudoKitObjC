@@ -208,7 +208,7 @@
 
 - (JPApplePayService *)applePayService {
     if (!_applePayService && self.configuration.applePayConfiguration) {
-        _applePayService = [[JPApplePayService alloc] initWithConfiguration:self.configuration.applePayConfiguration
+        _applePayService = [[JPApplePayService alloc] initWithConfiguration:self.configuration
                                                          transactionService:self.transactionService];
     }
     return _applePayService;

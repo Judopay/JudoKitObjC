@@ -32,7 +32,7 @@
 
 @interface JPApplePayService ()
 @property (nonatomic, assign) TransactionMode transactionMode;
-@property (nonatomic, strong) JPApplePayConfiguration *configuration;
+@property (nonatomic, strong) JPConfiguration *configuration;
 @property (nonatomic, strong) JPTransactionService *transactionService;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
 @end
@@ -41,7 +41,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithConfiguration:(JPApplePayConfiguration *)configuration
+- (instancetype)initWithConfiguration:(JPConfiguration *)configuration
                    transactionService:(JPTransactionService *)transactionService {
     if (self = [super init]) {
         self.configuration = configuration;
@@ -77,12 +77,10 @@
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
 
-    JPConfiguration *configuration = [JPConfiguration new];
-
     TransactionType type = (self.transactionMode == TransactionModePreAuth) ? TransactionTypePreAuth : TransactionTypePayment;
     self.transactionService.transactionType = type;
 
-    JPTransaction *transaction = [self.transactionService transactionWithConfiguration:configuration];
+    JPTransaction *transaction = [self.transactionService transactionWithConfiguration:self.configuration];
 
     NSError *error;
     [transaction setPkPayment:payment error:&error];
@@ -103,11 +101,11 @@
             return;
         }
 
-        if (weakSelf.configuration.returnedContactInfo & ReturnedInfoBillingContacts) {
+        if (weakSelf.configuration.applePayConfiguration.returnedContactInfo & ReturnedInfoBillingContacts) {
             response.billingInfo = [weakSelf contactInformationFromPaymentContact:payment.billingContact];
         }
 
-        if (weakSelf.configuration.returnedContactInfo & ReturnedInfoShippingContacts) {
+        if (weakSelf.configuration.applePayConfiguration.returnedContactInfo & ReturnedInfoShippingContacts) {
             response.shippingInfo = [weakSelf contactInformationFromPaymentContact:payment.shippingContact];
         }
 
@@ -138,16 +136,16 @@
 
     PKPaymentRequest *paymentRequest = [PKPaymentRequest new];
 
-    paymentRequest.merchantIdentifier = self.configuration.merchantId;
-    paymentRequest.countryCode = self.configuration.countryCode;
-    paymentRequest.currencyCode = self.configuration.currency;
+    paymentRequest.merchantIdentifier = self.configuration.applePayConfiguration.merchantId;
+    paymentRequest.countryCode = self.configuration.applePayConfiguration.countryCode;
+    paymentRequest.currencyCode = self.configuration.applePayConfiguration.currency;
     paymentRequest.supportedNetworks = self.pkPaymentNetworks;
     paymentRequest.merchantCapabilities = self.pkMerchantCapabilities;
     paymentRequest.shippingType = self.pkShippingType;
     paymentRequest.shippingMethods = self.pkShippingMethods;
 
-    ContactField requiredShippingContactFields = self.configuration.requiredShippingContactFields;
-    ContactField requiredBillingContactFields = self.configuration.requiredBillingContactFields;
+    ContactField requiredShippingContactFields = self.configuration.applePayConfiguration.requiredShippingContactFields;
+    ContactField requiredBillingContactFields = self.configuration.applePayConfiguration.requiredBillingContactFields;
 
     if (@available(iOS 11.0, *)) {
 
@@ -171,7 +169,7 @@
 }
 
 - (PKMerchantCapability)pkMerchantCapabilities {
-    switch (self.configuration.merchantCapabilities) {
+    switch (self.configuration.applePayConfiguration.merchantCapabilities) {
         case MerchantCapability3DS:
             return PKMerchantCapability3DS;
         case MerchantCapabilityEMV:
@@ -184,7 +182,7 @@
 }
 
 - (PKShippingType)pkShippingType {
-    switch (self.configuration.shippingType) {
+    switch (self.configuration.applePayConfiguration.shippingType) {
         case ShippingTypeShipping:
             return PKShippingTypeShipping;
         case ShippingTypeDelivery:
@@ -199,7 +197,7 @@
 - (NSArray<PKShippingMethod *> *)pkShippingMethods {
     NSMutableArray *pkShippingMethods = [NSMutableArray new];
 
-    for (PaymentShippingMethod *shippingMethod in self.configuration.shippingMethods) {
+    for (PaymentShippingMethod *shippingMethod in self.configuration.applePayConfiguration.shippingMethods) {
         PKShippingMethod *pkShippingMethod = [PKShippingMethod new];
         pkShippingMethod.identifier = shippingMethod.identifier;
         pkShippingMethod.detail = shippingMethod.detail;
@@ -216,7 +214,7 @@
 
     NSMutableArray<PKPaymentSummaryItem *> *pkPaymentSummaryItems = [NSMutableArray new];
 
-    for (JPPaymentSummaryItem *item in self.configuration.paymentSummaryItems) {
+    for (JPPaymentSummaryItem *item in self.configuration.applePayConfiguration.paymentSummaryItems) {
         PKPaymentSummaryItemType summaryItemType = [self pkSummaryItemTypeFromType:item.type];
         [pkPaymentSummaryItems addObject:[PKPaymentSummaryItem summaryItemWithLabel:item.label
                                                                              amount:item.amount

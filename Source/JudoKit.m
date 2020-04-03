@@ -98,7 +98,7 @@
 }
 
 - (void)invokeApplePayWithMode:(TransactionMode)mode
-                 configuration:(JPApplePayConfiguration *)configuration
+                 configuration:(JPConfiguration *)configuration
                     completion:(JudoCompletionBlock)completion {
     self.applePayService = [[JPApplePayService alloc] initWithConfiguration:configuration
                                                          transactionService:self.transactionService];

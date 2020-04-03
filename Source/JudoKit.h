@@ -94,7 +94,7 @@ static NSString *__nonnull const JudoKitVersion = @"8.2.1";
  * @param completion - a completion block with an optional JPResponse object or an NSError.
  */
 - (void)invokeApplePayWithMode:(TransactionMode)mode
-                 configuration:(nonnull JPApplePayConfiguration *)configuration
+                 configuration:(nonnull JPConfiguration *)configuration
                     completion:(nullable JudoCompletionBlock)completion;
 
 /**

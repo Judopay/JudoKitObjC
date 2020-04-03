@@ -124,7 +124,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 - (void)applePayPaymentOperation {
     __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeApplePayWithMode:TransactionModePayment
-                                  configuration:self.applePayConfiguration
+                                  configuration:self.configuration
                                      completion:^(JPResponse *response, NSError *error) {
         [weakSelf handleResponse:response];
     }];
@@ -133,7 +133,7 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
 - (void)applePayPreAuthOperation {
     __weak typeof(self) weakSelf = self;
     [self.judoKitSession invokeApplePayWithMode:TransactionModePreAuth
-                                  configuration:self.applePayConfiguration
+                                  configuration:self.configuration
                                      completion:^(JPResponse *response, NSError *error) {
         [weakSelf handleResponse:response];
     }];

@@ -39,7 +39,7 @@
  *
  * @returns - a configured instance of JPApplePayService.
  */
-- (nonnull instancetype)initWithConfiguration:(nonnull JPApplePayConfiguration *)configuration
+- (nonnull instancetype)initWithConfiguration:(nonnull JPConfiguration *)configuration
                            transactionService:(nonnull JPTransactionService *)transactionService;
 
 /**
