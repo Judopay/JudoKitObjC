@@ -30,9 +30,6 @@ class JudoTestCase: XCTestCase {
     // Judo Session
     let judo = JudoKit(token: token, secret: secret)
     
-    let invalidJudo = JudoKit(token: "a3xQdxP6iHdWg1zy",
-                              secret: "2094c2f5484ba42557917aad2b2c2d294a35dddadb93de3c35d6910e6c461bfb")
-    
     // Visa Card
     let validVisaTestCard = JPCard(cardNumber: "4976000000003436", cardholderName: nil, expiryDate: "12/20", secureCode: "452")
     let declinedVisaTestCard = JPCard(cardNumber: "4221690000004963", cardholderName: nil, expiryDate: "12/20", secureCode: "125")
@@ -48,11 +45,11 @@ extension JudoTestCase {
     // Test Setup Methods
     override func setUp() {
         super.setUp()
-        judo.apiSession.sandboxed = true
+        judo?.isSandboxed = true
     }
     
     override func tearDown() {
-        judo.apiSession.sandboxed = false
+        judo?.isSandboxed = false
         super.tearDown()
     }
     

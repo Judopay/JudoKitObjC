@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 import XCTest
+
 @testable import JudoKitObjC
 
 class JudoTests: JudoTestCase {
@@ -32,12 +33,9 @@ class JudoTests: JudoTestCase {
         XCTAssertNotNil(errorDomain)
     }
     
-    
-    func testJudoSandboxMode() {
-        judo.apiSession.sandboxed = false
-        XCTAssertEqual(judo.apiSession.endpoint, "https://gw1.judopay.com/")
-        judo.apiSession.sandboxed = true
-        XCTAssertEqual(judo.apiSession.endpoint, "https://gw1.judopay-sandbox.com/")
+    func testJudoErrorDomainName() {
+        let errorDomain = JudoErrorDomain
+        XCTAssertEqual(errorDomain, "com.judo.error")
     }
-    
+
 }

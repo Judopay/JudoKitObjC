@@ -69,7 +69,8 @@
 - (NSArray *)convertStoredCardsToArray {
     NSMutableArray *cardDetailsDictionary = [NSMutableArray new];
     for (JPStoredCardDetails *cardDetails in self.storedCards) {
-        [cardDetailsDictionary addObject:cardDetails.toDictionary];
+        NSDictionary *a = [cardDetails toDictionary];
+        [cardDetailsDictionary addObject:a];
     }
     return cardDetailsDictionary;
 }

@@ -87,16 +87,17 @@
 }
 
 - (NSDictionary *)toDictionary {
-    return @{
-        @"cardTitle" : self.cardTitle,
+    NSDictionary *data = @{
+        @"cardTitle" : self.cardTitle ? self.cardTitle : @"",
         @"cardPatternType" : @(self.patternType),
-        @"cardLastFour" : self.cardLastFour,
-        @"expiryDate" : self.expiryDate,
+        @"cardLastFour" : self.cardLastFour ? self.cardLastFour : @"",
+        @"expiryDate" : self.expiryDate ? self.expiryDate : @"",
         @"cardNetwork" : @(self.cardNetwork),
-        @"cardToken" : self.cardToken,
+        @"cardToken" : self.cardToken ? self.cardToken : @"",
         @"isDefault" : @(self.isDefault),
         @"isSelected" : @(self.isSelected)
     };
+    return data;
 }
 
 - (CardExpirationStatus)determineCardExpirationStatus {
