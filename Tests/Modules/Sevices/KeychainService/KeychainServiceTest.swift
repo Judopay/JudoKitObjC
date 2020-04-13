@@ -7,27 +7,75 @@
 //
 
 import XCTest
+@testable import JudoKitObjC
 
 class KeychainServiceTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testSaveObject_withString() throws {
+        let saveResult = JPKeychainService.save("testObject", forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        XCTAssertEqual(JPKeychainService.getObjectForKey("testKey") as! String, "testObject")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testSaveObject_withStringDoubleTime() throws {
+        let saveResult = JPKeychainService.save("testObject", forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        XCTAssertEqual(JPKeychainService.getObjectForKey("testKey") as! String, "testObject")
+        
+        let saveSuccessivelyResult = JPKeychainService.save("testObject2", forKey: "testKey")
+        
+        XCTAssertTrue(saveSuccessivelyResult)
+        XCTAssertEqual(JPKeychainService.getObjectForKey("testKey") as! String, "testObject2")
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testSaveObject_withArray() throws {
+        let saveResult = JPKeychainService.save(["test1", "test2", "test3"], forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        XCTAssertEqual(JPKeychainService.getObjectForKey("testKey") as! Array<String>, ["test1", "test2", "test3"])
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testSaveObject_withDict() throws {
+        let testDict = [ "testKey": "testValue",
+                         "testObject": [ "testInternalKey": "testInternalObject" ]] as [String : Any]
+        let saveResult = JPKeychainService.save(testDict, forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        
+        let dictObject = (JPKeychainService.getObjectForKey("testKey") as! [String: Any])
+        
+        XCTAssertEqual(dictObject["testKey"] as! String, "testValue")
+        XCTAssertEqual(dictObject["testObject"] as! [String: String], [ "testInternalKey": "testInternalObject" ])
+    }
+    
+    func testSaveObject_withEncodableObject() throws {
+        let cardDetails = JPCardDetails(cardNumber: "1234 2345", expiryMonth: 10, expiryYear: 1990)
+        let saveResult = JPKeychainService.save(cardDetails, forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        
+        let cardDetailsObject = (JPKeychainService.getObjectForKey("testKey") as! JPCardDetails)
+        
+        XCTAssertEqual(cardDetailsObject.cardNumber, nil)
+        XCTAssertEqual(cardDetailsObject.endDate, "10/90")
+    }
+    
+    func testDeleteObject() throws {
+        let testDict = [ "testKey": "testValue"] as [String : String]
+        let saveResult = JPKeychainService.save(testDict, forKey: "testKey")
+        
+        XCTAssertTrue(saveResult)
+        
+        let deleteResult = JPKeychainService.deleteObject(forKey: "testKey")
+        
+        XCTAssertTrue(deleteResult)
+        XCTAssertNil(JPKeychainService.getObjectForKey("testKey"))
+        
+        let deleteSuccessivelyResult = JPKeychainService.deleteObject(forKey: "testKey")
+        
+        XCTAssertFalse(deleteSuccessivelyResult)
     }
 
 }
