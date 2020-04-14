@@ -31,6 +31,9 @@
 		070F1FF5243B23FF005D8FAB /* JPConfigurationValidationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F1FF3243B23FF005D8FAB /* JPConfigurationValidationService.m */; };
 		070F1FF9243B5072005D8FAB /* JPConfigurationValidationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070F1FF7243B5006005D8FAB /* JPConfigurationValidationServiceTest.swift */; };
 		07D709E424406A230039D187 /* JPTransactionServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D709E324406A230039D187 /* JPTransactionServiceTest.swift */; };
+		07D709F62445BEAD0039D187 /* JPUKPostCodeValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D709F32445BEAD0039D187 /* JPUKPostCodeValidation.swift */; };
+		07D709F72445BEAD0039D187 /* JPUSAPostCodeValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D709F42445BEAD0039D187 /* JPUSAPostCodeValidation.swift */; };
+		07D709F82445BEAD0039D187 /* JPCanadaPostCodeValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D709F52445BEAD0039D187 /* JPCanadaPostCodeValidation.swift */; };
 		30006F1F23F6971B0099F3C5 /* JPSliderPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1B23F6971B0099F3C5 /* JPSliderPresentationController.m */; };
 		30006F2023F6971B0099F3C5 /* JPSliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1C23F6971B0099F3C5 /* JPSliderTransitioningDelegate.m */; };
 		30006F2123F6971B0099F3C5 /* JPSliderPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30006F1D23F6971B0099F3C5 /* JPSliderPresentationController.h */; };
@@ -425,6 +428,9 @@
 		070F1FF3243B23FF005D8FAB /* JPConfigurationValidationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPConfigurationValidationService.m; sourceTree = "<group>"; };
 		070F1FF7243B5006005D8FAB /* JPConfigurationValidationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPConfigurationValidationServiceTest.swift; sourceTree = "<group>"; };
 		07D709E324406A230039D187 /* JPTransactionServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPTransactionServiceTest.swift; sourceTree = "<group>"; };
+		07D709F32445BEAD0039D187 /* JPUKPostCodeValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPUKPostCodeValidation.swift; sourceTree = "<group>"; };
+		07D709F42445BEAD0039D187 /* JPUSAPostCodeValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPUSAPostCodeValidation.swift; sourceTree = "<group>"; };
+		07D709F52445BEAD0039D187 /* JPCanadaPostCodeValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPCanadaPostCodeValidation.swift; sourceTree = "<group>"; };
 		0B4BC46F6519171105ED267E /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		11D5AE0F2CDD547DE7BDFA8E /* Pods-JudoKitObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		14C4233364FA78C53A52B809 /* Pods-JudoKitObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.release.xcconfig"; sourceTree = "<group>"; };
@@ -904,6 +910,7 @@
 		070F1FF6243B4FE7005D8FAB /* Sevices */ = {
 			isa = PBXGroup;
 			children = (
+				07D709F22445BEAD0039D187 /* PostCodesValidation */,
 				01CEFC222440946E0062C948 /* KeychainService */,
 				07D709E524406A2D0039D187 /* TransactionService */,
 				0709ECF1243F1F680032879F /* CardInputValidator */,
@@ -918,6 +925,16 @@
 				07D709E324406A230039D187 /* JPTransactionServiceTest.swift */,
 			);
 			path = TransactionService;
+			sourceTree = "<group>";
+		};
+		07D709F22445BEAD0039D187 /* PostCodesValidation */ = {
+			isa = PBXGroup;
+			children = (
+				07D709F32445BEAD0039D187 /* JPUKPostCodeValidation.swift */,
+				07D709F42445BEAD0039D187 /* JPUSAPostCodeValidation.swift */,
+				07D709F52445BEAD0039D187 /* JPCanadaPostCodeValidation.swift */,
+			);
+			path = PostCodesValidation;
 			sourceTree = "<group>";
 		};
 		15779454211085A9007BD3E1 /* Frameworks */ = {
@@ -3208,7 +3225,10 @@
 				827AF51A23FFD299009ECC9C /* JPPaymentMethodsViewControllerMock.swift in Sources */,
 				070F1FF9243B5072005D8FAB /* JPConfigurationValidationServiceTest.swift in Sources */,
 				0709ECF4243F1FA50032879F /* JPCardValidationServiceTest.swift in Sources */,
+				07D709F62445BEAD0039D187 /* JPUKPostCodeValidation.swift in Sources */,
 				01CEFC0F244082B50062C948 /* JudoTestCase.swift in Sources */,
+				07D709F72445BEAD0039D187 /* JPUSAPostCodeValidation.swift in Sources */,
+				07D709F82445BEAD0039D187 /* JPCanadaPostCodeValidation.swift in Sources */,
 				01CEFC10244082C80062C948 /* JudoTests.swift in Sources */,
 				01CEFC2724409BB40062C948 /* KeychainServiceTest.swift in Sources */,
 				0709ECBB243CC13B0032879F /* JPAppleConfigurationValidationServiceTest.swift in Sources */,
