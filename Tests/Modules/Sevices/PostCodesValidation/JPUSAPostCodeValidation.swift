@@ -66,7 +66,7 @@ class JPUSAPostCodeValidation: XCTestCase {
     
     func testInValidCodeWithSpaces_US() {
         let result = interactor.validatePostalCodeInput("12345 6789")
-        XCTAssertFalse(result!.isValid)
+        XCTAssertTrue(result!.isValid)
     }
     
     func testInValidCodeError_US() {
