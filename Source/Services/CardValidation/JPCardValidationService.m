@@ -362,13 +362,13 @@ static int const kCardHolderNameLength = 3;
 }
 
 - (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
-   NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
+    NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
     NSString *inputClearWithoutSpecialCharacters = [inputClear stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
-    if ([inputClear length] == kUSAPostalCodeMaxLength - 1) {
+    if ([inputClear length] > kUSAPostalCodeMinLength) {
         NSString *firstPart = [inputClearWithoutSpecialCharacters substringToIndex:kUSAPostalCodeMinLength];
         NSString *secondPart = [inputClearWithoutSpecialCharacters substringWithRange:NSMakeRange(kUSAPostalCodeMinLength, [inputClearWithoutSpecialCharacters length] - kUSAPostalCodeMinLength)];
-
+        
         *input = [NSString stringWithFormat:@"%@-%@", firstPart, secondPart];
     }
     *isValid = [self doesPostalCode:*input matchRegex:kUSARegex];
