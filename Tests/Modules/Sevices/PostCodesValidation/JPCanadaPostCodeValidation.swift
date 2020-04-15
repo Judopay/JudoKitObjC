@@ -40,21 +40,21 @@ class JPCanadaPostCodeValidation: XCTestCase {
     }
     
     func testValidCode_Canada() {
-        let result = interactor.validatePostalCodeInput("A1A1A1")
-        XCTAssertEqual(result!.formattedInput, "A1A 1A1")
-        XCTAssertTrue(result!.isValid)
+        let result = interactor.validatePostalCodeInput("A1A1A1")!
+        XCTAssertEqual(result.formattedInput, "A1A 1A1")
+        XCTAssertTrue(result.isValid)
     }
     
     func testValidCodeWithSpaces_Canada() {
-        let result = interactor.validatePostalCodeInput("A1A 1A1")
-        XCTAssertEqual(result!.formattedInput, "A1A 1A1")
-        XCTAssertTrue(result!.isValid)
+        let result = interactor.validatePostalCodeInput("A1A 1A1")!
+        XCTAssertEqual(result.formattedInput, "A1A 1A1")
+        XCTAssertTrue(result.isValid)
     }
     
     func testInValidRegexSpecialSymbols_Canada() {
-        let result = interactor.validatePostalCodeInput("A1! 1A1")
-        XCTAssertEqual(result!.errorMessage, "Invalid postcode entered")
-        XCTAssertFalse(result!.isValid)
+        let result = interactor.validatePostalCodeInput("A1! 1A1")!
+        XCTAssertEqual(result.errorMessage, "Invalid postcode entered")
+        XCTAssertFalse(result.isValid)
     }
     
     func testEmptyCode_Canada() {
@@ -63,8 +63,8 @@ class JPCanadaPostCodeValidation: XCTestCase {
     }
     
     func testInValidRegexUndersScore_Canada() {
-        let result = interactor.validatePostalCodeInput("A11_1A1")
-        XCTAssertEqual(result!.errorMessage, "Invalid postcode entered")
-        XCTAssertFalse(result!.isValid)
+        let result = interactor.validatePostalCodeInput("A11_1A1")!
+        XCTAssertEqual(result.errorMessage, "Invalid postcode entered")
+        XCTAssertFalse(result.isValid)
     }
 }

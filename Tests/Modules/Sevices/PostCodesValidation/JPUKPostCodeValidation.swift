@@ -65,9 +65,9 @@ class JPUKPostCodeValidation: XCTestCase {
     }
     
     func testInValidErrorMessage_UK() {
-        let result = interactor.validatePostalCodeInput("1 ABCD")
-        XCTAssertEqual(result!.errorMessage, "Invalid postcode entered")
-        XCTAssertFalse(result!.isValid)
+        let result = interactor.validatePostalCodeInput("1 ABCD")!
+        XCTAssertEqual(result.errorMessage, "Invalid postcode entered")
+        XCTAssertFalse(result.isValid)
     }
     
     func testInValidCharacters_UK() {
