@@ -343,7 +343,7 @@ static int const kCardHolderNameLength = 3;
                                       range:NSMakeRange(0, postalCode.length)] > 0;
 }
 
-- (void)maskAndCheckInputUK:(NSString *__autoreleasing *)input country:(JPBillingCountry)country isValid:(BOOL *)isValid  {
+- (void)maskAndCheckInputUK:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
     NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
     NSRange range = NSMakeRange(0, [inputClear length]);
     NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:kUKRegex
@@ -361,7 +361,7 @@ static int const kCardHolderNameLength = 3;
     }];
 }
 
-- (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input country:(JPBillingCountry)country isValid:(BOOL *)isValid  {
+- (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
    NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
     NSString *inputClearWithoutSpecialCharacters = [inputClear stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
@@ -381,10 +381,10 @@ static int const kCardHolderNameLength = 3;
             *isValid = [self doesPostalCode:*input matchRegex:kCanadaRegex];
             break;
         case JPBillingCountryUK:
-            [self maskAndCheckInputUK:input country:country isValid:isValid];
+            [self maskAndCheckInputUK:input isValid:isValid];
             break;
         case JPBillingCountryUSA:
-            [self maskAndCheckInputUSA:input country:country isValid:isValid];
+            [self maskAndCheckInputUSA:input isValid:isValid];
             break;
         case JPBillingCountryOther:
             break;
