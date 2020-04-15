@@ -70,9 +70,9 @@ class JPUSAPostCodeValidation: XCTestCase {
     }
     
     func testInValidCodeError_US() {
-        let result = interactor.validatePostalCodeInput("abcde-fghj")
-        XCTAssertEqual(result!.errorMessage, "Invalid ZIP code entered")
-        XCTAssertFalse(result!.isValid)
+        let result = interactor.validatePostalCodeInput("abcde-fghj")!
+        XCTAssertEqual(result.errorMessage, "Invalid ZIP code entered")
+        XCTAssertFalse(result.isValid)
     }
     
     func testEmptyCode_US() {
