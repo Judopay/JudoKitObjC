@@ -2659,8 +2659,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AB324A624482208000E31A9 /* PBXTargetDependency */,
 				3B678B631C6CE5190001DC2F /* PBXTargetDependency */,
-				9AB324A524482208000E31A9 /* PBXTargetDependency */,
 			);
 			name = JudoKitObjCTests;
 			productName = JudoKitObjCTests;
@@ -3215,7 +3215,7 @@
 			target = 3B678B551C6CE5190001DC2F /* JudoKitObjC */;
 			targetProxy = 3B678B621C6CE5190001DC2F /* PBXContainerItemProxy */;
 		};
-		9AB324A524482208000E31A9 /* PBXTargetDependency */ = {
+		9AB324A624482208000E31A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3B4EB3971C981EA7006265A0 /* JudoKitObjCExampleApp */;
 			targetProxy = 9AB324A524482208000E31A9 /* PBXContainerItemProxy */;
