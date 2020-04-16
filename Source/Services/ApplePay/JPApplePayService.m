@@ -29,6 +29,9 @@
 #import "JPResponse.h"
 #import "NSError+Additions.h"
 #import "UIApplication+Additions.h"
+#import "JPTransactionData.h"
+#import "JPConsumer.h"
+#import "JPReference.h"
 
 @interface JPApplePayService ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -76,6 +79,11 @@
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
+
+    if (self.transactionMode == TransactionModeServerToServer) {
+        [self processServerToServer:self.completionBlock payment:payment];
+         return;
+     }
 
     TransactionType type = (self.transactionMode == TransactionModePreAuth) ? TransactionTypePreAuth : TransactionTypePayment;
     self.transactionService.transactionType = type;
@@ -318,6 +326,35 @@
                                                          name:contact.name
                                                   phoneNumber:contact.phoneNumber.stringValue
                                                 postalAddress:postalAddress];
+}
+
+- (void)processServerToServer:(JudoCompletionBlock)completion payment:(PKPayment *)payment {
+    completion([self buildResponse: payment], nil);
+}
+
+- (JPResponse *)buildResponse:(PKPayment *)payment  {
+    //proces payment in response
+    JPResponse *response = [[JPResponse alloc] initWithPagination:nil];
+    
+    JPTransactionData *data = [[JPTransactionData alloc] init];
+    data.judoId = self.configuration.judoId;
+    data.paymentReference = self.configuration.reference.paymentReference;
+    
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
+    NSString *result = [df stringFromDate:[NSDate date]];
+    data.createdAt = result;
+    
+    data.consumer = [[JPConsumer alloc] init];
+    data.consumer.consumerReference = self.configuration.reference.consumerReference;
+    data.consumer.consumerToken = self.configuration.reference.paymentReference;
+    data.amount = self.configuration.amount;
+    data.cardDetails = [[JPCardDetails alloc] init];
+    
+    data.cardDetails.cardToken = payment.token.transactionIdentifier;
+    data.cardDetails.cardScheme = payment.token.paymentMethod.network;
+    response.items = @[data];
+    return response;
 }
 
 @end

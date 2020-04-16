@@ -35,6 +35,9 @@
 #import "JPPaymentToken.h"
 #import "JPReference.h"
 #import "JPTransactionService.h"
+#import "JPResponse.h"
+#import "JPTransactionData.h"
+#import "JPConsumer.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -170,6 +173,11 @@
 
 - (void)paymentTransactionWithToken:(NSString *)token
                       andCompletion:(JudoCompletionBlock)completion {
+    if (self.transactionMode == TransactionModeServerToServer) {
+        [self processServerToServer:completion];
+        return;
+    }
+
     BOOL isPreAuth = (self.transactionMode == TransactionTypePreAuth);
     self.transactionService.transactionType = isPreAuth ? TransactionTypePreAuth : TransactionModePayment;
     NSString *consumerReference = self.configuration.reference.consumerReference;
@@ -219,6 +227,44 @@
         _threeDSecureService = [JP3DSService new];
     }
     return _threeDSecureService;
+}
+
+- (JPStoredCardDetails *)selectedCard {
+    for (JPStoredCardDetails *card in [self getStoredCardDetails]) {
+        if (card.isSelected) {
+            return card;
+        }
+    }
+    return nil;
+}
+
+- (JPResponse *)buildResponse {
+    JPResponse *response = [[JPResponse alloc] initWithPagination:nil];
+    JPTransactionData *data = [[JPTransactionData alloc] init];
+    data.judoId = self.configuration.judoId;
+    data.paymentReference = self.configuration.reference.paymentReference;
+    
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
+    NSString *result = [df stringFromDate:[NSDate date]];
+    data.createdAt = result;
+    
+    data.consumer = [[JPConsumer alloc] init];
+    data.consumer.consumerReference = self.configuration.reference.consumerReference;
+    data.consumer.consumerToken = self.configuration.reference.paymentReference;
+    data.amount = self.configuration.amount;
+    data.cardDetails = [[JPCardDetails alloc] init];
+    JPStoredCardDetails *selectedCard = [self selectedCard];
+    data.cardDetails.cardLastFour = selectedCard.cardLastFour;
+    data.cardDetails.cardToken = selectedCard.cardToken;
+    data.cardDetails.cardNetwork = selectedCard.cardNetwork;
+    response.items = @[data];
+    
+    return response;
+}
+
+- (void)processServerToServer:(JudoCompletionBlock)completion {
+    completion([self buildResponse], nil);
 }
 
 @end
