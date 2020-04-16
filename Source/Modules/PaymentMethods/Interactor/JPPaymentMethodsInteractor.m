@@ -47,6 +47,7 @@
 @property (nonatomic, strong) JPApplePayService *applePayService;
 @property (nonatomic, strong) JP3DSService *threeDSecureService;
 @property (nonatomic, strong) NSArray<JPPaymentMethod *> *paymentMethods;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
 @implementation JPPaymentMethodsInteractorImpl
@@ -239,25 +240,23 @@
 }
 
 - (JPResponse *)buildResponse {
-    JPResponse *response = [[JPResponse alloc] initWithPagination:nil];
-    JPTransactionData *data = [[JPTransactionData alloc] init];
+    JPResponse *response = [JPResponse new];
+    JPTransactionData *data = [JPTransactionData new];
     data.judoId = self.configuration.judoId;
     data.paymentReference = self.configuration.reference.paymentReference;
     
-    NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
-    NSString *result = [df stringFromDate:[NSDate date]];
+    NSString *result = [self.dateFormatter stringFromDate:[NSDate date]];
     data.createdAt = result;
     
-    data.consumer = [[JPConsumer alloc] init];
+    data.consumer = [JPConsumer new];
     data.consumer.consumerReference = self.configuration.reference.consumerReference;
-    data.consumer.consumerToken = self.configuration.reference.paymentReference;
     data.amount = self.configuration.amount;
-    data.cardDetails = [[JPCardDetails alloc] init];
+    data.cardDetails = [JPCardDetails new];
     JPStoredCardDetails *selectedCard = [self selectedCard];
     data.cardDetails.cardLastFour = selectedCard.cardLastFour;
     data.cardDetails.cardToken = selectedCard.cardToken;
     data.cardDetails.cardNetwork = selectedCard.cardNetwork;
+    data.cardDetails.cardScheme = [JPCardNetwork nameOfCardNetwork:selectedCard.cardNetwork];
     response.items = @[data];
     
     return response;
@@ -265,6 +264,14 @@
 
 - (void)processServerToServer:(JudoCompletionBlock)completion {
     completion([self buildResponse], nil);
+}
+
+- (NSDateFormatter *)dateFormatter {
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
+    }
+    return _dateFormatter;
 }
 
 @end

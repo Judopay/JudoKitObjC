@@ -38,6 +38,7 @@
 @property (nonatomic, strong) JPConfiguration *configuration;
 @property (nonatomic, strong) JPTransactionService *transactionService;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
 @implementation JPApplePayService
@@ -333,28 +334,32 @@
 }
 
 - (JPResponse *)buildResponse:(PKPayment *)payment  {
-    //proces payment in response
-    JPResponse *response = [[JPResponse alloc] initWithPagination:nil];
+    JPResponse *response = [JPResponse new];
     
-    JPTransactionData *data = [[JPTransactionData alloc] init];
+    JPTransactionData *data = [JPTransactionData new];
     data.judoId = self.configuration.judoId;
     data.paymentReference = self.configuration.reference.paymentReference;
     
-    NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
-    NSString *result = [df stringFromDate:[NSDate date]];
+    NSString *result = [self.dateFormatter stringFromDate:[NSDate date]];
     data.createdAt = result;
     
-    data.consumer = [[JPConsumer alloc] init];
+    data.consumer = [JPConsumer new];
     data.consumer.consumerReference = self.configuration.reference.consumerReference;
-    data.consumer.consumerToken = self.configuration.reference.paymentReference;
     data.amount = self.configuration.amount;
-    data.cardDetails = [[JPCardDetails alloc] init];
+    data.cardDetails = [JPCardDetails new];
     
     data.cardDetails.cardToken = payment.token.transactionIdentifier;
     data.cardDetails.cardScheme = payment.token.paymentMethod.network;
     response.items = @[data];
     return response;
+}
+
+- (NSDateFormatter *)dateFormatter {
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
+    }
+    return _dateFormatter;
 }
 
 @end
