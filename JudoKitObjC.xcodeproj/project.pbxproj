@@ -369,7 +369,7 @@
 			remoteGlobalIDString = 3B678B551C6CE5190001DC2F;
 			remoteInfo = JudoKitObjC;
 		};
-		8209575422F869A500DF5515 /* PBXContainerItemProxy */ = {
+		9AB324A524482208000E31A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3B678B4D1C6CE5190001DC2F /* Project object */;
 			proxyType = 1;
