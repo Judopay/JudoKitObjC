@@ -31,6 +31,8 @@
 		070F1FF5243B23FF005D8FAB /* JPConfigurationValidationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F1FF3243B23FF005D8FAB /* JPConfigurationValidationService.m */; };
 		070F1FF9243B5072005D8FAB /* JPConfigurationValidationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070F1FF7243B5006005D8FAB /* JPConfigurationValidationServiceTest.swift */; };
 		07D709E424406A230039D187 /* JPTransactionServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D709E324406A230039D187 /* JPTransactionServiceTest.swift */; };
+		07D70A332449B32B0039D187 /* JPFormatters.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D70A312449B32B0039D187 /* JPFormatters.h */; };
+		07D70A342449B32B0039D187 /* JPFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D70A322449B32B0039D187 /* JPFormatters.m */; };
 		230A811B52112C6248662946 /* Pods_JudoKitObjCExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8A8F9193062083C8A3F4E0 /* Pods_JudoKitObjCExampleApp.framework */; };
 		30006F1F23F6971B0099F3C5 /* JPSliderPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1B23F6971B0099F3C5 /* JPSliderPresentationController.m */; };
 		30006F2023F6971B0099F3C5 /* JPSliderTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30006F1C23F6971B0099F3C5 /* JPSliderTransitioningDelegate.m */; };
@@ -423,6 +425,8 @@
 		070F1FF3243B23FF005D8FAB /* JPConfigurationValidationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPConfigurationValidationService.m; sourceTree = "<group>"; };
 		070F1FF7243B5006005D8FAB /* JPConfigurationValidationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPConfigurationValidationServiceTest.swift; sourceTree = "<group>"; };
 		07D709E324406A230039D187 /* JPTransactionServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPTransactionServiceTest.swift; sourceTree = "<group>"; };
+		07D70A312449B32B0039D187 /* JPFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFormatters.h; sourceTree = "<group>"; };
+		07D70A322449B32B0039D187 /* JPFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFormatters.m; sourceTree = "<group>"; };
 		0B4BC46F6519171105ED267E /* Pods-JudoKitObjCExampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjCExampleAppUITests/Pods-JudoKitObjCExampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		11D5AE0F2CDD547DE7BDFA8E /* Pods-JudoKitObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.debug.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		14C4233364FA78C53A52B809 /* Pods-JudoKitObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JudoKitObjC.release.xcconfig"; path = "Target Support Files/Pods-JudoKitObjC/Pods-JudoKitObjC.release.xcconfig"; sourceTree = "<group>"; };
@@ -912,6 +916,15 @@
 				07D709E324406A230039D187 /* JPTransactionServiceTest.swift */,
 			);
 			path = TransactionService;
+			sourceTree = "<group>";
+		};
+		07D70A282449AC9C0039D187 /* NSDateFormator */ = {
+			isa = PBXGroup;
+			children = (
+				07D70A312449B32B0039D187 /* JPFormatters.h */,
+				07D70A322449B32B0039D187 /* JPFormatters.m */,
+			);
+			path = NSDateFormator;
 			sourceTree = "<group>";
 		};
 		15779454211085A9007BD3E1 /* Frameworks */ = {
@@ -2001,6 +2014,7 @@
 		30DB511923100E6B00B73D66 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				07D70A282449AC9C0039D187 /* NSDateFormator */,
 				30DB511B23100E6B00B73D66 /* Functions.h */,
 				30DB511A23100E6B00B73D66 /* Functions.m */,
 			);
@@ -2480,6 +2494,7 @@
 				30006F3923F697B60099F3C5 /* JPIDEALService.h in Headers */,
 				300072BD23F6AB560099F3C5 /* JPTransactionData.h in Headers */,
 				52B74D9123F98B4C009FE38C /* JPTransactionViewModel.h in Headers */,
+				07D70A332449B32B0039D187 /* JPFormatters.h in Headers */,
 				300072D023F6AB560099F3C5 /* JPConsumerDevice.h in Headers */,
 				30D61D6F23BB741A004E5CEE /* JPPaymentMethodsRouter.h in Headers */,
 				300072FE23F6AB560099F3C5 /* JPVCOResult.h in Headers */,
@@ -3138,6 +3153,7 @@
 				30006FB723F6999C0099F3C5 /* JPScanCardViewController.m in Sources */,
 				300072D323F6AB560099F3C5 /* JPPaymentMethod.m in Sources */,
 				300072DA23F6AB560099F3C5 /* JPIDEALBank.m in Sources */,
+				07D70A342449B32B0039D187 /* JPFormatters.m in Sources */,
 				30006F3B23F697B60099F3C5 /* JPTransactionService.m in Sources */,
 				52B4CA45241EF7AA009C28DC /* JPTransactionStatusView.m in Sources */,
 				300072F023F6AB560099F3C5 /* JPConsumer.m in Sources */,

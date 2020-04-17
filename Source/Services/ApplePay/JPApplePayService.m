@@ -32,13 +32,13 @@
 #import "JPTransactionData.h"
 #import "JPConsumer.h"
 #import "JPReference.h"
+#import "JPFormatters.h"
 
 @interface JPApplePayService ()
 @property (nonatomic, assign) TransactionMode transactionMode;
 @property (nonatomic, strong) JPConfiguration *configuration;
 @property (nonatomic, strong) JPTransactionService *transactionService;
 @property (nonatomic, strong) JudoCompletionBlock completionBlock;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @end
 
 @implementation JPApplePayService
@@ -339,10 +339,7 @@
     JPTransactionData *data = [JPTransactionData new];
     data.judoId = self.configuration.judoId;
     data.paymentReference = self.configuration.reference.paymentReference;
-    
-    NSString *result = [self.dateFormatter stringFromDate:[NSDate date]];
-    data.createdAt = result;
-    
+    data.createdAt = [[JPFormatters.sharedInstance rfc3339DateFormatter] stringFromDate:NSDate.date];
     data.consumer = [JPConsumer new];
     data.consumer.consumerReference = self.configuration.reference.consumerReference;
     data.amount = self.configuration.amount;
@@ -352,14 +349,6 @@
     data.cardDetails.cardScheme = payment.token.paymentMethod.network;
     response.items = @[data];
     return response;
-}
-
-- (NSDateFormatter *)dateFormatter {
-    if (_dateFormatter == nil) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
-    }
-    return _dateFormatter;
 }
 
 @end
