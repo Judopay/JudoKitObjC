@@ -29,6 +29,10 @@
 #import "JPResponse.h"
 #import "NSError+Additions.h"
 #import "UIApplication+Additions.h"
+#import "JPTransactionData.h"
+#import "JPConsumer.h"
+#import "JPReference.h"
+#import "JPFormatters.h"
 
 @interface JPApplePayService ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -76,6 +80,11 @@
 - (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
+
+    if (self.transactionMode == TransactionModeServerToServer) {
+       [self processServerToServer:self.completionBlock payment:payment];
+        return;
+    }
 
     TransactionType type = (self.transactionMode == TransactionModePreAuth) ? TransactionTypePreAuth : TransactionTypePayment;
     self.transactionService.transactionType = type;
@@ -318,6 +327,28 @@
                                                          name:contact.name
                                                   phoneNumber:contact.phoneNumber.stringValue
                                                 postalAddress:postalAddress];
+}
+
+- (void)processServerToServer:(JudoCompletionBlock)completion payment:(PKPayment *)payment {
+    completion([self buildResponse: payment], nil);
+}
+
+- (JPResponse *)buildResponse:(PKPayment *)payment  {
+    JPResponse *response = [JPResponse new];
+    
+    JPTransactionData *data = [JPTransactionData new];
+    data.judoId = self.configuration.judoId;
+    data.paymentReference = self.configuration.reference.paymentReference;
+    data.createdAt = [[JPFormatters.sharedInstance rfc3339DateFormatter] stringFromDate:NSDate.date];
+    data.consumer = [JPConsumer new];
+    data.consumer.consumerReference = self.configuration.reference.consumerReference;
+    data.amount = self.configuration.amount;
+    data.cardDetails = [JPCardDetails new];
+    
+    data.cardDetails.cardToken = payment.token.transactionIdentifier;
+    data.cardDetails.cardScheme = payment.token.paymentMethod.network;
+    response.items = @[data];
+    return response;
 }
 
 @end

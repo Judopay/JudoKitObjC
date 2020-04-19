@@ -32,6 +32,7 @@
 typedef NS_ENUM(NSUInteger, TransactionMode) {
     TransactionModePayment,
     TransactionModePreAuth,
+    TransactionModeServerToServer,
 };
 
 typedef NS_ENUM(NSUInteger, TransactionType) {

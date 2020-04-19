@@ -43,7 +43,11 @@ class MainViewController: UITableViewController {
         
         DemoFeature(type: .preAuthMethods,
                     title: "PreAuth Methods",
-                    details: "with default preauth methods")
+                    details: "with default preauth methods"),
+        
+        DemoFeature(type: .serverToServer,
+                    title: "Server-to-Server payment methods",
+                    details: "with default Server-to-Server payment methods")
     ]
     
     var amount: JPAmount {
@@ -125,6 +129,9 @@ class MainViewController: UITableViewController {
             
         case .preAuthMethods:
             navigateToPreAuthMethods()
+            
+        case .serverToServer:
+            navigateToServerToServerMethods()
         }
     }
     
@@ -210,6 +217,15 @@ class MainViewController: UITableViewController {
                                                     self.handle(response: response, error: error)
         })
     }
+    
+    @objc func navigateToServerToServerMethods() {
+        self.judoKit?.invokePaymentMethodScreen(with: .serverToServer,
+                                                configuration: configuration,
+                                                completion: {[weak self] (response, error) in
+                                                    self?.handle(response: response, error: error)
+        })
+    }
+    
     
     // MARK: - Helper methods
     

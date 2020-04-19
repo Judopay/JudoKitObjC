@@ -208,6 +208,15 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     }];
 }
 
+- (void)serverToServerMethodOperation {
+    __weak typeof(self) weakSelf = self;
+    [self.judoKitSession invokePaymentMethodScreenWithMode:TransactionModeServerToServer
+                                             configuration:self.configuration
+                                                completion:^(JPResponse *response, NSError *error) {
+                                  [weakSelf handleResponse:response error:error];
+    }];
+}
+
 // MARK: Helper methods
 
 - (void)handleResponse:(JPResponse *)response error:(NSError *)error {
@@ -316,6 +325,14 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
     return self.features.count;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Features";
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return @"To view test card details:\nSign in to judo and go to Developer/Tools.";
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -366,6 +383,10 @@ static NSString * const kConsumerReference = @"judoPay-sample-app-objc";
             
         case DemoFeatureTypePreAuthMethods:
             [self preAuthMethodOperation];
+            break;
+            
+        case DemoFeatureTypeServerToServer:
+            [self serverToServerMethodOperation];
             break;
     }
 }
