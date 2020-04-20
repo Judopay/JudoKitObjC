@@ -10,4 +10,5 @@ enum DemoFeatureType {
     case applePayPreAuth
     case paymentMethods
     case preAuthMethods
+    case serverToServer
 }

@@ -40,6 +40,9 @@
         [DemoFeature featureWithType:DemoFeatureTypePreAuthMethods
                                title:@"PreAuth Methods"
                              details:@"with default preauth methods"],
+        [DemoFeature featureWithType:DemoFeatureTypeServerToServer
+                               title:@"Server-to-Server payment methods"
+                             details:@"with default Server-to-Server payment methods"],
     ];
 }
 @end

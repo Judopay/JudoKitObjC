@@ -68,4 +68,19 @@ static int const kMaxAMEXCardLength = 15;
 static int const kMaxDinersClubCardLength = 14;
 static int const kMaxDefaultCardLength = 16;
 
+
+//MARK:Postal Codes
+static NSString *const kMaskForCanadaPostCode = @"XXX XXX";
+static int const kCanadaPostalCodeLength = 7;
+static int const kUKPostalCodeMaxLength = 8;
+static int const kUKPostalCodeMinLength = 6;
+static int const kUSAPostalCodeMaxLength = 10;
+static int const kUSAPostalCodeMinLength = 5;
+
+static int const kOtherPostalCodeLength = 8;
+
+static NSString *const kUSARegex = @"^[0-9]{5}(?:-[0-9]{4})?$";
+static NSString *const kUKRegex = @"^([A-Z][0-9]|[A-Z][0-9][A-Z]|[A-Z][0-9][0-9]|[A-Z][A-Z][0-9]|[A-Z][A-Z][0-9][A-Z]|[A-Z][A-Z][0-9][0-9])([0-9][A-Z][A-Z])$";
+static NSString *const kCanadaRegex = @"^(\\d{5}(-\\d{4})?|[A-Z]\\d[A-Z] ?\\d[A-Z]\\d)$";
+
 #endif /* JPConstants_h */

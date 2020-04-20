@@ -34,7 +34,6 @@
 
 @property (nonatomic, strong) JPValidationResult *lastCardNumberValidationResult;
 @property (nonatomic, strong) JPValidationResult *lastExpiryDateValidationResult;
-@property (nonatomic, strong) JPValidationResult *lastPostalCodeValidationResult;
 @property (nonatomic, strong) NSString *selectedJPBillingCountry;
 @end
 
@@ -43,17 +42,13 @@
 #pragma mark - Constants
 
 static int const kCardHolderNameLength = 3;
-static int const kUKPostalCodeLength = 8;
-static int const kUSAPostalCodeLength = 5;
-static int const kCanadaPostalCodeLength = 7;
-static int const kOtherPostalCodeLength = 8;
+
 
 #pragma mark - Public Methods
 
 - (void)resetCardValidationResults {
     self.lastCardNumberValidationResult = nil;
     self.lastExpiryDateValidationResult = nil;
-    self.lastPostalCodeValidationResult = nil;
 }
 
 - (BOOL)isInputSupported:(NSString *)input
@@ -70,23 +65,12 @@ static int const kOtherPostalCodeLength = 8;
     return input.cardNetwork & supportedCardNetworks;
 }
 
-- (NSUInteger)getMaxCardLength:(CardNetwork)cardNetwork {
-    switch (cardNetwork) {
-        case CardNetworkAMEX:
-            return kMaxAMEXCardLength;
-        case CardNetworkDinersClub:
-            return kMaxDinersClubCardLength;
-        default:
-            return kMaxDefaultCardLength;
-    }
-}
-
 - (JPValidationResult *)validateCardNumberInput:(NSString *)input
                            forSupportedNetworks:(CardNetwork)networks {
     NSError *error;
     NSString *cardNumber = [input stringByRemovingWhitespaces];
     NSString *cardNetworkPatern = [JPCardNetwork cardPatternForType:cardNumber.cardNetwork];
-    NSUInteger maxCardLength = [self getMaxCardLength:cardNumber.cardNetwork];
+    NSUInteger maxCardLength = [self maxCardLength:cardNumber.cardNetwork];
 
     if (cardNumber.length > maxCardLength) {
         cardNumber = [cardNumber substringToIndex:maxCardLength];
@@ -102,8 +86,7 @@ static int const kOtherPostalCodeLength = 8;
 
     cardNumber = [cardNumber formatWithPattern:cardNetworkPatern];
 
-    self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:(error == 0)
-                                                                      inputAllowed:([input stringByRemovingWhitespaces].length <= maxCardLength)
+    self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:(error == 0 && [cardNumber stringByRemovingWhitespaces].length == maxCardLength)                                                                       inputAllowed:([input stringByRemovingWhitespaces].length <= maxCardLength)
                                                                       errorMessage:error ? error.localizedDescription : nil
                                                                     formattedInput:cardNumber];
 
@@ -171,15 +154,15 @@ static int const kOtherPostalCodeLength = 8;
 - (JPValidationResult *)validatePostalCodeInput:(NSString *)input {
 
     if ([self.selectedJPBillingCountry isEqualToString:@"country_usa".localized]) {
-        return [self validateUSAPostalCodeInput:input];
+        return [self validatePostalCodeInput:input country:JPBillingCountryUSA];
     }
 
     if ([self.selectedJPBillingCountry isEqualToString:@"country_uk".localized]) {
-        return [self validateUKPostalCodeInput:input];
+        return [self validatePostalCodeInput:input country:JPBillingCountryUK];
     }
 
     if ([self.selectedJPBillingCountry isEqualToString:@"country_canada".localized]) {
-        return [self validateCanadaPostalCodeInput:input];
+        return [self validatePostalCodeInput:input country:JPBillingCountryCanada];
     }
 
     if ([self.selectedJPBillingCountry isEqualToString:@"country_other".localized]) {
@@ -339,86 +322,91 @@ static int const kOtherPostalCodeLength = 8;
     return self.lastExpiryDateValidationResult;
 }
 
-- (JPValidationResult *)validateUKPostalCodeInput:(NSString *)input {
-
-    if (input.length > kUKPostalCodeLength) {
-        return self.lastPostalCodeValidationResult;
-    }
-
-    NSString *const kUKRegexString = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX‌​]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))\\s?[0-9][A-Z-[C‌​IKMOV]]{2})";
-
-    NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:kUKRegexString
+- (BOOL)doesPostalCode:(NSString *)postalCode matchRegex:(NSString *)regex {
+    NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:regex
                                                                              options:NSRegularExpressionAnchorsMatchLines
                                                                                error:nil];
-    BOOL isValid = [ukRegex numberOfMatchesInString:input.uppercaseString
-                                            options:NSMatchingWithoutAnchoringBounds
-                                              range:NSMakeRange(0, input.uppercaseString.length)] > 0;
-
-    NSString *errorMessage = (input.length == kUKPostalCodeLength && !isValid) ? @"invalid_postcode".localized : nil;
-
-    self.lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
-                                                                      inputAllowed:input.length <= kUKPostalCodeLength
-                                                                      errorMessage:errorMessage
-                                                                    formattedInput:input.uppercaseString];
-    return self.lastPostalCodeValidationResult;
+    return [ukRegex numberOfMatchesInString:postalCode
+                                    options:NSMatchingWithoutAnchoringBounds
+                                      range:NSMakeRange(0, postalCode.length)] > 0;
 }
 
-- (JPValidationResult *)validateUSAPostalCodeInput:(NSString *)input {
-
-    if (input.length > kUSAPostalCodeLength) {
-        return self.lastPostalCodeValidationResult;
-    }
-
-    NSString *const kUSARegexString = @"(^\\d{5}$)|(^\\d{5}-\\d{4}$)";
-
-    NSRegularExpression *usaRegex = [NSRegularExpression regularExpressionWithPattern:kUSARegexString
-                                                                              options:NSRegularExpressionAnchorsMatchLines
-                                                                                error:nil];
-
-    BOOL isValid = [usaRegex numberOfMatchesInString:input.uppercaseString
-                                             options:NSMatchingWithoutAnchoringBounds
-                                               range:NSMakeRange(0, input.uppercaseString.length)] > 0;
-
-    NSString *errorMessage = (input.length == kUSAPostalCodeLength && !isValid) ? @"invalid_zip_code".localized : nil;
-
-    self.lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
-                                                                      inputAllowed:input.length <= kUSAPostalCodeLength
-                                                                      errorMessage:errorMessage
-                                                                    formattedInput:input.uppercaseString];
-    return self.lastPostalCodeValidationResult;
+- (void)maskAndCheckInputUK:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
+    NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
+    NSRange range = NSMakeRange(0, inputClear.length);
+    NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:kUKRegex
+                                                                             options:NSRegularExpressionAnchorsMatchLines
+                                                                               error:nil];
+    [ukRegex enumerateMatchesInString:inputClear
+                              options:0 range:range
+                           usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags __unused, BOOL *stop __unused)  {
+        if (result != nil && result.numberOfRanges >= 3) {
+            NSString *firstPart = [inputClear substringWithRange:[result rangeAtIndex:1]];
+            NSString *secondPart = [inputClear substringWithRange:[result rangeAtIndex:2]];
+            *input = [NSString stringWithFormat:@"%@ %@", firstPart, secondPart];
+            *isValid = true;
+        }
+    }];
 }
 
-- (JPValidationResult *)validateCanadaPostalCodeInput:(NSString *)input {
-
-    if (input.length > kCanadaPostalCodeLength) {
-        return self.lastPostalCodeValidationResult;
+- (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
+    NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
+    NSString *inputClearWithoutSpecialCharacters = [inputClear stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    if (inputClear.length > kUSAPostalCodeMinLength) {
+        NSString *firstPart = [inputClearWithoutSpecialCharacters substringToIndex:kUSAPostalCodeMinLength];
+        NSString *secondPart = [inputClearWithoutSpecialCharacters substringWithRange:NSMakeRange(kUSAPostalCodeMinLength, inputClearWithoutSpecialCharacters.length - kUSAPostalCodeMinLength)];
+        
+        *input = [NSString stringWithFormat:@"%@-%@", firstPart, secondPart];
     }
+    *isValid = [self doesPostalCode:*input matchRegex:kUSARegex];
+}
 
-    NSString *const kCanadaRegexString = @"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][\\s][0-9]";
-    NSRegularExpression *canadaRegex = [NSRegularExpression regularExpressionWithPattern:kCanadaRegexString
-                                                                                 options:NSRegularExpressionAnchorsMatchLines
-                                                                                   error:nil];
+- (void)maskAndCheckInput:(NSString *__autoreleasing *)input country:(JPBillingCountry)country isValid:(BOOL *)isValid  {
+    switch (country) {
+        case JPBillingCountryCanada:
+            *input = [[*input stringByRemovingWhitespaces] formatWithPattern:kMaskForCanadaPostCode];
+            *isValid = [self doesPostalCode:*input matchRegex:kCanadaRegex];
+            break;
+        case JPBillingCountryUK:
+            [self maskAndCheckInputUK:input isValid:isValid];
+            break;
+        case JPBillingCountryUSA:
+            [self maskAndCheckInputUSA:input isValid:isValid];
+            break;
+        default:
+            break;
+    }
+}
 
-    BOOL isValid = [canadaRegex numberOfMatchesInString:input.uppercaseString
-                                                options:NSMatchingWithoutAnchoringBounds
-                                                  range:NSMakeRange(0, input.uppercaseString.length)] > 0;
-
-    NSString *errorMessage = (input.length == kCanadaPostalCodeLength && !isValid) ? @"invalid_postcode".localized : nil;
-
-    self.lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
-                                                                      inputAllowed:input.length <= kCanadaPostalCodeLength
-                                                                      errorMessage:errorMessage
-                                                                    formattedInput:input.uppercaseString];
-
-    return self.lastPostalCodeValidationResult;
+- (JPValidationResult *)validatePostalCodeInput:(NSString *)input country:(JPBillingCountry)country {
+    BOOL isValid = false;
+    NSUInteger maxLength = [self postCodeMaxLengthForCountry:country];
+    NSUInteger minLength = [self postCodeMinLengthForCountry:country];
+    NSString *errorString = [self postCodeErrorForCountry:country];
+    
+    if (input.length > maxLength) {
+        input = [input substringToIndex:maxLength];
+    }
+    
+    [self maskAndCheckInput:&input
+                    country:country
+                    isValid:&isValid];
+    NSString *errorMessage = (input.length >= minLength && !isValid) ? errorString : nil;
+    
+    JPValidationResult *lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
+                                                                                     inputAllowed:input.length <= maxLength
+                                                                                     errorMessage:errorMessage
+                                                                                   formattedInput:input.uppercaseString];
+    return lastPostalCodeValidationResult;
 }
 
 - (JPValidationResult *)validateOtherPostalCodeInput:(NSString *)input {
-    self.lastPostalCodeValidationResult = [JPValidationResult validationWithResult:YES
-                                                                      inputAllowed:input.length <= kOtherPostalCodeLength
-                                                                      errorMessage:nil
-                                                                    formattedInput:input.uppercaseString];
-    return self.lastPostalCodeValidationResult;
+    JPValidationResult *lastPostalCodeValidationResult = [JPValidationResult validationWithResult:YES
+                                                                                     inputAllowed:input.length <= kOtherPostalCodeLength
+                                                                                     errorMessage:nil
+                                                                                   formattedInput:input.uppercaseString];
+    return lastPostalCodeValidationResult;
 }
 
 - (NSString *)selectedJPBillingCountry {
@@ -426,6 +414,54 @@ static int const kOtherPostalCodeLength = 8;
         _selectedJPBillingCountry = @"country_uk".localized;
     }
     return _selectedJPBillingCountry;
+}
+
+- (NSString *)postCodeErrorForCountry:(JPBillingCountry)country {
+    if (country == JPBillingCountryUSA) {
+        return @"invalid_zip_code".localized;
+    }
+    return @"invalid_postcode".localized;
+}
+
+- (NSUInteger)postCodeMaxLengthForCountry:(JPBillingCountry)country {
+    switch (country) {
+        case JPBillingCountryCanada:
+            return kCanadaPostalCodeLength;
+        case JPBillingCountryUK:
+            return kUKPostalCodeMaxLength;
+        case JPBillingCountryUSA:
+            return kUSAPostalCodeMaxLength;
+        case JPBillingCountryOther:
+            return kOtherPostalCodeLength;
+        default:
+            break;
+    }
+}
+
+- (NSUInteger)postCodeMinLengthForCountry:(JPBillingCountry)country {
+    switch (country) {
+        case JPBillingCountryCanada:
+            return kCanadaPostalCodeLength;
+        case JPBillingCountryUK:
+            return kUKPostalCodeMinLength;
+        case JPBillingCountryUSA:
+            return kUSAPostalCodeMinLength;
+        case JPBillingCountryOther:
+            return kOtherPostalCodeLength;
+        default:
+            break;
+    }
+}
+
+- (NSUInteger)maxCardLength:(CardNetwork)cardNetwork {
+    switch (cardNetwork) {
+        case CardNetworkAMEX:
+            return kMaxAMEXCardLength;
+        case CardNetworkDinersClub:
+            return kMaxDinersClubCardLength;
+        default:
+            return kMaxDefaultCardLength;
+    }
 }
 
 @end

@@ -276,6 +276,7 @@
 - (void)updateSecureCodePlaceholderForNetworkType:(CardNetwork)cardNetwork {
     if (self.addCardViewModel.cardNumberViewModel.cardNetwork != cardNetwork) {
         self.addCardViewModel.secureCodeViewModel.text = @"";
+        self.isSecureCodeValid = false;
         NSString *placeholder = [JPCardNetwork secureCodePlaceholderForNetworkType:cardNetwork];
         self.addCardViewModel.secureCodeViewModel.placeholder = placeholder;
     }
