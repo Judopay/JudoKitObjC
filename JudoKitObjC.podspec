@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author                = { "Judopay" => 'developersupport@judopayments.com' }
   s.source                = { :git => 'https://github.com/Judopay/JudoKitObjC.git', :tag => s.version.to_s }
 
-  s.documentation_url     = 'https://judopay.github.io/JudoKitObjC/'
+  s.documentation_url     = 'https://docs.judopay.com'
 
   s.ios.deployment_target = '10.3'
   s.requires_arc          = true
