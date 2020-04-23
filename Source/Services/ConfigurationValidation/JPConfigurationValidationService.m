@@ -173,12 +173,12 @@ typedef NS_ENUM(NSUInteger, JPValidationError) {
     }
 }
 
--(void)checkAmount:(JPAmount *)amount transactionType:(TransactionType)transactionType error:(NSError **)error {
+- (void)checkAmount:(JPAmount *)amount transactionType:(TransactionType)transactionType error:(NSError **)error {
     BOOL isTypeSaveCard = transactionType == TransactionTypeSaveCard;
     BOOL isTypeRegisterCard = transactionType == TransactionTypeRegisterCard;
     BOOL isTypeChekCard = transactionType == TransactionTypeCheckCard;
-    
-    if(!(isTypeChekCard || isTypeSaveCard || isTypeRegisterCard)){
+
+    if (!(isTypeChekCard || isTypeSaveCard || isTypeRegisterCard)) {
         [self checkForValidCurrency:amount.currency error:error];
         [self checkIfAmountIsNumber:amount.amount error:error];
     }

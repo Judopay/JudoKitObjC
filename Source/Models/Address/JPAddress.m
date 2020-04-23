@@ -101,7 +101,7 @@
     if (self.countryCode) {
         dictionary[@"countryCode"] = self.countryCode;
     }
-    
+
     return [dictionary copy];
 }
 

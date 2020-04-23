@@ -68,7 +68,6 @@ static int const kMaxAMEXCardLength = 15;
 static int const kMaxDinersClubCardLength = 14;
 static int const kMaxDefaultCardLength = 16;
 
-
 //MARK:Postal Codes
 static NSString *const kMaskForCanadaPostCode = @"XXX XXX";
 static int const kCanadaPostalCodeLength = 7;

@@ -24,7 +24,7 @@
 
 #import "JPFormatters.h"
 
-@implementation JPFormatters 
+@implementation JPFormatters
 
 + (instancetype)sharedInstance {
     static JPFormatters *sharedInstance = nil;
@@ -44,6 +44,5 @@
     }
     return _rfc3339DateFormatter;
 }
-
 
 @end

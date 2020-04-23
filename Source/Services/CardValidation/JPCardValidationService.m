@@ -43,7 +43,6 @@
 
 static int const kCardHolderNameLength = 3;
 
-
 #pragma mark - Public Methods
 
 - (void)resetCardValidationResults {
@@ -86,7 +85,8 @@ static int const kCardHolderNameLength = 3;
 
     cardNumber = [cardNumber formatWithPattern:cardNetworkPatern];
 
-    self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:(error == 0 && [cardNumber stringByRemovingWhitespaces].length == maxCardLength)                                                                       inputAllowed:([input stringByRemovingWhitespaces].length <= maxCardLength)
+    self.lastCardNumberValidationResult = [JPValidationResult validationWithResult:(error == 0 && [cardNumber stringByRemovingWhitespaces].length == maxCardLength)
+                                                                      inputAllowed:([input stringByRemovingWhitespaces].length <= maxCardLength)
                                                                       errorMessage:error ? error.localizedDescription : nil
                                                                     formattedInput:cardNumber];
 
@@ -331,38 +331,39 @@ static int const kCardHolderNameLength = 3;
                                       range:NSMakeRange(0, postalCode.length)] > 0;
 }
 
-- (void)maskAndCheckInputUK:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
+- (void)maskAndCheckInputUK:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid {
     NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
     NSRange range = NSMakeRange(0, inputClear.length);
     NSRegularExpression *ukRegex = [NSRegularExpression regularExpressionWithPattern:kUKRegex
                                                                              options:NSRegularExpressionAnchorsMatchLines
                                                                                error:nil];
     [ukRegex enumerateMatchesInString:inputClear
-                              options:0 range:range
-                           usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags __unused, BOOL *stop __unused)  {
-        if (result != nil && result.numberOfRanges >= 3) {
-            NSString *firstPart = [inputClear substringWithRange:[result rangeAtIndex:1]];
-            NSString *secondPart = [inputClear substringWithRange:[result rangeAtIndex:2]];
-            *input = [NSString stringWithFormat:@"%@ %@", firstPart, secondPart];
-            *isValid = true;
-        }
-    }];
+                              options:0
+                                range:range
+                           usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags __unused, BOOL *stop __unused) {
+                               if (result != nil && result.numberOfRanges >= 3) {
+                                   NSString *firstPart = [inputClear substringWithRange:[result rangeAtIndex:1]];
+                                   NSString *secondPart = [inputClear substringWithRange:[result rangeAtIndex:2]];
+                                   *input = [NSString stringWithFormat:@"%@ %@", firstPart, secondPart];
+                                   *isValid = true;
+                               }
+                           }];
 }
 
-- (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid  {
+- (void)maskAndCheckInputUSA:(NSString *__autoreleasing *)input isValid:(BOOL *)isValid {
     NSString *inputClear = [[*input stringByRemovingWhitespaces] uppercaseString];
     NSString *inputClearWithoutSpecialCharacters = [inputClear stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    
+
     if (inputClear.length > kUSAPostalCodeMinLength) {
         NSString *firstPart = [inputClearWithoutSpecialCharacters substringToIndex:kUSAPostalCodeMinLength];
         NSString *secondPart = [inputClearWithoutSpecialCharacters substringWithRange:NSMakeRange(kUSAPostalCodeMinLength, inputClearWithoutSpecialCharacters.length - kUSAPostalCodeMinLength)];
-        
+
         *input = [NSString stringWithFormat:@"%@-%@", firstPart, secondPart];
     }
     *isValid = [self doesPostalCode:*input matchRegex:kUSARegex];
 }
 
-- (void)maskAndCheckInput:(NSString *__autoreleasing *)input country:(JPBillingCountry)country isValid:(BOOL *)isValid  {
+- (void)maskAndCheckInput:(NSString *__autoreleasing *)input country:(JPBillingCountry)country isValid:(BOOL *)isValid {
     switch (country) {
         case JPBillingCountryCanada:
             *input = [[*input stringByRemovingWhitespaces] formatWithPattern:kMaskForCanadaPostCode];
@@ -384,16 +385,16 @@ static int const kCardHolderNameLength = 3;
     NSUInteger maxLength = [self postCodeMaxLengthForCountry:country];
     NSUInteger minLength = [self postCodeMinLengthForCountry:country];
     NSString *errorString = [self postCodeErrorForCountry:country];
-    
+
     if (input.length > maxLength) {
         input = [input substringToIndex:maxLength];
     }
-    
+
     [self maskAndCheckInput:&input
                     country:country
                     isValid:&isValid];
     NSString *errorMessage = (input.length >= minLength && !isValid) ? errorString : nil;
-    
+
     JPValidationResult *lastPostalCodeValidationResult = [JPValidationResult validationWithResult:isValid
                                                                                      inputAllowed:input.length <= maxLength
                                                                                      errorMessage:errorMessage

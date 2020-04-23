@@ -86,8 +86,8 @@
 - (BOOL)configurationIsValid:(JPConfiguration *)configuration
               validationType:(JPValidationType)validationType
              transactionType:(TransactionType)transactionType
-                  completion:(JudoCompletionBlock)completion{
-    
+                  completion:(JudoCompletionBlock)completion {
+
     return [self.configurationValidationService isTransactionValidWithConfiguration:configuration
                                                                      validationType:validationType
                                                                     transactionType:transactionType
@@ -97,9 +97,10 @@
 - (void)invokeTransactionWithType:(TransactionType)type
                     configuration:(JPConfiguration *)configuration
                        completion:(JudoCompletionBlock)completion {
-    if(![self configurationIsValid:configuration
-                    validationType:JPValidationTypeTransaction
-                   transactionType:type completion:completion]){
+    if (![self configurationIsValid:configuration
+                     validationType:JPValidationTypeTransaction
+                    transactionType:type
+                         completion:completion]) {
         return;
     }
 
@@ -121,7 +122,7 @@
                     completion:(JudoCompletionBlock)completion {
 
     if (![self configurationIsValid:configuration
-                     validationType: JPValidationTypeApplePay
+                     validationType:JPValidationTypeApplePay
                     transactionType:TransactionTypeVoid
                          completion:completion]) {
         return;

@@ -28,7 +28,6 @@
 #import "JPReference.h"
 #import "JPTransactionEnricher.h"
 #import "NSError+Additions.h"
-#import "JPAmount.h"
 
 @interface JPTransactionService ()
 @property (nonatomic, strong) JPSession *session;
@@ -97,14 +96,14 @@
     return transaction;
 }
 
--(nullable JPAmount *)amountForTransactionType:(JPConfiguration *) configuration {
+- (nullable JPAmount *)amountForTransactionType:(JPConfiguration *)configuration {
     switch (self.transactionType) {
         case TransactionTypeCheckCard:
             return [JPAmount amount:@"0.00" currency:@"GBP"];
         case TransactionTypeSaveCard:
             return nil;
         case TransactionTypeRegisterCard:
-           return configuration.amount?configuration.amount:[JPAmount amount:@"0.01" currency:@"GBP"];
+            return configuration.amount ? configuration.amount : [JPAmount amount:@"0.01" currency:@"GBP"];
         default:
             return configuration.amount;
     }

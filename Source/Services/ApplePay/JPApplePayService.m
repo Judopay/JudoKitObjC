@@ -24,15 +24,15 @@
 
 #import "JPApplePayService.h"
 #import "JPApplePayWrappers.h"
+#import "JPConsumer.h"
 #import "JPContactInformation.h"
+#import "JPFormatters.h"
 #import "JPPostalAddress.h"
+#import "JPReference.h"
 #import "JPResponse.h"
+#import "JPTransactionData.h"
 #import "NSError+Additions.h"
 #import "UIApplication+Additions.h"
-#import "JPTransactionData.h"
-#import "JPConsumer.h"
-#import "JPReference.h"
-#import "JPFormatters.h"
 
 @interface JPApplePayService ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -82,7 +82,7 @@
                                 completion:(void (^)(PKPaymentAuthorizationStatus))completion {
 
     if (self.transactionMode == TransactionModeServerToServer) {
-       [self processServerToServer:self.completionBlock payment:payment];
+        [self processServerToServer:self.completionBlock payment:payment];
         return;
     }
 
@@ -330,12 +330,12 @@
 }
 
 - (void)processServerToServer:(JudoCompletionBlock)completion payment:(PKPayment *)payment {
-    completion([self buildResponse: payment], nil);
+    completion([self buildResponse:payment], nil);
 }
 
-- (JPResponse *)buildResponse:(PKPayment *)payment  {
+- (JPResponse *)buildResponse:(PKPayment *)payment {
     JPResponse *response = [JPResponse new];
-    
+
     JPTransactionData *data = [JPTransactionData new];
     data.judoId = self.configuration.judoId;
     data.paymentReference = self.configuration.reference.paymentReference;
@@ -344,10 +344,10 @@
     data.consumer.consumerReference = self.configuration.reference.consumerReference;
     data.amount = self.configuration.amount;
     data.cardDetails = [JPCardDetails new];
-    
+
     data.cardDetails.cardToken = payment.token.transactionIdentifier;
     data.cardDetails.cardScheme = payment.token.paymentMethod.network;
-    response.items = @[data];
+    response.items = @[ data ];
     return response;
 }
 

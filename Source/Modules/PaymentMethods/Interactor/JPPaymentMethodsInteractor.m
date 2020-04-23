@@ -30,15 +30,15 @@
 #import "JPCardStorage.h"
 #import "JPConfiguration.h"
 #import "JPConstants.h"
+#import "JPConsumer.h"
+#import "JPFormatters.h"
 #import "JPIDEALBank.h"
 #import "JPPaymentMethod.h"
 #import "JPPaymentToken.h"
 #import "JPReference.h"
-#import "JPTransactionService.h"
 #import "JPResponse.h"
 #import "JPTransactionData.h"
-#import "JPConsumer.h"
-#import "JPFormatters.h"
+#import "JPTransactionService.h"
 
 @interface JPPaymentMethodsInteractorImpl ()
 @property (nonatomic, assign) TransactionMode transactionMode;
@@ -253,8 +253,8 @@
     data.cardDetails.cardToken = selectedCard.cardToken;
     data.cardDetails.cardNetwork = selectedCard.cardNetwork;
     data.cardDetails.cardScheme = [JPCardNetwork nameOfCardNetwork:selectedCard.cardNetwork];
-    response.items = @[data];
-    
+    response.items = @[ data ];
+
     return response;
 }
 

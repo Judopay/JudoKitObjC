@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, JPValidationType) {
 @protocol JPConfigurationValidationService
 @required
 - (BOOL)isTransactionValidWithConfiguration:(JPConfiguration *)configuration
-                            validationType:(JPValidationType)validationType
+                             validationType:(JPValidationType)validationType
                             transactionType:(TransactionType)transactionType
                                  completion:(JudoCompletionBlock)completion;
 @end
