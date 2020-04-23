@@ -40,7 +40,7 @@ class JPConfigurationValidationServiceTest: XCTestCase {
     }
     
     func testInvalidCharacters() {
-        let isValid = configValidation.isTransactionValid(with: configuration, transactionType: .transaction) { (response, errror) in
+        let isValid = configValidation.isTransactionValid(with: configuration, validationType: .transaction, transactionType: .payment) { (response, errror) in
             XCTAssertEqual(errror!.localizedDescription, "Amount should be a number")
         }
         XCTAssertFalse(isValid)
@@ -49,7 +49,7 @@ class JPConfigurationValidationServiceTest: XCTestCase {
     func testEmptyCurrency() {
         amount = JPAmount("0.1", currency: "")
         configuration.amount = amount
-        let isValid = configValidation.isTransactionValid(with: configuration, transactionType: .transaction) { (response, errror) in
+        let isValid = configValidation.isTransactionValid(with: configuration, validationType: .transaction, transactionType: .payment) { (response, errror) in
             XCTAssertEqual(errror!.localizedDescription, "Currency cannot be empty")
         }
         XCTAssertFalse(isValid)
@@ -57,7 +57,7 @@ class JPConfigurationValidationServiceTest: XCTestCase {
     
     func testNilJudoId() {
         configuration = nil
-        let isValid = configValidation.isTransactionValid(with: configuration, transactionType: .transaction) { (response, errror) in
+        let isValid = configValidation.isTransactionValid(with: configuration, validationType: .transaction, transactionType: .payment) { (response, errror) in
             XCTAssertEqual(errror!.localizedDescription, "JudoId cannot be null or empty")
         }
         XCTAssertFalse(isValid)
@@ -66,7 +66,7 @@ class JPConfigurationValidationServiceTest: XCTestCase {
     func testConsumerReferenceInvalid() {
         let reference40Characters = String(repeating: "J", count: Int(kMaximumLengthForConsumerReference + 1))
         configuration.reference = JPReference(consumerReference: reference40Characters)
-        let isValid = configValidation.isTransactionValid(with: configuration, transactionType: .transaction) { (response, errror) in
+        let isValid = configValidation.isTransactionValid(with: configuration, validationType: .transaction, transactionType: .payment) { (response, errror) in
             XCTAssertEqual(errror!.localizedDescription, "Consumer Reference is invalid")
         }
         XCTAssertFalse(isValid)
