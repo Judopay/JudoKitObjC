@@ -101,16 +101,12 @@
     switch (self.transactionType) {
         case TransactionTypeCheckCard:
             return [JPAmount amount:@"0.00" currency:@"GBP"];
-            break;
         case TransactionTypeSaveCard:
             return nil;
-            break;
         case TransactionTypeRegisterCard:
            return configuration.amount?configuration.amount:[JPAmount amount:@"0.01" currency:@"GBP"];
-            break;
         default:
             return configuration.amount;
-            break;
     }
 }
 

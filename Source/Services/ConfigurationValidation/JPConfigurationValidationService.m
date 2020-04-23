@@ -57,6 +57,8 @@ typedef NS_ENUM(NSUInteger, JPValidationError) {
             return [self isTransactionValidWithConfiguration:configuration transactionType:transactionType completion:completion];
         case JPValidationTypeApplePay:
             return [self isAppleTransactionValidWithConfiguration:configuration completion:completion];
+        default:
+            return false;
     }
 }
 
