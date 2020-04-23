@@ -84,9 +84,12 @@
 }
 
 - (BOOL)configurationIsValid:(JPConfiguration *)configuration
-                  completion:(JudoCompletionBlock)completion
-             transactionType:(JPValidationType)transactionType {
+              validationType:(JPValidationType)validationType
+             transactionType:(TransactionType)transactionType
+                  completion:(JudoCompletionBlock)completion{
+    
     return [self.configurationValidationService isTransactionValidWithConfiguration:configuration
+                                                                     validationType:validationType
                                                                     transactionType:transactionType
                                                                          completion:completion];
 }
@@ -94,10 +97,9 @@
 - (void)invokeTransactionWithType:(TransactionType)type
                     configuration:(JPConfiguration *)configuration
                        completion:(JudoCompletionBlock)completion {
-
-    if (![self configurationIsValid:configuration
-                         completion:completion
-                    transactionType:JPValidationTypeTransaction]) {
+    if(![self configurationIsValid:configuration
+                    validationType:JPValidationTypeTransaction
+                   transactionType:type completion:completion]){
         return;
     }
 
@@ -119,8 +121,9 @@
                     completion:(JudoCompletionBlock)completion {
 
     if (![self configurationIsValid:configuration
-                         completion:completion
-                    transactionType:JPValidationTypeApplePay]) {
+                     validationType: JPValidationTypeApplePay
+                    transactionType:TransactionTypeVoid
+                         completion:completion]) {
         return;
     }
 

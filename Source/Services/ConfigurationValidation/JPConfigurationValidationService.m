@@ -49,21 +49,22 @@ typedef NS_ENUM(NSUInteger, JPValidationError) {
 }
 
 - (BOOL)isTransactionValidWithConfiguration:(JPConfiguration *)configuration
-                            transactionType:(JPValidationType)transactionType
+                             validationType:(JPValidationType)validationType
+                            transactionType:(TransactionType)transactionType
                                  completion:(JudoCompletionBlock)completion {
-    switch (transactionType) {
+    switch (validationType) {
         case JPValidationTypeTransaction:
-            return [self isTransactionValidWithConfiguration:configuration completion:completion];
+            return [self isTransactionValidWithConfiguration:configuration transactionType:transactionType completion:completion];
         case JPValidationTypeApplePay:
             return [self isAppleTransactionValidWithConfiguration:configuration completion:completion];
     }
 }
 
 - (BOOL)isTransactionValidWithConfiguration:(JPConfiguration *)configuration
+                            transactionType:(TransactionType)transactionType
                                  completion:(JudoCompletionBlock)completion {
     NSError *error;
-    [self checkForValidCurrency:configuration.amount.currency error:&error];
-    [self checkIfAmountIsNumber:configuration.amount.amount error:&error];
+    [self checkAmount:configuration.amount transactionType:transactionType error:&error];
     [self checkForValidJudoId:configuration error:&error];
     [self checkIfConsumerReferenceIsValid:configuration error:&error];
 
@@ -167,6 +168,17 @@ typedef NS_ENUM(NSUInteger, JPValidationError) {
         *error = [NSError errorWithDomain:kJudoErrorDomain
                                      code:JPValidationErrorInvalidParameter
                                  userInfo:@{NSLocalizedDescriptionKey : @"Consumer Reference is invalid"}];
+    }
+}
+
+-(void)checkAmount:(JPAmount *)amount transactionType:(TransactionType)transactionType error:(NSError **)error {
+    BOOL isTypeSaveCard = transactionType == TransactionTypeSaveCard;
+    BOOL isTypeRegisterCard = transactionType == TransactionTypeRegisterCard;
+    BOOL isTypeChekCard = transactionType == TransactionTypeCheckCard;
+    
+    if(!(isTypeChekCard || isTypeSaveCard || isTypeRegisterCard)){
+        [self checkForValidCurrency:amount.currency error:error];
+        [self checkIfAmountIsNumber:amount.amount error:error];
     }
 }
 

@@ -104,7 +104,7 @@
  *  @returns a configured instance of JPConfiguration
  */
 - (nonnull instancetype)initWithJudoID:(nonnull NSString *)judoId
-                                amount:(nonnull JPAmount *)amount
+                                amount:(nullable JPAmount *)amount
                              reference:(nonnull JPReference *)reference;
 
 /**
@@ -117,6 +117,6 @@
  *  @returns a configured instance of JPConfiguration
  */
 - (nonnull instancetype)initWithReceiptID:(nonnull NSString *)receiptId
-                                   amount:(nonnull JPAmount *)amount;
+                                   amount:(nullable JPAmount *)amount;
 
 @end

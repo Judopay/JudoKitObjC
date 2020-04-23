@@ -38,7 +38,7 @@
 #pragma mark - Initializers
 
 - (instancetype)initWithJudoID:(nonnull NSString *)judoId
-                        amount:(nonnull JPAmount *)amount
+                        amount:(nullable JPAmount *)amount
                      reference:(nonnull JPReference *)reference {
     if (self = [super init]) {
         self.judoId = judoId;
@@ -49,7 +49,7 @@
 }
 
 - (instancetype)initWithReceiptID:(nonnull NSString *)receiptId
-                           amount:(nonnull JPAmount *)amount {
+                           amount:(nullable JPAmount *)amount {
     if (self = [super init]) {
         self.receiptId = receiptId;
         self.amount = amount;

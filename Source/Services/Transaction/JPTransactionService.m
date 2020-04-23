@@ -28,6 +28,7 @@
 #import "JPReference.h"
 #import "JPTransactionEnricher.h"
 #import "NSError+Additions.h"
+#import "JPAmount.h"
 
 @interface JPTransactionService ()
 @property (nonatomic, strong) JPSession *session;
@@ -76,20 +77,11 @@
 
     JPTransaction *transaction = [JPTransaction transactionWithType:self.transactionType];
     transaction.judoId = configuration.judoId;
-    transaction.amount = configuration.amount;
+    transaction.amount = [self amountForTransactionType:configuration];
     transaction.reference = configuration.reference;
     transaction.primaryAccountDetails = configuration.primaryAccountDetails;
     transaction.apiSession = self.session;
     transaction.enricher = self.enricher;
-
-    BOOL isRegisterCard = (self.transactionType == TransactionTypeRegisterCard);
-    BOOL isSaveCard = (self.transactionType == TransactionTypeSaveCard);
-    BOOL isCheckCard = (self.transactionType == TransactionTypeCheckCard);
-
-    if (isRegisterCard || isSaveCard || isCheckCard) {
-        transaction.amount = [JPAmount amount:@"0.0"
-                                     currency:configuration.amount.currency];
-    }
 
     return transaction;
 }
@@ -103,6 +95,23 @@
     transaction.enricher = self.enricher;
 
     return transaction;
+}
+
+-(nullable JPAmount *)amountForTransactionType:(JPConfiguration *) configuration {
+    switch (self.transactionType) {
+        case TransactionTypeCheckCard:
+            return [JPAmount amount:@"0.00" currency:@"GBP"];
+            break;
+        case TransactionTypeSaveCard:
+            return nil;
+            break;
+        case TransactionTypeRegisterCard:
+           return configuration.amount?configuration.amount:[JPAmount amount:@"0.01" currency:@"GBP"];
+            break;
+        default:
+            return configuration.amount;
+            break;
+    }
 }
 
 - (JPReceipt *)receiptForReceiptId:(NSString *)receiptId {
