@@ -974,7 +974,6 @@
 				306EB64D23B0C376008FCEF5 /* JudoKitSwiftExampleApp */,
 				3B678B571C6CE5190001DC2F /* Products */,
 				15779454211085A9007BD3E1 /* Frameworks */,
-				2F7FAD88B3D56712F10B3DA5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1437,7 +1436,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B678B6A1C6CE5190001DC2F /* Build configuration list for PBXNativeTarget "JudoKitObjC" */;
 			buildPhases = (
-				3B6912DB1C96BA3800367660 /* ShellScript */,
 				3B678B511C6CE5190001DC2F /* Sources */,
 				3B678B521C6CE5190001DC2F /* Frameworks */,
 				3B678B531C6CE5190001DC2F /* Headers */,
@@ -1661,19 +1659,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B6912DB1C96BA3800367660 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"${SRCROOT}/DeviceDNA/Framework/strip-frameworks.sh\"\n";
-		};
 		700523F71CC7884500CC916D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
