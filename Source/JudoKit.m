@@ -648,6 +648,8 @@
 
 - (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
+    self.completionBlock(nil, [NSError judoUserDidCancelError]);
+
 }
 
 @end
