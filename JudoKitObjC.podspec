@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name                  = 'JudoKitObjC'
-  s.version               = '10.0.2'
+  s.version               = '10.0.0.1'
   s.summary               = 'Judo Pay Full iOS Client Kit'
   s.homepage              = 'https://www.judopay.com/'
   s.license               = 'MIT'
   s.author                = { "Judopay" => 'developersupport@judopayments.com' }
-  s.source                = { :git => 'https://github.com/Judopay/JudoKitObjC.git', :tag => s.version.to_s }
+  s.source                = { :git => 'https://github.com/radhakrishnant2s/JudoKitObjC.git', :tag => s.version.to_s }
 
   s.documentation_url     = 'https://judopay.github.io/JudoKitObjC/'
 
